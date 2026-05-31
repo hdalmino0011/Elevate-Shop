@@ -4,9 +4,9 @@ const products = [
         id: 1,
         title: "30-Day Motivation Bootcamp",
         price: 29.99,
-        icon: "🚀",
+        icon: "[BOOT]",
         shortDescription: "Transform your mindset in 30 days",
-        description: "A comprehensive 30-day program designed to build a powerful, unstoppable mindset. This bootcamp includes daily motivational modules, actionable exercises, and success strategies from top performers.",
+        description: "A comprehensive 30-day program designed to build a powerful, unstoppable mindset. This bootcamp includes daily motivational modules, actionable exercises, and success strategies from top performers. You will receive personalized guidance, access to exclusive resources, and proven techniques to overcome obstacles and achieve your goals.",
         features: [
             "30 days of daily motivational content",
             "Interactive workbooks and journals",
@@ -19,9 +19,9 @@ const products = [
         id: 2,
         title: "Financial Literacy Masterclass",
         price: 49.99,
-        icon: "💰",
+        icon: "[FINANCE]",
         shortDescription: "Master personal finance essentials",
-        description: "Learn the fundamentals of personal finance, investing, budgeting, and wealth building. This masterclass covers everything from basic money management to advanced investment strategies used by financial experts.",
+        description: "Learn the fundamentals of personal finance, investing, budgeting, and wealth building. This masterclass covers everything from basic money management to advanced investment strategies used by financial experts. Discover how to create multiple income streams, optimize your portfolio, and build lasting wealth.",
         features: [
             "10 comprehensive modules",
             "Real-world case studies",
@@ -34,9 +34,9 @@ const products = [
         id: 3,
         title: "Productivity Secrets Blueprint",
         price: 39.99,
-        icon: "⚡",
+        icon: "[POWER]",
         shortDescription: "Optimize your daily productivity",
-        description: "Discover the proven productivity systems used by top entrepreneurs and CEOs. This blueprint reveals the secrets to managing time effectively, eliminating procrastination, and achieving your goals faster than ever.",
+        description: "Discover the proven productivity systems used by top entrepreneurs and CEOs. This blueprint reveals the secrets to managing time effectively, eliminating procrastination, and achieving your goals faster than ever. Learn methods to maximize focus, delegate effectively, and create sustainable productivity habits.",
         features: [
             "7 productivity frameworks",
             "Time management tools",
@@ -49,9 +49,9 @@ const products = [
         id: 4,
         title: "Wealth Mindset Program",
         price: 44.99,
-        icon: "🎯",
+        icon: "[TARGET]",
         shortDescription: "Reprogram your beliefs about money",
-        description: "Transform your relationship with money by reprogramming limiting beliefs and adopting a wealthy mindset. This program combines psychology, neuroscience, and practical strategies to help you attract abundance.",
+        description: "Transform your relationship with money by reprogramming limiting beliefs and adopting a wealthy mindset. This program combines psychology, neuroscience, and practical strategies to help you attract abundance and create financial freedom. Overcome scarcity thinking and develop the confidence needed for success.",
         features: [
             "12 mindset shift modules",
             "Affirmations and meditations",
@@ -64,9 +64,9 @@ const products = [
         id: 5,
         title: "Success Stories: 50 Life Lessons",
         price: 34.99,
-        icon: "📚",
+        icon: "[BOOK]",
         shortDescription: "Learn from 50 successful entrepreneurs",
-        description: "Discover the proven principles and habits that led 50 successful entrepreneurs to achieve extraordinary results. These real-world case studies provide actionable insights you can apply immediately.",
+        description: "Discover the proven principles and habits that led 50 successful entrepreneurs to achieve extraordinary results. These real-world case studies provide actionable insights you can apply immediately to your own journey. Understand the mindsets, strategies, and decisions that created lasting success.",
         features: [
             "50 detailed case studies",
             "Key takeaways from each story",
@@ -79,9 +79,9 @@ const products = [
         id: 6,
         title: "Digital Skills Accelerator",
         price: 54.99,
-        icon: "💻",
+        icon: "[TECH]",
         shortDescription: "Master essential digital skills",
-        description: "Gain practical digital skills that will boost your career in the modern economy. Learn tools, platforms, and strategies that are in high demand in today's digital marketplace.",
+        description: "Gain practical digital skills that will boost your career in the modern economy. Learn tools, platforms, and strategies that are in high demand in today's digital marketplace. From social media marketing to data analysis, develop expertise that employers are actively seeking.",
         features: [
             "8 digital skill modules",
             "Hands-on projects",
@@ -268,7 +268,7 @@ function processPayment(event) {
     const cvv = document.getElementById('cvv').value;
     const country = document.getElementById('country').value;
     
-    // Validate card number (basic validation)
+    // Validate card number (basic validation - must be 16 digits)
     if (cardNumber.replace(/\s/g, '').length !== 16) {
         alert('Please enter a valid 16-digit card number.');
         return;
@@ -280,23 +280,37 @@ function processPayment(event) {
         return;
     }
     
-    // Validate CVV
+    // Validate CVV (must be 3 digits)
     if (!/^\d{3}$/.test(cvv)) {
         alert('Please enter a valid 3-digit CVV.');
         return;
     }
     
-    // Process payment (demo)
+    // Validate all required fields
+    if (!name || !email || !cardName || !country) {
+        alert('Please fill in all required fields.');
+        return;
+    }
+    
+    // Process payment (demo - this is just a demonstration)
     console.log('Processing payment for:', name, email);
     console.log('Card ending in:', cardNumber.slice(-4));
+    console.log('Country:', country);
+    
+    // Calculate total amount
+    let totalAmount = 0;
+    cart.forEach(item => {
+        totalAmount += item.price * item.quantity;
+    });
     
     // Simulate payment processing
     closeCheckout();
+    const orderItems = cart.map(item => `${item.title} x ${item.quantity}`).join(', ');
     cart = [];
     updateCart();
     
     // Show success message
-    showSuccessMessage('Payment successful! Check your email for order confirmation and product access links.');
+    showSuccessMessage(`Payment of $${totalAmount.toFixed(2)} processed successfully! Check your email at ${email} for order confirmation and product access links.`);
     
     // Clear form
     document.getElementById('payment-form').reset();
@@ -311,7 +325,7 @@ function showSuccessMessage(message) {
     
     setTimeout(() => {
         messageDiv.remove();
-    }, 3000);
+    }, 4000);
 }
 
 function scrollToSection(sectionId) {
@@ -340,6 +354,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 value = value.slice(0, 2) + '/' + value.slice(2, 4);
             }
             e.target.value = value;
+        });
+    }
+    
+    const cvvInput = document.getElementById('cvv');
+    if (cvvInput) {
+        cvvInput.addEventListener('input', function(e) {
+            e.target.value = e.target.value.replace(/\D/g, '');
         });
     }
     
