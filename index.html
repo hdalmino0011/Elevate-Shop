@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ElevateShop | Premium Digital Products</title>
+    <title>ElevateShop | Growth & Prosperity</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Cormorant Garamond (NYT style) + Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -14,8 +15,11 @@
         <div class="nav-container">
             <div class="logo">ElevateShop</div>
             <div class="nav-links">
-                <a href="#">Products</a>
-                <a href="#">Support</a>
+                <a href="#">All Products</a>
+                <a href="#">Motivational</a>
+                <a href="#">Financial Literacy</a>
+                <a href="#">Personal Development</a>
+                <a href="#">Business & Success</a>
                 <a href="#" id="cart-icon">Cart (<span id="cart-count">0</span>)</a>
             </div>
         </div>
@@ -24,27 +28,32 @@
     <!-- Hero Section -->
     <header class="hero">
         <div class="hero-content">
-            <p class="hero-tagline">Premium digital products · Instant delivery · Lifetime access</p>
-            <h1 class="hero-title">Elevate<span class="highlight">Shop</span></h1>
-            <p class="hero-description">Premium digital products designed to transform your mindset, finances, and life trajectory.</p>
+            <p class="hero-tagline">Instant Digital Downloads · Lifetime Access</p>
+            <h1 class="hero-title">Your Path to <span class="highlight">Growth & Prosperity</span></h1>
+            <div class="hero-brand">ElevateShop</div>
         </div>
     </header>
 
-    <!-- Featured Product -->
+    <!-- Filter bar (categories) -->
+    <div class="filter-bar">
+        <div class="container">
+            <button class="filter-btn active" data-filter="all">All Products</button>
+            <button class="filter-btn" data-filter="motivational">Motivational</button>
+            <button class="filter-btn" data-filter="financial">Financial Literacy</button>
+            <button class="filter-btn" data-filter="personal">Personal Development</button>
+            <button class="filter-btn" data-filter="business">Business & Success</button>
+        </div>
+    </div>
+
+    <!-- Featured Product (Daily Motivation Mastery) -->
     <section class="featured">
         <div class="container">
-            <span class="section-badge">Featured Product</span>
+            <div class="featured-badge">Featured Product</div>
             <div class="featured-grid">
                 <div class="featured-info">
-                    <div class="product-category">Motivational</div>
+                    <div class="product-category">Bestseller · Motivational</div>
                     <h2>Daily Motivation Mastery</h2>
                     <p>A curated collection of 365 powerful quotes and daily affirmations to ignite your inner drive and keep you moving forward every single day.</p>
-                    <div class="features-list">
-                        <div class="feature-item">Instant Delivery</div>
-                        <div class="feature-item">Lifetime Access</div>
-                        <div class="feature-item">Secure Checkout</div>
-                        <div class="feature-item">30-Day Guarantee</div>
-                    </div>
                     <div class="product-price">$29.99</div>
                     <button class="btn-primary add-to-cart" data-name="Daily Motivation Mastery" data-price="29.99">Add to Cart</button>
                 </div>
@@ -55,22 +64,59 @@
         </div>
     </section>
 
-    <!-- Product Grid -->
-    <section class="products-grid">
+    <!-- Products Grid (Top Picks) -->
+    <section class="products-section">
         <div class="container">
-            <h2 class="section-title">Products</h2>
-            <p class="section-subtitle">Transform your mindset, finances, and life trajectory</p>
+            <h2 class="section-title">Top Picks for Your Journey</h2>
             <div class="product-cards" id="product-list">
+                <!-- JavaScript will populate products -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial -->
+    <section class="testimonial">
+        <div class="container">
+            <div class="testimonial-content">
+                <p class="quote">"These products completely changed how I think about money and my potential. The Financial Freedom Blueprint alone helped me pay off $18,000 in debt."</p>
+                <p class="author">— Marcus T., Customer Since 2024</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- More Products to Elevate Your Life (with badges NEW & BUNDLE DEAL) -->
+    <section class="extra-products">
+        <div class="container">
+            <h2 class="section-title">More Products to Elevate Your Life</h2>
+            <div class="extra-cards" id="extra-list">
                 <!-- JS will populate -->
             </div>
         </div>
     </section>
 
-    <!-- FOOTER (new) -->
+    <!-- Individual Product Detail (Wealth Mindset Masterclass) -->
+    <section class="product-detail" id="wealth-mindset">
+        <div class="container">
+            <div class="detail-breadcrumb">All Products / Financial Literacy</div>
+            <div class="detail-grid">
+                <div class="detail-info">
+                    <div class="detail-badge">New</div>
+                    <h2>Wealth Mindset Masterclass</h2>
+                    <p>This digital masterclass bridges the gap between psychology and finance, exploring the mental models and behavioral patterns that separate those who accumulate lasting wealth from those who struggle financially despite earning good incomes. Drawing on behavioral economics, psychology research, and interviews with self-made millionaires, this digital course reveals the hidden beliefs and habits that drive financial outcomes. You'll explore topics including delayed gratification, risk tolerance, opportunity recognition, and the psychology of spending and saving.</p>
+                    <div class="product-price">$47</div>
+                    <button class="btn-primary add-to-cart" data-name="Wealth Mindset Masterclass" data-price="47.00">Add to Cart</button>
+                </div>
+                <div class="detail-image">
+                    <div class="image-placeholder">Masterclass Cover</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (without money-back guarantee) -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
-                <!-- Products column -->
                 <div class="footer-col">
                     <h4>Products</h4>
                     <ul>
@@ -80,7 +126,6 @@
                         <li><a href="#">Entrepreneur Tools</a></li>
                     </ul>
                 </div>
-                <!-- Support column -->
                 <div class="footer-col">
                     <h4>Support</h4>
                     <ul>
@@ -90,11 +135,9 @@
                         <li><a href="#">Privacy Policy</a></li>
                     </ul>
                 </div>
-                <!-- Our Promise column -->
                 <div class="footer-col">
                     <h4>Our Promise</h4>
                     <ul class="promise-list">
-                        <li>✓ 30-Day Money-Back Guarantee</li>
                         <li>✓ Instant Digital Delivery</li>
                         <li>✓ Lifetime Access</li>
                         <li>✓ Secure Checkout via Stripe</li>
@@ -108,10 +151,51 @@
         </div>
     </footer>
 
-    <!-- Cart Sidebar & Checkout Modal (same as before) -->
-    <div id="cart-sidebar" class="cart-sidebar"><div class="cart-header"><h3>Your Cart</h3><button id="close-cart">×</button></div><div id="cart-items" class="cart-items"><p class="empty-cart-msg">Your cart is empty.</p></div><div class="cart-footer"><div class="cart-total">Total: $<span id="cart-total">0.00</span></div><button id="checkout-btn" class="btn-primary checkout-btn">Proceed to Checkout</button></div></div>
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button id="close-cart">&times;</button>
+        </div>
+        <div id="cart-items" class="cart-items">
+            <p class="empty-cart-msg">Your cart is empty.</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">Total: $<span id="cart-total">0.00</span></div>
+            <button id="checkout-btn" class="btn-primary checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
 
-    <div id="checkout-modal" class="modal"><div class="modal-content"><span class="close-modal">×</span><h2>Secure Checkout</h2><p class="demo-note">Demo Mode: No real payment will be processed.</p><form id="payment-form"><div class="form-group"><label>Cardholder Name</label><input type="text" id="card-name" required placeholder="John Doe"></div><div class="form-group"><label>Card Number</label><input type="text" id="card-number" required placeholder="4242 4242 4242 4242" maxlength="19"></div><div class="form-row"><div class="form-group half"><label>Expiry (MM/YY)</label><input type="text" id="card-expiry" required placeholder="12/28"></div><div class="form-group half"><label>CVC</label><input type="text" id="card-cvc" required placeholder="123" maxlength="4"></div></div><button type="submit" class="btn-primary pay-btn">Pay $<span id="modal-total">0.00</span></button></form><p class="payment-disclaimer">For demo only. No real charges.</p></div></div>
+    <!-- Checkout Modal (demo) -->
+    <div id="checkout-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Secure Checkout</h2>
+            <p class="demo-note">Demo Mode: No real payment will be processed.</p>
+            <form id="payment-form">
+                <div class="form-group">
+                    <label>Cardholder Name</label>
+                    <input type="text" id="card-name" required placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label>Card Number</label>
+                    <input type="text" id="card-number" required placeholder="4242 4242 4242 4242" maxlength="19">
+                </div>
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label>Expiry (MM/YY)</label>
+                        <input type="text" id="card-expiry" required placeholder="12/28">
+                    </div>
+                    <div class="form-group half">
+                        <label>CVC</label>
+                        <input type="text" id="card-cvc" required placeholder="123" maxlength="4">
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary pay-btn">Pay $<span id="modal-total">0.00</span></button>
+            </form>
+            <p class="payment-disclaimer">For demo only. No real charges.</p>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
