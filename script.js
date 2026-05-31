@@ -1,14 +1,13 @@
-// Product Data (matches screenshots)
-const allProducts = [
-    { id: 1, name: "Financial Freedom Blueprint", category: "financial", price: 47, description: "Master the fundamentals of personal finance, investing, and wealth building with this comprehensive step-by-step digital guide.", popular: true },
-    { id: 2, name: "Mindset Reset Program", category: "personal", price: 37, description: "A 30-day guided program to rewire your thinking patterns, eliminate limiting beliefs, and unlock your peak performance potential.", popular: false },
-    { id: 3, name: "Wealth Mindset Masterclass", category: "financial", price: 47, description: "Bridges psychology and finance to reveal hidden beliefs that drive financial outcomes.", isNew: true },
-    { id: 4, name: "Power Quotes Collection", category: "motivational", price: 19, description: "500+ powerful quotes from history's greatest minds to fuel your daily motivation.", isNew: true },
-    { id: 5, name: "Entrepreneur's Success Toolkit", category: "business", price: 79, description: "Complete bundle of templates, checklists, and guides for aspiring entrepreneurs.", isBundle: true }
+// Product data
+const allProductsData = [
+    { id: 1, name: "Financial Freedom Blueprint", category: "financial", price: 47, description: "A comprehensive digital course and workbook designed to transform your relationship with money. From budgeting basics to advanced investing strategies, this product takes you from financial confusion to confident wealth building. You'll learn how to eliminate debt, build an emergency fund, understand stocks and index funds, and create multiple streams of passive income. Written in plain language without jargon, this guide is perfect for beginners and intermediate learners alike. Thousands of students have used it to achieve financial independence.", popular: true },
+    { id: 2, name: "Mindset Reset Program", category: "personal", price: 37, description: "A 30-day guided program to rewire your thinking patterns, eliminate limiting beliefs, and unlock your peak performance potential. Each day includes audio exercises, journaling prompts, and actionable challenges.", popular: false },
+    { id: 3, name: "Wealth Mindset Masterclass", category: "financial", price: 47, description: "Bridges psychology and finance to reveal hidden beliefs that drive financial outcomes. Includes video lessons, worksheets, and case studies.", isNew: true },
+    { id: 4, name: "Power Quotes Collection", category: "motivational", price: 19, description: "500+ powerful quotes from history's greatest minds to fuel your daily motivation. Categorized by theme: leadership, resilience, success, and happiness.", isNew: true },
+    { id: 5, name: "Entrepreneur's Success Toolkit", category: "business", price: 79, description: "Complete bundle of templates, checklists, and guides for aspiring entrepreneurs. Covers business planning, marketing, sales funnels, and legal basics.", isBundle: true }
 ];
 
-// Extra products for "More Products" section
-const extraProducts = [
+const extraProductsData = [
     { id: 6, name: "Wealth Mindset Masterclass", category: "financial", price: 47, isNew: true },
     { id: 7, name: "Power Quotes Collection", category: "motivational", price: 19, isNew: true },
     { id: 8, name: "Entrepreneur's Success Toolkit", category: "business", price: 79, isBundle: true }
@@ -16,78 +15,75 @@ const extraProducts = [
 
 let cart = [];
 
-// DOM elements
-const productListEl = document.getElementById('product-list');
-const extraListEl = document.getElementById('extra-list');
-const cartCountEl = document.getElementById('cart-count');
-const cartSidebar = document.getElementById('cart-sidebar');
-const cartItemsEl = document.getElementById('cart-items');
-const cartTotalEl = document.getElementById('cart-total');
-const modal = document.getElementById('checkout-modal');
-const modalTotalSpan = document.getElementById('modal-total');
+// Helper: get category display name
+function getCategoryName(cat) {
+    if (cat === 'financial') return 'Financial Literacy';
+    if (cat === 'personal') return 'Personal Development';
+    if (cat === 'motivational') return 'Motivational';
+    if (cat === 'business') return 'Business & Success';
+    return cat;
+}
 
-// Render main product grid (Top Picks)
+// Render Top Picks (first two products)
 function renderMainProducts() {
-    if (!productListEl) return;
-    productListEl.innerHTML = '';
-    allProducts.slice(0,2).forEach(product => {
+    const container = document.getElementById('product-list');
+    if (!container) return;
+    container.innerHTML = '';
+    const topProducts = allProductsData.slice(0,2);
+    topProducts.forEach(p => {
         const card = document.createElement('div');
         card.className = 'product-card';
-        let categoryText = '';
-        if (product.category === 'financial') categoryText = 'Financial Literacy';
-        else if (product.category === 'personal') categoryText = 'Personal Development';
-        else categoryText = product.category;
         card.innerHTML = `
-            <div class="category">${categoryText}</div>
-            <h3>${product.name}</h3>
-            <p class="description">${product.description.substring(0, 100)}...</p>
-            <div class="price">$${product.price}</div>
-            <button class="btn-small details-btn" data-id="${product.id}">Details</button>
-            <button class="btn-buy add-to-cart-btn" data-id="${product.id}">Buy Now</button>
+            <div class="category">${getCategoryName(p.category)}</div>
+            <h3>${p.name}</h3>
+            <p class="description">${p.description.substring(0, 100)}...</p>
+            <div class="price">$${p.price}</div>
+            <button class="btn-small details-btn" data-id="${p.id}">Details</button>
+            <button class="btn-buy add-to-cart-btn" data-id="${p.id}">Buy Now</button>
         `;
-        productListEl.appendChild(card);
+        container.appendChild(card);
     });
     attachProductEvents();
 }
 
-// Render extra products (More Products to Elevate Your Life)
+// Render extra products (More Products section)
 function renderExtraProducts() {
-    if (!extraListEl) return;
-    extraListEl.innerHTML = '';
-    extraProducts.forEach(product => {
+    const container = document.getElementById('extra-list');
+    if (!container) return;
+    container.innerHTML = '';
+    extraProductsData.forEach(p => {
         const card = document.createElement('div');
         card.className = 'extra-card';
         let badgeHtml = '';
-        if (product.isNew) badgeHtml = '<div class="badge new">New</div>';
-        if (product.isBundle) badgeHtml = '<div class="badge bundle">Bundle Deal</div>';
+        if (p.isNew) badgeHtml = '<div class="badge new">New</div>';
+        if (p.isBundle) badgeHtml = '<div class="badge bundle">Bundle Deal</div>';
         card.innerHTML = `
             ${badgeHtml}
-            <h3>${product.name}</h3>
-            <div class="price">$${product.price}</div>
-            <button class="btn-buy add-to-cart-btn" data-id="${product.id}">Buy Now</button>
+            <h3>${p.name}</h3>
+            <div class="price">$${p.price}</div>
+            <button class="btn-buy add-to-cart-btn" data-id="${p.id}">Buy Now</button>
         `;
-        extraListEl.appendChild(card);
+        container.appendChild(card);
     });
     attachProductEvents();
 }
 
+// Attach event listeners to all dynamic buttons
 function attachProductEvents() {
     document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
         btn.removeEventListener('click', handleAddToCart);
         btn.addEventListener('click', handleAddToCart);
     });
     document.querySelectorAll('.details-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const id = parseInt(btn.dataset.id);
-            alert(`Details for product ID ${id} would open here. In full version, you'd see a modal or new page.`);
-        });
+        btn.removeEventListener('click', showProductDetail);
+        btn.addEventListener('click', showProductDetail);
     });
 }
 
 function handleAddToCart(e) {
     const id = parseInt(e.currentTarget.dataset.id);
-    let product = allProducts.find(p => p.id === id);
-    if (!product) product = extraProducts.find(p => p.id === id);
+    let product = allProductsData.find(p => p.id === id);
+    if (!product) product = extraProductsData.find(p => p.id === id);
     if (product) {
         const existing = cart.find(item => item.id === product.id);
         if (existing) existing.quantity += 1;
@@ -96,7 +92,26 @@ function handleAddToCart(e) {
     }
 }
 
-// Featured product "Add to Cart" button
+function showProductDetail(e) {
+    const id = parseInt(e.currentTarget.dataset.id);
+    const product = allProductsData.find(p => p.id === id);
+    if (!product) return;
+    const modal = document.getElementById('detail-modal');
+    document.getElementById('detail-title').innerText = product.name;
+    document.getElementById('detail-description').innerText = product.description;
+    document.getElementById('detail-price').innerHTML = `$${product.price}`;
+    const addBtn = document.getElementById('detail-add-to-cart');
+    addBtn.onclick = () => {
+        const existing = cart.find(item => item.id === product.id);
+        if (existing) existing.quantity += 1;
+        else cart.push({ ...product, quantity: 1 });
+        updateCartUI();
+        modal.style.display = 'none';
+    };
+    modal.style.display = 'flex';
+}
+
+// Featured product and Wealth Mindset Masterclass "Add to Cart" buttons
 document.querySelectorAll('.add-to-cart').forEach(btn => {
     btn.addEventListener('click', (e) => {
         const name = btn.dataset.name;
@@ -111,19 +126,21 @@ document.querySelectorAll('.add-to-cart').forEach(btn => {
 
 function updateCartUI() {
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    cartCountEl.textContent = totalItems;
-    if (!cartItemsEl) return;
+    document.getElementById('cart-count').innerText = totalItems;
+    const cartItemsDiv = document.getElementById('cart-items');
+    const cartTotalSpan = document.getElementById('cart-total');
+    if (!cartItemsDiv) return;
     if (cart.length === 0) {
-        cartItemsEl.innerHTML = '<p class="empty-cart-msg">Your cart is empty.</p>';
-        cartTotalEl.textContent = '0.00';
+        cartItemsDiv.innerHTML = '<p class="empty-cart-msg">Your cart is empty.</p>';
+        cartTotalSpan.innerText = '0.00';
         return;
     }
-    let cartHtml = '';
+    let html = '';
     let total = 0;
     cart.forEach(item => {
         const itemTotal = item.price * item.quantity;
         total += itemTotal;
-        cartHtml += `
+        html += `
             <div class="cart-item">
                 <div class="cart-item-info">
                     <div class="cart-item-title">${item.name}</div>
@@ -133,8 +150,8 @@ function updateCartUI() {
             </div>
         `;
     });
-    cartItemsEl.innerHTML = cartHtml;
-    cartTotalEl.textContent = total.toFixed(2);
+    cartItemsDiv.innerHTML = html;
+    cartTotalSpan.innerText = total.toFixed(2);
     document.querySelectorAll('.cart-item-remove').forEach(btn => {
         btn.addEventListener('click', (e) => {
             const id = parseInt(btn.dataset.id);
@@ -145,73 +162,83 @@ function updateCartUI() {
 }
 
 // Cart sidebar open/close
-const cartIcon = document.getElementById('cart-icon');
-const closeCartBtn = document.getElementById('close-cart');
-if (cartIcon) cartIcon.addEventListener('click', (e) => { e.preventDefault(); cartSidebar.classList.add('open'); });
-if (closeCartBtn) closeCartBtn.addEventListener('click', () => { cartSidebar.classList.remove('open'); });
+const cartSidebar = document.getElementById('cart-sidebar');
+document.getElementById('cart-icon').addEventListener('click', (e) => {
+    e.preventDefault();
+    cartSidebar.classList.add('open');
+});
+document.getElementById('close-cart').addEventListener('click', () => {
+    cartSidebar.classList.remove('open');
+});
 
-// Checkout modal
+// Payment modal
+const paymentModal = document.getElementById('payment-modal');
 const checkoutBtn = document.getElementById('checkout-btn');
-const modalClose = document.querySelector('.close-modal');
+const closePayment = document.getElementById('close-payment');
+checkoutBtn.addEventListener('click', () => {
+    if (cart.length === 0) { alert('Your cart is empty.'); return; }
+    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    document.getElementById('modal-total').innerText = total.toFixed(2);
+    paymentModal.style.display = 'flex';
+});
+closePayment.addEventListener('click', () => { paymentModal.style.display = 'none'; });
+window.addEventListener('click', (e) => { if (e.target === paymentModal) paymentModal.style.display = 'none'; });
+
+// Payment form demo
 const payForm = document.getElementById('payment-form');
-if (checkoutBtn) {
-    checkoutBtn.addEventListener('click', () => {
-        if (cart.length === 0) { alert('Your cart is empty.'); return; }
-        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        modalTotalSpan.textContent = total.toFixed(2);
-        modal.style.display = 'flex';
-    });
-}
-if (modalClose) modalClose.addEventListener('click', () => { modal.style.display = 'none'; });
-window.addEventListener('click', (e) => { if (e.target === modal) modal.style.display = 'none'; });
+payForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const cardNumber = document.getElementById('card-number').value.replace(/\s/g, '');
+    if (cardNumber.length < 15) { alert('Enter a valid test card number (4242 4242 4242 4242)'); return; }
+    alert('Demo purchase successful! No real charge. Integrate Stripe for live payments.');
+    cart = [];
+    updateCartUI();
+    paymentModal.style.display = 'none';
+    cartSidebar.classList.remove('open');
+    payForm.reset();
+});
 
-// Payment demo
-if (payForm) {
-    payForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const cardName = document.getElementById('card-name').value.trim();
-        const cardNumber = document.getElementById('card-number').value.replace(/\s/g, '');
-        const cardExpiry = document.getElementById('card-expiry').value.trim();
-        const cardCvc = document.getElementById('card-cvc').value.trim();
-        if (!cardName || !cardNumber || !cardExpiry || !cardCvc) { alert('Please fill all fields.'); return; }
-        if (cardNumber.length < 15 || cardNumber.length > 16) { alert('Enter a valid card number (15-16 digits).'); return; }
-        if (!/^\d{2}\/\d{2}$/.test(cardExpiry)) { alert('Expiry format MM/YY'); return; }
-        if (!/^\d{3,4}$/.test(cardCvc)) { alert('CVC must be 3-4 digits'); return; }
-        alert('Demo purchase successful! No real charge. Integrate Stripe for live payments.');
-        cart = [];
-        updateCartUI();
-        modal.style.display = 'none';
-        cartSidebar.classList.remove('open');
-        payForm.reset();
-    });
-}
+// Format card number with spaces
+const cardNumInput = document.getElementById('card-number');
+cardNumInput.addEventListener('input', (e) => {
+    let val = e.target.value.replace(/\s/g, '');
+    if (val.length > 16) val = val.slice(0,16);
+    const formatted = val.match(/.{1,4}/g)?.join(' ') || val;
+    e.target.value = formatted;
+});
 
-// Format card number
-const cardNumberInput = document.getElementById('card-number');
-if (cardNumberInput) {
-    cardNumberInput.addEventListener('input', (e) => {
-        let value = e.target.value.replace(/\s/g, '');
-        if (value.length > 16) value = value.slice(0, 16);
-        const formatted = value.match(/.{1,4}/g)?.join(' ') || value;
-        e.target.value = formatted;
-    });
-}
-
-// Filter functionality
+// Filter functionality (demo)
 const filterBtns = document.querySelectorAll('.filter-btn');
-filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const filter = btn.dataset.filter;
-        if (filter === 'all') {
-            renderMainProducts(); // simple: show all main products
-            renderExtraProducts();
-        } else {
-            // For demo, just show a message. In full version you'd filter.
-            alert(`Filter by ${filter} would show only those products. Implement full filtering if needed.`);
-        }
+const filterLinks = document.querySelectorAll('.filter-link');
+function handleFilter(filter) {
+    filterBtns.forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.filter === filter) btn.classList.add('active');
     });
+    if (filter === 'all') {
+        renderMainProducts();
+        renderExtraProducts();
+    } else {
+        alert(`Showing only ${filter} products. In a full implementation, the grid would filter. For demo, all products remain visible.`);
+    }
+}
+filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => handleFilter(btn.dataset.filter));
+});
+filterLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        handleFilter(link.dataset.filter);
+    });
+});
+
+// Close detail modal
+document.getElementById('close-detail-modal').addEventListener('click', () => {
+    document.getElementById('detail-modal').style.display = 'none';
+});
+window.addEventListener('click', (e) => {
+    const detailModal = document.getElementById('detail-modal');
+    if (e.target === detailModal) detailModal.style.display = 'none';
 });
 
 // Initialize
