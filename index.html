@@ -25,11 +25,11 @@
         <a href="#" class="filter-link filter-btn" data-filter="motivational">MOTIVATIONAL</a>
         <a href="#" class="filter-link filter-btn" data-filter="personal">PERSONAL</a>
         <a href="#" class="filter-link filter-btn" data-filter="business">BUSINESS</a>
-        <a href="#" id="policy-link">POLICY</a>
+        <!-- POLICY BUTTON REMOVED FROM TOP NAVIGATION -->
     </div>
 </nav>
 
-<!-- Hero Section with Brown Background -->
+<!-- Hero Section with Light Brown Background (different from masthead) -->
 <header class="hero">
     <div class="container">
         <div class="hero-content">
@@ -40,7 +40,7 @@
     </div>
 </header>
 
-<!-- Featured Article Style Section -->
+<!-- Featured Article Section -->
 <section class="featured-article">
     <div class="container">
         <article class="featured-piece">
@@ -52,7 +52,7 @@
             <div class="featured-content">
                 <div class="featured-text">
                     <p class="article-body">
-                        The <em>Financial Freedom Blueprint</em> is a comprehensive digital course and workbook designed to transform your relationship with money. From budgeting basics to advanced investing strategies, this product takes you from financial confusion to confident wealth building. You'll learn how to eliminate debt, build an emergency fund, understand stocks and index funds, and create multiple streams of passive income. Written in plain language without jargon, this guide is perfect for beginners and intermediate learners alike. Thousands of students have used it to achieve financial independence.
+                        The <em>Financial Freedom Blueprint</em> is a comprehensive digital course and workbook designed to transform your relationship with money. From budgeting basics to advanced investing strategies, this product takes you from financial confusion to confident wealth building. You'll learn how to eliminate debt, build an emergency fund, understand stocks and index funds, and create multiple streams of passive income.
                     </p>
                     <p class="article-meta">
                         <strong>Category:</strong> Financial Literacy | <strong>Price:</strong> $47.00
@@ -64,11 +64,18 @@
     </div>
 </section>
 
-<!-- Products Grid (Column-based like NYT) -->
+<!-- Products Carousel Section (Top Selections) -->
 <section class="products-section">
     <div class="container">
         <h2 class="section-heading">Top Selections</h2>
-        <div class="products-columns" id="product-list"></div>
+        <div class="carousel-container">
+            <div class="carousel-wrapper" id="product-carousel-wrapper">
+                <div class="carousel-track" id="product-carousel-track"></div>
+            </div>
+            <button class="carousel-btn prev-btn" id="product-prev">❮</button>
+            <button class="carousel-btn next-btn" id="product-next">❯</button>
+        </div>
+        <div class="carousel-indicators" id="product-indicators"></div>
     </div>
 </section>
 
@@ -79,7 +86,7 @@
     </div>
 </div>
 
-<!-- More Products Section -->
+<!-- More Products (Static Grid) -->
 <section class="more-products">
     <div class="container">
         <h2 class="section-heading">Complete Product Collection</h2>
@@ -87,17 +94,21 @@
     </div>
 </section>
 
-<!-- Testimonial Section -->
+<!-- Testimonial Carousel Section -->
 <section class="testimonial-section">
     <div class="container">
-        <blockquote class="testimonial-quote">
-            <p>"These products completely changed how I think about money and my potential. The Financial Freedom Blueprint alone helped me pay off $18,000 in debt."</p>
-            <footer class="quote-attribution">— Marcus T., Customer</footer>
-        </blockquote>
+        <div class="testimonial-carousel-container">
+            <div class="testimonial-wrapper" id="testimonial-wrapper">
+                <div class="testimonial-track" id="testimonial-track"></div>
+            </div>
+            <button class="carousel-btn testimonial-prev" id="testimonial-prev">❮</button>
+            <button class="carousel-btn testimonial-next" id="testimonial-next">❯</button>
+        </div>
+        <div class="carousel-indicators" id="testimonial-indicators"></div>
     </div>
 </section>
 
-<!-- Footer -->
+<!-- Footer (Policy link only here) -->
 <footer class="footer">
     <div class="container">
         <div class="footer-content">
@@ -117,6 +128,7 @@
                     <li><a href="#">FAQ</a></li>
                     <li><a href="#">Privacy</a></li>
                     <li><a href="#">Terms</a></li>
+                    <li><a href="#" id="policy-link-footer">Policy</a></li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -216,40 +228,33 @@
                     <h3>Non-Refundable Digital Products</h3>
                     <p>All digital products sold on Elevate Shop are non-refundable. Once purchased and delivered, digital products cannot be returned for a refund. Since digital products are instantly accessible and cannot be unsold, no refunds will be issued under any circumstances.</p>
                 </section>
-                
                 <section class="policy-section">
                     <h3>Instant Delivery</h3>
-                    <p>Upon successful payment, all digital products will be delivered instantly to your registered email address. Please ensure you provide a valid email during checkout. Check your spam or promotions folder if you don't see the delivery email in your inbox.</p>
+                    <p>Upon successful payment, all digital products will be delivered instantly to your registered email address. Please ensure you provide a valid email during checkout.</p>
                 </section>
-
                 <section class="policy-section">
                     <h3>Product Access & Licensing</h3>
                     <p>You are purchasing a personal license to access the digital product. The product is for your personal use only and should not be redistributed, resold, or shared with others without explicit permission from Elevate Shop.</p>
                 </section>
-
                 <section class="policy-section">
                     <h3>Intellectual Property Rights</h3>
                     <p>All content, materials, and products on Elevate Shop are protected by copyright and intellectual property laws. Unauthorized reproduction, distribution, or use of any content is strictly prohibited.</p>
                 </section>
-
                 <section class="policy-section">
                     <h3>Product Quality Guarantee</h3>
-                    <p>We stand behind the quality of our products. If you experience technical difficulties accessing your purchased product, please contact our support team at support@elevateshop.com, and we will assist you in resolving the issue.</p>
+                    <p>We stand behind the quality of our products. If you experience technical difficulties accessing your purchased product, please contact our support team at support@elevateshop.com.</p>
                 </section>
-
                 <section class="policy-section">
                     <h3>Terms of Service</h3>
-                    <p>By purchasing from Elevate Shop, you agree to our terms of service and policies. We reserve the right to modify policies at any time. Continued use of our platform constitutes acceptance of updated policies.</p>
+                    <p>By purchasing from Elevate Shop, you agree to our terms of service and policies. We reserve the right to modify policies at any time.</p>
                 </section>
-
                 <section class="policy-section">
                     <h3>Privacy Policy</h3>
-                    <p>Your privacy is important to us. We collect personal information only for order processing and delivery purposes. Your data will not be shared with third parties without your consent, except as required by law.</p>
+                    <p>Your privacy is important to us. We collect personal information only for order processing and delivery purposes.</p>
                 </section>
-
                 <section class="policy-section">
                     <h3>Contact & Support</h3>
-                    <p>For any questions or concerns regarding policies or products, please contact our support team at support@elevateshop.com. We're here to help.</p>
+                    <p>For any questions or concerns, please contact support@elevateshop.com.</p>
                 </section>
             </div>
         </article>
