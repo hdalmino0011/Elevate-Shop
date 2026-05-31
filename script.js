@@ -40,7 +40,52 @@ function updateCurrentDate() {
     }
 }
 
-// Build product carousel track
+// ========== FOOTER PAGE SWITCHING ==========
+const mainContentArea = document.getElementById('main-content-area');
+const allPageDivs = document.querySelectorAll('.page-content');
+
+function showMainContent() {
+    if (mainContentArea) mainContentArea.style.display = 'block';
+    allPageDivs.forEach(div => div.style.display = 'none');
+}
+
+function showPage(pageId) {
+    const targetPage = document.getElementById(`page-${pageId}`);
+    if (mainContentArea) mainContentArea.style.display = 'none';
+    allPageDivs.forEach(div => div.style.display = 'none');
+    if (targetPage) targetPage.style.display = 'block';
+}
+
+// Attach footer link events
+document.querySelectorAll('.footer-page-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const pageId = link.getAttribute('data-page');
+        if (pageId) showPage(pageId);
+    });
+});
+
+// Also handle the "ALL" link in top navigation to return to main content
+const allFilterLink = document.querySelector('.filter-link[data-filter="all"]');
+if (allFilterLink) {
+    allFilterLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        showMainContent();
+        // Also update active filter style (optional)
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+        allFilterLink.classList.add('active');
+    });
+}
+
+// Additionally, clicking on the logo (site-title) could reset to main content
+const siteTitle = document.querySelector('.site-title');
+if (siteTitle) {
+    siteTitle.addEventListener('click', () => {
+        showMainContent();
+    });
+}
+
+// ========== BUILD PRODUCT CAROUSEL ==========
 function buildProductCarousel() {
     const track = document.getElementById('product-carousel-track');
     if (!track) return;
@@ -74,7 +119,7 @@ function attachCarouselEvents() {
     });
 }
 
-// Build extra products static grid
+// ========== BUILD EXTRA PRODUCTS STATIC GRID ==========
 function renderExtraProducts() {
     const container = document.getElementById('extra-list');
     if (!container) return;
@@ -108,7 +153,7 @@ function attachExtraEvents() {
     });
 }
 
-// Build testimonial carousel
+// ========== BUILD TESTIMONIAL CAROUSEL ==========
 function buildTestimonialCarousel() {
     const track = document.getElementById('testimonial-track');
     if (!track) return;
@@ -121,7 +166,7 @@ function buildTestimonialCarousel() {
     });
 }
 
-// Cart logic
+// ========== CART LOGIC ==========
 function handleAddToCart(e) {
     const id = parseInt(e.currentTarget.dataset.id);
     let product = allProductsData.find(p => p.id === id) || extraProductsData.find(p => p.id === id);
@@ -167,7 +212,7 @@ function updateCartUI() {
     });
 }
 
-// Product detail modal
+// ========== PRODUCT DETAIL MODAL ==========
 function showProductDetail(e) {
     const id = parseInt(e.currentTarget.dataset.id);
     let product = allProductsData.find(p => p.id === id) || extraProductsData.find(p => p.id === id);
@@ -188,7 +233,7 @@ function showProductDetail(e) {
     document.getElementById('detail-modal').style.display = 'flex';
 }
 
-// Featured product "Add to Cart"
+// ========== FEATURED PRODUCT ADD TO CART ==========
 document.querySelectorAll('.add-to-cart').forEach(btn => {
     btn.addEventListener('click', () => {
         const name = btn.dataset.name;
@@ -201,7 +246,7 @@ document.querySelectorAll('.add-to-cart').forEach(btn => {
     });
 });
 
-// Cart sidebar
+// ========== CART SIDEBAR ==========
 const cartSidebar = document.getElementById('cart-sidebar');
 document.getElementById('cart-icon').addEventListener('click', (e) => {
     e.preventDefault();
@@ -211,7 +256,7 @@ document.getElementById('close-cart').addEventListener('click', () => {
     cartSidebar.classList.remove('open');
 });
 
-// Payment modal
+// ========== PAYMENT MODAL ==========
 const paymentModal = document.getElementById('payment-modal');
 document.getElementById('checkout-btn').addEventListener('click', () => {
     if (cart.length === 0) { alert('Your cart is empty.'); return; }
@@ -242,16 +287,19 @@ if (cardNumInput) {
     });
 }
 
-// Policy modal (footer link)
+// ========== POLICY MODAL (footer link handled in HTML but keep for consistency) ==========
 const policyModal = document.getElementById('policy-modal');
-document.getElementById('policy-link-footer').addEventListener('click', (e) => {
-    e.preventDefault();
-    policyModal.style.display = 'flex';
-});
+const policyFooterLink = document.getElementById('policy-link-footer');
+if (policyFooterLink) {
+    policyFooterLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        policyModal.style.display = 'flex';
+    });
+}
 document.getElementById('close-policy').addEventListener('click', () => policyModal.style.display = 'none');
 window.addEventListener('click', (e) => { if (e.target === policyModal) policyModal.style.display = 'none'; });
 
-// Filter buttons (demo)
+// ========== FILTER BUTTONS (DEMO) ==========
 document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         const filter = btn.dataset.filter;
@@ -259,7 +307,7 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
     });
 });
 
-// Close detail modal
+// ========== CLOSE DETAIL MODAL ==========
 document.getElementById('close-detail-modal').addEventListener('click', () => {
     document.getElementById('detail-modal').style.display = 'none';
 });
@@ -269,7 +317,7 @@ window.addEventListener('click', (e) => {
     }
 });
 
-// ==================== CAROUSEL CLASSES ====================
+// ========== CAROUSEL CLASSES ==========
 class ProductCarousel {
     constructor(trackId, itemsPerView, autoInterval = 4000) {
         this.track = document.getElementById(trackId);
@@ -369,13 +417,16 @@ class TestimonialCarousel {
     }
 }
 
-// Initialize everything after DOM is ready
+// ========== INITIALIZE ALL ==========
 document.addEventListener('DOMContentLoaded', () => {
     updateCurrentDate();
     buildProductCarousel();
     buildTestimonialCarousel();
     renderExtraProducts();
     updateCartUI();
+
+    // Ensure main content is visible by default (in case any page div was accidentally shown)
+    showMainContent();
 
     // Start carousels
     window.productCarousel = new ProductCarousel('product-carousel-track', 3, 4000);
