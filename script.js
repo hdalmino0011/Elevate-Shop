@@ -1,410 +1,276 @@
-// ==================== PRODUCTS DATA ====================
-const products = [
-    {
-        id: 1,
-        title: "30-Day Motivation Bootcamp",
-        price: 29.99,
-        icon: "[BOOT]",
-        shortDescription: "Transform your mindset in 30 days",
-        description: "A comprehensive 30-day program designed to build a powerful, unstoppable mindset. This bootcamp includes daily motivational modules, actionable exercises, and success strategies from top performers. You will receive personalized guidance, access to exclusive resources, and proven techniques to overcome obstacles and achieve your goals.",
-        features: [
-            "30 days of daily motivational content",
-            "Interactive workbooks and journals",
-            "Video tutorials with expert insights",
-            "Access to exclusive community forum",
-            "Lifetime access to updates"
-        ]
-    },
-    {
-        id: 2,
-        title: "Financial Literacy Masterclass",
-        price: 49.99,
-        icon: "[FINANCE]",
-        shortDescription: "Master personal finance essentials",
-        description: "Learn the fundamentals of personal finance, investing, budgeting, and wealth building. This masterclass covers everything from basic money management to advanced investment strategies used by financial experts. Discover how to create multiple income streams, optimize your portfolio, and build lasting wealth.",
-        features: [
-            "10 comprehensive modules",
-            "Real-world case studies",
-            "Investment portfolio templates",
-            "Tax optimization strategies",
-            "Lifetime email support"
-        ]
-    },
-    {
-        id: 3,
-        title: "Productivity Secrets Blueprint",
-        price: 39.99,
-        icon: "[POWER]",
-        shortDescription: "Optimize your daily productivity",
-        description: "Discover the proven productivity systems used by top entrepreneurs and CEOs. This blueprint reveals the secrets to managing time effectively, eliminating procrastination, and achieving your goals faster than ever. Learn methods to maximize focus, delegate effectively, and create sustainable productivity habits.",
-        features: [
-            "7 productivity frameworks",
-            "Time management tools",
-            "Habit tracking templates",
-            "Goal-setting worksheets",
-            "Implementation guides"
-        ]
-    },
-    {
-        id: 4,
-        title: "Wealth Mindset Program",
-        price: 44.99,
-        icon: "[TARGET]",
-        shortDescription: "Reprogram your beliefs about money",
-        description: "Transform your relationship with money by reprogramming limiting beliefs and adopting a wealthy mindset. This program combines psychology, neuroscience, and practical strategies to help you attract abundance and create financial freedom. Overcome scarcity thinking and develop the confidence needed for success.",
-        features: [
-            "12 mindset shift modules",
-            "Affirmations and meditations",
-            "Money psychology deep dive",
-            "Abundance manifesting guide",
-            "Progress tracking dashboard"
-        ]
-    },
-    {
-        id: 5,
-        title: "Success Stories: 50 Life Lessons",
-        price: 34.99,
-        icon: "[BOOK]",
-        shortDescription: "Learn from 50 successful entrepreneurs",
-        description: "Discover the proven principles and habits that led 50 successful entrepreneurs to achieve extraordinary results. These real-world case studies provide actionable insights you can apply immediately to your own journey. Understand the mindsets, strategies, and decisions that created lasting success.",
-        features: [
-            "50 detailed case studies",
-            "Key takeaways from each story",
-            "Actionable implementation steps",
-            "Success framework templates",
-            "PDF downloadable guide"
-        ]
-    },
-    {
-        id: 6,
-        title: "Digital Skills Accelerator",
-        price: 54.99,
-        icon: "[TECH]",
-        shortDescription: "Master essential digital skills",
-        description: "Gain practical digital skills that will boost your career in the modern economy. Learn tools, platforms, and strategies that are in high demand in today's digital marketplace. From social media marketing to data analysis, develop expertise that employers are actively seeking.",
-        features: [
-            "8 digital skill modules",
-            "Hands-on projects",
-            "Certificate of completion",
-            "Career advancement guide",
-            "Bonus tools and resources"
-        ]
-    }
+// ElevateShop – NYT-Style Implementation
+// No emojis, column-based layout, non-refundable policy
+
+// Product data
+const allProductsData = [
+    { id: 1, name: "Financial Freedom Blueprint", category: "financial", price: 47, description: "A comprehensive digital course and workbook designed to transform your relationship with money. From budgeting basics to advanced investing strategies, this product takes you from financial confusion to confident wealth building. You'll learn how to eliminate debt, build an emergency fund, understand stocks and index funds, and create multiple streams of passive income. Written in plain language without jargon, this guide is perfect for beginners and intermediate learners alike. Thousands of students have used it to achieve financial independence.", popular: true },
+    { id: 2, name: "Mindset Reset Program", category: "personal", price: 37, description: "A 30-day guided program to rewire your thinking patterns, eliminate limiting beliefs, and unlock your peak performance potential. Each day includes audio exercises, journaling prompts, and actionable challenges designed to transform your mindset from scarcity to abundance.", popular: false },
+    { id: 3, name: "Wealth Mindset Masterclass", category: "financial", price: 47, description: "Bridges psychology and finance to reveal hidden beliefs that drive financial outcomes. Includes video lessons, worksheets, and case studies from self-made millionaires and financial experts who explain the mental models behind wealth creation.", isNew: true },
+    { id: 4, name: "Power Quotes Collection", category: "motivational", price: 19, description: "500+ powerful quotes from history's greatest minds to fuel your daily motivation. Categorized by theme: leadership, resilience, success, and happiness. Perfect for daily inspiration and personal growth.", isNew: true },
+    { id: 5, name: "Entrepreneur's Success Toolkit", category: "business", price: 79, description: "Complete bundle of templates, checklists, and guides for aspiring entrepreneurs. Covers business planning, marketing, sales funnels, and legal basics. Everything you need to launch and scale your business.", isBundle: true }
 ];
 
-// ==================== CART MANAGEMENT ====================
+const extraProductsData = [
+    { id: 6, name: "Wealth Mindset Masterclass", category: "financial", price: 47, isNew: true },
+    { id: 7, name: "Power Quotes Collection", category: "motivational", price: 19, isNew: true },
+    { id: 8, name: "Entrepreneur's Success Toolkit", category: "business", price: 79, isBundle: true }
+];
+
 let cart = [];
 
-function addToCart(productId) {
-    const product = products.find(p => p.id === productId);
+// Get category display name
+function getCategoryName(cat) {
+    if (cat === 'financial') return 'Financial Literacy';
+    if (cat === 'personal') return 'Personal Development';
+    if (cat === 'motivational') return 'Motivational';
+    if (cat === 'business') return 'Business & Success';
+    return cat;
+}
+
+// Update current date in nav
+function updateCurrentDate() {
+    const dateElement = document.getElementById('current-date');
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const today = new Date().toLocaleDateString('en-US', options);
+    if (dateElement) dateElement.textContent = today;
+}
+
+// Render top picks products
+function renderMainProducts() {
+    const container = document.getElementById('product-list');
+    if (!container) return;
+    container.innerHTML = '';
+    const topProducts = allProductsData.slice(0, 2);
+    topProducts.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+            <div class="category">${getCategoryName(p.category)}</div>
+            <h3>${p.name}</h3>
+            <p class="description">${p.description.substring(0, 120)}...</p>
+            <div class="price">$${p.price}</div>
+            <div style="display: flex; gap: 8px;">
+                <button class="btn-small details-btn" data-id="${p.id}">Details</button>
+                <button class="btn-buy add-to-cart-btn" data-id="${p.id}">Buy Now</button>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+    attachProductEvents();
+}
+
+// Render extra products
+function renderExtraProducts() {
+    const container = document.getElementById('extra-list');
+    if (!container) return;
+    container.innerHTML = '';
+    extraProductsData.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        let badgeHtml = '';
+        if (p.isNew) badgeHtml = '<div class="badge new">New</div>';
+        if (p.isBundle) badgeHtml = '<div class="badge bundle">Bundle Deal</div>';
+        card.innerHTML = `
+            ${badgeHtml}
+            <h3>${p.name}</h3>
+            <div class="price">$${p.price}</div>
+            <button class="btn-buy add-to-cart-btn" data-id="${p.id}">Buy Now</button>
+        `;
+        container.appendChild(card);
+    });
+    attachProductEvents();
+}
+
+// Attach event listeners
+function attachProductEvents() {
+    document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+        btn.removeEventListener('click', handleAddToCart);
+        btn.addEventListener('click', handleAddToCart);
+    });
+    document.querySelectorAll('.details-btn').forEach(btn => {
+        btn.removeEventListener('click', showProductDetail);
+        btn.addEventListener('click', showProductDetail);
+    });
+}
+
+// Add to cart handler
+function handleAddToCart(e) {
+    const id = parseInt(e.currentTarget.dataset.id);
+    let product = allProductsData.find(p => p.id === id);
+    if (!product) product = extraProductsData.find(p => p.id === id);
     if (product) {
-        const existingItem = cart.find(item => item.id === productId);
-        if (existingItem) {
-            existingItem.quantity += 1;
-        } else {
-            cart.push({
-                ...product,
-                quantity: 1
-            });
-        }
-        updateCart();
-        showSuccessMessage(`${product.title} added to cart!`);
+        const existing = cart.find(item => item.id === product.id);
+        if (existing) existing.quantity += 1;
+        else cart.push({ ...product, quantity: 1 });
+        updateCartUI();
     }
 }
 
-function removeFromCart(productId) {
-    cart = cart.filter(item => item.id !== productId);
-    updateCart();
+// Show product detail modal
+function showProductDetail(e) {
+    const id = parseInt(e.currentTarget.dataset.id);
+    const product = allProductsData.find(p => p.id === id);
+    if (!product) return;
+    const modal = document.getElementById('detail-modal');
+    document.getElementById('detail-title').innerText = product.name;
+    document.getElementById('detail-subtitle').innerText = getCategoryName(product.category);
+    document.getElementById('detail-description').innerText = product.description;
+    document.getElementById('detail-price').innerHTML = `$${product.price}`;
+    const addBtn = document.getElementById('detail-add-to-cart');
+    addBtn.onclick = () => {
+        const existing = cart.find(item => item.id === product.id);
+        if (existing) existing.quantity += 1;
+        else cart.push({ ...product, quantity: 1 });
+        updateCartUI();
+        modal.style.display = 'none';
+    };
+    modal.style.display = 'flex';
 }
 
-function updateCart() {
-    const cartCount = document.getElementById('cart-count');
-    const cartItems = document.getElementById('cart-items');
-    const cartTotal = document.getElementById('cart-total');
-    
+// Featured product add to cart
+document.querySelectorAll('.add-to-cart').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        const name = btn.dataset.name;
+        const price = parseFloat(btn.dataset.price);
+        const featuredProduct = { id: 999, name: name, price: price, quantity: 1 };
+        const existing = cart.find(item => item.id === 999);
+        if (existing) existing.quantity += 1;
+        else cart.push(featuredProduct);
+        updateCartUI();
+    });
+});
+
+// Update cart UI
+function updateCartUI() {
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    cartCount.textContent = totalItems;
-    
+    document.getElementById('cart-count').innerText = totalItems;
+    const cartItemsDiv = document.getElementById('cart-items');
+    const cartTotalSpan = document.getElementById('cart-total');
+    if (!cartItemsDiv) return;
     if (cart.length === 0) {
-        cartItems.innerHTML = '<p class="empty-cart">Your cart is empty</p>';
-        cartTotal.textContent = '$0.00';
+        cartItemsDiv.innerHTML = '<p class="empty-message">Your cart is empty</p>';
+        cartTotalSpan.innerText = '0.00';
         return;
     }
-    
     let html = '';
     let total = 0;
-    
     cart.forEach(item => {
         const itemTotal = item.price * item.quantity;
         total += itemTotal;
         html += `
             <div class="cart-item">
                 <div class="cart-item-info">
-                    <h4>${item.title}</h4>
-                    <p>Qty: ${item.quantity}</p>
+                    <div class="cart-item-title">${item.name}</div>
+                    <div class="cart-item-price">$${item.price.toFixed(2)} x ${item.quantity}</div>
                 </div>
-                <div class="cart-item-actions">
-                    <span class="cart-item-price">$${itemTotal.toFixed(2)}</span>
-                    <button class="remove-btn" onclick="removeFromCart(${item.id})">Remove</button>
-                </div>
+                <button class="cart-item-remove" data-id="${item.id}">Remove</button>
             </div>
         `;
     });
-    
-    cartItems.innerHTML = html;
-    cartTotal.textContent = '$' + total.toFixed(2);
-}
-
-// ==================== MODAL FUNCTIONS ====================
-function toggleCart() {
-    const cartModal = document.getElementById('cart-modal');
-    cartModal.classList.toggle('active');
-}
-
-function openPolicy() {
-    const policyModal = document.getElementById('policy-modal');
-    policyModal.classList.toggle('active');
-}
-
-function closePolicy() {
-    const policyModal = document.getElementById('policy-modal');
-    policyModal.classList.remove('active');
-}
-
-function openProductModal(productId) {
-    const product = products.find(p => p.id === productId);
-    if (!product) return;
-    
-    const modal = document.getElementById('product-modal');
-    document.getElementById('modal-product-icon').textContent = product.icon;
-    document.getElementById('modal-product-title').textContent = product.title;
-    document.getElementById('modal-product-price').textContent = '$' + product.price.toFixed(2);
-    document.getElementById('modal-product-description').textContent = product.description;
-    
-    let featuresHtml = '<h5>Key Features:</h5><ul>';
-    product.features.forEach(feature => {
-        featuresHtml += `<li>${feature}</li>`;
+    cartItemsDiv.innerHTML = html;
+    cartTotalSpan.innerText = total.toFixed(2);
+    document.querySelectorAll('.cart-item-remove').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const id = parseInt(btn.dataset.id);
+            cart = cart.filter(item => item.id !== id);
+            updateCartUI();
+        });
     });
-    featuresHtml += '</ul>';
-    
-    document.getElementById('modal-product-details').innerHTML = featuresHtml;
-    document.getElementById('modal-add-to-cart').onclick = () => {
-        addToCart(productId);
-        closeProductModal();
-    };
-    
-    modal.classList.add('active');
 }
 
-function closeProductModal() {
-    const modal = document.getElementById('product-modal');
-    modal.classList.remove('active');
-}
+// Cart sidebar
+const cartSidebar = document.getElementById('cart-sidebar');
+document.getElementById('cart-icon').addEventListener('click', (e) => {
+    e.preventDefault();
+    cartSidebar.classList.add('open');
+});
+document.getElementById('close-cart').addEventListener('click', () => {
+    cartSidebar.classList.remove('open');
+});
 
-function addToCartFromModal() {
-    const title = document.getElementById('modal-product-title').textContent;
-    const product = products.find(p => p.title === title);
-    if (product) {
-        addToCart(product.id);
-        closeProductModal();
-    }
-}
+// Payment modal
+const paymentModal = document.getElementById('payment-modal');
+const checkoutBtn = document.getElementById('checkout-btn');
+const closePayment = document.getElementById('close-payment');
+checkoutBtn.addEventListener('click', () => {
+    if (cart.length === 0) { alert('Your cart is empty.'); return; }
+    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    document.getElementById('modal-total').innerText = total.toFixed(2);
+    paymentModal.style.display = 'flex';
+});
+closePayment.addEventListener('click', () => { paymentModal.style.display = 'none'; });
+window.addEventListener('click', (e) => { if (e.target === paymentModal) paymentModal.style.display = 'none'; });
 
-function proceedToCheckout() {
-    if (cart.length === 0) {
-        alert('Your cart is empty. Please add products before checkout.');
-        return;
-    }
-    
-    toggleCart();
-    openCheckout();
-}
-
-function openCheckout() {
-    const checkoutModal = document.getElementById('checkout-modal');
-    updateCheckoutSummary();
-    checkoutModal.classList.add('active');
-}
-
-function closeCheckout() {
-    const checkoutModal = document.getElementById('checkout-modal');
-    checkoutModal.classList.remove('active');
-}
-
-function updateCheckoutSummary() {
-    let html = '';
-    let total = 0;
-    
-    cart.forEach(item => {
-        const itemTotal = item.price * item.quantity;
-        total += itemTotal;
-        html += `
-            <div class="summary-item">
-                <span class="summary-item-name">${item.title} x ${item.quantity}</span>
-                <span class="summary-item-price">$${itemTotal.toFixed(2)}</span>
-            </div>
-        `;
-    });
-    
-    html += `
-        <div class="summary-total">
-            <span>Total:</span>
-            <span>$${total.toFixed(2)}</span>
-        </div>
-    `;
-    
-    document.getElementById('checkout-summary').innerHTML = html;
-}
-
-// ==================== PAYMENT FORM ====================
-function processPayment(event) {
-    event.preventDefault();
-    
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const cardName = document.getElementById('card-name').value;
-    const cardNumber = document.getElementById('card-number').value;
-    const expiry = document.getElementById('expiry').value;
-    const cvv = document.getElementById('cvv').value;
-    const country = document.getElementById('country').value;
-    
-    // Validate card number (basic validation - must be 16 digits)
-    if (cardNumber.replace(/\s/g, '').length !== 16) {
-        alert('Please enter a valid 16-digit card number.');
-        return;
-    }
-    
-    // Validate expiry format (MM/YY)
-    if (!/^\d{2}\/\d{2}$/.test(expiry)) {
-        alert('Please enter expiry in MM/YY format.');
-        return;
-    }
-    
-    // Validate CVV (must be 3 digits)
-    if (!/^\d{3}$/.test(cvv)) {
-        alert('Please enter a valid 3-digit CVV.');
-        return;
-    }
-    
-    // Validate all required fields
-    if (!name || !email || !cardName || !country) {
-        alert('Please fill in all required fields.');
-        return;
-    }
-    
-    // Process payment (demo - this is just a demonstration)
-    console.log('Processing payment for:', name, email);
-    console.log('Card ending in:', cardNumber.slice(-4));
-    console.log('Country:', country);
-    
-    // Calculate total amount
-    let totalAmount = 0;
-    cart.forEach(item => {
-        totalAmount += item.price * item.quantity;
-    });
-    
-    // Simulate payment processing
-    closeCheckout();
-    const orderItems = cart.map(item => `${item.title} x ${item.quantity}`).join(', ');
+// Payment form
+const payForm = document.getElementById('payment-form');
+payForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const cardNumber = document.getElementById('card-number').value.replace(/\s/g, '');
+    if (cardNumber.length < 15) { alert('Enter a valid test card number (4242 4242 4242 4242)'); return; }
+    alert('Demo purchase successful! No real charge. Integrate Stripe for live payments.');
     cart = [];
-    updateCart();
-    
-    // Show success message
-    showSuccessMessage(`Payment of $${totalAmount.toFixed(2)} processed successfully! Check your email at ${email} for order confirmation and product access links.`);
-    
-    // Clear form
-    document.getElementById('payment-form').reset();
-}
-
-// ==================== UTILITY FUNCTIONS ====================
-function showSuccessMessage(message) {
-    const messageDiv = document.createElement('div');
-    messageDiv.className = 'success-message';
-    messageDiv.textContent = message;
-    document.body.appendChild(messageDiv);
-    
-    setTimeout(() => {
-        messageDiv.remove();
-    }, 4000);
-}
-
-function scrollToSection(sectionId) {
-    const element = document.getElementById(sectionId);
-    if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-    }
-}
-
-// ==================== FORMAT CARD INPUT ====================
-document.addEventListener('DOMContentLoaded', function() {
-    const cardNumberInput = document.getElementById('card-number');
-    if (cardNumberInput) {
-        cardNumberInput.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\s/g, '');
-            let formattedValue = value.replace(/(\d{4})/g, '$1 ').trim();
-            e.target.value = formattedValue;
-        });
-    }
-    
-    const expiryInput = document.getElementById('expiry');
-    if (expiryInput) {
-        expiryInput.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length >= 2) {
-                value = value.slice(0, 2) + '/' + value.slice(2, 4);
-            }
-            e.target.value = value;
-        });
-    }
-    
-    const cvvInput = document.getElementById('cvv');
-    if (cvvInput) {
-        cvvInput.addEventListener('input', function(e) {
-            e.target.value = e.target.value.replace(/\D/g, '');
-        });
-    }
-    
-    renderProducts();
+    updateCartUI();
+    paymentModal.style.display = 'none';
+    cartSidebar.classList.remove('open');
+    payForm.reset();
 });
 
-// ==================== RENDER PRODUCTS ====================
-function renderProducts() {
-    const productsGrid = document.getElementById('products-grid');
-    if (!productsGrid) return;
-    
-    let html = '';
-    products.forEach(product => {
-        html += `
-            <div class="product-card">
-                <div class="product-icon">${product.icon}</div>
-                <h3>${product.title}</h3>
-                <p class="product-price">$${product.price.toFixed(2)}</p>
-                <p>${product.shortDescription}</p>
-                <button class="view-details-btn" onclick="openProductModal(${product.id})">View Details</button>
-            </div>
-        `;
+// Format card number
+const cardNumInput = document.getElementById('card-number');
+cardNumInput.addEventListener('input', (e) => {
+    let val = e.target.value.replace(/\s/g, '');
+    if (val.length > 16) val = val.slice(0, 16);
+    const formatted = val.match(/.{1,4}/g)?.join(' ') || val;
+    e.target.value = formatted;
+});
+
+// Policy modal
+const policyModal = document.getElementById('policy-modal');
+const policyLink = document.getElementById('policy-link');
+const closePolicy = document.getElementById('close-policy');
+policyLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    policyModal.style.display = 'flex';
+});
+closePolicy.addEventListener('click', () => { policyModal.style.display = 'none'; });
+window.addEventListener('click', (e) => { if (e.target === policyModal) policyModal.style.display = 'none'; });
+
+// Filter functionality
+const filterBtns = document.querySelectorAll('.filter-btn');
+const filterLinks = document.querySelectorAll('.filter-link');
+function handleFilter(filter) {
+    filterBtns.forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.filter === filter) btn.classList.add('active');
     });
-    
-    productsGrid.innerHTML = html;
+    if (filter === 'all') {
+        renderMainProducts();
+        renderExtraProducts();
+    } else {
+        alert(`Filtering by ${filter}. In full implementation, products would be filtered dynamically.`);
+    }
 }
-
-// ==================== CLOSE MODALS ON BACKGROUND CLICK ====================
-document.addEventListener('click', function(event) {
-    const cartModal = document.getElementById('cart-modal');
-    const checkoutModal = document.getElementById('checkout-modal');
-    const productModal = document.getElementById('product-modal');
-    const policyModal = document.getElementById('policy-modal');
-    
-    if (event.target === cartModal) {
-        cartModal.classList.remove('active');
-    }
-    if (event.target === checkoutModal) {
-        // Don't close checkout on background click - prevents accidental closure
-    }
-    if (event.target === productModal) {
-        productModal.classList.remove('active');
-    }
-    if (event.target === policyModal) {
-        policyModal.classList.remove('active');
-    }
+filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => handleFilter(btn.dataset.filter));
 });
+filterLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        handleFilter(link.dataset.filter);
+    });
+});
+
+// Close detail modal
+document.getElementById('close-detail-modal').addEventListener('click', () => {
+    document.getElementById('detail-modal').style.display = 'none';
+});
+window.addEventListener('click', (e) => {
+    const detailModal = document.getElementById('detail-modal');
+    if (e.target === detailModal) detailModal.style.display = 'none';
+});
+
+// Initialize
+updateCurrentDate();
+renderMainProducts();
+renderExtraProducts();
+updateCartUI();
