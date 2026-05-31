@@ -3,195 +3,259 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elevate Shop - Premium Digital Products</title>
+    <title>Elevate Shop | Growth & Prosperity</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Georgia:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Header/Navigation -->
-    <header class="header">
-        <div class="container">
-            <div class="logo">
-                <h1>Elevate Shop</h1>
-                <p class="tagline">Unlock Your Potential</p>
-            </div>
-            <nav class="nav">
-                <button class="nav-link" onclick="scrollToSection('products')">Products</button>
-                <button class="nav-link" onclick="scrollToSection('about')">About</button>
-                <button class="nav-link" id="cart-btn" onclick="toggleCart()">Cart (<span id="cart-count">0</span>)</button>
-            </nav>
-        </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h2>Transform Your Life Today</h2>
-            <p>Discover premium digital products to boost your motivation, financial literacy, and personal growth.</p>
-            <button class="cta-button" onclick="scrollToSection('products')">Explore Products</button>
-        </div>
-    </section>
+<!-- Navigation/Masthead -->
+<nav class="navbar">
+    <div class="nav-top">
+        <div class="nav-date" id="current-date"></div>
+        <a href="#" id="cart-icon" class="cart-link">Cart (<span id="cart-count">0</span>)</a>
+    </div>
+    <div class="masthead">
+        <h1 class="site-title">ELEVATE SHOP</h1>
+        <p class="site-subtitle">Growth &amp; Prosperity Through Knowledge</p>
+    </div>
+    <div class="nav-menu">
+        <a href="#" class="filter-link" data-filter="all">All</a>
+        <a href="#" class="filter-link" data-filter="financial">Financial</a>
+        <a href="#" class="filter-link" data-filter="motivational">Motivational</a>
+        <a href="#" class="filter-link" data-filter="personal">Personal</a>
+        <a href="#" class="filter-link" data-filter="business">Business</a>
+        <a href="#" id="policy-link">Policy</a>
+    </div>
+</nav>
 
-    <!-- Products Section -->
-    <section class="products" id="products">
-        <div class="container">
-            <h2>Our Premium Digital Products</h2>
-            <div class="products-grid" id="products-grid">
-                <!-- Products will be dynamically loaded here -->
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <h2>About Elevate Shop</h2>
-            <p>At Elevate Shop, we believe in the power of knowledge and personal development. Our carefully curated digital products are designed to help you achieve your goals, whether it's gaining financial literacy, finding daily motivation, or mastering new skills.</p>
-            <p>Each product is crafted by experts in their respective fields and delivered instantly upon purchase. Start your journey to success today.</p>
-        </div>
-    </section>
-
-    <!-- Shopping Cart Modal -->
-    <div class="cart-modal" id="cart-modal">
-        <div class="cart-content">
-            <div class="cart-header">
-                <h3>Shopping Cart</h3>
-                <button class="close-btn" onclick="toggleCart()">&times;</button>
-            </div>
-            <div class="cart-items" id="cart-items">
-                <p class="empty-cart">Your cart is empty</p>
-            </div>
-            <div class="cart-footer">
-                <div class="cart-total">
-                    <strong>Total:</strong>
-                    <span id="cart-total">$0.00</span>
-                </div>
-                <button class="checkout-btn" onclick="proceedToCheckout()">Proceed to Checkout</button>
-            </div>
+<!-- Hero Section -->
+<header class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <p class="hero-tagline">INSTANT DIGITAL ACCESS · LIFETIME OWNERSHIP</p>
+            <h2 class="hero-title">Transform Your Life With<br><span class="highlight">Premium Digital Products</span></h2>
+            <p class="hero-description">Curated educational materials for financial literacy, personal development, motivation, and entrepreneurial success.</p>
         </div>
     </div>
+</header>
 
-    <!-- Checkout Modal -->
-    <div class="checkout-modal" id="checkout-modal">
-        <div class="checkout-content">
-            <div class="checkout-header">
-                <h3>Checkout</h3>
-                <button class="close-btn" onclick="closeCheckout()">&times;</button>
+<!-- Featured Article Style Section -->
+<section class="featured-article">
+    <div class="container">
+        <article class="featured-piece">
+            <div class="featured-header">
+                <span class="article-label">Featured Product</span>
+                <h2 class="article-title">Financial Freedom Blueprint</h2>
+                <p class="article-subtitle">A comprehensive guide to building wealth, eliminating debt, and creating financial independence through proven strategies.</p>
             </div>
-            <div class="checkout-body">
-                <h4>Order Summary</h4>
-                <div id="checkout-summary"></div>
-                
-                <h4>Payment Information</h4>
-                <form id="payment-form" onsubmit="processPayment(event)">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" required placeholder="John Doe">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" required placeholder="john@example.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="card-name">Cardholder Name</label>
-                        <input type="text" id="card-name" required placeholder="Name on Card">
-                    </div>
-                    <div class="form-group">
-                        <label for="card-number">Card Number</label>
-                        <input type="text" id="card-number" required placeholder="1234 5678 9012 3456" maxlength="19">
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="expiry">Expiry Date</label>
-                            <input type="text" id="expiry" required placeholder="MM/YY" maxlength="5">
-                        </div>
-                        <div class="form-group">
-                            <label for="cvv">CVV</label>
-                            <input type="text" id="cvv" required placeholder="123" maxlength="3">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="country">Country</label>
-                        <input type="text" id="country" required placeholder="United States">
-                    </div>
-                    <button type="submit" class="checkout-btn">Complete Purchase</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Product Detail Modal -->
-    <div class="product-modal" id="product-modal">
-        <div class="product-modal-content">
-            <button class="close-btn" onclick="closeProductModal()">&times;</button>
-            <div class="product-modal-body">
-                <div class="product-image-section">
-                    <div class="product-icon" id="modal-product-icon"></div>
-                </div>
-                <div class="product-info-section">
-                    <h2 id="modal-product-title"></h2>
-                    <p class="product-price" id="modal-product-price"></p>
-                    <p id="modal-product-description"></p>
-                    <div class="product-details" id="modal-product-details"></div>
-                    <button class="add-to-cart-btn" id="modal-add-to-cart" onclick="addToCartFromModal()">Add to Cart</button>
+            <div class="featured-content">
+                <div class="featured-text">
+                    <p class="article-body">
+                        The <em>Financial Freedom Blueprint</em> is a comprehensive digital course and workbook designed to transform your relationship with money. From budgeting basics to advanced investing strategies, this product takes you from financial confusion to confident wealth building. You'll learn how to eliminate debt, build an emergency fund, understand stocks and index funds, and create multiple streams of passive income. Written in plain language without jargon, this guide is perfect for beginners and intermediate learners alike. Thousands of students have used it to achieve financial independence.
+                    </p>
+                    <p class="article-meta">
+                        <strong>Category:</strong> Financial Literacy | <strong>Price:</strong> $47.00
+                    </p>
+                    <button class="btn-primary add-to-cart" data-name="Financial Freedom Blueprint" data-price="47.00">Add to Cart</button>
                 </div>
             </div>
+        </article>
+    </div>
+</section>
+
+<!-- Products Grid (Column-based like NYT) -->
+<section class="products-section">
+    <div class="container">
+        <h2 class="section-heading">Top Selections</h2>
+        <div class="products-columns" id="product-list"></div>
+    </div>
+</section>
+
+<!-- Divider -->
+<div class="divider-section">
+    <div class="container">
+        <div class="ornament">* * *</div>
+    </div>
+</div>
+
+<!-- More Products Section -->
+<section class="more-products">
+    <div class="container">
+        <h2 class="section-heading">Complete Product Collection</h2>
+        <div class="products-columns" id="extra-list"></div>
+    </div>
+</section>
+
+<!-- Testimonial Section -->
+<section class="testimonial-section">
+    <div class="container">
+        <blockquote class="testimonial-quote">
+            <p>"These products completely changed how I think about money and my potential. The Financial Freedom Blueprint alone helped me pay off $18,000 in debt."</p>
+            <footer class="quote-attribution">— Marcus T., Customer</footer>
+        </blockquote>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Products</h4>
+                <ul>
+                    <li><a href="#">Motivational Collections</a></li>
+                    <li><a href="#">Financial Courses</a></li>
+                    <li><a href="#">Personal Development</a></li>
+                    <li><a href="#">Business Tools</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Privacy</a></li>
+                    <li><a href="#">Terms</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Our Commitment</h4>
+                <ul>
+                    <li>Instant Digital Delivery</li>
+                    <li>Lifetime Access</li>
+                    <li>Secure Transactions</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Elevate Shop. All rights reserved.</p>
+            <p class="footer-tagline">Empowering minds and building wealth, one download at a time.</p>
         </div>
     </div>
+</footer>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <p>&copy; 2024 Elevate Shop. All rights reserved.</p>
-                <button class="policy-btn" onclick="openPolicy()">View Policy</button>
-            </div>
+<!-- Cart Sidebar -->
+<div id="cart-sidebar" class="cart-sidebar">
+    <div class="cart-header">
+        <h3>Your Cart</h3>
+        <button id="close-cart" class="close-btn">&times;</button>
+    </div>
+    <div id="cart-items" class="cart-items">
+        <p class="empty-message">Your cart is empty</p>
+    </div>
+    <div class="cart-footer">
+        <div class="cart-total">
+            <span>Total:</span>
+            <span class="amount">$<span id="cart-total">0.00</span></span>
         </div>
-    </footer>
+        <button id="checkout-btn" class="btn-primary checkout-btn">Proceed to Checkout</button>
+    </div>
+</div>
 
-    <!-- Policy Modal -->
-    <div class="policy-modal" id="policy-modal">
-        <div class="policy-content">
-            <div class="policy-header">
-                <h3>Elevate Shop Policies</h3>
-                <button class="close-btn" onclick="closePolicy()">&times;</button>
+<!-- Payment Modal -->
+<div id="payment-modal" class="modal payment-modal">
+    <div class="modal-content">
+        <button class="modal-close" id="close-payment">&times;</button>
+        <h2>Secure Checkout</h2>
+        <p class="demo-notice">Demo Mode: No real payment will be processed.</p>
+        <form id="payment-form">
+            <div class="form-group">
+                <label for="card-name">Cardholder Name</label>
+                <input type="text" id="card-name" required placeholder="John Doe">
             </div>
-            <div class="policy-body">
-                <div class="policy-section">
-                    <h4>Non-Refundable Digital Products Policy</h4>
+            <div class="form-group">
+                <label for="card-number">Card Number</label>
+                <input type="text" id="card-number" required placeholder="4242 4242 4242 4242" maxlength="19">
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="card-expiry">Expiry (MM/YY)</label>
+                    <input type="text" id="card-expiry" required placeholder="12/28">
+                </div>
+                <div class="form-group">
+                    <label for="card-cvc">CVC</label>
+                    <input type="text" id="card-cvc" required placeholder="123" maxlength="4">
+                </div>
+            </div>
+            <button type="submit" class="btn-primary btn-block">Pay $<span id="modal-total">0.00</span></button>
+        </form>
+        <p class="form-disclaimer">For demo purposes only. No real charges will be applied.</p>
+    </div>
+</div>
+
+<!-- Product Detail Modal -->
+<div id="detail-modal" class="modal detail-modal">
+    <div class="modal-content modal-large">
+        <button class="modal-close" id="close-detail-modal">&times;</button>
+        <article class="detail-article">
+            <header class="detail-header">
+                <span class="detail-label" id="detail-label">Product</span>
+                <h2 id="detail-title">Product Title</h2>
+                <p id="detail-subtitle" class="detail-subtitle"></p>
+            </header>
+            <div class="detail-body">
+                <p id="detail-description">Full product description will appear here.</p>
+                <p id="detail-price" class="product-price"></p>
+                <button id="detail-add-to-cart" class="btn-primary">Add to Cart</button>
+            </div>
+        </article>
+    </div>
+</div>
+
+<!-- Policy Modal -->
+<div id="policy-modal" class="modal policy-modal">
+    <div class="modal-content modal-large">
+        <button class="modal-close" id="close-policy">&times;</button>
+        <article class="policy-article">
+            <header class="policy-header">
+                <h2>Elevate Shop Policies</h2>
+            </header>
+            <div class="policy-content">
+                <section class="policy-section">
+                    <h3>Non-Refundable Digital Products</h3>
                     <p>All digital products sold on Elevate Shop are non-refundable. Once purchased and delivered, digital products cannot be returned for a refund. Since digital products are instantly accessible and cannot be unsold, no refunds will be issued under any circumstances.</p>
-                </div>
-                <div class="policy-section">
-                    <h4>Instant Delivery</h4>
-                    <p>Upon successful payment, all digital products will be delivered instantly to your registered email address. Please ensure you provide a valid email address during checkout. Check your spam or promotions folder if you don't see the delivery email in your inbox.</p>
-                </div>
-                <div class="policy-section">
-                    <h4>Product Access</h4>
-                    <p>You are purchasing a personal license to access the digital product. The product is for your personal use only and should not be redistributed, resold, or shared with others without explicit permission from Elevate Shop.</p>
-                </div>
-                <div class="policy-section">
-                    <h4>Intellectual Property Rights</h4>
-                    <p>All content, materials, and products on Elevate Shop are protected by copyright and intellectual property laws. Unauthorized reproduction, distribution, or use of any content is strictly prohibited.</p>
-                </div>
-                <div class="policy-section">
-                    <h4>Product Quality Guarantee</h4>
-                    <p>We stand behind the quality of our products. If you experience technical difficulties accessing your purchased product, please contact our support team, and we will assist you in resolving the issue.</p>
-                </div>
-                <div class="policy-section">
-                    <h4>Terms of Service</h4>
-                    <p>By purchasing from Elevate Shop, you agree to our terms of service and policies. We reserve the right to modify policies at any time. Continued use of our platform constitutes acceptance of updated policies.</p>
-                </div>
-                <div class="policy-section">
-                    <h4>Privacy Policy</h4>
-                    <p>Your privacy is important to us. We collect personal information only for order processing and delivery purposes. Your data will not be shared with third parties without your consent, except as required by law.</p>
-                </div>
-                <div class="policy-section">
-                    <h4>Contact & Support</h4>
-                    <p>For any questions or concerns regarding policies or products, please contact our support team at support@elevateshop.com. We're here to help!</p>
-                </div>
-            </div>
-        </div>
-    </div>
+                </section>
+                
+                <section class="policy-section">
+                    <h3>Instant Delivery</h3>
+                    <p>Upon successful payment, all digital products will be delivered instantly to your registered email address. Please ensure you provide a valid email during checkout. Check your spam or promotions folder if you don't see the delivery email in your inbox.</p>
+                </section>
 
-    <script src="script.js"></script>
+                <section class="policy-section">
+                    <h3>Product Access & Licensing</h3>
+                    <p>You are purchasing a personal license to access the digital product. The product is for your personal use only and should not be redistributed, resold, or shared with others without explicit permission from Elevate Shop.</p>
+                </section>
+
+                <section class="policy-section">
+                    <h3>Intellectual Property Rights</h3>
+                    <p>All content, materials, and products on Elevate Shop are protected by copyright and intellectual property laws. Unauthorized reproduction, distribution, or use of any content is strictly prohibited.</p>
+                </section>
+
+                <section class="policy-section">
+                    <h3>Product Quality Guarantee</h3>
+                    <p>We stand behind the quality of our products. If you experience technical difficulties accessing your purchased product, please contact our support team at support@elevateshop.com, and we will assist you in resolving the issue.</p>
+                </section>
+
+                <section class="policy-section">
+                    <h3>Terms of Service</h3>
+                    <p>By purchasing from Elevate Shop, you agree to our terms of service and policies. We reserve the right to modify policies at any time. Continued use of our platform constitutes acceptance of updated policies.</p>
+                </section>
+
+                <section class="policy-section">
+                    <h3>Privacy Policy</h3>
+                    <p>Your privacy is important to us. We collect personal information only for order processing and delivery purposes. Your data will not be shared with third parties without your consent, except as required by law.</p>
+                </section>
+
+                <section class="policy-section">
+                    <h3>Contact & Support</h3>
+                    <p>For any questions or concerns regarding policies or products, please contact our support team at support@elevateshop.com. We're here to help.</p>
+                </section>
+            </div>
+        </article>
+    </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
