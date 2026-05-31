@@ -19,9 +19,9 @@ const allProductsData = [
 ];
 
 const extraProductsData = [
-    { id: 8, name: "Social Media Marketing Masterclass", category: "business", price: 49, description: "Master Instagram, TikTok, LinkedIn, and Facebook marketing. Grow your following, create viral content, and convert followers into customers.", isNew: false },
-    { id: 9, name: "Advanced Negotiation Tactics", category: "business", price: 39, description: "Learn the psychological principles behind effective negotiation. Used by Fortune 500 companies and top lawyers to win deals and increase profits.", isBundle: false },
-    { id: 10, name: "Health & Wellness Blueprint", category: "personal", price: 29, description: "Complete system for optimal health including nutrition, exercise, sleep, and stress management. Transform your body and mind in 90 days.", isNew: true }
+    { id: 8, name: "Social Media Marketing Masterclass", category: "business", price: 49, description: "Master Instagram, TikTok, LinkedIn, and Facebook marketing. Grow your following, create viral content, and convert followers into customers.", fullDescription: "Social Media Marketing Masterclass teaches you everything you need to dominate social media in 2025 and beyond. You'll learn algorithm secrets, content strategies, engagement tactics, paid advertising fundamentals, analytics interpretation, and conversion optimization across all major platforms.", isNew: false },
+    { id: 9, name: "Advanced Negotiation Tactics", category: "business", price: 39, description: "Learn the psychological principles behind effective negotiation. Used by Fortune 500 companies and top lawyers to win deals and increase profits.", fullDescription: "Advanced Negotiation Tactics reveals the psychological frameworks used by world-class negotiators. Topics include: anchoring, framing, mirroring, labeling, calibrated questions, handling difficult people, and closing the deal. Includes real-world case studies and role-playing exercises.", isBundle: false },
+    { id: 10, name: "Health & Wellness Blueprint", category: "personal", price: 29, description: "Complete system for optimal health including nutrition, exercise, sleep, and stress management. Transform your body and mind in 90 days.", fullDescription: "The Health & Wellness Blueprint is a comprehensive 90-day system covering: nutrition fundamentals, meal planning, exercise routines for all fitness levels, sleep optimization, stress reduction techniques, and habit formation. Includes meal plans, workout videos, and progress tracking tools.", isNew: true }
 ];
 
 let cart = [];
@@ -35,12 +35,13 @@ function getCategoryName(cat) {
     return cat;
 }
 
-// Update current date in nav
+// Update current date correctly
 function updateCurrentDate() {
     const dateElement = document.getElementById('current-date');
+    const today = new Date();
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    const today = new Date().toLocaleDateString('en-US', options);
-    if (dateElement) dateElement.textContent = today;
+    const formattedDate = today.toLocaleDateString('en-US', options);
+    if (dateElement) dateElement.textContent = formattedDate;
 }
 
 // Render top picks products (5 products)
@@ -118,7 +119,7 @@ function handleAddToCart(e) {
     }
 }
 
-// Show product detail modal - NYT article style
+// Show product detail modal
 function showProductDetail(e) {
     const id = parseInt(e.currentTarget.dataset.id);
     let product = allProductsData.find(p => p.id === id) || extraProductsData.find(p => p.id === id);
@@ -238,27 +239,32 @@ payForm.addEventListener('submit', (e) => {
 
 // Format card number
 const cardNumInput = document.getElementById('card-number');
-cardNumInput.addEventListener('input', (e) => {
-    let val = e.target.value.replace(/\s/g, '');
-    if (val.length > 16) val = val.slice(0, 16);
-    const formatted = val.match(/.{1,4}/g)?.join(' ') || val;
-    e.target.value = formatted;
-});
+if (cardNumInput) {
+    cardNumInput.addEventListener('input', (e) => {
+        let val = e.target.value.replace(/\s/g, '');
+        if (val.length > 16) val = val.slice(0, 16);
+        const formatted = val.match(/.{1,4}/g)?.join(' ') || val;
+        e.target.value = formatted;
+    });
+}
 
 // Policy modal
 const policyModal = document.getElementById('policy-modal');
 const policyLink = document.getElementById('policy-link');
 const closePolicy = document.getElementById('close-policy');
-policyLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    policyModal.style.display = 'flex';
-});
-closePolicy.addEventListener('click', () => { policyModal.style.display = 'none'; });
+if (policyLink) {
+    policyLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        policyModal.style.display = 'flex';
+    });
+}
+if (closePolicy) {
+    closePolicy.addEventListener('click', () => { policyModal.style.display = 'none'; });
+}
 window.addEventListener('click', (e) => { if (e.target === policyModal) policyModal.style.display = 'none'; });
 
-// Filter functionality
+// Filter functionality - FIXED to use filter-btn class
 const filterBtns = document.querySelectorAll('.filter-btn');
-const filterLinks = document.querySelectorAll('.filter-link');
 function handleFilter(filter) {
     filterBtns.forEach(btn => {
         btn.classList.remove('active');
@@ -268,23 +274,32 @@ function handleFilter(filter) {
         renderMainProducts();
         renderExtraProducts();
     } else {
-        alert(`Filtering by ${filter}. In full implementation, products would be filtered dynamically.`);
+        alert(`Showing ${filter} products. In full implementation, products would be filtered dynamically.`);
     }
 }
 filterBtns.forEach(btn => {
     btn.addEventListener('click', () => handleFilter(btn.dataset.filter));
 });
+
+// Also handle filter links in navigation
+const filterLinks = document.querySelectorAll('.filter-link');
 filterLinks.forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
-        handleFilter(link.dataset.filter);
+        const filter = link.dataset.filter;
+        if (filter) {
+            handleFilter(filter);
+        }
     });
 });
 
 // Close detail modal
-document.getElementById('close-detail-modal').addEventListener('click', () => {
-    document.getElementById('detail-modal').style.display = 'none';
-});
+const closeDetailModal = document.getElementById('close-detail-modal');
+if (closeDetailModal) {
+    closeDetailModal.addEventListener('click', () => {
+        document.getElementById('detail-modal').style.display = 'none';
+    });
+}
 window.addEventListener('click', (e) => {
     const detailModal = document.getElementById('detail-modal');
     if (e.target === detailModal) detailModal.style.display = 'none';
