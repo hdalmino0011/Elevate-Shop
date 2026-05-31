@@ -8,7 +8,8 @@
 :root {
     --primary-brown: #6B4C3A;
     --dark-brown: #4A3728;
-    --light-brown: #8B6F47;
+    --light-brown: #A88B6B;      /* lighter brown for hero background */
+    --masthead-brown: #5A3E2E;    /* darker brown for masthead (Elevate Shop) */
     --cream: #FDFBF7;
     --off-white: #F5F3F0;
     --light-gray: #D4C4B4;
@@ -41,7 +42,7 @@ a:hover {
 }
 
 .container {
-    max-width: 900px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 0 24px;
 }
@@ -67,15 +68,7 @@ h4 {
     margin-bottom: 12px;
 }
 
-em {
-    font-style: italic;
-}
-
-strong {
-    font-weight: 700;
-}
-
-/* ==================== NAVIGATION/MASTHEAD ==================== */
+/* ==================== NAVIGATION / MASTHEAD ==================== */
 .navbar {
     background-color: white;
     border-bottom: 3px solid var(--primary-brown);
@@ -92,7 +85,6 @@ strong {
     font-size: 13px;
     color: var(--text-light);
     border-bottom: 1px solid var(--border-gray);
-    max-width: 100%;
 }
 
 .nav-date {
@@ -106,14 +98,10 @@ strong {
     cursor: pointer;
 }
 
-.cart-link:hover {
-    color: var(--dark-brown);
-}
-
 .masthead {
     text-align: center;
     padding: 36px 24px 20px;
-    background-color: var(--primary-brown);
+    background-color: var(--masthead-brown);  /* distinct darker brown */
     border-bottom: 3px solid var(--dark-brown);
 }
 
@@ -130,7 +118,6 @@ strong {
     font-style: italic;
     color: var(--cream);
     letter-spacing: 1px;
-    font-weight: 400;
 }
 
 .nav-menu {
@@ -164,17 +151,9 @@ strong {
     background-color: var(--primary-brown);
 }
 
-.filter-link {
-    cursor: pointer;
-}
-
-#policy-link {
-    cursor: pointer;
-}
-
-/* ==================== HERO SECTION with BROWN BACKGROUND ==================== */
+/* ==================== HERO (light brown, different from masthead) ==================== */
 .hero {
-    background-color: var(--primary-brown);
+    background-color: var(--light-brown);
     padding: 60px 0 80px;
     border-bottom: 1px solid var(--border-gray);
 }
@@ -187,7 +166,7 @@ strong {
     font-size: 12px;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--cream);
+    color: white;
     margin-bottom: 24px;
     font-weight: 600;
 }
@@ -207,14 +186,14 @@ strong {
 
 .hero-description {
     font-size: 17px;
-    color: var(--cream);
+    color: white;
     max-width: 700px;
     margin: 0 auto;
     line-height: 1.7;
     opacity: 0.95;
 }
 
-/* ==================== FEATURED ARTICLE SECTION ==================== */
+/* ==================== FEATURED ARTICLE ==================== */
 .featured-article {
     padding: 60px 0;
     background-color: white;
@@ -224,10 +203,6 @@ strong {
 .featured-piece {
     max-width: 900px;
     margin: 0 auto;
-}
-
-.featured-header {
-    margin-bottom: 32px;
 }
 
 .article-label {
@@ -244,25 +219,12 @@ strong {
     font-size: 42px;
     font-weight: 700;
     margin-bottom: 16px;
-    line-height: 1.3;
-    color: var(--text-dark);
 }
 
 .article-subtitle {
     font-size: 18px;
     color: var(--text-light);
     font-style: italic;
-    line-height: 1.6;
-}
-
-.featured-content {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 40px;
-}
-
-.featured-text {
-    max-width: 800px;
 }
 
 .article-body {
@@ -274,12 +236,150 @@ strong {
 
 .article-meta {
     font-size: 14px;
-    color: var(--text-light);
     margin-bottom: 24px;
-    line-height: 1.6;
 }
 
-/* ==================== PRODUCTS SECTION ==================== */
+/* ==================== CAROUSEL STYLES ==================== */
+.carousel-container {
+    position: relative;
+    margin: 40px 0;
+}
+
+.carousel-wrapper {
+    overflow: hidden;
+    margin: 0 40px;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease;
+    gap: 30px;
+}
+
+.carousel-item {
+    flex: 0 0 calc(33.333% - 20px);
+    min-width: 0;
+    background-color: var(--cream);
+    padding: 24px;
+    border: 1px solid var(--border-gray);
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.carousel-item .category {
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--primary-brown);
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.carousel-item h3 {
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.carousel-item .description {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-bottom: 16px;
+}
+
+.carousel-item .price {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary-brown);
+    margin-bottom: 16px;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--primary-brown);
+    color: white;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background 0.2s;
+    z-index: 10;
+}
+
+.carousel-btn:hover {
+    background: var(--dark-brown);
+}
+
+.prev-btn {
+    left: 0;
+}
+
+.next-btn {
+    right: 0;
+}
+
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--light-gray);
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.indicator.active {
+    background-color: var(--primary-brown);
+}
+
+/* Testimonial carousel */
+.testimonial-carousel-container {
+    position: relative;
+    margin: 40px 0;
+}
+
+.testimonial-wrapper {
+    overflow: hidden;
+    margin: 0 40px;
+}
+
+.testimonial-track {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.testimonial-item {
+    flex: 0 0 100%;
+    text-align: center;
+    padding: 20px;
+    font-size: 20px;
+    font-style: italic;
+    color: var(--text-dark);
+    background: var(--off-white);
+    border-radius: 8px;
+}
+
+.testimonial-item p {
+    margin-bottom: 16px;
+}
+
+.testimonial-author {
+    font-style: normal;
+    font-size: 14px;
+    color: var(--primary-brown);
+    font-weight: 600;
+}
+
+/* ==================== STATIC PRODUCT GRID ==================== */
 .products-section, .more-products {
     padding: 60px 0;
     background-color: white;
@@ -291,7 +391,6 @@ strong {
     font-weight: 700;
     margin-bottom: 48px;
     text-align: center;
-    color: var(--text-dark);
 }
 
 .products-columns {
@@ -307,11 +406,6 @@ strong {
     border-radius: 4px;
     display: flex;
     flex-direction: column;
-    transition: box-shadow 0.2s;
-}
-
-.product-card:hover {
-    box-shadow: 0 4px 12px rgba(107, 76, 58, 0.1);
 }
 
 .product-card .category {
@@ -326,15 +420,13 @@ strong {
 .product-card h3 {
     font-size: 22px;
     margin-bottom: 12px;
-    color: var(--text-dark);
 }
 
 .product-card .description {
     font-size: 15px;
     color: var(--text-light);
-    line-height: 1.6;
-    flex-grow: 1;
     margin-bottom: 20px;
+    flex-grow: 1;
 }
 
 .product-card .price {
@@ -354,7 +446,7 @@ strong {
     padding: 4px 10px;
     border-radius: 2px;
     margin-bottom: 12px;
-    font-weight: 600;
+    width: fit-content;
 }
 
 .badge.new {
@@ -423,21 +515,7 @@ strong {
     margin-top: 12px;
 }
 
-.details-btn {
-    align-self: flex-start;
-}
-
-.add-to-cart {
-    align-self: flex-start;
-    margin-top: auto;
-}
-
-.checkout-btn {
-    width: 100%;
-    margin-top: 16px;
-}
-
-/* ==================== DIVIDER SECTION ==================== */
+/* ==================== DIVIDER ==================== */
 .divider-section {
     padding: 40px 0;
     background-color: white;
@@ -451,32 +529,11 @@ strong {
     letter-spacing: 8px;
 }
 
-/* ==================== TESTIMONIAL SECTION ==================== */
+/* ==================== TESTIMONIAL SECTION (background) ==================== */
 .testimonial-section {
     padding: 60px 0;
     background-color: var(--off-white);
     border-bottom: 1px solid var(--border-gray);
-}
-
-.testimonial-quote {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-    font-size: 20px;
-    font-style: italic;
-    color: var(--text-dark);
-    line-height: 1.8;
-}
-
-.testimonial-quote p {
-    margin-bottom: 20px;
-}
-
-.quote-attribution {
-    font-style: normal;
-    font-size: 14px;
-    color: var(--text-light);
-    font-weight: 600;
 }
 
 /* ==================== FOOTER ==================== */
@@ -498,7 +555,6 @@ strong {
     color: white;
     font-size: 16px;
     margin-bottom: 16px;
-    letter-spacing: 0.5px;
 }
 
 .footer-section ul {
@@ -529,7 +585,6 @@ strong {
     border-top: 1px solid rgba(212, 196, 180, 0.2);
     padding-top: 20px;
     font-size: 13px;
-    color: var(--light-gray);
 }
 
 .footer-tagline {
@@ -621,11 +676,6 @@ strong {
     font-size: 13px;
     font-weight: 600;
     margin-left: 16px;
-    transition: color 0.2s;
-}
-
-.cart-item-remove:hover {
-    color: var(--dark-brown);
 }
 
 .empty-message {
@@ -652,6 +702,10 @@ strong {
 .amount {
     color: var(--primary-brown);
     font-size: 18px;
+}
+
+.checkout-btn {
+    width: 100%;
 }
 
 /* ==================== MODALS ==================== */
@@ -703,17 +757,10 @@ strong {
     font-size: 28px;
     cursor: pointer;
     color: var(--text-dark);
-    transition: color 0.2s;
-}
-
-.modal-close:hover {
-    color: var(--primary-brown);
 }
 
 .modal h2 {
     margin-bottom: 24px;
-    margin-top: 0;
-    color: var(--text-dark);
 }
 
 .detail-header, .policy-header {
@@ -732,26 +779,18 @@ strong {
     font-weight: 600;
 }
 
-.detail-title {
-    font-size: 36px;
-    margin-bottom: 12px;
-    color: var(--text-dark);
-}
-
 .detail-subtitle {
     font-style: italic;
     color: var(--text-light);
     font-size: 16px;
     margin-top: -8px;
     margin-bottom: 20px;
-    line-height: 1.6;
 }
 
 .detail-body p {
     margin-bottom: 20px;
     line-height: 1.8;
     color: var(--text-light);
-    font-size: 16px;
 }
 
 .policy-content {
@@ -781,6 +820,13 @@ strong {
     line-height: 1.7;
 }
 
+.product-price {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--primary-brown);
+    margin: 20px 0;
+}
+
 /* ==================== FORM STYLES ==================== */
 .form-group {
     margin-bottom: 20px;
@@ -791,7 +837,6 @@ strong {
     font-weight: 600;
     margin-bottom: 6px;
     font-size: 14px;
-    color: var(--text-dark);
 }
 
 .form-group input {
@@ -801,7 +846,6 @@ strong {
     border-radius: 4px;
     font-family: 'Georgia', serif;
     font-size: 14px;
-    transition: border-color 0.2s;
 }
 
 .form-group input:focus {
@@ -834,77 +878,38 @@ strong {
     margin-top: 16px;
 }
 
-.payment-disclaimer {
-    font-size: 12px;
-    text-align: center;
-    color: var(--text-light);
-    margin-top: 16px;
-}
-
-.product-price {
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--primary-brown);
-    margin: 20px 0;
-}
-
 /* ==================== RESPONSIVE ==================== */
 @media (max-width: 768px) {
     .site-title {
         font-size: 36px;
         letter-spacing: 2px;
     }
-
-    .site-subtitle {
-        font-size: 13px;
-    }
-
     .hero-title {
         font-size: 36px;
     }
-
     .article-title {
         font-size: 32px;
     }
-
     .section-heading {
         font-size: 28px;
     }
-
     .products-columns {
         grid-template-columns: 1fr;
         gap: 32px;
     }
-
-    .featured-content {
-        grid-template-columns: 1fr;
-    }
-
     .cart-sidebar {
         width: 100%;
         right: -100%;
     }
-
     .nav-menu {
         gap: 16px;
         padding: 12px 24px;
     }
-
-    .nav-menu a {
-        font-size: 12px;
+    .carousel-item {
+        flex: 0 0 calc(100% - 20px);
     }
-
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 32px;
-    }
-
-    .modal-content {
-        padding: 24px;
-    }
-
-    .form-row {
-        grid-template-columns: 1fr;
+    .carousel-wrapper, .testimonial-wrapper {
+        margin: 0 20px;
     }
 }
 
@@ -912,38 +917,16 @@ strong {
     .site-title {
         font-size: 28px;
     }
-
     .hero-title {
         font-size: 28px;
     }
-
     .article-title {
         font-size: 24px;
     }
-
     .section-heading {
         font-size: 24px;
     }
-
     .product-card {
         padding: 20px;
-    }
-
-    .nav-top {
-        padding: 10px 16px;
-        font-size: 12px;
-    }
-
-    .container {
-        padding: 0 16px;
-    }
-
-    .modal-content {
-        max-width: 100%;
-        border-radius: 0;
-    }
-
-    .detail-title {
-        font-size: 28px;
     }
 }
