@@ -9,7 +9,7 @@
     --primary-brown: #895129;
     --dark-brown: #6B3E1F;
     --light-brown: #A56B3E;
-    --masthead-brown: #895129;      /* brown for masthead */
+    --masthead-brown: #895129;
     --cream: #FDFBF7;
     --off-white: #F5F3F0;
     --light-gray: #D4C4B4;
@@ -28,7 +28,7 @@ body {
     background-color: var(--cream);
     color: var(--text-dark);
     line-height: 1.6;
-    font-size: 15px;
+    font-size: 16px;
 }
 
 a {
@@ -82,26 +82,51 @@ h4 {
     justify-content: space-between;
     align-items: center;
     padding: 8px 24px;
-    font-size: 12px;
+    font-size: 13px;
     color: var(--text-light);
     border-bottom: 1px solid var(--border-gray);
+    background-color: white;
+    position: relative;
 }
 
 .nav-date {
     letter-spacing: 0.5px;
     font-family: 'Georgia', serif;
+    font-size: 12px;
+}
+
+.nav-center-text {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--primary-brown);
+    letter-spacing: 1px;
+    background-color: var(--off-white);
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--border-gray);
 }
 
 .cart-link {
     font-weight: 600;
     color: var(--primary-brown);
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+}
+
+.cart-icon {
+    font-size: 14px;
 }
 
 .masthead {
     text-align: center;
     padding: 28px 24px 16px;
-    background-color: var(--masthead-brown);  /* brown applied */
+    background-color: var(--masthead-brown);
     border-bottom: 3px solid var(--dark-brown);
 }
 
@@ -111,6 +136,7 @@ h4 {
     letter-spacing: 3px;
     color: white;
     margin-bottom: 6px;
+    cursor: pointer;
 }
 
 .site-subtitle {
@@ -131,7 +157,7 @@ h4 {
 }
 
 .nav-menu a {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -151,10 +177,10 @@ h4 {
     background-color: var(--primary-brown);
 }
 
-/* ==================== HERO SECTION (SMALLER TEXT) ==================== */
+/* ==================== HERO SECTION (SMALLER) ==================== */
 .hero {
     background-color: var(--light-brown);
-    padding: 40px 0 50px;
+    padding: 30px 0 35px;
     border-bottom: 1px solid var(--border-gray);
 }
 
@@ -163,19 +189,19 @@ h4 {
 }
 
 .hero-tagline {
-    font-size: 10px;
+    font-size: 9px;
     letter-spacing: 2px;
     text-transform: uppercase;
     color: white;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     font-weight: 600;
 }
 
 .hero-title {
-    font-size: 32px;
+    font-size: 26px;
     font-weight: 700;
     line-height: 1.3;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     color: white;
 }
 
@@ -185,9 +211,9 @@ h4 {
 }
 
 .hero-description {
-    font-size: 13px;
+    font-size: 12px;
     color: white;
-    max-width: 600px;
+    max-width: 550px;
     margin: 0 auto;
     line-height: 1.5;
     opacity: 0.95;
@@ -239,31 +265,34 @@ h4 {
     margin-bottom: 18px;
 }
 
-/* ==================== CAROUSEL STYLES ==================== */
+/* ==================== CAROUSEL (FIXED CUTOFF) ==================== */
 .carousel-container {
     position: relative;
     margin: 30px 0;
+    overflow: visible;
 }
 
 .carousel-wrapper {
-    overflow: hidden;
-    margin: 0 40px;
+    overflow: visible;
+    margin: 0 35px;
 }
 
 .carousel-track {
     display: flex;
     transition: transform 0.5s ease;
-    gap: 25px;
+    gap: 20px;
 }
 
 .carousel-item {
-    flex: 0 0 calc(33.333% - 17px);
+    flex: 0 0 calc(33.333% - 14px);
     min-width: 0;
     background-color: var(--cream);
     padding: 18px;
     border: 1px solid var(--border-gray);
     border-radius: 4px;
     box-sizing: border-box;
+    word-wrap: break-word;
+    overflow: hidden;
 }
 
 .carousel-item .category {
@@ -276,7 +305,7 @@ h4 {
 }
 
 .carousel-item h3 {
-    font-size: 17px;
+    font-size: 18px;
     margin-bottom: 8px;
 }
 
@@ -285,6 +314,11 @@ h4 {
     color: var(--text-light);
     margin-bottom: 10px;
     line-height: 1.5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
 .carousel-item .price {
@@ -301,13 +335,16 @@ h4 {
     background: var(--primary-brown);
     color: white;
     border: none;
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 16px;
     transition: background 0.2s;
     z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .carousel-btn:hover {
@@ -315,24 +352,24 @@ h4 {
 }
 
 .prev-btn {
-    left: 0;
+    left: -10px;
 }
 
 .next-btn {
-    right: 0;
+    right: -10px;
 }
 
-/* ==================== TESTIMONIAL SECTION (BROWN BACKGROUND, SMALLER PANEL) ==================== */
+/* ==================== TESTIMONIAL SECTION ==================== */
 .testimonial-section {
     padding: 40px 0;
-    background-color: var(--primary-brown);  /* brown background */
+    background-color: var(--primary-brown);
     border-bottom: 1px solid var(--border-gray);
 }
 
 .testimonial-carousel-container {
     position: relative;
     margin: 20px auto;
-    max-width: 800px;        /* smaller panel */
+    max-width: 800px;
 }
 
 .testimonial-wrapper {
@@ -351,7 +388,7 @@ h4 {
     padding: 20px 30px;
     font-size: 16px;
     font-style: italic;
-    color: white;            /* white text on brown */
+    color: white;
     background: transparent;
     border-radius: 8px;
 }
@@ -438,7 +475,7 @@ h4 {
     width: fit-content;
 }
 
-/* ==================== BUTTONS (SMALLER) ==================== */
+/* ==================== BUTTONS ==================== */
 .btn-primary {
     background-color: var(--primary-brown);
     color: white;
@@ -515,9 +552,9 @@ h4 {
     letter-spacing: 6px;
 }
 
-/* ==================== FOOTER (BLACK BACKGROUND) ==================== */
+/* ==================== FOOTER ==================== */
 .footer {
-    background-color: #1E1A17;   /* black/dark */
+    background-color: #1E1A17;
     color: var(--light-gray);
     padding: 40px 0 20px;
     border-top: 2px solid var(--primary-brown);
@@ -571,7 +608,7 @@ h4 {
     font-style: italic;
 }
 
-/* ==================== PAGE CONTENT (for footer links) ==================== */
+/* ==================== PAGE CONTENT (footer links) ==================== */
 .page-content {
     padding: 40px 0;
     background-color: white;
@@ -589,7 +626,25 @@ h4 {
     margin-bottom: 10px;
 }
 
-/* ==================== CART SIDEBAR (unchanged) ==================== */
+/* ==================== DETAIL MODAL (DROP CAP) ==================== */
+.detail-body p {
+    margin-bottom: 16px;
+    line-height: 1.7;
+    color: var(--text-light);
+    font-size: 15px;
+}
+
+.detail-body p:first-of-type::first-letter {
+    font-size: 48px;
+    font-weight: 700;
+    float: left;
+    line-height: 0.85;
+    margin-right: 10px;
+    color: var(--primary-brown);
+    font-family: 'Georgia', serif;
+}
+
+/* ==================== CART SIDEBAR ==================== */
 .cart-sidebar {
     position: fixed;
     top: 0;
@@ -755,7 +810,7 @@ h4 {
     font-size: 24px;
 }
 
-/* Forms */
+/* ==================== FORMS ==================== */
 .form-group {
     margin-bottom: 15px;
 }
@@ -800,13 +855,28 @@ h4 {
     margin-top: 12px;
 }
 
-/* Responsive */
+/* ==================== RESPONSIVE (MOBILE & TABLET) ==================== */
+@media (max-width: 900px) {
+    .carousel-item {
+        flex: 0 0 calc(50% - 10px);
+    }
+    .carousel-wrapper {
+        margin: 0 25px;
+    }
+}
+
 @media (max-width: 768px) {
     .site-title {
         font-size: 32px;
     }
     .hero-title {
-        font-size: 26px;
+        font-size: 22px;
+    }
+    .hero-tagline {
+        font-size: 8px;
+    }
+    .hero-description {
+        font-size: 11px;
     }
     .article-title {
         font-size: 24px;
@@ -825,11 +895,60 @@ h4 {
     .carousel-item {
         flex: 0 0 calc(100% - 20px);
     }
+    .carousel-wrapper {
+        margin: 0 20px;
+    }
+    .carousel-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+    }
+    .prev-btn {
+        left: -5px;
+    }
+    .next-btn {
+        right: -5px;
+    }
     .testimonial-carousel-container {
         max-width: 95%;
     }
     .testimonial-item {
         padding: 15px 20px;
         font-size: 14px;
+    }
+    .nav-top {
+        padding: 8px 16px;
+        font-size: 11px;
+    }
+    .nav-center-text {
+        font-size: 11px;
+        padding: 3px 10px;
+    }
+    .cart-link {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .site-title {
+        font-size: 28px;
+    }
+    .hero-title {
+        font-size: 20px;
+    }
+    .hero {
+        padding: 20px 0 25px;
+    }
+    .container {
+        padding: 0 16px;
+    }
+    .product-card {
+        padding: 16px;
+    }
+    .nav-menu {
+        gap: 16px;
+    }
+    .nav-menu a {
+        font-size: 10px;
     }
 }
