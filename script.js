@@ -1,6 +1,6 @@
 // ElevateShop – Complete JavaScript
 // Brown color: #895129
-// Includes drop cap styling for detail modal
+// Includes drop cap, carousels, cart, and back button support
 
 // Product data (main carousel and static grid)
 const allProductsData = [
@@ -49,6 +49,9 @@ function showMainContent() {
     if (mainContentArea) mainContentArea.style.display = 'block';
     allPageDivs.forEach(div => div.style.display = 'none');
 }
+
+// Expose globally for back button onclick
+window.showMainContent = showMainContent;
 
 function showPage(pageId) {
     const targetPage = document.getElementById(`page-${pageId}`);
