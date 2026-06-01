@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Elevate Shop | Growth & Prosperity</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Georgia:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -13,7 +13,10 @@
 <nav class="navbar">
     <div class="nav-top">
         <div class="nav-date" id="current-date"></div>
-        <a href="#" id="cart-icon" class="cart-link">Cart (<span id="cart-count">0</span>)</a>
+        <div class="nav-center-text">BUY NOW!</div>
+        <a href="#" id="cart-icon" class="cart-link">
+            <span class="cart-icon">🛒</span> Cart (<span id="cart-count">0</span>)
+        </a>
     </div>
     <div class="masthead">
         <h1 class="site-title">ELEVATE SHOP</h1>
@@ -28,7 +31,7 @@
     </div>
 </nav>
 
-<!-- Hero Section -->
+<!-- Hero Section (smaller version – CSS will reduce size) -->
 <header class="hero">
     <div class="container">
         <div class="hero-content">
@@ -65,7 +68,7 @@
         </div>
     </section>
 
-    <!-- Products Carousel Section -->
+    <!-- Products Carousel Section (Top Selections) -->
     <section class="products-section">
         <div class="container">
             <h2 class="section-heading">Top Selections</h2>
@@ -283,11 +286,11 @@
                 <h2 id="detail-title">Product Title</h2>
                 <p id="detail-subtitle" class="detail-subtitle"></p>
             </header>
-            <div class="detail-body">
-                <p id="detail-description">Full product description will appear here.</p>
-                <p id="detail-price" class="product-price"></p>
-                <button id="detail-add-to-cart" class="btn-primary">Add to Cart</button>
+            <div class="detail-body" id="detail-body">
+                <!-- Description will be inserted here with drop cap styling -->
             </div>
+            <p id="detail-price" class="product-price"></p>
+            <button id="detail-add-to-cart" class="btn-primary">Add to Cart</button>
         </article>
     </div>
 </div>
