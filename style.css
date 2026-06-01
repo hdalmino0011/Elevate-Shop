@@ -648,7 +648,7 @@ h4 {
     margin-bottom: 10px;
 }
 
-/* ==================== DETAIL MODAL (DROP CAP) ==================== */
+/* ==================== DETAIL MODAL (DROP CAP - BLACK) ==================== */
 .detail-body p {
     margin-bottom: 16px;
     line-height: 1.7;
@@ -662,7 +662,7 @@ h4 {
     float: left;
     line-height: 0.85;
     margin-right: 10px;
-    color: var(--primary-brown);
+    color: #000000;   /* changed from brown to black */
     font-family: 'Georgia', serif;
 }
 
