@@ -608,11 +608,33 @@ h4 {
     font-style: italic;
 }
 
-/* ==================== PAGE CONTENT (footer links) ==================== */
+/* ==================== PAGE CONTENT (footer links) with BACK BUTTON ==================== */
 .page-content {
+    position: relative;
     padding: 40px 0;
     background-color: white;
     border-bottom: 1px solid var(--border-gray);
+}
+
+.page-content .back-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: transparent;
+    border: 1px solid var(--primary-brown);
+    color: var(--primary-brown);
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s;
+    font-family: 'Georgia', serif;
+}
+
+.page-content .back-button:hover {
+    background-color: var(--primary-brown);
+    color: white;
 }
 
 .page-content h2 {
@@ -927,6 +949,12 @@ h4 {
     .cart-link {
         font-size: 12px;
     }
+    .page-content .back-button {
+        top: 12px;
+        right: 12px;
+        padding: 4px 10px;
+        font-size: 11px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -949,6 +977,12 @@ h4 {
         gap: 16px;
     }
     .nav-menu a {
+        font-size: 10px;
+    }
+    .page-content .back-button {
+        top: 10px;
+        right: 10px;
+        padding: 3px 8px;
         font-size: 10px;
     }
 }
