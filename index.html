@@ -31,7 +31,7 @@
     </div>
 </nav>
 
-<!-- Hero Section (smaller version – CSS will reduce size) -->
+<!-- Hero Section -->
 <header class="hero">
     <div class="container">
         <div class="hero-content">
@@ -68,7 +68,7 @@
         </div>
     </section>
 
-    <!-- Products Carousel Section (Top Selections) -->
+    <!-- Products Carousel Section -->
     <section class="products-section">
         <div class="container">
             <h2 class="section-heading">Top Selections</h2>
@@ -96,7 +96,7 @@
         </div>
     </section>
 
-    <!-- Testimonial Carousel Section (brown background, smaller panel) -->
+    <!-- Testimonial Carousel Section -->
     <section class="testimonial-section">
         <div class="container">
             <div class="testimonial-carousel-container">
@@ -110,8 +110,9 @@
     </section>
 </div>
 
-<!-- Hidden Pages (for footer links) -->
+<!-- Hidden Pages (for footer links) with back button -->
 <div id="page-motivational-collections" class="page-content" style="display: none;">
+    <button class="back-button" onclick="window.showMainContent?.()">← Go Back</button>
     <div class="container">
         <h2>Motivational Collections</h2>
         <p>Explore our hand-picked motivational materials: daily quote handbooks, success stories, and mindset shift guides. All products are digital and instantly accessible.</p>
@@ -123,6 +124,7 @@
     </div>
 </div>
 <div id="page-financial-courses" class="page-content" style="display: none;">
+    <button class="back-button" onclick="window.showMainContent?.()">← Go Back</button>
     <div class="container">
         <h2>Financial Courses</h2>
         <p>Master your money with our in-depth financial literacy programs. From budgeting to investing, these courses are designed for all levels.</p>
@@ -134,6 +136,7 @@
     </div>
 </div>
 <div id="page-personal-development" class="page-content" style="display: none;">
+    <button class="back-button" onclick="window.showMainContent?.()">← Go Back</button>
     <div class="container">
         <h2>Personal Development</h2>
         <p>Unlock your full potential. Our personal development products help you build confidence, improve productivity, and achieve your goals.</p>
@@ -145,6 +148,7 @@
     </div>
 </div>
 <div id="page-business-tools" class="page-content" style="display: none;">
+    <button class="back-button" onclick="window.showMainContent?.()">← Go Back</button>
     <div class="container">
         <h2>Business Tools</h2>
         <p>Grow your business with our entrepreneur-focused templates, marketing courses, and negotiation tactics.</p>
@@ -156,6 +160,7 @@
     </div>
 </div>
 <div id="page-contact" class="page-content" style="display: none;">
+    <button class="back-button" onclick="window.showMainContent?.()">← Go Back</button>
     <div class="container">
         <h2>Contact Us</h2>
         <p>Email: support@elevateshop.com</p>
@@ -164,6 +169,7 @@
     </div>
 </div>
 <div id="page-faq" class="page-content" style="display: none;">
+    <button class="back-button" onclick="window.showMainContent?.()">← Go Back</button>
     <div class="container">
         <h2>Frequently Asked Questions</h2>
         <p><strong>How do I access my purchase?</strong> After checkout, you will receive an email with a download link. You can also access your products in your account dashboard.</p>
@@ -172,25 +178,28 @@
     </div>
 </div>
 <div id="page-privacy" class="page-content" style="display: none;">
+    <button class="back-button" onclick="window.showMainContent?.()">← Go Back</button>
     <div class="container">
         <h2>Privacy Policy</h2>
         <p>Your privacy is important to us. We collect only necessary information to process your orders and never share your data with third parties without consent.</p>
     </div>
 </div>
 <div id="page-terms" class="page-content" style="display: none;">
+    <button class="back-button" onclick="window.showMainContent?.()">← Go Back</button>
     <div class="container">
         <h2>Terms of Service</h2>
         <p>By using Elevate Shop, you agree to our terms. All digital products are non-refundable. You may not redistribute or resell any purchased content.</p>
     </div>
 </div>
 <div id="page-policy" class="page-content" style="display: none;">
+    <button class="back-button" onclick="window.showMainContent?.()">← Go Back</button>
     <div class="container">
         <h2>Our Policies</h2>
         <p>Digital products are non-refundable. Instant delivery upon purchase. For support, contact us at support@elevateshop.com.</p>
     </div>
 </div>
 
-<!-- Footer (black background, all links work) -->
+<!-- Footer -->
 <footer class="footer">
     <div class="container">
         <div class="footer-content">
@@ -229,7 +238,7 @@
     </div>
 </footer>
 
-<!-- Cart Sidebar, Modals (same as before) -->
+<!-- Cart Sidebar, Modals -->
 <div id="cart-sidebar" class="cart-sidebar">
     <div class="cart-header">
         <h3>Your Cart</h3>
@@ -286,9 +295,7 @@
                 <h2 id="detail-title">Product Title</h2>
                 <p id="detail-subtitle" class="detail-subtitle"></p>
             </header>
-            <div class="detail-body" id="detail-body">
-                <!-- Description will be inserted here with drop cap styling -->
-            </div>
+            <div class="detail-body" id="detail-body"></div>
             <p id="detail-price" class="product-price"></p>
             <button id="detail-add-to-cart" class="btn-primary">Add to Cart</button>
         </article>
