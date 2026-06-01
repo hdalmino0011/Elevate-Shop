@@ -1,5 +1,6 @@
 // ElevateShop – Complete JavaScript
 // Brown color: #895129
+// Includes drop cap styling for detail modal
 
 // Product data (main carousel and static grid)
 const allProductsData = [
@@ -65,19 +66,18 @@ document.querySelectorAll('.footer-page-link').forEach(link => {
     });
 });
 
-// Also handle the "ALL" link in top navigation to return to main content
+// "ALL" link in top navigation returns to main content
 const allFilterLink = document.querySelector('.filter-link[data-filter="all"]');
 if (allFilterLink) {
     allFilterLink.addEventListener('click', (e) => {
         e.preventDefault();
         showMainContent();
-        // Also update active filter style (optional)
         document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
         allFilterLink.classList.add('active');
     });
 }
 
-// Additionally, clicking on the logo (site-title) could reset to main content
+// Clicking on logo also resets to main content
 const siteTitle = document.querySelector('.site-title');
 if (siteTitle) {
     siteTitle.addEventListener('click', () => {
@@ -212,16 +212,23 @@ function updateCartUI() {
     });
 }
 
-// ========== PRODUCT DETAIL MODAL ==========
+// ========== PRODUCT DETAIL MODAL WITH DROP CAP ==========
 function showProductDetail(e) {
     const id = parseInt(e.currentTarget.dataset.id);
     let product = allProductsData.find(p => p.id === id) || extraProductsData.find(p => p.id === id);
     if (!product) return;
+    
     document.getElementById('detail-label').innerText = getCategoryName(product.category);
     document.getElementById('detail-title').innerText = product.name;
     document.getElementById('detail-subtitle').innerText = product.description;
-    document.getElementById('detail-description').innerText = product.fullDescription || product.description;
+    
+    // Wrap description in <p> tags so first-letter drop cap works
+    const fullText = product.fullDescription || product.description;
+    const detailBody = document.getElementById('detail-body');
+    detailBody.innerHTML = `<p>${fullText}</p>`;
+    
     document.getElementById('detail-price').innerHTML = `$${product.price}`;
+    
     const addBtn = document.getElementById('detail-add-to-cart');
     addBtn.onclick = () => {
         const existing = cart.find(item => item.id === product.id);
@@ -287,7 +294,7 @@ if (cardNumInput) {
     });
 }
 
-// ========== POLICY MODAL (footer link handled in HTML but keep for consistency) ==========
+// ========== POLICY MODAL ==========
 const policyModal = document.getElementById('policy-modal');
 const policyFooterLink = document.getElementById('policy-link-footer');
 if (policyFooterLink) {
@@ -425,7 +432,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderExtraProducts();
     updateCartUI();
 
-    // Ensure main content is visible by default (in case any page div was accidentally shown)
+    // Ensure main content is visible by default
     showMainContent();
 
     // Start carousels
