@@ -1,20 +1,76 @@
 // ElevateShop – Complete JavaScript
 // Brown color: #895129
-// Includes drop cap, carousels, cart, and back button support
+// Extended product descriptions (2-3 paragraphs) for better drop cap effect
 
-// Product data (main carousel and static grid)
+// Product data (main carousel and static grid) with longer fullDescription
 const allProductsData = [
-    { id: 1, name: "Financial Freedom Blueprint", category: "financial", price: 47, description: "A comprehensive digital course and workbook designed to transform your relationship with money. From budgeting basics to advanced investing strategies.", fullDescription: "Complete system for building lasting wealth. Includes worksheets, calculators, and real-world examples. Perfect for beginners and intermediate learners." },
-    { id: 2, name: "Mindset Reset Program", category: "personal", price: 37, description: "A 30-day guided program to rewire your thinking patterns, eliminate limiting beliefs, and unlock your peak performance potential.", fullDescription: "Daily meditations, journaling prompts, and audio exercises. Transform your mindset from scarcity to abundance." },
-    { id: 3, name: "Wealth Mindset Masterclass", category: "financial", price: 47, description: "Bridges psychology and finance to reveal hidden beliefs that drive financial outcomes.", fullDescription: "Video lessons, worksheets, and case studies from self-made millionaires." },
-    { id: 4, name: "The Daily Motivation Handbook", category: "motivational", price: 19, description: "500+ powerful quotes from history's greatest minds to fuel your daily motivation.", fullDescription: "Organized by 12 life themes: resilience, leadership, success, happiness, and more." },
-    { id: 5, name: "Entrepreneur's Success Toolkit", category: "business", price: 79, description: "Complete bundle of templates, checklists, and guides for aspiring entrepreneurs.", fullDescription: "50+ editable templates covering business plans, marketing, legal basics, and growth strategies." }
+    { 
+        id: 1, 
+        name: "Financial Freedom Blueprint", 
+        category: "financial", 
+        price: 47, 
+        description: "A comprehensive digital course and workbook designed to transform your relationship with money. From budgeting basics to advanced investing strategies.", 
+        fullDescription: "The Financial Freedom Blueprint is a complete system for building lasting wealth. This comprehensive digital guide walks you through every step of the financial journey: from understanding your current financial situation, creating a budget that actually works, eliminating high-interest debt, building an emergency fund, investing in stocks and index funds, real estate investing basics, creating multiple income streams, and finally achieving complete financial independence. Each section includes worksheets, calculators, and real-world examples. The course draws on behavioral economics research and interviews with self-made millionaires. You'll gain lifetime access to updates and bonus materials.\n\nThousands of students have used this blueprint to pay off debt, save for retirement, and build passive income streams that continue to grow over time. Whether you're a complete beginner or already have some financial knowledge, this course meets you where you are and takes you to where you want to be. The principles taught here have helped people from all walks of life transform their financial futures." 
+    },
+    { 
+        id: 2, 
+        name: "Mindset Reset Program", 
+        category: "personal", 
+        price: 37, 
+        description: "A 30-day guided program to rewire your thinking patterns, eliminate limiting beliefs, and unlock your peak performance potential.", 
+        fullDescription: "The Mindset Reset Program is a transformative 30-day journey that rewires the neural pathways holding you back from success. Each morning you'll receive a guided meditation and affirmation session. Throughout the day, you'll complete journaling exercises that uncover and challenge limiting beliefs. The program covers: identifying your core beliefs, understanding their origins, challenging their validity, installing empowering beliefs, maintaining momentum, and building permanent mindset shifts. Includes daily video lessons, PDF workbooks, audio recordings, and a private community forum for support and accountability.\n\nThousands have reported life-changing results within 30 days. Participants have overcome imposter syndrome, developed unshakable confidence, and achieved goals they once thought impossible. This is not just a course – it's a complete mental transformation system backed by neuroscience and proven psychological techniques. You will emerge with a new understanding of your own potential and the tools to keep growing forever." 
+    },
+    { 
+        id: 3, 
+        name: "Wealth Mindset Masterclass", 
+        category: "financial", 
+        price: 47, 
+        description: "Bridges psychology and finance to reveal hidden beliefs that drive financial outcomes.", 
+        fullDescription: "The Wealth Mindset Masterclass is an intensive deep-dive into the psychology of money and wealth creation. Drawing from behavioral economics, neuroscience, and interviews with 50+ self-made millionaires, this course reveals the hidden mental models that separate wealthy people from those who struggle financially. You'll discover: the psychology of scarcity vs. abundance, how to recognize and seize opportunities others miss, the role of risk tolerance in wealth building, delayed gratification and compounding, money scripts and belief systems, investment psychology, and the habits of the wealthy.\n\nIncludes 20+ video lessons, downloadable worksheets, case studies, and lifetime access to monthly bonus content. Students have reported doubling their income within six months, overcoming deep-seated fears around money, and developing a healthy, empowered relationship with wealth that benefits not only themselves but their families and communities. This masterclass is ideal for anyone who feels stuck in their financial progress despite earning a good income." 
+    },
+    { 
+        id: 4, 
+        name: "The Daily Motivation Handbook", 
+        category: "motivational", 
+        price: 19, 
+        description: "500+ powerful quotes from history's greatest minds to fuel your daily motivation.", 
+        fullDescription: "The Daily Motivation Handbook is a curated collection of 500+ quotes organized by 12 life themes: resilience, leadership, success, happiness, relationships, health, creativity, entrepreneurship, perseverance, self-improvement, purpose, and wisdom. Each quote includes context about the author and how to apply it to your life. This digital book is designed to be read one page per day, giving you daily inspiration and motivation.\n\nBeautiful PDF format with motivational artwork, perfect for digital devices or printing. Bonus: includes a 90-day daily challenge tracker and monthly planning template. Join thousands who start their day with these powerful reminders of human potential. Readers have used this handbook to build resilience during tough times, maintain focus on long-term goals, and find daily inspiration from history's greatest thinkers. It's the perfect companion for anyone seeking consistent motivation." 
+    },
+    { 
+        id: 5, 
+        name: "Entrepreneur's Success Toolkit", 
+        category: "business", 
+        price: 79, 
+        description: "Complete bundle of templates, checklists, and guides for aspiring entrepreneurs.", 
+        fullDescription: "The Entrepreneur's Success Toolkit is a complete business launch and scaling system in digital format. Includes 50+ ready-to-use templates covering: business plan templates, financial forecasting spreadsheets, marketing strategy frameworks, sales funnel diagrams, customer journey maps, email marketing sequences, social media content calendars, hiring and onboarding checklists, legal business structure guides, trademark and copyright basics, customer service protocols, and growth hacking strategies. All templates are editable and customizable for your specific business.\n\nThe toolkit draws from 20+ years of entrepreneurial experience and has helped 10,000+ businesses launch successfully. Includes video tutorials on how to use each template and lifetime updates. Whether you're starting your first side hustle or scaling an existing company, this toolkit provides the systems and frameworks you need to succeed without reinventing the wheel. Save hundreds of hours and avoid costly mistakes by using proven templates used by successful entrepreneurs worldwide." 
+    }
 ];
 
 const extraProductsData = [
-    { id: 6, name: "Social Media Marketing Masterclass", category: "business", price: 49, description: "Master Instagram, TikTok, LinkedIn, and Facebook marketing.", fullDescription: "Algorithm secrets, content strategies, and conversion tactics." },
-    { id: 7, name: "Advanced Negotiation Tactics", category: "business", price: 39, description: "Learn the psychological principles behind effective negotiation.", fullDescription: "Used by Fortune 500 companies to win deals and increase profits." },
-    { id: 8, name: "Health & Wellness Blueprint", category: "personal", price: 29, description: "Complete system for optimal health including nutrition, exercise, sleep, and stress management.", fullDescription: "90-day transformation plan with meal guides and workout routines." }
+    { 
+        id: 6, 
+        name: "Social Media Marketing Masterclass", 
+        category: "business", 
+        price: 49, 
+        description: "Master Instagram, TikTok, LinkedIn, and Facebook marketing.", 
+        fullDescription: "Social Media Marketing Masterclass teaches you everything you need to dominate social media in 2025 and beyond. You'll learn algorithm secrets, content strategies, engagement tactics, paid advertising fundamentals, analytics interpretation, and conversion optimization across all major platforms. This course is updated monthly to reflect the latest platform changes.\n\nYou'll discover how to grow an engaged following without spending money on ads, create viral content consistently, and turn followers into paying customers. Includes case studies from successful brands, downloadable content calendars, and a private community for feedback and support. Perfect for business owners, marketers, and content creators who want to leverage social media for real results." 
+    },
+    { 
+        id: 7, 
+        name: "Advanced Negotiation Tactics", 
+        category: "business", 
+        price: 39, 
+        description: "Learn the psychological principles behind effective negotiation.", 
+        fullDescription: "Advanced Negotiation Tactics reveals the psychological frameworks used by world-class negotiators. Topics include: anchoring, framing, mirroring, labeling, calibrated questions, handling difficult people, and closing the deal. Includes real-world case studies and role-playing exercises. This course is used by Fortune 500 companies and top lawyers to win deals and increase profits.\n\nYou'll learn how to prepare for any negotiation, read the other party's motivations, and achieve outcomes that satisfy both sides while maximizing your own value. The techniques taught here have been refined over decades of research and practice. Whether you're negotiating a salary, a business deal, or a major purchase, these tactics will give you a decisive advantage." 
+    },
+    { 
+        id: 8, 
+        name: "Health & Wellness Blueprint", 
+        category: "personal", 
+        price: 29, 
+        description: "Complete system for optimal health including nutrition, exercise, sleep, and stress management.", 
+        fullDescription: "The Health & Wellness Blueprint is a comprehensive 90-day system covering: nutrition fundamentals, meal planning, exercise routines for all fitness levels, sleep optimization, stress reduction techniques, and habit formation. Includes meal plans, workout videos, and progress tracking tools. This blueprint is designed for busy professionals who want to transform their health without spending hours in the gym.\n\nYou'll learn how to fuel your body for energy and longevity, build sustainable exercise habits, improve sleep quality, and manage stress effectively. The program is backed by the latest research in health psychology and physiology. Thousands of users have reported losing weight, gaining energy, and feeling better than ever after completing the 90-day plan. No gym membership required – everything can be done at home with minimal equipment." 
+    }
 ];
 
 // Testimonials for carousel
@@ -225,10 +281,11 @@ function showProductDetail(e) {
     document.getElementById('detail-title').innerText = product.name;
     document.getElementById('detail-subtitle').innerText = product.description;
     
-    // Wrap description in <p> tags so first-letter drop cap works
+    // Wrap description paragraphs for drop cap styling (preserve line breaks as <p> tags)
     const fullText = product.fullDescription || product.description;
+    const paragraphs = fullText.split('\n\n').filter(p => p.trim().length > 0);
     const detailBody = document.getElementById('detail-body');
-    detailBody.innerHTML = `<p>${fullText}</p>`;
+    detailBody.innerHTML = paragraphs.map(para => `<p>${para.trim()}</p>`).join('');
     
     document.getElementById('detail-price').innerHTML = `$${product.price}`;
     
