@@ -1,5 +1,5 @@
 // ElevateShop – Complete JavaScript
-// Red-brown: #942222 | Dark brown: #895129
+// Colors: masthead red-brown #942222 | hero brown #895129
 
 // ========== PRODUCT DATA (extended descriptions) ==========
 const allProductsData = [
@@ -122,7 +122,7 @@ function renderFilteredExtraGrid() {
     attachExtraEvents();
 }
 
-// ========== CAROUSEL (auto-slide on desktop, swipe on mobile) ==========
+// ========== CAROUSEL (desktop: auto-slide + buttons, mobile: swipe only) ==========
 class ProductCarousel {
     constructor(trackId, itemsPerView, autoInterval = 4000) {
         this.track = document.getElementById(trackId);
@@ -215,6 +215,7 @@ class ProductCarousel {
     }
 }
 
+// Testimonial carousel (no buttons, swipe only on mobile, auto-slide on desktop)
 class TestimonialCarousel {
     constructor(trackId, autoInterval = 5000) {
         this.track = document.getElementById(trackId);
@@ -231,7 +232,6 @@ class TestimonialCarousel {
         this.update();
         if (this.isDesktop) {
             this.startAuto();
-            this.setupButtons();
         }
         window.addEventListener('resize', () => this.handleResize());
     }
@@ -240,7 +240,6 @@ class TestimonialCarousel {
         this.isDesktop = window.innerWidth >= 768;
         if (this.isDesktop && !wasDesktop) {
             this.startAuto();
-            this.setupButtons();
         } else if (!this.isDesktop && wasDesktop) {
             this.stopAuto();
         }
@@ -260,12 +259,6 @@ class TestimonialCarousel {
         this.update();
         this.resetAuto();
     }
-    prev() {
-        if (!this.isDesktop) return;
-        this.currentIndex = (this.currentIndex - 1 + this.itemCount) % this.itemCount;
-        this.update();
-        this.resetAuto();
-    }
     startAuto() {
         if (this.autoInterval) clearInterval(this.autoInterval);
         if (this.isDesktop) {
@@ -280,20 +273,6 @@ class TestimonialCarousel {
     }
     resetAuto() {
         this.startAuto();
-    }
-    setupButtons() {
-        const prevBtn = document.getElementById('testimonial-prev');
-        const nextBtn = document.getElementById('testimonial-next');
-        if (prevBtn) {
-            prevBtn.removeEventListener('click', this.boundPrev);
-            this.boundPrev = () => this.prev();
-            prevBtn.addEventListener('click', this.boundPrev);
-        }
-        if (nextBtn) {
-            nextBtn.removeEventListener('click', this.boundNext);
-            this.boundNext = () => this.next();
-            nextBtn.addEventListener('click', this.boundNext);
-        }
     }
 }
 
@@ -420,6 +399,7 @@ function buildTestimonialCarousel() {
 }
 
 // ========== EVENT LISTENERS ==========
+// Featured product add to cart
 document.querySelectorAll('.add-to-cart').forEach(btn => {
     btn.addEventListener('click', () => {
         const name = btn.dataset.name;
@@ -442,7 +422,7 @@ document.getElementById('close-cart').addEventListener('click', () => {
     cartSidebar.classList.remove('open');
 });
 
-// Checkout modal (no demo notices, realistic fields)
+// Checkout modal (no demo notices)
 const paymentModal = document.getElementById('payment-modal');
 document.getElementById('checkout-btn').addEventListener('click', () => {
     if (cart.length === 0) { alert('Your cart is empty.'); return; }
@@ -462,7 +442,7 @@ document.getElementById('payment-form').addEventListener('submit', (e) => {
     e.target.reset();
 });
 
-// Format card number
+// Format card number with spaces
 const cardNumInput = document.getElementById('card-number');
 if (cardNumInput) {
     cardNumInput.addEventListener('input', (e) => {
@@ -487,13 +467,13 @@ window.addEventListener('click', (e) => { if (e.target === policyModal) policyMo
 
 // Filter links (no alerts)
 document.querySelectorAll('.filter-btn, .filter-link').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const filter = btn.dataset.filter;
-        if (filter && filter !== 'policy') {
-            filterProducts(filter);
-        }
-    });
+    if (btn.dataset.filter && btn.dataset.filter !== 'policy') {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const filter = btn.dataset.filter;
+            if (filter) filterProducts(filter);
+        });
+    }
 });
 
 // Close detail modal
@@ -521,6 +501,7 @@ if (allFilterLink) {
     allFilterLink.addEventListener('click', (e) => {
         e.preventDefault();
         filterProducts('all');
+        showMainContent();
     });
 }
 const siteTitle = document.querySelector('.site-title');
@@ -534,13 +515,13 @@ if (siteTitle) {
 // ========== INITIALIZE ==========
 document.addEventListener('DOMContentLoaded', () => {
     updateCurrentDate();
-    renderFilteredCarousel();   // initial render (all)
+    renderFilteredCarousel();   // initial render (all products)
     renderFilteredExtraGrid();
     buildTestimonialCarousel();
     updateCartUI();
     showMainContent();
 
-    // Carousels (will auto-start on desktop)
+    // Carousels (auto-slide on desktop only)
     window.productCarousel = new ProductCarousel('product-carousel-track', 3, 4000);
     window.testimonialCarousel = new TestimonialCarousel('testimonial-track', 5000);
 });
