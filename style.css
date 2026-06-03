@@ -110,6 +110,13 @@ h4 {
     border: 1px solid var(--border-gray);
     order: 2;
     white-space: nowrap;
+    cursor: pointer;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
 }
 
 .cart-link {
@@ -125,6 +132,24 @@ h4 {
 
 .cart-icon {
     font-size: 13px;
+}
+
+.account-area {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.account-link {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--primary-brown);
+}
+
+#logged-in-welcome {
+    font-size: 12px;
+    color: var(--primary-brown);
+    font-weight: 500;
 }
 
 .masthead {
@@ -290,7 +315,7 @@ h4 {
     margin-bottom: 18px;
 }
 
-/* ==================== PRODUCT CAROUSEL (fixed) ==================== */
+/* ==================== PRODUCT CAROUSEL ==================== */
 .carousel-container {
     position: relative;
     margin: 30px 0;
@@ -555,7 +580,24 @@ h4 {
     background-color: var(--dark-brown);
 }
 
-/* ==================== CUSTOM DIVIDER (line + diamond) ==================== */
+.btn-secondary {
+    background-color: transparent;
+    border: 1px solid var(--primary-brown);
+    color: var(--primary-brown);
+    padding: 6px 16px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-brown);
+    color: white;
+}
+
+/* ==================== CUSTOM DIVIDER ==================== */
 .custom-divider {
     display: flex;
     align-items: center;
@@ -633,7 +675,12 @@ h4 {
     font-size: 10px;
 }
 
-/* ==================== PAGE CONTENT (privacy, terms, etc.) ==================== */
+.footer-tagline {
+    margin-top: 4px;
+    font-style: italic;
+}
+
+/* ==================== PAGE CONTENT (footer pages) ==================== */
 .page-content {
     position: relative;
     padding: 30px 0;
@@ -681,12 +728,7 @@ h4 {
     line-height: 1.6;
 }
 
-.page-content ul, .page-content ol {
-    margin-left: 20px;
-    margin-bottom: 16px;
-}
-
-/* ==================== CHECKOUT MODAL ==================== */
+/* ==================== MODALS (common) ==================== */
 .modal {
     display: none;
     position: fixed;
@@ -734,6 +776,23 @@ h4 {
     color: var(--masthead-red-brown);
 }
 
+/* ==================== CHECKOUT MODAL ==================== */
+.payment-error {
+    background-color: #ffe6e6;
+    border-left: 4px solid #d32f2f;
+    padding: 12px;
+    margin-bottom: 16px;
+    font-size: 13px;
+    color: #b71c1c;
+    display: none;
+}
+
+.payment-error a {
+    color: #d32f2f;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .form-group {
     margin-bottom: 18px;
 }
@@ -764,23 +823,6 @@ h4 {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 16px;
-}
-
-/* Error message inside checkout modal */
-.payment-error {
-    background-color: #ffe6e6;
-    border-left: 4px solid #d32f2f;
-    padding: 12px;
-    margin-bottom: 16px;
-    font-size: 13px;
-    color: #b71c1c;
-    display: none;
-}
-
-.payment-error a {
-    color: #d32f2f;
-    text-decoration: underline;
-    cursor: pointer;
 }
 
 /* ==================== CART CONFIRMATION MODAL ==================== */
@@ -833,23 +875,8 @@ h4 {
 }
 
 .cart-confirm-buttons .btn-secondary {
-    background-color: transparent;
-    border: 1px solid var(--primary-brown);
-    color: var(--primary-brown);
-    padding: 8px 18px;
-    font-size: 12px;
-    font-weight: 600;
-    font-family: 'Georgia', serif;
-    cursor: pointer;
-    transition: all 0.2s;
-    border-radius: 2px;
     width: 100%;
     text-align: center;
-}
-
-.cart-confirm-buttons .btn-secondary:hover {
-    background-color: var(--primary-brown);
-    color: white;
 }
 
 .close-confirm {
@@ -974,7 +1001,7 @@ h4 {
     color: var(--masthead-red-brown);
 }
 
-/* ==================== DETAIL MODAL (DROP CAP with spacing) ==================== */
+/* ==================== PRODUCT DETAIL MODAL (DROP CAP) ==================== */
 .detail-body p {
     margin-bottom: 16px;
     line-height: 1.7;
@@ -983,7 +1010,7 @@ h4 {
 }
 
 .detail-body p:first-of-type {
-    margin-top: 24px;  /* Adds space above the drop‑cap paragraph */
+    margin-top: 24px;
 }
 
 .detail-body p:first-of-type::first-letter {
@@ -995,6 +1022,24 @@ h4 {
     margin-top: 4px;
     color: #000000;
     font-family: 'Georgia', serif;
+}
+
+/* ==================== ACCOUNT MODAL ==================== */
+.account-tab {
+    background: none;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-light);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+}
+
+.account-tab.active {
+    color: var(--masthead-red-brown);
+    border-bottom-color: var(--masthead-red-brown);
 }
 
 /* ==================== RESPONSIVE (mobile first, then desktop) ==================== */
@@ -1019,6 +1064,10 @@ h4 {
         transform: translateX(-50%);
         order: 0;
         font-size: 12px;
+    }
+
+    .nav-right {
+        gap: 24px;
     }
 
     .masthead {
