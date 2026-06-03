@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Your Product – Elevate Shop</title>
+    <style>
+        body {
+            font-family: Georgia, serif;
+            background: #1a1a2e;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 450px;
+            background: white;
+            color: #1a1a2e;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        button {
+            background: #f0c040;
+            color: #1a1a2e;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        .error {
+            color: #d32f2f;
+            margin-top: 10px;
+            display: none;
+        }
+        .download-btn {
+            display: inline-block;
+            background: #f0c040;
+            color: #1a1a2e;
+            padding: 12px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            margin-top: 20px;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .success {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Enter Your Credentials</h2>
+        <p>Please enter the email address and password you received after purchase.</p>
+        <input type="email" id="email" placeholder="Your email address" required>
+        <input type="password" id="password" placeholder="Your access password" required>
+        <button id="verifyBtn">Verify & Download</button>
+        <div id="errorMsg" class="error"></div>
+        <div id="downloadArea" class="success"></div>
+    </div>
+    <script>
+        const WORKER_URL = 'https://elevate-shop-worker.dalminohanz14.workers.dev';
+
+        document.getElementById('verifyBtn').addEventListener('click', async () => {
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const errorDiv = document.getElementById('errorMsg');
+            const downloadDiv = document.getElementById('downloadArea');
+            errorDiv.style.display = 'none';
+            downloadDiv.innerHTML = '';
+
+            if (!email || !password) {
+                errorDiv.innerText = 'Please enter both email and password.';
+                errorDiv.style.display = 'block';
+                return;
+            }
+
+            try {
+                const res = await fetch(`${WORKER_URL}/verify-access`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                const data = await res.json();
+                if (data.valid && data.download_url) {
+                    downloadDiv.innerHTML = `<a href="${data.download_url}" class="download-btn" download>⬇️ Download Your Product</a>`;
+                } else {
+                    errorDiv.innerText = 'Invalid email or password. Please check and try again.';
+                    errorDiv.style.display = 'block';
+                }
+            } catch (err) {
+                errorDiv.innerText = 'Network error. Please try again later.';
+                errorDiv.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
