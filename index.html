@@ -42,7 +42,7 @@
     </div>
 </header>
 
-<!-- Main Content Area -->
+<!-- Main Content Area (replaced by footer page content when links clicked) -->
 <div id="main-content-area">
     <!-- Featured Article Section with BEST SELLER badge -->
     <section class="featured-article">
@@ -69,7 +69,7 @@
         </div>
     </section>
 
-    <!-- Products Carousel Section -->
+    <!-- Products Carousel Section (Top Selections) -->
     <section class="products-section">
         <div class="container">
             <h2 class="section-heading">Top Selections</h2>
@@ -329,6 +329,7 @@
     <div class="modal-content">
         <button class="modal-close" id="close-payment">&times;</button>
         <h2>Secure Checkout</h2>
+        <div id="payment-error" class="payment-error" style="display: none;"></div>
         <form id="payment-form">
             <div class="form-row">
                 <div class="form-group">
@@ -359,7 +360,7 @@
     </div>
 </div>
 
-<!-- Cart Confirmation Pop-up -->
+<!-- Cart Confirmation Modal -->
 <div id="cart-confirm-modal" class="cart-confirm-modal">
     <div class="cart-confirm-content">
         <button class="close-confirm" id="close-confirm">&times;</button>
