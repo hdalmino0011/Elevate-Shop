@@ -1,5 +1,5 @@
 // ElevateShop – Complete JavaScript
-// Includes: search (clear hides panel), account (no duplicate links), infinite carousel, cart, etc.
+// Includes: expiry auto-format (MM/YY), search clear hides panel, no duplicate account links, etc.
 
 // ========== PRODUCT DATA (prices $19.99 – $32.99) ==========
 const allProductsData = [
@@ -719,6 +719,18 @@ if (cardNumInput) {
         if (val.length > 16) val = val.slice(0, 16);
         const formatted = val.match(/.{1,4}/g)?.join(' ') || val;
         e.target.value = formatted;
+    });
+}
+
+// ========== EXPIRY DATE AUTO-FORMAT (MM/YY) ==========
+const expiryInput = document.getElementById('card-expiry');
+if (expiryInput) {
+    expiryInput.addEventListener('input', (e) => {
+        let value = e.target.value.replace(/\D/g, ''); // remove non-digits
+        if (value.length >= 3) {
+            value = value.slice(0, 2) + '/' + value.slice(2, 4);
+        }
+        e.target.value = value;
     });
 }
 
