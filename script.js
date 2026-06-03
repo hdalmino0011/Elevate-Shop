@@ -1,5 +1,5 @@
 // ElevateShop – Complete JavaScript
-// Includes: search with clear & hide, account, cart, infinite carousel, etc.
+// Includes: search (clear hides panel), account (no duplicate links), infinite carousel, cart, etc.
 
 // ========== PRODUCT DATA (prices $19.99 – $32.99) ==========
 const allProductsData = [
@@ -617,7 +617,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// ========== SEARCH UI (with clear/hide fix) ==========
+// ========== SEARCH UI ==========
 const searchToggle = document.getElementById('search-toggle-btn');
 const searchContainer = document.getElementById('search-container');
 const searchInput = document.getElementById('search-input');
@@ -638,12 +638,10 @@ searchInput.addEventListener('input', (e) => {
     updateSearch(e.target.value);
 });
 
-// FIX: clear button also hides the search container
 searchClear.addEventListener('click', () => {
     searchInput.value = '';
     updateSearch('');
     searchContainer.style.display = 'none';
-    // Optionally refocus? No, because it's hidden.
 });
 
 // ========== OTHER EVENT LISTENERS ==========
@@ -791,7 +789,7 @@ if (emailInput) {
     });
 }
 
-// ========== ACCOUNT MODAL LOGIC (with password validation and "Don't have an account?" link) ==========
+// ========== ACCOUNT MODAL LOGIC (no duplicate link) ==========
 const accountModal = document.getElementById('account-modal');
 const loginLink = document.getElementById('login-link');
 const logoutLink = document.getElementById('logout-link');
@@ -833,18 +831,10 @@ window.addEventListener('click', (e) => {
     if (e.target === accountModal) accountModal.style.display = 'none';
 });
 
-// Add "Don't have an account? Sign Up" link next to login button (if not already)
-const loginButton = document.getElementById('do-login');
-if (loginButton && !document.getElementById('signup-redirect')) {
-    const loginFormContainer = loginFormDiv;
-    const signupRedirect = document.createElement('p');
-    signupRedirect.id = 'signup-redirect';
-    signupRedirect.style.marginTop = '12px';
-    signupRedirect.style.fontSize = '13px';
-    signupRedirect.style.textAlign = 'center';
-    signupRedirect.innerHTML = `Don't have an account? <a href="#" id="switch-to-signup" style="color: var(--masthead-red-brown); text-decoration: underline;">Sign Up</a>`;
-    loginFormContainer.appendChild(signupRedirect);
-    document.getElementById('switch-to-signup')?.addEventListener('click', (e) => {
+// Use the static "Sign Up" link inside the login form
+const staticSignupLink = document.getElementById('switch-to-signup-static');
+if (staticSignupLink) {
+    staticSignupLink.addEventListener('click', (e) => {
         e.preventDefault();
         signupTab.click();
     });
