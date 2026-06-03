@@ -1092,6 +1092,14 @@ h4 {
     border-bottom-color: var(--masthead-red-brown);
 }
 
+/* Helper text inside account modal (already styled via p, but ensure it's readable) */
+#login-form p, #signup-form p {
+    font-size: 12px;
+    color: #666;
+    margin-top: -8px;
+    margin-bottom: 16px;
+}
+
 /* ==================== RESPONSIVE (mobile first, then desktop) ==================== */
 @media (min-width: 768px) {
     .container {
