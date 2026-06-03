@@ -359,7 +359,6 @@ h4 {
     margin-top: auto;
 }
 
-/* Carousel navigation buttons (only on desktop, overlapping) */
 .carousel-btn {
     display: none;
     position: absolute;
@@ -556,18 +555,35 @@ h4 {
     background-color: var(--dark-brown);
 }
 
-/* ==================== DIVIDER ==================== */
-.divider-section {
-    padding: 20px 0;
-    background-color: white;
-    border-bottom: 1px solid var(--border-gray);
+/* ==================== CUSTOM DIVIDER (replaces asterisks) ==================== */
+.custom-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 20px 0;
 }
 
-.ornament {
-    text-align: center;
-    font-size: 14px;
-    color: var(--light-gray);
-    letter-spacing: 6px;
+.divider-line {
+    flex: 1;
+    height: 1px;
+    background-color: var(--primary-brown);
+    opacity: 0.5;
+}
+
+.divider-diamond {
+    width: 8px;
+    height: 8px;
+    background-color: var(--masthead-red-brown);
+    transform: rotate(45deg);
+    border-radius: 1px;
+}
+
+/* ==================== DIVIDER SECTION (container) ==================== */
+.divider-section {
+    padding: 0;
+    background-color: white;
+    border-bottom: 1px solid var(--border-gray);
 }
 
 /* ==================== FOOTER ==================== */
@@ -937,7 +953,6 @@ h4 {
         max-width: 550px;
     }
 
-    /* Product carousel: show buttons on desktop */
     .carousel-btn {
         display: flex;
     }
@@ -969,7 +984,6 @@ h4 {
         font-size: 18px;
     }
 
-    /* Testimonial on desktop: still no buttons, just swipe (or remove buttons) */
     .testimonial-wrapper {
         overflow: visible;
         scroll-snap-type: none;
@@ -1016,6 +1030,15 @@ h4 {
         right: 20px;
         padding: 6px 14px;
         font-size: 12px;
+    }
+
+    .custom-divider {
+        margin: 30px 0;
+    }
+
+    .divider-diamond {
+        width: 10px;
+        height: 10px;
     }
 }
 
