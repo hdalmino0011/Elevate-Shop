@@ -1,4 +1,4 @@
-// integration.js – Overrides the "Pay" button in the Secure Checkout modal
+// integration.js – Complete override of the "Pay" button
 const WORKER_URL = 'https://elevate-shop-worker.dalminohanz14.workers.dev';
 
 // Helper to get the current cart from the global variable (script.js)
@@ -9,55 +9,15 @@ function getCart() {
   return [];
 }
 
-// Create PayMongo checkout session for all items in cart
-async function createPayMongoCheckout(email) {
-  const cart = getCart();
-  if (!cart.length) {
-    alert('Your cart is empty.');
-    return null;
-  }
+// This will run before any other submit handler (thanks to `true` for capture)
+document.body.addEventListener('submit', async (e) => {
+  // Only care about the payment form
+  const form = e.target.closest('#payment-form');
+  if (!form) return;
 
-  // Build line items for PayMongo
-  const line_items = cart.map(item => ({
-    name: item.name,
-    amount: Math.round(item.price * 100), // convert to cents
-    currency: 'PHP',
-    quantity: item.quantity
-  }));
-
-  try {
-    const response = await fetch(`${WORKER_URL}/create-checkout`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, cart: cart })
-    });
-    const data = await response.json();
-    if (data.checkout_url) {
-      return data.checkout_url;
-    } else {
-      console.error('Worker error:', data);
-      alert('Could not start checkout. Please try again.');
-      return null;
-    }
-  } catch (err) {
-    console.error('Network error:', err);
-    alert('Network error. Please check your connection.');
-    return null;
-  }
-}
-
-// Intercept the payment form submission
-function setupPaymentFormOverride() {
-  const paymentForm = document.getElementById('payment-form');
-  if (!paymentForm) return;
-
-  // Remove any existing submit listener (to avoid double execution)
-  paymentForm.removeEventListener('submit', paymentFormHandler);
-  paymentForm.addEventListener('submit', paymentFormHandler);
-}
-
-async function paymentFormHandler(e) {
+  // Stop the event immediately – the old handler will never see it
   e.preventDefault();
+  e.stopPropagation();
 
   // Get email from the checkout modal
   const emailInput = document.getElementById('email');
@@ -67,19 +27,28 @@ async function paymentFormHandler(e) {
     return;
   }
 
-  const checkoutUrl = await createPayMongoCheckout(email);
-  if (checkoutUrl) {
-    // Clear the cart before redirect? Not necessary, but can be done later.
-    // Redirect to PayMongo hosted page
-    window.location.href = checkoutUrl;
+  const cart = getCart();
+  if (!cart.length) {
+    alert('Your cart is empty. Please add products before checking out.');
+    return;
   }
-}
 
-// Run after DOM is ready and also after any dynamic content changes
-document.addEventListener('DOMContentLoaded', () => {
-  setupPaymentFormOverride();
-});
-
-// Also watch for the modal to open (in case the form is added dynamically)
-const observer = new MutationObserver(() => setupPaymentFormOverride());
-observer.observe(document.body, { childList: true, subtree: true });
+  try {
+    const response = await fetch(`${WORKER_URL}/create-checkout`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, cart })
+    });
+    const data = await response.json();
+    if (data.checkout_url) {
+      // Redirect to the real PayMongo checkout page
+      window.location.href = data.checkout_url;
+    } else {
+      alert('Error creating checkout session. Please try again.');
+      console.error('Worker error:', data);
+    }
+  } catch (err) {
+    console.error('Network error:', err);
+    alert('Network error. Please check your connection.');
+  }
+}, true); // `true` = capture phase – runs before bubbling handlers
