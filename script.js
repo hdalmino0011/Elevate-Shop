@@ -1,5 +1,5 @@
 // ElevateShop – Complete JavaScript
-// All features implemented, no cuts.
+// Includes: search, account, cart, checkout, infinite carousel, filtering, etc.
 
 // ========== PRODUCT DATA (prices $19.99 – $32.99) ==========
 const allProductsData = [
@@ -41,7 +41,8 @@ const testimonials = [
 
 let cart = [];
 let currentFilter = "all";
-let loggedInUser = null; // stores { name, email }
+let currentSearchTerm = "";
+let loggedInUser = null;
 
 // Helper functions
 function getCategoryName(cat) {
@@ -61,7 +62,85 @@ function updateCurrentDate() {
     }
 }
 
-// ========== ACCOUNT SYSTEM (localStorage simulation) ==========
+// ========== SEARCH FUNCTIONALITY ==========
+function filterBySearch(products, term) {
+    if (!term.trim()) return products;
+    const lowerTerm = term.toLowerCase();
+    return products.filter(p => p.name.toLowerCase().includes(lowerTerm));
+}
+
+function renderFilteredCarousel() {
+    const track = document.getElementById('product-carousel-track');
+    if (!track) return;
+    let filtered = [...allProductsData];
+    if (currentFilter !== 'all') {
+        filtered = filtered.filter(p => p.category === currentFilter);
+    }
+    filtered = filterBySearch(filtered, currentSearchTerm);
+    track.innerHTML = '';
+    filtered.forEach(p => {
+        const item = document.createElement('div');
+        item.className = 'carousel-item';
+        item.innerHTML = `
+            <div class="category">${getCategoryName(p.category)}</div>
+            <h3>${p.name}</h3>
+            <p class="description">${p.description.substring(0, 100)}...</p>
+            <div class="price">$${p.price.toFixed(2)}</div>
+            <div class="product-actions">
+                <button class="btn-small details-btn" data-id="${p.id}">Details</button>
+                <button class="btn-buy add-to-cart-btn" data-id="${p.id}">Buy Now</button>
+            </div>
+        `;
+        track.appendChild(item);
+    });
+    attachCarouselItemEvents();
+    if (window.productCarousel && window.innerWidth >= 768) {
+        window.productCarousel.items = Array.from(track.children);
+        window.productCarousel.itemCount = window.productCarousel.items.length;
+        window.productCarousel.currentIndex = 0;
+        window.productCarousel.update();
+    }
+}
+
+function renderFilteredExtraGrid() {
+    const container = document.getElementById('extra-list');
+    if (!container) return;
+    let filtered = [...extraProductsData];
+    if (currentFilter !== 'all') {
+        filtered = filtered.filter(p => p.category === currentFilter);
+    }
+    filtered = filterBySearch(filtered, currentSearchTerm);
+    container.innerHTML = '';
+    filtered.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+            <div class="category">${getCategoryName(p.category)}</div>
+            <h3>${p.name}</h3>
+            <p class="description">${p.description.substring(0, 100)}...</p>
+            <div class="price">$${p.price.toFixed(2)}</div>
+            <div class="product-actions">
+                <button class="btn-small details-btn" data-id="${p.id}">Details</button>
+                <button class="btn-buy add-to-cart-btn" data-id="${p.id}">Buy Now</button>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+    attachExtraEvents();
+}
+
+function updateSearch(term) {
+    currentSearchTerm = term;
+    renderFilteredCarousel();
+    renderFilteredExtraGrid();
+    // Also reset carousel position if needed
+    if (window.productCarousel && window.innerWidth >= 768) {
+        window.productCarousel.currentIndex = 0;
+        window.productCarousel.update();
+    }
+}
+
+// ========== ACCOUNT SYSTEM ==========
 function getUsers() {
     const stored = localStorage.getItem('elevateShop_users');
     return stored ? JSON.parse(stored) : [];
@@ -272,65 +351,18 @@ function duplicateRemoveHandler(e) {
     validatePurchaseDuplicates();
 }
 
-// ========== FILTERING (only affects extra grid) ==========
+// ========== FILTERING (only affects extra grid, but search affects both) ==========
 function filterProducts(category) {
     currentFilter = category;
     document.querySelectorAll('.filter-btn, .filter-link').forEach(btn => {
         if (btn.dataset.filter === category) btn.classList.add('active');
         else btn.classList.remove('active');
     });
+    // Re-render both carousel and extra grid with current search term
+    renderFilteredCarousel();
     renderFilteredExtraGrid();
     const productsSection = document.querySelector('.products-section');
     if (productsSection) productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-// Carousel: always all products
-function buildProductCarousel() {
-    const track = document.getElementById('product-carousel-track');
-    if (!track) return;
-    track.innerHTML = '';
-    allProductsData.forEach(p => {
-        const item = document.createElement('div');
-        item.className = 'carousel-item';
-        item.innerHTML = `
-            <div class="category">${getCategoryName(p.category)}</div>
-            <h3>${p.name}</h3>
-            <p class="description">${p.description.substring(0, 100)}...</p>
-            <div class="price">$${p.price.toFixed(2)}</div>
-            <div class="product-actions">
-                <button class="btn-small details-btn" data-id="${p.id}">Details</button>
-                <button class="btn-buy add-to-cart-btn" data-id="${p.id}">Buy Now</button>
-            </div>
-        `;
-        track.appendChild(item);
-    });
-    attachCarouselItemEvents();
-}
-
-function renderFilteredExtraGrid() {
-    const container = document.getElementById('extra-list');
-    if (!container) return;
-    let filteredExtras = extraProductsData;
-    if (currentFilter !== 'all') {
-        filteredExtras = extraProductsData.filter(p => p.category === currentFilter);
-    }
-    container.innerHTML = '';
-    filteredExtras.forEach(p => {
-        const card = document.createElement('div');
-        card.className = 'product-card';
-        card.innerHTML = `
-            <div class="category">${getCategoryName(p.category)}</div>
-            <h3>${p.name}</h3>
-            <p class="description">${p.description.substring(0, 100)}...</p>
-            <div class="price">$${p.price.toFixed(2)}</div>
-            <div class="product-actions">
-                <button class="btn-small details-btn" data-id="${p.id}">Details</button>
-                <button class="btn-buy add-to-cart-btn" data-id="${p.id}">Buy Now</button>
-            </div>
-        `;
-        container.appendChild(card);
-    });
-    attachExtraEvents();
 }
 
 // ========== PRODUCT DETAIL MODAL ==========
@@ -355,7 +387,7 @@ function showProductDetail(e) {
     document.getElementById('detail-modal').style.display = 'flex';
 }
 
-// ========== CAROUSEL CLASS (infinite loop, auto‑slide on desktop) ==========
+// ========== CAROUSEL CLASS (infinite loop, auto-slide on desktop) ==========
 class ProductCarousel {
     constructor(trackId, itemsPerView, autoInterval = 4000) {
         this.track = document.getElementById(trackId);
@@ -560,7 +592,7 @@ function showPage(pageId) {
 // ========== INITIAL RENDERING ==========
 document.addEventListener('DOMContentLoaded', () => {
     updateCurrentDate();
-    buildProductCarousel();
+    renderFilteredCarousel();
     renderFilteredExtraGrid();
     buildTestimonialCarousel();
     updateCartUI();
@@ -575,6 +607,33 @@ document.addEventListener('DOMContentLoaded', () => {
         loggedInUser = JSON.parse(storedUser);
         updateLoginUI();
     }
+});
+
+// ========== SEARCH UI ==========
+const searchToggle = document.getElementById('search-toggle-btn');
+const searchContainer = document.getElementById('search-container');
+const searchInput = document.getElementById('search-input');
+const searchClear = document.getElementById('search-clear');
+
+searchToggle.addEventListener('click', () => {
+    if (searchContainer.style.display === 'none' || getComputedStyle(searchContainer).display === 'none') {
+        searchContainer.style.display = 'flex';
+        searchInput.focus();
+    } else {
+        searchContainer.style.display = 'none';
+        searchInput.value = '';
+        updateSearch('');
+    }
+});
+
+searchInput.addEventListener('input', (e) => {
+    updateSearch(e.target.value);
+});
+
+searchClear.addEventListener('click', () => {
+    searchInput.value = '';
+    updateSearch('');
+    searchInput.focus();
 });
 
 // ========== OTHER EVENT LISTENERS ==========
@@ -667,7 +726,7 @@ if (policyFooterLink) {
 document.getElementById('close-policy').addEventListener('click', () => policyModal.style.display = 'none');
 window.addEventListener('click', (e) => { if (e.target === policyModal) policyModal.style.display = 'none'; });
 
-// Filter links
+// Filter links (no alerts)
 document.querySelectorAll('.filter-btn, .filter-link').forEach(btn => {
     if (btn.dataset.filter && btn.dataset.filter !== 'policy') {
         btn.addEventListener('click', (e) => {
