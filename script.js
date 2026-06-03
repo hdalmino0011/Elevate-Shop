@@ -1,5 +1,5 @@
 // ElevateShop – Complete JavaScript
-// Includes: search (with clear & auto‑scroll), account, cart, infinite carousel, etc.
+// Includes: search (with clear & auto-scroll), account (with password validation), cart, infinite carousel, etc.
 
 // ========== PRODUCT DATA (prices $19.99 – $32.99) ==========
 const allProductsData = [
@@ -133,12 +133,10 @@ function updateSearch(term) {
     currentSearchTerm = term;
     renderFilteredCarousel();
     renderFilteredExtraGrid();
-    // Reset carousel position if needed
     if (window.productCarousel && window.innerWidth >= 768) {
         window.productCarousel.currentIndex = 0;
         window.productCarousel.update();
     }
-    // Auto-scroll to products section
     const productsSection = document.getElementById('products-section');
     if (productsSection) {
         productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -160,6 +158,14 @@ function saveUser(user) {
 function findUserByEmail(email) {
     const users = getUsers();
     return users.find(u => u.email === email);
+}
+
+function isValidPassword(password) {
+    // at least 8 characters, contains at least one letter and one number
+    const hasMinLength = password.length >= 8;
+    const hasLetter = /[a-zA-Z]/.test(password);
+    const hasNumber = /[0-9]/.test(password);
+    return hasMinLength && hasLetter && hasNumber;
 }
 
 function updateLoginUI() {
@@ -363,7 +369,6 @@ function filterProducts(category) {
         if (btn.dataset.filter === category) btn.classList.add('active');
         else btn.classList.remove('active');
     });
-    // Re-render both carousel and extra grid with current search term
     renderFilteredCarousel();
     renderFilteredExtraGrid();
     const productsSection = document.querySelector('.products-section');
@@ -606,7 +611,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.productCarousel = new ProductCarousel('product-carousel-track', 3, 4000);
     window.testimonialCarousel = new TestimonialCarousel('testimonial-track', 5000);
 
-    // Load logged in user from localStorage
     const storedUser = localStorage.getItem('elevateShop_currentUser');
     if (storedUser) {
         loggedInUser = JSON.parse(storedUser);
@@ -786,7 +790,7 @@ if (emailInput) {
     });
 }
 
-// ========== ACCOUNT MODAL LOGIC ==========
+// ========== ACCOUNT MODAL LOGIC (with password validation and "Don't have an account?" link) ==========
 const accountModal = document.getElementById('account-modal');
 const loginLink = document.getElementById('login-link');
 const logoutLink = document.getElementById('logout-link');
@@ -828,6 +832,23 @@ window.addEventListener('click', (e) => {
     if (e.target === accountModal) accountModal.style.display = 'none';
 });
 
+// Add "Don't have an account? Sign Up" link next to login button
+const loginButton = document.getElementById('do-login');
+if (loginButton && !document.getElementById('signup-redirect')) {
+    const loginFormContainer = loginFormDiv;
+    const signupRedirect = document.createElement('p');
+    signupRedirect.id = 'signup-redirect';
+    signupRedirect.style.marginTop = '12px';
+    signupRedirect.style.fontSize = '13px';
+    signupRedirect.style.textAlign = 'center';
+    signupRedirect.innerHTML = `Don't have an account? <a href="#" id="switch-to-signup" style="color: var(--masthead-red-brown); text-decoration: underline;">Sign Up</a>`;
+    loginFormContainer.appendChild(signupRedirect);
+    document.getElementById('switch-to-signup')?.addEventListener('click', (e) => {
+        e.preventDefault();
+        signupTab.click();
+    });
+}
+
 // Login
 document.getElementById('do-login').addEventListener('click', () => {
     const email = document.getElementById('login-email').value.trim();
@@ -850,7 +871,7 @@ document.getElementById('do-login').addEventListener('click', () => {
     document.getElementById('login-password').value = '';
 });
 
-// Sign Up
+// Sign Up with password validation
 document.getElementById('do-signup').addEventListener('click', () => {
     const name = document.getElementById('signup-name').value.trim();
     const email = document.getElementById('signup-email').value.trim();
@@ -861,6 +882,10 @@ document.getElementById('do-signup').addEventListener('click', () => {
     }
     if (findUserByEmail(email)) {
         alert('An account with this email already exists. Please log in.');
+        return;
+    }
+    if (!isValidPassword(password)) {
+        alert('Password must be at least 8 characters long and contain both letters and numbers.');
         return;
     }
     const newUser = { name, email, password };
