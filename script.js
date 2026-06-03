@@ -1,5 +1,5 @@
 // ElevateShop – Complete JavaScript
-// Includes: search (with clear & auto-scroll), account (with password validation), cart, infinite carousel, etc.
+// Includes: search with clear & hide, account, cart, infinite carousel, etc.
 
 // ========== PRODUCT DATA (prices $19.99 – $32.99) ==========
 const allProductsData = [
@@ -161,7 +161,6 @@ function findUserByEmail(email) {
 }
 
 function isValidPassword(password) {
-    // at least 8 characters, contains at least one letter and one number
     const hasMinLength = password.length >= 8;
     const hasLetter = /[a-zA-Z]/.test(password);
     const hasNumber = /[0-9]/.test(password);
@@ -184,7 +183,7 @@ function updateLoginUI() {
     }
 }
 
-// ========== PURCHASE HISTORY (localStorage) ==========
+// ========== PURCHASE HISTORY ==========
 function getPurchaseHistory() {
     const stored = localStorage.getItem('elevateShop_purchases');
     return stored ? JSON.parse(stored) : [];
@@ -362,7 +361,7 @@ function duplicateRemoveHandler(e) {
     validatePurchaseDuplicates();
 }
 
-// ========== FILTERING (only affects extra grid, but search affects both) ==========
+// ========== FILTERING (only affects extra grid) ==========
 function filterProducts(category) {
     currentFilter = category;
     document.querySelectorAll('.filter-btn, .filter-link').forEach(btn => {
@@ -397,7 +396,7 @@ function showProductDetail(e) {
     document.getElementById('detail-modal').style.display = 'flex';
 }
 
-// ========== CAROUSEL CLASS (infinite loop, auto-slide on desktop) ==========
+// ========== CAROUSEL CLASSES ==========
 class ProductCarousel {
     constructor(trackId, itemsPerView, autoInterval = 4000) {
         this.track = document.getElementById(trackId);
@@ -618,7 +617,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// ========== SEARCH UI ==========
+// ========== SEARCH UI (with clear/hide fix) ==========
 const searchToggle = document.getElementById('search-toggle-btn');
 const searchContainer = document.getElementById('search-container');
 const searchInput = document.getElementById('search-input');
@@ -639,10 +638,12 @@ searchInput.addEventListener('input', (e) => {
     updateSearch(e.target.value);
 });
 
+// FIX: clear button also hides the search container
 searchClear.addEventListener('click', () => {
     searchInput.value = '';
     updateSearch('');
-    searchInput.focus();
+    searchContainer.style.display = 'none';
+    // Optionally refocus? No, because it's hidden.
 });
 
 // ========== OTHER EVENT LISTENERS ==========
@@ -832,7 +833,7 @@ window.addEventListener('click', (e) => {
     if (e.target === accountModal) accountModal.style.display = 'none';
 });
 
-// Add "Don't have an account? Sign Up" link next to login button
+// Add "Don't have an account? Sign Up" link next to login button (if not already)
 const loginButton = document.getElementById('do-login');
 if (loginButton && !document.getElementById('signup-redirect')) {
     const loginFormContainer = loginFormDiv;
