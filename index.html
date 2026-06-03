@@ -31,7 +31,7 @@
     </div>
 </nav>
 
-<!-- Hero Section (darker brown) -->
+<!-- Hero Section -->
 <header class="hero">
     <div class="container">
         <div class="hero-content">
@@ -42,7 +42,7 @@
     </div>
 </header>
 
-<!-- Main Content Area (replaced by footer page content when links clicked) -->
+<!-- Main Content Area -->
 <div id="main-content-area">
     <!-- Featured Article Section with BEST SELLER badge -->
     <section class="featured-article">
@@ -69,7 +69,7 @@
         </div>
     </section>
 
-    <!-- Products Carousel Section (Top Selections) -->
+    <!-- Products Carousel Section -->
     <section class="products-section">
         <div class="container">
             <h2 class="section-heading">Top Selections</h2>
@@ -83,7 +83,7 @@
         </div>
     </section>
 
-    <!-- NEW CUSTOM DIVIDER (replaces asterisks) -->
+    <!-- Custom Divider (line + diamond) -->
     <div class="divider-section">
         <div class="container">
             <div class="custom-divider">
@@ -115,8 +115,6 @@
 </div>
 
 <!-- ==================== DETAILED PAGE CONTENT (Footer Links) ==================== -->
-
-<!-- Privacy Policy Page -->
 <div id="page-privacy" class="page-content" style="display: none;">
     <button class="back-button" onclick="window.showMainContent?.()">← Go Back</button>
     <div class="container">
@@ -138,7 +136,6 @@
     </div>
 </div>
 
-<!-- Terms of Service Page -->
 <div id="page-terms" class="page-content" style="display: none;">
     <button class="back-button" onclick="window.showMainContent?.()">← Go Back</button>
     <div class="container">
@@ -160,7 +157,6 @@
     </div>
 </div>
 
-<!-- Policy Page -->
 <div id="page-policy" class="page-content" style="display: none;">
     <button class="back-button" onclick="window.showMainContent?.()">← Go Back</button>
     <div class="container">
@@ -179,7 +175,6 @@
     </div>
 </div>
 
-<!-- FAQ Page -->
 <div id="page-faq" class="page-content" style="display: none;">
     <button class="back-button" onclick="window.showMainContent?.()">← Go Back</button>
     <div class="container">
@@ -201,7 +196,6 @@
     </div>
 </div>
 
-<!-- Our Commitment Pages -->
 <div id="page-instant-delivery" class="page-content" style="display: none;">
     <button class="back-button" onclick="window.showMainContent?.()">← Go Back</button>
     <div class="container">
@@ -330,15 +324,21 @@
     </div>
 </div>
 
-<!-- Checkout Modal (no demo notices, updated placeholder & card number) -->
+<!-- Checkout Modal (with email field) -->
 <div id="payment-modal" class="modal payment-modal">
     <div class="modal-content">
         <button class="modal-close" id="close-payment">&times;</button>
         <h2>Secure Checkout</h2>
         <form id="payment-form">
-            <div class="form-group">
-                <label for="card-name">Cardholder Name</label>
-                <input type="text" id="card-name" required placeholder="Enter the Full Name">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="card-name">Cardholder Name</label>
+                    <input type="text" id="card-name" required placeholder="Enter the Full Name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" required placeholder="customer@example.com">
+                </div>
             </div>
             <div class="form-group">
                 <label for="card-number">Card Number</label>
@@ -359,6 +359,19 @@
     </div>
 </div>
 
+<!-- Cart Confirmation Pop-up -->
+<div id="cart-confirm-modal" class="cart-confirm-modal">
+    <div class="cart-confirm-content">
+        <button class="close-confirm" id="close-confirm">&times;</button>
+        <h3>Product added to Cart!</h3>
+        <p>Would you like to proceed to checkout or continue shopping?</p>
+        <div class="cart-confirm-buttons">
+            <button id="confirm-checkout" class="btn-primary">Proceed to Checkout</button>
+            <button id="confirm-continue" class="btn-secondary">Purchase More</button>
+        </div>
+    </div>
+</div>
+
 <!-- Product Detail Modal (drop cap) -->
 <div id="detail-modal" class="modal detail-modal">
     <div class="modal-content modal-large">
@@ -376,7 +389,7 @@
     </div>
 </div>
 
-<!-- Policy Modal (additional, for reference) -->
+<!-- Policy Modal (additional) -->
 <div id="policy-modal" class="modal policy-modal">
     <div class="modal-content modal-large">
         <button class="modal-close" id="close-policy">&times;</button>
