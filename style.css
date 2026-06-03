@@ -290,7 +290,7 @@ h4 {
     margin-bottom: 18px;
 }
 
-/* ==================== PRODUCT CAROUSEL ==================== */
+/* ==================== PRODUCT CAROUSEL (fixed) ==================== */
 .carousel-container {
     position: relative;
     margin: 30px 0;
@@ -392,7 +392,7 @@ h4 {
     right: -12px;
 }
 
-/* ==================== TESTIMONIAL CAROUSEL ==================== */
+/* ==================== TESTIMONIAL CAROUSEL (no buttons) ==================== */
 .testimonial-section {
     padding: 30px 0;
     background-color: var(--primary-brown);
@@ -555,7 +555,7 @@ h4 {
     background-color: var(--dark-brown);
 }
 
-/* ==================== CUSTOM DIVIDER ==================== */
+/* ==================== CUSTOM DIVIDER (line + diamond) ==================== */
 .custom-divider {
     display: flex;
     align-items: center;
@@ -633,7 +633,7 @@ h4 {
     font-size: 10px;
 }
 
-/* ==================== PAGE CONTENT ==================== */
+/* ==================== PAGE CONTENT (privacy, terms, etc.) ==================== */
 .page-content {
     position: relative;
     padding: 30px 0;
@@ -734,7 +734,6 @@ h4 {
     color: var(--masthead-red-brown);
 }
 
-/* Checkout form – Times New Roman for numbers */
 .form-group {
     margin-bottom: 18px;
 }
@@ -767,7 +766,24 @@ h4 {
     gap: 16px;
 }
 
-/* ==================== CART CONFIRMATION POP-UP ==================== */
+/* Error message inside checkout modal */
+.payment-error {
+    background-color: #ffe6e6;
+    border-left: 4px solid #d32f2f;
+    padding: 12px;
+    margin-bottom: 16px;
+    font-size: 13px;
+    color: #b71c1c;
+    display: none;
+}
+
+.payment-error a {
+    color: #d32f2f;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* ==================== CART CONFIRMATION MODAL ==================== */
 .cart-confirm-modal {
     display: none;
     position: fixed;
@@ -958,12 +974,16 @@ h4 {
     color: var(--masthead-red-brown);
 }
 
-/* ==================== DETAIL MODAL (DROP CAP - NYT STYLE) ==================== */
+/* ==================== DETAIL MODAL (DROP CAP with spacing) ==================== */
 .detail-body p {
     margin-bottom: 16px;
     line-height: 1.7;
     color: var(--text-light);
     font-size: 15px;
+}
+
+.detail-body p:first-of-type {
+    margin-top: 24px;  /* Adds space above the drop‑cap paragraph */
 }
 
 .detail-body p:first-of-type::first-letter {
