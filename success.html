@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful – Elevate Shop</title>
+    <style>
+        body {
+            font-family: Georgia, serif;
+            background: #1a1a2e;
+            color: #fff;
+            text-align: center;
+            padding: 2rem;
+            margin: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            color: #1a1a2e;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .gold-box {
+            background: #f0c040;
+            color: #1a1a2e;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            margin: 1rem 0;
+        }
+        .btn {
+            display: inline-block;
+            background: #f0c040;
+            color: #1a1a2e;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            margin-top: 1rem;
+        }
+        .loader {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f0c040;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 Payment Successful!</h1>
+        <p>Your purchase is being processed. Your access password will appear below shortly.</p>
+        <div id="password-box" class="gold-box">
+            <span class="loader"></span> Generating password...
+        </div>
+        <p id="instruction" style="display: none;">Once the password appears, copy it and click below to access your product.</p>
+        <a id="access-link" href="access.html" class="btn" style="display: none;">Access My Product</a>
+    </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const sessionId = urlParams.get('session_id');
+        const WORKER_URL = 'https://elevate-shop-worker.dalminohanz14.workers.dev';
+
+        if (!sessionId) {
+            document.getElementById('password-box').innerHTML = '❌ No session found. Please contact support.';
+        } else {
+            let attempts = 0;
+            const maxAttempts = 30;
+            const poll = setInterval(async () => {
+                attempts++;
+                try {
+                    const res = await fetch(`${WORKER_URL}/get-password`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ session_id: sessionId })
+                    });
+                    const data = await res.json();
+                    if (data.password) {
+                        clearInterval(poll);
+                        document.getElementById('password-box').innerHTML = `<strong>Your Password:</strong><br>${data.password}`;
+                        document.getElementById('instruction').style.display = 'block';
+                        document.getElementById('access-link').style.display = 'inline-block';
+                    } else if (attempts >= maxAttempts) {
+                        clearInterval(poll);
+                        document.getElementById('password-box').innerHTML = '⏰ Still processing? Check your email in a few minutes or contact support.';
+                    }
+                } catch (err) {
+                    console.error(err);
+                }
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
