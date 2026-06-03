@@ -92,8 +92,12 @@ function getCategoryName(cat) {
 function updateCurrentDate() {
     const dateEl = document.getElementById('current-date');
     if (dateEl) {
-        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        dateEl.textContent = new Date().toLocaleDateString('en-US', options);
+        const now = new Date();
+        const weekday = now.toLocaleDateString('en-US', { weekday: 'long' });
+        const month = now.toLocaleDateString('en-US', { month: 'long' });
+        const day = now.getDate();
+        const year = now.getFullYear();
+        dateEl.textContent = `${weekday}, ${month} ${day}, ${year}`;
     }
 }
 
