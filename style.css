@@ -48,6 +48,27 @@ a:hover {
     padding: 0 16px;
 }
 
+h1, h2, h3, h4, h5 {
+    font-family: 'Georgia', serif;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+h2 {
+    font-size: 28px;
+    margin-bottom: 16px;
+}
+
+h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+h4 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
 /* ==================== NAVIGATION / MASTHEAD ==================== */
 .navbar {
     background-color: white;
@@ -68,6 +89,7 @@ a:hover {
     background-color: white;
     flex-wrap: wrap;
     gap: 8px;
+    position: relative;
 }
 
 .nav-date {
@@ -125,6 +147,7 @@ a:hover {
     font-size: 11px;
     font-style: italic;
     color: var(--cream);
+    letter-spacing: 1px;
 }
 
 .nav-menu {
@@ -159,7 +182,7 @@ a:hover {
     background-color: var(--masthead-red-brown);
 }
 
-/* ==================== HERO SECTION (darker brown) ==================== */
+/* ==================== HERO SECTION ==================== */
 .hero {
     background-color: var(--hero-brown);
     padding: 24px 0 28px;
@@ -267,11 +290,11 @@ a:hover {
     margin-bottom: 18px;
 }
 
-/* ==================== CAROUSEL (mobile swipe, desktop arrows) ==================== */
+/* ==================== PRODUCT CAROUSEL (with visible buttons on desktop) ==================== */
 .carousel-container {
     position: relative;
-    margin: 20px 0;
-    overflow: hidden;
+    margin: 30px 0;
+    overflow: visible;
 }
 
 .carousel-wrapper {
@@ -280,13 +303,13 @@ a:hover {
     -webkit-overflow-scrolling: touch;
     margin: 0;
     padding-bottom: 10px;
+    scrollbar-width: thin;
 }
 
 .carousel-track {
     display: flex;
     gap: 16px;
     scroll-snap-type: x mandatory;
-    transition: none;
 }
 
 .carousel-item {
@@ -296,9 +319,9 @@ a:hover {
     padding: 16px;
     border: 1px solid var(--border-gray);
     border-radius: 4px;
-    word-wrap: break-word;
     display: flex;
     flex-direction: column;
+    word-wrap: break-word;
 }
 
 .carousel-item .category {
@@ -330,37 +353,95 @@ a:hover {
     margin-bottom: 12px;
 }
 
-.carousel-item .product-actions {
+.product-actions {
     display: flex;
     gap: 8px;
     margin-top: auto;
 }
 
+/* Carousel navigation buttons (only on desktop, overlapping) */
 .carousel-btn {
     display: none;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: var(--primary-brown);
+    background-color: var(--masthead-red-brown);
     color: white;
     border: none;
-    width: 34px;
-    height: 34px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     cursor: pointer;
     font-size: 18px;
-    z-index: 10;
-    align-items: center;
-    justify-content: center;
+    font-weight: bold;
+    z-index: 20;
     box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     transition: background 0.2s;
+    align-items: center;
+    justify-content: center;
 }
 
 .carousel-btn:hover {
-    background: var(--dark-brown);
+    background-color: var(--dark-brown);
 }
 
-/* ==================== PRODUCT GRID (aligned buttons) ==================== */
+.prev-btn {
+    left: -12px;
+}
+
+.next-btn {
+    right: -12px;
+}
+
+/* ==================== TESTIMONIAL CAROUSEL (no buttons, only swipe) ==================== */
+.testimonial-section {
+    padding: 30px 0;
+    background-color: var(--primary-brown);
+    border-bottom: 1px solid var(--border-gray);
+}
+
+.testimonial-carousel-container {
+    position: relative;
+    margin: 0 auto;
+    max-width: 800px;
+    overflow: hidden;
+}
+
+.testimonial-wrapper {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    margin: 0;
+}
+
+.testimonial-track {
+    display: flex;
+    scroll-snap-type: x mandatory;
+}
+
+.testimonial-item {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    text-align: center;
+    padding: 16px 20px;
+    font-size: 14px;
+    font-style: italic;
+    color: white;
+    background: transparent;
+}
+
+.testimonial-item p {
+    margin-bottom: 12px;
+}
+
+.testimonial-author {
+    font-style: normal;
+    font-size: 12px;
+    color: var(--cream);
+    font-weight: 600;
+}
+
+/* ==================== STATIC PRODUCT GRID ==================== */
 .products-section, .more-products {
     padding: 30px 0;
     background-color: white;
@@ -475,56 +556,21 @@ a:hover {
     background-color: var(--dark-brown);
 }
 
-/* ==================== TESTIMONIAL (mobile swipe) ==================== */
-.testimonial-section {
-    padding: 30px 0;
-    background-color: var(--primary-brown);
+/* ==================== DIVIDER ==================== */
+.divider-section {
+    padding: 20px 0;
+    background-color: white;
     border-bottom: 1px solid var(--border-gray);
 }
 
-.testimonial-carousel-container {
-    position: relative;
-    margin: 0 auto;
-    max-width: 800px;
-    overflow: hidden;
-}
-
-.testimonial-wrapper {
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    margin: 0;
-}
-
-.testimonial-track {
-    display: flex;
-    scroll-snap-type: x mandatory;
-    transition: none;
-}
-
-.testimonial-item {
-    flex: 0 0 100%;
-    scroll-snap-align: start;
+.ornament {
     text-align: center;
-    padding: 16px 20px;
     font-size: 14px;
-    font-style: italic;
-    color: white;
-    background: transparent;
+    color: var(--light-gray);
+    letter-spacing: 6px;
 }
 
-.testimonial-item p {
-    margin-bottom: 12px;
-}
-
-.testimonial-author {
-    font-style: normal;
-    font-size: 12px;
-    color: var(--cream);
-    font-weight: 600;
-}
-
-/* ==================== FOOTER & PAGE CONTENT ==================== */
+/* ==================== FOOTER ==================== */
 .footer {
     background-color: #1E1A17;
     color: var(--light-gray);
@@ -572,7 +618,7 @@ a:hover {
     font-size: 10px;
 }
 
-/* Page content (policy, terms, faq, commitment) */
+/* ==================== PAGE CONTENT (privacy, terms, policy, faq, etc.) ==================== */
 .page-content {
     position: relative;
     padding: 30px 0;
@@ -650,6 +696,10 @@ a:hover {
     position: relative;
     max-height: 90vh;
     overflow-y: auto;
+}
+
+.modal-large {
+    max-width: 650px;
 }
 
 .modal-close {
@@ -741,6 +791,10 @@ a:hover {
     color: var(--text-dark);
 }
 
+.close-btn:hover {
+    color: var(--masthead-red-brown);
+}
+
 .cart-items {
     flex: 1;
     overflow-y: auto;
@@ -803,7 +857,25 @@ a:hover {
     color: var(--masthead-red-brown);
 }
 
-/* ==================== RESPONSIVE (mobile & desktop) ==================== */
+/* ==================== DETAIL MODAL (drop cap black) ==================== */
+.detail-body p {
+    margin-bottom: 16px;
+    line-height: 1.7;
+    color: var(--text-light);
+    font-size: 14px;
+}
+
+.detail-body p:first-of-type::first-letter {
+    font-size: 48px;
+    font-weight: 700;
+    float: left;
+    line-height: 0.85;
+    margin-right: 10px;
+    color: #000000;
+    font-family: 'Georgia', serif;
+}
+
+/* ==================== RESPONSIVE (mobile first, then desktop) ==================== */
 @media (min-width: 768px) {
     .container {
         padding: 0 24px;
@@ -813,12 +885,12 @@ a:hover {
         flex-wrap: nowrap;
         padding: 8px 24px;
     }
-    
+
     .nav-date {
         font-size: 12px;
         max-width: none;
     }
-    
+
     .nav-center-text {
         position: absolute;
         left: 50%;
@@ -826,103 +898,119 @@ a:hover {
         order: 0;
         font-size: 12px;
     }
-    
+
     .masthead {
         padding: 28px 24px 16px;
     }
-    
+
     .site-title {
         font-size: 40px;
     }
-    
+
     .site-subtitle {
         font-size: 13px;
     }
-    
+
     .nav-menu {
         gap: 24px;
         padding: 12px 24px;
     }
-    
+
     .nav-menu a {
         font-size: 12px;
     }
-    
+
     .hero {
         padding: 30px 0 35px;
     }
-    
+
     .hero-tagline {
         font-size: 9px;
     }
-    
+
     .hero-title {
         font-size: 26px;
     }
-    
+
     .hero-description {
         font-size: 12px;
         max-width: 550px;
     }
-    
-    .carousel-container {
-        overflow: visible;
+
+    /* Product carousel: show buttons on desktop */
+    .carousel-btn {
+        display: flex;
     }
-    
+
     .carousel-wrapper {
         overflow: visible;
         scroll-snap-type: none;
-        margin: 0 45px;
+        margin: 0 40px;
         padding-bottom: 0;
     }
-    
+
     .carousel-track {
         transition: transform 0.5s ease;
         scroll-snap-type: none;
         gap: 24px;
     }
-    
+
     .carousel-item {
         flex: 0 0 calc(33.333% - 16px);
         scroll-snap-align: none;
         padding: 20px;
     }
-    
+
     .carousel-item .category {
         font-size: 10px;
     }
-    
+
     .carousel-item h3 {
         font-size: 18px;
     }
-    
-    .carousel-btn {
-        display: flex;
+
+    /* Testimonial on desktop: still no buttons, just swipe (or remove buttons) */
+    .testimonial-wrapper {
+        overflow: visible;
+        scroll-snap-type: none;
+        margin: 0 30px;
     }
-    
+
+    .testimonial-track {
+        transition: transform 0.5s ease;
+        scroll-snap-type: none;
+    }
+
+    .testimonial-item {
+        flex: 0 0 100%;
+        scroll-snap-align: none;
+        padding: 20px 30px;
+        font-size: 16px;
+    }
+
     .products-columns {
         grid-template-columns: repeat(2, 1fr);
         gap: 30px;
     }
-    
+
     .product-card {
         padding: 20px;
     }
-    
+
     .footer-content {
         grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
         text-align: left;
     }
-    
+
     .footer-section ul {
         text-align: left;
     }
-    
+
     .cart-sidebar {
         width: 380px;
         right: -380px;
     }
-    
+
     .page-content .back-button {
         top: 20px;
         right: 20px;
