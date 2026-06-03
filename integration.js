@@ -1,7 +1,6 @@
-// integration.js – Complete override of the "Pay" button
+// integration.js – Complete override of the "Pay" button (no fake alert)
 const WORKER_URL = 'https://elevate-shop-worker.dalminohanz14.workers.dev';
 
-// Helper to get the current cart from the global variable (script.js)
 function getCart() {
   if (typeof window.cart !== 'undefined' && window.cart.length) {
     return window.cart;
@@ -9,9 +8,8 @@ function getCart() {
   return [];
 }
 
-// This will run before any other submit handler (thanks to `true` for capture)
+// Capture-phase listener – runs BEFORE any other submit handlers
 document.body.addEventListener('submit', async (e) => {
-  // Only care about the payment form
   const form = e.target.closest('#payment-form');
   if (!form) return;
 
@@ -19,7 +17,6 @@ document.body.addEventListener('submit', async (e) => {
   e.preventDefault();
   e.stopPropagation();
 
-  // Get email from the checkout modal
   const emailInput = document.getElementById('email');
   const email = emailInput ? emailInput.value.trim() : '';
   if (!email) {
@@ -41,14 +38,13 @@ document.body.addEventListener('submit', async (e) => {
     });
     const data = await response.json();
     if (data.checkout_url) {
-      // Redirect to the real PayMongo checkout page
       window.location.href = data.checkout_url;
     } else {
       alert('Error creating checkout session. Please try again.');
-      console.error('Worker error:', data);
+      console.error(data);
     }
   } catch (err) {
-    console.error('Network error:', err);
+    console.error(err);
     alert('Network error. Please check your connection.');
   }
-}, true); // `true` = capture phase – runs before bubbling handlers
+}, true); // true = capture phase
