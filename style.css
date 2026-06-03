@@ -27,7 +27,7 @@ body {
     font-family: 'Georgia', 'Times New Roman', serif;
     background-color: var(--cream);
     color: var(--text-dark);
-    line-height: 1.6;
+    line-height: 1.5;
     font-size: 16px;
 }
 
@@ -44,7 +44,7 @@ a:hover {
 .container {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 16px;
 }
 
 h1, h2, h3, h4, h5 {
@@ -81,32 +81,33 @@ h4 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 24px;
-    font-size: 13px;
+    padding: 8px 16px;
+    font-size: 12px;
     color: var(--text-light);
     border-bottom: 1px solid var(--border-gray);
     background-color: white;
-    position: relative;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
 .nav-date {
-    letter-spacing: 0.5px;
     font-family: 'Georgia', serif;
-    font-size: 12px;
+    font-size: 11px;
+    white-space: nowrap;
+    overflow-x: auto;
+    max-width: 48%;
 }
 
 .nav-center-text {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
     font-weight: 700;
-    font-size: 13px;
+    font-size: 11px;
     color: var(--primary-brown);
-    letter-spacing: 1px;
     background-color: var(--off-white);
-    padding: 4px 12px;
+    padding: 3px 10px;
     border-radius: 20px;
     border: 1px solid var(--border-gray);
+    order: 2;
+    white-space: nowrap;
 }
 
 .cart-link {
@@ -115,55 +116,55 @@ h4 {
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 5px;
-    font-size: 13px;
+    gap: 4px;
+    font-size: 12px;
+    white-space: nowrap;
 }
 
 .cart-icon {
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .masthead {
     text-align: center;
-    padding: 28px 24px 16px;
+    padding: 20px 16px 12px;
     background-color: var(--masthead-brown);
     border-bottom: 3px solid var(--dark-brown);
 }
 
 .site-title {
-    font-size: 40px;
+    font-size: 28px;
     font-weight: 700;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     color: white;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
     cursor: pointer;
 }
 
 .site-subtitle {
-    font-size: 13px;
+    font-size: 11px;
     font-style: italic;
     color: var(--cream);
-    letter-spacing: 1px;
 }
 
 .nav-menu {
     display: flex;
     justify-content: center;
-    gap: 24px;
-    padding: 12px 24px;
+    gap: 12px;
+    padding: 10px 12px;
     border-bottom: 1px solid var(--border-gray);
     flex-wrap: wrap;
     background-color: white;
 }
 
 .nav-menu a {
-    font-size: 12px;
+    font-size: 10px;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     color: var(--text-dark);
+    white-space: nowrap;
     position: relative;
-    cursor: pointer;
 }
 
 .nav-menu a:hover::after,
@@ -177,10 +178,10 @@ h4 {
     background-color: var(--primary-brown);
 }
 
-/* ==================== HERO SECTION (SMALLER) ==================== */
+/* ==================== HERO SECTION ==================== */
 .hero {
     background-color: var(--light-brown);
-    padding: 30px 0 35px;
+    padding: 24px 0 28px;
     border-bottom: 1px solid var(--border-gray);
 }
 
@@ -189,19 +190,20 @@ h4 {
 }
 
 .hero-tagline {
-    font-size: 9px;
-    letter-spacing: 2px;
+    font-size: 8px;
+    letter-spacing: 1px;
     text-transform: uppercase;
     color: white;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     font-weight: 600;
+    word-break: keep-all;
 }
 
 .hero-title {
-    font-size: 26px;
+    font-size: 20px;
     font-weight: 700;
     line-height: 1.3;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     color: white;
 }
 
@@ -211,17 +213,17 @@ h4 {
 }
 
 .hero-description {
-    font-size: 12px;
+    font-size: 11px;
     color: white;
-    max-width: 550px;
+    max-width: 100%;
     margin: 0 auto;
-    line-height: 1.5;
+    line-height: 1.4;
     opacity: 0.95;
 }
 
 /* ==================== FEATURED ARTICLE ==================== */
 .featured-article {
-    padding: 40px 0;
+    padding: 30px 0;
     background-color: white;
     border-bottom: 1px solid var(--border-gray);
 }
@@ -233,28 +235,28 @@ h4 {
 
 .article-label {
     display: inline-block;
-    font-size: 10px;
+    font-size: 9px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
     color: var(--primary-brown);
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     font-weight: 600;
 }
 
 .article-title {
-    font-size: 30px;
+    font-size: 24px;
     font-weight: 700;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .article-subtitle {
-    font-size: 15px;
+    font-size: 13px;
     color: var(--text-light);
     font-style: italic;
 }
 
 .article-body {
-    font-size: 15px;
+    font-size: 14px;
     line-height: 1.6;
     color: var(--text-light);
     margin-bottom: 16px;
@@ -265,38 +267,40 @@ h4 {
     margin-bottom: 18px;
 }
 
-/* ==================== CAROUSEL (FIXED CUTOFF) ==================== */
+/* ==================== CAROUSEL (mobile swipe, desktop arrows) ==================== */
 .carousel-container {
     position: relative;
-    margin: 30px 0;
-    overflow: visible;
+    margin: 20px 0;
+    overflow: hidden;
 }
 
 .carousel-wrapper {
-    overflow: visible;
-    margin: 0 35px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    margin: 0;
+    padding-bottom: 10px;
 }
 
 .carousel-track {
     display: flex;
-    transition: transform 0.5s ease;
-    gap: 20px;
+    gap: 16px;
+    scroll-snap-type: x mandatory;
+    transition: none;
 }
 
 .carousel-item {
-    flex: 0 0 calc(33.333% - 14px);
-    min-width: 0;
+    flex: 0 0 85%;
+    scroll-snap-align: start;
     background-color: var(--cream);
-    padding: 18px;
+    padding: 16px;
     border: 1px solid var(--border-gray);
     border-radius: 4px;
-    box-sizing: border-box;
     word-wrap: break-word;
-    overflow: hidden;
 }
 
 .carousel-item .category {
-    font-size: 10px;
+    font-size: 9px;
     letter-spacing: 1px;
     text-transform: uppercase;
     color: var(--primary-brown);
@@ -305,15 +309,15 @@ h4 {
 }
 
 .carousel-item h3 {
-    font-size: 18px;
-    margin-bottom: 8px;
+    font-size: 16px;
+    margin-bottom: 6px;
 }
 
 .carousel-item .description {
     font-size: 12px;
     color: var(--text-light);
     margin-bottom: 10px;
-    line-height: 1.5;
+    line-height: 1.4;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -329,6 +333,7 @@ h4 {
 }
 
 .carousel-btn {
+    display: none;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -340,57 +345,47 @@ h4 {
     border-radius: 50%;
     cursor: pointer;
     font-size: 16px;
-    transition: background 0.2s;
     z-index: 10;
-    display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.carousel-btn:hover {
-    background: var(--dark-brown);
-}
-
-.prev-btn {
-    left: -10px;
-}
-
-.next-btn {
-    right: -10px;
-}
-
-/* ==================== TESTIMONIAL SECTION ==================== */
+/* ==================== TESTIMONIAL (mobile swipe) ==================== */
 .testimonial-section {
-    padding: 40px 0;
+    padding: 30px 0;
     background-color: var(--primary-brown);
     border-bottom: 1px solid var(--border-gray);
 }
 
 .testimonial-carousel-container {
     position: relative;
-    margin: 20px auto;
+    margin: 0 auto;
     max-width: 800px;
+    overflow: hidden;
 }
 
 .testimonial-wrapper {
-    overflow: hidden;
-    margin: 0 30px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    margin: 0;
 }
 
 .testimonial-track {
     display: flex;
-    transition: transform 0.5s ease;
+    scroll-snap-type: x mandatory;
+    transition: none;
 }
 
 .testimonial-item {
     flex: 0 0 100%;
+    scroll-snap-align: start;
     text-align: center;
-    padding: 20px 30px;
-    font-size: 16px;
+    padding: 16px 20px;
+    font-size: 14px;
     font-style: italic;
     color: white;
     background: transparent;
-    border-radius: 8px;
 }
 
 .testimonial-item p {
@@ -399,34 +394,34 @@ h4 {
 
 .testimonial-author {
     font-style: normal;
-    font-size: 13px;
+    font-size: 12px;
     color: var(--cream);
     font-weight: 600;
 }
 
 /* ==================== STATIC PRODUCT GRID ==================== */
 .products-section, .more-products {
-    padding: 40px 0;
+    padding: 30px 0;
     background-color: white;
     border-bottom: 1px solid var(--border-gray);
 }
 
 .section-heading {
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 700;
-    margin-bottom: 30px;
+    margin-bottom: 24px;
     text-align: center;
 }
 
 .products-columns {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
+    grid-template-columns: 1fr;
+    gap: 20px;
 }
 
 .product-card {
     background-color: var(--cream);
-    padding: 18px;
+    padding: 16px;
     border: 1px solid var(--border-gray);
     border-radius: 4px;
     display: flex;
@@ -434,7 +429,7 @@ h4 {
 }
 
 .product-card .category {
-    font-size: 10px;
+    font-size: 9px;
     letter-spacing: 1px;
     text-transform: uppercase;
     color: var(--primary-brown);
@@ -480,8 +475,8 @@ h4 {
     background-color: var(--primary-brown);
     color: white;
     border: none;
-    padding: 7px 18px;
-    font-size: 12px;
+    padding: 7px 16px;
+    font-size: 11px;
     font-weight: 600;
     font-family: 'Georgia', serif;
     letter-spacing: 0.5px;
@@ -498,8 +493,8 @@ h4 {
     background-color: white;
     border: 1px solid var(--primary-brown);
     color: var(--primary-brown);
-    padding: 5px 12px;
-    font-size: 11px;
+    padding: 4px 10px;
+    font-size: 10px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s;
@@ -516,8 +511,8 @@ h4 {
     background-color: var(--primary-brown);
     color: white;
     border: none;
-    padding: 5px 14px;
-    font-size: 11px;
+    padding: 4px 12px;
+    font-size: 10px;
     font-weight: 600;
     cursor: pointer;
     border-radius: 2px;
@@ -540,7 +535,7 @@ h4 {
 
 /* ==================== DIVIDER ==================== */
 .divider-section {
-    padding: 25px 0;
+    padding: 20px 0;
     background-color: white;
     border-bottom: 1px solid var(--border-gray);
 }
@@ -556,21 +551,22 @@ h4 {
 .footer {
     background-color: #1E1A17;
     color: var(--light-gray);
-    padding: 40px 0 20px;
+    padding: 30px 0 20px;
     border-top: 2px solid var(--primary-brown);
 }
 
 .footer-content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 25px;
-    margin-bottom: 25px;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 .footer-section h4 {
     color: white;
     font-size: 14px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .footer-section ul {
@@ -600,31 +596,31 @@ h4 {
     text-align: center;
     border-top: 1px solid rgba(212, 196, 180, 0.2);
     padding-top: 16px;
-    font-size: 11px;
+    font-size: 10px;
 }
 
 .footer-tagline {
-    margin-top: 5px;
+    margin-top: 4px;
     font-style: italic;
 }
 
-/* ==================== PAGE CONTENT (footer links) with BACK BUTTON ==================== */
+/* ==================== PAGE CONTENT (footer links) ==================== */
 .page-content {
     position: relative;
-    padding: 40px 0;
+    padding: 30px 0;
     background-color: white;
     border-bottom: 1px solid var(--border-gray);
 }
 
 .page-content .back-button {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 10px;
+    right: 10px;
     background-color: transparent;
     border: 1px solid var(--primary-brown);
     color: var(--primary-brown);
-    padding: 6px 12px;
-    font-size: 12px;
+    padding: 4px 10px;
+    font-size: 11px;
     font-weight: 600;
     cursor: pointer;
     border-radius: 4px;
@@ -638,22 +634,23 @@ h4 {
 }
 
 .page-content h2 {
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     color: var(--primary-brown);
+    font-size: 24px;
 }
 
 .page-content p, .page-content li {
-    font-size: 15px;
+    font-size: 14px;
     color: var(--text-light);
     margin-bottom: 10px;
 }
 
-/* ==================== DETAIL MODAL (DROP CAP - BLACK) ==================== */
+/* ==================== DETAIL MODAL (DROP CAP) ==================== */
 .detail-body p {
     margin-bottom: 16px;
     line-height: 1.7;
     color: var(--text-light);
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .detail-body p:first-of-type::first-letter {
@@ -662,7 +659,7 @@ h4 {
     float: left;
     line-height: 0.85;
     margin-right: 10px;
-    color: #000000;   /* changed from brown to black */
+    color: #000000;
     font-family: 'Georgia', serif;
 }
 
@@ -670,8 +667,8 @@ h4 {
 .cart-sidebar {
     position: fixed;
     top: 0;
-    right: -380px;
-    width: 380px;
+    right: -100%;
+    width: 100%;
     height: 100%;
     background-color: white;
     box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
@@ -690,7 +687,7 @@ h4 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 18px;
+    padding: 16px;
     border-bottom: 1px solid var(--border-gray);
 }
 
@@ -714,7 +711,7 @@ h4 {
 .cart-items {
     flex: 1;
     overflow-y: auto;
-    padding: 15px 18px;
+    padding: 16px;
 }
 
 .cart-item {
@@ -760,7 +757,7 @@ h4 {
 
 .cart-footer {
     border-top: 1px solid var(--border-gray);
-    padding: 15px 18px;
+    padding: 16px;
     background-color: var(--off-white);
 }
 
@@ -789,23 +786,15 @@ h4 {
     z-index: 2000;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 16px;
     overflow-y: auto;
-}
-
-.modal.payment-modal {
-    z-index: 2100;
-}
-
-.modal.policy-modal {
-    z-index: 2050;
 }
 
 .modal-content {
     background-color: white;
     width: 100%;
     max-width: 450px;
-    padding: 24px;
+    padding: 20px;
     border-radius: 4px;
     position: relative;
     max-height: 85vh;
@@ -828,8 +817,8 @@ h4 {
 }
 
 .modal h2 {
-    margin-bottom: 18px;
-    font-size: 24px;
+    margin-bottom: 16px;
+    font-size: 22px;
 }
 
 /* ==================== FORMS ==================== */
@@ -877,112 +866,199 @@ h4 {
     margin-top: 12px;
 }
 
-/* ==================== RESPONSIVE (MOBILE & TABLET) ==================== */
-@media (max-width: 900px) {
-    .carousel-item {
-        flex: 0 0 calc(50% - 10px);
+/* ==================== DESKTOP ENHANCEMENTS (min-width 768px) ==================== */
+@media (min-width: 768px) {
+    .container {
+        padding: 0 24px;
     }
-    .carousel-wrapper {
-        margin: 0 25px;
-    }
-}
 
-@media (max-width: 768px) {
-    .site-title {
-        font-size: 32px;
-    }
-    .hero-title {
-        font-size: 22px;
-    }
-    .hero-tagline {
-        font-size: 8px;
-    }
-    .hero-description {
-        font-size: 11px;
-    }
-    .article-title {
-        font-size: 24px;
-    }
-    .section-heading {
-        font-size: 24px;
-    }
-    .products-columns {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    .cart-sidebar {
-        width: 100%;
-        right: -100%;
-    }
-    .carousel-item {
-        flex: 0 0 calc(100% - 20px);
-    }
-    .carousel-wrapper {
-        margin: 0 20px;
-    }
-    .carousel-btn {
-        width: 28px;
-        height: 28px;
-        font-size: 14px;
-    }
-    .prev-btn {
-        left: -5px;
-    }
-    .next-btn {
-        right: -5px;
-    }
-    .testimonial-carousel-container {
-        max-width: 95%;
-    }
-    .testimonial-item {
-        padding: 15px 20px;
-        font-size: 14px;
-    }
     .nav-top {
-        padding: 8px 16px;
-        font-size: 11px;
+        flex-wrap: nowrap;
+        padding: 8px 24px;
     }
+    
+    .nav-date {
+        font-size: 12px;
+        max-width: none;
+        white-space: normal;
+    }
+    
     .nav-center-text {
-        font-size: 11px;
-        padding: 3px 10px;
-    }
-    .cart-link {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        order: 0;
         font-size: 12px;
     }
+    
+    .cart-link {
+        font-size: 13px;
+    }
+    
+    .masthead {
+        padding: 28px 24px 16px;
+    }
+    
+    .site-title {
+        font-size: 40px;
+    }
+    
+    .site-subtitle {
+        font-size: 13px;
+    }
+    
+    .nav-menu {
+        gap: 24px;
+        padding: 12px 24px;
+    }
+    
+    .nav-menu a {
+        font-size: 12px;
+    }
+    
+    .hero {
+        padding: 30px 0 35px;
+    }
+    
+    .hero-tagline {
+        font-size: 9px;
+        margin-bottom: 10px;
+    }
+    
+    .hero-title {
+        font-size: 26px;
+        margin-bottom: 10px;
+    }
+    
+    .hero-description {
+        font-size: 12px;
+        max-width: 550px;
+    }
+    
+    .featured-article {
+        padding: 40px 0;
+    }
+    
+    .article-label {
+        font-size: 10px;
+    }
+    
+    .article-title {
+        font-size: 30px;
+    }
+    
+    .article-subtitle {
+        font-size: 15px;
+    }
+    
+    .article-body {
+        font-size: 15px;
+    }
+    
+    .carousel-container {
+        overflow: visible;
+    }
+    
+    .carousel-wrapper {
+        overflow: visible;
+        scroll-snap-type: none;
+        margin: 0 35px;
+        padding-bottom: 0;
+    }
+    
+    .carousel-track {
+        transition: transform 0.5s ease;
+        scroll-snap-type: none;
+        gap: 20px;
+    }
+    
+    .carousel-item {
+        flex: 0 0 calc(33.333% - 14px);
+        scroll-snap-align: none;
+        padding: 18px;
+    }
+    
+    .carousel-item .category {
+        font-size: 10px;
+    }
+    
+    .carousel-item h3 {
+        font-size: 18px;
+    }
+    
+    .carousel-btn {
+        display: flex;
+    }
+    
+    .testimonial-wrapper {
+        overflow: visible;
+        scroll-snap-type: none;
+        margin: 0 30px;
+    }
+    
+    .testimonial-track {
+        transition: transform 0.5s ease;
+        scroll-snap-type: none;
+    }
+    
+    .testimonial-item {
+        flex: 0 0 100%;
+        scroll-snap-align: none;
+        padding: 20px 30px;
+        font-size: 16px;
+    }
+    
+    .products-section, .more-products {
+        padding: 40px 0;
+    }
+    
+    .section-heading {
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+    
+    .products-columns {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+    
+    .product-card {
+        padding: 18px;
+    }
+    
+    .footer {
+        padding: 40px 0 20px;
+    }
+    
+    .footer-content {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        text-align: left;
+        gap: 25px;
+    }
+    
+    .footer-section ul {
+        text-align: left;
+    }
+    
     .page-content .back-button {
-        top: 12px;
-        right: 12px;
-        padding: 4px 10px;
-        font-size: 11px;
+        top: 20px;
+        right: 20px;
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+    
+    .cart-sidebar {
+        width: 380px;
+        right: -380px;
+    }
+    
+    .modal-content {
+        padding: 24px;
     }
 }
 
-@media (max-width: 480px) {
-    .site-title {
-        font-size: 28px;
-    }
-    .hero-title {
-        font-size: 20px;
-    }
-    .hero {
-        padding: 20px 0 25px;
-    }
-    .container {
-        padding: 0 16px;
-    }
-    .product-card {
-        padding: 16px;
-    }
-    .nav-menu {
-        gap: 16px;
-    }
-    .nav-menu a {
-        font-size: 10px;
-    }
-    .page-content .back-button {
-        top: 10px;
-        right: 10px;
-        padding: 3px 8px;
-        font-size: 10px;
+@media (min-width: 1024px) {
+    .carousel-item {
+        flex: 0 0 calc(33.333% - 14px);
     }
 }
