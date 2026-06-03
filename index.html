@@ -15,6 +15,7 @@
         <div class="nav-date" id="current-date"></div>
         <div class="nav-center-text" id="buyNowBtn">BUY NOW!</div>
         <div class="nav-right">
+            <button id="search-toggle-btn" class="search-toggle" aria-label="Search">🔍</button>
             <a href="#" id="cart-icon" class="cart-link">
                 <span class="cart-icon">🛒</span> Cart (<span id="cart-count">0</span>)
             </a>
@@ -24,6 +25,11 @@
                 <a href="#" id="logout-link" style="display:none;" class="account-link">Logout</a>
             </div>
         </div>
+    </div>
+    <!-- Search input (hidden by default, toggled by search button) -->
+    <div id="search-container" class="search-container" style="display: none;">
+        <input type="text" id="search-input" placeholder="Search products by name..." autocomplete="off">
+        <button id="search-clear" class="search-clear">✕</button>
     </div>
     <div class="masthead">
         <h1 class="site-title">ELEVATE SHOP</h1>
@@ -121,7 +127,7 @@
     </section>
 </div>
 
-<!-- ==================== FOOTER PAGE CONTENT (detailed) ==================== -->
+<!-- ==================== FOOTER PAGE CONTENT ==================== -->
 <div id="page-privacy" class="page-content" style="display: none;">
     <button class="back-button" onclick="window.showMainContent?.()">← Go Back</button>
     <div class="container">
@@ -211,8 +217,7 @@
     </div>
 </footer>
 
-<!-- ==================== ALL MODALS (fully written) ==================== -->
-
+<!-- ==================== MODALS ==================== -->
 <!-- Cart Sidebar -->
 <div id="cart-sidebar" class="cart-sidebar">
     <div class="cart-header">
@@ -280,7 +285,7 @@
     </div>
 </div>
 
-<!-- Product Detail Modal (drop cap) -->
+<!-- Product Detail Modal -->
 <div id="detail-modal" class="modal detail-modal">
     <div class="modal-content modal-large">
         <button class="modal-close" id="close-detail-modal">&times;</button>
@@ -323,7 +328,7 @@
     </div>
 </div>
 
-<!-- Account Modal (Sign Up / Log In) -->
+<!-- Account Modal -->
 <div id="account-modal" class="modal account-modal">
     <div class="modal-content">
         <button class="modal-close" id="close-account-modal">&times;</button>
