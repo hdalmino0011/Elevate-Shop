@@ -1,8 +1,7 @@
-// ElevateShop – Complete JavaScript
-// No “demo” text. Uses localStorage to simulate purchase history.
-// In production, replace localStorage with backend API calls.
+// ElevateShop – Complete JavaScript (final)
+// Carousel always shows all products. Filtering only affects extra grid.
 
-// ========== PRODUCT DATA (at least 3 per category) ==========
+// ========== PRODUCT DATA ==========
 const allProductsData = [
     // Financial (3)
     { id: 1, name: "Financial Freedom Blueprint", category: "financial", price: 47, description: "A comprehensive digital course and workbook designed to transform your relationship with money. From budgeting basics to advanced investing strategies.", fullDescription: "The Financial Freedom Blueprint is a complete system for building lasting wealth. This comprehensive digital guide walks you through every step of the financial journey: from understanding your current financial situation, creating a budget that actually works, eliminating high-interest debt, building an emergency fund, investing in stocks and index funds, real estate investing basics, creating multiple income streams, and finally achieving complete financial independence. Each section includes worksheets, calculators, and real-world examples. The course draws on behavioral economics research and interviews with self-made millionaires. You'll gain lifetime access to updates and bonus materials.\n\nThousands of students have used this blueprint to pay off debt, save for retirement, and build passive income streams that continue to grow over time. Whether you're a complete beginner or already have some financial knowledge, this course meets you where you are and takes you to where you want to be." },
@@ -61,7 +60,7 @@ function updateCurrentDate() {
     }
 }
 
-// ========== PURCHASE HISTORY (localStorage simulation) ==========
+// ========== PURCHASE HISTORY (localStorage) ==========
 function getPurchaseHistory() {
     const stored = localStorage.getItem('elevateShop_purchases');
     return stored ? JSON.parse(stored) : [];
@@ -104,7 +103,6 @@ function addToCart(product) {
 function removeFromCart(productId) {
     cart = cart.filter(item => item.id !== productId);
     updateCartUI();
-    // Re-check duplicates in checkout modal if open
     const errorDiv = document.getElementById('payment-error');
     if (errorDiv && errorDiv.style.display === 'block') {
         validatePurchaseDuplicates();
@@ -146,8 +144,7 @@ function updateCartUI() {
 }
 
 function showToastMessage(msg, type) {
-    // Simple alert for now; can be replaced with a nice toast later
-    alert(msg);
+    alert(msg); // Simple alert; can be improved later
 }
 
 // ========== CART CONFIRMATION MODAL ==========
@@ -163,7 +160,6 @@ function showCartConfirmModal(product, onConfirm) {
     const handlerCheckout = () => {
         confirmModal.style.display = 'none';
         if (onConfirm) onConfirm(true);
-        // Open cart sidebar
         const cartSidebar = document.getElementById('cart-sidebar');
         if (cartSidebar) cartSidebar.classList.add('open');
         cleanup();
@@ -199,7 +195,6 @@ function handleAddToCart(e) {
     if (addToCart(product)) {
         showCartConfirmModal(product, (proceedToCheckout) => {
             if (!proceedToCheckout) {
-                // Just give visual feedback
                 const btn = e.currentTarget;
                 const originalText = btn.textContent;
                 btn.textContent = "Added!";
@@ -232,15 +227,9 @@ function validatePurchaseDuplicates() {
         if (errorDiv) {
             errorDiv.innerHTML = errorHtml;
             errorDiv.style.display = 'block';
-            // Attach remove links
             document.querySelectorAll('.remove-duplicate').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const productName = link.getAttribute('data-name');
-                    const productToRemove = cart.find(item => item.name === productName);
-                    if (productToRemove) removeFromCart(productToRemove.id);
-                    validatePurchaseDuplicates(); // re-check
-                });
+                link.removeEventListener('click', duplicateRemoveHandler);
+                link.addEventListener('click', duplicateRemoveHandler);
             });
         }
         return false;
@@ -250,28 +239,34 @@ function validatePurchaseDuplicates() {
     }
 }
 
-// ========== FILTERING (no alerts, scroll) ==========
+function duplicateRemoveHandler(e) {
+    e.preventDefault();
+    const productName = e.target.getAttribute('data-name');
+    const productToRemove = cart.find(item => item.name === productName);
+    if (productToRemove) removeFromCart(productToRemove.id);
+    validatePurchaseDuplicates();
+}
+
+// ========== FILTERING (only affects extra grid) ==========
 function filterProducts(category) {
     currentFilter = category;
     document.querySelectorAll('.filter-btn, .filter-link').forEach(btn => {
         if (btn.dataset.filter === category) btn.classList.add('active');
         else btn.classList.remove('active');
     });
-    renderFilteredCarousel();
+    // ONLY update the extra product grid – carousel remains unchanged
     renderFilteredExtraGrid();
+    // Scroll to products section
     const productsSection = document.querySelector('.products-section');
     if (productsSection) productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-function renderFilteredCarousel() {
+// Carousel: always show all products (never filtered)
+function buildProductCarousel() {
     const track = document.getElementById('product-carousel-track');
     if (!track) return;
-    let filteredProducts = allProductsData;
-    if (currentFilter !== 'all') {
-        filteredProducts = allProductsData.filter(p => p.category === currentFilter);
-    }
     track.innerHTML = '';
-    filteredProducts.forEach(p => {
+    allProductsData.forEach(p => {
         const item = document.createElement('div');
         item.className = 'carousel-item';
         item.innerHTML = `
@@ -287,11 +282,6 @@ function renderFilteredCarousel() {
         track.appendChild(item);
     });
     attachCarouselItemEvents();
-    if (window.productCarousel && window.innerWidth >= 768) {
-        window.productCarousel.currentIndex = 0;
-        window.productCarousel.update();
-        window.productCarousel.itemCount = filteredProducts.length;
-    }
 }
 
 function renderFilteredExtraGrid() {
@@ -388,7 +378,7 @@ class ProductCarousel {
         if (this.currentIndex < this.itemCount - this.itemsPerView) {
             this.currentIndex++;
         } else {
-            this.currentIndex = 0; // infinite loop
+            this.currentIndex = 0; // infinite loop: go to first
         }
         this.update();
         this.resetAuto();
@@ -398,7 +388,7 @@ class ProductCarousel {
         if (this.currentIndex > 0) {
             this.currentIndex--;
         } else {
-            this.currentIndex = this.itemCount - this.itemsPerView; // infinite loop
+            this.currentIndex = this.itemCount - this.itemsPerView; // infinite loop: go to last
         }
         this.update();
         this.resetAuto();
@@ -431,13 +421,6 @@ class ProductCarousel {
             this.boundNext = () => this.next();
             nextBtn.addEventListener('click', this.boundNext);
         }
-    }
-    refreshItems() {
-        this.items = Array.from(this.track.children);
-        this.itemCount = this.items.length;
-        this.currentIndex = 0;
-        this.update();
-        this.resetAuto();
     }
 }
 
@@ -550,8 +533,8 @@ function showPage(pageId) {
 // ========== INITIAL RENDERING ==========
 document.addEventListener('DOMContentLoaded', () => {
     updateCurrentDate();
-    renderFilteredCarousel();
-    renderFilteredExtraGrid();
+    buildProductCarousel();          // carousel never filters
+    renderFilteredExtraGrid();       // extra grid respects filter
     buildTestimonialCarousel();
     updateCartUI();
     showMainContent();
@@ -567,7 +550,6 @@ document.querySelectorAll('.add-to-cart').forEach(btn => {
         const name = btn.dataset.name;
         const price = parseFloat(btn.dataset.price);
         const featured = { id: 999, name, price, quantity: 1 };
-        // Use same add logic
         if (addToCart(featured)) {
             showCartConfirmModal(featured, (proceed) => {
                 if (proceed) {
@@ -608,10 +590,8 @@ document.getElementById('payment-form').addEventListener('submit', (e) => {
         return;
     }
     if (!validatePurchaseDuplicates()) {
-        // Error already shown
         return;
     }
-    // No duplicates – simulate successful purchase
     const productIds = cart.map(item => item.id);
     savePurchase(email, productIds);
     alert('Purchase completed successfully! A confirmation email has been sent.');
@@ -647,7 +627,7 @@ if (policyFooterLink) {
 document.getElementById('close-policy').addEventListener('click', () => policyModal.style.display = 'none');
 window.addEventListener('click', (e) => { if (e.target === policyModal) policyModal.style.display = 'none'; });
 
-// Filter links
+// Filter links (no alerts) – only affect extra grid
 document.querySelectorAll('.filter-btn, .filter-link').forEach(btn => {
     if (btn.dataset.filter && btn.dataset.filter !== 'policy') {
         btn.addEventListener('click', (e) => {
