@@ -1,5 +1,5 @@
 // ElevateShop – Complete JavaScript
-// Includes: search, account, cart, checkout, infinite carousel, filtering, etc.
+// Includes: search (with clear & auto‑scroll), account, cart, infinite carousel, etc.
 
 // ========== PRODUCT DATA (prices $19.99 – $32.99) ==========
 const allProductsData = [
@@ -133,10 +133,15 @@ function updateSearch(term) {
     currentSearchTerm = term;
     renderFilteredCarousel();
     renderFilteredExtraGrid();
-    // Also reset carousel position if needed
+    // Reset carousel position if needed
     if (window.productCarousel && window.innerWidth >= 768) {
         window.productCarousel.currentIndex = 0;
         window.productCarousel.update();
+    }
+    // Auto-scroll to products section
+    const productsSection = document.getElementById('products-section');
+    if (productsSection) {
+        productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 }
 
