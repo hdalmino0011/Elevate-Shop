@@ -1,5 +1,6 @@
 // ElevateShop – Complete JavaScript
-// Colors: masthead red-brown #942222 | hero brown #895129
+// No “demo” text. Uses localStorage to simulate purchase history.
+// In production, replace localStorage with backend API calls.
 
 // ========== PRODUCT DATA (at least 3 per category) ==========
 const allProductsData = [
@@ -21,23 +22,17 @@ const allProductsData = [
     { id: 12, name: "Advanced Negotiation Tactics", category: "business", price: 39, description: "Learn the psychological principles behind effective negotiation.", fullDescription: "Advanced Negotiation Tactics reveals the psychological frameworks used by world-class negotiators. Topics include: anchoring, framing, mirroring, labeling, calibrated questions, handling difficult people, and closing the deal. Includes real-world case studies and role-playing exercises. This course is used by Fortune 500 companies and top lawyers to win deals and increase profits.\n\nYou'll learn how to prepare for any negotiation, read the other party's motivations, and achieve outcomes that satisfy both sides while maximizing your own value. The techniques taught here have been refined over decades of research and practice." }
 ];
 
-// Extra products for the "Complete Product Collection" grid (also at least 3 per category)
 const extraProductsData = [
-    // Business
     { id: 13, name: "Influencer Growth Blueprint", category: "business", price: 44, description: "Turn your personal brand into a profitable business.", fullDescription: "Step-by-step guide to building a loyal audience, negotiating brand deals, and monetizing your influence across platforms." },
     { id: 14, name: "Startup Financial Modeling", category: "business", price: 67, description: "Master financial projections for startups.", fullDescription: "Learn to build realistic financial models, forecast revenue, manage cash flow, and impress investors with this comprehensive course." },
-    // Financial
     { id: 15, name: "Stock Market Investing 101", category: "financial", price: 39, description: "Understand stocks, ETFs, and building a diversified portfolio.", fullDescription: "A beginner-friendly guide to stock market investing. Learn how to research stocks, manage risk, and create long-term wealth through compounding." },
     { id: 16, name: "Budgeting That Works", category: "financial", price: 19, description: "Practical budgeting system to save money and reduce stress.", fullDescription: "A downloadable workbook and video course that helps you create a personalized budget, track expenses, and achieve your savings goals." },
-    // Personal
     { id: 17, name: "Emotional Intelligence Mastery", category: "personal", price: 27, description: "Develop self-awareness, empathy, and relationship skills.", fullDescription: "Learn to recognize and manage your emotions, communicate effectively, and build stronger personal and professional relationships." },
     { id: 18, name: "Sleep Optimization Guide", category: "personal", price: 15, description: "Science-based techniques for deeper, more restorative sleep.", fullDescription: "Discover how to improve sleep quality, boost energy, and enhance mental clarity with simple, evidence-based changes to your nightly routine." },
-    // Motivational
     { id: 19, name: "Daily Gratitude Journal", category: "motivational", price: 12, description: "A 90-day guided journal to cultivate gratitude and positivity.", fullDescription: "Daily prompts and reflections to rewire your brain for happiness, reduce stress, and improve mental well-being." },
     { id: 20, name: "Public Speaking Confidence", category: "motivational", price: 34, description: "Overcome fear and deliver powerful presentations.", fullDescription: "Video course with practical exercises to conquer stage fright, structure your message, and speak with authority and impact." }
 ];
 
-// Testimonials (unchanged)
 const testimonials = [
     { text: "These products completely changed how I think about money and my potential. The Financial Freedom Blueprint alone helped me pay off $18,000 in debt.", author: "Marcus T., Customer" },
     { text: "The Mindset Reset Program rewired my thinking. I've never felt more confident and capable. Highly recommended!", author: "Sarah J., Entrepreneur" },
@@ -66,71 +61,54 @@ function updateCurrentDate() {
     }
 }
 
-// ========== CART CONFIRMATION MODAL ==========
-let pendingAddToCartProduct = null;
-
-function showCartConfirmModal(product, callbackAfterConfirm) {
-    pendingAddToCartProduct = product;
-    const confirmModal = document.getElementById('cart-confirm-modal');
-    if (confirmModal) confirmModal.style.display = 'flex';
-
-    // Remove previous listeners to avoid duplicates
-    const confirmCheckout = document.getElementById('confirm-checkout');
-    const confirmContinue = document.getElementById('confirm-continue');
-    const closeConfirm = document.getElementById('close-confirm');
-
-    const handlerCheckout = () => {
-        confirmModal.style.display = 'none';
-        if (callbackAfterConfirm) callbackAfterConfirm(true);
-        // Open cart sidebar
-        const cartSidebar = document.getElementById('cart-sidebar');
-        if (cartSidebar) cartSidebar.classList.add('open');
-        pendingAddToCartProduct = null;
-        cleanup();
-    };
-    const handlerContinue = () => {
-        confirmModal.style.display = 'none';
-        if (callbackAfterConfirm) callbackAfterConfirm(false);
-        pendingAddToCartProduct = null;
-        cleanup();
-    };
-    const handlerClose = () => {
-        confirmModal.style.display = 'none';
-        pendingAddToCartProduct = null;
-        cleanup();
-    };
-
-    function cleanup() {
-        confirmCheckout.removeEventListener('click', handlerCheckout);
-        confirmContinue.removeEventListener('click', handlerContinue);
-        closeConfirm.removeEventListener('click', handlerClose);
-    }
-
-    confirmCheckout.addEventListener('click', handlerCheckout);
-    confirmContinue.addEventListener('click', handlerContinue);
-    closeConfirm.addEventListener('click', handlerClose);
+// ========== PURCHASE HISTORY (localStorage simulation) ==========
+function getPurchaseHistory() {
+    const stored = localStorage.getItem('elevateShop_purchases');
+    return stored ? JSON.parse(stored) : [];
 }
 
-// ========== CART LOGIC (with confirmation modal) ==========
-function handleAddToCart(e) {
-    const id = parseInt(e.currentTarget.dataset.id);
-    let product = allProductsData.find(p => p.id === id) || extraProductsData.find(p => p.id === id);
-    if (!product) return;
+function savePurchase(email, productIds) {
+    const history = getPurchaseHistory();
+    history.push({ email, productIds, timestamp: Date.now() });
+    localStorage.setItem('elevateShop_purchases', JSON.stringify(history));
+}
 
-    showCartConfirmModal(product, (proceedToCheckout) => {
-        const existing = cart.find(item => item.id === product.id);
-        if (existing) existing.quantity += 1;
-        else cart.push({ ...product, quantity: 1 });
-        updateCartUI();
+function hasPurchased(email, productId) {
+    const history = getPurchaseHistory();
+    return history.some(entry => entry.email === email && entry.productIds.includes(productId));
+}
 
-        if (!proceedToCheckout) {
-            // Optional: small visual feedback
-            const btn = e.currentTarget;
-            const originalText = btn.textContent;
-            btn.textContent = "Added!";
-            setTimeout(() => { btn.textContent = originalText; }, 800);
+function getPurchasedProductsForEmail(email, productIdsInCart) {
+    const history = getPurchaseHistory();
+    const purchased = [];
+    for (const id of productIdsInCart) {
+        if (history.some(entry => entry.email === email && entry.productIds.includes(id))) {
+            purchased.push(id);
         }
-    });
+    }
+    return purchased;
+}
+
+// ========== CART LOGIC (no duplicate products in cart) ==========
+function addToCart(product) {
+    const existing = cart.find(item => item.id === product.id);
+    if (existing) {
+        showToastMessage("This product is already in your cart.", "warning");
+        return false;
+    }
+    cart.push({ ...product, quantity: 1 });
+    updateCartUI();
+    return true;
+}
+
+function removeFromCart(productId) {
+    cart = cart.filter(item => item.id !== productId);
+    updateCartUI();
+    // Re-check duplicates in checkout modal if open
+    const errorDiv = document.getElementById('payment-error');
+    if (errorDiv && errorDiv.style.display === 'block') {
+        validatePurchaseDuplicates();
+    }
 }
 
 function updateCartUI() {
@@ -162,10 +140,114 @@ function updateCartUI() {
     document.querySelectorAll('.cart-item-remove').forEach(btn => {
         btn.addEventListener('click', () => {
             const id = parseInt(btn.dataset.id);
-            cart = cart.filter(i => i.id !== id);
-            updateCartUI();
+            removeFromCart(id);
         });
     });
+}
+
+function showToastMessage(msg, type) {
+    // Simple alert for now; can be replaced with a nice toast later
+    alert(msg);
+}
+
+// ========== CART CONFIRMATION MODAL ==========
+function showCartConfirmModal(product, onConfirm) {
+    const confirmModal = document.getElementById('cart-confirm-modal');
+    if (!confirmModal) return;
+    confirmModal.style.display = 'flex';
+
+    const checkoutBtn = document.getElementById('confirm-checkout');
+    const continueBtn = document.getElementById('confirm-continue');
+    const closeBtn = document.getElementById('close-confirm');
+
+    const handlerCheckout = () => {
+        confirmModal.style.display = 'none';
+        if (onConfirm) onConfirm(true);
+        // Open cart sidebar
+        const cartSidebar = document.getElementById('cart-sidebar');
+        if (cartSidebar) cartSidebar.classList.add('open');
+        cleanup();
+    };
+    const handlerContinue = () => {
+        confirmModal.style.display = 'none';
+        if (onConfirm) onConfirm(false);
+        cleanup();
+    };
+    const handlerClose = () => {
+        confirmModal.style.display = 'none';
+        if (onConfirm) onConfirm(false);
+        cleanup();
+    };
+
+    function cleanup() {
+        checkoutBtn.removeEventListener('click', handlerCheckout);
+        continueBtn.removeEventListener('click', handlerContinue);
+        closeBtn.removeEventListener('click', handlerClose);
+    }
+
+    checkoutBtn.addEventListener('click', handlerCheckout);
+    continueBtn.addEventListener('click', handlerContinue);
+    closeBtn.addEventListener('click', handlerClose);
+}
+
+// ========== ADD TO CART HANDLER ==========
+function handleAddToCart(e) {
+    const id = parseInt(e.currentTarget.dataset.id);
+    let product = allProductsData.find(p => p.id === id) || extraProductsData.find(p => p.id === id);
+    if (!product) return;
+
+    if (addToCart(product)) {
+        showCartConfirmModal(product, (proceedToCheckout) => {
+            if (!proceedToCheckout) {
+                // Just give visual feedback
+                const btn = e.currentTarget;
+                const originalText = btn.textContent;
+                btn.textContent = "Added!";
+                setTimeout(() => { btn.textContent = originalText; }, 800);
+            }
+        });
+    }
+}
+
+// ========== CHECKOUT MODAL & DUPLICATE CHECK ==========
+function validatePurchaseDuplicates() {
+    const email = document.getElementById('email')?.value.trim();
+    const errorDiv = document.getElementById('payment-error');
+    if (!email || cart.length === 0) {
+        if (errorDiv) errorDiv.style.display = 'none';
+        return true;
+    }
+    const productIds = cart.map(item => item.id);
+    const purchasedIds = getPurchasedProductsForEmail(email, productIds);
+    if (purchasedIds.length > 0) {
+        const purchasedProducts = purchasedIds.map(id => {
+            const p = allProductsData.find(p => p.id === id) || extraProductsData.find(p => p.id === id);
+            return p ? p.name : "Product";
+        });
+        let errorHtml = `<strong>You have already purchased the following product(s) with this email:</strong><ul>`;
+        purchasedProducts.forEach(name => {
+            errorHtml += `<li>${name} - <a href="#" class="remove-duplicate" data-name="${name}">Remove from cart</a></li>`;
+        });
+        errorHtml += `</ul><p>Please remove them to proceed.</p>`;
+        if (errorDiv) {
+            errorDiv.innerHTML = errorHtml;
+            errorDiv.style.display = 'block';
+            // Attach remove links
+            document.querySelectorAll('.remove-duplicate').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const productName = link.getAttribute('data-name');
+                    const productToRemove = cart.find(item => item.name === productName);
+                    if (productToRemove) removeFromCart(productToRemove.id);
+                    validatePurchaseDuplicates(); // re-check
+                });
+            });
+        }
+        return false;
+    } else {
+        if (errorDiv) errorDiv.style.display = 'none';
+        return true;
+    }
 }
 
 // ========== FILTERING (no alerts, scroll) ==========
@@ -177,7 +259,6 @@ function filterProducts(category) {
     });
     renderFilteredCarousel();
     renderFilteredExtraGrid();
-    // Scroll to products section
     const productsSection = document.querySelector('.products-section');
     if (productsSection) productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
@@ -206,7 +287,6 @@ function renderFilteredCarousel() {
         track.appendChild(item);
     });
     attachCarouselItemEvents();
-    // Reset carousel position for desktop
     if (window.productCarousel && window.innerWidth >= 768) {
         window.productCarousel.currentIndex = 0;
         window.productCarousel.update();
@@ -262,7 +342,7 @@ function showProductDetail(e) {
     document.getElementById('detail-modal').style.display = 'flex';
 }
 
-// ========== CAROUSEL (infinite loop) ==========
+// ========== CAROUSEL CLASS (infinite loop) ==========
 class ProductCarousel {
     constructor(trackId, itemsPerView, autoInterval = 4000) {
         this.track = document.getElementById(trackId);
@@ -308,7 +388,7 @@ class ProductCarousel {
         if (this.currentIndex < this.itemCount - this.itemsPerView) {
             this.currentIndex++;
         } else {
-            this.currentIndex = 0; // infinite loop: go to first
+            this.currentIndex = 0; // infinite loop
         }
         this.update();
         this.resetAuto();
@@ -318,7 +398,7 @@ class ProductCarousel {
         if (this.currentIndex > 0) {
             this.currentIndex--;
         } else {
-            this.currentIndex = this.itemCount - this.itemsPerView; // infinite loop: go to last
+            this.currentIndex = this.itemCount - this.itemsPerView; // infinite loop
         }
         this.update();
         this.resetAuto();
@@ -487,21 +567,14 @@ document.querySelectorAll('.add-to-cart').forEach(btn => {
         const name = btn.dataset.name;
         const price = parseFloat(btn.dataset.price);
         const featured = { id: 999, name, price, quantity: 1 };
-        const fakeEvent = { currentTarget: { dataset: { id: 999 } } };
-        // We'll reuse handleAddToCart logic, but need to pass product
-        const existing = cart.find(i => i.id === 999);
-        if (existing) existing.quantity++;
-        else cart.push(featured);
-        updateCartUI();
-        // Show confirmation modal
-        showCartConfirmModal(featured, (proceedToCheckout) => {
-            if (!proceedToCheckout) {
-                // nothing extra
-            } else {
-                const cartSidebar = document.getElementById('cart-sidebar');
-                if (cartSidebar) cartSidebar.classList.add('open');
-            }
-        });
+        // Use same add logic
+        if (addToCart(featured)) {
+            showCartConfirmModal(featured, (proceed) => {
+                if (proceed) {
+                    document.getElementById('cart-sidebar').classList.add('open');
+                }
+            });
+        }
     });
 });
 
@@ -525,16 +598,30 @@ document.getElementById('checkout-btn').addEventListener('click', () => {
 });
 document.getElementById('close-payment').addEventListener('click', () => paymentModal.style.display = 'none');
 window.addEventListener('click', (e) => { if (e.target === paymentModal) paymentModal.style.display = 'none'; });
+
+// Payment form submission with duplicate check
 document.getElementById('payment-form').addEventListener('submit', (e) => {
     e.preventDefault();
     const email = document.getElementById('email')?.value.trim();
-    if (!email) { alert('Please enter your email address.'); return; }
-    alert('Payment processed successfully! (Demo) In production, integrate Stripe. A confirmation email will be sent to ' + email);
+    if (!email) {
+        alert('Please enter your email address.');
+        return;
+    }
+    if (!validatePurchaseDuplicates()) {
+        // Error already shown
+        return;
+    }
+    // No duplicates – simulate successful purchase
+    const productIds = cart.map(item => item.id);
+    savePurchase(email, productIds);
+    alert('Purchase completed successfully! A confirmation email has been sent.');
     cart = [];
     updateCartUI();
     paymentModal.style.display = 'none';
     cartSidebar.classList.remove('open');
     e.target.reset();
+    const errorDiv = document.getElementById('payment-error');
+    if (errorDiv) errorDiv.style.display = 'none';
 });
 
 // Format card number
@@ -548,7 +635,7 @@ if (cardNumInput) {
     });
 }
 
-// Policy modal
+// Policy modal (footer link)
 const policyModal = document.getElementById('policy-modal');
 const policyFooterLink = document.getElementById('policy-link-footer');
 if (policyFooterLink) {
@@ -560,7 +647,7 @@ if (policyFooterLink) {
 document.getElementById('close-policy').addEventListener('click', () => policyModal.style.display = 'none');
 window.addEventListener('click', (e) => { if (e.target === policyModal) policyModal.style.display = 'none'; });
 
-// Filter links (no alerts)
+// Filter links
 document.querySelectorAll('.filter-btn, .filter-link').forEach(btn => {
     if (btn.dataset.filter && btn.dataset.filter !== 'policy') {
         btn.addEventListener('click', (e) => {
@@ -607,9 +694,10 @@ if (siteTitle) {
     });
 }
 
-// Expose refresh for carousel after filter
-window.refreshCarouselItems = () => {
-    if (window.productCarousel) {
-        window.productCarousel.refreshItems();
-    }
-};
+// Validate duplicates when email changes
+const emailInput = document.getElementById('email');
+if (emailInput) {
+    emailInput.addEventListener('input', () => {
+        validatePurchaseDuplicates();
+    });
+}
