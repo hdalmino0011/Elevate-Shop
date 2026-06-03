@@ -1,79 +1,21 @@
 // ElevateShop – Complete JavaScript
-// Brown color: #895129
-// Extended product descriptions (2-3 paragraphs) for better drop cap effect
+// Red-brown: #942222 | Dark brown: #895129
 
-// Product data (main carousel and static grid) with longer fullDescription
+// ========== PRODUCT DATA (extended descriptions) ==========
 const allProductsData = [
-    { 
-        id: 1, 
-        name: "Financial Freedom Blueprint", 
-        category: "financial", 
-        price: 47, 
-        description: "A comprehensive digital course and workbook designed to transform your relationship with money. From budgeting basics to advanced investing strategies.", 
-        fullDescription: "The Financial Freedom Blueprint is a complete system for building lasting wealth. This comprehensive digital guide walks you through every step of the financial journey: from understanding your current financial situation, creating a budget that actually works, eliminating high-interest debt, building an emergency fund, investing in stocks and index funds, real estate investing basics, creating multiple income streams, and finally achieving complete financial independence. Each section includes worksheets, calculators, and real-world examples. The course draws on behavioral economics research and interviews with self-made millionaires. You'll gain lifetime access to updates and bonus materials.\n\nThousands of students have used this blueprint to pay off debt, save for retirement, and build passive income streams that continue to grow over time. Whether you're a complete beginner or already have some financial knowledge, this course meets you where you are and takes you to where you want to be. The principles taught here have helped people from all walks of life transform their financial futures." 
-    },
-    { 
-        id: 2, 
-        name: "Mindset Reset Program", 
-        category: "personal", 
-        price: 37, 
-        description: "A 30-day guided program to rewire your thinking patterns, eliminate limiting beliefs, and unlock your peak performance potential.", 
-        fullDescription: "The Mindset Reset Program is a transformative 30-day journey that rewires the neural pathways holding you back from success. Each morning you'll receive a guided meditation and affirmation session. Throughout the day, you'll complete journaling exercises that uncover and challenge limiting beliefs. The program covers: identifying your core beliefs, understanding their origins, challenging their validity, installing empowering beliefs, maintaining momentum, and building permanent mindset shifts. Includes daily video lessons, PDF workbooks, audio recordings, and a private community forum for support and accountability.\n\nThousands have reported life-changing results within 30 days. Participants have overcome imposter syndrome, developed unshakable confidence, and achieved goals they once thought impossible. This is not just a course – it's a complete mental transformation system backed by neuroscience and proven psychological techniques. You will emerge with a new understanding of your own potential and the tools to keep growing forever." 
-    },
-    { 
-        id: 3, 
-        name: "Wealth Mindset Masterclass", 
-        category: "financial", 
-        price: 47, 
-        description: "Bridges psychology and finance to reveal hidden beliefs that drive financial outcomes.", 
-        fullDescription: "The Wealth Mindset Masterclass is an intensive deep-dive into the psychology of money and wealth creation. Drawing from behavioral economics, neuroscience, and interviews with 50+ self-made millionaires, this course reveals the hidden mental models that separate wealthy people from those who struggle financially. You'll discover: the psychology of scarcity vs. abundance, how to recognize and seize opportunities others miss, the role of risk tolerance in wealth building, delayed gratification and compounding, money scripts and belief systems, investment psychology, and the habits of the wealthy.\n\nIncludes 20+ video lessons, downloadable worksheets, case studies, and lifetime access to monthly bonus content. Students have reported doubling their income within six months, overcoming deep-seated fears around money, and developing a healthy, empowered relationship with wealth that benefits not only themselves but their families and communities. This masterclass is ideal for anyone who feels stuck in their financial progress despite earning a good income." 
-    },
-    { 
-        id: 4, 
-        name: "The Daily Motivation Handbook", 
-        category: "motivational", 
-        price: 19, 
-        description: "500+ powerful quotes from history's greatest minds to fuel your daily motivation.", 
-        fullDescription: "The Daily Motivation Handbook is a curated collection of 500+ quotes organized by 12 life themes: resilience, leadership, success, happiness, relationships, health, creativity, entrepreneurship, perseverance, self-improvement, purpose, and wisdom. Each quote includes context about the author and how to apply it to your life. This digital book is designed to be read one page per day, giving you daily inspiration and motivation.\n\nBeautiful PDF format with motivational artwork, perfect for digital devices or printing. Bonus: includes a 90-day daily challenge tracker and monthly planning template. Join thousands who start their day with these powerful reminders of human potential. Readers have used this handbook to build resilience during tough times, maintain focus on long-term goals, and find daily inspiration from history's greatest thinkers. It's the perfect companion for anyone seeking consistent motivation." 
-    },
-    { 
-        id: 5, 
-        name: "Entrepreneur's Success Toolkit", 
-        category: "business", 
-        price: 79, 
-        description: "Complete bundle of templates, checklists, and guides for aspiring entrepreneurs.", 
-        fullDescription: "The Entrepreneur's Success Toolkit is a complete business launch and scaling system in digital format. Includes 50+ ready-to-use templates covering: business plan templates, financial forecasting spreadsheets, marketing strategy frameworks, sales funnel diagrams, customer journey maps, email marketing sequences, social media content calendars, hiring and onboarding checklists, legal business structure guides, trademark and copyright basics, customer service protocols, and growth hacking strategies. All templates are editable and customizable for your specific business.\n\nThe toolkit draws from 20+ years of entrepreneurial experience and has helped 10,000+ businesses launch successfully. Includes video tutorials on how to use each template and lifetime updates. Whether you're starting your first side hustle or scaling an existing company, this toolkit provides the systems and frameworks you need to succeed without reinventing the wheel. Save hundreds of hours and avoid costly mistakes by using proven templates used by successful entrepreneurs worldwide." 
-    }
+    { id: 1, name: "Financial Freedom Blueprint", category: "financial", price: 47, description: "A comprehensive digital course and workbook designed to transform your relationship with money. From budgeting basics to advanced investing strategies.", fullDescription: "The Financial Freedom Blueprint is a complete system for building lasting wealth. This comprehensive digital guide walks you through every step of the financial journey: from understanding your current financial situation, creating a budget that actually works, eliminating high-interest debt, building an emergency fund, investing in stocks and index funds, real estate investing basics, creating multiple income streams, and finally achieving complete financial independence. Each section includes worksheets, calculators, and real-world examples. The course draws on behavioral economics research and interviews with self-made millionaires. You'll gain lifetime access to updates and bonus materials.\n\nThousands of students have used this blueprint to pay off debt, save for retirement, and build passive income streams that continue to grow over time. Whether you're a complete beginner or already have some financial knowledge, this course meets you where you are and takes you to where you want to be." },
+    { id: 2, name: "Mindset Reset Program", category: "personal", price: 37, description: "A 30-day guided program to rewire your thinking patterns, eliminate limiting beliefs, and unlock your peak performance potential.", fullDescription: "The Mindset Reset Program is a transformative 30-day journey that rewires the neural pathways holding you back from success. Each morning you'll receive a guided meditation and affirmation session. Throughout the day, you'll complete journaling exercises that uncover and challenge limiting beliefs. The program covers: identifying your core beliefs, understanding their origins, challenging their validity, installing empowering beliefs, maintaining momentum, and building permanent mindset shifts. Includes daily video lessons, PDF workbooks, audio recordings, and a private community forum for support and accountability.\n\nThousands have reported life-changing results within 30 days. Participants have overcome imposter syndrome, developed unshakable confidence, and achieved goals they once thought impossible. This is not just a course – it's a complete mental transformation system backed by neuroscience and proven psychological techniques." },
+    { id: 3, name: "Wealth Mindset Masterclass", category: "financial", price: 47, description: "Bridges psychology and finance to reveal hidden beliefs that drive financial outcomes.", fullDescription: "The Wealth Mindset Masterclass is an intensive deep-dive into the psychology of money and wealth creation. Drawing from behavioral economics, neuroscience, and interviews with 50+ self-made millionaires, this course reveals the hidden mental models that separate wealthy people from those who struggle financially. You'll discover: the psychology of scarcity vs. abundance, how to recognize and seize opportunities others miss, the role of risk tolerance in wealth building, delayed gratification and compounding, money scripts and belief systems, investment psychology, and the habits of the wealthy.\n\nIncludes 20+ video lessons, downloadable worksheets, case studies, and lifetime access to monthly bonus content. Students have reported doubling their income within six months, overcoming deep-seated fears around money, and developing a healthy, empowered relationship with wealth that benefits not only themselves but their families and communities." },
+    { id: 4, name: "The Daily Motivation Handbook", category: "motivational", price: 19, description: "500+ powerful quotes from history's greatest minds to fuel your daily motivation.", fullDescription: "The Daily Motivation Handbook is a curated collection of 500+ quotes organized by 12 life themes: resilience, leadership, success, happiness, relationships, health, creativity, entrepreneurship, perseverance, self-improvement, purpose, and wisdom. Each quote includes context about the author and how to apply it to your life. This digital book is designed to be read one page per day, giving you daily inspiration and motivation.\n\nBeautiful PDF format with motivational artwork, perfect for digital devices or printing. Bonus: includes a 90-day daily challenge tracker and monthly planning template. Join thousands who start their day with these powerful reminders of human potential. Readers have used this handbook to build resilience during tough times, maintain focus on long-term goals, and find daily inspiration from history's greatest thinkers." },
+    { id: 5, name: "Entrepreneur's Success Toolkit", category: "business", price: 79, description: "Complete bundle of templates, checklists, and guides for aspiring entrepreneurs.", fullDescription: "The Entrepreneur's Success Toolkit is a complete business launch and scaling system in digital format. Includes 50+ ready-to-use templates covering: business plan templates, financial forecasting spreadsheets, marketing strategy frameworks, sales funnel diagrams, customer journey maps, email marketing sequences, social media content calendars, hiring and onboarding checklists, legal business structure guides, trademark and copyright basics, customer service protocols, and growth hacking strategies. All templates are editable and customizable for your specific business.\n\nThe toolkit draws from 20+ years of entrepreneurial experience and has helped 10,000+ businesses launch successfully. Includes video tutorials on how to use each template and lifetime updates. Whether you're starting your first side hustle or scaling an existing company, this toolkit provides the systems and frameworks you need to succeed without reinventing the wheel." }
 ];
 
 const extraProductsData = [
-    { 
-        id: 6, 
-        name: "Social Media Marketing Masterclass", 
-        category: "business", 
-        price: 49, 
-        description: "Master Instagram, TikTok, LinkedIn, and Facebook marketing.", 
-        fullDescription: "Social Media Marketing Masterclass teaches you everything you need to dominate social media in 2025 and beyond. You'll learn algorithm secrets, content strategies, engagement tactics, paid advertising fundamentals, analytics interpretation, and conversion optimization across all major platforms. This course is updated monthly to reflect the latest platform changes.\n\nYou'll discover how to grow an engaged following without spending money on ads, create viral content consistently, and turn followers into paying customers. Includes case studies from successful brands, downloadable content calendars, and a private community for feedback and support. Perfect for business owners, marketers, and content creators who want to leverage social media for real results." 
-    },
-    { 
-        id: 7, 
-        name: "Advanced Negotiation Tactics", 
-        category: "business", 
-        price: 39, 
-        description: "Learn the psychological principles behind effective negotiation.", 
-        fullDescription: "Advanced Negotiation Tactics reveals the psychological frameworks used by world-class negotiators. Topics include: anchoring, framing, mirroring, labeling, calibrated questions, handling difficult people, and closing the deal. Includes real-world case studies and role-playing exercises. This course is used by Fortune 500 companies and top lawyers to win deals and increase profits.\n\nYou'll learn how to prepare for any negotiation, read the other party's motivations, and achieve outcomes that satisfy both sides while maximizing your own value. The techniques taught here have been refined over decades of research and practice. Whether you're negotiating a salary, a business deal, or a major purchase, these tactics will give you a decisive advantage." 
-    },
-    { 
-        id: 8, 
-        name: "Health & Wellness Blueprint", 
-        category: "personal", 
-        price: 29, 
-        description: "Complete system for optimal health including nutrition, exercise, sleep, and stress management.", 
-        fullDescription: "The Health & Wellness Blueprint is a comprehensive 90-day system covering: nutrition fundamentals, meal planning, exercise routines for all fitness levels, sleep optimization, stress reduction techniques, and habit formation. Includes meal plans, workout videos, and progress tracking tools. This blueprint is designed for busy professionals who want to transform their health without spending hours in the gym.\n\nYou'll learn how to fuel your body for energy and longevity, build sustainable exercise habits, improve sleep quality, and manage stress effectively. The program is backed by the latest research in health psychology and physiology. Thousands of users have reported losing weight, gaining energy, and feeling better than ever after completing the 90-day plan. No gym membership required – everything can be done at home with minimal equipment." 
-    }
+    { id: 6, name: "Social Media Marketing Masterclass", category: "business", price: 49, description: "Master Instagram, TikTok, LinkedIn, and Facebook marketing.", fullDescription: "Social Media Marketing Masterclass teaches you everything you need to dominate social media in 2025 and beyond. You'll learn algorithm secrets, content strategies, engagement tactics, paid advertising fundamentals, analytics interpretation, and conversion optimization across all major platforms. This course is updated monthly to reflect the latest platform changes.\n\nYou'll discover how to grow an engaged following without spending money on ads, create viral content consistently, and turn followers into paying customers. Includes case studies from successful brands, downloadable content calendars, and a private community for feedback and support." },
+    { id: 7, name: "Advanced Negotiation Tactics", category: "business", price: 39, description: "Learn the psychological principles behind effective negotiation.", fullDescription: "Advanced Negotiation Tactics reveals the psychological frameworks used by world-class negotiators. Topics include: anchoring, framing, mirroring, labeling, calibrated questions, handling difficult people, and closing the deal. Includes real-world case studies and role-playing exercises. This course is used by Fortune 500 companies and top lawyers to win deals and increase profits.\n\nYou'll learn how to prepare for any negotiation, read the other party's motivations, and achieve outcomes that satisfy both sides while maximizing your own value. The techniques taught here have been refined over decades of research and practice." },
+    { id: 8, name: "Health & Wellness Blueprint", category: "personal", price: 29, description: "Complete system for optimal health including nutrition, exercise, sleep, and stress management.", fullDescription: "The Health & Wellness Blueprint is a comprehensive 90-day system covering: nutrition fundamentals, meal planning, exercise routines for all fitness levels, sleep optimization, stress reduction techniques, and habit formation. Includes meal plans, workout videos, and progress tracking tools. This blueprint is designed for busy professionals who want to transform their health without spending hours in the gym.\n\nYou'll learn how to fuel your body for energy and longevity, build sustainable exercise habits, improve sleep quality, and manage stress effectively. The program is backed by the latest research in health psychology and physiology. Thousands of users have reported losing weight, gaining energy, and feeling better than ever after completing the 90-day plan." }
 ];
 
-// Testimonials for carousel
 const testimonials = [
     { text: "These products completely changed how I think about money and my potential. The Financial Freedom Blueprint alone helped me pay off $18,000 in debt.", author: "Marcus T., Customer" },
     { text: "The Mindset Reset Program rewired my thinking. I've never felt more confident and capable. Highly recommended!", author: "Sarah J., Entrepreneur" },
@@ -82,6 +24,7 @@ const testimonials = [
 ];
 
 let cart = [];
+let currentFilter = "all";
 
 // Helper functions
 function getCategoryName(cat) {
@@ -101,59 +44,36 @@ function updateCurrentDate() {
     }
 }
 
-// ========== FOOTER PAGE SWITCHING ==========
-const mainContentArea = document.getElementById('main-content-area');
-const allPageDivs = document.querySelectorAll('.page-content');
-
-function showMainContent() {
-    if (mainContentArea) mainContentArea.style.display = 'block';
-    allPageDivs.forEach(div => div.style.display = 'none');
-}
-
-// Expose globally for back button onclick
-window.showMainContent = showMainContent;
-
-function showPage(pageId) {
-    const targetPage = document.getElementById(`page-${pageId}`);
-    if (mainContentArea) mainContentArea.style.display = 'none';
-    allPageDivs.forEach(div => div.style.display = 'none');
-    if (targetPage) targetPage.style.display = 'block';
-}
-
-// Attach footer link events
-document.querySelectorAll('.footer-page-link').forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const pageId = link.getAttribute('data-page');
-        if (pageId) showPage(pageId);
+// ========== FILTERING (no alerts, scroll to products) ==========
+function filterProducts(category) {
+    currentFilter = category;
+    // Update active class on filter buttons
+    document.querySelectorAll('.filter-btn, .filter-link').forEach(btn => {
+        if (btn.dataset.filter === category) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
     });
-});
-
-// "ALL" link in top navigation returns to main content
-const allFilterLink = document.querySelector('.filter-link[data-filter="all"]');
-if (allFilterLink) {
-    allFilterLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        showMainContent();
-        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-        allFilterLink.classList.add('active');
-    });
+    // Re-render carousel and extra grid with filtered data
+    renderFilteredCarousel();
+    renderFilteredExtraGrid();
+    // Scroll to products section
+    const productsSection = document.querySelector('.products-section');
+    if (productsSection) {
+        productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 }
 
-// Clicking on logo also resets to main content
-const siteTitle = document.querySelector('.site-title');
-if (siteTitle) {
-    siteTitle.addEventListener('click', () => {
-        showMainContent();
-    });
-}
-
-// ========== BUILD PRODUCT CAROUSEL ==========
-function buildProductCarousel() {
+function renderFilteredCarousel() {
     const track = document.getElementById('product-carousel-track');
     if (!track) return;
+    let filteredProducts = allProductsData;
+    if (currentFilter !== 'all') {
+        filteredProducts = allProductsData.filter(p => p.category === currentFilter);
+    }
     track.innerHTML = '';
-    allProductsData.forEach(p => {
+    filteredProducts.forEach(p => {
         const item = document.createElement('div');
         item.className = 'carousel-item';
         item.innerHTML = `
@@ -161,33 +81,30 @@ function buildProductCarousel() {
             <h3>${p.name}</h3>
             <p class="description">${p.description.substring(0, 100)}...</p>
             <div class="price">$${p.price}</div>
-            <div style="display: flex; gap: 6px; margin-top: 12px;">
+            <div class="product-actions">
                 <button class="btn-small details-btn" data-id="${p.id}">Details</button>
                 <button class="btn-buy add-to-cart-btn" data-id="${p.id}">Buy Now</button>
             </div>
         `;
         track.appendChild(item);
     });
-    attachCarouselEvents();
+    attachCarouselItemEvents();
+    // Reset carousel position if desktop
+    if (window.productCarousel && window.innerWidth >= 768) {
+        window.productCarousel.currentIndex = 0;
+        window.productCarousel.update();
+    }
 }
 
-function attachCarouselEvents() {
-    document.querySelectorAll('#product-carousel-track .add-to-cart-btn').forEach(btn => {
-        btn.removeEventListener('click', handleAddToCart);
-        btn.addEventListener('click', handleAddToCart);
-    });
-    document.querySelectorAll('#product-carousel-track .details-btn').forEach(btn => {
-        btn.removeEventListener('click', showProductDetail);
-        btn.addEventListener('click', showProductDetail);
-    });
-}
-
-// ========== BUILD EXTRA PRODUCTS STATIC GRID ==========
-function renderExtraProducts() {
+function renderFilteredExtraGrid() {
     const container = document.getElementById('extra-list');
     if (!container) return;
+    let filteredExtras = extraProductsData;
+    if (currentFilter !== 'all') {
+        filteredExtras = extraProductsData.filter(p => p.category === currentFilter);
+    }
     container.innerHTML = '';
-    extraProductsData.forEach(p => {
+    filteredExtras.forEach(p => {
         const card = document.createElement('div');
         card.className = 'product-card';
         card.innerHTML = `
@@ -195,7 +112,7 @@ function renderExtraProducts() {
             <h3>${p.name}</h3>
             <p class="description">${p.description.substring(0, 100)}...</p>
             <div class="price">$${p.price}</div>
-            <div style="display: flex; gap: 6px; margin-top: 12px;">
+            <div class="product-actions">
                 <button class="btn-small details-btn" data-id="${p.id}">Details</button>
                 <button class="btn-buy add-to-cart-btn" data-id="${p.id}">Buy Now</button>
             </div>
@@ -205,28 +122,179 @@ function renderExtraProducts() {
     attachExtraEvents();
 }
 
-function attachExtraEvents() {
-    document.querySelectorAll('#extra-list .add-to-cart-btn').forEach(btn => {
-        btn.removeEventListener('click', handleAddToCart);
-        btn.addEventListener('click', handleAddToCart);
-    });
-    document.querySelectorAll('#extra-list .details-btn').forEach(btn => {
-        btn.removeEventListener('click', showProductDetail);
-        btn.addEventListener('click', showProductDetail);
-    });
+// ========== CAROUSEL (auto-slide on desktop, swipe on mobile) ==========
+class ProductCarousel {
+    constructor(trackId, itemsPerView, autoInterval = 4000) {
+        this.track = document.getElementById(trackId);
+        if (!this.track) return;
+        this.items = Array.from(this.track.children);
+        this.itemCount = this.items.length;
+        this.itemsPerView = itemsPerView;
+        this.currentIndex = 0;
+        this.autoInterval = null;
+        this.autoIntervalTime = autoInterval;
+        this.isDesktop = window.innerWidth >= 768;
+        this.init();
+    }
+    init() {
+        this.update();
+        if (this.isDesktop) {
+            this.startAuto();
+            this.setupButtons();
+        }
+        window.addEventListener('resize', () => this.handleResize());
+    }
+    handleResize() {
+        const wasDesktop = this.isDesktop;
+        this.isDesktop = window.innerWidth >= 768;
+        if (this.isDesktop && !wasDesktop) {
+            this.startAuto();
+            this.setupButtons();
+        } else if (!this.isDesktop && wasDesktop) {
+            this.stopAuto();
+            // remove button listeners if needed
+        }
+        this.update();
+    }
+    update() {
+        if (this.isDesktop) {
+            const shift = -this.currentIndex * (100 / this.itemsPerView);
+            this.track.style.transform = `translateX(${shift}%)`;
+        } else {
+            this.track.style.transform = 'none';
+        }
+    }
+    next() {
+        if (!this.isDesktop) return;
+        if (this.currentIndex < this.itemCount - this.itemsPerView) {
+            this.currentIndex++;
+        } else {
+            this.currentIndex = 0;
+        }
+        this.update();
+        this.resetAuto();
+    }
+    prev() {
+        if (!this.isDesktop) return;
+        if (this.currentIndex > 0) {
+            this.currentIndex--;
+        } else {
+            this.currentIndex = this.itemCount - this.itemsPerView;
+        }
+        this.update();
+        this.resetAuto();
+    }
+    startAuto() {
+        if (this.autoInterval) clearInterval(this.autoInterval);
+        if (this.isDesktop && this.itemCount > this.itemsPerView) {
+            this.autoInterval = setInterval(() => this.next(), this.autoIntervalTime);
+        }
+    }
+    stopAuto() {
+        if (this.autoInterval) {
+            clearInterval(this.autoInterval);
+            this.autoInterval = null;
+        }
+    }
+    resetAuto() {
+        this.startAuto();
+    }
+    setupButtons() {
+        const prevBtn = document.getElementById('product-prev');
+        const nextBtn = document.getElementById('product-next');
+        if (prevBtn) {
+            prevBtn.removeEventListener('click', this.boundPrev);
+            this.boundPrev = () => this.prev();
+            prevBtn.addEventListener('click', this.boundPrev);
+        }
+        if (nextBtn) {
+            nextBtn.removeEventListener('click', this.boundNext);
+            this.boundNext = () => this.next();
+            nextBtn.addEventListener('click', this.boundNext);
+        }
+    }
 }
 
-// ========== BUILD TESTIMONIAL CAROUSEL ==========
-function buildTestimonialCarousel() {
-    const track = document.getElementById('testimonial-track');
-    if (!track) return;
-    track.innerHTML = '';
-    testimonials.forEach(t => {
-        const item = document.createElement('div');
-        item.className = 'testimonial-item';
-        item.innerHTML = `<p>"${t.text}"</p><div class="testimonial-author">— ${t.author}</div>`;
-        track.appendChild(item);
-    });
+class TestimonialCarousel {
+    constructor(trackId, autoInterval = 5000) {
+        this.track = document.getElementById(trackId);
+        if (!this.track) return;
+        this.items = Array.from(this.track.children);
+        this.itemCount = this.items.length;
+        this.currentIndex = 0;
+        this.autoInterval = null;
+        this.autoIntervalTime = autoInterval;
+        this.isDesktop = window.innerWidth >= 768;
+        this.init();
+    }
+    init() {
+        this.update();
+        if (this.isDesktop) {
+            this.startAuto();
+            this.setupButtons();
+        }
+        window.addEventListener('resize', () => this.handleResize());
+    }
+    handleResize() {
+        const wasDesktop = this.isDesktop;
+        this.isDesktop = window.innerWidth >= 768;
+        if (this.isDesktop && !wasDesktop) {
+            this.startAuto();
+            this.setupButtons();
+        } else if (!this.isDesktop && wasDesktop) {
+            this.stopAuto();
+        }
+        this.update();
+    }
+    update() {
+        if (this.isDesktop) {
+            const shift = -this.currentIndex * 100;
+            this.track.style.transform = `translateX(${shift}%)`;
+        } else {
+            this.track.style.transform = 'none';
+        }
+    }
+    next() {
+        if (!this.isDesktop) return;
+        this.currentIndex = (this.currentIndex + 1) % this.itemCount;
+        this.update();
+        this.resetAuto();
+    }
+    prev() {
+        if (!this.isDesktop) return;
+        this.currentIndex = (this.currentIndex - 1 + this.itemCount) % this.itemCount;
+        this.update();
+        this.resetAuto();
+    }
+    startAuto() {
+        if (this.autoInterval) clearInterval(this.autoInterval);
+        if (this.isDesktop) {
+            this.autoInterval = setInterval(() => this.next(), this.autoIntervalTime);
+        }
+    }
+    stopAuto() {
+        if (this.autoInterval) {
+            clearInterval(this.autoInterval);
+            this.autoInterval = null;
+        }
+    }
+    resetAuto() {
+        this.startAuto();
+    }
+    setupButtons() {
+        const prevBtn = document.getElementById('testimonial-prev');
+        const nextBtn = document.getElementById('testimonial-next');
+        if (prevBtn) {
+            prevBtn.removeEventListener('click', this.boundPrev);
+            this.boundPrev = () => this.prev();
+            prevBtn.addEventListener('click', this.boundPrev);
+        }
+        if (nextBtn) {
+            nextBtn.removeEventListener('click', this.boundNext);
+            this.boundNext = () => this.next();
+            nextBtn.addEventListener('click', this.boundNext);
+        }
+    }
 }
 
 // ========== CART LOGIC ==========
@@ -269,30 +337,26 @@ function updateCartUI() {
     totalSpan.innerText = total.toFixed(2);
     document.querySelectorAll('.cart-item-remove').forEach(btn => {
         btn.addEventListener('click', () => {
-            cart = cart.filter(i => i.id !== parseInt(btn.dataset.id));
+            const id = parseInt(btn.dataset.id);
+            cart = cart.filter(i => i.id !== id);
             updateCartUI();
         });
     });
 }
 
-// ========== PRODUCT DETAIL MODAL WITH DROP CAP ==========
+// ========== PRODUCT DETAIL MODAL (drop cap black) ==========
 function showProductDetail(e) {
     const id = parseInt(e.currentTarget.dataset.id);
     let product = allProductsData.find(p => p.id === id) || extraProductsData.find(p => p.id === id);
     if (!product) return;
-    
     document.getElementById('detail-label').innerText = getCategoryName(product.category);
     document.getElementById('detail-title').innerText = product.name;
     document.getElementById('detail-subtitle').innerText = product.description;
-    
-    // Wrap description paragraphs for drop cap styling (preserve line breaks as <p> tags)
     const fullText = product.fullDescription || product.description;
     const paragraphs = fullText.split('\n\n').filter(p => p.trim().length > 0);
     const detailBody = document.getElementById('detail-body');
     detailBody.innerHTML = paragraphs.map(para => `<p>${para.trim()}</p>`).join('');
-    
     document.getElementById('detail-price').innerHTML = `$${product.price}`;
-    
     const addBtn = document.getElementById('detail-add-to-cart');
     addBtn.onclick = () => {
         const existing = cart.find(item => item.id === product.id);
@@ -304,7 +368,58 @@ function showProductDetail(e) {
     document.getElementById('detail-modal').style.display = 'flex';
 }
 
-// ========== FEATURED PRODUCT ADD TO CART ==========
+// ========== FOOTER PAGE SWITCHING ==========
+const mainContentArea = document.getElementById('main-content-area');
+const allPageDivs = document.querySelectorAll('.page-content');
+function showMainContent() {
+    if (mainContentArea) mainContentArea.style.display = 'block';
+    allPageDivs.forEach(div => div.style.display = 'none');
+}
+window.showMainContent = showMainContent;
+
+function showPage(pageId) {
+    const targetPage = document.getElementById(`page-${pageId}`);
+    if (mainContentArea) mainContentArea.style.display = 'none';
+    allPageDivs.forEach(div => div.style.display = 'none');
+    if (targetPage) targetPage.style.display = 'block';
+}
+
+// ========== INITIAL RENDERING ==========
+function attachCarouselItemEvents() {
+    document.querySelectorAll('#product-carousel-track .add-to-cart-btn').forEach(btn => {
+        btn.removeEventListener('click', handleAddToCart);
+        btn.addEventListener('click', handleAddToCart);
+    });
+    document.querySelectorAll('#product-carousel-track .details-btn').forEach(btn => {
+        btn.removeEventListener('click', showProductDetail);
+        btn.addEventListener('click', showProductDetail);
+    });
+}
+
+function attachExtraEvents() {
+    document.querySelectorAll('#extra-list .add-to-cart-btn').forEach(btn => {
+        btn.removeEventListener('click', handleAddToCart);
+        btn.addEventListener('click', handleAddToCart);
+    });
+    document.querySelectorAll('#extra-list .details-btn').forEach(btn => {
+        btn.removeEventListener('click', showProductDetail);
+        btn.addEventListener('click', showProductDetail);
+    });
+}
+
+function buildTestimonialCarousel() {
+    const track = document.getElementById('testimonial-track');
+    if (!track) return;
+    track.innerHTML = '';
+    testimonials.forEach(t => {
+        const item = document.createElement('div');
+        item.className = 'testimonial-item';
+        item.innerHTML = `<p>"${t.text}"</p><div class="testimonial-author">— ${t.author}</div>`;
+        track.appendChild(item);
+    });
+}
+
+// ========== EVENT LISTENERS ==========
 document.querySelectorAll('.add-to-cart').forEach(btn => {
     btn.addEventListener('click', () => {
         const name = btn.dataset.name;
@@ -317,7 +432,7 @@ document.querySelectorAll('.add-to-cart').forEach(btn => {
     });
 });
 
-// ========== CART SIDEBAR ==========
+// Cart sidebar
 const cartSidebar = document.getElementById('cart-sidebar');
 document.getElementById('cart-icon').addEventListener('click', (e) => {
     e.preventDefault();
@@ -327,7 +442,7 @@ document.getElementById('close-cart').addEventListener('click', () => {
     cartSidebar.classList.remove('open');
 });
 
-// ========== PAYMENT MODAL ==========
+// Checkout modal (no demo notices, realistic fields)
 const paymentModal = document.getElementById('payment-modal');
 document.getElementById('checkout-btn').addEventListener('click', () => {
     if (cart.length === 0) { alert('Your cart is empty.'); return; }
@@ -339,7 +454,7 @@ document.getElementById('close-payment').addEventListener('click', () => payment
 window.addEventListener('click', (e) => { if (e.target === paymentModal) paymentModal.style.display = 'none'; });
 document.getElementById('payment-form').addEventListener('submit', (e) => {
     e.preventDefault();
-    alert('Demo purchase successful! No real charge. Integrate Stripe for live payments.');
+    alert('Payment processed successfully! (Demo) In production, integrate Stripe.');
     cart = [];
     updateCartUI();
     paymentModal.style.display = 'none';
@@ -358,7 +473,7 @@ if (cardNumInput) {
     });
 }
 
-// ========== POLICY MODAL ==========
+// Policy modal (footer link)
 const policyModal = document.getElementById('policy-modal');
 const policyFooterLink = document.getElementById('policy-link-footer');
 if (policyFooterLink) {
@@ -370,15 +485,18 @@ if (policyFooterLink) {
 document.getElementById('close-policy').addEventListener('click', () => policyModal.style.display = 'none');
 window.addEventListener('click', (e) => { if (e.target === policyModal) policyModal.style.display = 'none'; });
 
-// ========== FILTER BUTTONS (DEMO) ==========
-document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
+// Filter links (no alerts)
+document.querySelectorAll('.filter-btn, .filter-link').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
         const filter = btn.dataset.filter;
-        alert(`Filtering by "${filter}". In full implementation, products would be filtered dynamically.`);
+        if (filter && filter !== 'policy') {
+            filterProducts(filter);
+        }
     });
 });
 
-// ========== CLOSE DETAIL MODAL ==========
+// Close detail modal
 document.getElementById('close-detail-modal').addEventListener('click', () => {
     document.getElementById('detail-modal').style.display = 'none';
 });
@@ -388,118 +506,41 @@ window.addEventListener('click', (e) => {
     }
 });
 
-// ========== CAROUSEL CLASSES ==========
-class ProductCarousel {
-    constructor(trackId, itemsPerView, autoInterval = 4000) {
-        this.track = document.getElementById(trackId);
-        if (!this.track) return;
-        this.items = Array.from(this.track.children);
-        this.itemCount = this.items.length;
-        this.itemsPerView = itemsPerView;
-        this.currentIndex = 0;
-        this.autoInterval = null;
-        this.autoIntervalTime = autoInterval;
-        this.init();
-    }
-    init() {
-        this.update();
-        this.startAuto();
-        this.setupButtons();
-    }
-    update() {
-        const shift = -this.currentIndex * (100 / this.itemsPerView);
-        this.track.style.transform = `translateX(${shift}%)`;
-    }
-    next() {
-        if (this.currentIndex < this.itemCount - this.itemsPerView) {
-            this.currentIndex++;
-        } else {
-            this.currentIndex = 0;
-        }
-        this.update();
-        this.resetAuto();
-    }
-    prev() {
-        if (this.currentIndex > 0) {
-            this.currentIndex--;
-        } else {
-            this.currentIndex = this.itemCount - this.itemsPerView;
-        }
-        this.update();
-        this.resetAuto();
-    }
-    startAuto() {
-        if (this.autoInterval) clearInterval(this.autoInterval);
-        this.autoInterval = setInterval(() => this.next(), this.autoIntervalTime);
-    }
-    resetAuto() {
-        this.startAuto();
-    }
-    setupButtons() {
-        const prevBtn = document.getElementById('product-prev');
-        const nextBtn = document.getElementById('product-next');
-        if (prevBtn) prevBtn.addEventListener('click', () => this.prev());
-        if (nextBtn) nextBtn.addEventListener('click', () => this.next());
-    }
+// Footer page links (including Our Commitment items)
+document.querySelectorAll('.footer-page-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const pageId = link.getAttribute('data-page');
+        if (pageId) showPage(pageId);
+    });
+});
+
+// "ALL" link and logo return to main content
+const allFilterLink = document.querySelector('.filter-link[data-filter="all"]');
+if (allFilterLink) {
+    allFilterLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        filterProducts('all');
+    });
+}
+const siteTitle = document.querySelector('.site-title');
+if (siteTitle) {
+    siteTitle.addEventListener('click', () => {
+        filterProducts('all');
+        showMainContent();
+    });
 }
 
-class TestimonialCarousel {
-    constructor(trackId, autoInterval = 5000) {
-        this.track = document.getElementById(trackId);
-        if (!this.track) return;
-        this.items = Array.from(this.track.children);
-        this.itemCount = this.items.length;
-        this.currentIndex = 0;
-        this.autoInterval = null;
-        this.autoIntervalTime = autoInterval;
-        this.init();
-    }
-    init() {
-        this.update();
-        this.startAuto();
-        this.setupButtons();
-    }
-    update() {
-        const shift = -this.currentIndex * 100;
-        this.track.style.transform = `translateX(${shift}%)`;
-    }
-    next() {
-        this.currentIndex = (this.currentIndex + 1) % this.itemCount;
-        this.update();
-        this.resetAuto();
-    }
-    prev() {
-        this.currentIndex = (this.currentIndex - 1 + this.itemCount) % this.itemCount;
-        this.update();
-        this.resetAuto();
-    }
-    startAuto() {
-        if (this.autoInterval) clearInterval(this.autoInterval);
-        this.autoInterval = setInterval(() => this.next(), this.autoIntervalTime);
-    }
-    resetAuto() {
-        this.startAuto();
-    }
-    setupButtons() {
-        const prevBtn = document.getElementById('testimonial-prev');
-        const nextBtn = document.getElementById('testimonial-next');
-        if (prevBtn) prevBtn.addEventListener('click', () => this.prev());
-        if (nextBtn) nextBtn.addEventListener('click', () => this.next());
-    }
-}
-
-// ========== INITIALIZE ALL ==========
+// ========== INITIALIZE ==========
 document.addEventListener('DOMContentLoaded', () => {
     updateCurrentDate();
-    buildProductCarousel();
+    renderFilteredCarousel();   // initial render (all)
+    renderFilteredExtraGrid();
     buildTestimonialCarousel();
-    renderExtraProducts();
     updateCartUI();
-
-    // Ensure main content is visible by default
     showMainContent();
 
-    // Start carousels
+    // Carousels (will auto-start on desktop)
     window.productCarousel = new ProductCarousel('product-carousel-track', 3, 4000);
     window.testimonialCarousel = new TestimonialCarousel('testimonial-track', 5000);
 });
