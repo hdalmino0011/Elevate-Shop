@@ -32,7 +32,6 @@ document.body.addEventListener('submit', async (e) => {
   }
 
   const cart = getCartFromDOM();
-  console.log('Cart to send:', cart);
   if (!cart.length) {
     alert('Your cart is empty.');
     return;
@@ -45,15 +44,18 @@ document.body.addEventListener('submit', async (e) => {
       body: JSON.stringify({ email, cart })
     });
     const data = await response.json();
-    console.log('Worker response:', data);
     if (data.checkout_url) {
       window.location.href = data.checkout_url;
     } else {
-      alert('Error: ' + (data.error || 'Unknown error'));
-      console.error('Full error:', data);
+      let errorMsg = data.error || 'Unknown error';
+      if (data.details) {
+        errorMsg += '\n\nPayMongo says: ' + JSON.stringify(data.details);
+      }
+      alert('Error: ' + errorMsg);
+      console.error(data);
     }
   } catch (err) {
-    console.error('Fetch error:', err);
     alert('Network error. Please check your connection.');
+    console.error(err);
   }
 }, true);
