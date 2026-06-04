@@ -2,106 +2,251 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Payment Successful – Elevate Shop</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Georgia, serif;
+            font-family: 'Georgia', 'Times New Roman', serif;
             background: #1a1a2e;
             color: #fff;
-            text-align: center;
-            padding: 2rem;
-            margin: 0;
+            line-height: 1.6;
+            padding: 2rem 1rem;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
+
         .container {
-            max-width: 600px;
+            max-width: 680px;
             margin: 0 auto;
             background: white;
-            color: #1a1a2e;
+            color: #1e1a17;
+            border-radius: 16px;
+            box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            border: 1px solid #e0d6c8;
+        }
+
+        /* Header with gold accent */
+        .header {
+            background: #942222;
+            padding: 1.8rem 2rem;
+            text-align: center;
+            border-bottom: 4px solid #f0c040;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            color: #ffe0b3;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        /* Content area */
+        .content {
             padding: 2rem;
+        }
+
+        /* Password box (gold) */
+        .password-box {
+            background: #f0c040;
+            color: #1a1a2e;
+            padding: 1.2rem;
             border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
-        .gold-box {
-            background: #f0c040;
-            color: #1a1a2e;
-            padding: 1rem;
-            border-radius: 8px;
-            font-family: monospace;
-            font-size: 1.5rem;
-            letter-spacing: 2px;
-            margin: 1rem 0;
-        }
-        .btn {
-            display: inline-block;
-            background: #f0c040;
-            color: #1a1a2e;
-            padding: 0.75rem 1.5rem;
-            text-decoration: none;
+            text-align: center;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 1.6rem;
             font-weight: bold;
-            border-radius: 4px;
-            margin-top: 1rem;
+            letter-spacing: 2px;
+            word-break: break-word;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border: 1px solid #d4a017;
         }
+
+        /* Loader animation */
         .loader {
             display: inline-block;
-            width: 20px;
-            height: 20px;
+            width: 24px;
+            height: 24px;
             border: 3px solid #f0c040;
             border-radius: 50%;
-            border-top-color: transparent;
-            animation: spin 1s linear infinite;
-            margin-right: 10px;
+            border-top-color: #1a1a2e;
+            animation: spin 0.8s linear infinite;
+            margin-right: 12px;
             vertical-align: middle;
         }
+
         @keyframes spin {
             to { transform: rotate(360deg); }
+        }
+
+        /* Instructions card */
+        .instructions {
+            background: #f9f6ef;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            border-left: 5px solid #f0c040;
+        }
+
+        .instructions h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #942222;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .instructions ol {
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .instructions li {
+            margin-bottom: 0.7rem;
+            font-size: 1rem;
+        }
+
+        .note {
+            background: #fff3e0;
+            padding: 0.8rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            border: 1px solid #f0c040;
+        }
+
+        /* Button */
+        .btn {
+            display: inline-block;
+            background: #942222;
+            color: white;
+            padding: 0.9rem 1.8rem;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 40px;
+            transition: background 0.2s, transform 0.1s;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: #6b1818;
+            transform: translateY(-2px);
+        }
+
+        .btn-block {
+            display: block;
+            width: 100%;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.8rem;
+            color: #6c757d;
+            border-top: 1px solid #e0d6c8;
+            padding-top: 1.5rem;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🎉 Payment Successful!</h1>
-        <p>Your purchase is being processed. Your access password will appear below shortly.</p>
-        <div id="password-box" class="gold-box">
-            <span class="loader"></span> Generating password...
-        </div>
-        <p id="instruction" style="display: none;">Once the password appears, copy it and click below to access your product.</p>
-        <a id="access-link" href="access.html" class="btn" style="display: none;">Access My Product</a>
+<div class="container">
+    <div class="header">
+        <h1>✅ Payment Successful</h1>
+        <p>Thank you for your purchase at Elevate Shop</p>
     </div>
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        // PayPal uses 'token' parameter, our old system used 'session_id'
-        let sessionId = urlParams.get('session_id') || urlParams.get('token');
-        const WORKER_URL = 'https://elevate-shop-worker.dalminohanz14.workers.dev';
+    <div class="content">
+        <div id="password-box" class="password-box">
+            <span class="loader"></span> Generating your access password...
+        </div>
 
-        if (!sessionId) {
-            document.getElementById('password-box').innerHTML = '❌ No session found. Please contact support.';
-        } else {
-            let attempts = 0;
-            const maxAttempts = 30;
-            const poll = setInterval(async () => {
-                attempts++;
-                try {
-                    const res = await fetch(`${WORKER_URL}/get-password`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ session_id: sessionId })
-                    });
-                    const data = await res.json();
-                    if (data.password) {
-                        clearInterval(poll);
-                        document.getElementById('password-box').innerHTML = `<strong>Your Password:</strong><br>${data.password}`;
-                        document.getElementById('instruction').style.display = 'block';
-                        document.getElementById('access-link').style.display = 'inline-block';
-                    } else if (attempts >= maxAttempts) {
-                        clearInterval(poll);
-                        document.getElementById('password-box').innerHTML = '⏰ Still processing? Check your email in a few minutes or contact support.';
-                    }
-                } catch (err) {
-                    console.error(err);
+        <div class="instructions" id="instruction-box" style="display: none;">
+            <h3>📖 How to access your digital product</h3>
+            <ol>
+                <li><strong>Copy the password</strong> from the gold box above.</li>
+                <li>Click the <strong>"Access My Product"</strong> button below.</li>
+                <li>On the next page, enter <strong>the same email address</strong> you used for checkout and the <strong>password</strong> you copied.</li>
+                <li>Click <strong>"Verify & Download"</strong> to get your file.</li>
+            </ol>
+            <div class="note">
+                💡 <strong>Note:</strong> If the password does not appear within 30 seconds, please check your email (including spam folder). We also sent it there.
+            </div>
+        </div>
+
+        <a id="access-link" href="access.html" class="btn btn-block" style="display: none;">🔐 Access My Product</a>
+
+        <div class="footer-note">
+            Need help? Contact us at <a href="mailto:support@elevateshop.com" style="color:#942222;">support@elevateshop.com</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Get session ID from URL (PayPal uses 'token', our system uses 'session_id')
+    const urlParams = new URLSearchParams(window.location.search);
+    let sessionId = urlParams.get('session_id') || urlParams.get('token');
+    const WORKER_URL = 'https://elevate-shop-worker.dalminohanz14.workers.dev';
+
+    const passwordBox = document.getElementById('password-box');
+    const instructionBox = document.getElementById('instruction-box');
+    const accessLink = document.getElementById('access-link');
+
+    if (!sessionId) {
+        passwordBox.innerHTML = '❌ No payment session found. Please contact support.';
+        instructionBox.style.display = 'block';
+    } else {
+        let attempts = 0;
+        const maxAttempts = 30; // wait up to 60 seconds
+
+        const pollInterval = setInterval(async () => {
+            attempts++;
+            try {
+                const response = await fetch(`${WORKER_URL}/get-password`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ session_id: sessionId })
+                });
+                const data = await response.json();
+                if (data.password) {
+                    clearInterval(pollInterval);
+                    passwordBox.innerHTML = `<strong>Your access password:</strong><br>${data.password}`;
+                    instructionBox.style.display = 'block';
+                    accessLink.style.display = 'inline-block';
+                } else if (attempts >= maxAttempts) {
+                    clearInterval(pollInterval);
+                    passwordBox.innerHTML = '⏰ Still processing? Check your email in a few minutes or contact support.';
+                    instructionBox.style.display = 'block';
                 }
-            }, 2000);
-        }
-    </script>
+            } catch (err) {
+                console.error('Polling error:', err);
+                if (attempts >= maxAttempts) {
+                    clearInterval(pollInterval);
+                    passwordBox.innerHTML = '⚠️ Network error. Please refresh the page or check your email.';
+                    instructionBox.style.display = 'block';
+                }
+            }
+        }, 2000); // poll every 2 seconds
+    }
+</script>
 </body>
 </html>
