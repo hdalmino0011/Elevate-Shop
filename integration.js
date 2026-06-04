@@ -38,24 +38,20 @@ document.body.addEventListener('submit', async (e) => {
   }
 
   try {
-    const response = await fetch(`${WORKER_URL}/create-checkout`, {
+    const response = await fetch(`${WORKER_URL}/create-paypal-order`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, cart })
     });
     const data = await response.json();
-    if (data.checkout_url) {
-      window.location.href = data.checkout_url;
+    if (data.approval_url) {
+      window.location.href = data.approval_url;
     } else {
-      let errorMsg = data.error || 'Unknown error';
-      if (data.details) {
-        errorMsg += '\n\nPayMongo says: ' + JSON.stringify(data.details);
-      }
-      alert('Error: ' + errorMsg);
+      alert('Error creating PayPal order: ' + (data.error || 'Unknown'));
       console.error(data);
     }
   } catch (err) {
-    alert('Network error. Please check your connection.');
+    alert('Network error. Please try again.');
     console.error(err);
   }
 }, true);
