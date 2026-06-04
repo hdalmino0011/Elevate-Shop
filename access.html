@@ -34,7 +34,6 @@
             border: 1px solid #e0d6c8;
         }
 
-        /* Header with gold accent */
         .header {
             background: #942222;
             padding: 1.8rem 2rem;
@@ -55,12 +54,29 @@
             font-style: italic;
         }
 
-        /* Content */
         .content {
             padding: 2rem;
         }
 
-        /* Form group */
+        .instructions {
+            background: #f9f6ef;
+            padding: 1.2rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            border-left: 5px solid #f0c040;
+        }
+
+        .instructions h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            color: #942222;
+        }
+
+        .instructions p {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
         .form-group {
             margin-bottom: 1.5rem;
         }
@@ -90,7 +106,6 @@
             box-shadow: 0 0 0 2px rgba(240, 192, 64, 0.2);
         }
 
-        /* Button */
         .btn {
             background: #942222;
             color: white;
@@ -110,27 +125,6 @@
             transform: translateY(-2px);
         }
 
-        /* Instructions box */
-        .instructions {
-            background: #f9f6ef;
-            padding: 1.2rem;
-            border-radius: 12px;
-            margin: 1.5rem 0;
-            border-left: 5px solid #f0c040;
-        }
-
-        .instructions h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.8rem;
-            color: #942222;
-        }
-
-        .instructions p {
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Error and success messages */
         .error {
             background: #ffe6e6;
             color: #b71c1c;
@@ -175,6 +169,42 @@
             border-top: 1px solid #e0d6c8;
             padding-top: 1.2rem;
         }
+
+        .footer-note a {
+            color: #942222;
+            text-decoration: none;
+        }
+
+        .footer-note a:hover {
+            text-decoration: underline;
+        }
+
+        /* Mobile optimizations */
+        @media (max-width: 480px) {
+            body {
+                padding: 1rem;
+            }
+            .header {
+                padding: 1.2rem 1rem;
+            }
+            .header h1 {
+                font-size: 1.6rem;
+            }
+            .content {
+                padding: 1.5rem;
+            }
+            .instructions {
+                padding: 1rem;
+            }
+            .btn {
+                padding: 10px 16px;
+                font-size: 0.9rem;
+            }
+            input {
+                padding: 10px 12px;
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -206,8 +236,8 @@
         <div id="downloadArea" class="success"></div>
 
         <div class="footer-note">
-            <a href="mailto:support@elevateshop.com" style="color:#942222;">Contact support</a> | 
-            <a href="index.html" style="color:#942222;">Return to shop</a>
+            <a href="mailto:support@elevateshop.com">Contact support</a> | 
+            <a href="index.html">Return to shop</a>
         </div>
     </div>
 </div>
@@ -234,8 +264,6 @@
             return;
         }
 
-        // Show loading state on button
-        const originalText = verifyBtn.innerText;
         verifyBtn.innerText = '⏳ Verifying...';
         verifyBtn.disabled = true;
 
@@ -262,7 +290,7 @@
             errorDiv.innerText = 'Network error. Please try again later.';
             errorDiv.style.display = 'block';
         } finally {
-            verifyBtn.innerText = originalText;
+            verifyBtn.innerText = 'Verify & Download';
             verifyBtn.disabled = false;
         }
     });
