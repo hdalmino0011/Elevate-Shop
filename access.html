@@ -2,52 +2,151 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Access Your Product – Elevate Shop</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Georgia, serif;
+            font-family: 'Georgia', 'Times New Roman', serif;
             background: #1a1a2e;
             color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            line-height: 1.6;
+            padding: 2rem 1rem;
             min-height: 100vh;
-            margin: 0;
-            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
+
         .container {
-            max-width: 450px;
+            max-width: 550px;
+            margin: 0 auto;
             background: white;
-            color: #1a1a2e;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            color: #1e1a17;
+            border-radius: 16px;
+            box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            border: 1px solid #e0d6c8;
         }
+
+        /* Header with gold accent */
+        .header {
+            background: #942222;
+            padding: 1.8rem 2rem;
+            text-align: center;
+            border-bottom: 4px solid #f0c040;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            color: #ffe0b3;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        /* Content */
+        .content {
+            padding: 2rem;
+        }
+
+        /* Form group */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1e1a17;
+            font-size: 0.95rem;
+        }
+
         input {
             width: 100%;
-            padding: 12px;
-            margin: 10px 0 20px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-family: inherit;
-        }
-        button {
-            background: #f0c040;
-            color: #1a1a2e;
-            border: none;
-            padding: 12px;
-            width: 100%;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 4px;
+            padding: 12px 14px;
+            border: 1px solid #d4c4b4;
+            border-radius: 8px;
+            font-family: 'Georgia', serif;
             font-size: 1rem;
+            transition: border 0.2s;
+            background: #fffdf9;
         }
+
+        input:focus {
+            outline: none;
+            border-color: #f0c040;
+            box-shadow: 0 0 0 2px rgba(240, 192, 64, 0.2);
+        }
+
+        /* Button */
+        .btn {
+            background: #942222;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 40px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s, transform 0.1s;
+            font-family: 'Georgia', serif;
+        }
+
+        .btn:hover {
+            background: #6b1818;
+            transform: translateY(-2px);
+        }
+
+        /* Instructions box */
+        .instructions {
+            background: #f9f6ef;
+            padding: 1.2rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            border-left: 5px solid #f0c040;
+        }
+
+        .instructions h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            color: #942222;
+        }
+
+        .instructions p {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Error and success messages */
         .error {
-            color: #d32f2f;
-            margin-top: 10px;
+            background: #ffe6e6;
+            color: #b71c1c;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 1rem;
             display: none;
+            font-size: 0.9rem;
+            border-left: 4px solid #b71c1c;
         }
+
+        .success {
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
         .download-btn {
             display: inline-block;
             background: #f0c040;
@@ -55,63 +154,118 @@
             padding: 12px 20px;
             text-decoration: none;
             font-weight: bold;
-            border-radius: 4px;
-            margin-top: 20px;
-            text-align: center;
+            border-radius: 40px;
             width: 100%;
-            box-sizing: border-box;
-        }
-        .success {
-            margin-top: 20px;
             text-align: center;
+            transition: background 0.2s;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .download-btn:hover {
+            background: #e0b030;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.8rem;
+            color: #6c757d;
+            border-top: 1px solid #e0d6c8;
+            padding-top: 1.2rem;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Enter Your Credentials</h2>
-        <p>Please enter the email address and password you received after purchase.</p>
-        <input type="email" id="email" placeholder="Your email address" required>
-        <input type="password" id="password" placeholder="Your access password" required>
-        <button id="verifyBtn">Verify & Download</button>
+<div class="container">
+    <div class="header">
+        <h1>🔐 Access Your Product</h1>
+        <p>Enter the credentials you received after purchase</p>
+    </div>
+    <div class="content">
+        <div class="instructions">
+            <h3>📘 Need help?</h3>
+            <p>Your access password was sent to the email you used during checkout.</p>
+            <p>If you haven't received it, check your spam folder or contact us at <strong>support@elevateshop.com</strong>.</p>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="e.g., you@example.com" autocomplete="email">
+        </div>
+
+        <div class="form-group">
+            <label for="password">Access Password</label>
+            <input type="password" id="password" placeholder="e.g., ABCD-EFGH-IJKL" autocomplete="off">
+        </div>
+
+        <button id="verifyBtn" class="btn">Verify & Download</button>
+
         <div id="errorMsg" class="error"></div>
         <div id="downloadArea" class="success"></div>
+
+        <div class="footer-note">
+            <a href="mailto:support@elevateshop.com" style="color:#942222;">Contact support</a> | 
+            <a href="index.html" style="color:#942222;">Return to shop</a>
+        </div>
     </div>
-    <script>
-        const WORKER_URL = 'https://elevate-shop-worker.dalminohanz14.workers.dev';
+</div>
 
-        document.getElementById('verifyBtn').addEventListener('click', async () => {
-            const email = document.getElementById('email').value.trim();
-            const password = document.getElementById('password').value.trim();
-            const errorDiv = document.getElementById('errorMsg');
-            const downloadDiv = document.getElementById('downloadArea');
-            errorDiv.style.display = 'none';
-            downloadDiv.innerHTML = '';
+<script>
+    const WORKER_URL = 'https://elevate-shop-worker.dalminohanz14.workers.dev';
 
-            if (!email || !password) {
-                errorDiv.innerText = 'Please enter both email and password.';
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const verifyBtn = document.getElementById('verifyBtn');
+    const errorDiv = document.getElementById('errorMsg');
+    const downloadDiv = document.getElementById('downloadArea');
+
+    verifyBtn.addEventListener('click', async () => {
+        const email = emailInput.value.trim();
+        const password = passwordInput.value.trim();
+
+        errorDiv.style.display = 'none';
+        downloadDiv.innerHTML = '';
+
+        if (!email || !password) {
+            errorDiv.innerText = 'Please enter both your email address and the access password.';
+            errorDiv.style.display = 'block';
+            return;
+        }
+
+        // Show loading state on button
+        const originalText = verifyBtn.innerText;
+        verifyBtn.innerText = '⏳ Verifying...';
+        verifyBtn.disabled = true;
+
+        try {
+            const response = await fetch(`${WORKER_URL}/verify-access`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+            const data = await response.json();
+
+            if (data.valid && data.download_url) {
+                downloadDiv.innerHTML = `
+                    <a href="${data.download_url}" class="download-btn" download>📥 Download Your Product</a>
+                    <p style="margin-top: 12px; font-size: 0.8rem; color: #4a4a4a;">If the download doesn't start automatically, click the button again.</p>
+                `;
+                errorDiv.style.display = 'none';
+            } else {
+                errorDiv.innerText = 'Invalid email or password. Please check and try again.';
                 errorDiv.style.display = 'block';
-                return;
             }
-
-            try {
-                const res = await fetch(`${WORKER_URL}/verify-access`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password })
-                });
-                const data = await res.json();
-                if (data.valid && data.download_url) {
-                    downloadDiv.innerHTML = `<a href="${data.download_url}" class="download-btn" download>⬇️ Download Your Product</a>`;
-                } else {
-                    errorDiv.innerText = 'Invalid email or password. Please check and try again.';
-                    errorDiv.style.display = 'block';
-                }
-            } catch (err) {
-                errorDiv.innerText = 'Network error. Please try again later.';
-                errorDiv.style.display = 'block';
-            }
-        });
-    </script>
+        } catch (err) {
+            console.error(err);
+            errorDiv.innerText = 'Network error. Please try again later.';
+            errorDiv.style.display = 'block';
+        } finally {
+            verifyBtn.innerText = originalText;
+            verifyBtn.disabled = false;
+        }
+    });
+</script>
 </body>
 </html>
