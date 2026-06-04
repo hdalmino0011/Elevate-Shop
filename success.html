@@ -70,7 +70,8 @@
     </div>
     <script>
         const urlParams = new URLSearchParams(window.location.search);
-        const sessionId = urlParams.get('session_id');
+        // PayPal uses 'token' parameter, our old system used 'session_id'
+        let sessionId = urlParams.get('session_id') || urlParams.get('token');
         const WORKER_URL = 'https://elevate-shop-worker.dalminohanz14.workers.dev';
 
         if (!sessionId) {
