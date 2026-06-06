@@ -1,5 +1,5 @@
 // ElevateShop – Complete JavaScript
-// Includes: expiry auto-format (MM/YY), search clear hides panel, no duplicate account links, etc.
+// Updated for PayPal redirect modal (no credit card form)
 
 // ========== PRODUCT DATA (prices $19.99 – $32.99) ==========
 const allProductsData = [
@@ -183,7 +183,7 @@ function updateLoginUI() {
     }
 }
 
-// ========== PURCHASE HISTORY ==========
+// ========== PURCHASE HISTORY (localStorage only for demo, not used for PayPal flow) ==========
 function getPurchaseHistory() {
     const stored = localStorage.getItem('elevateShop_purchases');
     return stored ? JSON.parse(stored) : [];
@@ -221,10 +221,7 @@ function addToCart(product) {
 function removeFromCart(productId) {
     cart = cart.filter(item => item.id !== productId);
     updateCartUI();
-    const errorDiv = document.getElementById('payment-error');
-    if (errorDiv && errorDiv.style.display === 'block') {
-        validatePurchaseDuplicates();
-    }
+    // No payment error div anymore, but keep for any legacy use
 }
 
 function updateCartUI() {
@@ -274,8 +271,8 @@ function showCartConfirmModal(product, onConfirm) {
     const handlerCheckout = () => {
         confirmModal.style.display = 'none';
         if (onConfirm) onConfirm(true);
-        const cartSidebar = document.getElementById('cart-sidebar');
-        if (cartSidebar) cartSidebar.classList.add('open');
+        // Open the payment redirect modal instead of cart sidebar
+        openPaymentRedirectModal();
         cleanup();
     };
     const handlerContinue = () => {
@@ -300,6 +297,96 @@ function showCartConfirmModal(product, onConfirm) {
     closeBtn.addEventListener('click', handlerClose);
 }
 
+// ========== PAYMENT REDIRECT MODAL (replaces old checkout) ==========
+function openPaymentRedirectModal() {
+    const modal = document.getElementById('payment-redirect-modal');
+    if (modal) modal.style.display = 'flex';
+}
+
+function closePaymentRedirectModal() {
+    const modal = document.getElementById('payment-redirect-modal');
+    if (modal) modal.style.display = 'none';
+}
+
+async function initiatePayPalCheckout() {
+    const emailInput = document.getElementById('redirect-email');
+    const email = emailInput ? emailInput.value.trim() : '';
+    if (!email) {
+        alert('Please enter your email address.');
+        return;
+    }
+
+    if (cart.length === 0) {
+        alert('Your cart is empty.');
+        return;
+    }
+
+    // Show loading spinner and disable button
+    const loadingDiv = document.getElementById('redirect-loading');
+    const payBtn = document.getElementById('confirm-redirect-btn');
+    if (loadingDiv) loadingDiv.style.display = 'block';
+    if (payBtn) payBtn.disabled = true;
+
+    try {
+        const response = await fetch('https://elevate-shop-worker.dalminohanz14.workers.dev/create-paypal-order', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, cart })
+        });
+        const data = await response.json();
+        if (data.approval_url) {
+            // Store email for later? Not needed, the Worker stores it with the order.
+            window.location.href = data.approval_url;
+        } else {
+            alert('Error creating PayPal order. Please try again.');
+            console.error(data);
+            if (loadingDiv) loadingDiv.style.display = 'none';
+            if (payBtn) payBtn.disabled = false;
+        }
+    } catch (err) {
+        console.error(err);
+        alert('Network error. Please check your connection.');
+        if (loadingDiv) loadingDiv.style.display = 'none';
+        if (payBtn) payBtn.disabled = false;
+    }
+}
+
+// Attach event listener to the "Pay Now" button in the redirect modal
+function setupPaymentRedirectModal() {
+    const confirmBtn = document.getElementById('confirm-redirect-btn');
+    if (confirmBtn) {
+        confirmBtn.addEventListener('click', initiatePayPalCheckout);
+    }
+    const closeBtn = document.getElementById('close-redirect-modal');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closePaymentRedirectModal);
+    }
+    // Also close when clicking outside the modal content
+    const modal = document.getElementById('payment-redirect-modal');
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closePaymentRedirectModal();
+        });
+    }
+}
+
+// Override the "Proceed to Checkout" button in the cart sidebar
+function overrideCartSidebarCheckout() {
+    const checkoutBtn = document.getElementById('checkout-btn');
+    if (checkoutBtn) {
+        // Remove existing listener to avoid duplicates
+        const newBtn = checkoutBtn.cloneNode(true);
+        checkoutBtn.parentNode.replaceChild(newBtn, checkoutBtn);
+        newBtn.addEventListener('click', () => {
+            if (cart.length === 0) {
+                alert('Your cart is empty.');
+                return;
+            }
+            openPaymentRedirectModal();
+        });
+    }
+}
+
 // ========== ADD TO CART HANDLER ==========
 function handleAddToCart(e) {
     const id = parseInt(e.currentTarget.dataset.id);
@@ -316,49 +403,6 @@ function handleAddToCart(e) {
             }
         });
     }
-}
-
-// ========== CHECKOUT MODAL & DUPLICATE CHECK ==========
-function validatePurchaseDuplicates() {
-    const email = document.getElementById('email')?.value.trim();
-    const errorDiv = document.getElementById('payment-error');
-    if (!email || cart.length === 0) {
-        if (errorDiv) errorDiv.style.display = 'none';
-        return true;
-    }
-    const productIds = cart.map(item => item.id);
-    const purchasedIds = getPurchasedProductsForEmail(email, productIds);
-    if (purchasedIds.length > 0) {
-        const purchasedProducts = purchasedIds.map(id => {
-            const p = allProductsData.find(p => p.id === id) || extraProductsData.find(p => p.id === id);
-            return p ? p.name : "Product";
-        });
-        let errorHtml = `<strong>You have already purchased the following product(s) with this email:</strong><ul>`;
-        purchasedProducts.forEach(name => {
-            errorHtml += `<li>${name} - <a href="#" class="remove-duplicate" data-name="${name}">Remove from cart</a></li>`;
-        });
-        errorHtml += `</ul><p>Please remove them to proceed.</p>`;
-        if (errorDiv) {
-            errorDiv.innerHTML = errorHtml;
-            errorDiv.style.display = 'block';
-            document.querySelectorAll('.remove-duplicate').forEach(link => {
-                link.removeEventListener('click', duplicateRemoveHandler);
-                link.addEventListener('click', duplicateRemoveHandler);
-            });
-        }
-        return false;
-    } else {
-        if (errorDiv) errorDiv.style.display = 'none';
-        return true;
-    }
-}
-
-function duplicateRemoveHandler(e) {
-    e.preventDefault();
-    const productName = e.target.getAttribute('data-name');
-    const productToRemove = cart.find(item => item.name === productName);
-    if (productToRemove) removeFromCart(productToRemove.id);
-    validatePurchaseDuplicates();
 }
 
 // ========== FILTERING (only affects extra grid) ==========
@@ -615,6 +659,10 @@ document.addEventListener('DOMContentLoaded', () => {
         loggedInUser = JSON.parse(storedUser);
         updateLoginUI();
     }
+
+    // Setup payment redirect modal
+    setupPaymentRedirectModal();
+    overrideCartSidebarCheckout();
 });
 
 // ========== SEARCH UI ==========
@@ -660,14 +708,14 @@ document.querySelectorAll('.add-to-cart').forEach(btn => {
         if (addToCart(featured)) {
             showCartConfirmModal(featured, (proceed) => {
                 if (proceed) {
-                    document.getElementById('cart-sidebar').classList.add('open');
+                    openPaymentRedirectModal();
                 }
             });
         }
     });
 });
 
-// Cart sidebar
+// Cart sidebar (open/close)
 const cartSidebar = document.getElementById('cart-sidebar');
 document.getElementById('cart-icon').addEventListener('click', (e) => {
     e.preventDefault();
@@ -677,62 +725,7 @@ document.getElementById('close-cart').addEventListener('click', () => {
     cartSidebar.classList.remove('open');
 });
 
-// Checkout modal
-const paymentModal = document.getElementById('payment-modal');
-document.getElementById('checkout-btn').addEventListener('click', () => {
-    if (cart.length === 0) { alert('Your cart is empty.'); return; }
-    const total = cart.reduce((s, i) => s + i.price * i.quantity, 0);
-    document.getElementById('modal-total').innerText = total.toFixed(2);
-    paymentModal.style.display = 'flex';
-});
-document.getElementById('close-payment').addEventListener('click', () => paymentModal.style.display = 'none');
-window.addEventListener('click', (e) => { if (e.target === paymentModal) paymentModal.style.display = 'none'; });
-
-// Payment form submission
-document.getElementById('payment-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const email = document.getElementById('email')?.value.trim();
-    if (!email) {
-        alert('Please enter your email address.');
-        return;
-    }
-    if (!validatePurchaseDuplicates()) {
-        return;
-    }
-    const productIds = cart.map(item => item.id);
-    savePurchase(email, productIds);
-    alert('Purchase completed successfully! A confirmation email has been sent.');
-    cart = [];
-    updateCartUI();
-    paymentModal.style.display = 'none';
-    cartSidebar.classList.remove('open');
-    e.target.reset();
-    const errorDiv = document.getElementById('payment-error');
-    if (errorDiv) errorDiv.style.display = 'none';
-});
-
-// Format card number
-const cardNumInput = document.getElementById('card-number');
-if (cardNumInput) {
-    cardNumInput.addEventListener('input', (e) => {
-        let val = e.target.value.replace(/\s/g, '');
-        if (val.length > 16) val = val.slice(0, 16);
-        const formatted = val.match(/.{1,4}/g)?.join(' ') || val;
-        e.target.value = formatted;
-    });
-}
-
-// ========== EXPIRY DATE AUTO-FORMAT (MM/YY) ==========
-const expiryInput = document.getElementById('card-expiry');
-if (expiryInput) {
-    expiryInput.addEventListener('input', (e) => {
-        let value = e.target.value.replace(/\D/g, ''); // remove non-digits
-        if (value.length >= 3) {
-            value = value.slice(0, 2) + '/' + value.slice(2, 4);
-        }
-        e.target.value = value;
-    });
-}
+// (Removed old payment modal listeners)
 
 // Policy modal (footer link)
 const policyModal = document.getElementById('policy-modal');
@@ -793,15 +786,7 @@ if (siteTitle) {
     });
 }
 
-// Validate duplicates when email changes
-const emailInput = document.getElementById('email');
-if (emailInput) {
-    emailInput.addEventListener('input', () => {
-        validatePurchaseDuplicates();
-    });
-}
-
-// ========== ACCOUNT MODAL LOGIC (no duplicate link) ==========
+// ========== ACCOUNT MODAL LOGIC ==========
 const accountModal = document.getElementById('account-modal');
 const loginLink = document.getElementById('login-link');
 const logoutLink = document.getElementById('logout-link');
@@ -843,7 +828,7 @@ window.addEventListener('click', (e) => {
     if (e.target === accountModal) accountModal.style.display = 'none';
 });
 
-// Use the static "Sign Up" link inside the login form
+// Use static signup link
 const staticSignupLink = document.getElementById('switch-to-signup-static');
 if (staticSignupLink) {
     staticSignupLink.addEventListener('click', (e) => {
@@ -874,7 +859,7 @@ document.getElementById('do-login').addEventListener('click', () => {
     document.getElementById('login-password').value = '';
 });
 
-// Sign Up with password validation
+// Sign Up
 document.getElementById('do-signup').addEventListener('click', () => {
     const name = document.getElementById('signup-name').value.trim();
     const email = document.getElementById('signup-email').value.trim();
