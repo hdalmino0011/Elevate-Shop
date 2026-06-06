@@ -31,7 +31,7 @@
 </div>
 </div>
 </div>
-<!-- Search input (hidden by default, toggled by search button) -->
+<!-- Search input -->
 <div id="search-container" class="search-container" style="display: none;">
 <input type="text" id="search-input" placeholder="Search products by name..." autocomplete="off">
 <button id="search-clear" class="search-clear">✕</button>
@@ -62,7 +62,7 @@
 
 <!-- Main Content Area -->
 <div id="main-content-area">
-<!-- Featured Article Section with BEST SELLER badge -->
+<!-- Featured Article Section -->
 <section class="featured-article">
 <div class="container">
 <article class="featured-piece">
@@ -74,12 +74,8 @@
 </div>
 <div class="featured-content">
 <div class="featured-text">
-<p class="article-body">
-A curated collection of daily inspiration drawn from history’s greatest thinkers. Instant digital delivery.
-</p>
-<p class="article-meta">
-<strong>Category:</strong> Motivational | <strong>Price:</strong> $24.99
-</p>
+<p class="article-body">A curated collection of daily inspiration drawn from history’s greatest thinkers. Instant digital delivery.</p>
+<p class="article-meta"><strong>Category:</strong> Motivational | <strong>Price:</strong> $24.99</p>
 <button class="btn-primary add-to-cart" data-name="Daily Motivation Mastery" data-price="24.99">Add to Cart</button>
 </div>
 </div>
@@ -87,7 +83,7 @@ A curated collection of daily inspiration drawn from history’s greatest thinke
 </div>
 </section>
 
-<!-- Products Carousel Section (Top Selections) -->
+<!-- Top Selections Carousel -->
 <section class="products-section" id="products-section">
 <div class="container">
 <h2 class="section-heading">Top Selections</h2>
@@ -112,15 +108,23 @@ A curated collection of daily inspiration drawn from history’s greatest thinke
 </div>
 </div>
 
-<!-- More Products Static Grid -->
+<!-- Complete Product Collection (Grid Carousel) -->
 <section class="more-products">
 <div class="container">
 <h2 class="section-heading">Complete Product Collection</h2>
-<div class="products-columns" id="extra-list"></div>
+<div class="grid-carousel-container">
+<div class="grid-carousel-wrapper">
+<div class="grid-carousel-track" id="grid-carousel-track"></div>
+</div>
+<div class="grid-carousel-buttons">
+<button class="grid-carousel-btn" id="grid-prev">❮</button>
+<button class="grid-carousel-btn" id="grid-next">❯</button>
+</div>
+</div>
 </div>
 </section>
 
-<!-- Testimonial Carousel (no buttons) -->
+<!-- Testimonial Carousel -->
 <section class="testimonial-section">
 <div class="container">
 <div class="testimonial-carousel-container">
@@ -133,7 +137,6 @@ A curated collection of daily inspiration drawn from history’s greatest thinke
 </div>
 
 <!-- ==================== FOOTER PAGE CONTENT (detailed) ==================== -->
-<!-- Privacy Policy (5 paragraphs) -->
 <div id="page-privacy" class="page-content" style="display: none;">
 <button class="back-button" onclick="window.showMainContent?.()">← Go Back</button>
 <div class="container">
@@ -147,7 +150,6 @@ A curated collection of daily inspiration drawn from history’s greatest thinke
 </div>
 </div>
 
-<!-- Terms of Service (no Governing Law, no Limitation of Liability) – 4 paragraphs -->
 <div id="page-terms" class="page-content" style="display: none;">
 <button class="back-button" onclick="window.showMainContent?.()">← Go Back</button>
 <div class="container">
@@ -160,7 +162,6 @@ A curated collection of daily inspiration drawn from history’s greatest thinke
 </div>
 </div>
 
-<!-- Our Policies (5 paragraphs) -->
 <div id="page-policy" class="page-content" style="display: none;">
 <button class="back-button" onclick="window.showMainContent?.()">← Go Back</button>
 <div class="container">
@@ -173,7 +174,6 @@ A curated collection of daily inspiration drawn from history’s greatest thinke
 </div>
 </div>
 
-<!-- FAQ (updated with HTML/PDF info) – 5 paragraphs -->
 <div id="page-faq" class="page-content" style="display: none;">
 <button class="back-button" onclick="window.showMainContent?.()">← Go Back</button>
 <div class="container">
@@ -187,7 +187,6 @@ A curated collection of daily inspiration drawn from history’s greatest thinke
 </div>
 </div>
 
-<!-- Instant Digital Delivery (4 paragraphs) -->
 <div id="page-instant-delivery" class="page-content" style="display: none;">
 <button class="back-button" onclick="window.showMainContent?.()">← Go Back</button>
 <div class="container">
@@ -199,7 +198,6 @@ A curated collection of daily inspiration drawn from history’s greatest thinke
 </div>
 </div>
 
-<!-- Lifetime Access (4 paragraphs) -->
 <div id="page-lifetime-access" class="page-content" style="display: none;">
 <button class="back-button" onclick="window.showMainContent?.()">← Go Back</button>
 <div class="container">
@@ -211,7 +209,6 @@ A curated collection of daily inspiration drawn from history’s greatest thinke
 </div>
 </div>
 
-<!-- Secure Transactions (4 paragraphs) -->
 <div id="page-secure-transactions" class="page-content" style="display: none;">
 <button class="back-button" onclick="window.showMainContent?.()">← Go Back</button>
 <div class="container">
@@ -223,7 +220,6 @@ A curated collection of daily inspiration drawn from history’s greatest thinke
 </div>
 </div>
 
-<!-- Other footer pages (kept as before but with more content) -->
 <div id="page-motivational-collections" class="page-content" style="display: none;"><button class="back-button" onclick="window.showMainContent?.()">← Go Back</button><div class="container"><h2>Motivational Collections</h2><p>Hand-picked motivational materials: quote handbooks, morning mastery course, resilience toolkit.</p><ul><li>The Daily Motivation Handbook – $19</li><li>Morning Mastery Course – $29</li><li>Resilience Toolkit – $24</li></ul><p>These collections are designed to inspire you daily and help you build lasting motivation. Each product is instantly downloadable.</p></div></div>
 <div id="page-financial-courses" class="page-content" style="display: none;"><button class="back-button" onclick="window.showMainContent?.()">← Go Back</button><div class="container"><h2>Financial Courses</h2><p>Master your money with our in-depth financial literacy programs.</p><ul><li>Financial Freedom Blueprint – $47</li><li>Wealth Mindset Masterclass – $47</li><li>Real Estate Investing Basics – $59</li></ul><p>These courses are taught by industry experts and updated regularly. You get lifetime access and practical worksheets.</p></div></div>
 <div id="page-personal-development" class="page-content" style="display: none;"><button class="back-button" onclick="window.showMainContent?.()">← Go Back</button><div class="container"><h2>Personal Development</h2><p>Unlock your full potential with our personal development products.</p><ul><li>Mindset Reset Program – $37</li><li>Productivity Mastery System – $34</li><li>Health & Wellness Blueprint – $29</li></ul><p>These programs are based on the latest psychology and neuroscience research. Start your transformation today.</p></div></div>
@@ -261,7 +257,7 @@ A curated collection of daily inspiration drawn from history’s greatest thinke
 </div>
 </div>
 
-<!-- NEW: Payment Redirect Modal (replaces old credit card modal) -->
+<!-- Payment Redirect Modal -->
 <div id="payment-redirect-modal" class="modal payment-redirect-modal">
 <div class="modal-content">
 <button class="modal-close" id="close-redirect-modal">&times;</button>
@@ -336,7 +332,7 @@ A curated collection of daily inspiration drawn from history’s greatest thinke
 </div>
 </div>
 
-<!-- Account Modal (Sign Up / Log In) -->
+<!-- Account Modal -->
 <div id="account-modal" class="modal account-modal">
 <div class="modal-content">
 <button class="modal-close" id="close-account-modal">&times;</button>
