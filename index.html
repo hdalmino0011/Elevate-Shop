@@ -31,7 +31,7 @@
             </div>
         </div>
     </div>
-    <!-- Search input (hidden by default, toggled by search button) -->
+    <!-- Search input -->
     <div id="search-container" class="search-container" style="display: none;">
         <input type="text" id="search-input" placeholder="Search products by name..." autocomplete="off">
         <button id="search-clear" class="search-clear">✕</button>
@@ -62,7 +62,7 @@
 
 <!-- Main Content Area -->
 <div id="main-content-area">
-    <!-- Featured Article Section with BEST SELLER badge -->
+    <!-- Featured Article Section -->
     <section class="featured-article">
         <div class="container">
             <article class="featured-piece">
@@ -87,7 +87,7 @@
         </div>
     </section>
 
-    <!-- Products Carousel Section (Top Selections) -->
+    <!-- Products Carousel Section -->
     <section class="products-section" id="products-section">
         <div class="container">
             <h2 class="section-heading">Top Selections</h2>
@@ -120,7 +120,7 @@
         </div>
     </section>
 
-    <!-- Testimonial Carousel (no buttons) -->
+    <!-- Testimonial Carousel -->
     <section class="testimonial-section">
         <div class="container">
             <div class="testimonial-carousel-container">
@@ -132,50 +132,63 @@
     </section>
 </div>
 
-<!-- ==================== FOOTER PAGE CONTENT ==================== -->
+<!-- ==================== FOOTER PAGE CONTENT (detailed) ==================== -->
 <div id="page-privacy" class="page-content" style="display: none;">
     <button class="back-button" onclick="window.showMainContent?.()">← Go Back</button>
     <div class="container">
         <h2>Privacy Policy</h2>
         <p>At Elevate Shop, your privacy is of utmost importance. This policy explains how we collect, use, and protect your personal information.</p>
         <h3>Information We Collect</h3>
-        <p>When you make a purchase, we collect your name, email address, billing address, and payment information. Payment details are processed securely by Stripe and are never stored on our servers. We also collect your IP address and browser type for security and analytics purposes.</p>
+        <p>When you make a purchase, we collect your name, email address, billing address, and payment information. Payment details are processed by our secure payment partner and are never stored on our servers. We also collect your IP address and browser type for security and analytics purposes.</p>
         <h3>How We Use Your Information</h3>
         <p>Your information is used solely to process orders, deliver digital products, provide customer support, and send important updates about your purchases. We do not sell, trade, or rent your personal information to third parties.</p>
         <h3>Data Security</h3>
-        <p>We implement industry-standard security measures, including SSL encryption and secure payment gateways, to protect your data.</p>
+        <p>We implement industry-standard security measures, including SSL encryption and secure payment gateways, to protect your data. All transactions are processed through a PCI Level 1 certified provider.</p>
         <h3>Your Rights</h3>
-        <p>You may request access, correction, or deletion of your personal data by contacting us at support@elevateshop.com.</p>
+        <p>You may request access, correction, or deletion of your personal data by contacting us at support@elevateshop.com. You may also opt out of marketing emails at any time.</p>
+        <h3>Policy Updates</h3>
+        <p>We may update this privacy policy occasionally. Any changes will be posted on this page with an updated effective date.</p>
         <p><em>Effective date: June 1, 2025</em></p>
     </div>
 </div>
+
 <div id="page-terms" class="page-content" style="display: none;">
     <button class="back-button" onclick="window.showMainContent?.()">← Go Back</button>
     <div class="container">
         <h2>Terms of Service</h2>
-        <p>By accessing or purchasing from Elevate Shop, you agree to be bound by these terms.</p>
+        <p>By accessing or purchasing from Elevate Shop, you agree to be bound by these terms. Please read them carefully.</p>
         <h3>Digital Products License</h3>
-        <p>All products are for personal, non-commercial use only. You may not share, redistribute, or resell any product.</p>
+        <p>All products are for personal, non-commercial use only. You are granted a limited, non-exclusive, non-transferable license to access and use the digital product for your own personal development. You may not share, redistribute, resell, or otherwise distribute any product or its content without explicit written permission from Elevate Shop.</p>
         <h3>Non-Refundable Policy</h3>
-        <p>Due to the digital nature of our products, all sales are final and non-refundable.</p>
-        <h3>Governing Law</h3>
-        <p>These terms shall be governed by the laws of the United States.</p>
+        <p>Due to the digital nature of our products, all sales are final and non-refundable. Please review product descriptions carefully before purchasing. If you experience technical issues accessing your product, contact support for assistance – but refunds will not be issued for change of mind.</p>
+        <h3>User Obligations</h3>
+        <p>You agree not to reverse engineer, modify, or create derivative works from our products. You also agree not to use our products for any illegal or unauthorized purpose.</p>
+        <h3>Intellectual Property</h3>
+        <p>All content, including text, graphics, logos, and product materials, is the intellectual property of Elevate Shop and is protected by copyright laws.</p>
+        <h3>Limitation of Liability</h3>
+        <p>Elevate Shop shall not be liable for any indirect, incidental, or consequential damages arising from the use or inability to use our products, even if advised of the possibility of such damages.</p>
         <p><em>Last updated: June 1, 2025</em></p>
     </div>
 </div>
+
 <div id="page-policy" class="page-content" style="display: none;">
     <button class="back-button" onclick="window.showMainContent?.()">← Go Back</button>
     <div class="container">
         <h2>Our Policies</h2>
         <h3>Non-Refundable Digital Products</h3>
-        <p>All digital products sold on Elevate Shop are non-refundable. Once purchased and delivered, no refunds will be issued.</p>
+        <p>All digital products sold on Elevate Shop are non-refundable. Once a purchase is completed and the product is delivered (via email or instant download), no refunds will be issued under any circumstances. This includes accidental purchases, change of mind, or dissatisfaction with content.</p>
         <h3>Instant Delivery</h3>
-        <p>After successful payment, you will receive an email with a secure download link and a unique access password.</p>
+        <p>After successful payment, you will receive an email containing a secure link to download or access your purchased product. Delivery typically occurs within 1-2 minutes. If you do not receive the email, please check your spam folder and then contact support.</p>
         <h3>Access Security</h3>
-        <p>Each purchase generates a unique password. Do not share it.</p>
-        <p>For support: support@elevateshop.com</p>
+        <p>For your security, each purchase generates a unique, one-time access password sent to your registered email. This password is required to download the product. No password is generated for pending or failed transactions. Do not share your password with anyone.</p>
+        <h3>Product Quality & Support</h3>
+        <p>We stand behind the quality of our products. If you experience technical issues (e.g., corrupted file, broken link), please contact us within 30 days of purchase for a resolution.</p>
+        <h3>License and Usage</h3>
+        <p>Your purchase grants you a personal, non-transferable license to use the product for your own enrichment. Redistribution, resale, or sharing is strictly prohibited.</p>
+        <p>For support: support@elevateshop.com (response within 24-48 hours).</p>
     </div>
 </div>
+
 <div id="page-faq" class="page-content" style="display: none;">
     <button class="back-button" onclick="window.showMainContent?.()">← Go Back</button>
     <div class="container">
@@ -183,32 +196,55 @@
         <h3>Do I need an account to purchase?</h3>
         <p>No, you can check out as a guest. However, creating an account allows you to view your order history and re-download products more easily.</p>
         <h3>How do I access my purchased product?</h3>
-        <p>After successful payment, you will receive an automated email containing a secure link and a unique, generated password.</p>
+        <p>After successful payment, you will receive an automated email containing a secure link and a unique, generated password. You must use this password to access your download. The password is generated only for successful transactions. Pending or failed payments will not receive a password.</p>
+        <h3>What if I don't receive the email?</h3>
+        <p>Check your spam or promotions folder. If still not found, contact support@elevateshop.com with your order details. We will resend the access instructions.</p>
         <h3>Can I reset my lost access password?</h3>
-        <p>Yes. Contact support with your purchase email, and we will issue a new password.</p>
+        <p>Yes. Contact support with your purchase email, and we will verify your identity and issue a new password. Please allow up to 24 hours for verification.</p>
+        <h3>What formats are the products in?</h3>
+        <p>Most products are delivered as PDF, EPUB, or MP4 video files. Specific formats are listed on each product page. All files are compatible with computers, tablets, and smartphones.</p>
         <h3>Are refunds available?</h3>
-        <p>No. All digital product sales are final.</p>
+        <p>No. Due to the digital nature of our products, all sales are final and non-refundable. Please review product descriptions carefully before purchasing.</p>
         <h3>How do I contact support?</h3>
-        <p>Email support@elevateshop.com. Response within 24-48 hours.</p>
+        <p>Email support@elevateshop.com. We typically respond within 24-48 hours. Include your order number and a detailed description of the issue.</p>
     </div>
 </div>
+
 <div id="page-instant-delivery" class="page-content" style="display: none;">
     <button class="back-button" onclick="window.showMainContent?.()">← Go Back</button>
-    <div class="container"><h2>Instant Digital Delivery</h2><p>Within 1-2 minutes of purchase, you will receive an email with a secure download link and unique password.</p></div>
+    <div class="container">
+        <h2>Instant Digital Delivery</h2>
+        <p>At Elevate Shop, we believe you shouldn't have to wait. That's why all our products are delivered instantly upon successful payment.</p>
+        <p>Within 1-2 minutes of completing your purchase, you will receive an email containing a secure download link and a unique access password. No physical shipping, no delays. You can access your product immediately on any device.</p>
+        <p>If you don't see the email, please check your spam folder. For any delivery issues, our support team is ready to assist within 24 hours.</p>
+        <p>All digital products are available for download at any time from your account dashboard (if you created an account) or via the access link sent to your email.</p>
+    </div>
 </div>
 <div id="page-lifetime-access" class="page-content" style="display: none;">
     <button class="back-button" onclick="window.showMainContent?.()">← Go Back</button>
-    <div class="container"><h2>Lifetime Access</h2><p>Your access never expires. Re-download anytime for free, including future updates.</p></div>
+    <div class="container">
+        <h2>Lifetime Access</h2>
+        <p>When you purchase a product from Elevate Shop, you get lifetime access – no subscriptions, no recurring fees.</p>
+        <p>You can download your product as many times as you need, and you'll receive free updates whenever we improve the content. Your access never expires. Simply use your original download link or log into your account (if created) to re-download anytime.</p>
+        <p>We also offer lifetime support for any technical issues related to accessing your purchase.</p>
+        <p>Even if you lose your password, you can request a password reset via support. Your purchase is permanently tied to your email address.</p>
+    </div>
 </div>
 <div id="page-secure-transactions" class="page-content" style="display: none;">
     <button class="back-button" onclick="window.showMainContent?.()">← Go Back</button>
-    <div class="container"><h2>Secure Transactions</h2><p>All payments are processed through Stripe (PCI Level 1). We never store your card details.</p></div>
+    <div class="container">
+        <h2>Secure Transactions</h2>
+        <p>Your security is our priority. All transactions on Elevate Shop are processed through a PCI Level 1 certified payment gateway.</p>
+        <p>We never store your credit card details on our servers. Our payment partner uses industry-leading encryption and fraud detection to protect your information. Additionally, our website is secured with SSL (https) to ensure all data transmitted between your browser and our servers is encrypted.</p>
+        <p>You can pay using any major credit or debit card, or via PayPal – all without sharing your financial details with us.</p>
+        <p>You can shop with confidence knowing that your payment information is handled with the highest security standards.</p>
+    </div>
 </div>
-<div id="page-motivational-collections" class="page-content" style="display: none;"><button class="back-button" onclick="window.showMainContent?.()">← Go Back</button><div class="container"><h2>Motivational Collections</h2><p>Hand-picked motivational materials: quote handbooks, morning mastery course, resilience toolkit.</p></div></div>
-<div id="page-financial-courses" class="page-content" style="display: none;"><button class="back-button" onclick="window.showMainContent?.()">← Go Back</button><div class="container"><h2>Financial Courses</h2><p>Financial Freedom Blueprint, Wealth Mindset Masterclass, Real Estate Basics – all updated.</p></div></div>
-<div id="page-personal-development" class="page-content" style="display: none;"><button class="back-button" onclick="window.showMainContent?.()">← Go Back</button><div class="container"><h2>Personal Development</h2><p>Mindset Reset, Productivity Mastery, Health & Wellness Blueprint.</p></div></div>
-<div id="page-business-tools" class="page-content" style="display: none;"><button class="back-button" onclick="window.showMainContent?.()">← Go Back</button><div class="container"><h2>Business Tools</h2><p>Entrepreneur's Toolkit, Social Media Masterclass, Negotiation Tactics.</p></div></div>
-<div id="page-contact" class="page-content" style="display: none;"><button class="back-button" onclick="window.showMainContent?.()">← Go Back</button><div class="container"><h2>Contact Us</h2><p>Email: support@elevateshop.com<br>Response: 24-48 hours</p></div></div>
+<div id="page-motivational-collections" class="page-content" style="display: none;"><button class="back-button" onclick="window.showMainContent?.()">← Go Back</button><div class="container"><h2>Motivational Collections</h2><p>Explore our hand-picked motivational materials: daily quote handbooks, success stories, and mindset shift guides. All products are digital and instantly accessible.</p><ul><li>The Daily Motivation Handbook – $19</li><li>Morning Mastery Course – $29</li><li>Resilience Toolkit – $24</li></ul><p>These collections are designed to inspire you daily and help you build lasting motivation.</p></div></div>
+<div id="page-financial-courses" class="page-content" style="display: none;"><button class="back-button" onclick="window.showMainContent?.()">← Go Back</button><div class="container"><h2>Financial Courses</h2><p>Master your money with our in-depth financial literacy programs.</p><ul><li>Financial Freedom Blueprint – $47</li><li>Wealth Mindset Masterclass – $47</li><li>Real Estate Investing Basics – $59</li></ul><p>These courses are taught by industry experts and updated regularly.</p></div></div>
+<div id="page-personal-development" class="page-content" style="display: none;"><button class="back-button" onclick="window.showMainContent?.()">← Go Back</button><div class="container"><h2>Personal Development</h2><p>Unlock your full potential with our personal development products.</p><ul><li>Mindset Reset Program – $37</li><li>Productivity Mastery System – $34</li><li>Health & Wellness Blueprint – $29</li></ul><p>These programs are based on the latest psychology and neuroscience research.</p></div></div>
+<div id="page-business-tools" class="page-content" style="display: none;"><button class="back-button" onclick="window.showMainContent?.()">← Go Back</button><div class="container"><h2>Business Tools</h2><p>Grow your business with our entrepreneur-focused templates and courses.</p><ul><li>Entrepreneur's Success Toolkit – $79</li><li>Social Media Marketing Masterclass – $49</li><li>Advanced Negotiation Tactics – $39</li></ul><p>Used by thousands of successful entrepreneurs worldwide.</p></div></div>
+<div id="page-contact" class="page-content" style="display: none;"><button class="back-button" onclick="window.showMainContent?.()">← Go Back</button><div class="container"><h2>Contact Us</h2><p>Email: support@elevateshop.com</p><p>Response time: 24-48 hours (business days)</p><p>We look forward to helping you!</p></div></div>
 
 <!-- Footer -->
 <footer class="footer">
@@ -241,39 +277,22 @@
     </div>
 </div>
 
-<!-- Checkout Modal -->
-<div id="payment-modal" class="modal payment-modal">
+<!-- Payment Redirect Modal (no gateway name) -->
+<div id="payment-redirect-modal" class="modal payment-redirect-modal">
     <div class="modal-content">
-        <button class="modal-close" id="close-payment">&times;</button>
-        <h2>Secure Checkout</h2>
-        <div id="payment-error" class="payment-error" style="display: none;"></div>
-        <form id="payment-form">
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="card-name">Cardholder Name</label>
-                    <input type="text" id="card-name" required placeholder="Enter the Full Name">
-                </div>
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" required placeholder="your-email@example.com">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="card-number">Card Number</label>
-                <input type="text" id="card-number" required placeholder="1234 5678 1234 5678" maxlength="19">
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="card-expiry">Expiry (MM/YY)</label>
-                    <input type="text" id="card-expiry" required placeholder="12/28">
-                </div>
-                <div class="form-group">
-                    <label for="card-cvc">CVC</label>
-                    <input type="text" id="card-cvc" required placeholder="123" maxlength="4">
-                </div>
-            </div>
-            <button type="submit" class="btn-primary btn-block">Pay $<span id="modal-total">0.00</span></button>
-        </form>
+        <button class="modal-close" id="close-redirect-modal">&times;</button>
+        <h2>Complete Your Purchase</h2>
+        <p>Please enter your email address to continue. You will be redirected to our secure payment page where you can pay with credit/debit card or PayPal.</p>
+        <div class="form-group">
+            <label for="redirect-email">Email Address</label>
+            <input type="email" id="redirect-email" required placeholder="your-email@example.com">
+        </div>
+        <div id="redirect-loading" style="display: none; text-align: center; margin: 15px 0;">
+            <div class="loader"></div>
+            <p>Redirecting to secure payment page, please wait...</p>
+        </div>
+        <button id="confirm-redirect-btn" class="btn-primary">Pay Now</button>
+        <p class="payment-disclaimer">We never store your card details. Payments are processed securely by our PCI Level 1 certified partner.</p>
     </div>
 </div>
 
@@ -333,7 +352,7 @@
     </div>
 </div>
 
-<!-- Account Modal (Sign Up / Log In) – with helper text and a single "Sign Up" link -->
+<!-- Account Modal -->
 <div id="account-modal" class="modal account-modal">
     <div class="modal-content">
         <button class="modal-close" id="close-account-modal">&times;</button>
@@ -343,14 +362,8 @@
         </div>
         <div id="login-form">
             <h2>Log In</h2>
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" id="login-email" required placeholder="your-email@example.com">
-            </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" id="login-password" required placeholder="Enter your password">
-            </div>
+            <div class="form-group"><label>Email</label><input type="email" id="login-email" required placeholder="your-email@example.com"></div>
+            <div class="form-group"><label>Password</label><input type="password" id="login-password" required placeholder="Enter your password"></div>
             <p style="font-size: 12px; color: #666; margin-top: -10px; margin-bottom: 16px;">Password must be at least 8 characters, letters and numbers.</p>
             <button id="do-login" class="btn-primary">Log In</button>
             <p style="margin-top: 12px; font-size: 13px; text-align: center;">
@@ -359,18 +372,9 @@
         </div>
         <div id="signup-form" style="display:none;">
             <h2>Sign Up</h2>
-            <div class="form-group">
-                <label>Full Name</label>
-                <input type="text" id="signup-name" required placeholder="Enter Full Name">
-            </div>
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" id="signup-email" required placeholder="your-email@example.com">
-            </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" id="signup-password" required placeholder="Create a password">
-            </div>
+            <div class="form-group"><label>Full Name</label><input type="text" id="signup-name" required placeholder="Enter Full Name"></div>
+            <div class="form-group"><label>Email</label><input type="email" id="signup-email" required placeholder="your-email@example.com"></div>
+            <div class="form-group"><label>Password</label><input type="password" id="signup-password" required placeholder="Create a password"></div>
             <p style="font-size: 12px; color: #666; margin-top: -10px; margin-bottom: 16px;">Password must be at least 8 characters, contain letters and numbers.</p>
             <button id="do-signup" class="btn-primary">Create Account</button>
         </div>
