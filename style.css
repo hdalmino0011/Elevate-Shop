@@ -472,29 +472,27 @@ left: -12px;
 right: -12px;
 }
 
-/* ==================== GRID CAROUSEL (Complete Product Collection) - FIXED (NO CUTTING) ==================== */
+/* ==================== GRID CAROUSEL (Complete Product Collection) - FIXED ==================== */
 .grid-carousel-container {
 position: relative;
 margin: 40px 0;
 overflow: visible;
 }
 
-/* FIX: removed overflow:hidden, allow full visibility */
 .grid-carousel-wrapper {
 overflow: visible !important;
 margin: 0;
 }
 
-/* FIX: track uses flex, no transform clipping, height auto */
 .grid-carousel-track {
 display: flex;
 transition: transform 0.5s ease;
 gap: 24px;
 overflow: visible;
 height: auto;
+min-height: 200px; /* ensures track has height even before products load */
 }
 
-/* FIX: card height auto, no hidden overflow */
 .grid-carousel-item {
 flex: 0 0 calc(33.333% - 16px);
 background-color: var(--cream);
@@ -544,7 +542,6 @@ gap: 8px;
 margin-top: auto;
 }
 
-/* Grid carousel buttons (placed below the grid, centered) */
 .grid-carousel-buttons {
 display: flex;
 justify-content: center;
