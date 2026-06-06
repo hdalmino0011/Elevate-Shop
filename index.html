@@ -74,12 +74,8 @@
                 </div>
                 <div class="featured-content">
                     <div class="featured-text">
-                        <p class="article-body">
-                            A curated collection of daily inspiration drawn from history’s greatest thinkers. Instant digital delivery.
-                        </p>
-                        <p class="article-meta">
-                            <strong>Category:</strong> Motivational | <strong>Price:</strong> $24.99
-                        </p>
+                        <p class="article-body">A curated collection of daily inspiration drawn from history’s greatest thinkers. Instant digital delivery.</p>
+                        <p class="article-meta"><strong>Category:</strong> Motivational | <strong>Price:</strong> $24.99</p>
                         <button class="btn-primary add-to-cart" data-name="Daily Motivation Mastery" data-price="24.99">Add to Cart</button>
                     </div>
                 </div>
@@ -132,7 +128,7 @@
     </section>
 </div>
 
-<!-- ==================== FOOTER PAGE CONTENT (detailed) ==================== -->
+<!-- ==================== FOOTER PAGE CONTENT (updated) ==================== -->
 <div id="page-privacy" class="page-content" style="display: none;">
     <button class="back-button" onclick="window.showMainContent?.()">← Go Back</button>
     <div class="container">
@@ -165,8 +161,7 @@
         <p>You agree not to reverse engineer, modify, or create derivative works from our products. You also agree not to use our products for any illegal or unauthorized purpose.</p>
         <h3>Intellectual Property</h3>
         <p>All content, including text, graphics, logos, and product materials, is the intellectual property of Elevate Shop and is protected by copyright laws.</p>
-        <h3>Limitation of Liability</h3>
-        <p>Elevate Shop shall not be liable for any indirect, incidental, or consequential damages arising from the use or inability to use our products, even if advised of the possibility of such damages.</p>
+        <!-- Removed Limitation of Liability clause -->
         <p><em>Last updated: June 1, 2025</em></p>
     </div>
 </div>
@@ -196,13 +191,11 @@
         <h3>Do I need an account to purchase?</h3>
         <p>No, you can check out as a guest. However, creating an account allows you to view your order history and re-download products more easily.</p>
         <h3>How do I access my purchased product?</h3>
-        <p>After successful payment, you will receive an automated email containing a secure link and a unique, generated password. You must use this password to access your download. The password is generated only for successful transactions. Pending or failed payments will not receive a password.</p>
+        <p>After successful payment, you will receive an automated email containing a secure link and a unique, generated password. You must use this password to access your download. Your product is an interactive HTML file – you can open it in any browser. If you prefer a PDF, you can use your browser’s “Print” function to save it as a PDF for offline reading.</p>
         <h3>What if I don't receive the email?</h3>
         <p>Check your spam or promotions folder. If still not found, contact support@elevateshop.com with your order details. We will resend the access instructions.</p>
         <h3>Can I reset my lost access password?</h3>
         <p>Yes. Contact support with your purchase email, and we will verify your identity and issue a new password. Please allow up to 24 hours for verification.</p>
-        <h3>What formats are the products in?</h3>
-        <p>Most products are delivered as PDF, EPUB, or MP4 video files. Specific formats are listed on each product page. All files are compatible with computers, tablets, and smartphones.</p>
         <h3>Are refunds available?</h3>
         <p>No. Due to the digital nature of our products, all sales are final and non-refundable. Please review product descriptions carefully before purchasing.</p>
         <h3>How do I contact support?</h3>
@@ -261,23 +254,12 @@
 <!-- ==================== MODALS ==================== -->
 <!-- Cart Sidebar -->
 <div id="cart-sidebar" class="cart-sidebar">
-    <div class="cart-header">
-        <h3>Your Cart</h3>
-        <button id="close-cart" class="close-btn">&times;</button>
-    </div>
-    <div id="cart-items" class="cart-items">
-        <p class="empty-message">Your cart is empty</p>
-    </div>
-    <div class="cart-footer">
-        <div class="cart-total">
-            <span>Total:</span>
-            <span class="amount">$<span id="cart-total">0.00</span></span>
-        </div>
-        <button id="checkout-btn" class="btn-primary checkout-btn">Proceed to Checkout</button>
-    </div>
+    <div class="cart-header"><h3>Your Cart</h3><button id="close-cart" class="close-btn">&times;</button></div>
+    <div id="cart-items" class="cart-items"><p class="empty-message">Your cart is empty</p></div>
+    <div class="cart-footer"><div class="cart-total"><span>Total:</span><span class="amount">$<span id="cart-total">0.00</span></span></div><button id="checkout-btn" class="btn-primary checkout-btn">Proceed to Checkout</button></div>
 </div>
 
-<!-- Payment Redirect Modal (no gateway name) -->
+<!-- Payment Redirect Modal -->
 <div id="payment-redirect-modal" class="modal payment-redirect-modal">
     <div class="modal-content">
         <button class="modal-close" id="close-redirect-modal">&times;</button>
@@ -287,10 +269,7 @@
             <label for="redirect-email">Email Address</label>
             <input type="email" id="redirect-email" required placeholder="your-email@example.com">
         </div>
-        <div id="redirect-loading" style="display: none; text-align: center; margin: 15px 0;">
-            <div class="loader"></div>
-            <p>Redirecting to secure payment page, please wait...</p>
-        </div>
+        <div id="redirect-loading" style="display: none;"><div class="loader"></div><p>Redirecting to secure payment page, please wait...</p></div>
         <button id="confirm-redirect-btn" class="btn-primary">Pay Now</button>
         <p class="payment-disclaimer">We never store your card details. Payments are processed securely by our PCI Level 1 certified partner.</p>
     </div>
@@ -302,10 +281,7 @@
         <button class="close-confirm" id="close-confirm">&times;</button>
         <h3>Product added to Cart!</h3>
         <p>Would you like to proceed to checkout or continue shopping?</p>
-        <div class="cart-confirm-buttons">
-            <button id="confirm-checkout" class="btn-primary">Proceed to Checkout</button>
-            <button id="confirm-continue" class="btn-secondary">Purchase More</button>
-        </div>
+        <div class="cart-confirm-buttons"><button id="confirm-checkout" class="btn-primary">Proceed to Checkout</button><button id="confirm-continue" class="btn-secondary">Purchase More</button></div>
     </div>
 </div>
 
@@ -314,11 +290,7 @@
     <div class="modal-content modal-large">
         <button class="modal-close" id="close-detail-modal">&times;</button>
         <article class="detail-article">
-            <header class="detail-header">
-                <span class="detail-label" id="detail-label">Product</span>
-                <h2 id="detail-title">Product Title</h2>
-                <p id="detail-subtitle" class="detail-subtitle"></p>
-            </header>
+            <header class="detail-header"><span class="detail-label" id="detail-label">Product</span><h2 id="detail-title">Product Title</h2><p id="detail-subtitle" class="detail-subtitle"></p></header>
             <div class="detail-body" id="detail-body"></div>
             <p id="detail-price" class="product-price"></p>
             <button id="detail-add-to-cart" class="btn-primary">Add to Cart</button>
@@ -326,29 +298,11 @@
     </div>
 </div>
 
-<!-- Policy Modal (additional) -->
+<!-- Policy Modal -->
 <div id="policy-modal" class="modal policy-modal">
     <div class="modal-content modal-large">
         <button class="modal-close" id="close-policy">&times;</button>
-        <article class="policy-article">
-            <header class="policy-header">
-                <h2>Elevate Shop Policies</h2>
-            </header>
-            <div class="policy-content">
-                <section class="policy-section">
-                    <h3>Non-Refundable Digital Products</h3>
-                    <p>All digital products sold on Elevate Shop are non-refundable. Once purchased and delivered, digital products cannot be returned for a refund.</p>
-                </section>
-                <section class="policy-section">
-                    <h3>Instant Delivery</h3>
-                    <p>Upon successful payment, all digital products will be delivered instantly to your registered email address.</p>
-                </section>
-                <section class="policy-section">
-                    <h3>Product Access & Licensing</h3>
-                    <p>You are purchasing a personal license. The product is for your personal use only and should not be redistributed.</p>
-                </section>
-            </div>
-        </article>
+        <article class="policy-article"><header class="policy-header"><h2>Elevate Shop Policies</h2></header><div class="policy-content"><section class="policy-section"><h3>Non-Refundable Digital Products</h3><p>All digital products sold on Elevate Shop are non-refundable.</p></section><section class="policy-section"><h3>Instant Delivery</h3><p>Upon successful payment, all digital products will be delivered instantly to your registered email address.</p></section><section class="policy-section"><h3>Product Access & Licensing</h3><p>You are purchasing a personal license. The product is for your personal use only and should not be redistributed.</p></section></div></article>
     </div>
 </div>
 
@@ -356,26 +310,21 @@
 <div id="account-modal" class="modal account-modal">
     <div class="modal-content">
         <button class="modal-close" id="close-account-modal">&times;</button>
-        <div id="account-tabs" style="display:flex; gap:1rem; margin-bottom:1rem;">
-            <button id="login-tab" class="account-tab active">Log In</button>
-            <button id="signup-tab" class="account-tab">Sign Up</button>
-        </div>
+        <div id="account-tabs" style="display:flex; gap:1rem; margin-bottom:1rem;"><button id="login-tab" class="account-tab active">Log In</button><button id="signup-tab" class="account-tab">Sign Up</button></div>
         <div id="login-form">
             <h2>Log In</h2>
             <div class="form-group"><label>Email</label><input type="email" id="login-email" required placeholder="your-email@example.com"></div>
             <div class="form-group"><label>Password</label><input type="password" id="login-password" required placeholder="Enter your password"></div>
-            <p style="font-size: 12px; color: #666; margin-top: -10px; margin-bottom: 16px;">Password must be at least 8 characters, letters and numbers.</p>
+            <p style="font-size:12px; color:#666; margin-top:-10px; margin-bottom:16px;">Password must be at least 8 characters, letters and numbers.</p>
             <button id="do-login" class="btn-primary">Log In</button>
-            <p style="margin-top: 12px; font-size: 13px; text-align: center;">
-                Don't have an account? <a href="#" id="switch-to-signup-static" style="color: var(--masthead-red-brown); text-decoration: underline;">Sign Up</a>
-            </p>
+            <p style="margin-top:12px; font-size:13px; text-align:center;">Don't have an account? <a href="#" id="switch-to-signup-static" style="color:var(--masthead-red-brown); text-decoration:underline;">Sign Up</a></p>
         </div>
         <div id="signup-form" style="display:none;">
             <h2>Sign Up</h2>
             <div class="form-group"><label>Full Name</label><input type="text" id="signup-name" required placeholder="Enter Full Name"></div>
             <div class="form-group"><label>Email</label><input type="email" id="signup-email" required placeholder="your-email@example.com"></div>
             <div class="form-group"><label>Password</label><input type="password" id="signup-password" required placeholder="Create a password"></div>
-            <p style="font-size: 12px; color: #666; margin-top: -10px; margin-bottom: 16px;">Password must be at least 8 characters, contain letters and numbers.</p>
+            <p style="font-size:12px; color:#666; margin-top:-10px; margin-bottom:16px;">Password must be at least 8 characters, contain letters and numbers.</p>
             <button id="do-signup" class="btn-primary">Create Account</button>
         </div>
     </div>
