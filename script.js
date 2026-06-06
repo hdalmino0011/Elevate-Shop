@@ -871,9 +871,23 @@ signupTab.addEventListener('click', () => {
 
 closeAccountModal.addEventListener('click', () => {
   accountModal.style.display = 'none';
+  // Clear input fields when modal is closed via close button
+  document.getElementById('login-email').value = '';
+  document.getElementById('login-password').value = '';
+  document.getElementById('signup-name').value = '';
+  document.getElementById('signup-email').value = '';
+  document.getElementById('signup-password').value = '';
 });
 window.addEventListener('click', (e) => {
-  if (e.target === accountModal) accountModal.style.display = 'none';
+  if (e.target === accountModal) {
+    accountModal.style.display = 'none';
+    // Clear input fields when modal is closed by clicking outside
+    document.getElementById('login-email').value = '';
+    document.getElementById('login-password').value = '';
+    document.getElementById('signup-name').value = '';
+    document.getElementById('signup-email').value = '';
+    document.getElementById('signup-password').value = '';
+  }
 });
 
 // Static signup link
@@ -903,6 +917,7 @@ document.getElementById('do-login').addEventListener('click', () => {
   updateLoginUI();
   accountModal.style.display = 'none';
   alert(`Welcome back, ${user.name}!`);
+  // Clear fields after successful login
   document.getElementById('login-email').value = '';
   document.getElementById('login-password').value = '';
 });
@@ -931,15 +946,7 @@ document.getElementById('do-signup').addEventListener('click', () => {
   updateLoginUI();
   accountModal.style.display = 'none';
   alert(`Account created successfully! Welcome, ${name}.`);
-  document.getElementById('signup-name').value = '';
-  document.getElementById('signup-email').value = '';
-  document.getElementById('signup-password').value = '';
-});
-
-// Reset forms when modal closed
-accountModal.addEventListener('close', () => {
-  document.getElementById('login-email').value = '';
-  document.getElementById('login-password').value = '';
+  // Clear fields after successful signup
   document.getElementById('signup-name').value = '';
   document.getElementById('signup-email').value = '';
   document.getElementById('signup-password').value = '';
