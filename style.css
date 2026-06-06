@@ -304,7 +304,7 @@ h4 {
     opacity: 0.95;
 }
 
-/* ==================== FEATURED ARTICLE ==================== */
+/* ==================== FEATURED ARTICLE with BEST SELLER badge ==================== */
 .featured-article {
     padding: 30px 0;
     background-color: white;
@@ -471,7 +471,7 @@ h4 {
     right: -12px;
 }
 
-/* ==================== TESTIMONIAL CAROUSEL ==================== */
+/* ==================== TESTIMONIAL CAROUSEL (no buttons) ==================== */
 .testimonial-section {
     padding: 30px 0;
     background-color: var(--primary-brown);
@@ -734,7 +734,7 @@ h4 {
     font-style: italic;
 }
 
-/* ==================== PAGE CONTENT ==================== */
+/* ==================== PAGE CONTENT (footer pages) ==================== */
 .page-content {
     position: relative;
     padding: 30px 0;
@@ -830,7 +830,7 @@ h4 {
     color: var(--masthead-red-brown);
 }
 
-/* ==================== LOADER ANIMATION (for redirect modal) ==================== */
+/* ==================== LOADER ANIMATION ==================== */
 .loader {
     display: inline-block;
     width: 24px;
