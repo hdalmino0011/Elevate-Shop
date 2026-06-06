@@ -490,7 +490,7 @@ transition: transform 0.5s ease;
 gap: 24px;
 overflow: visible;
 height: auto;
-min-height: 200px; /* ensures track has height even before products load */
+min-height: 200px;
 }
 
 .grid-carousel-item {
@@ -1106,6 +1106,27 @@ margin-right: 14px;
 margin-top: 4px;
 color: #000000;
 font-family: 'Georgia', serif;
+}
+
+/* NEW: Price and button row - bottom of modal */
+.price-button-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+  border-top: 1px solid var(--border-gray);
+  padding-top: 20px;
+}
+
+.product-price {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary-brown);
+  margin: 0;
+}
+
+#detail-add-to-cart {
+  margin: 0;
 }
 
 /* ==================== ACCOUNT MODAL (IMPROVED) ==================== */
