@@ -78,7 +78,6 @@ h4 {
     z-index: 100;
 }
 
-/* FIXED: top bar layout – no stacking on mobile */
 .nav-top {
     display: flex;
     justify-content: space-between;
@@ -113,6 +112,7 @@ h4 {
     white-space: nowrap;
     order: 0;
     margin: 0 auto;
+    cursor: pointer;
 }
 
 .nav-right {
@@ -304,7 +304,7 @@ h4 {
     opacity: 0.95;
 }
 
-/* ==================== FEATURED ARTICLE with BEST SELLER badge ==================== */
+/* ==================== FEATURED ARTICLE ==================== */
 .featured-article {
     padding: 30px 0;
     background-color: white;
@@ -471,7 +471,7 @@ h4 {
     right: -12px;
 }
 
-/* ==================== TESTIMONIAL CAROUSEL (no buttons) ==================== */
+/* ==================== TESTIMONIAL CAROUSEL ==================== */
 .testimonial-section {
     padding: 30px 0;
     background-color: var(--primary-brown);
@@ -734,7 +734,7 @@ h4 {
     font-style: italic;
 }
 
-/* ==================== PAGE CONTENT (footer pages) ==================== */
+/* ==================== PAGE CONTENT ==================== */
 .page-content {
     position: relative;
     padding: 30px 0;
@@ -830,53 +830,37 @@ h4 {
     color: var(--masthead-red-brown);
 }
 
-/* ==================== CHECKOUT MODAL ==================== */
-.payment-error {
-    background-color: #ffe6e6;
-    border-left: 4px solid #d32f2f;
-    padding: 12px;
-    margin-bottom: 16px;
-    font-size: 13px;
-    color: #b71c1c;
-    display: none;
+/* ==================== LOADER ANIMATION (for redirect modal) ==================== */
+.loader {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border: 3px solid #f0c040;
+    border-radius: 50%;
+    border-top-color: #1a1a2e;
+    animation: spin 0.8s linear infinite;
+    margin-right: 12px;
+    vertical-align: middle;
 }
 
-.payment-error a {
-    color: #d32f2f;
-    text-decoration: underline;
-    cursor: pointer;
+@keyframes spin {
+    to { transform: rotate(360deg); }
 }
 
-.form-group {
-    margin-bottom: 18px;
+/* ==================== PAYMENT REDIRECT MODAL ==================== */
+.payment-redirect-modal .modal-content {
+    text-align: center;
 }
 
-.form-group label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 6px;
-    font-size: 13px;
-    font-family: 'Georgia', serif;
+.payment-redirect-modal .form-group {
+    text-align: left;
+    margin: 20px 0;
 }
 
-.form-group input {
-    width: 100%;
-    padding: 10px 12px;
-    border: 1px solid var(--border-gray);
-    border-radius: 4px;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 15px;
-}
-
-.form-group input:focus {
-    outline: none;
-    border-color: var(--masthead-red-brown);
-}
-
-.form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
+.payment-redirect-modal .payment-disclaimer {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-top: 20px;
 }
 
 /* ==================== CART CONFIRMATION MODAL ==================== */
@@ -923,11 +907,7 @@ h4 {
     margin-top: 8px;
 }
 
-.cart-confirm-buttons .btn-primary {
-    width: 100%;
-    text-align: center;
-}
-
+.cart-confirm-buttons .btn-primary,
 .cart-confirm-buttons .btn-secondary {
     width: 100%;
     text-align: center;
@@ -1096,7 +1076,6 @@ h4 {
     border-bottom-color: var(--masthead-red-brown);
 }
 
-/* Helper text inside account modal */
 #login-form p, #signup-form p {
     font-size: 12px;
     color: #666;
