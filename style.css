@@ -30,6 +30,7 @@ background-color: var(--cream);
 color: var(--text-dark);
 line-height: 1.5;
 font-size: 16px;
+overflow-x: visible;
 }
 
 a {
@@ -46,6 +47,7 @@ color: var(--dark-brown);
 max-width: 1100px;
 margin: 0 auto;
 padding: 0 16px;
+overflow: visible;
 }
 
 h1, h2, h3, h4, h5 {
@@ -470,23 +472,29 @@ left: -12px;
 right: -12px;
 }
 
-/* ==================== GRID CAROUSEL (Complete Product Collection) ==================== */
+/* ==================== GRID CAROUSEL (Complete Product Collection) - FIXED (NO CUTTING) ==================== */
 .grid-carousel-container {
 position: relative;
 margin: 40px 0;
+overflow: visible;
 }
 
+/* FIX: removed overflow:hidden, allow full visibility */
 .grid-carousel-wrapper {
-overflow: hidden;
+overflow: visible !important;
 margin: 0;
 }
 
+/* FIX: track uses flex, no transform clipping, height auto */
 .grid-carousel-track {
 display: flex;
 transition: transform 0.5s ease;
 gap: 24px;
+overflow: visible;
+height: auto;
 }
 
+/* FIX: card height auto, no hidden overflow */
 .grid-carousel-item {
 flex: 0 0 calc(33.333% - 16px);
 background-color: var(--cream);
@@ -496,6 +504,8 @@ border-radius: 4px;
 display: flex;
 flex-direction: column;
 word-wrap: break-word;
+overflow: visible;
+height: auto;
 }
 
 .grid-carousel-item .category {
@@ -518,6 +528,7 @@ color: var(--text-light);
 margin-bottom: 14px;
 line-height: 1.5;
 flex-grow: 1;
+overflow: visible;
 }
 
 .grid-carousel-item .price {
