@@ -376,7 +376,7 @@ function showCartConfirmModal(product, onConfirm) {
   closeBtn.addEventListener('click', handlerClose);
 }
 
-// ========== PAYMENT REDIRECT MODAL & PURCHASE SAVING ==========
+// ========== PAYMENT REDIRECT MODAL & PURCHASE SAVING (FIXED: save only after return) ==========
 function openPaymentRedirectModal() {
   const modal = document.getElementById('payment-redirect-modal');
   if (!modal) return;
@@ -396,7 +396,7 @@ function closePaymentRedirectModal() {
   if (payBtn) payBtn.disabled = false;
 }
 
-// ✅ FIXED PayPal function – sends actual cart, not empty
+// ✅ FIXED: Do not save order here – only store in sessionStorage
 async function initiatePayPalCheckout() {
   const emailInput = document.getElementById('redirect-email');
   const email = emailInput ? emailInput.value.trim() : '';
@@ -409,9 +409,9 @@ async function initiatePayPalCheckout() {
     return;
   }
 
-  // Save purchase to order history (record before redirect)
-  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  savePurchaseToHistory(cart, total);
+  // Save cart to sessionStorage (in case we need to save order after return)
+  sessionStorage.setItem('pendingCart', JSON.stringify(cart));
+  sessionStorage.setItem('pendingEmail', email);
 
   const loadingDiv = document.getElementById('redirect-loading');
   const payBtn = document.getElementById('confirm-redirect-btn');
@@ -422,11 +422,11 @@ async function initiatePayPalCheckout() {
     const response = await fetch('https://elevate-shop-worker.dalminohanz14.workers.dev/create-paypal-order', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, cart })   // send actual cart
+      body: JSON.stringify({ email, cart })
     });
     const data = await response.json();
     if (data.approval_url) {
-      // Clear cart before redirect
+      // Clear cart from memory (sessionStorage still holds it)
       cart = [];
       updateCartUI();
       closePaymentRedirectModal();
@@ -444,6 +444,25 @@ async function initiatePayPalCheckout() {
     alert('Network error. Please try again.');
     if (loadingDiv) loadingDiv.style.display = 'none';
     if (payBtn) payBtn.disabled = false;
+  }
+}
+
+// ✅ NEW: Check for PayPal return and save order only after successful payment
+function checkPayPalReturnAndSaveOrder() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const token = urlParams.get('token');
+  const payerId = urlParams.get('PayerID');
+  if ((token || payerId) && sessionStorage.getItem('pendingCart')) {
+    const savedCart = JSON.parse(sessionStorage.getItem('pendingCart'));
+    const savedEmail = sessionStorage.getItem('pendingEmail');
+    if (savedCart && savedCart.length > 0 && loggedInUser && savedEmail === loggedInUser.email) {
+      const total = savedCart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+      savePurchaseToHistory(savedCart, total);
+      alert('Payment successful! Your order has been recorded.');
+      sessionStorage.removeItem('pendingCart');
+      sessionStorage.removeItem('pendingEmail');
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
   }
 }
 
@@ -781,6 +800,9 @@ document.addEventListener('DOMContentLoaded', () => {
     loggedInUser = JSON.parse(storedUser);
     updateLoginUI();
   }
+
+  // Check for PayPal return and save order if needed
+  checkPayPalReturnAndSaveOrder();
 });
 
 // ========== SEARCH UI ==========
