@@ -357,7 +357,7 @@
 </div>
 </div>
 
-<!-- Product Detail Modal (FIXED: price at bottom right) -->
+<!-- Product Detail Modal -->
 <div id="detail-modal" class="modal detail-modal">
 <div class="modal-content modal-large">
 <button class="modal-close" id="close-detail-modal">&times;</button>
@@ -376,7 +376,7 @@
 </div>
 </div>
 
-<!-- Policy Modal (additional) -->
+<!-- Policy Modal -->
 <div id="policy-modal" class="modal policy-modal">
 <div class="modal-content modal-large">
 <button class="modal-close" id="close-policy">&times;</button>
@@ -444,6 +444,27 @@ Don't have an account? <a href="#" id="switch-to-signup-static" style="color: va
 <button id="do-signup" class="btn-primary">Create Account</button>
 </div>
 </div>
+</div>
+
+<!-- Order History Sidebar -->
+<div id="order-history-sidebar" class="order-history-sidebar">
+    <div class="order-history-header">
+        <h3>Order History</h3>
+        <button id="close-order-history" class="close-btn">&times;</button>
+    </div>
+    <div id="order-history-list" class="order-history-list">
+        <p class="empty-message">No orders yet.</p>
+    </div>
+</div>
+
+<!-- Order Detail Modal -->
+<div id="order-detail-modal" class="modal order-detail-modal">
+    <div class="modal-content modal-large">
+        <button class="modal-close" id="close-order-detail-modal">&times;</button>
+        <h2 id="order-detail-title">Order Details</h2>
+        <div id="order-detail-content" class="order-detail-content"></div>
+        <button id="order-detail-back" class="btn-primary">Go Back</button>
+    </div>
 </div>
 
 <script src="script.js"></script>
