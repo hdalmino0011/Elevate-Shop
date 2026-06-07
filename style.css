@@ -1358,13 +1358,13 @@ font-size: 14px;
     margin-top: 20px;
 }
 
-/* ==================== MOBILE & TABLET RESPONSIVENESS (FIXED) ==================== */
+/* ==================== MOBILE & TABLET RESPONSIVENESS (FIXED – NO OVERLAP) ==================== */
 @media (max-width: 768px) {
   /* Global */
   body { font-size: 14px; }
   .container { padding: 0 12px; }
 
-  /* Navigation */
+  /* Fix overlapping navigation on mobile */
   .nav-top {
     flex-wrap: wrap;
     justify-content: center;
@@ -1373,22 +1373,34 @@ font-size: 14px;
   }
   .nav-date {
     order: 1;
-    max-width: 100%;
+    width: 100%;
     text-align: center;
     font-size: 10px;
     white-space: normal;
-    overflow-x: visible;
+    margin-bottom: 4px;
   }
   .nav-center-text {
     order: 2;
-    margin: 0;
+    margin: 0 auto;
     font-size: 10px;
   }
   .nav-right {
     order: 3;
+    display: flex;
     justify-content: center;
     width: 100%;
-    gap: 15px;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .account-area {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    width: auto;
+  }
+  .cart-link, .search-toggle, .account-area a, #logged-in-welcome {
+    white-space: nowrap;
   }
   .search-container {
     margin: 8px 12px;
