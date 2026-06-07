@@ -1,5 +1,5 @@
 // ElevateShop – Complete JavaScript
-// Includes: merged 20‑product data, product carousel, grid carousel, search, filter, account, PayPal redirect modal
+// Includes: merged 20‑product data, product carousel, grid carousel, search, filter, account, PayPal redirect modal, ORDER HISTORY
 
 // ========== MERGED PRODUCT DATA (20 products) ==========
 const allProductsData = [
@@ -32,10 +32,7 @@ const allProductsData = [
   { id: 20, name: "Public Speaking Confidence", category: "motivational", price: 32.99, description: "Overcome fear and deliver powerful presentations.", fullDescription: "Video course with practical exercises to conquer stage fright, structure your message, and speak with authority and impact." }
 ];
 
-// Extra products data is no longer needed – all products are in allProductsData
-// We keep an empty array for compatibility with existing code that references extraProductsData
 const extraProductsData = [];
-
 const testimonials = [
   { text: "These products completely changed how I think about money and my potential. The Financial Freedom Blueprint alone helped me pay off $18,000 in debt.", author: "Marcus T., Customer" },
   { text: "The Mindset Reset Program rewired my thinking. I've never felt more confident and capable. Highly recommended!", author: "Sarah J., Entrepreneur" },
@@ -48,7 +45,7 @@ let currentFilter = "all";
 let currentSearchTerm = "";
 let loggedInUser = null;
 
-// Helper functions
+// ========== HELPER FUNCTIONS ==========
 function getCategoryName(cat) {
   const map = { financial: "Financial Literacy", personal: "Personal Development", motivational: "Motivational", business: "Business & Success" };
   return map[cat] || cat;
@@ -73,14 +70,11 @@ function filterBySearch(products, term) {
   return products.filter(p => p.name.toLowerCase().includes(lowerTerm));
 }
 
-// Render Top Selections Carousel (all 20 products)
 function renderFilteredCarousel() {
   const track = document.getElementById('product-carousel-track');
   if (!track) return;
   let filtered = [...allProductsData];
-  if (currentFilter !== 'all') {
-    filtered = filtered.filter(p => p.category === currentFilter);
-  }
+  if (currentFilter !== 'all') filtered = filtered.filter(p => p.category === currentFilter);
   filtered = filterBySearch(filtered, currentSearchTerm);
   track.innerHTML = '';
   filtered.forEach(p => {
@@ -107,14 +101,11 @@ function renderFilteredCarousel() {
   }
 }
 
-// Render Grid Carousel (all 20 products)
 function renderGridCarousel() {
   const track = document.getElementById('grid-carousel-track');
   if (!track) return;
   let filtered = [...allProductsData];
-  if (currentFilter !== 'all') {
-    filtered = filtered.filter(p => p.category === currentFilter);
-  }
+  if (currentFilter !== 'all') filtered = filtered.filter(p => p.category === currentFilter);
   filtered = filterBySearch(filtered, currentSearchTerm);
   track.innerHTML = '';
   filtered.forEach(p => {
@@ -211,14 +202,90 @@ function updateLoginUI() {
   }
 }
 
-// Order History link - placeholder functionality
-const orderHistoryLink = document.getElementById('order-history-link');
-if (orderHistoryLink) {
-  orderHistoryLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    // TODO: Replace with real order history display (fetch from backend)
-    alert('Order history feature is coming soon. You will be able to view your past purchases here.');
+// ========== ORDER HISTORY ==========
+function getPurchaseHistory() {
+  const stored = localStorage.getItem('elevateShop_purchases');
+  return stored ? JSON.parse(stored) : [];
+}
+
+function savePurchaseToHistory(products, total) {
+  if (!loggedInUser) return false;
+  const purchases = getPurchaseHistory();
+  const newOrder = {
+    id: Date.now(),
+    email: loggedInUser.email,
+    date: new Date().toISOString(),
+    products: products.map(p => ({ id: p.id, name: p.name, price: p.price })),
+    total: total
+  };
+  purchases.push(newOrder);
+  localStorage.setItem('elevateShop_purchases', JSON.stringify(purchases));
+  return true;
+}
+
+function renderOrderHistory() {
+  const container = document.getElementById('order-history-list');
+  if (!container) return;
+  const purchases = getPurchaseHistory();
+  const userPurchases = purchases.filter(p => p.email === loggedInUser?.email);
+  if (userPurchases.length === 0) {
+    container.innerHTML = '<p class="empty-message">No orders yet.</p>';
+    return;
+  }
+  container.innerHTML = '';
+  userPurchases.forEach(order => {
+    const orderDiv = document.createElement('div');
+    orderDiv.className = 'order-history-item';
+    const dateStr = new Date(order.date).toLocaleDateString();
+    const productNames = order.products.map(p => p.name).join(', ');
+    orderDiv.innerHTML = `
+      <div class="order-date">${dateStr}</div>
+      <div class="order-products">${productNames}</div>
+      <div class="order-total">Total: $${order.total.toFixed(2)}</div>
+      <button class="order-details-btn" data-order-id="${order.id}">Details</button>
+    `;
+    container.appendChild(orderDiv);
   });
+  document.querySelectorAll('.order-details-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const orderId = parseInt(e.target.dataset.orderId);
+      const order = userPurchases.find(o => o.id === orderId);
+      if (order) showOrderDetail(order);
+    });
+  });
+}
+
+function showOrderDetail(order) {
+  const modal = document.getElementById('order-detail-modal');
+  const content = document.getElementById('order-detail-content');
+  if (!modal || !content) return;
+  let html = `<p><strong>Order Date:</strong> ${new Date(order.date).toLocaleString()}</p>`;
+  html += `<p><strong>Products purchased:</strong></p><ul>`;
+  order.products.forEach(p => {
+    const fullProduct = allProductsData.find(prod => prod.id === p.id);
+    html += `<li><strong>${p.name}</strong> – $${p.price.toFixed(2)}<br>`;
+    if (fullProduct && fullProduct.fullDescription) {
+      html += `<span style="font-size:13px; color:#666;">${fullProduct.fullDescription.substring(0, 200)}...</span>`;
+    } else {
+      html += `<span style="font-size:13px; color:#666;">${p.description || ''}</span>`;
+    }
+    html += `</li>`;
+  });
+  html += `</ul><p><strong>Total:</strong> $${order.total.toFixed(2)}</p>`;
+  content.innerHTML = html;
+  modal.style.display = 'flex';
+}
+
+// Open order history sidebar
+function openOrderHistorySidebar() {
+  renderOrderHistory();
+  const sidebar = document.getElementById('order-history-sidebar');
+  if (sidebar) sidebar.classList.add('open');
+}
+
+function closeOrderHistorySidebar() {
+  const sidebar = document.getElementById('order-history-sidebar');
+  if (sidebar) sidebar.classList.remove('open');
 }
 
 // ========== CART LOGIC ==========
@@ -310,7 +377,7 @@ function showCartConfirmModal(product, onConfirm) {
   closeBtn.addEventListener('click', handlerClose);
 }
 
-// ========== PAYMENT REDIRECT MODAL ==========
+// ========== PAYMENT REDIRECT MODAL & PURCHASE SAVING ==========
 function openPaymentRedirectModal() {
   const modal = document.getElementById('payment-redirect-modal');
   if (!modal) return;
@@ -342,6 +409,19 @@ async function initiatePayPalCheckout() {
     return;
   }
 
+  // Save purchase to order history (demo)
+  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  savePurchaseToHistory(cart, total);
+  alert('Purchase saved! (Demo) Your order has been recorded.');
+  
+  // Clear cart
+  cart = [];
+  updateCartUI();
+  closePaymentRedirectModal();
+  const cartSidebar = document.getElementById('cart-sidebar');
+  if (cartSidebar) cartSidebar.classList.remove('open');
+
+  // Redirect to PayPal (real)
   const loadingDiv = document.getElementById('redirect-loading');
   const payBtn = document.getElementById('confirm-redirect-btn');
   if (loadingDiv) loadingDiv.style.display = 'block';
@@ -351,7 +431,7 @@ async function initiatePayPalCheckout() {
     const response = await fetch('https://elevate-shop-worker.dalminohanz14.workers.dev/create-paypal-order', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, cart })
+      body: JSON.stringify({ email, cart: [] }) // cart is now empty, but we already saved
     });
     const data = await response.json();
     if (data.approval_url) {
@@ -375,7 +455,6 @@ function handleAddToCart(e) {
   const id = parseInt(e.currentTarget.dataset.id);
   let product = allProductsData.find(p => p.id === id);
   if (!product) return;
-
   if (addToCart(product)) {
     showCartConfirmModal(product, (proceedToCheckout) => {
       if (!proceedToCheckout) {
@@ -884,7 +963,6 @@ signupTab.addEventListener('click', () => {
 
 closeAccountModal.addEventListener('click', () => {
   accountModal.style.display = 'none';
-  // Clear input fields when modal is closed via close button
   document.getElementById('login-email').value = '';
   document.getElementById('login-password').value = '';
   document.getElementById('signup-name').value = '';
@@ -894,7 +972,6 @@ closeAccountModal.addEventListener('click', () => {
 window.addEventListener('click', (e) => {
   if (e.target === accountModal) {
     accountModal.style.display = 'none';
-    // Clear input fields when modal is closed by clicking outside
     document.getElementById('login-email').value = '';
     document.getElementById('login-password').value = '';
     document.getElementById('signup-name').value = '';
@@ -930,7 +1007,6 @@ document.getElementById('do-login').addEventListener('click', () => {
   updateLoginUI();
   accountModal.style.display = 'none';
   alert(`Welcome back, ${user.name}!`);
-  // Clear fields after successful login
   document.getElementById('login-email').value = '';
   document.getElementById('login-password').value = '';
 });
@@ -959,8 +1035,43 @@ document.getElementById('do-signup').addEventListener('click', () => {
   updateLoginUI();
   accountModal.style.display = 'none';
   alert(`Account created successfully! Welcome, ${name}.`);
-  // Clear fields after successful signup
   document.getElementById('signup-name').value = '';
   document.getElementById('signup-email').value = '';
   document.getElementById('signup-password').value = '';
+});
+
+// ========== ORDER HISTORY BUTTON & SIDEBAR ==========
+const orderHistoryBtn = document.getElementById('order-history-link');
+if (orderHistoryBtn) {
+  orderHistoryBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (!loggedInUser) {
+      alert('Please log in to view your order history.');
+      return;
+    }
+    openOrderHistorySidebar();
+  });
+}
+
+const closeOrderHistoryBtn = document.getElementById('close-order-history');
+if (closeOrderHistoryBtn) {
+  closeOrderHistoryBtn.addEventListener('click', closeOrderHistorySidebar);
+}
+
+// Close order detail modal
+const closeOrderDetailModal = document.getElementById('close-order-detail-modal');
+if (closeOrderDetailModal) {
+  closeOrderDetailModal.addEventListener('click', () => {
+    document.getElementById('order-detail-modal').style.display = 'none';
+  });
+}
+const orderDetailBackBtn = document.getElementById('order-detail-back');
+if (orderDetailBackBtn) {
+  orderDetailBackBtn.addEventListener('click', () => {
+    document.getElementById('order-detail-modal').style.display = 'none';
+  });
+}
+window.addEventListener('click', (e) => {
+  const modal = document.getElementById('order-detail-modal');
+  if (e.target === modal) modal.style.display = 'none';
 });
