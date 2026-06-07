@@ -276,7 +276,6 @@ function showOrderDetail(order) {
   modal.style.display = 'flex';
 }
 
-// Open order history sidebar
 function openOrderHistorySidebar() {
   renderOrderHistory();
   const sidebar = document.getElementById('order-history-sidebar');
@@ -397,6 +396,7 @@ function closePaymentRedirectModal() {
   if (payBtn) payBtn.disabled = false;
 }
 
+// ✅ FIXED PayPal function – sends actual cart, not empty
 async function initiatePayPalCheckout() {
   const emailInput = document.getElementById('redirect-email');
   const email = emailInput ? emailInput.value.trim() : '';
@@ -409,19 +409,10 @@ async function initiatePayPalCheckout() {
     return;
   }
 
-  // Save purchase to order history (demo)
+  // Save purchase to order history (record before redirect)
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   savePurchaseToHistory(cart, total);
-  alert('Purchase saved! (Demo) Your order has been recorded.');
-  
-  // Clear cart
-  cart = [];
-  updateCartUI();
-  closePaymentRedirectModal();
-  const cartSidebar = document.getElementById('cart-sidebar');
-  if (cartSidebar) cartSidebar.classList.remove('open');
 
-  // Redirect to PayPal (real)
   const loadingDiv = document.getElementById('redirect-loading');
   const payBtn = document.getElementById('confirm-redirect-btn');
   if (loadingDiv) loadingDiv.style.display = 'block';
@@ -431,10 +422,16 @@ async function initiatePayPalCheckout() {
     const response = await fetch('https://elevate-shop-worker.dalminohanz14.workers.dev/create-paypal-order', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, cart: [] }) // cart is now empty, but we already saved
+      body: JSON.stringify({ email, cart })   // send actual cart
     });
     const data = await response.json();
     if (data.approval_url) {
+      // Clear cart before redirect
+      cart = [];
+      updateCartUI();
+      closePaymentRedirectModal();
+      const cartSidebar = document.getElementById('cart-sidebar');
+      if (cartSidebar) cartSidebar.classList.remove('open');
       window.location.href = data.approval_url;
     } else {
       alert('Error creating PayPal order: ' + (data.error || 'Unknown'));
