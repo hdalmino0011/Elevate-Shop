@@ -195,17 +195,30 @@ function isValidPassword(password) {
 function updateLoginUI() {
   const loginLink = document.getElementById('login-link');
   const logoutLink = document.getElementById('logout-link');
+  const orderHistoryLink = document.getElementById('order-history-link');
   const welcomeSpan = document.getElementById('logged-in-welcome');
   if (loggedInUser) {
     loginLink.style.display = 'none';
     logoutLink.style.display = 'inline';
+    if (orderHistoryLink) orderHistoryLink.style.display = 'inline';
     welcomeSpan.style.display = 'inline';
     welcomeSpan.textContent = `Welcome, ${loggedInUser.name}`;
   } else {
     loginLink.style.display = 'inline';
     logoutLink.style.display = 'none';
+    if (orderHistoryLink) orderHistoryLink.style.display = 'none';
     welcomeSpan.style.display = 'none';
   }
+}
+
+// Order History link - placeholder functionality
+const orderHistoryLink = document.getElementById('order-history-link');
+if (orderHistoryLink) {
+  orderHistoryLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    // TODO: Replace with real order history display (fetch from backend)
+    alert('Order history feature is coming soon. You will be able to view your past purchases here.');
+  });
 }
 
 // ========== CART LOGIC ==========
