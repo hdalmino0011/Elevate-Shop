@@ -1,28 +1,36 @@
 // ElevateShop – Complete JavaScript
-// Includes: merged 20‑product data, product carousel, grid carousel, search, filter, account, PayPal redirect modal, ORDER HISTORY (saves on purchase), DUPLICATE PREVENTION
+// Includes: merged 21‑product data with BEST SELLER badges on 13 random products
 
-// ========== MERGED PRODUCT DATA (20 products) ==========
+// ========== MERGED PRODUCT DATA (21 products, 13 marked bestSeller) ==========
 const allProductsData = [
-  { id: 1, name: "Financial Freedom Blueprint", category: "financial", price: 29.99, description: "A comprehensive digital course and workbook to transform your relationship with money.", fullDescription: "The Financial Freedom Blueprint is a complete system for building lasting wealth. This comprehensive digital guide walks you through every step of the financial journey: from understanding your current financial situation, creating a budget that actually works, eliminating high-interest debt, building an emergency fund, investing in stocks and index funds, real estate investing basics, creating multiple income streams, and finally achieving complete financial independence. Each section includes worksheets, calculators, and real-world examples. The course draws on behavioral economics research and interviews with self-made millionaires. You'll gain lifetime access to updates and bonus materials.\n\nThousands of students have used this blueprint to pay off debt, save for retirement, and build passive income streams that continue to grow over time. Whether you're a complete beginner or already have some financial knowledge, this course meets you where you are and takes you to where you want to be." },
-  { id: 2, name: "Wealth Mindset Masterclass", category: "financial", price: 27.99, description: "Bridges psychology and finance to reveal hidden beliefs that drive financial outcomes.", fullDescription: "The Wealth Mindset Masterclass is an intensive deep-dive into the psychology of money and wealth creation. Drawing from behavioral economics, neuroscience, and interviews with 50+ self-made millionaires, this course reveals the hidden mental models that separate wealthy people from those who struggle financially. You'll discover: the psychology of scarcity vs. abundance, how to recognize and seize opportunities others miss, the role of risk tolerance in wealth building, delayed gratification and compounding, money scripts and belief systems, investment psychology, and the habits of the wealthy.\n\nIncludes 20+ video lessons, downloadable worksheets, case studies, and lifetime access to monthly bonus content. Students have reported doubling their income within six months, overcoming deep-seated fears around money, and developing a healthy, empowered relationship with wealth that benefits not only themselves but their families and communities." },
-  { id: 3, name: "Real Estate Investing Basics", category: "financial", price: 24.99, description: "A beginner's guide to real estate investing. Learn property analysis, financing options, rental income calculations.", fullDescription: "Real Estate Investing Basics demystifies one of the most powerful wealth-building tools available. This comprehensive guide covers: property types and analysis, finding deals, financing and mortgages, calculating cash flow and ROI, managing rental properties, tax benefits of real estate, building a property portfolio, commercial vs. residential investing, and real estate investment trusts (REITs). Includes property analysis calculators, financing comparison tools, rental property management templates, investment checklists, and case studies of successful real estate investors. Perfect for anyone looking to build long-term wealth through real estate." },
-  { id: 4, name: "Mindset Reset Program", category: "personal", price: 31.99, description: "A 30-day guided program to rewire your thinking patterns, eliminate limiting beliefs, and unlock your potential.", fullDescription: "The Mindset Reset Program is a transformative 30-day journey that rewires the neural pathways holding you back from success. Each morning you'll receive a guided meditation and affirmation session. Throughout the day, you'll complete journaling exercises that uncover and challenge limiting beliefs. The program covers: identifying your core beliefs, understanding their origins, challenging their validity, installing empowering beliefs, maintaining momentum, and building permanent mindset shifts. Includes daily video lessons, PDF workbooks, audio recordings, and a private community forum for support and accountability.\n\nThousands have reported life-changing results within 30 days. Participants have overcome imposter syndrome, developed unshakable confidence, and achieved goals they once thought impossible. This is not just a course – it's a complete mental transformation system backed by neuroscience and proven psychological techniques." },
-  { id: 5, name: "Productivity Mastery System", category: "personal", price: 22.99, description: "Time management systems used by top CEOs. Daily planning templates, habit tracking tools, and procrastination elimination.", fullDescription: "The Productivity Mastery System is based on decades of research into how high-performers manage their time and energy. This digital course covers: the science of deep work, energy management vs. time management, the optimal daily schedule, defeating procrastination scientifically, building unbreakable habits, delegating effectively, and automation strategies. Includes daily planning templates, weekly review worksheets, habit tracking spreadsheets, Pomodoro timers, energy optimization guides, and video lessons from productivity experts. Users report completing 3x more meaningful work in the same timeframe. Lifetime access with quarterly new content additions." },
-  { id: 6, name: "Health & Wellness Blueprint", category: "personal", price: 19.99, description: "Complete 90-day system for optimal health: nutrition, exercise, sleep, and stress management.", fullDescription: "The Health & Wellness Blueprint is a comprehensive 90-day system covering: nutrition fundamentals, meal planning, exercise routines for all fitness levels, sleep optimization, stress reduction techniques, and habit formation. Includes meal plans, workout videos, and progress tracking tools. This blueprint is designed for busy professionals who want to transform their health without spending hours in the gym.\n\nYou'll learn how to fuel your body for energy and longevity, build sustainable exercise habits, improve sleep quality, and manage stress effectively. The program is backed by the latest research in health psychology and physiology. Thousands of users have reported losing weight, gaining energy, and feeling better than ever after completing the 90-day plan." },
-  { id: 7, name: "The Daily Motivation Handbook", category: "motivational", price: 19.99, description: "500+ powerful quotes from history's greatest minds to fuel your daily motivation.", fullDescription: "The Daily Motivation Handbook is a curated collection of 500+ quotes organized by 12 life themes: resilience, leadership, success, happiness, relationships, health, creativity, entrepreneurship, perseverance, self-improvement, purpose, and wisdom. Each quote includes context about the author and how to apply it to your life. This digital book is designed to be read one page per day, giving you daily inspiration and motivation.\n\nBeautiful PDF format with motivational artwork, perfect for digital devices or printing. Bonus: includes a 90-day daily challenge tracker and monthly planning template. Join thousands who start their day with these powerful reminders of human potential. Readers have used this handbook to build resilience during tough times, maintain focus on long-term goals, and find daily inspiration from history's greatest thinkers." },
-  { id: 8, name: "The Resilience Toolkit", category: "motivational", price: 24.99, description: "Practical guide to bouncing back from setbacks, building mental toughness, and thriving under pressure.", fullDescription: "The Resilience Toolkit is a collection of exercises, stories, and actionable strategies to help you develop unshakeable resilience. Learn how to reframe failures, manage stress, maintain optimism, and grow stronger from every challenge. Includes workbook, audio guided sessions, and a 30-day resilience challenge." },
-  { id: 9, name: "Morning Mastery Course", category: "motivational", price: 29.99, description: "Design the perfect morning routine to start each day with energy, focus, and purpose.", fullDescription: "Morning Mastery Course teaches you how to create a personalized morning routine that sets you up for success. Based on research into high-performers, this course covers sleep optimization, morning rituals, goal setting, and habit stacking. Includes video lessons, printable planners, and a community accountability group." },
-  { id: 10, name: "Entrepreneur's Success Toolkit", category: "business", price: 32.99, description: "Complete bundle of templates, checklists, and guides for aspiring entrepreneurs.", fullDescription: "The Entrepreneur's Success Toolkit is a complete business launch and scaling system in digital format. Includes 50+ ready-to-use templates covering: business plan templates, financial forecasting spreadsheets, marketing strategy frameworks, sales funnel diagrams, customer journey maps, email marketing sequences, social media content calendars, hiring and onboarding checklists, legal business structure guides, trademark and copyright basics, customer service protocols, and growth hacking strategies. All templates are editable and customizable for your specific business.\n\nThe toolkit draws from 20+ years of entrepreneurial experience and has helped 10,000+ businesses launch successfully. Includes video tutorials on how to use each template and lifetime updates." },
-  { id: 11, name: "Social Media Marketing Masterclass", category: "business", price: 27.99, description: "Master Instagram, TikTok, LinkedIn, and Facebook marketing.", fullDescription: "Social Media Marketing Masterclass teaches you everything you need to dominate social media in 2025 and beyond. You'll learn algorithm secrets, content strategies, engagement tactics, paid advertising fundamentals, analytics interpretation, and conversion optimization across all major platforms. This course is updated monthly to reflect the latest platform changes.\n\nYou'll discover how to grow an engaged following without spending money on ads, create viral content consistently, and turn followers into paying customers. Includes case studies from successful brands, downloadable content calendars, and a private community for feedback and support." },
-  { id: 12, name: "Advanced Negotiation Tactics", category: "business", price: 24.99, description: "Learn the psychological principles behind effective negotiation.", fullDescription: "Advanced Negotiation Tactics reveals the psychological frameworks used by world-class negotiators. Topics include: anchoring, framing, mirroring, labeling, calibrated questions, handling difficult people, and closing the deal. Includes real-world case studies and role-playing exercises. This course is used by Fortune 500 companies and top lawyers to win deals and increase profits.\n\nYou'll learn how to prepare for any negotiation, read the other party's motivations, and achieve outcomes that satisfy both sides while maximizing your own value. The techniques taught here have been refined over decades of research and practice." },
-  { id: 13, name: "Influencer Growth Blueprint", category: "business", price: 22.99, description: "Turn your personal brand into a profitable business.", fullDescription: "Step-by-step guide to building a loyal audience, negotiating brand deals, and monetizing your influence across platforms." },
-  { id: 14, name: "Startup Financial Modeling", category: "business", price: 29.99, description: "Master financial projections for startups.", fullDescription: "Learn to build realistic financial models, forecast revenue, manage cash flow, and impress investors with this comprehensive course." },
-  { id: 15, name: "Stock Market Investing 101", category: "financial", price: 19.99, description: "Understand stocks, ETFs, and building a diversified portfolio.", fullDescription: "A beginner-friendly guide to stock market investing. Learn how to research stocks, manage risk, and create long-term wealth through compounding." },
-  { id: 16, name: "Budgeting That Works", category: "financial", price: 19.99, description: "Practical budgeting system to save money and reduce stress.", fullDescription: "A downloadable workbook and video course that helps you create a personalized budget, track expenses, and achieve your savings goals." },
-  { id: 17, name: "Emotional Intelligence Mastery", category: "personal", price: 27.99, description: "Develop self-awareness, empathy, and relationship skills.", fullDescription: "Learn to recognize and manage your emotions, communicate effectively, and build stronger personal and professional relationships." },
-  { id: 18, name: "Sleep Optimization Guide", category: "personal", price: 15.99, description: "Science-based techniques for deeper, more restorative sleep.", fullDescription: "Discover how to improve sleep quality, boost energy, and enhance mental clarity with simple, evidence-based changes to your nightly routine." },
-  { id: 19, name: "Daily Gratitude Journal", category: "motivational", price: 12.99, description: "A 90-day guided journal to cultivate gratitude and positivity.", fullDescription: "Daily prompts and reflections to rewire your brain for happiness, reduce stress, and improve mental well-being." },
-  { id: 20, name: "Public Speaking Confidence", category: "motivational", price: 32.99, description: "Overcome fear and deliver powerful presentations.", fullDescription: "Video course with practical exercises to conquer stage fright, structure your message, and speak with authority and impact." }
+  // Financial (IDs 1-3)
+  { id: 1, name: "Financial Freedom Blueprint", category: "financial", price: 29.99, description: "A comprehensive digital course and workbook to transform your relationship with money.", fullDescription: "The Financial Freedom Blueprint is a complete system for building lasting wealth...", bestSeller: true },
+  { id: 2, name: "Wealth Mindset Masterclass", category: "financial", price: 27.99, description: "Bridges psychology and finance to reveal hidden beliefs that drive financial outcomes.", fullDescription: "The Wealth Mindset Masterclass is an intensive deep-dive into the psychology of money...", bestSeller: false },
+  { id: 3, name: "Real Estate Investing Basics", category: "financial", price: 24.99, description: "A beginner's guide to real estate investing. Learn property analysis, financing options, rental income calculations.", fullDescription: "Real Estate Investing Basics demystifies one of the most powerful wealth-building tools...", bestSeller: true },
+  // Personal (IDs 4-6)
+  { id: 4, name: "Mindset Reset Program", category: "personal", price: 31.99, description: "A 30-day guided program to rewire your thinking patterns, eliminate limiting beliefs, and unlock your potential.", fullDescription: "The Mindset Reset Program is a transformative 30-day journey...", bestSeller: true },
+  { id: 5, name: "Productivity Mastery System", category: "personal", price: 22.99, description: "Time management systems used by top CEOs. Daily planning templates, habit tracking tools, and procrastination elimination.", fullDescription: "The Productivity Mastery System is based on decades of research...", bestSeller: false },
+  { id: 6, name: "Health & Wellness Blueprint", category: "personal", price: 19.99, description: "Complete 90-day system for optimal health: nutrition, exercise, sleep, and stress management.", fullDescription: "The Health & Wellness Blueprint is a comprehensive 90-day system...", bestSeller: true },
+  // Motivational (IDs 7-9, 19-21)
+  { id: 7, name: "The Daily Motivation Handbook", category: "motivational", price: 19.99, description: "500+ powerful quotes from history's greatest minds to fuel your daily motivation.", fullDescription: "The Daily Motivation Handbook is a curated collection of 500+ quotes...", bestSeller: true },
+  { id: 8, name: "The Resilience Toolkit", category: "motivational", price: 24.99, description: "Practical guide to bouncing back from setbacks, building mental toughness, and thriving under pressure.", fullDescription: "The Resilience Toolkit is a collection of exercises, stories, and actionable strategies...", bestSeller: false },
+  { id: 9, name: "Morning Mastery Course", category: "motivational", price: 29.99, description: "Design the perfect morning routine to start each day with energy, focus, and purpose.", fullDescription: "Morning Mastery Course teaches you how to create a personalized morning routine...", bestSeller: true },
+  // Business (IDs 10-14)
+  { id: 10, name: "Entrepreneur's Success Toolkit", category: "business", price: 32.99, description: "Complete bundle of templates, checklists, and guides for aspiring entrepreneurs.", fullDescription: "The Entrepreneur's Success Toolkit is a complete business launch and scaling system...", bestSeller: true },
+  { id: 11, name: "Social Media Marketing Masterclass", category: "business", price: 27.99, description: "Master Instagram, TikTok, LinkedIn, and Facebook marketing.", fullDescription: "Social Media Marketing Masterclass teaches you everything you need to dominate social media...", bestSeller: false },
+  { id: 12, name: "Advanced Negotiation Tactics", category: "business", price: 24.99, description: "Learn the psychological principles behind effective negotiation.", fullDescription: "Advanced Negotiation Tactics reveals the psychological frameworks used by world-class negotiators...", bestSeller: true },
+  { id: 13, name: "Influencer Growth Blueprint", category: "business", price: 22.99, description: "Turn your personal brand into a profitable business.", fullDescription: "Step-by-step guide to building a loyal audience...", bestSeller: false },
+  { id: 14, name: "Startup Financial Modeling", category: "business", price: 29.99, description: "Master financial projections for startups.", fullDescription: "Learn to build realistic financial models...", bestSeller: true },
+  // Financial (IDs 15-16)
+  { id: 15, name: "Stock Market Investing 101", category: "financial", price: 19.99, description: "Understand stocks, ETFs, and building a diversified portfolio.", fullDescription: "A beginner-friendly guide to stock market investing...", bestSeller: true },
+  { id: 16, name: "Budgeting That Works", category: "financial", price: 19.99, description: "Practical budgeting system to save money and reduce stress.", fullDescription: "A downloadable workbook and video course...", bestSeller: false },
+  // Personal (IDs 17-18)
+  { id: 17, name: "Emotional Intelligence Mastery", category: "personal", price: 27.99, description: "Develop self-awareness, empathy, and relationship skills.", fullDescription: "Learn to recognize and manage your emotions...", bestSeller: true },
+  { id: 18, name: "Sleep Optimization Guide", category: "personal", price: 15.99, description: "Science-based techniques for deeper, more restorative sleep.", fullDescription: "Discover how to improve sleep quality...", bestSeller: false },
+  // Motivational (IDs 19-21)
+  { id: 19, name: "Daily Gratitude Journal", category: "motivational", price: 12.99, description: "A 90-day guided journal to cultivate gratitude and positivity.", fullDescription: "Daily prompts and reflections to rewire your brain for happiness...", bestSeller: true },
+  { id: 20, name: "Public Speaking Confidence", category: "motivational", price: 32.99, description: "Overcome fear and deliver powerful presentations.", fullDescription: "Video course with practical exercises to conquer stage fright...", bestSeller: false },
+  { id: 21, name: "Daily Motivation Mastery", category: "motivational", price: 24.99, description: "365 powerful quotes and affirmations to ignite your inner drive.", fullDescription: "A curated collection of daily inspiration drawn from history's greatest thinkers...", bestSeller: true }
 ];
 
 const extraProductsData = [];
@@ -63,6 +71,7 @@ function filterBySearch(products, term) {
   return products.filter(p => p.name.toLowerCase().includes(lowerTerm));
 }
 
+// Render Top Selections Carousel (with BEST SELLER badge)
 function renderFilteredCarousel() {
   const track = document.getElementById('product-carousel-track');
   if (!track) return;
@@ -73,7 +82,9 @@ function renderFilteredCarousel() {
   filtered.forEach(p => {
     const item = document.createElement('div');
     item.className = 'carousel-item';
+    const bestSellerHtml = p.bestSeller ? '<div class="best-seller-badge" style="position: relative; top: auto; right: auto; display: inline-block; margin-bottom: 8px; font-size: 9px; padding: 2px 8px;">BEST SELLER</div>' : '';
     item.innerHTML = `
+      ${bestSellerHtml}
       <div class="category">${getCategoryName(p.category)}</div>
       <h3>${p.name}</h3>
       <p class="description">${p.description.substring(0, 100)}...</p>
@@ -94,6 +105,7 @@ function renderFilteredCarousel() {
   }
 }
 
+// Render Grid Carousel (with BEST SELLER badge)
 function renderGridCarousel() {
   const track = document.getElementById('grid-carousel-track');
   if (!track) return;
@@ -104,7 +116,9 @@ function renderGridCarousel() {
   filtered.forEach(p => {
     const item = document.createElement('div');
     item.className = 'grid-carousel-item';
+    const bestSellerHtml = p.bestSeller ? '<div class="best-seller-badge" style="position: relative; top: auto; right: auto; display: inline-block; margin-bottom: 8px; font-size: 9px; padding: 2px 8px;">BEST SELLER</div>' : '';
     item.innerHTML = `
+      ${bestSellerHtml}
       <div class="category">${getCategoryName(p.category)}</div>
       <h3>${p.name}</h3>
       <p class="description">${p.description.substring(0, 100)}...</p>
@@ -216,7 +230,6 @@ function savePurchaseToHistory(products, total) {
   return true;
 }
 
-// Check if user already purchased a specific product
 function hasUserPurchasedProduct(productId) {
   if (!loggedInUser) return false;
   const purchases = getPurchaseHistory();
@@ -290,7 +303,6 @@ function closeOrderHistorySidebar() {
 
 // ========== CART LOGIC ==========
 function addToCart(product) {
-  // Duplicate purchase prevention
   if (hasUserPurchasedProduct(product.id)) {
     showAlreadyPurchasedModal();
     return false;
@@ -305,10 +317,7 @@ function addToCart(product) {
   return true;
 }
 
-// Custom modal for already purchased product
 function showAlreadyPurchasedModal() {
-  // Create modal dynamically or reuse an existing one. Use a simple confirm with custom buttons.
-  // We'll create a temporary div overlay for this specific case.
   const modalOverlay = document.createElement('div');
   modalOverlay.className = 'modal';
   modalOverlay.style.display = 'flex';
@@ -435,7 +444,7 @@ function showCartConfirmModal(product, onConfirm) {
   closeBtn.addEventListener('click', handlerClose);
 }
 
-// ========== PAYMENT REDIRECT MODAL (saves purchase on click) ==========
+// ========== PAYMENT REDIRECT MODAL ==========
 function openPaymentRedirectModal() {
   const modal = document.getElementById('payment-redirect-modal');
   if (!modal) return;
@@ -467,7 +476,6 @@ async function initiatePayPalCheckout() {
     return;
   }
 
-  // Save purchase to order history immediately (since PayPal return detection unreliable)
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   savePurchaseToHistory(cart, total);
 
