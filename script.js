@@ -1,33 +1,26 @@
 // ElevateShop – Complete JavaScript
-// Includes: merged 20‑product data, product carousel, grid carousel, search, filter, account, PayPal redirect modal, ORDER HISTORY
+// Includes: merged 20‑product data, product carousel, grid carousel, search, filter, account, PayPal redirect modal, ORDER HISTORY (saves on purchase), DUPLICATE PREVENTION
 
 // ========== MERGED PRODUCT DATA (20 products) ==========
 const allProductsData = [
-  // Financial (IDs 1-3)
   { id: 1, name: "Financial Freedom Blueprint", category: "financial", price: 29.99, description: "A comprehensive digital course and workbook to transform your relationship with money.", fullDescription: "The Financial Freedom Blueprint is a complete system for building lasting wealth. This comprehensive digital guide walks you through every step of the financial journey: from understanding your current financial situation, creating a budget that actually works, eliminating high-interest debt, building an emergency fund, investing in stocks and index funds, real estate investing basics, creating multiple income streams, and finally achieving complete financial independence. Each section includes worksheets, calculators, and real-world examples. The course draws on behavioral economics research and interviews with self-made millionaires. You'll gain lifetime access to updates and bonus materials.\n\nThousands of students have used this blueprint to pay off debt, save for retirement, and build passive income streams that continue to grow over time. Whether you're a complete beginner or already have some financial knowledge, this course meets you where you are and takes you to where you want to be." },
   { id: 2, name: "Wealth Mindset Masterclass", category: "financial", price: 27.99, description: "Bridges psychology and finance to reveal hidden beliefs that drive financial outcomes.", fullDescription: "The Wealth Mindset Masterclass is an intensive deep-dive into the psychology of money and wealth creation. Drawing from behavioral economics, neuroscience, and interviews with 50+ self-made millionaires, this course reveals the hidden mental models that separate wealthy people from those who struggle financially. You'll discover: the psychology of scarcity vs. abundance, how to recognize and seize opportunities others miss, the role of risk tolerance in wealth building, delayed gratification and compounding, money scripts and belief systems, investment psychology, and the habits of the wealthy.\n\nIncludes 20+ video lessons, downloadable worksheets, case studies, and lifetime access to monthly bonus content. Students have reported doubling their income within six months, overcoming deep-seated fears around money, and developing a healthy, empowered relationship with wealth that benefits not only themselves but their families and communities." },
   { id: 3, name: "Real Estate Investing Basics", category: "financial", price: 24.99, description: "A beginner's guide to real estate investing. Learn property analysis, financing options, rental income calculations.", fullDescription: "Real Estate Investing Basics demystifies one of the most powerful wealth-building tools available. This comprehensive guide covers: property types and analysis, finding deals, financing and mortgages, calculating cash flow and ROI, managing rental properties, tax benefits of real estate, building a property portfolio, commercial vs. residential investing, and real estate investment trusts (REITs). Includes property analysis calculators, financing comparison tools, rental property management templates, investment checklists, and case studies of successful real estate investors. Perfect for anyone looking to build long-term wealth through real estate." },
-  // Personal (IDs 4-6)
   { id: 4, name: "Mindset Reset Program", category: "personal", price: 31.99, description: "A 30-day guided program to rewire your thinking patterns, eliminate limiting beliefs, and unlock your potential.", fullDescription: "The Mindset Reset Program is a transformative 30-day journey that rewires the neural pathways holding you back from success. Each morning you'll receive a guided meditation and affirmation session. Throughout the day, you'll complete journaling exercises that uncover and challenge limiting beliefs. The program covers: identifying your core beliefs, understanding their origins, challenging their validity, installing empowering beliefs, maintaining momentum, and building permanent mindset shifts. Includes daily video lessons, PDF workbooks, audio recordings, and a private community forum for support and accountability.\n\nThousands have reported life-changing results within 30 days. Participants have overcome imposter syndrome, developed unshakable confidence, and achieved goals they once thought impossible. This is not just a course – it's a complete mental transformation system backed by neuroscience and proven psychological techniques." },
   { id: 5, name: "Productivity Mastery System", category: "personal", price: 22.99, description: "Time management systems used by top CEOs. Daily planning templates, habit tracking tools, and procrastination elimination.", fullDescription: "The Productivity Mastery System is based on decades of research into how high-performers manage their time and energy. This digital course covers: the science of deep work, energy management vs. time management, the optimal daily schedule, defeating procrastination scientifically, building unbreakable habits, delegating effectively, and automation strategies. Includes daily planning templates, weekly review worksheets, habit tracking spreadsheets, Pomodoro timers, energy optimization guides, and video lessons from productivity experts. Users report completing 3x more meaningful work in the same timeframe. Lifetime access with quarterly new content additions." },
   { id: 6, name: "Health & Wellness Blueprint", category: "personal", price: 19.99, description: "Complete 90-day system for optimal health: nutrition, exercise, sleep, and stress management.", fullDescription: "The Health & Wellness Blueprint is a comprehensive 90-day system covering: nutrition fundamentals, meal planning, exercise routines for all fitness levels, sleep optimization, stress reduction techniques, and habit formation. Includes meal plans, workout videos, and progress tracking tools. This blueprint is designed for busy professionals who want to transform their health without spending hours in the gym.\n\nYou'll learn how to fuel your body for energy and longevity, build sustainable exercise habits, improve sleep quality, and manage stress effectively. The program is backed by the latest research in health psychology and physiology. Thousands of users have reported losing weight, gaining energy, and feeling better than ever after completing the 90-day plan." },
-  // Motivational (IDs 7-9, plus 19-20 added later)
   { id: 7, name: "The Daily Motivation Handbook", category: "motivational", price: 19.99, description: "500+ powerful quotes from history's greatest minds to fuel your daily motivation.", fullDescription: "The Daily Motivation Handbook is a curated collection of 500+ quotes organized by 12 life themes: resilience, leadership, success, happiness, relationships, health, creativity, entrepreneurship, perseverance, self-improvement, purpose, and wisdom. Each quote includes context about the author and how to apply it to your life. This digital book is designed to be read one page per day, giving you daily inspiration and motivation.\n\nBeautiful PDF format with motivational artwork, perfect for digital devices or printing. Bonus: includes a 90-day daily challenge tracker and monthly planning template. Join thousands who start their day with these powerful reminders of human potential. Readers have used this handbook to build resilience during tough times, maintain focus on long-term goals, and find daily inspiration from history's greatest thinkers." },
   { id: 8, name: "The Resilience Toolkit", category: "motivational", price: 24.99, description: "Practical guide to bouncing back from setbacks, building mental toughness, and thriving under pressure.", fullDescription: "The Resilience Toolkit is a collection of exercises, stories, and actionable strategies to help you develop unshakeable resilience. Learn how to reframe failures, manage stress, maintain optimism, and grow stronger from every challenge. Includes workbook, audio guided sessions, and a 30-day resilience challenge." },
   { id: 9, name: "Morning Mastery Course", category: "motivational", price: 29.99, description: "Design the perfect morning routine to start each day with energy, focus, and purpose.", fullDescription: "Morning Mastery Course teaches you how to create a personalized morning routine that sets you up for success. Based on research into high-performers, this course covers sleep optimization, morning rituals, goal setting, and habit stacking. Includes video lessons, printable planners, and a community accountability group." },
-  // Business (IDs 10-14)
   { id: 10, name: "Entrepreneur's Success Toolkit", category: "business", price: 32.99, description: "Complete bundle of templates, checklists, and guides for aspiring entrepreneurs.", fullDescription: "The Entrepreneur's Success Toolkit is a complete business launch and scaling system in digital format. Includes 50+ ready-to-use templates covering: business plan templates, financial forecasting spreadsheets, marketing strategy frameworks, sales funnel diagrams, customer journey maps, email marketing sequences, social media content calendars, hiring and onboarding checklists, legal business structure guides, trademark and copyright basics, customer service protocols, and growth hacking strategies. All templates are editable and customizable for your specific business.\n\nThe toolkit draws from 20+ years of entrepreneurial experience and has helped 10,000+ businesses launch successfully. Includes video tutorials on how to use each template and lifetime updates." },
   { id: 11, name: "Social Media Marketing Masterclass", category: "business", price: 27.99, description: "Master Instagram, TikTok, LinkedIn, and Facebook marketing.", fullDescription: "Social Media Marketing Masterclass teaches you everything you need to dominate social media in 2025 and beyond. You'll learn algorithm secrets, content strategies, engagement tactics, paid advertising fundamentals, analytics interpretation, and conversion optimization across all major platforms. This course is updated monthly to reflect the latest platform changes.\n\nYou'll discover how to grow an engaged following without spending money on ads, create viral content consistently, and turn followers into paying customers. Includes case studies from successful brands, downloadable content calendars, and a private community for feedback and support." },
   { id: 12, name: "Advanced Negotiation Tactics", category: "business", price: 24.99, description: "Learn the psychological principles behind effective negotiation.", fullDescription: "Advanced Negotiation Tactics reveals the psychological frameworks used by world-class negotiators. Topics include: anchoring, framing, mirroring, labeling, calibrated questions, handling difficult people, and closing the deal. Includes real-world case studies and role-playing exercises. This course is used by Fortune 500 companies and top lawyers to win deals and increase profits.\n\nYou'll learn how to prepare for any negotiation, read the other party's motivations, and achieve outcomes that satisfy both sides while maximizing your own value. The techniques taught here have been refined over decades of research and practice." },
   { id: 13, name: "Influencer Growth Blueprint", category: "business", price: 22.99, description: "Turn your personal brand into a profitable business.", fullDescription: "Step-by-step guide to building a loyal audience, negotiating brand deals, and monetizing your influence across platforms." },
   { id: 14, name: "Startup Financial Modeling", category: "business", price: 29.99, description: "Master financial projections for startups.", fullDescription: "Learn to build realistic financial models, forecast revenue, manage cash flow, and impress investors with this comprehensive course." },
-  // Financial (IDs 15-16)
   { id: 15, name: "Stock Market Investing 101", category: "financial", price: 19.99, description: "Understand stocks, ETFs, and building a diversified portfolio.", fullDescription: "A beginner-friendly guide to stock market investing. Learn how to research stocks, manage risk, and create long-term wealth through compounding." },
   { id: 16, name: "Budgeting That Works", category: "financial", price: 19.99, description: "Practical budgeting system to save money and reduce stress.", fullDescription: "A downloadable workbook and video course that helps you create a personalized budget, track expenses, and achieve your savings goals." },
-  // Personal (IDs 17-18)
   { id: 17, name: "Emotional Intelligence Mastery", category: "personal", price: 27.99, description: "Develop self-awareness, empathy, and relationship skills.", fullDescription: "Learn to recognize and manage your emotions, communicate effectively, and build stronger personal and professional relationships." },
   { id: 18, name: "Sleep Optimization Guide", category: "personal", price: 15.99, description: "Science-based techniques for deeper, more restorative sleep.", fullDescription: "Discover how to improve sleep quality, boost energy, and enhance mental clarity with simple, evidence-based changes to your nightly routine." },
-  // Motivational (IDs 19-20)
   { id: 19, name: "Daily Gratitude Journal", category: "motivational", price: 12.99, description: "A 90-day guided journal to cultivate gratitude and positivity.", fullDescription: "Daily prompts and reflections to rewire your brain for happiness, reduce stress, and improve mental well-being." },
   { id: 20, name: "Public Speaking Confidence", category: "motivational", price: 32.99, description: "Overcome fear and deliver powerful presentations.", fullDescription: "Video course with practical exercises to conquer stage fright, structure your message, and speak with authority and impact." }
 ];
@@ -223,6 +216,14 @@ function savePurchaseToHistory(products, total) {
   return true;
 }
 
+// Check if user already purchased a specific product
+function hasUserPurchasedProduct(productId) {
+  if (!loggedInUser) return false;
+  const purchases = getPurchaseHistory();
+  const userPurchases = purchases.filter(p => p.email === loggedInUser.email);
+  return userPurchases.some(order => order.products.some(p => p.id === productId));
+}
+
 function renderOrderHistory() {
   const container = document.getElementById('order-history-list');
   if (!container) return;
@@ -289,6 +290,11 @@ function closeOrderHistorySidebar() {
 
 // ========== CART LOGIC ==========
 function addToCart(product) {
+  // Duplicate purchase prevention
+  if (hasUserPurchasedProduct(product.id)) {
+    showAlreadyPurchasedModal();
+    return false;
+  }
   const existing = cart.find(item => item.id === product.id);
   if (existing) {
     alert("This product is already in your cart.");
@@ -297,6 +303,59 @@ function addToCart(product) {
   cart.push({ ...product, quantity: 1 });
   updateCartUI();
   return true;
+}
+
+// Custom modal for already purchased product
+function showAlreadyPurchasedModal() {
+  // Create modal dynamically or reuse an existing one. Use a simple confirm with custom buttons.
+  // We'll create a temporary div overlay for this specific case.
+  const modalOverlay = document.createElement('div');
+  modalOverlay.className = 'modal';
+  modalOverlay.style.display = 'flex';
+  modalOverlay.style.position = 'fixed';
+  modalOverlay.style.top = '0';
+  modalOverlay.style.left = '0';
+  modalOverlay.style.width = '100%';
+  modalOverlay.style.height = '100%';
+  modalOverlay.style.backgroundColor = 'rgba(0,0,0,0.6)';
+  modalOverlay.style.zIndex = '3000';
+  modalOverlay.style.alignItems = 'center';
+  modalOverlay.style.justifyContent = 'center';
+  
+  const modalContent = document.createElement('div');
+  modalContent.style.backgroundColor = 'white';
+  modalContent.style.maxWidth = '400px';
+  modalContent.style.width = '90%';
+  modalContent.style.padding = '28px';
+  modalContent.style.borderRadius = '4px';
+  modalContent.style.textAlign = 'center';
+  modalContent.style.position = 'relative';
+  
+  modalContent.innerHTML = `
+    <h3 style="color: var(--masthead-red-brown, #942222); margin-bottom: 16px;">Already Purchased</h3>
+    <p style="margin-bottom: 20px;">You have already purchased this product. Would you like to view your order history?</p>
+    <div style="display: flex; gap: 12px; justify-content: center;">
+      <button id="already-purchased-view-history" class="btn-primary">View Order History</button>
+      <button id="already-purchased-go-back" class="btn-secondary">Go Back</button>
+    </div>
+  `;
+  
+  modalOverlay.appendChild(modalContent);
+  document.body.appendChild(modalOverlay);
+  
+  const viewHistoryBtn = document.getElementById('already-purchased-view-history');
+  const goBackBtn = document.getElementById('already-purchased-go-back');
+  
+  const closeModal = () => {
+    modalOverlay.remove();
+  };
+  
+  viewHistoryBtn.addEventListener('click', () => {
+    closeModal();
+    openOrderHistorySidebar();
+  });
+  
+  goBackBtn.addEventListener('click', closeModal);
 }
 
 function removeFromCart(productId) {
@@ -376,7 +435,7 @@ function showCartConfirmModal(product, onConfirm) {
   closeBtn.addEventListener('click', handlerClose);
 }
 
-// ========== PAYMENT REDIRECT MODAL & PURCHASE SAVING (FIXED: save only after return) ==========
+// ========== PAYMENT REDIRECT MODAL (saves purchase on click) ==========
 function openPaymentRedirectModal() {
   const modal = document.getElementById('payment-redirect-modal');
   if (!modal) return;
@@ -396,7 +455,6 @@ function closePaymentRedirectModal() {
   if (payBtn) payBtn.disabled = false;
 }
 
-// ✅ FIXED: Do not save order here – only store in sessionStorage
 async function initiatePayPalCheckout() {
   const emailInput = document.getElementById('redirect-email');
   const email = emailInput ? emailInput.value.trim() : '';
@@ -409,9 +467,9 @@ async function initiatePayPalCheckout() {
     return;
   }
 
-  // Save cart to sessionStorage (in case we need to save order after return)
-  sessionStorage.setItem('pendingCart', JSON.stringify(cart));
-  sessionStorage.setItem('pendingEmail', email);
+  // Save purchase to order history immediately (since PayPal return detection unreliable)
+  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  savePurchaseToHistory(cart, total);
 
   const loadingDiv = document.getElementById('redirect-loading');
   const payBtn = document.getElementById('confirm-redirect-btn');
@@ -426,7 +484,6 @@ async function initiatePayPalCheckout() {
     });
     const data = await response.json();
     if (data.approval_url) {
-      // Clear cart from memory (sessionStorage still holds it)
       cart = [];
       updateCartUI();
       closePaymentRedirectModal();
@@ -444,25 +501,6 @@ async function initiatePayPalCheckout() {
     alert('Network error. Please try again.');
     if (loadingDiv) loadingDiv.style.display = 'none';
     if (payBtn) payBtn.disabled = false;
-  }
-}
-
-// ✅ NEW: Check for PayPal return and save order only after successful payment
-function checkPayPalReturnAndSaveOrder() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const token = urlParams.get('token');
-  const payerId = urlParams.get('PayerID');
-  if ((token || payerId) && sessionStorage.getItem('pendingCart')) {
-    const savedCart = JSON.parse(sessionStorage.getItem('pendingCart'));
-    const savedEmail = sessionStorage.getItem('pendingEmail');
-    if (savedCart && savedCart.length > 0 && loggedInUser && savedEmail === loggedInUser.email) {
-      const total = savedCart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-      savePurchaseToHistory(savedCart, total);
-      alert('Payment successful! Your order has been recorded.');
-      sessionStorage.removeItem('pendingCart');
-      sessionStorage.removeItem('pendingEmail');
-      window.history.replaceState({}, document.title, window.location.pathname);
-    }
   }
 }
 
@@ -800,9 +838,6 @@ document.addEventListener('DOMContentLoaded', () => {
     loggedInUser = JSON.parse(storedUser);
     updateLoginUI();
   }
-
-  // Check for PayPal return and save order if needed
-  checkPayPalReturnAndSaveOrder();
 });
 
 // ========== SEARCH UI ==========
@@ -838,7 +873,6 @@ document.getElementById('buyNowBtn').addEventListener('click', () => {
   if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
 });
 
-// Featured product add to cart
 document.querySelectorAll('.add-to-cart').forEach(btn => {
   btn.addEventListener('click', () => {
     const name = btn.dataset.name;
@@ -852,7 +886,6 @@ document.querySelectorAll('.add-to-cart').forEach(btn => {
   });
 });
 
-// Cart sidebar
 const cartSidebar = document.getElementById('cart-sidebar');
 document.getElementById('cart-icon').addEventListener('click', (e) => {
   e.preventDefault();
@@ -862,7 +895,6 @@ document.getElementById('close-cart').addEventListener('click', () => {
   cartSidebar.classList.remove('open');
 });
 
-// Override "Proceed to Checkout" in cart sidebar
 const cartCheckoutBtn = document.getElementById('checkout-btn');
 if (cartCheckoutBtn) {
   const newBtn = cartCheckoutBtn.cloneNode(true);
@@ -876,7 +908,6 @@ if (cartCheckoutBtn) {
   });
 }
 
-// Payment redirect modal
 const confirmRedirectBtn = document.getElementById('confirm-redirect-btn');
 if (confirmRedirectBtn) confirmRedirectBtn.addEventListener('click', initiatePayPalCheckout);
 const closeRedirectBtn = document.getElementById('close-redirect-modal');
@@ -886,7 +917,6 @@ if (redirectModal) redirectModal.addEventListener('click', (e) => {
   if (e.target === redirectModal) closePaymentRedirectModal();
 });
 
-// Policy modal
 const policyModal = document.getElementById('policy-modal');
 const policyFooterLink = document.getElementById('policy-link-footer');
 if (policyFooterLink) {
@@ -898,7 +928,6 @@ if (policyFooterLink) {
 document.getElementById('close-policy').addEventListener('click', () => policyModal.style.display = 'none');
 window.addEventListener('click', (e) => { if (e.target === policyModal) policyModal.style.display = 'none'; });
 
-// Filter links
 document.querySelectorAll('.filter-btn, .filter-link').forEach(btn => {
   if (btn.dataset.filter && btn.dataset.filter !== 'policy') {
     btn.addEventListener('click', (e) => {
@@ -909,7 +938,6 @@ document.querySelectorAll('.filter-btn, .filter-link').forEach(btn => {
   }
 });
 
-// Close detail modal
 document.getElementById('close-detail-modal').addEventListener('click', () => {
   document.getElementById('detail-modal').style.display = 'none';
 });
@@ -919,7 +947,6 @@ window.addEventListener('click', (e) => {
   }
 });
 
-// Footer page links
 document.querySelectorAll('.footer-page-link').forEach(link => {
   link.addEventListener('click', (e) => {
     e.preventDefault();
@@ -928,7 +955,6 @@ document.querySelectorAll('.footer-page-link').forEach(link => {
   });
 });
 
-// "ALL" link and logo
 const allFilterLink = document.querySelector('.filter-link[data-filter="all"]');
 if (allFilterLink) {
   allFilterLink.addEventListener('click', (e) => {
@@ -999,7 +1025,6 @@ window.addEventListener('click', (e) => {
   }
 });
 
-// Static signup link
 const staticSignupLink = document.getElementById('switch-to-signup-static');
 if (staticSignupLink) {
   staticSignupLink.addEventListener('click', (e) => {
@@ -1008,7 +1033,6 @@ if (staticSignupLink) {
   });
 }
 
-// Login
 document.getElementById('do-login').addEventListener('click', () => {
   const email = document.getElementById('login-email').value.trim();
   const password = document.getElementById('login-password').value.trim();
@@ -1030,7 +1054,6 @@ document.getElementById('do-login').addEventListener('click', () => {
   document.getElementById('login-password').value = '';
 });
 
-// Sign Up
 document.getElementById('do-signup').addEventListener('click', () => {
   const name = document.getElementById('signup-name').value.trim();
   const email = document.getElementById('signup-email').value.trim();
@@ -1077,7 +1100,6 @@ if (closeOrderHistoryBtn) {
   closeOrderHistoryBtn.addEventListener('click', closeOrderHistorySidebar);
 }
 
-// Close order detail modal
 const closeOrderDetailModal = document.getElementById('close-order-detail-modal');
 if (closeOrderDetailModal) {
   closeOrderDetailModal.addEventListener('click', () => {
