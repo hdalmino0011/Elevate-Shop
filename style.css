@@ -475,7 +475,7 @@ left: -12px;
 right: -12px;
 }
 
-/* ==================== GRID CAROUSEL (Complete Product Collection) - FIXED ==================== */
+/* ==================== GRID CAROUSEL (Complete Product Collection) ==================== */
 .grid-carousel-container {
 position: relative;
 margin: 40px 0;
@@ -498,7 +498,6 @@ width: 100%;
 }
 
 .grid-carousel-item {
-flex: 0 0 calc(33.333% - 16px);
 background-color: var(--cream);
 padding: 20px;
 border: 1px solid var(--border-gray);
@@ -1200,6 +1199,7 @@ font-size: 14px;
 }
 
 /* ==================== RESPONSIVE (mobile-first, then desktop) ==================== */
+/* Mobile: up to 768px – single column, stacked layout */
 @media (max-width: 768px) {
   body { font-size: 14px; }
   .container { padding: 0 12px; }
@@ -1255,7 +1255,7 @@ font-size: 14px;
     font-size: 14px;
   }
   
-  /* Complete Product Collection grid (FIXED: stack vertically) */
+  /* Complete Product Collection grid – stack vertically */
   .grid-carousel-track {
     flex-wrap: wrap !important;
     transform: none !important;
@@ -1267,7 +1267,7 @@ font-size: 14px;
     padding: 12px;
   }
   .grid-carousel-buttons {
-    display: none; /* hide buttons on mobile */
+    display: none; /* hide arrows on mobile */
   }
   
   /* Testimonials */
@@ -1331,6 +1331,7 @@ font-size: 14px;
   .cart-sidebar.open { right: 0; }
 }
 
+/* Very small phones (max-width 480px) */
 @media (max-width: 480px) {
   .site-title { font-size: 24px; }
   .site-subtitle { font-size: 9px; }
@@ -1339,6 +1340,31 @@ font-size: 14px;
   .carousel-item { flex: 0 0 95%; }
 }
 
+/* Tablet / Desktop mode on Android (769px - 1023px) – 2‑column grid */
+@media (min-width: 769px) and (max-width: 1023px) {
+  .grid-carousel-item {
+    flex: 0 0 calc(50% - 16px) !important;
+  }
+  .grid-carousel-track {
+    gap: 20px;
+  }
+  /* Keep carousel buttons visible but ensure they don't overlap */
+  .grid-carousel-buttons {
+    display: flex;
+  }
+}
+
+/* Large desktop (≥1024px) – 3‑column grid */
+@media (min-width: 1024px) {
+  .grid-carousel-item {
+    flex: 0 0 calc(33.333% - 16px);
+  }
+  .carousel-item {
+    flex: 0 0 calc(33.333% - 16px);
+  }
+}
+
+/* General desktop styles (≥769px) – shared */
 @media (min-width: 769px) {
   .container { padding: 0 24px; }
   .nav-top {
@@ -1393,12 +1419,8 @@ font-size: 14px;
     gap: 24px;
   }
   .carousel-item {
-    flex: 0 0 calc(33.333% - 16px);
     scroll-snap-align: none;
     padding: 20px;
-  }
-  .grid-carousel-item {
-    flex: 0 0 calc(33.333% - 16px);
   }
   .testimonial-wrapper {
     overflow: visible;
@@ -1438,11 +1460,5 @@ font-size: 14px;
   .cart-confirm-buttons {
     flex-direction: row;
     gap: 16px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .carousel-item {
-    flex: 0 0 calc(33.333% - 16px);
   }
 }
