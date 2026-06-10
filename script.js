@@ -846,56 +846,33 @@ document.addEventListener('DOMContentLoaded', () => {
     loggedInUser = JSON.parse(storedUser);
     updateLoginUI();
   }
+});
 
-  // ========== OLD SEARCH (desktop) – toggle button & hidden container ==========
-  const searchToggle = document.getElementById('search-toggle-btn');
-  const searchContainer = document.getElementById('search-container');
-  const oldSearchInput = document.getElementById('search-input');
-  const oldSearchClear = document.getElementById('search-clear');
+// ========== SEARCH UI ==========
+const searchToggle = document.getElementById('search-toggle-btn');
+const searchContainer = document.getElementById('search-container');
+const searchInput = document.getElementById('search-input');
+const searchClear = document.getElementById('search-clear');
 
-  if (searchToggle && searchContainer) {
-    searchToggle.addEventListener('click', () => {
-      if (searchContainer.style.display === 'none' || getComputedStyle(searchContainer).display === 'none') {
-        searchContainer.style.display = 'flex';
-        if (oldSearchInput) oldSearchInput.focus();
-      } else {
-        searchContainer.style.display = 'none';
-        if (oldSearchInput) oldSearchInput.value = '';
-        updateSearch('');
-      }
-    });
+searchToggle.addEventListener('click', () => {
+  if (searchContainer.style.display === 'none' || getComputedStyle(searchContainer).display === 'none') {
+    searchContainer.style.display = 'flex';
+    searchInput.focus();
+  } else {
+    searchContainer.style.display = 'none';
+    searchInput.value = '';
+    updateSearch('');
   }
+});
 
-  if (oldSearchInput) {
-    oldSearchInput.addEventListener('input', (e) => updateSearch(e.target.value));
-  }
+searchInput.addEventListener('input', (e) => {
+  updateSearch(e.target.value);
+});
 
-  if (oldSearchClear) {
-    oldSearchClear.addEventListener('click', () => {
-      if (oldSearchInput) {
-        oldSearchInput.value = '';
-        updateSearch('');
-        searchContainer.style.display = 'none';
-      }
-    });
-  }
-
-  // ========== NEW PERMANENT SEARCH (mobile) ==========
-  const permSearchInput = document.getElementById('search-input-permanent');
-  const permClearBtn = document.getElementById('permanent-search-clear');
-
-  if (permSearchInput) {
-    permSearchInput.addEventListener('input', (e) => updateSearch(e.target.value));
-  }
-  if (permClearBtn) {
-    permClearBtn.addEventListener('click', () => {
-      if (permSearchInput) {
-        permSearchInput.value = '';
-        updateSearch('');
-        permSearchInput.focus();
-      }
-    });
-  }
+searchClear.addEventListener('click', () => {
+  searchInput.value = '';
+  updateSearch('');
+  searchContainer.style.display = 'none';
 });
 
 // ========== OTHER EVENT LISTENERS ==========
