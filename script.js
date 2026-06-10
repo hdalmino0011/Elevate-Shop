@@ -847,7 +847,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateLoginUI();
   }
 
-  // ========== NEW: Permanent search bar and clear button ==========
+  // ========== PERMANENT SEARCH BAR (integrated) ==========
   const permSearchInput = document.getElementById('search-input-permanent');
   const permClearBtn = document.getElementById('permanent-search-clear');
 
@@ -866,33 +866,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-});
-
-// ========== SEARCH UI (original hidden search – kept for compatibility) ==========
-const searchToggle = document.getElementById('search-toggle-btn');
-const searchContainer = document.getElementById('search-container');
-const searchInput = document.getElementById('search-input');
-const searchClear = document.getElementById('search-clear');
-
-searchToggle.addEventListener('click', () => {
-  if (searchContainer.style.display === 'none' || getComputedStyle(searchContainer).display === 'none') {
-    searchContainer.style.display = 'flex';
-    searchInput.focus();
-  } else {
-    searchContainer.style.display = 'none';
-    searchInput.value = '';
-    updateSearch('');
-  }
-});
-
-searchInput.addEventListener('input', (e) => {
-  updateSearch(e.target.value);
-});
-
-searchClear.addEventListener('click', () => {
-  searchInput.value = '';
-  updateSearch('');
-  searchContainer.style.display = 'none';
 });
 
 // ========== OTHER EVENT LISTENERS ==========
