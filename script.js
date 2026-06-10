@@ -1,5 +1,5 @@
 // ElevateShop – Complete JavaScript
-// Includes: merged 21‑product data with BEST SELLER badges on 13 random products
+// Includes: merged 21‑product data with BEST SELLER badges, permanent search input, order history, duplicate prevention
 
 // ========== MERGED PRODUCT DATA (21 products, 13 marked bestSeller) ==========
 const allProductsData = [
@@ -846,33 +846,12 @@ document.addEventListener('DOMContentLoaded', () => {
     loggedInUser = JSON.parse(storedUser);
     updateLoginUI();
   }
-});
 
-// ========== SEARCH UI ==========
-const searchToggle = document.getElementById('search-toggle-btn');
-const searchContainer = document.getElementById('search-container');
-const searchInput = document.getElementById('search-input');
-const searchClear = document.getElementById('search-clear');
-
-searchToggle.addEventListener('click', () => {
-  if (searchContainer.style.display === 'none' || getComputedStyle(searchContainer).display === 'none') {
-    searchContainer.style.display = 'flex';
-    searchInput.focus();
-  } else {
-    searchContainer.style.display = 'none';
-    searchInput.value = '';
-    updateSearch('');
+  // NEW: Permanent search input listener
+  const permanentSearch = document.getElementById('search-input-permanent');
+  if (permanentSearch) {
+    permanentSearch.addEventListener('input', (e) => updateSearch(e.target.value));
   }
-});
-
-searchInput.addEventListener('input', (e) => {
-  updateSearch(e.target.value);
-});
-
-searchClear.addEventListener('click', () => {
-  searchInput.value = '';
-  updateSearch('');
-  searchContainer.style.display = 'none';
 });
 
 // ========== OTHER EVENT LISTENERS ==========
