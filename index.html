@@ -14,22 +14,24 @@
 <div class="nav-top">
 <div class="nav-date" id="current-date"></div>
 <div class="nav-center-text" id="buyNowBtn">BUY NOW!</div>
-<div class="nav-right">
+<div class="nav-search-toggle">
 <button id="search-toggle-btn" class="search-toggle" aria-label="Search">
 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 <circle cx="10" cy="10" r="7"></circle>
 <line x1="15" y1="15" x2="21" y2="21"></line>
 </svg>
 </button>
+</div>
+<div class="nav-cart">
 <a href="#" id="cart-icon" class="cart-link">
 <span class="cart-icon">🛒</span> Cart (<span id="cart-count">0</span>)
 </a>
+</div>
 <div class="account-area" id="account-area">
 <a href="#" id="login-link" class="account-link">Sign In</a>
 <span id="logged-in-welcome" style="display:none;"></span>
 <a href="#" id="order-history-link" style="display:none;" class="account-link">Order History</a>
 <a href="#" id="logout-link" style="display:none;" class="account-link">Logout</a>
-</div>
 </div>
 </div>
 <!-- Search input -->
@@ -75,7 +77,7 @@
 </div>
 <div class="featured-content">
 <div class="featured-text">
-<p class="article-body">A curated collection of daily inspiration drawn from history’s greatest thinkers. Instant digital delivery.</p>
+<p class="article-body">A curated collection of daily inspiration drawn from history's greatest thinkers. Instant digital delivery.</p>
 <p class="article-meta"><strong>Category:</strong> Motivational | <strong>Price:</strong> $24.99</p>
 <button class="btn-primary add-to-cart" data-name="Daily Motivation Mastery" data-price="24.99">Add to Cart</button>
 </div>
@@ -138,7 +140,7 @@
 </div>
 
 <!-- ==================== FOOTER PAGE CONTENT (detailed) ==================== -->
-<!-- Privacy Policy – line removed as requested -->
+<!-- Privacy Policy -->
 <div id="page-privacy" class="page-content" style="display: none;">
 <button class="back-button" onclick="window.showMainContent?.()">← Go Back</button>
 <div class="container">
@@ -181,7 +183,7 @@
 <div class="container">
 <h2>Frequently Asked Questions</h2>
 <p><strong>Do I need an account to purchase?</strong> No, you can check out as a guest. However, creating an account allows you to view your order history and re-download products more easily.</p>
-<p><strong>How do I access my purchased product?</strong> After successful payment, you will receive an automated email containing a secure link and a unique, generated password. You must use this password to access your download. Your product is an interactive HTML file – you can open it in any browser. If you prefer a PDF, you can use your browser’s “Print” function (Ctrl+P or Cmd+P) and choose “Save as PDF” to keep a copy for offline reading.</p>
+<p><strong>How do I access my purchased product?</strong> After successful payment, you will receive an automated email containing a secure link and a unique, generated password. You must use this password to access your download. Your product is an interactive HTML file – you can open it in any browser. If you prefer a PDF, you can use your browser's "Print" function (Ctrl+P or Cmd+P) and choose "Save as PDF" to keep a copy for offline reading.</p>
 <p><strong>What if I don't receive the email?</strong> Check your spam or promotions folder. If still not found, contact support@elevateshop.com with your order details. We will resend the access instructions.</p>
 <p><strong>Can I reset my lost access password?</strong> Yes. Contact support with your purchase email, and we will verify your identity and issue a new password. Please allow up to 24 hours for verification.</p>
 <p><strong>Are refunds available?</strong> No. All digital product sales are final. Please review product descriptions carefully before purchasing.</p>
@@ -222,8 +224,6 @@
 </div>
 </div>
 
-<!-- ========== UPDATED CONTENT FOR FOUR FOOTER LINKS (long articles, no product lists) ========== -->
-
 <!-- Motivational Collections -->
 <div id="page-motivational-collections" class="page-content" style="display: none;">
   <button class="back-button" onclick="window.showMainContent?.()">← Go Back</button>
@@ -246,8 +246,8 @@
     <h2>Financial Courses</h2>
     <div class="detail-body">
       <p>Money is not just numbers on a screen – it is a reflection of choices, habits, and often unspoken fears. For most people, the journey toward financial freedom begins not with a spreadsheet but with a shift in mindset. This is why our financial courses avoid dry jargon and instead focus on the psychology of spending, saving, and investing.</p>
-      <p>The first module, “Budgeting Without Deprivation”, teaches you how to align your expenses with your values – no punishing cuts, no guilt. You will learn to see money as a tool for building the life you actually want, rather than as a scorecard of success. The second course, “Debt Breakthrough”, offers step‑by‑step strategies used by thousands to become debt‑free without living on beans and rice forever. It prioritizes mental health alongside financial math.</p>
-      <p>For those ready to grow wealth, the “Passive Income Starter Kit” demystifies real estate, dividends, and digital assets. It does not promise quick riches. Instead, it gives you a realistic timeline, risk calculators, and case studies of people who started with less than $500. Every number is checked by certified financial planners.</p>
+      <p>The first module, "Budgeting Without Deprivation", teaches you how to align your expenses with your values – no punishing cuts, no guilt. You will learn to see money as a tool for building the life you actually want, rather than as a scorecard of success. The second course, "Debt Breakthrough", offers step‑by‑step strategies used by thousands to become debt‑free without living on beans and rice forever. It prioritizes mental health alongside financial math.</p>
+      <p>For those ready to grow wealth, the "Passive Income Starter Kit" demystifies real estate, dividends, and digital assets. It does not promise quick riches. Instead, it gives you a realistic timeline, risk calculators, and case studies of people who started with less than $500. Every number is checked by certified financial planners.</p>
       <p>We also include a private community forum where you can ask questions anonymously. Many students have reported not only higher savings but lower anxiety around money after just three weeks. The courses are self‑paced, with video transcripts and downloadable workbooks.</p>
       <p>You are not expected to become a Wall Street expert overnight. But with consistent effort, you will build a solid foundation – and that alone puts you ahead of most. Start with one course, and let the rest follow.</p>
     </div>
@@ -261,9 +261,9 @@
     <h2>Personal Development</h2>
     <div class="detail-body">
       <p>Personal growth is not a destination but a continuous practice of becoming more aware, more intentional, and more resilient. The most successful people are not those who never fail – they are the ones who have mastered the art of reflection and adaptation. Our personal development collection is built on this principle.</p>
-      <p>The “Mindset Reset Program” guides you through seven weeks of cognitive exercises derived from positive psychology and neuroplasticity research. You will learn to identify limiting beliefs, reframe negative self‑talk, and create daily anchors that keep you grounded even during chaos. No fluff – just science‑backed routines.</p>
-      <p>For those who struggle with productivity, the “Productivity Mastery System” introduces the concept of energy management rather than time management. You will discover your natural chronotype, design a workflow that fits your attention span, and use simple analog tools (printable trackers) to reduce digital distraction. Many students double their output within two weeks.</p>
-      <p>The “Health & Wellness Blueprint” looks at the mind‑body connection. It includes guided breathwork sessions, sleep optimization guides, and low‑cost nutrition plans that work even on a busy schedule. Each section ends with a five‑minute practice you can integrate immediately.</p>
+      <p>The "Mindset Reset Program" guides you through seven weeks of cognitive exercises derived from positive psychology and neuroplasticity research. You will learn to identify limiting beliefs, reframe negative self‑talk, and create daily anchors that keep you grounded even during chaos. No fluff – just science‑backed routines.</p>
+      <p>For those who struggle with productivity, the "Productivity Mastery System" introduces the concept of energy management rather than time management. You will discover your natural chronotype, design a workflow that fits your attention span, and use simple analog tools (printable trackers) to reduce digital distraction. Many students double their output within two weeks.</p>
+      <p>The "Health & Wellness Blueprint" looks at the mind‑body connection. It includes guided breathwork sessions, sleep optimization guides, and low‑cost nutrition plans that work even on a busy schedule. Each section ends with a five‑minute practice you can integrate immediately.</p>
       <p>Ultimately, personal development is about showing up for yourself. These products do not replace therapy or medical advice, but they provide a daily structure that thousands have used to climb out of stagnation. Your next level begins here.</p>
     </div>
   </div>
@@ -276,9 +276,9 @@
     <h2>Business Tools</h2>
     <div class="detail-body">
       <p>Starting and growing a business is one of the most rewarding – and demanding – paths you can take. The difference between a struggling startup and a thriving enterprise often comes down to systems, tactics, and mindset. Our business tools are designed to give you all three without the expensive consultants.</p>
-      <p>The “Entrepreneur’s Success Toolkit” is a bundle of over 40 templates: pitch decks, cash flow forecasts, one‑page business plans, and employee onboarding checklists. They have been used by founders who went on to raise seed funding or hit six‑figure revenue within 18 months. Every template is editable and comes with a short video walkthrough.</p>
-      <p>In the “Social Media Marketing Masterclass”, you will learn how to grow an audience without paid ads. The course focuses on storytelling frameworks, content batching, and engagement rituals that turn followers into customers. Case studies include a bakery that doubled sales using only Instagram Stories and a freelancer who filled her calendar in 30 days.</p>
-      <p>For seasoned professionals, “Advanced Negotiation Tactics” covers psychological levers, anchoring techniques, and exit strategies for high‑stakes deals. It includes role‑play scripts and audio examples of real negotiations. Whether you are closing a client, hiring a team member, or raising capital, these tactics will pay for themselves many times over.</p>
+      <p>The "Entrepreneur's Success Toolkit" is a bundle of over 40 templates: pitch decks, cash flow forecasts, one‑page business plans, and employee onboarding checklists. They have been used by founders who went on to raise seed funding or hit six‑figure revenue within 18 months. Every template is editable and comes with a short video walkthrough.</p>
+      <p>In the "Social Media Marketing Masterclass", you will learn how to grow an audience without paid ads. The course focuses on storytelling frameworks, content batching, and engagement rituals that turn followers into customers. Case studies include a bakery that doubled sales using only Instagram Stories and a freelancer who filled her calendar in 30 days.</p>
+      <p>For seasoned professionals, "Advanced Negotiation Tactics" covers psychological levers, anchoring techniques, and exit strategies for high‑stakes deals. It includes role‑play scripts and audio examples of real negotiations. Whether you are closing a client, hiring a team member, or raising capital, these tactics will pay for themselves many times over.</p>
       <p>All business tools are updated quarterly to reflect current market trends. You get lifetime access and a private telegram group where you can ask questions directly to the creators. Stop guessing – start executing.</p>
     </div>
   </div>
