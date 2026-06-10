@@ -97,6 +97,7 @@ background-color: white;
 position: relative;
 }
 
+/* Date line – remains separate */
 .nav-date {
 font-family: 'Georgia', serif;
 font-size: 11px;
@@ -106,110 +107,145 @@ max-width: 33%;
 flex-shrink: 1;
 }
 
+/* ========== NEW THREE-SECTION LAYOUT ========== */
+/* Left: integrated search bar */
+.nav-left {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.search-integrated {
+  display: flex;
+  align-items: center;
+  background-color: var(--off-white);
+  border: 1px solid var(--border-gray);
+  border-radius: 24px;
+  padding: 4px 12px;
+  gap: 6px;
+  width: 220px;
+  transition: all 0.2s;
+}
+
+.search-integrated:focus-within {
+  border-color: var(--masthead-red-brown);
+  background-color: white;
+}
+
+.search-input-permanent {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 6px 0;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 13px;
+  outline: none;
+}
+
+.permanent-search-clear {
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  color: var(--text-light);
+  transition: color 0.2s;
+  padding: 0 4px;
+}
+
+.permanent-search-clear:hover {
+  color: var(--masthead-red-brown);
+}
+
+/* Center: BUY NOW! */
+.nav-center {
+  flex: 0 0 auto;
+  text-align: center;
+}
+
 .nav-center-text {
-font-weight: 700;
-font-size: 11px;
-color: var(--masthead-red-brown);
-background-color: var(--off-white);
-padding: 3px 10px;
-border-radius: 20px;
-border: 1px solid var(--border-gray);
-white-space: nowrap;
-order: 0;
-margin: 0 auto;
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--masthead-red-brown);
+  background-color: var(--off-white);
+  padding: 3px 10px;
+  border-radius: 20px;
+  border: 1px solid var(--border-gray);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
+.nav-center-text:hover {
+  background-color: var(--masthead-red-brown);
+  color: white;
+  border-color: var(--masthead-red-brown);
+}
+
+/* Right: cart + account area */
 .nav-right {
-display: flex;
-align-items: center;
-gap: 12px;
-flex-shrink: 0;
-}
-
-.search-toggle {
-background: none;
-border: none;
-font-size: 16px;
-cursor: pointer;
-color: var(--masthead-red-brown);
-transition: color 0.2s;
-padding: 0;
-display: flex;
-align-items: center;
-}
-
-.search-toggle:hover {
-color: var(--dark-brown);
-}
-
-.search-container {
-display: flex;
-align-items: center;
-background-color: var(--off-white);
-border: 1px solid var(--border-gray);
-border-radius: 24px;
-padding: 4px 12px;
-margin: 8px 16px;
-gap: 8px;
-}
-
-.search-container input {
-flex: 1;
-border: none;
-background: transparent;
-padding: 8px 0;
-font-family: 'Georgia', serif;
-font-size: 14px;
-outline: none;
-}
-
-.search-clear {
-background: none;
-border: none;
-font-size: 16px;
-cursor: pointer;
-color: var(--text-light);
-transition: color 0.2s;
-}
-
-.search-clear:hover {
-color: var(--masthead-red-brown);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+  justify-content: flex-end;
 }
 
 .cart-link {
-font-weight: 600;
-color: var(--masthead-red-brown);
-cursor: pointer;
-display: flex;
-align-items: center;
-gap: 4px;
-font-size: 12px;
-white-space: nowrap;
+  font-weight: 600;
+  color: var(--masthead-red-brown);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  white-space: nowrap;
 }
 
 .cart-icon {
-font-size: 13px;
+  font-size: 13px;
 }
 
 .account-area {
-display: flex;
-align-items: center;
-gap: 8px;
-white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
 }
 
 .account-link {
-font-size: 12px;
-font-weight: 500;
-color: var(--primary-brown);
+  font-size: 12px;
+  font-weight: 600;
+  background-color: var(--off-white);
+  border: 1px solid var(--primary-brown);
+  padding: 4px 12px;
+  border-radius: 30px;
+  transition: all 0.2s;
+  text-decoration: none;
+  color: var(--primary-brown);
+}
+
+.account-link:hover {
+  background-color: var(--primary-brown);
+  color: white;
+  border-color: var(--primary-brown);
 }
 
 #logged-in-welcome {
-font-size: 12px;
-color: var(--primary-brown);
-font-weight: 500;
+  font-size: 12px;
+  color: var(--primary-brown);
+  font-weight: 500;
+  background: transparent;
+  border: none;
+  padding: 0;
 }
 
+/* Hide old search toggle and its container (no longer needed) */
+.search-toggle,
+#search-container {
+  display: none !important;
+}
+
+/* Masthead and nav-menu (unchanged) */
 .masthead {
 text-align: center;
 padding: 20px 16px 12px;
@@ -1224,34 +1260,6 @@ padding: 12px;
 font-size: 14px;
 }
 
-/* ==================== ACCOUNT LINKS AS BUTTONS ==================== */
-.account-area .account-link {
-    display: inline-block;
-    background-color: var(--off-white);
-    border: 1px solid var(--primary-brown);
-    padding: 4px 12px;
-    border-radius: 30px;
-    font-size: 12px;
-    font-weight: 600;
-    transition: all 0.2s;
-    text-decoration: none;
-    color: var(--primary-brown);
-}
-
-.account-area .account-link:hover {
-    background-color: var(--primary-brown);
-    color: white;
-    border-color: var(--primary-brown);
-}
-
-#logged-in-welcome {
-    background: transparent;
-    border: none;
-    padding: 0;
-    font-weight: 500;
-    color: var(--text-dark);
-}
-
 /* ==================== ORDER HISTORY SIDEBAR ==================== */
 .order-history-sidebar {
     position: fixed;
@@ -1358,56 +1366,60 @@ font-size: 14px;
     margin-top: 20px;
 }
 
-/* ==================== MOBILE & TABLET RESPONSIVENESS (FIXED – NO OVERLAP) ==================== */
+/* ==================== RESPONSIVE (mobile first, then desktop) ==================== */
+/* Mobile: up to 768px – stack everything */
 @media (max-width: 768px) {
-  /* Global */
   body { font-size: 14px; }
   .container { padding: 0 12px; }
 
-  /* Fix overlapping navigation on mobile */
   .nav-top {
     flex-wrap: wrap;
     justify-content: center;
-    gap: 8px;
+    gap: 12px;
     padding: 8px 12px;
   }
-  .nav-date {
+
+  /* Left section: search bar full width */
+  .nav-left {
     order: 1;
+    width: 100%;
+    justify-content: center;
+  }
+  .search-integrated {
+    width: 90%;
+    max-width: 300px;
+  }
+
+  /* Center: BUY NOW */
+  .nav-center {
+    order: 2;
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Right: cart + account row */
+  .nav-right {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .account-area {
+    justify-content: center;
+  }
+
+  /* Date line remains */
+  .nav-date {
+    order: 0;
     width: 100%;
     text-align: center;
     font-size: 10px;
     white-space: normal;
-    margin-bottom: 4px;
-  }
-  .nav-center-text {
-    order: 2;
-    margin: 0 auto;
-    font-size: 10px;
-  }
-  .nav-right {
-    order: 3;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-  .account-area {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
-    width: auto;
-  }
-  .cart-link, .search-toggle, .account-area a, #logged-in-welcome {
-    white-space: nowrap;
-  }
-  .search-container {
-    margin: 8px 12px;
-    width: calc(100% - 24px);
+    margin-bottom: 8px;
   }
 
-  /* Hero */
+  /* Hero adjustments */
   .hero-title { font-size: 18px; }
   .hero-description { font-size: 10px; }
 
@@ -1524,7 +1536,7 @@ font-size: 14px;
   .carousel-item { flex: 0 0 95%; }
 }
 
-/* ==================== TABLET & DESKTOP STYLES ==================== */
+/* Tablet / Desktop mode (769px - 1023px) – 2‑column grid */
 @media (min-width: 769px) and (max-width: 1023px) {
   .grid-carousel-item {
     flex: 0 0 calc(50% - 16px) !important;
@@ -1537,6 +1549,7 @@ font-size: 14px;
   }
 }
 
+/* Large desktop (≥1024px) – 3‑column grid */
 @media (min-width: 1024px) {
   .grid-carousel-item {
     flex: 0 0 calc(33.333% - 16px);
@@ -1546,27 +1559,15 @@ font-size: 14px;
   }
 }
 
+/* General desktop styles (≥769px) – shared */
 @media (min-width: 769px) {
   .container { padding: 0 24px; }
-  .nav-top {
-    flex-wrap: nowrap;
-    padding: 8px 24px;
-  }
-  .nav-date {
-    font-size: 12px;
-    max-width: none;
+  .search-integrated {
+    width: 260px;
   }
   .nav-center-text {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    order: 0;
     font-size: 12px;
-  }
-  .nav-right { gap: 24px; }
-  .search-container {
-    margin: 8px 24px;
-    max-width: 300px;
+    padding: 4px 14px;
   }
   .masthead {
     padding: 28px 24px 16px;
@@ -1641,125 +1642,5 @@ font-size: 14px;
   .cart-confirm-buttons {
     flex-direction: row;
     gap: 16px;
-  }
-}
-
-/* ========== NEW ADDITIONS (no existing code changed) ========== */
-
-/* Permanent search bar (left side) */
-.nav-left-permanent {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  flex: 1;
-}
-
-.search-input-permanent {
-  width: 200px;
-  padding: 6px 10px;
-  border: 1px solid var(--border-gray);
-  border-radius: 24px;
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 13px;
-  background-color: var(--off-white);
-  transition: border 0.2s;
-}
-
-.search-input-permanent:focus {
-  outline: none;
-  border-color: var(--masthead-red-brown);
-  background-color: white;
-}
-
-.permanent-search-clear {
-  background: none;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-  color: var(--text-light);
-  transition: color 0.2s;
-  padding: 0 4px;
-}
-
-.permanent-search-clear:hover {
-  color: var(--masthead-red-brown);
-}
-
-/* Reorder .nav-top to have three sections: left (search), center (BUY NOW), right (cart+account) */
-/* We use flex and order; existing classes remain untouched */
-.nav-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: nowrap;
-  gap: 8px;
-}
-
-/* Move existing .nav-date to a separate line? We'll keep it but reposition */
-.nav-date {
-  order: 0; /* keep as is, but we add a new left section */
-  width: auto;
-}
-
-/* The existing .nav-center-text will stay in center, but we need to ensure left and right take equal space */
-.nav-left-permanent {
-  order: 1;
-}
-.nav-center-text {
-  order: 2;
-  margin: 0;
-  position: static; /* override absolute positioning from desktop media */
-}
-.nav-right {
-  order: 3;
-  flex: 0 0 auto;
-}
-
-/* Adjust desktop media to remove absolute positioning for centering, because we now use flex space-between */
-@media (min-width: 769px) {
-  .nav-center-text {
-    position: static;
-    transform: none;
-    left: auto;
-  }
-}
-
-/* Tablet grid fix – ensure 2 columns for Complete Product Collection */
-@media (min-width: 769px) and (max-width: 1023px) {
-  .grid-carousel-track {
-    flex-wrap: wrap !important;
-    transform: none !important;
-    transition: none !important;
-    gap: 20px;
-    justify-content: center;
-  }
-  .grid-carousel-item {
-    flex: 0 0 calc(50% - 20px) !important;
-    max-width: calc(50% - 20px);
-  }
-  .grid-carousel-buttons {
-    display: flex;
-  }
-}
-
-/* Mobile adjustment for new permanent search */
-@media (max-width: 768px) {
-  .nav-top {
-    flex-wrap: wrap;
-  }
-  .nav-left-permanent {
-    order: 1;
-    width: 100%;
-    justify-content: center;
-    margin-bottom: 8px;
-  }
-  .search-input-permanent {
-    width: 70%;
-  }
-  .nav-center-text {
-    order: 2;
-  }
-  .nav-right {
-    order: 3;
   }
 }
