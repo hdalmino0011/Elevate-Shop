@@ -119,6 +119,16 @@ order: 0;
 margin: 0 auto;
 }
 
+.nav-search-toggle {
+display: flex;
+align-items: center;
+}
+
+.nav-cart {
+display: flex;
+align-items: center;
+}
+
 .nav-right {
 display: flex;
 align-items: center;
@@ -1364,49 +1374,6 @@ font-size: 14px;
   body { font-size: 14px; }
   .container { padding: 0 12px; }
 
-  /* Fix overlapping navigation on mobile */
-  .nav-top {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-    padding: 8px 12px;
-  }
-  .nav-date {
-    order: 1;
-    width: 100%;
-    text-align: center;
-    font-size: 10px;
-    white-space: normal;
-    margin-bottom: 4px;
-  }
-  .nav-center-text {
-    order: 2;
-    margin: 0 auto;
-    font-size: 10px;
-  }
-  .nav-right {
-    order: 3;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-  .account-area {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
-    width: auto;
-  }
-  .cart-link, .search-toggle, .account-area a, #logged-in-welcome {
-    white-space: nowrap;
-  }
-  .search-container {
-    margin: 8px 12px;
-    width: calc(100% - 24px);
-  }
-
   /* Hero */
   .hero-title { font-size: 18px; }
   .hero-description { font-size: 10px; }
@@ -1644,54 +1611,78 @@ font-size: 14px;
   }
 }
 
-/* ==================== FIXES FOR MOBILE HEADER ARRANGEMENT ==================== */
-/* This section reorders the mobile header to match the required layout:
-   date, buy now button, search tab with search icon, cart button, welcome user name, order history, logout
-   A visible line separator is added below the header.
-   Desktop mode on mobile phone overlapping is also fixed.
+/* ==================== CORRECTED MOBILE HEADER ARRANGEMENT ==================== */
+/* This uses flexbox with order properties to achieve the exact required layout:
+   order: date, buy now button, search icon, cart button, welcome message, order history, logout
+   A visible line separator is added after the header.
+   Desktop view remains unchanged because these rules are inside max-width: 768px.
 */
 
 @media (max-width: 768px) {
-  /* Override previous mobile .nav-top rules to achieve correct order using CSS Grid */
+  /* Override previous .nav-top styles for mobile only */
   .nav-top {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    grid-template-areas:
-      "date date date"
-      "buynow buynow buynow"
-      "search cart account"
-      "separator separator separator";
-    gap: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
-    justify-items: center;
+    gap: 10px 16px;
     padding: 10px 12px;
+    position: relative;
   }
 
+  /* Assign order to each direct child of .nav-top */
   .nav-date {
-    grid-area: date;
+    order: 1;
     width: 100%;
     text-align: center;
-    order: unset;
-    margin-bottom: 0;
-    font-size: 11px;
+    font-size: 12px;
+    white-space: normal;
+    margin-bottom: 4px;
   }
 
   .nav-center-text {
-    grid-area: buynow;
+    order: 2;
     margin: 0 auto;
-    order: unset;
     font-size: 12px;
     padding: 5px 14px;
   }
 
-  .nav-right {
-    grid-area: search;
-    display: contents;
+  .nav-search-toggle {
+    order: 3;
+    margin: 0;
   }
 
+  .nav-cart {
+    order: 4;
+    margin: 0;
+  }
+
+  .account-area {
+    order: 5;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    margin-top: 6px;
+  }
+
+  /* Ensure individual account items appear in correct order inside .account-area */
+  .account-area {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  /* These IDs are children of .account-area, so they keep their natural order.
+     The natural order in HTML is: #logged-in-welcome, #order-history-link, #logout-link.
+     That matches the required order: welcome, order history, logout.
+     So no additional order changes needed inside .account-area. */
+
+  /* Style the search toggle and cart link to look consistent */
   .search-toggle {
-    grid-area: search;
-    justify-self: center;
     background-color: var(--off-white);
     padding: 6px 12px;
     border-radius: 30px;
@@ -1699,27 +1690,10 @@ font-size: 14px;
   }
 
   .cart-link {
-    grid-area: cart;
-    justify-self: center;
     background-color: var(--off-white);
     padding: 5px 12px;
     border-radius: 30px;
     border: 1px solid var(--border-gray);
-  }
-
-  .account-area {
-    grid-area: account;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-    width: 100%;
-  }
-
-  /* Hide the original nav-right wrapper's direct flex behavior since we use display: contents */
-  .nav-right {
-    display: contents;
   }
 
   /* Line separator after the header */
@@ -1732,19 +1706,15 @@ font-size: 14px;
     margin-top: 0;
   }
 
-  /* Ensure search container is not hidden behind elements */
+  /* Ensure search container is properly positioned */
   .search-container {
-    margin-top: 4px;
-    margin-bottom: 8px;
+    margin: 8px 12px;
+    width: calc(100% - 24px);
   }
 }
 
 /* ==================== FIX FOR DESKTOP MODE ON MOBILE PHONE (OVERLAPPING PREVENTION) ==================== */
-/* This targets scenarios where a mobile phone forces desktop viewport.
-   The browser reports width >= 769px but physical screen is narrow.
-   These styles apply at all screen widths as a safety net. */
-
-/* Prevent horizontal overflow on all containers when forced desktop mode on narrow screen */
+/* These styles apply globally to prevent overlap when a mobile phone forces desktop viewport */
 body {
   overflow-x: auto;
   min-width: 320px;
@@ -1768,19 +1738,6 @@ body {
 }
 
 /* Ensure product grids don't overlap when forced desktop width but physical screen narrow */
-.grid-carousel-track {
-  flex-wrap: wrap;
-}
-
-@media (min-width: 769px) {
-  /* When desktop styles apply but screen is actually narrow (forced desktop mode),
-     we override certain flex behaviors to prevent overlap */
-  body:not(.desktop-native) .grid-carousel-track {
-    flex-wrap: wrap !important;
-  }
-}
-
-/* Safe fallback for any screen width: prevent carousel items from overflowing */
 .carousel-track,
 .grid-carousel-track {
   max-width: 100%;
@@ -1792,11 +1749,7 @@ body {
   word-break: break-word;
 }
 
-/* Ensure hero text does not overlap */
-.hero-title br {
-  display: inline-block;
-}
-
+/* Ensure hero text does not overlap on very narrow screens */
 @media (max-width: 500px) {
   .hero-title br {
     display: none;
@@ -1804,9 +1757,4 @@ body {
   .hero-title {
     font-size: 16px;
   }
-}
-
-/* Additional separator line visibility */
-.navbar {
-  position: relative;
 }
