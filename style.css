@@ -83,11 +83,10 @@ top: 0;
 z-index: 100;
 }
 
-/* Base nav-top – will be overridden for desktop/mobile */
 .nav-top {
 display: flex;
-align-items: center;
 justify-content: space-between;
+align-items: center;
 flex-wrap: nowrap;
 gap: 8px;
 padding: 8px 16px;
@@ -116,14 +115,8 @@ padding: 3px 10px;
 border-radius: 20px;
 border: 1px solid var(--border-gray);
 white-space: nowrap;
-cursor: pointer;
-transition: all 0.2s;
-}
-
-.nav-center-text:hover {
-background-color: var(--masthead-red-brown);
-color: white;
-border-color: var(--masthead-red-brown);
+order: 0;
+margin: 0 auto;
 }
 
 .nav-right {
@@ -133,7 +126,6 @@ gap: 12px;
 flex-shrink: 0;
 }
 
-/* Old search toggle (used on desktop) */
 .search-toggle {
 background: none;
 border: none;
@@ -184,54 +176,6 @@ transition: color 0.2s;
 color: var(--masthead-red-brown);
 }
 
-/* New integrated search bar (used on mobile) */
-.nav-left {
-  display: none; /* hidden by default, shown on mobile */
-}
-
-.search-integrated {
-  display: flex;
-  align-items: center;
-  background-color: var(--off-white);
-  border: 1px solid var(--border-gray);
-  border-radius: 24px;
-  padding: 4px 12px;
-  gap: 6px;
-  width: 100%;
-  max-width: 300px;
-  transition: all 0.2s;
-}
-
-.search-integrated:focus-within {
-  border-color: var(--masthead-red-brown);
-  background-color: white;
-}
-
-.search-input-permanent {
-  flex: 1;
-  border: none;
-  background: transparent;
-  padding: 6px 0;
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 13px;
-  outline: none;
-}
-
-.permanent-search-clear {
-  background: none;
-  border: none;
-  font-size: 14px;
-  cursor: pointer;
-  color: var(--text-light);
-  transition: color 0.2s;
-  padding: 0 4px;
-}
-
-.permanent-search-clear:hover {
-  color: var(--masthead-red-brown);
-}
-
-/* Cart link & account area */
 .cart-link {
 font-weight: 600;
 color: var(--masthead-red-brown);
@@ -256,29 +200,14 @@ white-space: nowrap;
 
 .account-link {
 font-size: 12px;
-font-weight: 600;
-background-color: var(--off-white);
-border: 1px solid var(--primary-brown);
-padding: 4px 12px;
-border-radius: 30px;
-transition: all 0.2s;
-text-decoration: none;
+font-weight: 500;
 color: var(--primary-brown);
-}
-
-.account-link:hover {
-background-color: var(--primary-brown);
-color: white;
-border-color: var(--primary-brown);
 }
 
 #logged-in-welcome {
 font-size: 12px;
 color: var(--primary-brown);
 font-weight: 500;
-background: transparent;
-border: none;
-padding: 0;
 }
 
 .masthead {
@@ -1295,6 +1224,34 @@ padding: 12px;
 font-size: 14px;
 }
 
+/* ==================== ACCOUNT LINKS AS BUTTONS ==================== */
+.account-area .account-link {
+    display: inline-block;
+    background-color: var(--off-white);
+    border: 1px solid var(--primary-brown);
+    padding: 4px 12px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.2s;
+    text-decoration: none;
+    color: var(--primary-brown);
+}
+
+.account-area .account-link:hover {
+    background-color: var(--primary-brown);
+    color: white;
+    border-color: var(--primary-brown);
+}
+
+#logged-in-welcome {
+    background: transparent;
+    border: none;
+    padding: 0;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
 /* ==================== ORDER HISTORY SIDEBAR ==================== */
 .order-history-sidebar {
     position: fixed;
@@ -1401,57 +1358,216 @@ font-size: 14px;
     margin-top: 20px;
 }
 
-/* ==================== RESPONSIVE ==================== */
+/* ==================== MOBILE & TABLET RESPONSIVENESS (FIXED – NO OVERLAP) ==================== */
+@media (max-width: 768px) {
+  /* Global */
+  body { font-size: 14px; }
+  .container { padding: 0 12px; }
 
-/* DESKTOP (≥769px) – restore original layout, hide integrated search */
-@media (min-width: 769px) {
-  /* Hide the new integrated search bar */
-  .nav-left {
-    display: none !important;
-  }
-
-  /* Show the old search toggle and container */
-  .search-toggle,
-  .search-container {
-    display: flex !important;
-  }
-
-  /* Original .nav-top layout: date left, BUY NOW centered, right side with toggle/cart/account */
+  /* Fix overlapping navigation on mobile */
   .nav-top {
-    justify-content: space-between;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 12px;
   }
-
   .nav-date {
-    order: 0;
-    max-width: 33%;
+    order: 1;
+    width: 100%;
+    text-align: center;
+    font-size: 10px;
+    white-space: normal;
+    margin-bottom: 4px;
+  }
+  .nav-center-text {
+    order: 2;
+    margin: 0 auto;
+    font-size: 10px;
+  }
+  .nav-right {
+    order: 3;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .account-area {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    width: auto;
+  }
+  .cart-link, .search-toggle, .account-area a, #logged-in-welcome {
     white-space: nowrap;
   }
-
-  .nav-center-text {
-    order: 1;
-    margin: 0 auto;
-    position: static;
-    transform: none;
+  .search-container {
+    margin: 8px 12px;
+    width: calc(100% - 24px);
   }
 
-  .nav-right {
-    order: 2;
-    flex: 0 0 auto;
-    justify-content: flex-end;
+  /* Hero */
+  .hero-title { font-size: 18px; }
+  .hero-description { font-size: 10px; }
+
+  /* Featured article */
+  .article-title { font-size: 20px; }
+  .best-seller-badge {
+    font-size: 10px;
+    padding: 4px 10px;
+    top: -8px;
   }
 
-  /* Ensure the account area stays inline */
-  .account-area {
+  /* Top Selections carousel */
+  .carousel-item {
+    flex: 0 0 85%;
+    padding: 12px;
+  }
+  .carousel-item h3 { font-size: 14px; }
+  .carousel-item .description { font-size: 11px; }
+  .carousel-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+  }
+
+  /* Complete Product Collection – force vertical stacking */
+  .grid-carousel-track {
+    flex-wrap: wrap !important;
+    transform: none !important;
+    transition: none !important;
+    gap: 16px;
+  }
+  .grid-carousel-item {
+    flex: 0 0 100% !important;
+    padding: 12px;
+  }
+  .grid-carousel-buttons {
+    display: none;
+  }
+
+  /* Testimonials */
+  .testimonial-item {
+    font-size: 12px;
+    padding: 12px;
+  }
+
+  /* Footer */
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 24px;
+  }
+  .footer-section ul { text-align: center; }
+
+  /* Modals */
+  .modal-content {
+    padding: 20px;
+    max-width: 95%;
+  }
+  .modal-large { max-width: 95%; }
+  .modal h2 { font-size: 20px; }
+
+  /* Account modal */
+  .account-modal .modal-content { padding: 20px; }
+  .account-tab {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+  #login-form input, #signup-form input {
+    padding: 10px;
+    font-size: 13px;
+  }
+  #login-form .btn-primary, #signup-form .btn-primary {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  /* Product detail modal */
+  .price-button-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .price-button-row .btn-primary {
+    width: 100%;
+    text-align: center;
+  }
+  .product-price {
+    text-align: center;
+    font-size: 20px;
+  }
+  .detail-body p:first-of-type::first-letter {
+    font-size: 40px;
+    margin-right: 8px;
+  }
+
+  /* Cart & order sidebars */
+  .cart-sidebar,
+  .order-history-sidebar {
+    width: 85%;
+    right: -85%;
+  }
+  .cart-sidebar.open,
+  .order-history-sidebar.open {
+    right: 0;
+  }
+}
+
+/* Very small phones (max-width 480px) */
+@media (max-width: 480px) {
+  .site-title { font-size: 24px; }
+  .site-subtitle { font-size: 9px; }
+  .nav-menu a { font-size: 9px; }
+  .section-heading { font-size: 20px; }
+  .carousel-item { flex: 0 0 95%; }
+}
+
+/* ==================== TABLET & DESKTOP STYLES ==================== */
+@media (min-width: 769px) and (max-width: 1023px) {
+  .grid-carousel-item {
+    flex: 0 0 calc(50% - 16px) !important;
+  }
+  .grid-carousel-track {
+    gap: 20px;
+  }
+  .grid-carousel-buttons {
+    display: flex;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-carousel-item {
+    flex: 0 0 calc(33.333% - 16px);
+  }
+  .carousel-item {
+    flex: 0 0 calc(33.333% - 16px);
+  }
+}
+
+@media (min-width: 769px) {
+  .container { padding: 0 24px; }
+  .nav-top {
     flex-wrap: nowrap;
+    padding: 8px 24px;
   }
-
-  /* Container padding */
-  .container {
-    padding: 0 24px;
+  .nav-date {
+    font-size: 12px;
+    max-width: none;
   }
-
-  /* Other desktop styles from original (unchanged) */
+  .nav-center-text {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    order: 0;
+    font-size: 12px;
+  }
+  .nav-right { gap: 24px; }
+  .search-container {
+    margin: 8px 24px;
+    max-width: 300px;
+  }
   .masthead {
     padding: 28px 24px 16px;
   }
@@ -1484,7 +1600,6 @@ font-size: 14px;
     gap: 24px;
   }
   .carousel-item {
-    flex: 0 0 calc(33.333% - 16px);
     scroll-snap-align: none;
     padding: 20px;
   }
@@ -1526,218 +1641,5 @@ font-size: 14px;
   .cart-confirm-buttons {
     flex-direction: row;
     gap: 16px;
-  }
-}
-
-/* MOBILE (≤768px) – use integrated search, reorder vertically with separators */
-@media (max-width: 768px) {
-  /* Hide old search elements */
-  .search-toggle,
-  .search-container {
-    display: none !important;
-  }
-
-  /* Show integrated search bar */
-  .nav-left {
-    display: flex !important;
-    justify-content: center;
-    width: 100%;
-    margin: 8px 0;
-  }
-  .search-integrated {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  /* Reorder .nav-top children using order */
-  .nav-top {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 12px;
-    padding: 12px;
-  }
-
-  /* Each child becomes a block, full width, with a separator */
-  .nav-date {
-    order: 1;
-    width: 100%;
-    text-align: center;
-    font-size: 10px;
-    white-space: normal;
-    margin-bottom: 0;
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--border-gray);
-  }
-
-  .nav-center-text {
-    order: 2;
-    width: 100%;
-    text-align: center;
-    margin: 0;
-    padding: 4px 0;
-    border-bottom: 1px solid var(--border-gray);
-  }
-
-  .nav-left {
-    order: 3;
-    width: 100%;
-    margin: 0;
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--border-gray);
-  }
-
-  .nav-right {
-    order: 4;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border-gray);
-  }
-
-  /* The cart link inside .nav-right becomes a full-width block */
-  .cart-link {
-    width: 100%;
-    text-align: center;
-    justify-content: center;
-    padding: 4px 0;
-  }
-
-  /* Account area: each link on its own row with separators */
-  .account-area {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 8px;
-  }
-  .account-area .account-link,
-  #logged-in-welcome {
-    display: block;
-    width: 100%;
-    text-align: center;
-    padding: 6px 0;
-    border-bottom: 1px solid var(--border-gray);
-  }
-  .account-area .account-link:last-child,
-  #logged-in-welcome:last-child {
-    border-bottom: none;
-  }
-
-  /* General mobile adjustments (keep existing) */
-  body { font-size: 14px; }
-  .container { padding: 0 12px; }
-
-  .hero-title { font-size: 18px; }
-  .hero-description { font-size: 10px; }
-  .article-title { font-size: 20px; }
-  .best-seller-badge {
-    font-size: 10px;
-    padding: 4px 10px;
-    top: -8px;
-  }
-  .carousel-item {
-    flex: 0 0 85%;
-    padding: 12px;
-  }
-  .carousel-item h3 { font-size: 14px; }
-  .carousel-item .description { font-size: 11px; }
-  .carousel-btn {
-    width: 30px;
-    height: 30px;
-    font-size: 14px;
-  }
-  /* Force grid carousel to stack */
-  .grid-carousel-track {
-    flex-wrap: wrap !important;
-    transform: none !important;
-    transition: none !important;
-    gap: 16px;
-  }
-  .grid-carousel-item {
-    flex: 0 0 100% !important;
-    padding: 12px;
-  }
-  .grid-carousel-buttons {
-    display: none;
-  }
-  .testimonial-item {
-    font-size: 12px;
-    padding: 12px;
-  }
-  .footer-content {
-    grid-template-columns: 1fr;
-    text-align: center;
-    gap: 24px;
-  }
-  .footer-section ul { text-align: center; }
-  .modal-content {
-    padding: 20px;
-    max-width: 95%;
-  }
-  .modal-large { max-width: 95%; }
-  .modal h2 { font-size: 20px; }
-  .account-modal .modal-content { padding: 20px; }
-  .account-tab {
-    padding: 6px 12px;
-    font-size: 14px;
-  }
-  #login-form input, #signup-form input {
-    padding: 10px;
-    font-size: 13px;
-  }
-  #login-form .btn-primary, #signup-form .btn-primary {
-    padding: 10px;
-    font-size: 13px;
-  }
-  .price-button-row {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 12px;
-  }
-  .price-button-row .btn-primary {
-    width: 100%;
-    text-align: center;
-  }
-  .product-price {
-    text-align: center;
-    font-size: 20px;
-  }
-  .detail-body p:first-of-type::first-letter {
-    font-size: 40px;
-    margin-right: 8px;
-  }
-  .cart-sidebar,
-  .order-history-sidebar {
-    width: 85%;
-    right: -85%;
-  }
-  .cart-sidebar.open,
-  .order-history-sidebar.open {
-    right: 0;
-  }
-}
-
-/* Very small phones (max-width 480px) – additional tweaks */
-@media (max-width: 480px) {
-  .site-title { font-size: 24px; }
-  .site-subtitle { font-size: 9px; }
-  .nav-menu a { font-size: 9px; }
-  .section-heading { font-size: 20px; }
-  .carousel-item { flex: 0 0 95%; }
-}
-
-/* Tablet / Desktop mode (769px - 1023px) – 2‑column grid for product collection */
-@media (min-width: 769px) and (max-width: 1023px) {
-  .grid-carousel-item {
-    flex: 0 0 calc(50% - 16px) !important;
-  }
-  .grid-carousel-track {
-    gap: 20px;
-  }
-  .grid-carousel-buttons {
-    display: flex;
   }
 }
