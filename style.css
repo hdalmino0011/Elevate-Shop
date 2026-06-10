@@ -74,7 +74,7 @@ font-size: 16px;
 margin-bottom: 10px;
 }
 
-/* ==================== NAVIGATION / MASTHEAD ==================== */
+/* ==================== NAVIGATION / MASTHEAD (FIXED) ==================== */
 .navbar {
 background-color: white;
 border-bottom: 3px solid var(--masthead-red-brown);
@@ -87,8 +87,7 @@ z-index: 100;
 display: flex;
 justify-content: space-between;
 align-items: center;
-flex-wrap: nowrap;
-gap: 8px;
+gap: 16px;
 padding: 8px 16px;
 font-size: 12px;
 color: var(--text-light);
@@ -97,83 +96,57 @@ background-color: white;
 position: relative;
 }
 
-.nav-date {
-font-family: 'Georgia', serif;
-font-size: 11px;
-white-space: nowrap;
-overflow-x: auto;
-max-width: 33%;
-flex-shrink: 1;
+/* Left section – search */
+.nav-left {
+display: flex;
+align-items: center;
+flex: 1;
 }
 
+.search-input-permanent {
+width: 200px;
+padding: 6px 12px;
+border: 1px solid var(--border-gray);
+border-radius: 24px;
+font-family: 'Times New Roman', Times, serif;
+font-size: 13px;
+background-color: var(--off-white);
+transition: border 0.2s;
+}
+
+.search-input-permanent:focus {
+outline: none;
+border-color: var(--masthead-red-brown);
+background-color: white;
+}
+
+/* Center section – BUY NOW */
 .nav-center-text {
 font-weight: 700;
-font-size: 11px;
+font-size: 12px;
 color: var(--masthead-red-brown);
 background-color: var(--off-white);
-padding: 3px 10px;
+padding: 4px 14px;
 border-radius: 20px;
 border: 1px solid var(--border-gray);
 white-space: nowrap;
-order: 0;
-margin: 0 auto;
+cursor: pointer;
+transition: all 0.2s;
 }
 
+.nav-center-text:hover {
+background-color: var(--masthead-red-brown);
+color: white;
+border-color: var(--masthead-red-brown);
+}
+
+/* Right section – cart + account */
 .nav-right {
 display: flex;
 align-items: center;
-gap: 12px;
-flex-shrink: 0;
-}
-
-.search-toggle {
-background: none;
-border: none;
-font-size: 16px;
-cursor: pointer;
-color: var(--masthead-red-brown);
-transition: color 0.2s;
-padding: 0;
-display: flex;
-align-items: center;
-}
-
-.search-toggle:hover {
-color: var(--dark-brown);
-}
-
-.search-container {
-display: flex;
-align-items: center;
-background-color: var(--off-white);
-border: 1px solid var(--border-gray);
-border-radius: 24px;
-padding: 4px 12px;
-margin: 8px 16px;
-gap: 8px;
-}
-
-.search-container input {
+gap: 16px;
 flex: 1;
-border: none;
-background: transparent;
-padding: 8px 0;
-font-family: 'Georgia', serif;
-font-size: 14px;
-outline: none;
-}
-
-.search-clear {
-background: none;
-border: none;
-font-size: 16px;
-cursor: pointer;
-color: var(--text-light);
-transition: color 0.2s;
-}
-
-.search-clear:hover {
-color: var(--masthead-red-brown);
+justify-content: flex-end;
 }
 
 .cart-link {
@@ -194,22 +167,44 @@ font-size: 13px;
 .account-area {
 display: flex;
 align-items: center;
-gap: 8px;
+gap: 12px;
 white-space: nowrap;
 }
 
 .account-link {
 font-size: 12px;
-font-weight: 500;
+font-weight: 600;
+background-color: var(--off-white);
+border: 1px solid var(--primary-brown);
+padding: 4px 12px;
+border-radius: 30px;
+transition: all 0.2s;
+text-decoration: none;
 color: var(--primary-brown);
+}
+
+.account-link:hover {
+background-color: var(--primary-brown);
+color: white;
+border-color: var(--primary-brown);
 }
 
 #logged-in-welcome {
 font-size: 12px;
 color: var(--primary-brown);
 font-weight: 500;
+background: transparent;
+border: none;
+padding: 0;
 }
 
+/* Hide old search toggle & container */
+.search-toggle,
+#search-container {
+display: none !important;
+}
+
+/* Masthead and nav-menu (unchanged) */
 .masthead {
 text-align: center;
 padding: 20px 16px 12px;
@@ -263,6 +258,15 @@ left: 0;
 right: 0;
 height: 2px;
 background-color: var(--masthead-red-brown);
+}
+
+.nav-date {
+font-family: 'Georgia', serif;
+font-size: 11px;
+white-space: nowrap;
+overflow-x: auto;
+max-width: 33%;
+flex-shrink: 1;
 }
 
 /* ==================== HERO SECTION ==================== */
@@ -1206,7 +1210,7 @@ border-color: var(--masthead-red-brown);
 background-color: white;
 }
 
-/* Helper text – fixed spacing (no negative margin) */
+/* Helper text – fixed spacing */
 #login-form p,
 #signup-form p {
 font-size: 12px;
@@ -1222,34 +1226,6 @@ width: 100%;
 margin-top: 8px;
 padding: 12px;
 font-size: 14px;
-}
-
-/* ==================== ACCOUNT LINKS AS BUTTONS ==================== */
-.account-area .account-link {
-    display: inline-block;
-    background-color: var(--off-white);
-    border: 1px solid var(--primary-brown);
-    padding: 4px 12px;
-    border-radius: 30px;
-    font-size: 12px;
-    font-weight: 600;
-    transition: all 0.2s;
-    text-decoration: none;
-    color: var(--primary-brown);
-}
-
-.account-area .account-link:hover {
-    background-color: var(--primary-brown);
-    color: white;
-    border-color: var(--primary-brown);
-}
-
-#logged-in-welcome {
-    background: transparent;
-    border: none;
-    padding: 0;
-    font-weight: 500;
-    color: var(--text-dark);
 }
 
 /* ==================== ORDER HISTORY SIDEBAR ==================== */
@@ -1358,52 +1334,44 @@ font-size: 14px;
     margin-top: 20px;
 }
 
-/* ==================== MOBILE & TABLET RESPONSIVENESS (FIXED) ==================== */
-/* Mobile (up to 768px) – single column */
+/* ==================== RESPONSIVE FIXES ==================== */
+/* Mobile (up to 768px) – stack navigation elements */
 @media (max-width: 768px) {
   body { font-size: 14px; }
   .container { padding: 0 12px; }
 
   .nav-top {
     flex-wrap: wrap;
-    justify-content: center;
     gap: 8px;
     padding: 8px 12px;
   }
-  .nav-date {
+  .nav-left {
     order: 1;
     width: 100%;
-    text-align: center;
-    font-size: 10px;
-    white-space: normal;
-    margin-bottom: 4px;
+    justify-content: center;
+  }
+  .search-input-permanent {
+    width: 100%;
+    max-width: 300px;
   }
   .nav-center-text {
     order: 2;
     margin: 0 auto;
-    font-size: 10px;
   }
   .nav-right {
     order: 3;
-    display: flex;
     justify-content: center;
     width: 100%;
     gap: 12px;
     flex-wrap: wrap;
   }
   .account-area {
-    display: flex;
     justify-content: center;
-    gap: 12px;
+    gap: 8px;
     flex-wrap: wrap;
-    width: auto;
   }
-  .cart-link, .search-toggle, .account-area a, #logged-in-welcome {
+  .cart-link, .account-link, #logged-in-welcome {
     white-space: nowrap;
-  }
-  .search-container {
-    margin: 8px 12px;
-    width: calc(100% - 24px);
   }
 
   .hero-title { font-size: 18px; }
@@ -1503,9 +1471,12 @@ font-size: 14px;
   .nav-menu a { font-size: 9px; }
   .section-heading { font-size: 20px; }
   .carousel-item { flex: 0 0 95%; }
+  .search-input-permanent {
+    max-width: 100%;
+  }
 }
 
-/* Tablet / Desktop mode (769px - 1023px) – 2‑column grid */
+/* Tablet / Desktop mode (769px - 1023px) – 2‑column grid (FIXED) */
 @media (min-width: 769px) and (max-width: 1023px) {
   .grid-carousel-track {
     flex-wrap: wrap !important;
@@ -1522,12 +1493,6 @@ font-size: 14px;
     gap: 20px;
     margin-top: 20px;
   }
-  /* Ensure carousel navigation buttons are visible and functional */
-  .grid-carousel-btn {
-    width: 36px;
-    height: 36px;
-    font-size: 16px;
-  }
 }
 
 /* Large desktop (≥1024px) – 3‑column grid */
@@ -1543,25 +1508,12 @@ font-size: 14px;
 /* General desktop styles (≥769px) – shared */
 @media (min-width: 769px) {
   .container { padding: 0 24px; }
-  .nav-top {
-    flex-wrap: nowrap;
-    padding: 8px 24px;
-  }
-  .nav-date {
-    font-size: 12px;
-    max-width: none;
+  .search-input-permanent {
+    width: 220px;
   }
   .nav-center-text {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    order: 0;
     font-size: 12px;
-  }
-  .nav-right { gap: 24px; }
-  .search-container {
-    margin: 8px 24px;
-    max-width: 300px;
+    padding: 4px 14px;
   }
   .masthead {
     padding: 28px 24px 16px;
