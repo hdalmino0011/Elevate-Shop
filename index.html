@@ -12,19 +12,19 @@
 <!-- Navigation/Masthead -->
 <nav class="navbar">
 <div class="nav-top">
-  <!-- Left: integrated search bar -->
-  <div class="nav-left">
-    <div class="search-integrated">
-      <input type="text" id="search-input-permanent" class="search-input-permanent" placeholder="Search..." autocomplete="off">
-      <button id="permanent-search-clear" class="permanent-search-clear" aria-label="Clear search">✕</button>
-    </div>
-  </div>
-  <!-- Center: BUY NOW! -->
-  <div class="nav-center">
-    <div class="nav-center-text" id="buyNowBtn">BUY NOW!</div>
-  </div>
-  <!-- Right: cart + account area -->
+  <!-- Date (remains in original position) -->
+  <div class="nav-date" id="current-date"></div>
+  <!-- BUY NOW button (centered) -->
+  <div class="nav-center-text" id="buyNowBtn">BUY NOW!</div>
+  <!-- Right side: old search toggle, cart, account area -->
   <div class="nav-right">
+    <!-- Old search toggle (visible on desktop) -->
+    <button id="search-toggle-btn" class="search-toggle" aria-label="Search">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="10" cy="10" r="7"></circle>
+        <line x1="15" y1="15" x2="21" y2="21"></line>
+      </svg>
+    </button>
     <a href="#" id="cart-icon" class="cart-link">
       <span class="cart-icon">🛒</span> Cart (<span id="cart-count">0</span>)
     </a>
@@ -37,8 +37,19 @@
   </div>
 </div>
 
-<!-- Date line (outside nav-top, but still part of navbar) -->
-<div class="nav-date" id="current-date"></div>
+<!-- Old hidden search container (for desktop) -->
+<div id="search-container" class="search-container" style="display: none;">
+  <input type="text" id="search-input" placeholder="Search products by name..." autocomplete="off">
+  <button id="search-clear" class="search-clear">✕</button>
+</div>
+
+<!-- NEW integrated search bar (for mobile) – placed outside .nav-top to allow CSS reordering, but we keep it inside .navbar -->
+<div class="nav-left" style="display: none;">
+  <div class="search-integrated">
+    <input type="text" id="search-input-permanent" class="search-input-permanent" placeholder="Search..." autocomplete="off">
+    <button id="permanent-search-clear" class="permanent-search-clear" aria-label="Clear search">✕</button>
+  </div>
+</div>
 
 <div class="masthead">
 <h1 class="site-title">ELEVATE SHOP</h1>
