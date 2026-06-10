@@ -1368,121 +1368,126 @@ font-size: 14px;
     margin-top: 20px;
 }
 
-/* ==================== MOBILE & TABLET RESPONSIVENESS ==================== */
+/* ==================== MOBILE HEADER ARRANGEMENT (EXACT ORDER) ==================== */
+/* This is the only mobile-specific header styling. It overrides all previous conflicting rules.
+   Order: date, buy now, search icon, cart, welcome, order history, logout.
+   Desktop view is unchanged because this is inside max-width: 768px.
+   A visible line separator is added after the navbar.
+*/
+
 @media (max-width: 768px) {
-  /* Global */
-  body { font-size: 14px; }
-  .container { padding: 0 12px; }
-
-  /* Hero */
-  .hero-title { font-size: 18px; }
-  .hero-description { font-size: 10px; }
-
-  /* Featured article */
-  .article-title { font-size: 20px; }
-  .best-seller-badge {
-    font-size: 10px;
-    padding: 4px 10px;
-    top: -8px;
-  }
-
-  /* Top Selections carousel */
-  .carousel-item {
-    flex: 0 0 85%;
-    padding: 12px;
-  }
-  .carousel-item h3 { font-size: 14px; }
-  .carousel-item .description { font-size: 11px; }
-  .carousel-btn {
-    width: 30px;
-    height: 30px;
-    font-size: 14px;
-  }
-
-  /* Complete Product Collection – force vertical stacking */
-  .grid-carousel-track {
-    flex-wrap: wrap !important;
-    transform: none !important;
-    transition: none !important;
-    gap: 16px;
-  }
-  .grid-carousel-item {
-    flex: 0 0 100% !important;
-    padding: 12px;
-  }
-  .grid-carousel-buttons {
-    display: none;
-  }
-
-  /* Testimonials */
-  .testimonial-item {
-    font-size: 12px;
-    padding: 12px;
-  }
-
-  /* Footer */
-  .footer-content {
-    grid-template-columns: 1fr;
-    text-align: center;
-    gap: 24px;
-  }
-  .footer-section ul { text-align: center; }
-
-  /* Modals */
-  .modal-content {
-    padding: 20px;
-    max-width: 95%;
-  }
-  .modal-large { max-width: 95%; }
-  .modal h2 { font-size: 20px; }
-
-  /* Account modal */
-  .account-modal .modal-content { padding: 20px; }
-  .account-tab {
-    padding: 6px 12px;
-    font-size: 14px;
-  }
-  #login-form input, #signup-form input {
-    padding: 10px;
-    font-size: 13px;
-  }
-  #login-form .btn-primary, #signup-form .btn-primary {
-    padding: 10px;
-    font-size: 13px;
-  }
-
-  /* Product detail modal */
-  .price-button-row {
+  /* Reset .nav-top to flex column wrap */
+  .nav-top {
+    display: flex;
     flex-direction: column;
-    align-items: stretch;
-    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border-gray);
   }
-  .price-button-row .btn-primary {
+
+  /* Force each child to have order and full width where needed */
+  .nav-date {
+    order: 1;
     width: 100%;
     text-align: center;
-  }
-  .product-price {
-    text-align: center;
-    font-size: 20px;
-  }
-  .detail-body p:first-of-type::first-letter {
-    font-size: 40px;
-    margin-right: 8px;
+    font-size: 12px;
+    white-space: normal;
+    max-width: 100%;
   }
 
-  /* Cart & order sidebars */
-  .cart-sidebar,
-  .order-history-sidebar {
-    width: 85%;
-    right: -85%;
+  .nav-center-text {
+    order: 2;
+    margin: 0 auto;
+    font-size: 12px;
+    padding: 5px 14px;
   }
-  .cart-sidebar.open,
-  .order-history-sidebar.open {
-    right: 0;
+
+  .nav-search-toggle {
+    order: 3;
   }
+
+  .nav-cart {
+    order: 4;
+  }
+
+  .account-area {
+    order: 5;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    margin-top: 6px;
+  }
+
+  /* Style the search toggle and cart link for better visibility */
+  .search-toggle {
+    background-color: var(--off-white);
+    padding: 6px 12px;
+    border-radius: 30px;
+    border: 1px solid var(--border-gray);
+  }
+
+  .cart-link {
+    background-color: var(--off-white);
+    padding: 5px 12px;
+    border-radius: 30px;
+    border: 1px solid var(--border-gray);
+  }
+
+  /* Visible line separator after the navbar */
+  .navbar {
+    position: relative;
+  }
+  .navbar::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--masthead-red-brown), var(--primary-brown), var(--masthead-red-brown), transparent);
+    margin-top: 0;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+  }
+
+  /* Additional mobile adjustments from original (preserved) */
+  body { font-size: 14px; }
+  .container { padding: 0 12px; }
+  .hero-title { font-size: 18px; }
+  .hero-description { font-size: 10px; }
+  .article-title { font-size: 20px; }
+  .best-seller-badge { font-size: 10px; padding: 4px 10px; top: -8px; }
+  .carousel-item { flex: 0 0 85%; padding: 12px; }
+  .carousel-item h3 { font-size: 14px; }
+  .carousel-item .description { font-size: 11px; }
+  .carousel-btn { width: 30px; height: 30px; font-size: 14px; }
+  .grid-carousel-track { flex-wrap: wrap !important; transform: none !important; transition: none !important; gap: 16px; }
+  .grid-carousel-item { flex: 0 0 100% !important; padding: 12px; }
+  .grid-carousel-buttons { display: none; }
+  .testimonial-item { font-size: 12px; padding: 12px; }
+  .footer-content { grid-template-columns: 1fr; text-align: center; gap: 24px; }
+  .footer-section ul { text-align: center; }
+  .modal-content { padding: 20px; max-width: 95%; }
+  .modal-large { max-width: 95%; }
+  .modal h2 { font-size: 20px; }
+  .account-modal .modal-content { padding: 20px; }
+  .account-tab { padding: 6px 12px; font-size: 14px; }
+  #login-form input, #signup-form input { padding: 10px; font-size: 13px; }
+  #login-form .btn-primary, #signup-form .btn-primary { padding: 10px; font-size: 13px; }
+  .price-button-row { flex-direction: column; align-items: stretch; gap: 12px; }
+  .price-button-row .btn-primary { width: 100%; text-align: center; }
+  .product-price { text-align: center; font-size: 20px; }
+  .detail-body p:first-of-type::first-letter { font-size: 40px; margin-right: 8px; }
+  .cart-sidebar, .order-history-sidebar { width: 85%; right: -85%; }
+  .cart-sidebar.open, .order-history-sidebar.open { right: 0; }
+  .search-container { margin: 8px 12px; width: calc(100% - 24px); }
 }
 
-/* Very small phones (max-width 480px) */
+/* Very small phones */
 @media (max-width: 480px) {
   .site-title { font-size: 24px; }
   .site-subtitle { font-size: 9px; }
@@ -1491,7 +1496,7 @@ font-size: 14px;
   .carousel-item { flex: 0 0 95%; }
 }
 
-/* ==================== TABLET & DESKTOP STYLES ==================== */
+/* ==================== TABLET & DESKTOP STYLES (unchanged) ==================== */
 @media (min-width: 769px) and (max-width: 1023px) {
   .grid-carousel-item {
     flex: 0 0 calc(50% - 16px) !important;
@@ -1611,110 +1616,7 @@ font-size: 14px;
   }
 }
 
-/* ==================== CORRECTED MOBILE HEADER ARRANGEMENT ==================== */
-/* This uses flexbox with order properties to achieve the exact required layout:
-   order: date, buy now button, search icon, cart button, welcome message, order history, logout
-   A visible line separator is added after the header.
-   Desktop view remains unchanged because these rules are inside max-width: 768px.
-*/
-
-@media (max-width: 768px) {
-  /* Override previous .nav-top styles for mobile only */
-  .nav-top {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 10px 16px;
-    padding: 10px 12px;
-    position: relative;
-  }
-
-  /* Assign order to each direct child of .nav-top */
-  .nav-date {
-    order: 1;
-    width: 100%;
-    text-align: center;
-    font-size: 12px;
-    white-space: normal;
-    margin-bottom: 4px;
-  }
-
-  .nav-center-text {
-    order: 2;
-    margin: 0 auto;
-    font-size: 12px;
-    padding: 5px 14px;
-  }
-
-  .nav-search-toggle {
-    order: 3;
-    margin: 0;
-  }
-
-  .nav-cart {
-    order: 4;
-    margin: 0;
-  }
-
-  .account-area {
-    order: 5;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
-    width: 100%;
-    margin-top: 6px;
-  }
-
-  /* Ensure individual account items appear in correct order inside .account-area */
-  .account-area {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
-  }
-
-  /* These IDs are children of .account-area, so they keep their natural order.
-     The natural order in HTML is: #logged-in-welcome, #order-history-link, #logout-link.
-     That matches the required order: welcome, order history, logout.
-     So no additional order changes needed inside .account-area. */
-
-  /* Style the search toggle and cart link to look consistent */
-  .search-toggle {
-    background-color: var(--off-white);
-    padding: 6px 12px;
-    border-radius: 30px;
-    border: 1px solid var(--border-gray);
-  }
-
-  .cart-link {
-    background-color: var(--off-white);
-    padding: 5px 12px;
-    border-radius: 30px;
-    border: 1px solid var(--border-gray);
-  }
-
-  /* Line separator after the header */
-  .navbar::after {
-    content: '';
-    display: block;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--masthead-red-brown), var(--primary-brown), var(--masthead-red-brown), transparent);
-    margin-top: 0;
-  }
-
-  /* Ensure search container is properly positioned */
-  .search-container {
-    margin: 8px 12px;
-    width: calc(100% - 24px);
-  }
-}
-
-/* ==================== FIX FOR DESKTOP MODE ON MOBILE PHONE (OVERLAPPING PREVENTION) ==================== */
-/* These styles apply globally to prevent overlap when a mobile phone forces desktop viewport */
+/* ==================== FIX FOR DESKTOP MODE ON MOBILE (OVERLAPPING PREVENTION) ==================== */
 body {
   overflow-x: auto;
   min-width: 320px;
@@ -1737,7 +1639,6 @@ body {
   flex-shrink: 0;
 }
 
-/* Ensure product grids don't overlap when forced desktop width but physical screen narrow */
 .carousel-track,
 .grid-carousel-track {
   max-width: 100%;
@@ -1749,7 +1650,6 @@ body {
   word-break: break-word;
 }
 
-/* Ensure hero text does not overlap on very narrow screens */
 @media (max-width: 500px) {
   .hero-title br {
     display: none;
