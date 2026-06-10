@@ -1643,3 +1643,123 @@ font-size: 14px;
     gap: 16px;
   }
 }
+
+/* ========== NEW ADDITIONS (no existing code changed) ========== */
+
+/* Permanent search bar (left side) */
+.nav-left-permanent {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+}
+
+.search-input-permanent {
+  width: 200px;
+  padding: 6px 10px;
+  border: 1px solid var(--border-gray);
+  border-radius: 24px;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 13px;
+  background-color: var(--off-white);
+  transition: border 0.2s;
+}
+
+.search-input-permanent:focus {
+  outline: none;
+  border-color: var(--masthead-red-brown);
+  background-color: white;
+}
+
+.permanent-search-clear {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: var(--text-light);
+  transition: color 0.2s;
+  padding: 0 4px;
+}
+
+.permanent-search-clear:hover {
+  color: var(--masthead-red-brown);
+}
+
+/* Reorder .nav-top to have three sections: left (search), center (BUY NOW), right (cart+account) */
+/* We use flex and order; existing classes remain untouched */
+.nav-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 8px;
+}
+
+/* Move existing .nav-date to a separate line? We'll keep it but reposition */
+.nav-date {
+  order: 0; /* keep as is, but we add a new left section */
+  width: auto;
+}
+
+/* The existing .nav-center-text will stay in center, but we need to ensure left and right take equal space */
+.nav-left-permanent {
+  order: 1;
+}
+.nav-center-text {
+  order: 2;
+  margin: 0;
+  position: static; /* override absolute positioning from desktop media */
+}
+.nav-right {
+  order: 3;
+  flex: 0 0 auto;
+}
+
+/* Adjust desktop media to remove absolute positioning for centering, because we now use flex space-between */
+@media (min-width: 769px) {
+  .nav-center-text {
+    position: static;
+    transform: none;
+    left: auto;
+  }
+}
+
+/* Tablet grid fix – ensure 2 columns for Complete Product Collection */
+@media (min-width: 769px) and (max-width: 1023px) {
+  .grid-carousel-track {
+    flex-wrap: wrap !important;
+    transform: none !important;
+    transition: none !important;
+    gap: 20px;
+    justify-content: center;
+  }
+  .grid-carousel-item {
+    flex: 0 0 calc(50% - 20px) !important;
+    max-width: calc(50% - 20px);
+  }
+  .grid-carousel-buttons {
+    display: flex;
+  }
+}
+
+/* Mobile adjustment for new permanent search */
+@media (max-width: 768px) {
+  .nav-top {
+    flex-wrap: wrap;
+  }
+  .nav-left-permanent {
+    order: 1;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+  .search-input-permanent {
+    width: 70%;
+  }
+  .nav-center-text {
+    order: 2;
+  }
+  .nav-right {
+    order: 3;
+  }
+}
