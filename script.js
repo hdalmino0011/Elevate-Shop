@@ -848,32 +848,37 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// ========== SEARCH UI ==========
-const searchToggle = document.getElementById('search-toggle-btn');
-const searchContainer = document.getElementById('search-container');
-const searchInput = document.getElementById('search-input');
-const searchClear = document.getElementById('search-clear');
+// ========== INTEGRATED SEARCH UI ==========
+// The search is now integrated directly into the header.
+// We listen for input events on the integrated search input.
+const integratedSearchInput = document.getElementById('integrated-search-input');
+if (integratedSearchInput) {
+  integratedSearchInput.addEventListener('input', (e) => {
+    updateSearch(e.target.value);
+  });
+}
 
-searchToggle.addEventListener('click', () => {
-  if (searchContainer.style.display === 'none' || getComputedStyle(searchContainer).display === 'none') {
-    searchContainer.style.display = 'flex';
-    searchInput.focus();
-  } else {
-    searchContainer.style.display = 'none';
-    searchInput.value = '';
-    updateSearch('');
-  }
-});
+// Handle clear button for integrated search
+const integratedSearchClear = document.getElementById('integrated-search-clear');
+if (integratedSearchClear) {
+  integratedSearchClear.addEventListener('click', () => {
+    if (integratedSearchInput) {
+      integratedSearchInput.value = '';
+      updateSearch('');
+      integratedSearchInput.focus();
+    }
+  });
+}
 
-searchInput.addEventListener('input', (e) => {
-  updateSearch(e.target.value);
-});
-
-searchClear.addEventListener('click', () => {
-  searchInput.value = '';
-  updateSearch('');
-  searchContainer.style.display = 'none';
-});
+// Optional: handle search icon click to focus the input
+const integratedSearchIcon = document.getElementById('integrated-search-icon');
+if (integratedSearchIcon) {
+  integratedSearchIcon.addEventListener('click', () => {
+    if (integratedSearchInput) {
+      integratedSearchInput.focus();
+    }
+  });
+}
 
 // ========== OTHER EVENT LISTENERS ==========
 document.getElementById('buyNowBtn').addEventListener('click', () => {
