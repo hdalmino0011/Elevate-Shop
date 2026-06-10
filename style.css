@@ -1369,32 +1369,26 @@ font-size: 14px;
 }
 
 /* ==================== MOBILE HEADER ARRANGEMENT (EXACT ORDER) ==================== */
-/* This is the only mobile-specific header styling. It overrides all previous conflicting rules.
-   Order: date, buy now, search icon, cart, welcome, order history, logout.
-   Desktop view is unchanged because this is inside max-width: 768px.
-   A visible line separator is added after the navbar.
-*/
+/* This is the ONLY mobile header styling. Order: date, buy now, search icon, cart, welcome, order history, logout.
+   Desktop view is unchanged. A visible line separator is added. */
 
 @media (max-width: 768px) {
-  /* Reset .nav-top to flex column wrap */
+  /* Reset .nav-top to a column-based flex layout */
   .nav-top {
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
     align-items: center;
-    gap: 8px;
-    padding: 10px 12px;
-    border-bottom: 1px solid var(--border-gray);
+    gap: 10px;
+    padding: 12px;
   }
 
-  /* Force each child to have order and full width where needed */
+  /* Assign order to each direct child of .nav-top */
   .nav-date {
     order: 1;
     width: 100%;
     text-align: center;
     font-size: 12px;
     white-space: normal;
-    max-width: 100%;
   }
 
   .nav-center-text {
@@ -1420,20 +1414,20 @@ font-size: 14px;
     justify-content: center;
     gap: 12px;
     width: 100%;
-    margin-top: 6px;
+    margin-top: 5px;
   }
 
-  /* Style the search toggle and cart link for better visibility */
+  /* Style the search toggle and cart link as prominent buttons */
   .search-toggle {
     background-color: var(--off-white);
-    padding: 6px 12px;
+    padding: 8px 16px;
     border-radius: 30px;
     border: 1px solid var(--border-gray);
   }
 
   .cart-link {
     background-color: var(--off-white);
-    padding: 5px 12px;
+    padding: 6px 16px;
     border-radius: 30px;
     border: 1px solid var(--border-gray);
   }
@@ -1448,13 +1442,12 @@ font-size: 14px;
     width: 100%;
     height: 2px;
     background: linear-gradient(90deg, transparent, var(--masthead-red-brown), var(--primary-brown), var(--masthead-red-brown), transparent);
-    margin-top: 0;
     position: absolute;
     bottom: -2px;
     left: 0;
   }
 
-  /* Additional mobile adjustments from original (preserved) */
+  /* Additional responsive adjustments from original (preserved) */
   body { font-size: 14px; }
   .container { padding: 0 12px; }
   .hero-title { font-size: 18px; }
