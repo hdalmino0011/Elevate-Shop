@@ -1369,17 +1369,19 @@ font-size: 14px;
 }
 
 /* ==================== MOBILE HEADER ARRANGEMENT (EXACT ORDER) ==================== */
-/* This is the ONLY mobile header styling. Order: date, buy now, search icon, cart, welcome, order history, logout.
+/* This is the ONLY mobile header styling. 
+   Order: date, buy now, search icon, cart, welcome, order history, logout.
    Desktop view is unchanged. A visible line separator is added. */
 
 @media (max-width: 768px) {
-  /* Reset .nav-top to a column-based flex layout */
+  /* Reset .nav-top to a column-based flex layout for vertical stacking */
   .nav-top {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
     padding: 12px;
+    position: relative;
   }
 
   /* Assign order to each direct child of .nav-top */
@@ -1389,6 +1391,7 @@ font-size: 14px;
     text-align: center;
     font-size: 12px;
     white-space: normal;
+    max-width: 100%;
   }
 
   .nav-center-text {
@@ -1400,10 +1403,16 @@ font-size: 14px;
 
   .nav-search-toggle {
     order: 3;
+    display: flex;
+    justify-content: center;
+    width: 100%;
   }
 
   .nav-cart {
     order: 4;
+    display: flex;
+    justify-content: center;
+    width: 100%;
   }
 
   .account-area {
@@ -1417,19 +1426,21 @@ font-size: 14px;
     margin-top: 5px;
   }
 
-  /* Style the search toggle and cart link as prominent buttons */
+  /* Style the search toggle and cart link as prominent buttons for mobile */
   .search-toggle {
     background-color: var(--off-white);
-    padding: 8px 16px;
+    padding: 8px 20px;
     border-radius: 30px;
     border: 1px solid var(--border-gray);
+    font-size: 14px;
   }
 
   .cart-link {
     background-color: var(--off-white);
-    padding: 6px 16px;
+    padding: 6px 20px;
     border-radius: 30px;
     border: 1px solid var(--border-gray);
+    font-size: 14px;
   }
 
   /* Visible line separator after the navbar */
@@ -1447,7 +1458,7 @@ font-size: 14px;
     left: 0;
   }
 
-  /* Additional responsive adjustments from original (preserved) */
+  /* Additional responsive adjustments from original (preserved and restored) */
   body { font-size: 14px; }
   .container { padding: 0 12px; }
   .hero-title { font-size: 18px; }
@@ -1489,7 +1500,7 @@ font-size: 14px;
   .carousel-item { flex: 0 0 95%; }
 }
 
-/* ==================== TABLET & DESKTOP STYLES (unchanged) ==================== */
+/* ==================== TABLET & DESKTOP STYLES (unchanged and preserved) ==================== */
 @media (min-width: 769px) and (max-width: 1023px) {
   .grid-carousel-item {
     flex: 0 0 calc(50% - 16px) !important;
@@ -1515,6 +1526,7 @@ font-size: 14px;
   .container { padding: 0 24px; }
   .nav-top {
     flex-wrap: nowrap;
+    flex-direction: row;
     padding: 8px 24px;
   }
   .nav-date {
@@ -1539,6 +1551,7 @@ font-size: 14px;
   .site-title { font-size: 40px; }
   .site-subtitle { font-size: 13px; }
   .nav-menu {
+    justify-content: center;
     gap: 24px;
     padding: 12px 24px;
   }
@@ -1610,6 +1623,7 @@ font-size: 14px;
 }
 
 /* ==================== FIX FOR DESKTOP MODE ON MOBILE (OVERLAPPING PREVENTION) ==================== */
+/* This section only applies safety rules without breaking desktop centering */
 body {
   overflow-x: auto;
   min-width: 320px;
@@ -1622,10 +1636,8 @@ body {
 
 .nav-menu {
   overflow-x: auto;
-  justify-content: flex-start;
-  padding: 10px 16px;
-  -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
 }
 
 .nav-menu a {
