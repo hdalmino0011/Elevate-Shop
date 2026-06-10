@@ -846,9 +846,29 @@ document.addEventListener('DOMContentLoaded', () => {
     loggedInUser = JSON.parse(storedUser);
     updateLoginUI();
   }
+
+  // ========== NEW: Permanent search bar and clear button ==========
+  const permSearchInput = document.getElementById('search-input-permanent');
+  const permClearBtn = document.getElementById('permanent-search-clear');
+
+  if (permSearchInput) {
+    permSearchInput.addEventListener('input', (e) => {
+      updateSearch(e.target.value);
+    });
+  }
+
+  if (permClearBtn) {
+    permClearBtn.addEventListener('click', () => {
+      if (permSearchInput) {
+        permSearchInput.value = '';
+        updateSearch('');
+        permSearchInput.focus();
+      }
+    });
+  }
 });
 
-// ========== SEARCH UI ==========
+// ========== SEARCH UI (original hidden search – kept for compatibility) ==========
 const searchToggle = document.getElementById('search-toggle-btn');
 const searchContainer = document.getElementById('search-container');
 const searchInput = document.getElementById('search-input');
