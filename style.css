@@ -1405,16 +1405,20 @@ font-size: 14px;
     margin-top: 20px;
 }
 
-/* ==================== DESKTOP STYLES ==================== */
+/* ==================== DESKTOP STYLES (ONE ROW WITH SPACING) ==================== */
 @media (min-width: 769px) {
   .container {
     padding: 0 24px;
   }
 
   .nav-top {
+    display: flex;
+    flex-direction: row;
     flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
     padding: 8px 24px;
-    gap: 20px;
   }
 
   .nav-date {
@@ -1426,7 +1430,7 @@ font-size: 14px;
 
   .nav-search-toggle {
     flex: 1;
-    max-width: 280px;
+    max-width: 300px;
     margin: 0 20px;
   }
 
@@ -1435,16 +1439,15 @@ font-size: 14px;
   }
 
   .nav-center-text {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 12px;
-    flex-shrink: 0;
+    position: static;
+    transform: none;
     margin: 0;
+    flex-shrink: 0;
   }
 
   .nav-cart {
     flex-shrink: 0;
+    margin-left: 10px;
   }
 
   .account-area {
@@ -1592,56 +1595,67 @@ font-size: 14px;
 
 /* ==================== MOBILE STYLES (THREE ROWS) ==================== */
 @media (max-width: 768px) {
+  /* Force nav-top into 3 rows using grid */
   .nav-top {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    padding: 12px;
+    display: grid !important;
+    grid-template-rows: auto auto auto !important;
+    gap: 12px !important;
+    padding: 12px !important;
+    background-color: white !important;
   }
 
+  /* ROW 1: Date on left, BUY NOW centered, with crimson background */
   .nav-date {
-    order: 1;
-    width: 100%;
-    text-align: center;
-    font-size: 12px;
-    white-space: normal;
-    background-color: var(--masthead-red-brown);
-    color: white;
-    padding: 8px 12px;
-    border-radius: 4px;
+    grid-row: 1 !important;
+    justify-self: start !important;
+    text-align: left !important;
+    font-size: 12px !important;
+    white-space: normal !important;
+    background-color: var(--masthead-red-brown) !important;
+    color: white !important;
+    padding: 8px 12px !important;
+    border-radius: 4px !important;
+    width: auto !important;
+    max-width: 50% !important;
   }
 
   .nav-center-text {
-    order: 2;
-    position: static;
-    transform: none;
-    margin: 0 auto;
+    grid-row: 1 !important;
+    justify-self: center !important;
+    position: static !important;
+    transform: none !important;
+    margin: 0 !important;
+    background-color: white !important;
+    color: var(--masthead-red-brown) !important;
+    border: 1px solid var(--masthead-red-brown) !important;
   }
 
+  /* ROW 2: Search on left, Cart on right */
   .nav-search-toggle {
-    order: 3;
-    width: 100%;
+    grid-row: 2 !important;
+    justify-self: start !important;
+    width: auto !important;
   }
 
   .integrated-search {
-    width: 100%;
+    width: auto !important;
+    min-width: 200px !important;
   }
 
   .nav-cart {
-    order: 4;
-    width: 100%;
-    display: flex;
-    justify-content: center;
+    grid-row: 2 !important;
+    justify-self: end !important;
   }
 
+  /* ROW 3: Account area centered horizontally */
   .account-area {
-    order: 5;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
+    grid-row: 3 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 15px !important;
+    flex-wrap: wrap !important;
+    width: 100% !important;
   }
 
   /* Hide non-functional carousel buttons on mobile */
@@ -1649,6 +1663,7 @@ font-size: 14px;
     display: none !important;
   }
 
+  /* Line separator after navbar */
   .navbar::after {
     content: '';
     display: block;
@@ -1821,27 +1836,31 @@ font-size: 14px;
   }
 
   .nav-date {
-    font-size: 11px;
+    font-size: 10px;
     padding: 6px 10px;
   }
 
   .nav-center-text {
-    font-size: 11px;
+    font-size: 10px;
     padding: 4px 10px;
   }
 
   .cart-link {
-    font-size: 11px;
+    font-size: 10px;
   }
 
   .account-area .account-link,
   #logged-in-welcome {
-    font-size: 11px;
+    font-size: 10px;
     padding: 3px 8px;
   }
 
+  .integrated-search {
+    min-width: 160px;
+  }
+
   .integrated-search .search-input {
-    font-size: 11px;
+    font-size: 10px;
   }
 }
 
