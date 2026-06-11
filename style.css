@@ -1405,16 +1405,20 @@ font-size: 14px;
     margin-top: 20px;
 }
 
-/* ==================== DESKTOP STYLES ==================== */
+/* ==================== DESKTOP STYLES (ONE ROW, SPACING FIXED) ==================== */
 @media (min-width: 769px) {
   .container {
     padding: 0 24px;
   }
 
   .nav-top {
+    display: flex;
+    flex-direction: row;
     flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
     padding: 8px 24px;
-    gap: 20px;
   }
 
   .nav-date {
@@ -1427,7 +1431,7 @@ font-size: 14px;
   .nav-search-toggle {
     flex: 1;
     max-width: 280px;
-    margin: 0 20px;
+    margin: 0 16px;
   }
 
   .integrated-search {
@@ -1449,7 +1453,7 @@ font-size: 14px;
 
   .account-area {
     flex-shrink: 0;
-    margin-left: 20px;
+    margin-left: 16px;
   }
 
   .masthead {
@@ -1592,64 +1596,74 @@ font-size: 14px;
 
 /* ==================== MOBILE STYLES (THREE ROWS) ==================== */
 @media (max-width: 768px) {
+  /* Override nav-top to use grid layout with 3 rows */
   .nav-top {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
+    display: grid;
+    grid-template-rows: auto auto auto;
     gap: 12px;
     padding: 12px;
   }
 
-  /* Row 1: Date */
+  /* ROW 1: Date on left, BUY NOW centered, with crimson background */
   .nav-date {
-    order: 1;
-    width: 100%;
-    text-align: center;
+    grid-row: 1;
+    justify-self: start;
+    text-align: left;
     font-size: 12px;
     white-space: normal;
     max-width: 100%;
+    background-color: var(--masthead-red-brown);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    width: auto;
+    display: inline-block;
   }
 
-  /* Row 2: BUY NOW button */
   .nav-center-text {
-    order: 2;
+    grid-row: 1;
+    justify-self: center;
     position: static;
     transform: none;
-    margin: 0 auto;
-    width: auto;
-    text-align: center;
+    margin: 0;
+    font-size: 12px;
+    padding: 5px 14px;
+    background-color: white;
+    color: var(--masthead-red-brown);
+    border: 1px solid var(--masthead-red-brown);
   }
 
-  /* Row 3: Integrated search */
+  /* ROW 2: Search icon on left, Cart button on right */
   .nav-search-toggle {
-    order: 3;
-    width: 100%;
+    grid-row: 2;
+    justify-self: start;
+    width: auto;
   }
 
   .integrated-search {
-    width: 100%;
+    width: auto;
+    min-width: 200px;
   }
 
-  /* Row 4: Cart button */
   .nav-cart {
-    order: 4;
-    width: 100%;
-    display: flex;
-    justify-content: center;
+    grid-row: 2;
+    justify-self: end;
   }
 
-  .cart-link {
-    display: inline-flex;
-  }
-
-  /* Row 5: Account area (centered) */
+  /* ROW 3: Account area with three items spaced horizontally */
   .account-area {
-    order: 5;
-    width: 100%;
+    grid-row: 3;
     display: flex;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+  }
+
+  /* Hide the original nav-right wrapper if empty */
+  .nav-right {
+    display: none;
   }
 
   /* Line separator after navbar */
@@ -1664,6 +1678,7 @@ font-size: 14px;
     left: 0;
   }
 
+  /* Existing mobile responsive styles */
   body {
     font-size: 14px;
   }
@@ -1832,25 +1847,32 @@ font-size: 14px;
   }
 
   .nav-date {
-    font-size: 11px;
+    font-size: 10px;
+    padding: 6px 10px;
   }
 
   .nav-center-text {
-    font-size: 11px;
-    padding: 4px 12px;
+    font-size: 10px;
+    padding: 4px 10px;
   }
 
   .cart-link {
-    font-size: 11px;
+    font-size: 10px;
+    padding: 4px 10px;
   }
 
   .account-area .account-link,
   #logged-in-welcome {
-    font-size: 11px;
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+
+  .integrated-search {
+    min-width: 160px;
   }
 
   .integrated-search .search-input {
-    font-size: 11px;
+    font-size: 10px;
   }
 }
 
