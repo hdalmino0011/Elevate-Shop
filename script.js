@@ -848,19 +848,23 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// ========== INTEGRATED SEARCH UI ==========
-// The search is now integrated directly into the header.
-// We listen for input events on the integrated search input.
+// ========== INTEGRATED SEARCH UI (FIXED: only on Enter key) ==========
 const integratedSearchInput = document.getElementById('integrated-search-input');
 if (integratedSearchInput) {
-  integratedSearchInput.addEventListener('input', (e) => {
-    updateSearch(e.target.value);
+  // Remove any previous 'input' listener and replace with 'keypress' for Enter
+  integratedSearchInput.removeEventListener('input', window._oldSearchInputHandler);
+  integratedSearchInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      updateSearch(integratedSearchInput.value);
+    }
   });
 }
 
 // Handle clear button for integrated search
 const integratedSearchClear = document.getElementById('integrated-search-clear');
 if (integratedSearchClear) {
+  integratedSearchClear.removeEventListener('click', window._oldSearchClearHandler);
   integratedSearchClear.addEventListener('click', () => {
     if (integratedSearchInput) {
       integratedSearchInput.value = '';
@@ -870,9 +874,10 @@ if (integratedSearchClear) {
   });
 }
 
-// Optional: handle search icon click to focus the input
+// Optional: handle search icon click to focus the input (no search trigger)
 const integratedSearchIcon = document.getElementById('integrated-search-icon');
 if (integratedSearchIcon) {
+  integratedSearchIcon.removeEventListener('click', window._oldSearchIconHandler);
   integratedSearchIcon.addEventListener('click', () => {
     if (integratedSearchInput) {
       integratedSearchInput.focus();
