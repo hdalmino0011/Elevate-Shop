@@ -1417,7 +1417,7 @@ font-size: 14px;
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
-    gap: 25px;
+    gap: 30px;
     padding: 8px 24px;
   }
 
@@ -1595,7 +1595,6 @@ font-size: 14px;
 
 /* ==================== MOBILE STYLES (THREE ROWS) ==================== */
 @media (max-width: 768px) {
-  /* Force nav-top into 3 rows using grid */
   .nav-top {
     display: grid !important;
     grid-template-rows: auto auto auto !important;
@@ -1604,7 +1603,7 @@ font-size: 14px;
     background-color: white !important;
   }
 
-  /* ROW 1: Date on left, BUY NOW centered, with crimson background */
+  /* ROW 1: Date on left, BUY NOW centered, with crimson background on the date */
   .nav-date {
     grid-row: 1 !important;
     justify-self: start !important;
