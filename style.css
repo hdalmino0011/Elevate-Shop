@@ -1405,20 +1405,16 @@ font-size: 14px;
     margin-top: 20px;
 }
 
-/* ==================== DESKTOP STYLES (ONE ROW, SPACING FIXED) ==================== */
+/* ==================== DESKTOP STYLES ==================== */
 @media (min-width: 769px) {
   .container {
     padding: 0 24px;
   }
 
   .nav-top {
-    display: flex;
-    flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
     padding: 8px 24px;
+    gap: 20px;
   }
 
   .nav-date {
@@ -1431,7 +1427,7 @@ font-size: 14px;
   .nav-search-toggle {
     flex: 1;
     max-width: 280px;
-    margin: 0 16px;
+    margin: 0 20px;
   }
 
   .integrated-search {
@@ -1453,7 +1449,7 @@ font-size: 14px;
 
   .account-area {
     flex-shrink: 0;
-    margin-left: 16px;
+    margin-left: 20px;
   }
 
   .masthead {
@@ -1596,77 +1592,63 @@ font-size: 14px;
 
 /* ==================== MOBILE STYLES (THREE ROWS) ==================== */
 @media (max-width: 768px) {
-  /* Override nav-top to use grid layout with 3 rows */
   .nav-top {
-    display: grid;
-    grid-template-rows: auto auto auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 12px;
     padding: 12px;
   }
 
-  /* ROW 1: Date on left, BUY NOW centered, with crimson background */
   .nav-date {
-    grid-row: 1;
-    justify-self: start;
-    text-align: left;
+    order: 1;
+    width: 100%;
+    text-align: center;
     font-size: 12px;
     white-space: normal;
-    max-width: 100%;
     background-color: var(--masthead-red-brown);
     color: white;
     padding: 8px 12px;
     border-radius: 4px;
-    width: auto;
-    display: inline-block;
   }
 
   .nav-center-text {
-    grid-row: 1;
-    justify-self: center;
+    order: 2;
     position: static;
     transform: none;
-    margin: 0;
-    font-size: 12px;
-    padding: 5px 14px;
-    background-color: white;
-    color: var(--masthead-red-brown);
-    border: 1px solid var(--masthead-red-brown);
+    margin: 0 auto;
   }
 
-  /* ROW 2: Search icon on left, Cart button on right */
   .nav-search-toggle {
-    grid-row: 2;
-    justify-self: start;
-    width: auto;
-  }
-
-  .integrated-search {
-    width: auto;
-    min-width: 200px;
-  }
-
-  .nav-cart {
-    grid-row: 2;
-    justify-self: end;
-  }
-
-  /* ROW 3: Account area with three items spaced horizontally */
-  .account-area {
-    grid-row: 3;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    gap: 8px;
+    order: 3;
     width: 100%;
   }
 
-  /* Hide the original nav-right wrapper if empty */
-  .nav-right {
-    display: none;
+  .integrated-search {
+    width: 100%;
   }
 
-  /* Line separator after navbar */
+  .nav-cart {
+    order: 4;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .account-area {
+    order: 5;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+  /* Hide non-functional carousel buttons on mobile */
+  .carousel-btn {
+    display: none !important;
+  }
+
   .navbar::after {
     content: '';
     display: block;
@@ -1678,7 +1660,6 @@ font-size: 14px;
     left: 0;
   }
 
-  /* Existing mobile responsive styles */
   body {
     font-size: 14px;
   }
@@ -1716,13 +1697,6 @@ font-size: 14px;
 
   .carousel-item .description {
     font-size: 11px;
-  }
-
-  .carousel-btn {
-    width: 30px;
-    height: 30px;
-    font-size: 14px;
-    display: flex;
   }
 
   .grid-carousel-track {
@@ -1847,32 +1821,27 @@ font-size: 14px;
   }
 
   .nav-date {
-    font-size: 10px;
+    font-size: 11px;
     padding: 6px 10px;
   }
 
   .nav-center-text {
-    font-size: 10px;
+    font-size: 11px;
     padding: 4px 10px;
   }
 
   .cart-link {
-    font-size: 10px;
-    padding: 4px 10px;
+    font-size: 11px;
   }
 
   .account-area .account-link,
   #logged-in-welcome {
-    font-size: 10px;
+    font-size: 11px;
     padding: 3px 8px;
   }
 
-  .integrated-search {
-    min-width: 160px;
-  }
-
   .integrated-search .search-input {
-    font-size: 10px;
+    font-size: 11px;
   }
 }
 
