@@ -150,6 +150,17 @@
             margin-top: 1rem;
         }
 
+        .btn-secondary {
+            background: transparent;
+            border: 1.5px solid #942222;
+            color: #942222;
+        }
+
+        .btn-secondary:hover {
+            background: #942222;
+            color: white;
+        }
+
         .footer-note {
             text-align: center;
             margin-top: 1.5rem;
@@ -166,6 +177,16 @@
 
         .footer-note a:hover {
             text-decoration: underline;
+        }
+
+        .error-message {
+            background: #ffe6e6;
+            color: #b71c1c;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 1rem 0;
+            display: none;
+            border-left: 4px solid #b71c1c;
         }
 
         /* Mobile optimizations */
@@ -213,6 +234,8 @@
             <span class="loader"></span> Generating your access password...
         </div>
 
+        <div id="error-message" class="error-message"></div>
+
         <div class="instructions" id="instruction-box" style="display: none;">
             <h3>📖 How to access your digital product</h3>
             <ol>
@@ -222,7 +245,7 @@
                 <li>Click <strong>"Verify & Download"</strong> to get your file.</li>
             </ol>
             <div class="note">
-                💡 <strong>Note:</strong> If the password does not appear within 30 seconds, please check your email (including spam folder). We also sent it there.
+                💡 <strong>Note:</strong> If the password does not appear within 60 seconds, please check your email (including spam folder). We also sent it there.
             </div>
             <div class="note" style="margin-top: 0.8rem;">
                 ✉️ <strong>Email confirmation:</strong> You should receive an email with the same password. If not, check your spam folder and add <strong>noreply@elevateshop.com</strong> to your contacts.
@@ -230,6 +253,8 @@
         </div>
 
         <a id="access-link" href="access.html" class="btn btn-block" style="display: none;">🔐 Access My Product</a>
+        
+        <button id="retry-btn" class="btn btn-secondary btn-block" style="display: none; margin-top: 1rem;" onclick="checkPassword()">⟳ Check Again</button>
 
         <div class="footer-note">
             Need help? Contact us at <a href="mailto:support@elevateshop.com">support@elevateshop.com</a>
@@ -240,48 +265,116 @@
 <script>
     const urlParams = new URLSearchParams(window.location.search);
     let sessionId = urlParams.get('session_id') || urlParams.get('token');
+    let userEmail = null;
     const WORKER_URL = 'https://elevate-shop-worker.dalminohanz14.workers.dev';
 
     const passwordBox = document.getElementById('password-box');
     const instructionBox = document.getElementById('instruction-box');
     const accessLink = document.getElementById('access-link');
+    const retryBtn = document.getElementById('retry-btn');
+    const errorDiv = document.getElementById('error-message');
 
-    if (!sessionId) {
-        passwordBox.innerHTML = '❌ No payment session found. Please contact support.';
-        instructionBox.style.display = 'block';
-    } else {
-        let attempts = 0;
-        const maxAttempts = 30;
-
-        const pollInterval = setInterval(async () => {
-            attempts++;
-            try {
-                const response = await fetch(`${WORKER_URL}/get-password`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ session_id: sessionId })
-                });
-                const data = await response.json();
-                if (data.password) {
-                    clearInterval(pollInterval);
-                    passwordBox.innerHTML = `<strong>Your access password:</strong><br>${data.password}`;
-                    instructionBox.style.display = 'block';
-                    accessLink.style.display = 'inline-block';
-                } else if (attempts >= maxAttempts) {
-                    clearInterval(pollInterval);
-                    passwordBox.innerHTML = '⏰ Still processing? Check your email in a few minutes or contact support.';
-                    instructionBox.style.display = 'block';
-                }
-            } catch (err) {
-                console.error('Polling error:', err);
-                if (attempts >= maxAttempts) {
-                    clearInterval(pollInterval);
-                    passwordBox.innerHTML = '⚠️ Network error. Please refresh the page or check your email.';
-                    instructionBox.style.display = 'block';
-                }
-            }
-        }, 2000);
+    // Try to get email from sessionStorage (set during checkout)
+    try {
+        const pendingPurchase = sessionStorage.getItem('pendingPurchase');
+        if (pendingPurchase) {
+            const purchaseData = JSON.parse(pendingPurchase);
+            userEmail = purchaseData.email;
+            console.log('Retrieved email from sessionStorage:', userEmail);
+        }
+    } catch (e) {
+        console.error('Failed to get email from sessionStorage:', e);
     }
+
+    let pollingInterval = null;
+    let attempts = 0;
+    const maxAttempts = 45; // 45 * 2 seconds = 90 seconds max
+
+    async function checkPassword() {
+        if (!sessionId && !userEmail) {
+            passwordBox.innerHTML = '❌ No payment session found. Please contact support.';
+            instructionBox.style.display = 'block';
+            if (retryBtn) retryBtn.style.display = 'none';
+            return false;
+        }
+
+        attempts++;
+        
+        try {
+            let requestBody = {};
+            if (sessionId) {
+                requestBody = { session_id: sessionId };
+            } else if (userEmail) {
+                requestBody = { email: userEmail };
+            }
+            
+            const response = await fetch(`${WORKER_URL}/get-password`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(requestBody)
+            });
+            const data = await response.json();
+            
+            if (data.password) {
+                // Success - password found
+                if (pollingInterval) {
+                    clearInterval(pollingInterval);
+                    pollingInterval = null;
+                }
+                passwordBox.innerHTML = `<strong>Your access password:</strong><br>${data.password}`;
+                instructionBox.style.display = 'block';
+                accessLink.style.display = 'inline-block';
+                if (retryBtn) retryBtn.style.display = 'none';
+                errorDiv.style.display = 'none';
+                return true;
+            } else if (attempts >= maxAttempts) {
+                // Max attempts reached
+                if (pollingInterval) {
+                    clearInterval(pollingInterval);
+                    pollingInterval = null;
+                }
+                passwordBox.innerHTML = '⏰ Still processing? Check your email in a few minutes or contact support.';
+                instructionBox.style.display = 'block';
+                if (retryBtn) retryBtn.style.display = 'block';
+                errorDiv.innerHTML = 'Your password is taking longer than expected. Please check your email or click "Check Again" after a few minutes.';
+                errorDiv.style.display = 'block';
+                return false;
+            }
+            return false;
+        } catch (err) {
+            console.error('Polling error:', err);
+            if (attempts >= maxAttempts) {
+                if (pollingInterval) {
+                    clearInterval(pollingInterval);
+                    pollingInterval = null;
+                }
+                passwordBox.innerHTML = '⚠️ Network error. Please refresh the page or check your email.';
+                instructionBox.style.display = 'block';
+                if (retryBtn) retryBtn.style.display = 'block';
+                errorDiv.innerHTML = 'Network error occurred. Please click "Check Again" or check your email for the password.';
+                errorDiv.style.display = 'block';
+            }
+            return false;
+        }
+    }
+
+    // Start polling if we have sessionId or email
+    if (sessionId || userEmail) {
+        // Check immediately
+        checkPassword();
+        // Then set interval
+        pollingInterval = setInterval(checkPassword, 2000);
+    } else {
+        passwordBox.innerHTML = '❌ No payment information found. Please contact support.';
+        instructionBox.style.display = 'block';
+    }
+
+    // Cleanup interval on page unload
+    window.addEventListener('beforeunload', function() {
+        if (pollingInterval) {
+            clearInterval(pollingInterval);
+        }
+    });
 </script>
 </body>
 </html>
