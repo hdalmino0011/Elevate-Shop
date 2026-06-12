@@ -32,7 +32,7 @@ background-color: var(--cream);
 color: var(--text-dark);
 line-height: 1.5;
 font-size: 16px;
-overflow-x: visible;
+overflow-x: hidden;
 max-width: 100%;
 }
 
@@ -81,6 +81,8 @@ border-bottom: 3px solid var(--masthead-red-brown);
 position: sticky;
 top: 0;
 z-index: 100;
+max-width: 100%;
+overflow-x: hidden;
 }
 
 /* Mobile-first header - 3 rows */
@@ -92,6 +94,8 @@ padding: 12px 16px;
 background-color: white;
 border-bottom: 1px solid var(--border-gray);
 position: relative;
+overflow-x: hidden;
+width: 100%;
 }
 
 /* ROW 1: Deep Red Background - Date left, BUY NOW right */
@@ -100,9 +104,9 @@ display: flex;
 justify-content: space-between;
 align-items: center;
 background-color: var(--masthead-red-brown);
-padding: 8px 16px;
-border-radius: 8px;
-margin: -12px -16px 0 -16px;
+padding: 10px 16px;
+margin: 0;
+width: 100%;
 }
 
 .nav-date {
@@ -138,6 +142,7 @@ justify-content: space-between;
 align-items: center;
 gap: 16px;
 margin-top: 8px;
+width: 100%;
 }
 
 .nav-search-toggle {
@@ -251,6 +256,7 @@ display: flex;
 justify-content: space-between;
 align-items: center;
 margin-top: 4px;
+width: 100%;
 }
 
 .account-area {
@@ -1475,6 +1481,7 @@ font-size: 14px;
     align-items: center;
     gap: 16px;
     padding: 8px 24px;
+    overflow-x: visible;
   }
 
   .nav-top-row1,
@@ -1750,13 +1757,13 @@ font-size: 14px;
 
 /* ==================== UTILITY FIXES ==================== */
 body {
-  overflow-x: auto;
+  overflow-x: hidden;
   min-width: 320px;
 }
 
 .navbar {
   max-width: 100%;
-  overflow-x: auto;
+  overflow-x: hidden;
 }
 
 .nav-menu {
