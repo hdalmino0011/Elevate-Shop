@@ -477,7 +477,10 @@ async function initiatePayPalCheckout() {
   }
 
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  savePurchaseToHistory(cart, total);
+  
+  // FIX: Removed savePurchaseToHistory from here
+  // Purchase will be saved only after successful payment confirmation
+  // The success page will handle saving the order to localStorage
 
   const loadingDiv = document.getElementById('redirect-loading');
   const payBtn = document.getElementById('confirm-redirect-btn');
@@ -492,6 +495,9 @@ async function initiatePayPalCheckout() {
     });
     const data = await response.json();
     if (data.approval_url) {
+      // Store cart and total in sessionStorage to save on success page
+      sessionStorage.setItem('pendingPurchase', JSON.stringify({ cart, total, email }));
+      
       cart = [];
       updateCartUI();
       closePaymentRedirectModal();
@@ -846,12 +852,25 @@ document.addEventListener('DOMContentLoaded', () => {
     loggedInUser = JSON.parse(storedUser);
     updateLoginUI();
   }
+  
+  // Check for pending purchase to save after successful payment return
+  const pendingPurchase = sessionStorage.getItem('pendingPurchase');
+  if (pendingPurchase && loggedInUser) {
+    try {
+      const { cart: savedCart, total, email } = JSON.parse(pendingPurchase);
+      if (savedCart && savedCart.length > 0 && email === loggedInUser.email) {
+        savePurchaseToHistory(savedCart, total);
+        sessionStorage.removeItem('pendingPurchase');
+      }
+    } catch (e) {
+      console.error('Failed to save pending purchase:', e);
+    }
+  }
 });
 
 // ========== INTEGRATED SEARCH UI (FIXED: only on Enter key) ==========
 const integratedSearchInput = document.getElementById('integrated-search-input');
 if (integratedSearchInput) {
-  // Remove any previous 'input' listener and replace with 'keypress' for Enter
   integratedSearchInput.removeEventListener('input', window._oldSearchInputHandler);
   integratedSearchInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
@@ -1070,6 +1089,20 @@ document.getElementById('do-login').addEventListener('click', () => {
   alert(`Welcome back, ${user.name}!`);
   document.getElementById('login-email').value = '';
   document.getElementById('login-password').value = '';
+  
+  // After login, check for pending purchase
+  const pendingPurchase = sessionStorage.getItem('pendingPurchase');
+  if (pendingPurchase) {
+    try {
+      const { cart: savedCart, total, email: purchaseEmail } = JSON.parse(pendingPurchase);
+      if (savedCart && savedCart.length > 0 && purchaseEmail === email) {
+        savePurchaseToHistory(savedCart, total);
+        sessionStorage.removeItem('pendingPurchase');
+      }
+    } catch (e) {
+      console.error('Failed to save pending purchase after login:', e);
+    }
+  }
 });
 
 document.getElementById('do-signup').addEventListener('click', () => {
@@ -1098,6 +1131,20 @@ document.getElementById('do-signup').addEventListener('click', () => {
   document.getElementById('signup-name').value = '';
   document.getElementById('signup-email').value = '';
   document.getElementById('signup-password').value = '';
+  
+  // After signup, check for pending purchase
+  const pendingPurchase = sessionStorage.getItem('pendingPurchase');
+  if (pendingPurchase) {
+    try {
+      const { cart: savedCart, total, email: purchaseEmail } = JSON.parse(pendingPurchase);
+      if (savedCart && savedCart.length > 0 && purchaseEmail === email) {
+        savePurchaseToHistory(savedCart, total);
+        sessionStorage.removeItem('pendingPurchase');
+      }
+    } catch (e) {
+      console.error('Failed to save pending purchase after signup:', e);
+    }
+  }
 });
 
 // ========== ORDER HISTORY BUTTON & SIDEBAR ==========
