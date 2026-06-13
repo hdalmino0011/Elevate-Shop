@@ -11,7 +11,7 @@ const allProductsData = [
   { id: 4, name: "Mindset Reset Program", category: "personal", price: 31.99, description: "A 30-day guided program to rewire your thinking patterns, eliminate limiting beliefs, and unlock your potential.", fullDescription: "The Mindset Reset Program is a transformative 30-day journey...", bestSeller: true },
   { id: 5, name: "Productivity Mastery System", category: "personal", price: 22.99, description: "Time management systems used by top CEOs. Daily planning templates, habit tracking tools, and procrastination elimination.", fullDescription: "The Productivity Mastery System is based on decades of research...", bestSeller: false },
   { id: 6, name: "Health & Wellness Blueprint", category: "personal", price: 19.99, description: "Complete 90-day system for optimal health: nutrition, exercise, sleep, and stress management.", fullDescription: "The Health & Wellness Blueprint is a comprehensive 90-day system...", bestSeller: true },
-  // Motivational (IDs 7-9, 19-21)
+  // Motivational (IDs 7-9)
   { id: 7, name: "The Daily Motivation Handbook", category: "motivational", price: 19.99, description: "500+ powerful quotes from history's greatest minds to fuel your daily motivation.", fullDescription: "The Daily Motivation Handbook is a curated collection of 500+ quotes...", bestSeller: true },
   { id: 8, name: "The Resilience Toolkit", category: "motivational", price: 24.99, description: "Practical guide to bouncing back from setbacks, building mental toughness, and thriving under pressure.", fullDescription: "The Resilience Toolkit is a collection of exercises, stories, and actionable strategies...", bestSeller: false },
   { id: 9, name: "Morning Mastery Course", category: "motivational", price: 29.99, description: "Design the perfect morning routine to start each day with energy, focus, and purpose.", fullDescription: "Morning Mastery Course teaches you how to create a personalized morning routine...", bestSeller: true },
@@ -40,6 +40,8 @@ const testimonials = [
   { text: "Wealth Mindset Masterclass is a game-changer. I've doubled my freelance income in three months.", author: "David L., Freelancer" },
   { text: "The Daily Motivation Handbook keeps me focused every morning. A small investment with massive returns.", author: "Elena R., Executive" }
 ];
+
+const WORKER_URL = 'https://elevate-shop-worker.dalminohanz14.workers.dev';
 
 let cart = [];
 let currentFilter = "all";
@@ -71,7 +73,7 @@ function filterBySearch(products, term) {
   return products.filter(p => p.name.toLowerCase().includes(lowerTerm));
 }
 
-// Render Top Selections Carousel (with BEST SELLER badge)
+// Render Top Selections Carousel
 function renderFilteredCarousel() {
   const track = document.getElementById('product-carousel-track');
   if (!track) return;
@@ -105,7 +107,7 @@ function renderFilteredCarousel() {
   }
 }
 
-// Render Grid Carousel (with BEST SELLER badge)
+// Render Grid Carousel
 function renderGridCarousel() {
   const track = document.getElementById('grid-carousel-track');
   if (!track) return;
@@ -317,6 +319,9 @@ function addToCart(product) {
   return true;
 }
 
+// ========== ALREADY PURCHASED MODALS ==========
+
+// For logged-in users (local history check)
 function showAlreadyPurchasedModal() {
   const modalOverlay = document.createElement('div');
   modalOverlay.className = 'modal';
@@ -330,7 +335,7 @@ function showAlreadyPurchasedModal() {
   modalOverlay.style.zIndex = '3000';
   modalOverlay.style.alignItems = 'center';
   modalOverlay.style.justifyContent = 'center';
-  
+
   const modalContent = document.createElement('div');
   modalContent.style.backgroundColor = 'white';
   modalContent.style.maxWidth = '400px';
@@ -339,7 +344,8 @@ function showAlreadyPurchasedModal() {
   modalContent.style.borderRadius = '4px';
   modalContent.style.textAlign = 'center';
   modalContent.style.position = 'relative';
-  
+  modalContent.style.borderTop = '3px solid var(--masthead-red-brown)';
+
   modalContent.innerHTML = `
     <h3 style="color: var(--masthead-red-brown, #942222); margin-bottom: 16px;">Already Purchased</h3>
     <p style="margin-bottom: 20px;">You have already purchased this product. Would you like to view your order history?</p>
@@ -348,23 +354,44 @@ function showAlreadyPurchasedModal() {
       <button id="already-purchased-go-back" class="btn-secondary">Go Back</button>
     </div>
   `;
-  
+
   modalOverlay.appendChild(modalContent);
   document.body.appendChild(modalOverlay);
-  
-  const viewHistoryBtn = document.getElementById('already-purchased-view-history');
-  const goBackBtn = document.getElementById('already-purchased-go-back');
-  
-  const closeModal = () => {
-    modalOverlay.remove();
-  };
-  
-  viewHistoryBtn.addEventListener('click', () => {
+
+  const closeModal = () => modalOverlay.remove();
+
+  document.getElementById('already-purchased-view-history').addEventListener('click', () => {
     closeModal();
     openOrderHistorySidebar();
   });
-  
-  goBackBtn.addEventListener('click', closeModal);
+  document.getElementById('already-purchased-go-back').addEventListener('click', closeModal);
+  modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) closeModal(); });
+}
+
+// For guest/any user — server-side email duplicate check result
+function showAlreadyPurchasedByEmailModal(email) {
+  const modalOverlay = document.createElement('div');
+  modalOverlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:3000;display:flex;align-items:center;justify-content:center;padding:16px;';
+
+  const modalContent = document.createElement('div');
+  modalContent.style.cssText = 'background:white;max-width:420px;width:100%;padding:32px;border-radius:4px;text-align:center;position:relative;border-top:3px solid var(--masthead-red-brown, #942222);box-shadow:0 4px 20px rgba(0,0,0,0.15);';
+
+  modalContent.innerHTML = `
+    <h3 style="color:var(--masthead-red-brown, #942222);margin-bottom:12px;font-size:18px;">Already Purchased</h3>
+    <p style="margin-bottom:8px;font-size:15px;">The email <strong>${email}</strong> has already completed a purchase on Elevate Shop.</p>
+    <p style="margin-bottom:24px;font-size:13px;color:#666;line-height:1.6;">If you need to re-access your product, check your inbox for the original access email, or visit the access page to enter your credentials.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="access.html" style="display:inline-block;background:var(--masthead-red-brown,#942222);color:white;padding:10px 22px;border-radius:2px;font-weight:700;font-size:13px;text-decoration:none;font-family:Georgia,serif;">Access My Product</a>
+      <button id="already-email-go-back" style="display:inline-block;background:transparent;border:1.5px solid #c8baa8;color:#3d3022;padding:10px 22px;border-radius:2px;font-weight:700;font-size:13px;cursor:pointer;font-family:Georgia,serif;">Go Back</button>
+    </div>
+  `;
+
+  modalOverlay.appendChild(modalContent);
+  document.body.appendChild(modalOverlay);
+
+  const closeModal = () => modalOverlay.remove();
+  document.getElementById('already-email-go-back').addEventListener('click', closeModal);
+  modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) closeModal(); });
 }
 
 function removeFromCart(productId) {
@@ -464,9 +491,11 @@ function closePaymentRedirectModal() {
   if (payBtn) payBtn.disabled = false;
 }
 
+// ========== PAYPAL CHECKOUT (with server-side duplicate email check) ==========
 async function initiatePayPalCheckout() {
   const emailInput = document.getElementById('redirect-email');
   const email = emailInput ? emailInput.value.trim() : '';
+
   if (!email) {
     alert('Please enter your email address.');
     return;
@@ -476,28 +505,65 @@ async function initiatePayPalCheckout() {
     return;
   }
 
-  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  
-  // FIX: Removed savePurchaseToHistory from here
-  // Purchase will be saved only after successful payment confirmation
-  // The success page will handle saving the order to localStorage
-
   const loadingDiv = document.getElementById('redirect-loading');
   const payBtn = document.getElementById('confirm-redirect-btn');
+
+  // Show loading state while we do the duplicate check
+  if (loadingDiv) loadingDiv.style.display = 'block';
+  if (payBtn) payBtn.disabled = true;
+
+  // ── Server-side duplicate purchase check by email ──
+  // This works for both guests and logged-in users because it checks
+  // the Supabase orders table directly, not just localStorage.
+  try {
+    const checkResp = await fetch(`${WORKER_URL}/check-purchase`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    });
+    const checkData = await checkResp.json();
+
+    if (checkData.purchased) {
+      // This email already has a completed purchase — block and show modal
+      if (loadingDiv) loadingDiv.style.display = 'none';
+      if (payBtn) payBtn.disabled = false;
+      closePaymentRedirectModal();
+      showAlreadyPurchasedByEmailModal(email);
+      return;
+    }
+  } catch (err) {
+    // If the check network-fails, log and allow checkout to proceed
+    // so a real network error doesn't permanently block a valid customer
+    console.warn('Purchase duplicate check failed (non-fatal), proceeding to checkout:', err);
+    if (loadingDiv) loadingDiv.style.display = 'none';
+    if (payBtn) payBtn.disabled = false;
+  }
+  // ── End duplicate check ──
+
+  // Store purchase info in sessionStorage so success.html can read it
+  try {
+    sessionStorage.setItem('pendingPurchase', JSON.stringify({ email, cart }));
+  } catch (e) {
+    console.warn('sessionStorage unavailable:', e);
+  }
+
+  // Save to local order history (for logged-in users)
+  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  savePurchaseToHistory(cart, total);
+
+  // Show loading again for the PayPal redirect step
   if (loadingDiv) loadingDiv.style.display = 'block';
   if (payBtn) payBtn.disabled = true;
 
   try {
-    const response = await fetch('https://elevate-shop-worker.dalminohanz14.workers.dev/create-paypal-order', {
+    const response = await fetch(`${WORKER_URL}/create-paypal-order`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, cart })
     });
     const data = await response.json();
+
     if (data.approval_url) {
-      // Store cart and total in sessionStorage to save on success page
-      sessionStorage.setItem('pendingPurchase', JSON.stringify({ cart, total, email }));
-      
       cart = [];
       updateCartUI();
       closePaymentRedirectModal();
@@ -505,13 +571,13 @@ async function initiatePayPalCheckout() {
       if (cartSidebar) cartSidebar.classList.remove('open');
       window.location.href = data.approval_url;
     } else {
-      alert('Error creating PayPal order: ' + (data.error || 'Unknown'));
-      console.error(data);
+      alert('Error creating PayPal order: ' + (data.error || 'Unknown error'));
+      console.error('PayPal order error:', data);
       if (loadingDiv) loadingDiv.style.display = 'none';
       if (payBtn) payBtn.disabled = false;
     }
   } catch (err) {
-    console.error(err);
+    console.error('Network error during checkout:', err);
     alert('Network error. Please try again.');
     if (loadingDiv) loadingDiv.style.display = 'none';
     if (payBtn) payBtn.disabled = false;
@@ -681,7 +747,6 @@ class GridCarousel {
     window.addEventListener('resize', () => this.handleResize());
   }
   handleResize() {
-    const wasDesktop = this.isDesktop;
     this.isDesktop = window.innerWidth >= 768;
     this.update();
     this.setupButtons();
@@ -817,6 +882,7 @@ function buildTestimonialCarousel() {
 // ========== FOOTER PAGE SWITCHING ==========
 const mainContentArea = document.getElementById('main-content-area');
 const allPageDivs = document.querySelectorAll('.page-content');
+
 function showMainContent() {
   if (mainContentArea) mainContentArea.style.display = 'block';
   allPageDivs.forEach(div => div.style.display = 'none');
@@ -852,26 +918,11 @@ document.addEventListener('DOMContentLoaded', () => {
     loggedInUser = JSON.parse(storedUser);
     updateLoginUI();
   }
-  
-  // Check for pending purchase to save after successful payment return
-  const pendingPurchase = sessionStorage.getItem('pendingPurchase');
-  if (pendingPurchase && loggedInUser) {
-    try {
-      const { cart: savedCart, total, email } = JSON.parse(pendingPurchase);
-      if (savedCart && savedCart.length > 0 && email === loggedInUser.email) {
-        savePurchaseToHistory(savedCart, total);
-        sessionStorage.removeItem('pendingPurchase');
-      }
-    } catch (e) {
-      console.error('Failed to save pending purchase:', e);
-    }
-  }
 });
 
-// ========== INTEGRATED SEARCH UI (FIXED: only on Enter key) ==========
+// ========== INTEGRATED SEARCH (Enter key only) ==========
 const integratedSearchInput = document.getElementById('integrated-search-input');
 if (integratedSearchInput) {
-  integratedSearchInput.removeEventListener('input', window._oldSearchInputHandler);
   integratedSearchInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
@@ -880,10 +931,8 @@ if (integratedSearchInput) {
   });
 }
 
-// Handle clear button for integrated search
 const integratedSearchClear = document.getElementById('integrated-search-clear');
 if (integratedSearchClear) {
-  integratedSearchClear.removeEventListener('click', window._oldSearchClearHandler);
   integratedSearchClear.addEventListener('click', () => {
     if (integratedSearchInput) {
       integratedSearchInput.value = '';
@@ -893,14 +942,10 @@ if (integratedSearchClear) {
   });
 }
 
-// Optional: handle search icon click to focus the input (no search trigger)
 const integratedSearchIcon = document.getElementById('integrated-search-icon');
 if (integratedSearchIcon) {
-  integratedSearchIcon.removeEventListener('click', window._oldSearchIconHandler);
   integratedSearchIcon.addEventListener('click', () => {
-    if (integratedSearchInput) {
-      integratedSearchInput.focus();
-    }
+    if (integratedSearchInput) integratedSearchInput.focus();
   });
 }
 
@@ -1089,20 +1134,6 @@ document.getElementById('do-login').addEventListener('click', () => {
   alert(`Welcome back, ${user.name}!`);
   document.getElementById('login-email').value = '';
   document.getElementById('login-password').value = '';
-  
-  // After login, check for pending purchase
-  const pendingPurchase = sessionStorage.getItem('pendingPurchase');
-  if (pendingPurchase) {
-    try {
-      const { cart: savedCart, total, email: purchaseEmail } = JSON.parse(pendingPurchase);
-      if (savedCart && savedCart.length > 0 && purchaseEmail === email) {
-        savePurchaseToHistory(savedCart, total);
-        sessionStorage.removeItem('pendingPurchase');
-      }
-    } catch (e) {
-      console.error('Failed to save pending purchase after login:', e);
-    }
-  }
 });
 
 document.getElementById('do-signup').addEventListener('click', () => {
@@ -1131,20 +1162,6 @@ document.getElementById('do-signup').addEventListener('click', () => {
   document.getElementById('signup-name').value = '';
   document.getElementById('signup-email').value = '';
   document.getElementById('signup-password').value = '';
-  
-  // After signup, check for pending purchase
-  const pendingPurchase = sessionStorage.getItem('pendingPurchase');
-  if (pendingPurchase) {
-    try {
-      const { cart: savedCart, total, email: purchaseEmail } = JSON.parse(pendingPurchase);
-      if (savedCart && savedCart.length > 0 && purchaseEmail === email) {
-        savePurchaseToHistory(savedCart, total);
-        sessionStorage.removeItem('pendingPurchase');
-      }
-    } catch (e) {
-      console.error('Failed to save pending purchase after signup:', e);
-    }
-  }
 });
 
 // ========== ORDER HISTORY BUTTON & SIDEBAR ==========
