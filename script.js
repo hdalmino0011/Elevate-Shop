@@ -1,5 +1,6 @@
 // ElevateShop – Complete JavaScript
-// Includes: merged 21‑product data with BEST SELLER badges on 13 random products
+// Fix: removed client-side capture from success.html (handled server-side only)
+// Fix: removed premature savePurchaseToHistory before payment confirmation
 
 // ========== MERGED PRODUCT DATA (21 products, 13 marked bestSeller) ==========
 const allProductsData = [
@@ -217,6 +218,8 @@ function getPurchaseHistory() {
   return stored ? JSON.parse(stored) : [];
 }
 
+// NOTE: savePurchaseToHistory is now only called AFTER payment is confirmed
+// (i.e. from success.html or a post-payment callback), NOT during checkout initiation.
 function savePurchaseToHistory(products, total) {
   if (!loggedInUser) return false;
   const purchases = getPurchaseHistory();
@@ -321,7 +324,6 @@ function addToCart(product) {
 
 // ========== ALREADY PURCHASED MODALS ==========
 
-// For logged-in users (local history check)
 function showAlreadyPurchasedModal() {
   const modalOverlay = document.createElement('div');
   modalOverlay.className = 'modal';
@@ -368,7 +370,6 @@ function showAlreadyPurchasedModal() {
   modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) closeModal(); });
 }
 
-// For guest/any user — server-side email duplicate check result
 function showAlreadyPurchasedByEmailModal(email) {
   const modalOverlay = document.createElement('div');
   modalOverlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:3000;display:flex;align-items:center;justify-content:center;padding:16px;';
@@ -491,7 +492,11 @@ function closePaymentRedirectModal() {
   if (payBtn) payBtn.disabled = false;
 }
 
-// ========== PAYPAL CHECKOUT (with server-side duplicate email check) ==========
+// ========== PAYPAL CHECKOUT ==========
+// KEY FIX: We no longer call savePurchaseToHistory() here.
+// Order history is only saved AFTER confirmed payment (server-side).
+// We also no longer do any capture on the client — the worker webhook
+// and the success.html polling handle everything server-side.
 async function initiatePayPalCheckout() {
   const emailInput = document.getElementById('redirect-email');
   const email = emailInput ? emailInput.value.trim() : '';
@@ -508,13 +513,10 @@ async function initiatePayPalCheckout() {
   const loadingDiv = document.getElementById('redirect-loading');
   const payBtn = document.getElementById('confirm-redirect-btn');
 
-  // Show loading state while we do the duplicate check
   if (loadingDiv) loadingDiv.style.display = 'block';
   if (payBtn) payBtn.disabled = true;
 
-  // ── Server-side duplicate purchase check by email ──
-  // This works for both guests and logged-in users because it checks
-  // the Supabase orders table directly, not just localStorage.
+  // ── Server-side duplicate purchase check ──
   try {
     const checkResp = await fetch(`${WORKER_URL}/check-purchase`, {
       method: 'POST',
@@ -524,7 +526,6 @@ async function initiatePayPalCheckout() {
     const checkData = await checkResp.json();
 
     if (checkData.purchased) {
-      // This email already has a completed purchase — block and show modal
       if (loadingDiv) loadingDiv.style.display = 'none';
       if (payBtn) payBtn.disabled = false;
       closePaymentRedirectModal();
@@ -532,26 +533,20 @@ async function initiatePayPalCheckout() {
       return;
     }
   } catch (err) {
-    // If the check network-fails, log and allow checkout to proceed
-    // so a real network error doesn't permanently block a valid customer
-    console.warn('Purchase duplicate check failed (non-fatal), proceeding to checkout:', err);
+    console.warn('Purchase duplicate check failed (non-fatal), proceeding:', err);
     if (loadingDiv) loadingDiv.style.display = 'none';
     if (payBtn) payBtn.disabled = false;
   }
-  // ── End duplicate check ──
 
-  // Store purchase info in sessionStorage so success.html can read it
+  // Store purchase info in sessionStorage so success.html can use the email
+  // for polling. Cart is included so success.html has product context.
+  // ⚠️  We do NOT save to order history here — only after confirmed payment.
   try {
     sessionStorage.setItem('pendingPurchase', JSON.stringify({ email, cart }));
   } catch (e) {
     console.warn('sessionStorage unavailable:', e);
   }
 
-  // Save to local order history (for logged-in users)
-  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  savePurchaseToHistory(cart, total);
-
-  // Show loading again for the PayPal redirect step
   if (loadingDiv) loadingDiv.style.display = 'block';
   if (payBtn) payBtn.disabled = true;
 
