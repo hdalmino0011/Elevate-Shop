@@ -74,6 +74,15 @@
             border: 1px solid #d4a017;
         }
 
+        .password-box.waiting {
+            font-family: 'Georgia', serif;
+            font-size: 1rem;
+            letter-spacing: normal;
+            background: #fff8e1;
+            color: #5a4000;
+            border-color: #f0c040;
+        }
+
         .loader {
             display: inline-block;
             width: 24px;
@@ -86,8 +95,36 @@
             vertical-align: middle;
         }
 
+        .loader.dark {
+            border-color: #c8a800;
+            border-top-color: #5a4000;
+        }
+
         @keyframes spin {
             to { transform: rotate(360deg); }
+        }
+
+        .progress-bar-wrap {
+            background: #e0d6c8;
+            border-radius: 8px;
+            height: 6px;
+            margin: 0.8rem 0 0.4rem;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: #942222;
+            border-radius: 8px;
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+
+        .progress-label {
+            font-size: 0.78rem;
+            color: #7a6a58;
+            text-align: center;
+            font-style: italic;
         }
 
         .instructions {
@@ -187,6 +224,7 @@
             margin: 1rem 0;
             display: none;
             border-left: 4px solid #b71c1c;
+            font-size: 0.9rem;
         }
 
         .success-message {
@@ -197,38 +235,19 @@
             margin: 1rem 0;
             display: none;
             border-left: 4px solid #2e7d32;
+            font-size: 0.9rem;
         }
 
         @media (max-width: 480px) {
-            body {
-                padding: 1rem;
-            }
-            .header {
-                padding: 1.2rem 1rem;
-            }
-            .header h1 {
-                font-size: 1.6rem;
-            }
-            .content {
-                padding: 1.5rem;
-            }
-            .password-box {
-                font-size: 1.2rem;
-                padding: 1rem;
-            }
-            .instructions {
-                padding: 1rem;
-            }
-            .instructions h3 {
-                font-size: 1.1rem;
-            }
-            .instructions li {
-                font-size: 0.9rem;
-            }
-            .btn {
-                padding: 0.7rem 1.2rem;
-                font-size: 0.9rem;
-            }
+            body { padding: 1rem; }
+            .header { padding: 1.2rem 1rem; }
+            .header h1 { font-size: 1.6rem; }
+            .content { padding: 1.5rem; }
+            .password-box { font-size: 1.2rem; padding: 1rem; }
+            .instructions { padding: 1rem; }
+            .instructions h3 { font-size: 1.1rem; }
+            .instructions li { font-size: 0.9rem; }
+            .btn { padding: 0.7rem 1.2rem; font-size: 0.9rem; }
         }
     </style>
 </head>
@@ -239,9 +258,14 @@
         <p>Thank you for your purchase at Elevate Shop</p>
     </div>
     <div class="content">
-        <div id="password-box" class="password-box">
-            <span class="loader"></span> Verifying your payment...
+        <div id="password-box" class="password-box waiting">
+            <span class="loader dark"></span> Verifying your payment...
         </div>
+
+        <div id="progress-wrap" class="progress-bar-wrap" style="display:none;">
+            <div id="progress-bar" class="progress-bar"></div>
+        </div>
+        <div id="progress-label" class="progress-label" style="display:none;"></div>
 
         <div id="error-message" class="error-message"></div>
         <div id="success-message" class="success-message"></div>
@@ -255,10 +279,7 @@
                 <li>Click <strong>"Verify & Download"</strong> to get your file.</li>
             </ol>
             <div class="note">
-                💡 <strong>Note:</strong> If the password does not appear within 30 seconds, please check your email (including spam folder). We also sent it there.
-            </div>
-            <div class="note" style="margin-top: 0.8rem;">
-                ✉️ <strong>Email confirmation:</strong> You should receive an email with the same password. If not, check your spam folder and add <strong>noreply@elevateshop.com</strong> to your contacts.
+                💡 <strong>Note:</strong> An email with your password has also been sent to your inbox. Check your spam folder if you don't see it within a few minutes.
             </div>
         </div>
 
@@ -272,221 +293,184 @@
 </div>
 
 <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    let sessionId = urlParams.get('session_id') || urlParams.get('token');
-    let userEmail = null;
-    let cartItems = null;
     const WORKER_URL = 'https://elevate-shop-worker.dalminohanz14.workers.dev';
 
-    const passwordBox = document.getElementById('password-box');
-    const instructionBox = document.getElementById('instruction-box');
-    const accessLink = document.getElementById('access-link');
-    const retryBtn = document.getElementById('retry-btn');
-    const errorDiv = document.getElementById('error-message');
-    const successDiv = document.getElementById('success-message');
+    // ── Read URL params (PayPal returns ?token=XXX) ──
+    const urlParams = new URLSearchParams(window.location.search);
+    const sessionId = urlParams.get('token') || urlParams.get('session_id') || null;
 
-    // Try to get email and cart from sessionStorage (set during checkout)
+    // ── Read pending purchase from sessionStorage (set during checkout) ──
+    let userEmail = null;
     try {
         const pendingPurchase = sessionStorage.getItem('pendingPurchase');
         if (pendingPurchase) {
-            const purchaseData = JSON.parse(pendingPurchase);
-            userEmail = purchaseData.email;
-            cartItems = purchaseData.cart;
-            console.log('Retrieved email from sessionStorage:', userEmail);
-            console.log('Retrieved cart items:', cartItems);
+            const data = JSON.parse(pendingPurchase);
+            userEmail = data.email || null;
         }
     } catch (e) {
-        console.error('Failed to get email from sessionStorage:', e);
+        console.warn('Could not read sessionStorage:', e);
     }
 
-    let pollingInterval = null;
-    let attempts = 0;
-    const maxAttempts = 30; // 30 * 2 seconds = 60 seconds max
+    // ── DOM refs ──
+    const passwordBox    = document.getElementById('password-box');
+    const progressWrap   = document.getElementById('progress-wrap');
+    const progressBar    = document.getElementById('progress-bar');
+    const progressLabel  = document.getElementById('progress-label');
+    const instructionBox = document.getElementById('instruction-box');
+    const accessLink     = document.getElementById('access-link');
+    const retryBtn       = document.getElementById('retry-btn');
+    const errorDiv       = document.getElementById('error-message');
+    const successDiv     = document.getElementById('success-message');
 
-    function generatePassword() {
-        const random = () => Math.random().toString(36).substring(2, 6).toUpperCase();
-        return `${random()}-${random()}-${random()}`;
+    // ── Polling config ──
+    // Poll every 3 seconds for up to 90 seconds (30 attempts).
+    // CC payments go through the webhook which may take a few extra seconds
+    // compared to PayPal-button payments — the longer window covers both.
+    const POLL_INTERVAL_MS = 3000;
+    const MAX_ATTEMPTS     = 30;   // 30 × 3s = 90 seconds max
+
+    let pollingTimer = null;
+    let attempts     = 0;
+
+    // ── Show password success state ──
+    function showPasswordSuccess(password) {
+        stopPolling();
+
+        passwordBox.className = 'password-box';
+        passwordBox.innerHTML = `<strong>Your access password:</strong><br>${password}`;
+
+        progressWrap.style.display  = 'none';
+        progressLabel.style.display = 'none';
+
+        instructionBox.style.display = 'block';
+        accessLink.style.display     = 'inline-block';
+        retryBtn.style.display       = 'none';
+        errorDiv.style.display       = 'none';
+
+        successDiv.innerHTML     = '✅ Payment confirmed! Your password is ready.';
+        successDiv.style.display = 'block';
+
+        // Clean up sessionStorage — purchase is complete
+        try { sessionStorage.removeItem('pendingPurchase'); } catch (e) { /* ignore */ }
     }
 
-    async function capturePaymentDirectly() {
-        if (!sessionId) {
-            console.log('No session_id available for direct capture');
-            return false;
-        }
-        
-        if (!userEmail) {
-            console.log('No email available for direct capture');
-            return false;
-        }
-        
-        try {
-            // Get product names and product ID from cart
-            const productNames = cartItems ? cartItems.map(item => item.name) : ['Digital Product'];
-            // If only one product in cart, get its ID. Otherwise use 0.
-            const productId = cartItems && cartItems.length === 1 ? cartItems[0].id : 0;
-            const password = generatePassword();
-            
-            console.log('Capturing payment for product ID:', productId);
-            
-            const captureResponse = await fetch(`${WORKER_URL}/capture-payment`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    token: sessionId,
-                    email: userEmail,
-                    password: password,
-                    productNames: productNames,
-                    productId: productId
-                })
-            });
-            
-            const captureData = await captureResponse.json();
-            
-            if (captureData.success) {
-                console.log('Payment captured successfully');
-                return true;
-            }
-            return false;
-        } catch (err) {
-            console.error('Direct capture error:', err);
-            return false;
-        }
+    // ── Show timeout / error state ──
+    function showTimeout() {
+        stopPolling();
+
+        passwordBox.className = 'password-box waiting';
+        passwordBox.innerHTML = '⏰ Still processing — please check your email in a few minutes.';
+
+        progressWrap.style.display  = 'none';
+        progressLabel.style.display = 'none';
+
+        instructionBox.style.display = 'block';
+        retryBtn.style.display       = 'block';
+        accessLink.style.display     = 'none';
+
+        errorDiv.innerHTML     = 'Your password is taking longer than expected. It has been sent to your email — please check your inbox and spam folder. You can also click "Check Again" after a minute.';
+        errorDiv.style.display = 'block';
     }
 
-    async function checkPassword() {
-        if (!sessionId && !userEmail) {
-            passwordBox.innerHTML = '❌ No payment session found. Please contact support.';
-            instructionBox.style.display = 'block';
-            if (retryBtn) retryBtn.style.display = 'none';
-            return false;
-        }
-        
+    // ── Update progress bar ──
+    function updateProgress() {
+        const pct = Math.min((attempts / MAX_ATTEMPTS) * 100, 95);
+        progressBar.style.width = pct + '%';
+
+        const secsLeft = Math.ceil(((MAX_ATTEMPTS - attempts) * POLL_INTERVAL_MS) / 1000);
+        progressLabel.textContent = `Checking… (up to ${secsLeft}s remaining)`;
+    }
+
+    // ── Single poll attempt ──
+    async function pollForPassword() {
         attempts++;
-        
+        updateProgress();
+
+        // Build request body — prefer sessionId (most reliable), fall back to email
+        const body = sessionId
+            ? { session_id: sessionId }
+            : { email: userEmail };
+
         try {
-            let requestBody = {};
-            if (sessionId) {
-                requestBody = { session_id: sessionId };
-            } else if (userEmail) {
-                requestBody = { email: userEmail };
-            }
-            
-            const response = await fetch(`${WORKER_URL}/get-password`, {
-                method: 'POST',
+            const resp = await fetch(`${WORKER_URL}/get-password`, {
+                method:  'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(requestBody)
+                body:    JSON.stringify(body)
             });
-            const data = await response.json();
-            
+
+            if (!resp.ok) {
+                console.warn('get-password HTTP error:', resp.status);
+                if (attempts >= MAX_ATTEMPTS) showTimeout();
+                return;
+            }
+
+            const data = await resp.json();
+
             if (data.password) {
-                // Success - password found
-                if (pollingInterval) {
-                    clearInterval(pollingInterval);
-                    pollingInterval = null;
-                }
-                passwordBox.innerHTML = `<strong>Your access password:</strong><br>${data.password}`;
-                instructionBox.style.display = 'block';
-                accessLink.style.display = 'inline-block';
-                if (retryBtn) retryBtn.style.display = 'none';
-                errorDiv.style.display = 'none';
-                successDiv.innerHTML = '✅ Payment confirmed! Your password is ready.';
-                successDiv.style.display = 'block';
-                sessionStorage.removeItem('pendingPurchase');
-                return true;
-            } else if (attempts >= maxAttempts) {
-                // Max attempts reached, try direct capture as fallback
-                console.log('Max attempts reached, trying direct capture...');
-                const captureSuccess = await capturePaymentDirectly();
-                if (captureSuccess) {
-                    // Retry getting password after capture
-                    const retryResponse = await fetch(`${WORKER_URL}/get-password`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(requestBody)
-                    });
-                    const retryData = await retryResponse.json();
-                    if (retryData.password) {
-                        if (pollingInterval) clearInterval(pollingInterval);
-                        passwordBox.innerHTML = `<strong>Your access password:</strong><br>${retryData.password}`;
-                        instructionBox.style.display = 'block';
-                        accessLink.style.display = 'inline-block';
-                        if (retryBtn) retryBtn.style.display = 'none';
-                        successDiv.innerHTML = '✅ Payment confirmed! Your password is ready.';
-                        successDiv.style.display = 'block';
-                        sessionStorage.removeItem('pendingPurchase');
-                        return true;
-                    }
-                }
-                
-                if (pollingInterval) {
-                    clearInterval(pollingInterval);
-                    pollingInterval = null;
-                }
-                passwordBox.innerHTML = '⏰ Still processing? Check your email in a few minutes or contact support.';
-                instructionBox.style.display = 'block';
-                if (retryBtn) retryBtn.style.display = 'block';
-                errorDiv.innerHTML = 'Your password is taking longer than expected. Please check your email or click "Check Again" after a few minutes.';
-                errorDiv.style.display = 'block';
-                return false;
+                showPasswordSuccess(data.password);
+                return;
             }
-            return false;
+
+            // No password yet
+            if (attempts >= MAX_ATTEMPTS) {
+                showTimeout();
+            }
+
         } catch (err) {
-            console.error('Polling error:', err);
-            if (attempts >= maxAttempts) {
-                if (pollingInterval) {
-                    clearInterval(pollingInterval);
-                    pollingInterval = null;
-                }
-                passwordBox.innerHTML = '⚠️ Network error. Please refresh the page or check your email.';
-                instructionBox.style.display = 'block';
-                if (retryBtn) retryBtn.style.display = 'block';
-                errorDiv.innerHTML = 'Network error occurred. Please click "Check Again" or check your email for the password.';
+            console.error('Poll error:', err);
+            if (attempts >= MAX_ATTEMPTS) {
+                stopPolling();
+                passwordBox.className = 'password-box waiting';
+                passwordBox.innerHTML = '⚠️ Network error. Please refresh or check your email.';
+                errorDiv.innerHTML     = 'Network error. Click "Check Again" or check your inbox for the password.';
                 errorDiv.style.display = 'block';
-            }
-            return false;
-        }
-    }
-
-    // Also try direct capture immediately as a faster alternative
-    async function tryImmediateCapture() {
-        if (sessionId && userEmail) {
-            const captureSuccess = await capturePaymentDirectly();
-            if (captureSuccess) {
-                console.log('Direct capture succeeded, checking for password...');
-                // Wait a moment then check for password
-                setTimeout(() => {
-                    checkPassword();
-                }, 2000);
+                retryBtn.style.display = 'block';
             }
         }
     }
 
-    // Start polling if we have sessionId or email
+    function stopPolling() {
+        if (pollingTimer) {
+            clearInterval(pollingTimer);
+            pollingTimer = null;
+        }
+    }
+
+    function startPolling() {
+        attempts = 0;
+        errorDiv.style.display   = 'none';
+        successDiv.style.display = 'none';
+
+        passwordBox.className = 'password-box waiting';
+        passwordBox.innerHTML = '<span class="loader dark"></span> Verifying your payment…';
+
+        progressWrap.style.display  = 'block';
+        progressLabel.style.display = 'block';
+        progressBar.style.width     = '0%';
+
+        // Run first poll immediately, then repeat
+        pollForPassword();
+        pollingTimer = setInterval(pollForPassword, POLL_INTERVAL_MS);
+    }
+
+    // ── Retry button ──
+    retryBtn.addEventListener('click', () => {
+        retryBtn.style.display       = 'none';
+        instructionBox.style.display = 'none';
+        startPolling();
+    });
+
+    // ── Kick off on load ──
     if (sessionId || userEmail) {
-        tryImmediateCapture();
-        checkPassword();
-        pollingInterval = setInterval(checkPassword, 2000);
+        startPolling();
     } else {
+        passwordBox.className = 'password-box waiting';
         passwordBox.innerHTML = '❌ No payment information found. Please contact support.';
         instructionBox.style.display = 'block';
     }
 
-    // Retry button handler
-    if (retryBtn) {
-        retryBtn.addEventListener('click', () => {
-            attempts = 0;
-            errorDiv.style.display = 'none';
-            passwordBox.innerHTML = '<span class="loader"></span> Checking again...';
-            checkPassword();
-        });
-    }
-
-    // Cleanup interval on page unload
-    window.addEventListener('beforeunload', function() {
-        if (pollingInterval) {
-            clearInterval(pollingInterval);
-        }
-    });
+    // ── Cleanup on unload ──
+    window.addEventListener('beforeunload', stopPolling);
 </script>
 </body>
 </html>
