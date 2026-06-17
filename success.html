@@ -275,6 +275,7 @@
     const urlParams = new URLSearchParams(window.location.search);
     let sessionId = urlParams.get('session_id') || urlParams.get('token');
     let userEmail = null;
+    let cartItems = null;
     const WORKER_URL = 'https://elevate-shop-worker.dalminohanz14.workers.dev';
 
     const passwordBox = document.getElementById('password-box');
@@ -284,13 +285,15 @@
     const errorDiv = document.getElementById('error-message');
     const successDiv = document.getElementById('success-message');
 
-    // Try to get email from sessionStorage (set during checkout)
+    // Try to get email and cart from sessionStorage (set during checkout)
     try {
         const pendingPurchase = sessionStorage.getItem('pendingPurchase');
         if (pendingPurchase) {
             const purchaseData = JSON.parse(pendingPurchase);
             userEmail = purchaseData.email;
+            cartItems = purchaseData.cart;
             console.log('Retrieved email from sessionStorage:', userEmail);
+            console.log('Retrieved cart items:', cartItems);
         }
     } catch (e) {
         console.error('Failed to get email from sessionStorage:', e);
@@ -317,18 +320,13 @@
         }
         
         try {
-            // Get cart items from sessionStorage
-            let cartItems = null;
-            try {
-                const pendingData = sessionStorage.getItem('pendingPurchase');
-                if (pendingData) {
-                    const purchaseData = JSON.parse(pendingData);
-                    cartItems = purchaseData.cart;
-                }
-            } catch (e) {}
-            
+            // Get product names and product ID from cart
             const productNames = cartItems ? cartItems.map(item => item.name) : ['Digital Product'];
+            // If only one product in cart, get its ID. Otherwise use 0.
+            const productId = cartItems && cartItems.length === 1 ? cartItems[0].id : 0;
             const password = generatePassword();
+            
+            console.log('Capturing payment for product ID:', productId);
             
             const captureResponse = await fetch(`${WORKER_URL}/capture-payment`, {
                 method: 'POST',
@@ -337,14 +335,15 @@
                     token: sessionId,
                     email: userEmail,
                     password: password,
-                    productNames: productNames
+                    productNames: productNames,
+                    productId: productId
                 })
             });
             
             const captureData = await captureResponse.json();
             
             if (captureData.success) {
-                // Password saved successfully
+                console.log('Payment captured successfully');
                 return true;
             }
             return false;
