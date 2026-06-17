@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mindset Reset Program – Elevate Shop</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{font-size:18px}
+body{
+  font-family:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+  background:#F4F3EF;color:#2A2A2A;line-height:1.8;padding:0;
+  -webkit-font-smoothing:antialiased
+}
+.container{max-width:780px;margin:0 auto;background:#FEFCFA;box-shadow:0 0 120px rgba(26,46,26,0.06)}
+header{
+  background:linear-gradient(135deg,#0E2A1A 0%,#1A3D28 40%,#2A5A3E 70%,#1A3D28 100%);
+  padding:72px 64px 56px;position:relative;overflow:hidden
+}
+header::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#C87A6E,#E8A99E,#C87A6E,#E8A99E,#C87A6E)}
+header .sup{font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(200,122,110,0.4);margin-bottom:16px;font-family:Inter,Arial,sans-serif}
+header h1{font-family:Inter,'Helvetica Neue',Arial,sans-serif;font-size:46px;font-weight:700;color:#FFF;line-height:1.05;margin-bottom:12px}
+header h1 em{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;color:#E8A99E}
+header .sub{font-size:15px;color:rgba(255,255,255,0.4);max-width:540px;line-height:1.6;margin-bottom:24px;font-family:Inter,Arial,sans-serif}
+header .meta{display:flex;gap:24px;flex-wrap:wrap;font-size:10px;color:rgba(200,122,110,0.25);letter-spacing:1.5px;text-transform:uppercase;font-family:Inter,Arial,sans-serif}
+.idx{background:#F4F0EC;padding:24px 48px;border-bottom:1px solid rgba(26,46,26,0.06)}
+.idx .idx-t{font-family:Inter,'Helvetica Neue',Arial,sans-serif;font-size:13px;color:#1A3D28;margin-bottom:12px;letter-spacing:2px;text-transform:uppercase;font-weight:600}
+.idx ol{list-style:none;columns:3;column-gap:32px;padding:0;margin:0}
+.idx ol li{display:flex;gap:8px;align-items:baseline;padding:4px 0;border-bottom:1px solid rgba(26,46,26,0.02);break-inside:avoid}
+.idx ol li .n{font-family:Inter,'Helvetica Neue',Arial,sans-serif;font-size:12px;font-weight:700;color:#C87A6E;min-width:24px}
+.idx ol li a{color:#5A5A5A;text-decoration:none;font-size:14px}
+.idx ol li a:hover{color:#1A3D28}
+.pw{margin:0 72px 8px;padding:12px 0;border-bottom:1px solid rgba(26,46,26,0.04)}
+.pw .bar{background:#E4E0DA;border-radius:20px;height:4px;overflow:hidden}
+.pw .fill{background:linear-gradient(90deg,#1A3D28,#C87A6E);height:100%;border-radius:20px;transition:width 0.5s ease}
+.pw .m{display:flex;justify-content:space-between;align-items:center;margin-top:4px;font-size:10px;color:#7A7A7A;text-transform:uppercase;letter-spacing:1px;font-family:Inter,Arial,sans-serif}
+.pw .r{background:none;border:none;color:#7A7A7A;cursor:pointer;font-size:10px;text-transform:uppercase;letter-spacing:1px;padding:2px 0;transition:color 0.2s;font-family:Inter,Arial,sans-serif}
+.pw .r:hover{color:#1A3D28}
+.main{padding:48px 72px 64px}
+h2{font-family:Inter,'Helvetica Neue',Arial,sans-serif;font-size:26px;font-weight:700;color:#0E2A1A;margin-top:48px;margin-bottom:4px;line-height:1.15;border-bottom:2px solid #D4C8BE;padding-bottom:10px}
+h2 .cl{display:block;font-family:Inter,Arial,sans-serif;font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#C87A6E;margin-bottom:2px}
+h3{font-family:Inter,'Helvetica Neue',Arial,sans-serif;font-size:20px;font-weight:600;color:#0E2A1A;margin-top:32px;margin-bottom:8px}
+p{font-size:17px;color:#3A3A3A;margin-bottom:14px;line-height:1.85}
+.dc::first-letter{font-family:'Cormorant Garamond',Georgia,serif;font-size:72px;font-weight:700;float:left;line-height:0.75;padding:8px 16px 4px 0;color:#C87A6E}
+.qb{margin:24px 0;padding:22px 28px;background:#F4F0EC;border-radius:6px;border-left:3px solid #C87A6E}
+.qb p{font-family:'Cormorant Garamond',Georgia,serif;font-size:19px;font-style:italic;color:#2A2A2A;margin-bottom:6px;line-height:1.5}
+.qb cite{font-size:13px;font-style:normal;color:#6A6A6A;display:block;font-family:Inter,Arial,sans-serif}
+.qb cite b{color:#1A3D28;font-weight:600}
+.cd{margin:20px 0;padding:24px 28px;background:#FAF8F5;border-radius:6px;border:1px solid rgba(26,46,26,0.06)}
+.cd .lbl{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#C87A6E;margin-bottom:4px;font-family:Inter,Arial,sans-serif}
+.cd h4{font-family:Inter,'Helvetica Neue',Arial,sans-serif;font-size:17px;margin:0 0 6px;color:#0E2A1A}
+.cd p{font-size:15px;color:#5A5A5A;margin-bottom:6px}
+.ec{margin:24px 0;border-radius:6px;overflow:hidden;border:1px solid rgba(26,46,26,0.06);background:#FAF8F5}
+.ec .h{display:flex;gap:16px;align-items:flex-start;padding:20px 24px 10px;border-bottom:1px solid rgba(26,46,26,0.04)}
+.ec .i{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#1A3D28,#C87A6E);color:#FFF;display:flex;align-items:center;justify-content:center;font-family:Inter,'Helvetica Neue',Arial,sans-serif;font-size:15px;font-weight:700;flex-shrink:0}
+.ec .info h4{margin:0;font-size:16px;color:#0E2A1A;font-family:Inter,Arial,sans-serif}
+.ec .info .role{font-size:12px;color:#6A6A6A;margin:1px 0 2px;font-family:Inter,Arial,sans-serif}
+.ec .info .qt{font-size:14px;font-style:italic;color:#C87A6E}
+.ec .b{padding:14px 24px 20px}
+.ec .b p{font-size:15px;margin-bottom:8px;color:#3A3A3A}
+.ec .b p:last-child{margin-bottom:0}
+.stat{display:flex;gap:14px;margin:24px 0}
+.stat>div{flex:1;background:#F4F0EC;border-radius:6px;padding:18px 14px;text-align:center;border:1px solid rgba(26,46,26,0.04)}
+.stat .num{font-family:Inter,'Helvetica Neue',Arial,sans-serif;font-size:32px;font-weight:700;color:#1A3D28;line-height:1}
+.stat .sl{font-size:11px;color:#6A6A6A;margin-top:4px;line-height:1.3;font-family:Inter,Arial,sans-serif}
+.dt{width:100%;border-collapse:collapse;font-size:14px;border-radius:6px;overflow:hidden;margin:16px 0}
+.dt thead{background:#0E2A1A}
+.dt th{padding:8px 12px;text-align:left;font-weight:600;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#E8A99E;font-family:Inter,Arial,sans-serif}
+.dt td{padding:8px 12px;border-bottom:1px solid rgba(26,46,26,0.04);color:#4A4A4A;font-size:14px}
+.dt tbody tr:nth-child(even){background:#F4F0EC}
+.dt td input{width:100%;border:none;background:transparent;font-family:'JetBrains Mono',monospace;font-size:13px;color:#0E2A1A;outline:none;padding:2px 0;border-bottom:1px solid rgba(26,46,26,0.06)}
+.dt td input:focus{border-bottom-color:#C87A6E}
+.dt td input[type="checkbox"]{width:16px;height:16px;accent-color:#C87A6E;cursor:pointer}
+.dt tr:last-child td{border-bottom:none}
+.yt{margin:20px 0;border-radius:6px;overflow:hidden;border:1px solid rgba(26,46,26,0.06);background:#FAF8F5;padding:14px 18px}
+.yt .lbl{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#C87A6E;margin-bottom:4px;font-family:Inter,Arial,sans-serif}
+.yt a{display:block;padding:8px 12px;background:#F4F0EC;border-radius:4px;color:#2A2A2A;text-decoration:none;font-size:14px;border:1px solid rgba(26,46,26,0.06);margin-top:4px}
+.yt a:first-of-type{margin-top:0}
+.yt a:hover{background:#ECE6DE;border-color:rgba(26,46,26,0.15)}
+.yt a::before{content:"\25B6";color:#C87A6E;margin-right:8px;font-size:11px}
+.hb{margin:24px 0;padding:18px 22px;background:#F4F0EC;border-radius:6px;border-left:3px solid #1A3D28}
+.hb p{font-size:15px;margin-bottom:0;color:#4A4A4A}
+.hb b{color:#0E2A1A}
+.chk{display:flex;align-items:center;gap:10px;padding:5px 0}
+.chk input{width:16px;height:16px;accent-color:#C87A6E;cursor:pointer;flex-shrink:0}
+.chk label{cursor:pointer;font-size:15px;color:#3A3A3A}
+.qz{margin:14px 0}
+.qz .q{font-size:16px;color:#0E2A1A;margin-bottom:6px;font-weight:600}
+.qz .qa{display:block;padding:7px 10px;margin:3px 0;background:#F4F0EC;border:1px solid rgba(26,46,26,0.06);border-radius:4px;cursor:pointer;font-size:14px;color:#3A3A3A;transition:all 0.15s}
+.qz .qa:hover{background:#ECE6DE;border-color:#C87A6E}
+.qz .qa.cr{background:rgba(26,46,26,0.1);border-color:#1A3D28;color:#1A3D28;font-weight:600}
+.qz .qa.wr{background:rgba(180,80,80,0.08);border-color:#B05050;color:#B05050}
+.qz .qa.ds{cursor:default;opacity:0.7}
+.fr{margin:20px 0;padding:20px 24px;background:#FAF8F5;border-radius:6px;border:1px solid rgba(26,46,26,0.06)}
+.fr .lbl{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#C87A6E;margin-bottom:4px;font-family:Inter,Arial,sans-serif}
+.fr p{font-size:15px;color:#4A4A4A;margin-bottom:8px}
+.rw{display:flex;gap:3px;flex-wrap:wrap;margin:6px 0 0}
+.rw button{width:28px;height:28px;border:1px solid rgba(26,46,26,0.15);border-radius:50%;background:transparent;cursor:pointer;font-size:12px;color:#5A5A5A;font-family:Inter;transition:all 0.15s}
+.rw button:hover{border-color:#C87A6E;color:#C87A6E}
+.rw button.on{background:#1A3D28;color:#FFF;border-color:#1A3D28;font-weight:700}
+.btn-save{display:inline-block;margin:6px 0 0;padding:6px 18px;cursor:pointer;font-family:Inter;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#FFF;background:linear-gradient(135deg,#1A3D28,#C87A6E);border:none;border-radius:4px;transition:opacity 0.2s}
+.btn-save:hover{opacity:0.85}
+.fbk{margin-top:6px;padding:5px 10px;border-radius:4px;display:none;font-size:13px;font-family:Inter}
+.fbk.ok{display:block;background:rgba(26,46,26,0.08);color:#1A3D28}
+.fbk.fail{display:block;background:rgba(180,80,80,0.1);color:#B05050}
+.rb{background:#FAF8F5;border:1px solid rgba(26,46,26,0.05);padding:18px 22px;margin:16px 0;border-radius:6px}
+.rb textarea{width:100%;border:none;background:rgba(26,46,26,0.03);font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;color:#2A2A2A;outline:none;padding:8px 10px;border-radius:4px;min-height:55px;resize:vertical}
+.rb textarea:focus{background:rgba(26,46,26,0.06)}
+input, textarea, select{color:#0E2A1A}
+input::placeholder, textarea::placeholder{color:rgba(14,42,26,0.3)}
+.aff{margin:16px 0;padding:18px 22px;background:linear-gradient(135deg,#FAF8F5,#F4F0EC);border-radius:6px;border:1px solid rgba(200,122,110,0.15);text-align:center}
+.aff p{font-family:'Cormorant Garamond',Georgia,serif;font-size:20px;font-style:italic;color:#1A3D28;margin-bottom:4px;line-height:1.4}
+.aff .src{font-size:11px;color:#8A7A6A;font-family:Inter,Arial,sans-serif}
+.tw{margin:20px 0}
+.tb{display:flex;gap:0;margin-bottom:10px}
+.tb button{background:none;border:none;padding:5px 14px;cursor:pointer;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:#7A7A7A;border-bottom:2px solid transparent;transition:all 0.2s;font-family:Inter,Arial,sans-serif}
+.tb button.on{color:#1A3D28;border-bottom-color:#1A3D28}
+.tp{display:none}
+.tp.on{display:block}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0E2A1A;color:#E8A99E;padding:8px 20px;border-radius:30px;font-size:12px;font-family:Inter,Arial,sans-serif;z-index:999;animation:fadeUp 0.3s ease;box-shadow:0 4px 24px rgba(0,0,0,0.3);border:1px solid rgba(232,169,158,0.1)}
+@keyframes fadeUp{from{opacity:0;transform:translateX(-50%) translateY(10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+.fb{margin:40px 0 0;padding:32px;background:linear-gradient(135deg,#0E2A1A,#1A3D28);border-radius:6px;border:1px solid rgba(26,46,26,0.06);text-align:center}
+.fb h2{font-family:'Cormorant Garamond',Georgia,serif;color:#FFF;margin-top:0;border-bottom:none;padding-bottom:0;font-size:30px}
+.fb p{color:rgba(255,255,255,0.6);font-size:15px;margin-bottom:10px;font-family:Inter,Arial,sans-serif}
+.fb p:last-child{margin-bottom:0}
+.fb b{color:#E8A99E}
+.ft{margin-top:40px;padding:20px 72px 28px;border-top:1px solid rgba(26,46,26,0.04);text-align:center}
+.ft p{font-size:11px;color:#7A7A7A;margin-bottom:2px;font-family:Inter,Arial,sans-serif}
+@media(max-width:700px){
+  html{font-size:16px}
+  header{padding:40px 28px 32px}
+  header h1{font-size:34px}
+  header .sub{font-size:14px}
+  .main{padding:28px 24px 40px}
+  .idx{padding:16px 20px;margin:0}
+  .idx ol{columns:2}
+  .pw{margin:0 24px 8px}
+  .stat{flex-direction:column}
+  .ft{padding:20px 24px 24px}
+}
+@media(max-width:480px){
+  header{padding:28px 16px 24px}
+  header h1{font-size:26px}
+  header .meta{gap:12px;font-size:9px}
+  .main{padding:20px 14px 28px}
+  .idx{padding:12px 14px}
+  .idx ol{columns:1}
+  .cd{padding:14px 16px}
+  .ec .h{padding:14px 16px 8px}
+  .ec .b{padding:10px 16px 16px}
+  .qb{padding:14px 16px}
+  .stat>div{padding:12px 10px}
+  .stat .num{font-size:24px}
+  h2{font-size:22px}
+  h2 .cl{font-size:9px}
+  p{font-size:15px}
+  .dt{font-size:12px}
+  .dt td input{font-size:12px}
+  .fb{padding:20px 14px}
+  .pw{margin:0 14px 8px}
+  .ft{padding:14px 14px 20px}
+  .idx ol{columns:1}
+}
+@media(max-width:360px){
+  html{font-size:15px}
+  header{padding:20px 12px}
+  header h1{font-size:22px}
+  .main{padding:12px 8px 24px}
+}
+@media print{
+  body{background:#FFF!important;color:#222!important}
+  .container{box-shadow:none;background:#FFF!important;max-width:100%}
+  body,.main p,.cd p,.ec .b p,.hb p,.fb p{color:#222!important}
+  header{background:#0E2A1A!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;padding:24px 20px}
+  header h1,.fb h2{color:#FFF!important}
+  h2,h3,.ec .info h4{color:#111!important}
+  .qb p{color:#333!important}
+  .idx ol li a{color:#333!important}
+  header .sup{color:#AAA!important}
+  .pw,.tw,.yt a,.rb textarea,.rw,.qz,.fr,.aff{display:none!important}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="sup">Elevate Shop &bull; Premium Digital Program</div>
+  <h1>Mindset Reset <em>Program</em></h1>
+  <p class="sub">A 30-day guided journey to rewire limiting beliefs, eliminate negative self-talk, and unlock your full potential using CBT techniques, neuroplasticity exercises, and daily practice.</p>
+  <div class="meta"><span>30 Days</span><span>CBT &amp; Neuroplasticity</span><span>Daily Practices</span><span>Interactive Workbook</span></div>
+</header>
+
+<div class="idx">
+  <div class="idx-t">30-Day Program</div>
+  <ol>
+    <li><span class="n">1</span><a href="#d1">What Is a Mindset Reset?</a></li>
+    <li><span class="n">2</span><a href="#d2">The Science of Neuroplasticity</a></li>
+    <li><span class="n">3</span><a href="#d3">Identifying Limiting Beliefs</a></li>
+    <li><span class="n">4</span><a href="#d4">The Inner Critic</a></li>
+    <li><span class="n">5</span><a href="#d5">Cognitive Distortions</a></li>
+    <li><span class="n">6</span><a href="#d6">The Power of Self-Awareness</a></li>
+    <li><span class="n">7</span><a href="#d7">Week 1 Review</a></li>
+    <li><span class="n">8</span><a href="#d8">Reframing Negative Thoughts</a></li>
+    <li><span class="n">9</span><a href="#d9">The ABCDE Method</a></li>
+    <li><span class="n">10</span><a href="#d10">Challenging Core Beliefs</a></li>
+    <li><span class="n">11</span><a href="#d11">Emotional Regulation</a></li>
+    <li><span class="n">12</span><a href="#d12">The Pause Technique</a></li>
+    <li><span class="n">13</span><a href="#d13">Self-Compassion Practice</a></li>
+    <li><span class="n">14</span><a href="#d14">Week 2 Review</a></li>
+    <li><span class="n">15</span><a href="#d15">Building New Neural Pathways</a></li>
+    <li><span class="n">16</span><a href="#d16">Visualization Practice</a></li>
+    <li><span class="n">17</span><a href="#d17">Affirmations That Work</a></li>
+    <li><span class="n">18</span><a href="#d18">Habit Loop Disruption</a></li>
+    <li><span class="n">19</span><a href="#d19">Identity Shift</a></li>
+    <li><span class="n">20</span><a href="#d20">Embracing Discomfort</a></li>
+    <li><span class="n">21</span><a href="#d21">Week 3 Review</a></li>
+    <li><span class="n">22</span><a href="#d22">Resilience Building</a></li>
+    <li><span class="n">23</span><a href="#d23">Growth Mindset in Action</a></li>
+    <li><span class="n">24</span><a href="#d24">Purpose and Values</a></li>
+    <li><span class="n">25</span><a href="#d25">Boundaries and Self-Worth</a></li>
+    <li><span class="n">26</span><a href="#d26">Gratitude as a Practice</a></li>
+    <li><span class="n">27</span><a href="#d27">Mindfulness and Presence</a></li>
+    <li><span class="n">28</span><a href="#d28">Week 4 Review</a></li>
+    <li><span class="n">29</span><a href="#d29">Your New Operating System</a></li>
+    <li><span class="n">30</span><a href="#d30">The Lifelong Practice</a></li>
+  </ol>
+</div>
+
+<div class="pw">
+  <div class="bar"><div class="fill" id="progFill" style="width:0%"></div></div>
+  <div class="m"><span id="progLabel">0 of 30 days complete</span><button class="r" onclick="resetAll()">Reset</button></div>
+</div>
+
+<div class="main">
+
+<div style="margin-bottom:24px;padding:20px 24px;background:#F4F0EC;border-radius:6px;text-align:center;border:1px solid rgba(200,122,110,0.15)">
+<p style="font-size:14px;color:#5A5A5A;margin:0;font-family:Inter,Arial,sans-serif"><b style="color:#1A3D28">Welcome to your 30-Day Mindset Reset.</b> Each day includes a short lesson, a practice exercise, and a reflection prompt. Commit to showing up daily. Your brain will do the rest.</p>
+</div>
+
+<h2 id="d1"><span class="cl">Day 1</span>What Is a Mindset Reset?</h2>
+<p class="dc">Your mindset is the lens through which you see every experience. It shapes your thoughts, emotions, and actions. A mindset reset is not about positive thinking — it is about clearing away the distorted beliefs and automatic negative patterns that keep you stuck. Over the next 30 days, you will learn to recognize these patterns, challenge them, and replace them with thoughts that serve you. This is not a quick fix. It is a systematic rewiring of your mental habits.</p>
+<p>Dr. Carol Dweck&rsquo;s research on fixed vs. growth mindset shows that simply believing your abilities can develop changes how you approach challenges. People with a fixed mindset avoid failure; those with a growth mindset learn from it. The first step in any mindset reset is acknowledging that your current beliefs are not facts — they are thoughts you have practiced. And what can be practiced can be unlearned.</p>
+<div class="qb"><p>&ldquo;Becoming is better than being. The fixed mindset does not allow people the luxury of becoming. They have to already be.&rdquo;</p><cite>&mdash; <b>Dr. Carol Dweck</b>, Professor of Psychology, Stanford University</cite></div>
+<div class="aff"><p>"I am capable of change. My mind is not fixed — it is growing."</p><div class="src">Today&rsquo;s Affirmation</div></div>
+<div class="cd"><div class="lbl">Day 1 Practice</div><h4>Mindset Self-Assessment</h4><p>Rate yourself on each statement (1 = strongly disagree, 5 = strongly agree):</p><table class="dt"><thead><tr><th>Statement</th><th>Rating (1-5)</th></tr></thead><tbody><tr><td>I believe I can learn new things with effort</td><td><input id="d1-1" placeholder="1-5"></td></tr><tr><td>I avoid challenges that might lead to failure</td><td><input id="d1-2" placeholder="1-5"></td></tr><tr><td>I often say "I'm just not good at that"</td><td><input id="d1-3" placeholder="1-5"></td></tr><tr><td>I am open to feedback about my blind spots</td><td><input id="d1-4" placeholder="1-5"></td></tr><tr><td>I believe people can change fundamentally</td><td><input id="d1-5" placeholder="1-5"></td></tr></tbody></table><button class="btn-save" onclick="saveTable('d1')">Save</button></div>
+<div class="cd"><div class="lbl">Journal</div><p>What is one belief about yourself that you would like to change over the next 30 days?</p><textarea class="rb" id="d1-j" style="margin:0;width:100%;min-height:50px" placeholder="I want to stop believing that I am not good enough..."></textarea><button class="btn-save" onclick="save('d1-j')">Save</button></div>
+<div class="chk"><input type="checkbox" id="d1-done" onchange="chkUpdate(this)"><label for="d1-done">Mark Day 1 complete</label></div>
+
+<h2 id="d2"><span class="cl">Day 2</span>The Science of Neuroplasticity</h2>
+<p class="dc">Neuroplasticity is the brain&rsquo;s ability to reorganize itself by forming new neural connections throughout life. Every thought you think, every pattern you repeat, strengthens some neural pathways while allowing others to weaken. This means your current mental patterns are not permanent — they are simply the most traveled roads in your brain. By consciously directing your attention and repeating new thoughts, you can build new highways of thinking.</p>
+<p>Dr. Joe Dispenza teaches that the brain cannot distinguish between a real experience and one vividly imagined. When you mentally rehearse a new way of thinking with emotional intensity, your brain begins laying down the same neural circuitry as if the experience had occurred. This is the biological basis for the power of visualization and affirmations. Your mindset reset is literally changing your brain&rsquo;s structure.</p>
+<div class="ec"><div class="h"><div class="i">JD</div><div class="info"><h4>Dr. Joe Dispenza</h4><div class="role">Neuroscientist &bull; Author of <em>Breaking the Habit of Being Yourself</em></div><div class="qt">&ldquo;The moment you change your mind is the moment you change your biology. Your brain is plastic. It can be rewired.&rdquo;</div></div></div><div class="b"><p>Dr. Dispenza&rsquo;s work combines neuroscience, epigenetics, and quantum physics to explain how thoughts shape reality. His research shows that sustained focused attention combined with elevated emotions creates measurable changes in brain structure. He recommends a daily meditation practice where you imagine your new identity so vividly that your brain accepts it as familiar.</p></div></div>
+<div class="aff"><p>"Every thought I think is rewiring my brain for growth."</p><div class="src">Today&rsquo;s Affirmation</div></div>
+<div class="cd"><div class="lbl">Day 2 Practice</div><h4>Neural Pathway Visualization</h4><p>Close your eyes for 2 minutes. Imagine a well-worn dirt path in a forest — this is your old thought pattern. Now imagine a new path being cleared beside it. Each time you choose the new thought, you walk the new path. See it becoming clearer. Feel the satisfaction of choosing differently.</p><textarea class="rb" id="d2-j" style="margin:0;width:100%;min-height:50px" placeholder="What did you notice during the visualization?"></textarea><button class="btn-save" onclick="save('d2-j')">Save</button></div>
+<div class="chk"><input type="checkbox" id="d2-done" onchange="chkUpdate(this)"><label for="d2-done">Mark Day 2 complete</label></div>
+
+<h2 id="d3"><span class="cl">Day 3</span>Identifying Limiting Beliefs</h2>
+<p class="dc">Limiting beliefs are assumptions you have accepted as truth without questioning them. "I am not good with money." "I don&rsquo;t deserve success." "People like me don&rsquo;t become wealthy." "I am too old to start." "I am not smart enough." These beliefs were usually formed in childhood or during painful experiences, and they have been running beneath the surface of your awareness ever since. Today, you will start identifying yours.</p>
+<p>Tony Robbins teaches that beliefs are not truths — they are merely feelings of certainty about something. The key to changing beliefs is to associate enough pain to the old belief and enough pleasure to the new one. "The only thing keeping you from getting what you want," Robbins says, "is the story you keep telling yourself about why you can&rsquo;t have it." Today you will begin rewriting that story.</p>
+<div class="qb"><p>&ldquo;The only thing keeping you from getting what you want is the story you keep telling yourself about why you can&rsquo;t have it.&rdquo;</p><cite>&mdash; <b>Tony Robbins</b>, Author &amp; Strategist</cite></div>
+<div class="aff"><p>"I am ready to see the beliefs that have been holding me back."</p><div class="src">Today&rsquo;s Affirmation</div></div>
+<div class="cd"><div class="lbl">Day 3 Practice</div><h4>Limiting Beliefs Inventory</h4><p>List 5 limiting beliefs you have held about yourself. Rate how strongly you believe each (1-10).</p><table class="dt"><thead><tr><th>Limiting Belief</th><th>Strength (1-10)</th></tr></thead><tbody><tr><td><input id="d3-1" placeholder="e.g. I am not good at public speaking"></td><td><input id="d3-1r" placeholder="8"></td></tr>
+<tr><td><input id="d3-2" placeholder="e.g. I don't deserve to be wealthy"></td><td><input id="d3-2r" placeholder="6"></td></tr>
+<tr><td><input id="d3-3" placeholder="e.g. I always fail at relationships"></td><td><input id="d3-3r" placeholder="7"></td></tr>
+<tr><td><input id="d3-4" placeholder="e.g. I am too old to learn new things"></td><td><input id="d3-4r" placeholder="5"></td></tr>
+<tr><td><input id="d3-5" placeholder="e.g. I am not creative"></td><td><input id="d3-5r" placeholder="4"></td></tr>
+</tbody></table><button class="btn-save" onclick="saveTable('d3')">Save</button></div>
+<div class="chk"><input type="checkbox" id="d3-done" onchange="chkUpdate(this)"><label for="d3-done">Mark Day 3 complete</label></div>
+
+<h2 id="d4"><span class="cl">Day 4</span>The Inner Critic</h2>
+<p class="dc">The Inner Critic is the voice in your head that judges, compares, and finds fault. It says you are not good enough, not smart enough, not worthy enough. This voice evolved to protect you from failure and rejection, but it has become overprotective. It keeps you in your comfort zone, where nothing grows. Today you will learn to recognize the Inner Critic not as truth, but as a misguided protector.</p>
+<p>Dr. Kristin Neff&rsquo;s research on self-compassion at the University of Texas shows that self-criticism is not an effective motivator. People who treat themselves with kindness after setbacks are more resilient, more persistent, and more successful than those who engage in harsh self-judgment. The three components of self-compassion are self-kindness, common humanity (recognizing everyone struggles), and mindfulness (observing without over-identifying).</p>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=P91b4civBxA" target="_blank">Mel Robbins: The Let Them Theory (Life-Changing Mindset Hack)</a><a href="https://www.youtube.com/watch?v=ZVvdk2bj7co" target="_blank">Tony Robbins: The Belief Trap — Why 99% Stay Stuck</a></div>
+<div class="aff"><p>"I hear my Inner Critic, but I do not have to obey it."</p><div class="src">Today&rsquo;s Affirmation</div></div>
+<div class="cd"><div class="lbl">Day 4 Practice</div><h4>Inner Critic Dialogue</h4><p>Write what your Inner Critic says in one area of your life. Then respond with a self-compassionate voice.</p><textarea class="rb" id="d4-j" style="margin:0;width:100%;min-height:60px" placeholder="Inner Critic: 'You always mess things up. Why even try?'&#10;Self-Compassion: 'I am human. Mistakes are how I learn. I am doing my best and that is enough.'"></textarea><button class="btn-save" onclick="save('d4-j')">Save</button></div>
+<div class="chk"><input type="checkbox" id="d4-done" onchange="chkUpdate(this)"><label for="d4-done">Mark Day 4 complete</label></div>
+
+<h2 id="d5"><span class="cl">Day 5</span>Cognitive Distortions</h2>
+<p class="dc">Cognitive distortions are systematic patterns of thinking that are inaccurate and negatively biased. They are the mental habits that keep anxiety and depression alive. Common distortions include all-or-nothing thinking, catastrophizing, mind reading, emotional reasoning, labeling, and personalization. Cognitive Behavioral Therapy (CBT), developed by Dr. Aaron Beck, teaches that changing these distorted thoughts changes your emotional state and behavior.</p>
+<p>The most powerful insight of CBT is that your thoughts, not your circumstances, create your emotions. Two people can experience the same event and feel completely differently based on how they interpret it. Today you will learn to identify your most common cognitive distortions and begin the practice of challenging them with evidence.</p>
+<div class="cd"><div class="lbl">Day 5 Practice</div><h4>Distortion Identification</h4><p>For each scenario, identify the cognitive distortion:</p>
+<div class="qz"><div class="q">"My boss didn't smile at me today. She must be angry at me."</div>
+<div class="qa" data-correct="true" onclick="checkQ(this,5)">A. Mind Reading</div>
+<div class="qa" data-correct="false" onclick="checkQ(this,5)">B. Catastrophizing</div>
+<div class="qa" data-correct="false" onclick="checkQ(this,5)">C. Labeling</div>
+<div class="fbk" id="fb5"></div></div>
+<div class="qz"><div class="q">"I made one mistake on this report. I am completely incompetent."</div>
+<div class="qa" data-correct="false" onclick="checkQ(this,5b)">A. Personalization</div>
+<div class="qa" data-correct="false" onclick="checkQ(this,5b)">B. Catastrophizing</div>
+<div class="qa" data-correct="true" onclick="checkQ(this,5b)">C. All-or-Nothing Thinking</div>
+<div class="fbk" id="fb5b"></div></div>
+</div>
+<div class="aff"><p>"I can question my thoughts before believing them."</p><div class="src">Today&rsquo;s Affirmation</div></div>
+<div class="chk"><input type="checkbox" id="d5-done" onchange="chkUpdate(this)"><label for="d5-done">Mark Day 5 complete</label></div>
+
+<h2 id="d6"><span class="cl">Day 6</span>The Power of Self-Awareness</h2>
+<p class="dc">Self-awareness is the ability to observe your thoughts, emotions, and behaviors without being controlled by them. It is the foundation of every mindset change because you cannot change what you do not notice. Self-awareness creates a gap between stimulus and response — and in that gap lies your freedom to choose a different thought, feeling, or action.</p>
+<p>Simon Sinek teaches that knowing your "why" — your purpose, cause, or belief — is the starting point for any meaningful change. But before you can know your why, you must know your what: what you are thinking, what you are feeling, what patterns you are repeating. Self-awareness is the flashlight that illuminates the dark corners of your mind where old patterns hide.</p>
+<div class="aff"><p>"I am the observer of my thoughts, not a prisoner of them."</p><div class="src">Today&rsquo;s Affirmation</div></div>
+<div class="cd"><div class="lbl">Day 6 Practice</div><h4>Thought Observation</h4><p>Set a timer for 3 minutes. Close your eyes and simply watch your thoughts as if they were clouds passing in the sky. Do not engage with them. Just notice. Write below what patterns you observed.</p><textarea class="rb" id="d6-j" style="margin:0;width:100%;min-height:50px" placeholder="I noticed a lot of planning thoughts, some worries about tomorrow, and moments of calm..."></textarea><button class="btn-save" onclick="save('d6-j')">Save</button></div>
+<div class="chk"><input type="checkbox" id="d6-done" onchange="chkUpdate(this)"><label for="d6-done">Mark Day 6 complete</label></div>
+
+<h2 id="d7"><span class="cl">Day 7</span>Week 1 Review</h2>
+<p class="dc">You have completed the first week of your Mindset Reset. This week was about awareness — understanding what a mindset reset is, how neuroplasticity works, identifying your limiting beliefs, meeting your Inner Critic, recognizing cognitive distortions, and practicing self-awareness. Today you will reflect on what you have learned and set your intention for Week 2.</p>
+<div class="cd"><div class="lbl">Week 1 Reflection</div><h4>What shifted this week?</h4><p>Answer each question honestly:</p><textarea class="rb" id="d7-j" style="margin:0;width:100%;min-height:80px" placeholder="What was the most important insight from this week?&#10;Which limiting belief felt most charged?&#10;What do you want to focus on in Week 2?"></textarea><button class="btn-save" onclick="save('d7-j')">Save</button></div>
+<div class="cd"><div class="lbl">Week 1 Quiz</div><div class="qz"><div class="q">What is neuroplasticity?</div><div class="qa" data-correct="false" onclick="checkQ(this,7)">A. The brain stays the same after age 25</div><div class="qa" data-correct="true" onclick="checkQ(this,7)">B. The brain can rewire itself throughout life</div><div class="qa" data-correct="false" onclick="checkQ(this,7)">C. Only children can learn new things</div><div class="qa" data-correct="false" onclick="checkQ(this,7)">D. Thoughts have no physical effect on the brain</div><div class="fbk" id="fb7"></div></div></div>
+<div class="chk"><input type="checkbox" id="d7-done" onchange="chkUpdate(this)"><label for="d7-done">Mark Day 7 complete</label></div>
+
+<h2 id="d8"><span class="cl">Day 8</span>Reframing Negative Thoughts</h2>
+<p class="dc">Reframing is the practice of consciously choosing a different perspective on a situation. It is not about denying reality or pretending everything is fine. It is about asking: "What else could this mean?" "What is another way to see this?" "What would I tell a friend who had this thought?" Reframing is the core skill of cognitive flexibility — the ability to adapt your thinking to meet life&rsquo;s challenges with resilience.</p>
+<p>Les Brown, one of the greatest motivational speakers of all time, was labeled "educable mentally retarded" as a child. He refused to accept that label as his identity. Instead, he reframed it: "Someone&rsquo;s opinion of you does not have to become your reality." He went on to become a renowned speaker, author, and influencer. Reframing is not just a technique — it is a declaration of freedom from other people&rsquo;s definitions.</p>
+<div class="qb"><p>&ldquo;Someone&rsquo;s opinion of you does not have to become your reality. You have greatness within you.&rdquo;</p><cite>&mdash; <b>Les Brown</b>, Motivational Speaker, Author</cite></div>
+<div class="aff"><p>"I can choose how I interpret every situation."</p><div class="src">Today&rsquo;s Affirmation</div></div>
+<div class="cd"><div class="lbl">Day 8 Practice</div><h4>Reframing Exercise</h4><p>Write a recent negative thought. Then write three alternative interpretations.</p><table class="dt"><thead><tr><th style="width:30%">Original Thought</th><th style="width:70%">Reframe</th></tr></thead><tbody><tr><td><input id="d8-o" placeholder="I failed at..."></td><td><input id="d8-r1" placeholder="I learned what doesn't work..."></td></tr>
+<tr><td></td><td><input id="d8-r2" placeholder="This is data, not a verdict..."></td></tr>
+<tr><td></td><td><input id="d8-r3" placeholder="Every expert was once a beginner..."></td></tr>
+</tbody></table><button class="btn-save" onclick="saveTable('d8')">Save</button></div>
+<div class="chk"><input type="checkbox" id="d8-done" onchange="chkUpdate(this)"><label for="d8-done">Mark Day 8 complete</label></div>
+
+<h2 id="d9"><span class="cl">Day 9</span>The ABCDE Method</h2>
+<p class="dc">The ABCDE method is a CBT technique for challenging and changing irrational beliefs. Developed by Dr. Albert Ellis, it stands for: Activating event, Belief, Consequence, Disputation, and Effect. By systematically working through these five steps, you can break the automatic link between an event and your emotional reaction. This is one of the most effective tools in the entire CBT toolkit.</p>
+<p>Here is how it works: An Activating event occurs (e.g., your boss gives critical feedback). Your Belief about the event (e.g., "I am failing at my job") leads to a Consequence (e.g., anxiety, avoidance). You then Dispute the belief with evidence (e.g., "I have received positive feedback before. This is one piece of input, not a verdict."). Finally, you create a new Effect (e.g., calm, motivation to improve).</p>
+<div class="cd"><div class="lbl">Day 9 Practice</div><h4>ABCDE Worksheet</h4><p>Work through the ABCDE method for a recent situation that triggered a negative reaction.</p><table class="dt"><thead><tr><th>Step</th><th>Your Response</th></tr></thead><tbody>
+<tr><td>A: Activating Event</td><td><input id="d9-a" placeholder="What happened?"></td></tr>
+<tr><td>B: Belief (automatic thought)</td><td><input id="d9-b" placeholder="What did you tell yourself?"></td></tr>
+<tr><td>C: Consequence (emotion/behavior)</td><td><input id="d9-c" placeholder="How did you feel and act?"></td></tr>
+<tr><td>D: Disputation (evidence against)</td><td><input id="d9-d" placeholder="What is the evidence? What would you tell a friend?"></td></tr>
+<tr><td>E: New Effect</td><td><input id="d9-e" placeholder="How do you feel now after disputing?"></td></tr>
+</tbody></table><button class="btn-save" onclick="saveTable('d9')">Save</button></div>
+<div class="chk"><input type="checkbox" id="d9-done" onchange="chkUpdate(this)"><label for="d9-done">Mark Day 9 complete</label></div>
+
+<h2 id="d10"><span class="cl">Day 10</span>Challenging Core Beliefs</h2>
+<p class="dc">Core beliefs are deep-seated assumptions about yourself, others, and the world that formed early in life. They operate beneath conscious awareness and act as filters through which you interpret every experience. Common negative core beliefs include "I am unlovable," "I am incompetent," "The world is dangerous," and "I don&rsquo;t matter." These beliefs feel like absolute truths because they have been with you so long.</p>
+<p>Challenging core beliefs requires gathering evidence. You become a detective investigating your own assumptions. Where did this belief come from? What experiences reinforced it? What evidence contradicts it? How would I see myself if I did not hold this belief? This process is gradual. Core beliefs do not change overnight, but they weaken each time you question them and gather counter-evidence.</p>
+<div class="aff"><p>"I am willing to question beliefs I have held for years."</p><div class="src">Today&rsquo;s Affirmation</div></div>
+<div class="cd"><div class="lbl">Day 10 Practice</div><h4>Core Belief Investigation</h4><p>Identify one core belief you would like to change. Answer the questions below.</p><textarea class="rb" id="d10-j" style="margin:0;width:100%;min-height:70px" placeholder="Core belief: I am not good enough.&#10;Where did it come from? I was compared to my sibling.&#10;Evidence against: I have succeeded in many areas. I am loved by people who know me.&#10;Who would I be without this belief? Free, confident, willing to take risks."></textarea><button class="btn-save" onclick="save('d10-j')">Save</button></div>
+<div class="chk"><input type="checkbox" id="d10-done" onchange="chkUpdate(this)"><label for="d10-done">Mark Day 10 complete</label></div>
+
+<h2 id="d11"><span class="cl">Day 11</span>Emotional Regulation</h2>
+<p class="dc">Emotions are not your enemy — they are signals from your nervous system about your environment. The goal of emotional regulation is not to eliminate emotions but to respond to them skillfully rather than reacting automatically. When you are triggered, your amygdala (the brain&rsquo;s alarm system) hijacks your prefrontal cortex (the rational brain). Emotional regulation is the practice of calming the alarm so the rational brain can lead again.</p>
+<p>David Goggins, the retired Navy SEAL and ultramarathon runner, teaches that most people quit when discomfort arises because they have never practiced pushing through it. He uses the "cookie jar" technique — recalling past challenges you overcame to build evidence of your resilience. When a difficult emotion arises, you do not need to fix it. You just need to stay present with it long enough for it to pass.</p>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=vyJ_hhninDw" target="_blank">David Goggins: Strengthen Your Mind Like a Navy SEAL</a><a href="https://www.youtube.com/watch?v=ffXKVfUcQE8" target="_blank">Les Brown: It&rsquo;s Time to Get Over It!</a></div>
+<div class="aff"><p>"I can feel difficult emotions without being controlled by them."</p><div class="src">Today&rsquo;s Affirmation</div></div>
+<div class="cd"><div class="lbl">Day 11 Practice</div><h4>Emotion Check-In</h4><p>Set a timer for 5 minutes. Sit quietly and notice the dominant emotion you are feeling. Where do you feel it in your body? What shape, color, or texture does it have? Breathe into it. Write what you noticed.</p><textarea class="rb" id="d11-j" style="margin:0;width:100%;min-height:50px" placeholder="I felt a tightness in my chest that I recognize as anxiety. It felt like a knot. After breathing into it, it loosened slightly."></textarea><button class="btn-save" onclick="save('d11-j')">Save</button></div>
+<div class="chk"><input type="checkbox" id="d11-done" onchange="chkUpdate(this)"><label for="d11-done">Mark Day 11 complete</label></div>
+
+<h2 id="d12"><span class="cl">Day 12</span>The Pause Technique</h2>
+<p class="dc">Between stimulus and response, there is a space. In that space is your power to choose. The Pause Technique is the practice of inserting a conscious gap between a triggering event and your reaction. This gap can be as short as a breath or as long as 24 hours. The pause allows your prefrontal cortex to come back online, giving you access to wisdom that your reactive brain cannot reach.</p>
+<p>When you feel the urge to react — to send an angry email, say something you will regret, make an impulsive decision — stop. Take three deep breaths. Ask yourself: "What is the most skillful response here?" "What would I want to have done when I look back on this tomorrow?" The pause is a superpower. With practice, it becomes automatic.</p>
+<div class="aff"><p>"I pause before I react. In that pause, I find my freedom."</p><div class="src">Today&rsquo;s Affirmation</div></div>
+<div class="fr"><div class="lbl">Today&rsquo;s Challenge</div><p>Practice the Pause at least three times today. Each time you feel triggered or reactive, stop, take three breaths, and choose your response consciously. Write about one instance below.</p></div>
+<div class="cd"><div class="lbl">Journal</div><textarea class="rb" id="d12-j" style="margin:0;width:100%;min-height:50px" placeholder="I felt frustrated when... I paused, breathed, and chose to respond by..."></textarea><button class="btn-save" onclick="save('d12-j')">Save</button></div>
+<div class="chk"><input type="checkbox" id="d12-done" onchange="chkUpdate(this)"><label for="d12-done">Mark Day 12 complete</label></div>
+
+<h2 id="d13"><span class="cl">Day 13</span>Self-Compassion Practice</h2>
+<p class="dc">Self-compassion is treating yourself with the same kindness you would offer a good friend who is struggling. It is not self-pity or self-indulgence. It is the recognition that you are human — and being human means making mistakes, facing challenges, and having limitations. Research from Dr. Kristin Neff shows that self-compassion is associated with greater emotional resilience, less anxiety and depression, and healthier relationships.</p>
+<p>The three elements of self-compassion are: self-kindness (being warm and understanding toward yourself), common humanity (remembering that everyone struggles — you are not alone), and mindfulness (observing your thoughts and feelings without over-identifying with them). When you notice self-criticism, place your hand on your heart and say: "This is a moment of suffering. Suffering is part of life. May I be kind to myself."</p>
+<div class="qb"><p>&ldquo;Instead of mercilessly judging and criticizing yourself for various inadequacies or shortcomings, self-compassion means you are kind and understanding when confronted with personal failings.&rdquo;</p><cite>&mdash; <b>Dr. Kristin Neff</b>, Professor of Psychology, UT Austin</cite></div>
+<div class="aff"><p>"I am worthy of my own kindness and understanding."</p><div class="src">Today&rsquo;s Affirmation</div></div>
+<div class="cd"><div class="lbl">Day 13 Practice</div><h4>Self-Compassion Break</h4><p>Think of a situation that causes you stress or self-criticism. Place your hand on your heart and repeat: "This is hard. May I be kind to myself. May I give myself the compassion I need." Write how it felt.</p><textarea class="rb" id="d13-j" style="margin:0;width:100%;min-height:50px" placeholder="I applied this to my struggle with... It felt uncomfortable at first, then softening."></textarea><button class="btn-save" onclick="save('d13-j')">Save</button></div>
+<div class="chk"><input type="checkbox" id="d13-done" onchange="chkUpdate(this)"><label for="d13-done">Mark Day 13 complete</label></div>
+
+<h2 id="d14"><span class="cl">Day 14</span>Week 2 Review</h2>
+<p class="dc">Week 2 was about reframing — learning to challenge and change your thinking patterns. You practiced the ABCDE method, identified core beliefs, developed emotional regulation, used the Pause Technique, and began cultivating self-compassion. These are advanced skills that take time to master. Celebrate the fact that you have practiced them at all. Progress, not perfection.</p>
+<div class="cd"><div class="lbl">Week 2 Reflection</div><p>Rate how consistently you practiced each skill this week (1 = barely, 5 = very consistently):</p><div class="chk"><label>Reframing: <input id="d14-r1" style="width:50px;display:inline" placeholder="1-5"></label></div>
+<div class="chk"><label>ABCDE Method: <input id="d14-r2" style="width:50px;display:inline" placeholder="1-5"></label></div>
+<div class="chk"><label>Emotional check-ins: <input id="d14-r3" style="width:50px;display:inline" placeholder="1-5"></label></div>
+<div class="chk"><label>Pause Technique: <input id="d14-r4" style="width:50px;display:inline" placeholder="1-5"></label></div>
+<div class="chk"><label>Self-compassion: <input id="d14-r5" style="width:50px;display:inline" placeholder="1-5"></label></div>
+<button class="btn-save" onclick="saveTable('d14')">Save Ratings</button></div>
+<div class="chk"><input type="checkbox" id="d14-done" onchange="chkUpdate(this)"><label for="d14-done">Mark Day 14 complete</label></div>
+
+<h2 id="d15"><span class="cl">Day 15</span>Building New Neural Pathways</h2>
+<p class="dc">You have spent two weeks identifying old patterns. Now it is time to build new ones. Neural pathways are strengthened through repetition and emotional intensity. The more you practice a new thought or behavior, the stronger the neural connection becomes. The key is deliberate practice — not just thinking about change, but actively and repeatedly choosing a new response until it becomes your default.</p>
+<p>Jim Rohn, the legendary philosopher and mentor to Tony Robbins, taught that discipline is the bridge between goals and accomplishment. "We must all suffer from one of two pains: the pain of discipline or the pain of regret. The difference is discipline weighs ounces while regret weighs tons." Building new neural pathways requires the discipline to choose the new thought even when the old thought feels more natural.</p>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=jBL6JCb4R1w" target="_blank">Jim Rohn: 7 Mindset Shifts That Build Millions</a><a href="https://www.youtube.com/watch?v=7vrTGb1ViIg" target="_blank">Simon Sinek: Your WHY Was Always There</a></div>
+<div class="aff"><p>"Every time I choose a new thought, I strengthen a new pathway."</p><div class="src">Today&rsquo;s Affirmation</div></div>
+<div class="cd"><div class="lbl">Day 15 Practice</div><h4>New Pathway Repetition Exercise</h4><p>Choose one limiting belief you identified in Day 3. Write its opposite empowering belief. Repeat it aloud 10 times with conviction. Write how it felt.</p><textarea class="rb" id="d15-j" style="margin:0;width:100%;min-height:50px" placeholder="Old belief: I am not good at speaking up.&#10;New belief: My voice matters and I express myself clearly.&#10;How it felt: Uncomfortable at first, then empowering."></textarea><button class="btn-save" onclick="save('d15-j')">Save</button></div>
+<div class="chk"><input type="checkbox" id="d15-done" onchange="chkUpdate(this)"><label for="d15-done">Mark Day 15 complete</label></div>
+
+<h2 id="d16"><span class="cl">Day 16</span>Visualization Practice</h2>
+<p class="dc">Visualization is not wishful thinking — it is a neurobiological technique. When you vividly imagine a desired outcome, your brain activates many of the same neural circuits as if the experience were real. Athletes, performers, and successful entrepreneurs use visualization to rehearse success, reduce anxiety, and improve performance. The key is sensory detail and emotional intensity.</p>
+<p>Close your eyes and imagine a future version of yourself who has completed this 30-day reset. How does that version of you think? How do they respond to challenges? What do they believe about themselves? See it. Feel it. The more real it feels to your brain, the more your brain will work to make it your reality. Dr. Joe Dispenza recommends adding emotions like gratitude, joy, and freedom to your visualizations — emotions signal to the brain that this experience is important.</p>
+<div class="aff"><p>"I can see my future self clearly, and I am becoming that person now."</p><div class="src">Today&rsquo;s Affirmation</div></div>
+<div class="cd"><div class="lbl">Day 16 Practice</div><h4>Future Self Visualization</h4><p>Spend 5 minutes visualizing your future self — the you who has completed this program. Write what you saw and felt.</p><textarea class="rb" id="d16-j" style="margin:0;width:100%;min-height:60px" placeholder="I saw myself calm, confident, handling a difficult conversation with ease. I felt a sense of peace and strength I don't always feel today."></textarea><button class="btn-save" onclick="save('d16-j')">Save</button></div>
+<div class="chk"><input type="checkbox" id="d16-done" onchange="chkUpdate(this)"><label for="d16-done">Mark Day 16 complete</label></div>
+
+<h2 id="d17"><span class="cl">Day 17</span>Affirmations That Work</h2>
+<p class="dc">Affirmations have a bad reputation because they are often used superficially. But when used correctly, they are a tool for neuroplastic change. The key is emotional resonance and believability. An affirmation that is too far from your current reality will be rejected by your subconscious. An effective affirmation bridges the gap between where you are and where you want to be.</p>
+<p>Instead of "I am wealthy" (which your scarcity-conditioned brain may reject), try "I am open to receiving abundance" or "I am capable of creating financial security." Instead of "I am confident in every situation," try "I am growing more confident every day." The best affirmations are present tense, specific, and emotionally charged. Repeat them with feeling, not as a chore.</p>
+<div class="cd"><div class="lbl">Day 17 Practice</div><h4>Design Your Affirmations</h4><p>Write three personal affirmations that feel true and stretch you slightly.</p>
+<p>1. <input class="rb" id="d17-a1" style="display:inline;width:300px;margin:0 4px;padding:4px 8px" placeholder="e.g. I am learning to trust myself"></p>
+<p>2. <input class="rb" id="d17-a2" style="display:inline;width:300px;margin:0 4px;padding:4px 8px" placeholder="e.g. I deserve to take up space"></p>
+<p>3. <input class="rb" id="d17-a3" style="display:inline;width:300px;margin:0 4px;padding:4px 8px" placeholder="e.g. Every day I am becoming more resilient"></p>
+<button class="btn-save" onclick="saveAffs('d17')">Save</button></div>
+<div class="chk"><input type="checkbox" id="d17-done" onchange="chkUpdate(this)"><label for="d17-done">Mark Day 17 complete</label></div>
+
+<h2 id="d18"><span class="cl">Day 18</span>Habit Loop Disruption</h2>
+<p class="dc">Mental habits follow the same structure as behavioral habits: cue, routine, reward. A negative thought pattern starts with a trigger (cue), follows a well-worn mental path (routine), and provides a payoff (reward) — even if that reward is just the familiarity of the known. To change a mental habit, you must identify the cue and the reward, then insert a new routine.</p>
+<p>Charles Duhigg, author of <em>The Power of Habit</em>, calls this the Habit Loop. For example, the cue might be receiving critical feedback. The old routine is spiraling into self-criticism. The reward is the false comfort of predicting your own failure (it feels safer than hope). The new routine could be: take a breath, ask "What can I learn from this?", and write one constructive action. Same cue, same reward — different routine.</p>
+<div class="aff"><p>"I can change any habit by changing the routine."</p><div class="src">Today&rsquo;s Affirmation</div></div>
+<div class="cd"><div class="lbl">Day 18 Practice</div><h4>Habit Loop Map</h4><p>Map one negative mental habit using the Habit Loop framework.</p><table class="dt"><thead><tr><th>Element</th><th>Your Pattern</th></tr></thead><tbody>
+<tr><td>Cue (trigger)</td><td><input id="d18-cue" placeholder="When I..."></td></tr>
+<tr><td>Old Routine (thought pattern)</td><td><input id="d18-old" placeholder="I think..."></td></tr>
+<tr><td>Reward (what it gives you)</td><td><input id="d18-reward" placeholder="It makes me feel..."></td></tr>
+<tr><td>New Routine (replacement)</td><td><input id="d18-new" placeholder="I will instead..."></td></tr>
+</tbody></table><button class="btn-save" onclick="saveTable('d18')">Save</button></div>
+<div class="chk"><input type="checkbox" id="d18-done" onchange="chkUpdate(this)"><label for="d18-done">Mark Day 18 complete</label></div>
+
+<h2 id="d19"><span class="cl">Day 19</span>Identity Shift</h2>
+<p class="dc">The most profound transformation happens when you stop trying to change your behavior and start changing your identity. James Clear writes: "Every action you take is a vote for the type of person you wish to become." If you want to be a person who handles stress calmly, do not focus on "calming down." Focus on becoming the kind of person who is calm under pressure. Each calm response is a vote for that identity.</p>
+<p>Identity shift is not about pretending to be someone you are not. It is about recognizing that your current identity is a collection of habits and beliefs, and you can consciously choose to update them. You are not "someone who gives up" — you are someone who is learning persistence. You are not "someone who is anxious" — you are someone who is learning to regulate their nervous system. Identity is not fixed. It is a story you are writing in real time.</p>
+<div class="aff"><p>"I am becoming the person I want to be, one choice at a time."</p><div class="src">Today&rsquo;s Affirmation</div></div>
+<div class="cd"><div class="lbl">Day 19 Practice</div><h4>Identity Statement</h4><p>Complete each sentence with a new identity statement:</p>
+<p>"I am the kind of person who <input class="rb" id="d19-1" style="display:inline;width:260px;margin:0 4px;padding:4px 8px" placeholder="handles challenges with curiosity">"</p>
+<p>"I am the kind of person who <input class="rb" id="d19-2" style="display:inline;width:260px;margin:0 4px;padding:4px 8px" placeholder="speaks kindly to myself">"</p>
+<p>"I am the kind of person who <input class="rb" id="d19-3" style="display:inline;width:260px;margin:0 4px;padding:4px 8px" placeholder="takes action despite fear">"</p>
+<button class="btn-save" onclick="saveTable('d19')">Save</button></div>
+<div class="chk"><input type="checkbox" id="d19-done" onchange="chkUpdate(this)"><label for="d19-done">Mark Day 19 complete</label></div>
+
+<h2 id="d20"><span class="cl">Day 20</span>Embracing Discomfort</h2>
+<p class="dc">Growth happens at the edge of your comfort zone. The discomfort you feel when trying something new — a new thought, a new behavior, a new way of being — is not a sign that something is wrong. It is a sign that you are expanding. Your brain is wired to resist the unknown because the unknown could be dangerous. But the discomfort of growth is the sensation of your old self stretching to make room for your new self.</p>
+<p>Eric Thomas, known as ET the Hip Hop Preacher, teaches that your level of success is determined by your capacity to endure discomfort. "How bad do you want it?" he asks. "If you want success as badly as you want to breathe, you will be successful." The willingness to feel uncomfortable — to make the call, have the conversation, sit with the uncertainty — is the defining characteristic of people who transform their lives.</p>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=pIommFjbRdw" target="_blank">Eric Thomas: God Made You a Priority — Act Like It</a></div>
+<div class="aff"><p>"Discomfort is the price of growth. I am willing to pay it."</p><div class="src">Today&rsquo;s Affirmation</div></div>
+<div class="cd"><div class="lbl">Day 20 Practice</div><h4>Discomfort Challenge</h4><p>Do one thing today that makes you uncomfortable (a conversation, a task you have been avoiding, a new behavior). Write what you did and how it felt.</p><textarea class="rb" id="d20-j" style="margin:0;width:100%;min-height:50px" placeholder="I had the conversation I've been avoiding about... It was hard, but I did it. Afterward I felt relieved and stronger."></textarea><button class="btn-save" onclick="save('d20-j')">Save</button></div>
+<div class="chk"><input type="checkbox" id="d20-done" onchange="chkUpdate(this)"><label for="d20-done">Mark Day 20 complete</label></div>
+
+<h2 id="d21"><span class="cl">Day 21</span>Week 3 Review</h2>
+<p class="dc">Week 3 was about rewiring — actively building new neural pathways through visualization, affirmations, habit disruption, identity shift, and embracing discomfort. You have moved from awareness to action. This is where real change begins. Take a moment to acknowledge how far you have come in 21 days.</p>
+<div class="cd"><div class="lbl">Week 3 Reflection</div><p>What was the most powerful practice for you this week? What felt hardest? Where are you seeing the first signs of change?</p><textarea class="rb" id="d21-j" style="margin:0;width:100%;min-height:60px" placeholder="The identity shift exercise was powerful for me. I realized I have been voting for a version of myself I don't want to be. Hardest was the discomfort challenge — but I did it."></textarea><button class="btn-save" onclick="save('d21-j')">Save</button></div>
+<div class="cd"><div class="lbl">Progress Check</div><p>Rate your mindset on a scale of 1-10 compared to Day 1:</p><div class="rw" id="rating-mindset"><button onclick="setRating('mindset',1,this)">1</button><button onclick="setRating('mindset',2,this)">2</button><button onclick="setRating('mindset',3,this)">3</button><button onclick="setRating('mindset',4,this)">4</button><button onclick="setRating('mindset',5,this)">5</button><button onclick="setRating('mindset',6,this)">6</button><button onclick="setRating('mindset',7,this)">7</button><button onclick="setRating('mindset',8,this)">8</button><button onclick="setRating('mindset',9,this)">9</button><button onclick="setRating('mindset',10,this)">10</button></div></div>
+<div class="chk"><input type="checkbox" id="d21-done" onchange="chkUpdate(this)"><label for="d21-done">Mark Day 21 complete</label></div>
+
+<h2 id="d22"><span class="cl">Day 22</span>Resilience Building</h2>
+<p class="dc">Resilience is not about avoiding hardship — it is about how you respond to it. It is the ability to bend without breaking, to adapt to adversity, and to grow through challenges. Resilience is not a fixed trait; it is a skill that can be developed through practice. The key components of resilience are: realistic optimism (seeing things as they are while believing you can handle them), emotional regulation, cognitive flexibility, and a strong support system.</p>
+<p>Post-traumatic growth is a concept from psychologists Richard Tedeschi and Lawrence Calhoun that describes how some people emerge from adversity stronger than before. They report deeper relationships, a greater appreciation for life, increased personal strength, new possibilities, and spiritual growth. Resilience is not about being unaffected by hardship. It is about using hardship as a forge for your character.</p>
+<div class="aff"><p>"I have survived every challenge I have faced so far. I can handle this too."</p><div class="src">Today&rsquo;s Affirmation</div></div>
+<div class="cd"><div class="lbl">Day 22 Practice</div><h4>Resilience Inventory</h4><p>List three past challenges you overcame. What strengths did you use? How can you apply those same strengths now?</p><textarea class="rb" id="d22-j" style="margin:0;width:100%;min-height:60px" placeholder="1. I got through a difficult breakup by leaning on friends and focusing on my health.&#10;2. I overcame a career setback by learning new skills and networking.&#10;3. I managed a financial crisis by creating a plan and sticking to it.&#10;Strength I used in all: determination and resourcefulness."></textarea><button class="btn-save" onclick="save('d22-j')">Save</button></div>
+<div class="chk"><input type="checkbox" id="d22-done" onchange="chkUpdate(this)"><label for="d22-done">Mark Day 22 complete</label></div>
+
+<h2 id="d23"><span class="cl">Day 23</span>Growth Mindset in Action</h2>
+<p class="dc">A growth mindset is not just about believing you can improve — it is about taking actions that align with that belief. It means seeking challenges, persisting through obstacles, learning from criticism, and finding inspiration in others&rsquo; success. Today, you will put growth mindset into practice by reframing a current challenge as a learning opportunity.</p>
+<div class="cd"><div class="lbl">Day 23 Practice</div><h4>Growth Mindset Reframe</h4><p>Write a current challenge. Then answer: What can I learn from this? How can I grow through this? What is one action I can take to move forward?</p><table class="dt"><thead><tr><th style="width:30%">Question</th><th style="width:70%">Your Answer</th></tr></thead><tbody>
+<tr><td>Current challenge</td><td><input id="d23-c" placeholder="e.g. I feel stuck in my career"></td></tr>
+<tr><td>What can I learn?</td><td><input id="d23-l" placeholder="e.g. What skills I need to develop"></td></tr>
+<tr><td>How can I grow?</td><td><input id="d23-g" placeholder="e.g. By taking a course or seeking mentorship"></td></tr>
+<tr><td>One action to take</td><td><input id="d23-a" placeholder="e.g. Enroll in a class this week"></td></tr>
+</tbody></table><button class="btn-save" onclick="saveTable('d23')">Save</button></div>
+<div class="chk"><input type="checkbox" id="d23-done" onchange="chkUpdate(this)"><label for="d23-done">Mark Day 23 complete</label></div>
+
+<h2 id="d24"><span class="cl">Day 24</span>Purpose and Values</h2>
+<p class="dc">A mindset reset is not complete without clarity on what matters most to you. Your values are the compass that guides your decisions when emotions are high and circumstances are uncertain. Your purpose is the reason you get up in the morning. When your thoughts and actions align with your values and purpose, you experience a sense of coherence and meaning that sustains you through difficult times.</p>
+<p>Simon Sinek&rsquo;s Golden Circle framework — Why, How, What — starts with why. "People don&rsquo;t buy what you do; they buy why you do it," he says. The same is true for your personal life. When you know your why, you can endure any how. Your values and purpose provide the motivation for the hard work of mindset change. They are the reason you keep showing up.</p>
+<div class="qb"><p>&ldquo;He who has a why to live for can bear almost any how.&rdquo;</p><cite>&mdash; <b>Friedrich Nietzsche</b> (popularized by Viktor Frankl in <em>Man&rsquo;s Search for Meaning</em>)</cite></div>
+<div class="cd"><div class="lbl">Day 24 Practice</div><h4>Values Clarification</h4><p>Rank your top 5 values from the list below (or add your own):</p><p><input class="rb" id="d24-1" style="display:inline;width:200px;margin:0 4px;padding:4px 8px" placeholder="1. e.g. Growth"></p>
+<p><input class="rb" id="d24-2" style="display:inline;width:200px;margin:0 4px;padding:4px 8px" placeholder="2. e.g. Connection"></p>
+<p><input class="rb" id="d24-3" style="display:inline;width:200px;margin:0 4px;padding:4px 8px" placeholder="3. e.g. Integrity"></p>
+<p><input class="rb" id="d24-4" style="display:inline;width:200px;margin:0 4px;padding:4px 8px" placeholder="4. e.g. Contribution"></p>
+<p><input class="rb" id="d24-5" style="display:inline;width:200px;margin:0 4px;padding:4px 8px" placeholder="5. e.g. Freedom"></p>
+<button class="btn-save" onclick="saveTable('d24')">Save</button></div>
+<div class="chk"><input type="checkbox" id="d24-done" onchange="chkUpdate(this)"><label for="d24-done">Mark Day 24 complete</label></div>
+
+<h2 id="d25"><span class="cl">Day 25</span>Boundaries and Self-Worth</h2>
+<p class="dc">Your boundaries are a direct reflection of your sense of self-worth. When you believe you matter, you set boundaries that protect your time, energy, and emotional health. When you struggle with self-worth, you say yes when you want to say no, you overextend yourself for others&rsquo; approval, and you tolerate treatment that diminishes you. Setting boundaries is not selfish — it is an act of self-respect.</p>
+<p>Mel Robbins teaches that the "Let Them" theory is a powerful boundary tool. "Let them" think what they want. "Let them" be disappointed. "Let them" have their opinion. You are not responsible for managing other people&rsquo;s feelings. Your only responsibility is to honor your own needs and values. When you set a boundary and someone reacts poorly, that is their issue to process, not yours to fix.</p>
+<div class="aff"><p>"My boundaries are an expression of my self-worth."</p><div class="src">Today&rsquo;s Affirmation</div></div>
+<div class="cd"><div class="lbl">Day 25 Practice</div><h4>Boundary Audit</h4><p>Identify one area where you need a stronger boundary. Write what you will say and do.</p><textarea class="rb" id="d25-j" style="margin:0;width:100%;min-height:60px" placeholder="Area: I say yes to extra work when I am already overwhelmed.&#10;New boundary: I will say, 'I cannot take that on right now. Let me know if it can wait.'&#10;How I will enforce it: I will not apologize for protecting my time."></textarea><button class="btn-save" onclick="save('d25-j')">Save</button></div>
+<div class="chk"><input type="checkbox" id="d25-done" onchange="chkUpdate(this)"><label for="d25-done">Mark Day 25 complete</label></div>
+
+<h2 id="d26"><span class="cl">Day 26</span>Gratitude as a Practice</h2>
+<p class="dc">Gratitude is not just a nice sentiment — it is a neurological intervention. When you deliberately focus on what you appreciate, your brain releases dopamine and serotonin, the neurotransmitters of well-being. Gratitude shifts your attention from what is lacking to what is present, from scarcity to sufficiency. It is one of the fastest ways to shift your emotional state.</p>
+<p>Dr. Robert Emmons, the world&rsquo;s leading researcher on gratitude, has shown that people who keep gratitude journals report higher levels of positive emotions, better sleep, greater resilience, and stronger relationships. They are also more likely to achieve their goals because they approach them from a state of sufficiency rather than deficit. Gratitude does not deny ambition — it grounds it in appreciation for what already exists.</p>
+<div class="aff"><p>"Gratitude transforms what I have into enough."</p><div class="src">Today&rsquo;s Affirmation</div></div>
+<div class="cd"><div class="lbl">Day 26 Practice</div><h4>Gratitude List</h4><p>Write 5 specific things you are grateful for today. Include small things.</p><textarea class="rb" id="d26-j" style="margin:0;width:100%;min-height:60px" placeholder="1. The warm sunlight through my window this morning.&#10;2. A kind message from a friend.&#10;3. My body that allows me to move and breathe.&#10;4. The meal I had today.&#10;5. The fact that I showed up for Day 26 of this program."></textarea><button class="btn-save" onclick="save('d26-j')">Save</button></div>
+<div class="chk"><input type="checkbox" id="d26-done" onchange="chkUpdate(this)"><label for="d26-done">Mark Day 26 complete</label></div>
+
+<h2 id="d27"><span class="cl">Day 27</span>Mindfulness and Presence</h2>
+<p class="dc">Mindfulness is the practice of paying attention to the present moment without judgment. It is the antidote to the mind&rsquo;s constant wandering into the past (regret) and the future (anxiety). When you are fully present, you are not worrying about tomorrow or replaying yesterday. You are simply here, in this moment, with whatever is arising. And in this moment, most things are manageable.</p>
+<p>Eckhart Tolle, author of <em>The Power of Now</em>, teaches that the present moment is all there ever is. The past is a memory, and the future is an imagination. Both exist only as thoughts in the present. When you bring your full attention to this moment, you tap into a deeper intelligence that cannot be accessed when your mind is scattered. Mindfulness is not a technique to add to your routine — it is a way of being.</p>
+<div class="aff"><p>"This moment is all there is. I choose to be fully here."</p><div class="src">Today&rsquo;s Affirmation</div></div>
+<div class="fr"><div class="lbl">Mindfulness Practice</div><p>Set a timer for 5 minutes. Sit comfortably. Focus on your breath — the sensation of air entering and leaving your nostrils. When your mind wanders (it will), gently bring it back to the breath without judgment. That is the practice. Writing below what you noticed.</p></div>
+<textarea class="rb" id="d27-j" style="margin:0;width:100%;min-height:50px" placeholder="My mind wandered to my to-do list several times. Each time I brought it back to my breath. I noticed a sense of calm after a few minutes."></textarea><button class="btn-save" onclick="save('d27-j')">Save</button>
+<div class="chk"><input type="checkbox" id="d27-done" onchange="chkUpdate(this)"><label for="d27-done">Mark Day 27 complete</label></div>
+
+<h2 id="d28"><span class="cl">Day 28</span>Week 4 Review</h2>
+<p class="dc">Week 4 was about integration — weaving resilience, growth mindset, purpose, boundaries, gratitude, and mindfulness into the fabric of your daily life. These practices are not separate from each other. They reinforce each other. Gratitude makes mindfulness easier. Boundaries protect your energy for growth. Purpose gives direction to resilience. You are not learning isolated skills — you are building an interconnected system of mental well-being.</p>
+<div class="cd"><div class="lbl">Week 4 Quiz</div><div class="qz"><div class="q">Which of the following is NOT a component of resilience?</div>
+<div class="qa" data-correct="false" onclick="checkQ(this,28)">A. Realistic optimism</div>
+<div class="qa" data-correct="false" onclick="checkQ(this,28)">B. Emotional regulation</div>
+<div class="qa" data-correct="true" onclick="checkQ(this,28)">C. Avoiding all discomfort</div>
+<div class="qa" data-correct="false" onclick="checkQ(this,28)">D. Cognitive flexibility</div>
+<div class="fbk" id="fb28"></div></div></div>
+<div class="cd"><div class="lbl">Week 4 Reflection</div><p>Which practice from this week will you continue beyond the program?</p><textarea class="rb" id="d28-j" style="margin:0;width:100%;min-height:50px" placeholder="I will continue the daily gratitude practice and the 5-minute mindfulness sit."></textarea><button class="btn-save" onclick="save('d28-j')">Save</button></div>
+<div class="chk"><input type="checkbox" id="d28-done" onchange="chkUpdate(this)"><label for="d28-done">Mark Day 28 complete</label></div>
+
+<h2 id="d29"><span class="cl">Day 29</span>Your New Operating System</h2>
+<p class="dc">Your mindset has been running on an old operating system — one built from childhood experiences, inherited beliefs, and outdated survival mechanisms. Over the past 28 days, you have been installing updates. Today, you take stock of the new system. What has changed? What still needs work? What practices will you keep running in the background to maintain your new mental operating system?</p>
+<p>Think of your mindset as a computer. The old OS had bugs: cognitive distortions, limiting beliefs, the Inner Critic running unchecked. You have now installed patches: self-awareness, reframing, the pause, self-compassion. You have added new applications: gratitude, mindfulness, visualization, affirmations. You have set up security protocols: boundaries, emotional regulation, resilience. But like any operating system, yours needs regular updates. Maintenance is not optional.</p>
+<div class="aff"><p>"I am the programmer of my own mind."</p><div class="src">Today&rsquo;s Affirmation</div></div>
+<div class="cd"><div class="lbl">Day 29 Practice</div><h4>Operating System Audit</h4><p>Rate each area of your new mindset OS (1 = needs work, 5 = strong):</p><div class="chk"><label>Self-awareness: <input id="d29-1" style="width:50px;display:inline" placeholder="1-5"></label></div>
+<div class="chk"><label>Cognitive reframing: <input id="d29-2" style="width:50px;display:inline" placeholder="1-5"></label></div>
+<div class="chk"><label>Emotional regulation: <input id="d29-3" style="width:50px;display:inline" placeholder="1-5"></label></div>
+<div class="chk"><label>Self-compassion: <input id="d29-4" style="width:50px;display:inline" placeholder="1-5"></label></div>
+<div class="chk"><label>Resilience: <input id="d29-5" style="width:50px;display:inline" placeholder="1-5"></label></div>
+<div class="chk"><label>Mindfulness: <input id="d29-6" style="width:50px;display:inline" placeholder="1-5"></label></div>
+<button class="btn-save" onclick="saveTable('d29')">Save Assessment</button></div>
+<div class="chk"><input type="checkbox" id="d29-done" onchange="chkUpdate(this)"><label for="d29-done">Mark Day 29 complete</label></div>
+
+<h2 id="d30"><span class="cl">Day 30</span>The Lifelong Practice</h2>
+<p class="dc">You have completed the 30-Day Mindset Reset. But the truth is, mindset work is never finished. There is no finish line. There is only practice — daily, consistent, compassionate practice. Old neural pathways do not disappear. They weaken from disuse but can be reactivated if you stop practicing. The new pathways you have built need ongoing reinforcement. This is not discouraging. It is liberating. You do not need to be perfect. You just need to keep showing up.</p>
+<p>Look back at where you were 30 days ago. You have identified limiting beliefs, learned to reframe negative thoughts, practiced emotional regulation, built resilience, clarified your values, set boundaries, and cultivated gratitude and mindfulness. That is not nothing. That is transformation in progress. The person who started Day 1 is not the same person who is reading this now. And the person you are becoming is still emerging.</p>
+<div class="hb"><p><b>Congratulations.</b> You have rewired your mindset at a foundational level. The practices are now yours to keep. Use them. Share them. Return to them when life gets hard. Your mind is your most powerful asset — and you now know how to maintain it. Go practice.</p></div>
+<div class="aff"><p>"I am not the same person who started 30 days ago. And I am still becoming."</p><div class="src">Final Affirmation</div></div>
+<div class="cd"><div class="lbl">Day 30 Practice</div><h4>Letter to Your Future Self</h4><p>Write a letter to yourself to read 6 months from now. Include what you learned, what you want to remember, and what you commit to continuing.</p><textarea class="rb" id="d30-j" style="margin:0;width:100%;min-height:90px" placeholder="Dear Future Me, Remember how hard Day 1 felt? You showed up anyway. Remember that you are capable of change — you proved it. Keep practicing. Keep growing. You are worth the effort. With love, Me."></textarea><button class="btn-save" onclick="save('d30-j')">Save</button></div>
+<div class="cd"><div class="lbl">Program Complete</div><h4>Final Reflection</h4><p>On a scale of 1-10, how much has your mindset shifted in 30 days?</p><div class="rw" id="rating-final"><button onclick="setRating('final',1,this)">1</button><button onclick="setRating('final',2,this)">2</button><button onclick="setRating('final',3,this)">3</button><button onclick="setRating('final',4,this)">4</button><button onclick="setRating('final',5,this)">5</button><button onclick="setRating('final',6,this)">6</button><button onclick="setRating('final',7,this)">7</button><button onclick="setRating('final',8,this)">8</button><button onclick="setRating('final',9,this)">9</button><button onclick="setRating('final',10,this)">10</button></div></div>
+<div class="chk"><input type="checkbox" id="d30-done" onchange="chkUpdate(this)"><label for="d30-done">Mark Day 30 complete — Finish Program!</label></div>
+
+<div class="tw">
+  <div class="tb">
+    <button class="on" onclick="switchTab('daily',this)">Daily Check-In</button>
+    <button onclick="switchTab('weekly',this)">Weekly Review</button>
+    <button onclick="switchTab('habits',this)">Habit Tracker</button>
+  </div>
+  <div class="tp on" id="tab-daily">
+    <h3>Daily Mindset Check-In</h3>
+    <div class="chk"><input type="checkbox" id="pc1" onchange="chkSimple('pc1')"><label>Practiced my morning affirmation</label></div>
+    <div class="chk"><input type="checkbox" id="pc2" onchange="chkSimple('pc2')"><label>Noticed a limiting belief and reframed it</label></div>
+    <div class="chk"><input type="checkbox" id="pc3" onchange="chkSimple('pc3')"><label>Practiced the Pause before reacting</label></div>
+    <div class="chk"><input type="checkbox" id="pc4" onchange="chkSimple('pc4')"><label>Spoke kindly to myself</label></div>
+    <div class="chk"><input type="checkbox" id="pc5" onchange="chkSimple('pc5')"><label>Wrote one thing I am grateful for</label></div>
+  </div>
+  <div class="tp" id="tab-weekly">
+    <h3>Weekly Reflection</h3>
+    <p>What patterns are you noticing? What feels easier? What still needs attention?</p>
+    <textarea class="rb" id="pl-weekly" style="margin:0;width:100%;min-height:70px"></textarea>
+    <button class="btn-save" onclick="save('pl-weekly')">Save Reflection</button>
+  </div>
+  <div class="tp" id="tab-habits">
+    <h3>Ongoing Habit Tracker</h3>
+    <p>Track your daily practices after the program ends:</p>
+    <table class="dt"><thead><tr><th>Habit</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr></thead><tbody>
+      <tr><td>Morning mindset practice</td><td><input type="checkbox" id="h-m1" onchange="chkSimple('h-m1')"></td><td><input type="checkbox" id="h-t1" onchange="chkSimple('h-t1')"></td><td><input type="checkbox" id="h-w1" onchange="chkSimple('h-w1')"></td><td><input type="checkbox" id="h-th1" onchange="chkSimple('h-th1')"></td><td><input type="checkbox" id="h-f1" onchange="chkSimple('h-f1')"></td><td><input type="checkbox" id="h-s1" onchange="chkSimple('h-s1')"></td><td><input type="checkbox" id="h-su1" onchange="chkSimple('h-su1')"></td></tr>
+      <tr><td>Pause before reacting</td><td><input type="checkbox" id="h-m2" onchange="chkSimple('h-m2')"></td><td><input type="checkbox" id="h-t2" onchange="chkSimple('h-t2')"></td><td><input type="checkbox" id="h-w2" onchange="chkSimple('h-w2')"></td><td><input type="checkbox" id="h-th2" onchange="chkSimple('h-th2')"></td><td><input type="checkbox" id="h-f2" onchange="chkSimple('h-f2')"></td><td><input type="checkbox" id="h-s2" onchange="chkSimple('h-s2')"></td><td><input type="checkbox" id="h-su2" onchange="chkSimple('h-su2')"></td></tr>
+      <tr><td>Gratitude (3 things)</td><td><input type="checkbox" id="h-m3" onchange="chkSimple('h-m3')"></td><td><input type="checkbox" id="h-t3" onchange="chkSimple('h-t3')"></td><td><input type="checkbox" id="h-w3" onchange="chkSimple('h-w3')"></td><td><input type="checkbox" id="h-th3" onchange="chkSimple('h-th3')"></td><td><input type="checkbox" id="h-f3" onchange="chkSimple('h-f3')"></td><td><input type="checkbox" id="h-s3" onchange="chkSimple('h-s3')"></td><td><input type="checkbox" id="h-su3" onchange="chkSimple('h-su3')"></td></tr>
+    </tbody></table>
+  </div>
+</div>
+
+<div class="fb">
+  <h2>Your Mindset Is Reset</h2>
+  <p>You have the tools. You have the practice. You have proven to yourself that change is possible. The old beliefs will try to creep back. That is normal. When they do, you now know what to do: pause, reframe, breathe, and choose again. You are not your thoughts. You are the one who notices them.</p>
+  <p><b>Keep practicing. Keep growing. Keep showing up for yourself.</b></p>
+</div>
+
+</div>
+
+<footer class="ft">
+  <p>&copy; 2025 Elevate Shop. All rights reserved.</p>
+  <p>Empowering minds and building wealth, one download at a time.</p>
+</footer>
+
+</div>
+
+<script>
+const TOTAL=30;
+const PREFIX='msr_';
+function save(id){const el=document.getElementById(id);if(!el)return;localStorage.setItem(PREFIX+id,el.value);toast('Saved')}
+function saveTable(prefix){const tbl=document.querySelector('#ch'+prefix+' table')||document.querySelector('#'+prefix+' table')||document.getElementById('tab-'+prefix)?.querySelector('table');if(!tbl)return;const inputs=tbl.querySelectorAll('input');inputs.forEach(el=>{localStorage.setItem(PREFIX+el.id,el.value)});toast('Saved')}
+function chkSimple(id){const cb=document.getElementById(id);if(cb)localStorage.setItem(PREFIX+id,cb.checked?'1':'0')}
+function chkUpdate(el){localStorage.setItem(PREFIX+el.id,el.checked?'1':'0');updateProgress()}
+function updateProgress(){let done=0;for(let i=1;i<=TOTAL;i++){const cb=document.getElementById('d'+i+'-done');if(cb&&cb.checked)done++}const pct=Math.round((done/TOTAL)*100);const pf=document.getElementById('progFill');if(pf)pf.style.width=pct+'%';const pl=document.getElementById('progLabel');if(pl)pl.textContent=done+' of '+TOTAL+' days complete'}
+function checkQ(el,num){const block=el.closest('.qz');if(!block)return;const opts=block.querySelectorAll('.qa');const fb=document.getElementById('fb'+num);opts.forEach(o=>{o.style.pointerEvents='none';o.classList.add('ds')});if(el.dataset.correct==='true'){el.classList.add('cr');if(fb){fb.textContent='Correct!';fb.className='fbk ok'}}else{el.classList.add('wr');if(fb){fb.textContent='Not quite. Review the section and try again.';fb.className='fbk fail'}opts.forEach(o=>{if(o.dataset.correct==='true')o.classList.add('cr')})}}
+function setRating(key,val,btn){const row=btn.closest('.rw');if(!row)return;row.querySelectorAll('button').forEach(b=>b.classList.remove('on'));btn.classList.add('on');localStorage.setItem(PREFIX+'rating_'+key,val)}
+function saveAffs(prefix){for(let i=1;i<=3;i++){const el=document.getElementById(prefix+'-a'+i);if(el)localStorage.setItem(PREFIX+el.id,el.value)};toast('Affirmations saved')}
+function switchTab(name,btn){document.querySelectorAll('.tb button').forEach(b=>b.classList.remove('on'));document.querySelectorAll('.tp').forEach(p=>p.classList.remove('on'));if(btn)btn.classList.add('on');const tp=document.getElementById('tab-'+name);if(tp)tp.classList.add('on')}
+function resetAll(){if(!confirm('Reset all progress?'))return;Object.keys(localStorage).filter(k=>k.startsWith(PREFIX)).forEach(k=>localStorage.removeItem(k));location.reload()}
+function toast(msg){const d=document.createElement('div');d.className='toast';d.textContent=msg;document.body.appendChild(d);setTimeout(()=>d.remove(),2200)}
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('textarea[id], input[id]').forEach(el=>{if(el.type!='checkbox'&&el.type!='button'&&el.type!='submit'){const v=localStorage.getItem(PREFIX+el.id);if(v!==null)el.value=v}});
+  document.querySelectorAll('input[type="checkbox"]').forEach(cb=>{if(localStorage.getItem(PREFIX+cb.id)==='1')cb.checked=true});
+  document.querySelectorAll('.rw').forEach(row=>{const key=row.id.replace('rating-','');const saved=localStorage.getItem(PREFIX+'rating_'+key);if(saved){row.querySelectorAll('button').forEach(b=>{if(parseInt(b.textContent)===parseInt(saved))b.classList.add('on')})}});
+  updateProgress()
+});
+</script>
+</body>
+</html>

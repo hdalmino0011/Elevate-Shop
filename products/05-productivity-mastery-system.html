@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Productivity Mastery System</title>
+<style>
+:root {
+  --primary: #1E2A38;
+  --primary-light: #2C3E50;
+  --accent: #3B6FA0;
+  --accent-light: #5B9BD5;
+  --silver: #C8D0D8;
+  --silver-light: #E8ECF0;
+  --gold: #E8C547;
+  --text: #2C3E50;
+  --text-light: #7F8C9B;
+  --bg: #FAFBFC;
+  --card-bg: #FFFFFF;
+  --success: #27AE60;
+  --warning: #E67E22;
+  --danger: #E74C3C;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; }
+.container { max-width: 960px; margin: 0 auto; padding: 20px; }
+@media print { .no-print { display: none !important; } }
+
+/* Header / Cover */
+.cover { background: linear-gradient(135deg, var(--primary) 0%, #263547 50%, #1a2733 100%); padding: 80px 40px 60px; text-align: center; border-radius: 0 0 8px 8px; position: relative; overflow: hidden; }
+.cover::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); opacity: 0.5; }
+.cover h1 { color: #fff; font-size: 3em; font-weight: 800; letter-spacing: -1px; margin-bottom: 12px; position: relative; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+.cover .subtitle { color: var(--silver); font-size: 1.2em; margin-bottom: 20px; position: relative; }
+.cover .badge { display: inline-block; background: var(--accent); color: #fff; padding: 8px 24px; border-radius: 30px; font-size: 0.9em; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; position: relative; }
+
+/* TOC */
+.toc { background: var(--card-bg); border-radius: 12px; padding: 30px 35px; margin: 30px 0; box-shadow: 0 2px 15px rgba(0,0,0,0.06); }
+.toc h2 { color: var(--primary); font-size: 1.6em; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+.toc h2::before { content: '\2630'; color: var(--accent); }
+.toc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px; }
+.toc-item { display: flex; align-items: center; gap: 10px; padding: 6px 10px; border-radius: 6px; cursor: pointer; transition: all 0.2s; text-decoration: none; color: var(--text); }
+.toc-item:hover { background: var(--silver-light); color: var(--accent); }
+.toc-num { width: 28px; height: 28px; background: var(--primary); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75em; font-weight: 700; flex-shrink: 0; }
+.toc-item.completed .toc-num { background: var(--success); }
+.toc-item.completed::after { content: '\2713'; color: var(--success); font-weight: 700; margin-left: auto; }
+
+/* Progress Bar */
+.progress-section { background: var(--card-bg); border-radius: 12px; padding: 20px 30px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+.progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.progress-header h3 { font-size: 1em; color: var(--primary); }
+.progress-header span { font-weight: 700; color: var(--accent); }
+.progress-bar { height: 8px; background: var(--silver-light); border-radius: 10px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-light)); border-radius: 10px; transition: width 0.5s ease; width: 0%; }
+.reset-btn { display: inline-block; margin-top: 12px; padding: 6px 18px; background: var(--danger); color: #fff; border: none; border-radius: 6px; font-size: 0.8em; cursor: pointer; }
+.reset-btn:hover { opacity: 0.85; }
+
+/* Chapter Card */
+.chapter { display: none; background: var(--card-bg); border-radius: 16px; padding: 40px; margin: 20px 0; box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+.chapter.active { display: block; animation: fadeIn 0.4s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.chapter h2 { color: var(--primary); font-size: 1.8em; margin-bottom: 6px; }
+.chapter .ch-num { color: var(--accent); font-weight: 700; font-size: 0.9em; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px; }
+.chapter .ch-subtitle { color: var(--text-light); font-size: 1em; margin-bottom: 25px; }
+
+/* Video embed */
+.video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; margin: 25px 0; border-radius: 12px; overflow: hidden; background: #000; }
+.video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+/* Activity Box */
+.activity { background: linear-gradient(135deg, #F0F4F8, #E8ECF0); border-left: 4px solid var(--accent); border-radius: 0 12px 12px 0; padding: 25px 30px; margin: 25px 0; }
+.activity h3 { color: var(--primary); font-size: 1.1em; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.activity h3::before { content: '\270E'; font-size: 1.2em; }
+.activity textarea, .activity input[type="text"], .activity input[type="number"] { width: 100%; background: #fff; border: 1px solid var(--silver); border-radius: 8px; padding: 12px 15px; font-family: inherit; font-size: 0.95em; color: var(--text); margin-top: 8px; resize: vertical; }
+.activity textarea:focus, .activity input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(59,111,160,0.1); }
+
+/* Callout Box */
+.callout { background: #F0F6FB; border-left: 4px solid var(--accent); border-radius: 0 12px 12px 0; padding: 20px 25px; margin: 20px 0; }
+.callout.warning { background: #FFF8F0; border-left-color: var(--warning); }
+.callout.tip { background: #F0FAF4; border-left-color: var(--success); }
+.callout strong { color: var(--primary); }
+
+/* Key Insight Box */
+.insight { background: var(--primary); color: #fff; border-radius: 12px; padding: 25px 30px; margin: 25px 0; }
+.insight h3 { color: var(--gold); margin-bottom: 10px; font-size: 1.05em; }
+.insight p { color: var(--silver); }
+
+/* Tool Templates */
+.tool-template { background: #fff; border: 2px dashed var(--silver); border-radius: 12px; padding: 25px; margin: 20px 0; }
+.tool-template h4 { color: var(--primary); margin-bottom: 15px; }
+
+/* Matrix */
+.matrix { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 15px 0; }
+.matrix-cell { background: #fff; border: 2px solid var(--silver); border-radius: 8px; padding: 12px; min-height: 80px; text-align: center; }
+.matrix-cell h5 { font-size: 0.8em; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+.matrix-cell.urgent-important { border-color: var(--danger); }
+.matrix-cell.urgent-important h5 { color: var(--danger); }
+.matrix-cell.not-urgent-important { border-color: var(--accent); }
+.matrix-cell.not-urgent-important h5 { color: var(--accent); }
+.matrix-cell.urgent-not-important { border-color: var(--warning); }
+.matrix-cell.urgent-not-important h5 { color: var(--warning); }
+.matrix-cell.not-urgent-not-important { border-color: var(--silver); }
+.matrix-cell.not-urgent-not-important h5 { color: var(--text-light); }
+.matrix-cell textarea { width: 100%; border: none; background: transparent; resize: none; font-size: 0.8em; text-align: center; min-height: 50px; }
+.matrix-cell textarea:focus { outline: none; }
+
+/* Checklist */
+.checklist { margin: 15px 0; }
+.checklist label { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: 8px; cursor: pointer; transition: background 0.2s; }
+.checklist label:hover { background: var(--silver-light); }
+.checklist input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--accent); cursor: pointer; }
+.checklist label.checked { text-decoration: line-through; color: var(--text-light); }
+
+/* Habit Tracker Grid */
+.habit-grid { display: grid; grid-template-columns: 140px repeat(7, 1fr); gap: 2px; margin: 15px 0; overflow-x: auto; }
+.habit-grid .habit-label { font-weight: 600; font-size: 0.85em; padding: 8px; display: flex; align-items: center; }
+.habit-grid .day-header { text-align: center; font-weight: 700; font-size: 0.75em; color: var(--text-light); text-transform: uppercase; padding: 6px; }
+.habit-grid .habit-cell { width: 100%; aspect-ratio: 1; border: 1px solid var(--silver); border-radius: 4px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; font-size: 1.2em; background: #fff; }
+.habit-grid .habit-cell:hover { border-color: var(--accent); }
+.habit-grid .habit-cell.checked { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+/* Pomodoro Timer */
+.pomodoro { text-align: center; padding: 30px; background: var(--primary); border-radius: 12px; color: #fff; }
+.pomodoro .timer { font-size: 4em; font-weight: 800; font-family: 'Courier New', monospace; letter-spacing: 4px; margin: 15px 0; }
+.pomodoro .timer-controls { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.pomodoro .timer-controls button { background: var(--accent); color: #fff; border: none; padding: 10px 25px; border-radius: 8px; font-size: 1em; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+.pomodoro .timer-controls button:hover { background: var(--accent-light); transform: translateY(-1px); }
+.pomodoro .timer-controls button.reset { background: rgba(255,255,255,0.15); }
+.pomodoro .timer-controls button.reset:hover { background: rgba(255,255,255,0.25); }
+
+/* Navigation */
+.chapter-nav { display: flex; justify-content: space-between; gap: 15px; margin-top: 30px; }
+.chapter-nav button { background: var(--primary); color: #fff; border: none; padding: 12px 30px; border-radius: 8px; font-size: 1em; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+.chapter-nav button:hover { background: var(--primary-light); transform: translateY(-1px); }
+.chapter-nav button:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+.chapter-nav button.next { background: var(--accent); }
+.chapter-nav button.next:hover { background: var(--accent-light); }
+.chapter-nav button.complete { background: var(--success); }
+.chapter-nav button.complete:hover { background: #219A52; }
+
+/* Checklist (activity) */
+.activity-checklist label { display: flex; align-items: flex-start; gap: 10px; padding: 6px 0; cursor: pointer; }
+.activity-checklist input[type="checkbox"] { margin-top: 5px; width: 16px; height: 16px; accent-color: var(--accent); }
+.activity-checklist label.checked span { text-decoration: line-through; color: var(--text-light); }
+
+/* Responsive */
+@media (max-width: 700px) {
+  .cover h1 { font-size: 2em; }
+  .chapter { padding: 25px 20px; }
+  .toc { padding: 20px; }
+  .toc-grid { grid-template-columns: 1fr; }
+  .matrix { grid-template-columns: 1fr; }
+  .habit-grid { grid-template-columns: 80px repeat(7, 1fr); }
+  .pomodoro .timer { font-size: 2.5em; }
+  .chapter-nav { flex-direction: column; }
+  .chapter-nav button { width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<!-- COVER -->
+<div class="cover">
+  <div class="badge">Elevate Shop — Premium Course</div>
+  <h1>Productivity<br>Mastery System</h1>
+  <p class="subtitle">22 Chapters to Master Time, Focus &amp; Sustainable High Performance</p>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress-section no-print">
+  <div class="progress-header">
+    <h3>Your Progress</h3>
+    <span id="progressPct">0%</span>
+  </div>
+  <div class="progress-bar">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+  <button class="reset-btn" onclick="resetAll()">Reset Progress</button>
+</div>
+
+<!-- TOC -->
+<div class="toc no-print">
+  <h2>Table of Contents</h2>
+  <div class="toc-grid" id="tocGrid"></div>
+</div>
+
+<!-- CHAPTERS -->
+<div id="chaptersContainer"></div>
+
+</div>
+
+<script>
+const CHAPTERS = [
+  {
+    num: 1, title: "The Productivity Mindset",
+    subtitle: "Redefining what productivity really means",
+    content: `<p>Productivity is not about doing more — it's about doing <em>what matters</em>. Most people confuse busyness with effectiveness. They fill their calendar, answer every email, and tick off low-value tasks while the truly important work remains untouched.</p>
+    <div class="callout tip"><strong>The Core Truth:</strong> Productivity is the bridge between intention and outcome. Without clarity of purpose, all the time management techniques in the world will only make you efficiently busy, not effectively productive.</div>
+    <p>In this course, you will unlearn counterproductive habits and build a system that aligns your daily actions with your highest priorities. The journey starts not with a new tool or app, but with a fundamental shift in how you think about your time and energy.</p>
+    <div class="insight"><h3>The 80/20 Principle of Productivity</h3><p>20% of your efforts produce 80% of your results. The master productivity system is designed to help you identify and amplify that critical 20% while systematically reducing or eliminating the rest.</p></div>
+    <div class="activity"><h3>Your Productivity Audit</h3><p>List the top 5 activities that consumed most of your time this past week. Rate each on a scale of 1-10 for both <strong>urgency</strong> and <strong>importance</strong>:</p>
+    <textarea rows="4" placeholder="1. Checking email (urgency: 7, importance: 3)&#10;2. ..." class="save-field" data-key="ch1-audit"></textarea></div>`
+  },
+  {
+    num: 2, title: "The Myth of Multitasking",
+    subtitle: "Why your brain cannot focus on two things at once",
+    content: `<p>Neuroscience research is clear: the human brain is not wired for multitasking. What we call multitasking is actually <strong>task-switching</strong> — rapidly shifting attention between tasks, with a cognitive cost each time.</p>
+    <div class="callout"><strong>The Switching Cost:</strong> Studies show that task-switching can reduce productivity by up to 40%. Each switch requires your brain to disengage from one context and re-engage with another, consuming mental energy and increasing error rates.</div>
+    <p>Even so-called "simple" combinations — like walking and talking — degrade performance. When both tasks require executive function, one will suffer. The more complex the tasks, the greater the penalty.</p>
+    <div class="insight"><h3>Single-Tasking: The Antidote</h3><p>By committing to one task at a time, you preserve cognitive resources, enter flow states more easily, and produce higher quality work in less time. Monotasking is not slower — it is exponentially more effective.</p></div>
+    <div class="activity"><h3>Task-Switch Awareness Log</h3><p>For the next 24 hours, note every time you switch between tasks without completing the first one. Include the trigger (notification, thought, interruption):</p>
+    <textarea rows="3" placeholder="8:30am — Checked Slack mid-report (trigger: notification sound)&#10;9:15am — Opened Twitter while writing (trigger: boredom)" class="save-field" data-key="ch2-log"></textarea></div>`
+  },
+  {
+    num: 3, title: "Deep Work",
+    subtitle: "Cal Newport's framework for focused, meaningful output",
+    youtube: "oyI-HO7moKc",
+    content: `<p>Cal Newport defines deep work as "professional activities performed in a state of distraction-free concentration that push your cognitive capabilities to their limit." These efforts create new value, improve your skills, and are hard to replicate.</p>
+    <div class="callout tip"><strong>Deep Work Quotient:</strong> The average knowledge worker spends only 2-3 hours per day on truly deep work. The rest is consumed by shallow tasks: email, meetings, administrative overhead, and context-switching.</div>
+    <p>Newport argues that deep work is becoming increasingly rare and increasingly valuable in the modern economy. Those who cultivate this skill will thrive; those who don't will be replaced by automation or outsourced to cheaper labor.</p>
+    <div class="callout warning"><strong>The Shallow Work Trap:</strong> Shallow work feels productive because it generates visible activity — sent emails, checked boxes, attended meetings. But it rarely produces meaningful progress toward your most important goals.</div>
+    <div class="activity"><h3>Your Deep Work Schedule</h3><p>Identify your peak cognitive hours. Block at least 90 minutes daily for deep work. Commit to it like a non-negotiable appointment:</p>
+    <textarea rows="3" placeholder="My peak hours: 6:00-9:00 AM&#10;Deep work block: 6:30-8:00 AM daily&#10;Location: Home office, phone on airplane mode" class="save-field" data-key="ch3-schedule"></textarea></div>`
+  },
+  {
+    num: 4, title: "Time Blocking",
+    subtitle: "Taking control of your calendar with intentional scheduling",
+    content: `<p>Time blocking is the practice of dividing your day into dedicated blocks for specific activities. Instead of a to-do list that floats in time, you assign each task a designated slot on your calendar.</p>
+    <div class="insight"><h3>The Time Blocking Formula</h3><p>Task + Time Slot + Duration = Commitment. When a task has a time and place, it moves from "someday" to "scheduled" — dramatically increasing the likelihood of completion.</p></div>
+    <p>The key distinction is between <strong>reactive scheduling</strong> (responding to others' demands) and <strong>proactive time blocking</strong> (designing your ideal day around your priorities). Start by blocking your deep work, then add meetings and shallow tasks around the edges.</p>
+    <div class="callout"><strong>Parkinson's Law:</strong> Work expands to fill the time available. Time blocking counteracts this by giving each task exactly as much time as it deserves — no more, no less.</div>
+    <div class="activity"><h3>Design Your Ideal Day</h3><p>Create a time-blocked schedule for tomorrow. Include deep work, breaks, exercise, meals, and admin time:</p>
+    <textarea rows="5" placeholder="6:00-6:30 — Morning routine&#10;6:30-8:00 — Deep work block&#10;8:00-8:30 — Breakfast & email&#10;8:30-10:00 — Project A&#10;10:00-10:15 — Break&#10;10:15-11:30 — Meetings&#10;11:30-12:00 — Admin & planning" class="save-field" data-key="ch4-schedule"></textarea></div>`
+  },
+  {
+    num: 5, title: "The Eisenhower Matrix",
+    subtitle: "Prioritizing tasks by urgency and importance",
+    content: `<p>The Eisenhower Matrix (also called the Urgent-Important Matrix) is a decision-making framework attributed to President Dwight D. Eisenhower. It categorizes tasks into four quadrants based on urgency and importance.</p>
+    <div class="matrix">
+      <div class="matrix-cell urgent-important">
+        <h5>Urgent &amp; Important</h5>
+        <p style="font-size:0.75em;color:var(--text-light)">Do First</p>
+        <textarea rows="2" placeholder="Crises, deadlines" class="save-field" data-key="ch5-q1"></textarea>
+      </div>
+      <div class="matrix-cell not-urgent-important">
+        <h5>Not Urgent &amp; Important</h5>
+        <p style="font-size:0.75em;color:var(--text-light)">Schedule</p>
+        <textarea rows="2" placeholder="Planning, learning" class="save-field" data-key="ch5-q2"></textarea>
+      </div>
+      <div class="matrix-cell urgent-not-important">
+        <h5>Urgent &amp; Not Important</h5>
+        <p style="font-size:0.75em;color:var(--text-light)">Delegate</p>
+        <textarea rows="2" placeholder="Interruptions, emails" class="save-field" data-key="ch5-q3"></textarea>
+      </div>
+      <div class="matrix-cell not-urgent-not-important">
+        <h5>Not Urgent &amp; Not Important</h5>
+        <p style="font-size:0.75em;color:var(--text-light)">Eliminate</p>
+        <textarea rows="2" placeholder="Time wasters, trivia" class="save-field" data-key="ch5-q4"></textarea>
+      </div>
+    </div>
+    <p>The goal is to spend as much time as possible in Quadrant 2 (Not Urgent, Important) — this is where strategy, relationships, learning, and prevention live. Most people get trapped in Quadrants 1 and 3, reacting to others' priorities.</p>
+    <div class="callout tip"><strong>Rule of Thumb:</strong> If something is important but not urgent, schedule it before it becomes urgent. That is the essence of proactive productivity.</div>`
+  },
+  {
+    num: 6, title: "The Pomodoro Technique",
+    subtitle: "25-minute bursts of focused work",
+    content: `<p>Developed by Francesco Cirillo in the 1980s, the Pomodoro Technique uses a timer to break work into intervals — traditionally 25 minutes — separated by short breaks. Each interval is called a "pomodoro" (Italian for tomato, after Cirillo's tomato-shaped kitchen timer).</p>
+    <div class="callout tip"><strong>Why It Works:</strong> The timer creates a sense of urgency and external accountability. The short interval lowers the barrier to starting. The breaks prevent burnout and maintain consistency. The rhythm builds momentum over multiple cycles.</div>
+    <p>The basic protocol: Choose a task, set the timer for 25 minutes, work until the timer rings, take a 5-minute break. After four pomodoros, take a longer break (15-30 minutes). Adjust intervals to match your attention span and task complexity.</p>
+    <div class="insight"><h3>Advanced Pomodoro</h3><p>Track how many pomodoros each task type requires. Over time, you will develop accurate estimates for your work, making planning more precise and reducing procrastination.</p></div>
+    <div class="pomodoro no-print"><h3>Pomodoro Timer</h3><div class="timer" id="pomodoroDisplay">25:00</div><div class="timer-controls"><button onclick="togglePomodoro()" id="pomodoroBtn">Start</button><button class="reset" onclick="resetPomodoro()">Reset</button><button class="reset" onclick="setPomodoroMode('work')">Work</button><button class="reset" onclick="setPomodoroMode('break')">Break</button></div></div>`
+  },
+  {
+    num: 7, title: "The 2-Minute Rule",
+    subtitle: "Eliminating small tasks before they accumulate",
+    content: `<p>The 2-Minute Rule, popularized by David Allen in Getting Things Done, is disarmingly simple: if a task takes less than two minutes to complete, do it immediately. Don't defer it, don't add it to a list, don't schedule it — just do it.</p>
+    <div class="callout"><strong>The Hidden Cost of Small Tasks:</strong> A two-minute task that you defer will take longer to manage than to complete. You'll think about it, write it down, review it later, and eventually do it — all before actually doing it. The overhead far exceeds the execution time.</div>
+    <p>The rule applies to both incoming tasks (emails, requests, small chores) and tasks you've been procrastinating on — often the fear is larger than the actual effort. By developing the habit of immediate action on small tasks, you prevent micro-stress from accumulating.</p>
+    <div class="insight"><h3>Habit Momentum</h3><p>The 2-Minute Rule is also a gateway habit. Want to start exercising? Commit to 2 minutes. Want to write daily? Write for 2 minutes. The hardest part is starting — and 2 minutes is low enough that starting feels easy. Once you start, you often continue.</p></div>
+    <div class="activity"><h3>Your 2-Minute Trigger List</h3><p>Identify 10 tasks you regularly defer that take less than 2 minutes. Commit to doing them immediately for one week:</p>
+    <textarea rows="4" placeholder="1. Put dish in sink after eating&#10;2. Reply to quick text&#10;3. Hang up coat&#10;4. File that one paper&#10;5. Make bed" class="save-field" data-key="ch7-list"></textarea></div>`
+  },
+  {
+    num: 8, title: "Habit Stacking",
+    subtitle: "James Clear's method for building automatic routines",
+    youtube: "M7kFkagIu1Q",
+    content: `<p>In <em>Atomic Habits</em>, James Clear introduces habit stacking: "The 1st Law of Behavior Change is to make it obvious." Habit stacking leverages the existing momentum of a current habit by "stacking" a new behavior on top of it.</p>
+    <p>The formula: <strong>After [current habit], I will [new habit].</strong></p>
+    <div class="callout tip"><strong>Example:</strong> "After I pour my morning coffee, I will review my daily priorities for one minute." The existing habit (coffee) becomes the trigger for the new habit (planning).</div>
+    <p>Habit stacking works because the current habit already has a strong neurological pathway. By attaching the new behavior to it, you piggyback on that existing momentum rather than trying to build a completely new trigger from scratch.</p>
+    <div class="insight"><h3>The Secret to Habit Design</h3><p>Be specific about when and where the habit will happen. Instead of "I will read more," say "After I brush my teeth at night, I will read one page in bed." Specificity creates clarity, and clarity creates consistency.</p></div>
+    <div class="activity"><h3>Design Your Habit Stack</h3><p>Create 3 habit stacks for habits you want to build. Use the formula: After [current habit], I will [new habit]:</p>
+    <textarea rows="4" placeholder="Morning stack:&#10;After I pour my coffee, I will open my planner for 2 minutes.&#10;&#10;Work stack:&#10;After I sit at my desk, I will write down my top 3 priorities.&#10;&#10;Evening stack:&#10;After I get into bed, I will write one sentence about my day." class="save-field" data-key="ch8-stacks"></textarea></div>`
+  },
+  {
+    num: 9, title: "GTD: Capture, Clarify, Organize",
+    subtitle: "David Allen's Getting Things Done methodology",
+    youtube: "Qo7vUdKTlhk",
+    content: `<p>David Allen's Getting Things Done (GTD) methodology is built on the principle that your mind is for having ideas, not holding them. The system has five core steps: Capture, Clarify, Organize, Reflect, and Engage.</p>
+    <div class="callout"><strong>Capture:</strong> Collect everything that has your attention — tasks, ideas, commitments, projects — into a trusted external system. Nothing is too small or too vague. The goal is a completely empty mind.</div>
+    <p>The capture process is continuous. Carry a tool (notebook, app, voice recorder) at all times. When something pops into your head, capture it immediately. Do not judge or prioritize during capture — just collect.</p>
+    <div class="callout"><strong>Clarify:</strong> For each captured item, ask: Is it actionable? If no, trash it, incubate it, or file it as reference. If yes, decide the next physical action. What specific step moves this forward?</div>
+    <div class="insight"><h3>The Next Action Principle</h3><p>Many tasks stall because they are defined in abstract terms ("plan vacation"). The GTD solution: define the next concrete action ("search flights on Skyscanner for 10 minutes"). When you know the next action, starting becomes effortless.</p></div>
+    <div class="activity"><h3>GTD Quick Capture & Clarify</h3><p>List everything currently on your mind (work and personal). Then clarify the next action for each:</p>
+    <textarea rows="5" placeholder="Item: Call dentist&#10;Next action: Find dentist number in contacts&#10;&#10;Item: Start budget review&#10;Next action: Open spreadsheet and enter last month's expenses&#10;&#10;Item: ..." class="save-field" data-key="ch9-gtd"></textarea></div>`
+  },
+  {
+    num: 10, title: "Essentialism: Less But Better",
+    subtitle: "Greg McKeown's discipline of doing only what matters",
+    youtube: "AjsN9BQRtxE",
+    content: `<p>Greg McKeown's Essentialism is the disciplined pursuit of less but better. It is not about how to get more done — it is about how to get the <em>right</em> things done by systematically eliminating everything that is not essential.</p>
+    <div class="callout tip"><strong>The Essentialist Mindset:</strong> "If it isn't a clear yes, then it's a clear no." Most opportunities, tasks, and commitments fall into the "meh" category — they are neither obviously essential nor obviously wasteful. The essentialist rejects them anyway, freeing energy for what truly matters.</div>
+    <p>Essentialism challenges the cultural narrative that more is better. More tasks, more projects, more commitments. But more is not better — better is better. Every yes is a no to something else. The question is: are you saying no to the right things?</p>
+    <div class="insight"><h3>The 90% Rule</h3><p>When evaluating any opportunity or task, score it on a scale of 1-100. If it scores below 90, say no. The 90% rule forces you to stop rationalizing marginal opportunities and focus only on the exceptional ones.</p></div>
+    <div class="activity"><h3>Your Essentialism Audit</h3><p>List your current commitments. For each, score its importance to your core goals (1-100). Be ruthless about eliminating anything below 90:</p>
+    <textarea rows="5" placeholder="Commitment: Weekly team meeting — Score: 65 (Eliminate? Delegate)&#10;Commitment: Morning workout — Score: 95 (Keep)&#10;Commitment: Side project X — Score: 40 (Eliminate)" class="save-field" data-key="ch10-audit"></textarea></div>`
+  },
+  {
+    num: 11, title: "The 80/20 Principle",
+    subtitle: "Leveraging the Pareto Law for maximum impact",
+    content: `<p>The Pareto Principle, named after economist Vilfredo Pareto, states that roughly 80% of effects come from 20% of causes. In productivity terms: 80% of your results come from 20% of your efforts.</p>
+    <div class="callout"><strong>Real-World Examples:</strong> 80% of sales come from 20% of clients. 80% of software bugs come from 20% of code. 80% of your value creation comes from 20% of your work hours.</div>
+    <p>The implications are profound: if most of your results come from a small fraction of your efforts, then doubling down on that high-impact 20% while shrinking the low-impact 80% can multiply your effectiveness without increasing your hours.</p>
+    <div class="insight"><h3>Finding Your Vital 20%</h3><p>Review your last month of work. Identify the 20% of activities that produced the most meaningful results. Now examine the 80% that consumed most of your time but produced little. The gap between them is your productivity leverage.</p></div>
+    <div class="activity"><h3>80/20 Analysis</h3><p>List your top 10 recurring activities from the past month. Estimate result % and time % for each. Identify the high-leverage 20%:</p>
+    <textarea rows="5" placeholder="Activity | Time % | Result %&#10;1. Client calls — 30% — 60% (HIGH LEVERAGE)&#10;2. Email — 25% — 5% (LOW LEVERAGE)&#10;3. Content creation — 15% — 20% (GOOD)&#10;..." class="save-field" data-key="ch11-analysis"></textarea></div>`
+  },
+  {
+    num: 12, title: "Energy Management",
+    subtitle: "Aligning work with your biological rhythms",
+    content: `<p>Productivity is not a function of time — it is a function of energy. Two hours of high-energy, focused work can produce more than eight hours of low-energy, distracted effort. Managing your energy is therefore more important than managing your time.</p>
+    <div class="callout tip"><strong>Your Energy Signature:</strong> Everyone has a unique energy curve throughout the day. Identify your peak mental energy window (typically 2-4 hours after waking) and protect it ruthlessly for your most important work.</div>
+    <p>Energy management spans four dimensions: physical (sleep, nutrition, exercise), emotional (stress management, social connection), mental (focus, cognitive load), and spiritual (purpose, meaning). Neglecting any dimension depletes your overall energy reservoir.</p>
+    <div class="insight"><h3>Ultradian Rhythms</h3><p>Your body operates in 90-120 minute cycles called ultradian rhythms. After each cycle, your brain naturally craves a break. Working through this signal reduces cognitive performance. Align your work blocks with these natural rhythms.</p></div>
+    <div class="activity"><h3>Energy Map</h3><p>Track your energy level (1-10) every hour for one week. Identify patterns and redesign your schedule around your natural peaks and valleys:</p>
+    <textarea rows="4" placeholder="6am: 5 (waking up)&#10;7am: 7&#10;8am: 9 (PEAK)&#10;9am: 9&#10;10am: 8&#10;11am: 6 (declining)&#10;12pm: 4 (lunch dip)" class="save-field" data-key="ch12-energy"></textarea></div>`
+  },
+  {
+    num: 13, title: "Beating Procrastination",
+    subtitle: "Tim Ferriss's tactics for overcoming resistance",
+    youtube: "4a9GTtTUsIc",
+    content: `<p>Procrastination is not laziness — it is an emotional regulation problem. We avoid tasks that trigger negative emotions: fear of failure, boredom, overwhelm, or ambiguity. Tim Ferriss offers practical techniques to bypass this emotional resistance.</p>
+    <div class="callout"><strong>Fear-Setting:</strong> Ferriss's antidote to fear-based procrastination. Define the worst-case scenario, identify steps to prevent it, and list how you could repair the damage if it happened. Most fears shrink dramatically when examined rationally.</div>
+    <p>The 5-Second Rule: When you feel the impulse to act on a goal, you have 5 seconds before your brain kills it. Count backwards 5-4-3-2-1 and physically move before your mind talks you out of it. This short-circuits the procrastination loop.</p>
+    <div class="callout tip"><strong>Reducing Friction:</strong> Procrastination thrives on friction. Make the desired behavior stupidly easy to start. Want to write? Open a blank document before bed. Want to exercise? Sleep in your workout clothes. Reduce the gap between intention and action.</div>
+    <div class="activity"><h3>Fear-Setting Exercise</h3><p>Identify a task you've been procrastinating on. Apply Ferriss's fear-setting: What's the worst that could happen? How can you prevent it? How would you recover?</p>
+    <textarea rows="4" placeholder="Task: Start the business plan&#10;Worst case: It's imperfect, I waste a week&#10;Prevention: Use a template, ask a mentor&#10;Repair: I still learned valuable lessons&#10;&#10;Conclusion: The fear is worse than the reality." class="save-field" data-key="ch13-fear"></textarea></div>`
+  },
+  {
+    num: 14, title: "Batch Processing",
+    subtitle: "Grouping similar tasks for cognitive efficiency",
+    content: `<p>Batch processing is the practice of grouping similar tasks together and completing them in a dedicated session, rather than switching between different types of work throughout the day.</p>
+    <div class="callout"><strong>The Science:</strong> Each time you switch between task types, your brain needs time to reload the context. Batching eliminates these context switches. Writing 10 emails in one sitting is faster than writing 10 emails spread across the day — by a significant margin.</div>
+    <p>Common batches: email processing, phone calls, content creation, data entry, errands, meal prep, and household chores. The key is to designate specific times for each batch and resist the urge to interleave them.</p>
+    <div class="insight"><h3>The Batch Size Sweet Spot</h3><p>A batch should be long enough to achieve flow but short enough to avoid fatigue. For most knowledge workers, 60-90 minutes per batch is optimal. For routine tasks (email, admin), 25-45 minutes may suffice.</p></div>
+    <div class="activity"><h3>Your Batch Plan</h3><p>Identify 5 task categories you can batch. Assign a day and time for each batch this week:</p>
+    <textarea rows="4" placeholder="Email processing: Mon/Wed/Fri 10:00-10:30am&#10;Content creation: Tue/Thu 8:00-9:30am&#10;Phone calls: Mon 2:00-3:00pm&#10;Admin: Fri 3:00-4:00pm&#10;Errands: Saturday 10:00am-12:00pm" class="save-field" data-key="ch14-batches"></textarea></div>`
+  },
+  {
+    num: 15, title: "Single-Tasking Mastery",
+    subtitle: "The art of doing one thing at a time",
+    content: `<p>Single-tasking (or monotasking) is the deliberate practice of focusing on one activity at a time until completion or a natural stopping point. It is the direct opposite of multitasking and the foundation of deep work.</p>
+    <div class="callout tip"><strong>The Mono-Task Challenge:</strong> Try this for one day: when you eat, only eat. When you listen, only listen. When you write, only write. No phone, no tabs, no background media. Notice how the quality and experience of each activity deepens.</div>
+    <p>Single-tasking is not just about work — it is about presence. When you give your full attention to whatever you are doing, you experience higher satisfaction, make fewer errors, and retain more information. It is both a productivity technique and a mindfulness practice.</p>
+    <div class="insight"><h3>The Attentional Muscle</h3><p>Your ability to sustain focus is like a muscle. Each time you resist distraction and return to your task, you strengthen it. Each time you yield to distraction, you weaken it. Single-tasking is the workout that builds this muscle over time.</p></div>
+    <div class="activity"><h3>Single-Tasking Log</h3><p>For one day, log every instance you caught yourself trying to do two things at once. What was the trigger? What would single-tasking have looked like?</p>
+    <textarea rows="3" placeholder="9am: Checked phone during breakfast — trigger: notification&#10;10:30am: Emailed during meeting — trigger: boredom&#10;2pm: Scrolled social media while on hold — trigger: waiting" class="save-field" data-key="ch15-log"></textarea></div>`
+  },
+  {
+    num: 16, title: "Digital Minimalism",
+    subtitle: "Reducing digital noise for focused attention",
+    content: `<p>Digital minimalism is a philosophy of technology use in which you focus your online time on a small number of carefully selected and optimized activities that strongly support things you value, and then happily miss out on everything else.</p>
+    <div class="callout"><strong>Attention Economics:</strong> Your attention is the most valuable resource you have. Every app, notification, and platform competes for it. If you do not deliberately curate your digital environment, someone else will curate it for you — and their interests are not aligned with yours.</div>
+    <p>The average person checks their phone 96 times per day. Each check is a micro-interruption that fragments attention. Even if you don't open the phone, the notification badge itself depletes cognitive resources by creating open loops.</p>
+    <div class="insight"><h3>The 30-Day Digital Declutter</h3><p>Take a 30-day break from optional technologies. After 30 days, reintroduce only those that pass a strict test: Does this technology directly support something I deeply value? If not, leave it out permanently.</p></div>
+    <div class="activity"><h3>Digital Audit</h3><p>List all apps and digital services you use weekly. For each, ask: Does this serve my core values? Is this the best way to serve them? How much time does it really deserve?</p>
+    <textarea rows="4" placeholder="App: Instagram — Value: Connection — Deserved time: 15min/day — Actual time: 45min/day&#10;App: News — Value: Informed — Deserved time: 10min/day — Actual: 30min/day&#10;..." class="save-field" data-key="ch16-audit"></textarea></div>`
+  },
+  {
+    num: 17, title: "Environment Design",
+    subtitle: "Marie Kondo's principles for workspace organization",
+    youtube: "w1-HMMX_NR8",
+    content: `<p>Your physical environment profoundly shapes your behavior. A cluttered, disorganized workspace constantly signals unfinished business and drains cognitive resources. Marie Kondo's KonMari method offers a framework for creating a workspace that sparks focus.</p>
+    <div class="callout tip"><strong>The Spark Joy Principle:</strong> Kondo's core tenet is to keep only what "sparks joy." In a workspace context, this means keeping only what sparks <em>focus</em>, <em>clarity</em>, and <em>motivation</em>. Everything else is visual noise.</div>
+    <p>The process: gather every item in your workspace, handle each one, and decide. Does it serve your current work? Does it inspire you? Does it have a designated home? If not, thank it and let it go. Every item that remains should have a permanent, logical home.</p>
+    <div class="callout"><strong>Visual Noise:</strong> Research shows that visual clutter reduces working memory capacity and increases stress hormones. A clean workspace isn't about aesthetics — it's about preserving cognitive bandwidth for what matters.</div>
+    <div class="insight"><h3>Digital Declutter Too</h3><p>Apply the same principles to your digital workspace: desktop icons, browser bookmarks, file folders, email inbox. Keep only what sparks focus. Archive or delete the rest. A clean digital desktop is just as important as a clean physical one.</p></div>
+    <div class="activity"><h3>Workspace Reset Plan</h3><p>List 5 changes you will make to your workspace this week to reduce visual noise and improve focus:</p>
+    <textarea rows="4" placeholder="1. Clear desk of all non-essentials&#10;2. Create a designated home for phone&#10;3. Install cable management for desk&#10;4. Clean desktop icons (max 5)&#10;5. Set up a dedicated focus lighting" class="save-field" data-key="ch17-workspace"></textarea></div>`
+  },
+  {
+    num: 18, title: "The Weekly Planning Ritual",
+    subtitle: "Designing your week with intention",
+    content: `<p>Weekly planning is the single highest-leverage productivity practice. Spending 30 minutes each week to plan prevents 10+ hours of reactive fire-fighting. It is the bridge between your long-term goals and your daily actions.</p>
+    <div class="callout"><strong>The Weekly Big Three:</strong> Identify the three most important outcomes for the upcoming week. These are your non-negotiables. If nothing else gets done, these three must. Everything else is a bonus.</div>
+    <p>An effective weekly review includes: reviewing last week's wins and lessons, checking your calendar for the upcoming week, identifying your Big Three outcomes, time-blocking your priorities, anticipating obstacles, and scheduling recovery time.</p>
+    <div class="insight"><h3>Sunday Strategy Session</h3><p>Reserve 30-60 minutes every Sunday (or whatever day precedes your work week) for your planning ritual. Make it a non-negotiable appointment with yourself. The clarity you gain will carry you through the week.</p></div>
+    <div class="activity"><h3>Weekly Planning Template</h3><p>Use this template for your next weekly planning session:</p>
+    <textarea rows="6" placeholder="WEEK OF: [Date]&#10;&#10;BIG 3 OUTCOMES:&#10;1.&#10;2.&#10;3.&#10;&#10;LESSONS FROM LAST WEEK:&#10;&#10;OBSTACLES TO ANTICIPATE:&#10;&#10;RECOVERY & RECHARGE PLAN:" class="save-field" data-key="ch18-planning"></textarea></div>`
+  },
+  {
+    num: 19, title: "Goal Setting & Review",
+    subtitle: "Connecting daily actions to long-term vision",
+    content: `<p>Without goals, productivity becomes aimless activity. Without regular review, goals become forgotten wishes. Goal setting and review form the feedback loop that keeps your daily efforts aligned with your long-term direction.</p>
+    <div class="callout tip"><strong>SMART Goals 2.0:</strong> Specific, Measurable, Achievable, Relevant, Time-bound. But add two more: Exciting (does it energize you?) and Reviewed (is there a regular check-in scheduled?). Goals that excite you and get reviewed are the ones that get done.</div>
+    <p>Set goals at three levels: yearly (vision & direction), quarterly (major outcomes), and weekly (actions). Each week, review your quarterly goals and ask: "What did I do this week that moved me closer? What can I do next week?"</p>
+    <div class="insight"><h3>The 12-Week Year</h3><p>Brian Moran's concept: treat 12 weeks as one "year." The compressed timeline creates urgency and focus. Most people accomplish more in 12 focused weeks than in 12 months of diffuse effort.</p></div>
+    <div class="activity"><h3>Goal Cascade</h3><p>Write your #1 goal at each level. Ensure they connect: weekly → quarterly → yearly:</p>
+    <textarea rows="5" placeholder="Yearly Goal:&#10;Quarterly Goal (this 12 weeks):&#10;Weekly Goal (this week):&#10;Daily Action (today):&#10;&#10;Check: Does each level clearly support the one above?" class="save-field" data-key="ch19-goals"></textarea></div>`
+  },
+  {
+    num: 20, title: "Overcoming Decision Fatigue",
+    subtitle: "Preserving mental energy by reducing choices",
+    content: `<p>Decision fatigue is the deteriorating quality of decisions after a long session of decision-making. Each choice — no matter how small — depletes a finite store of willpower and mental energy.</p>
+    <div class="callout"><strong>The Science:</strong> Baumeister's research showed that people who made a series of trivial decisions (which pen to use, what to write about) had significantly less self-control on subsequent tasks. Decision-making literally consumes glucose and mental resources.</div>
+    <p>The solution: automate, routinize, and eliminate decisions that don't matter. What you wear, what you eat for breakfast, when you exercise — these should be defaults, not daily choices. Save your decision-making bandwidth for what truly matters.</p>
+    <div class="callout tip"><strong>Decision Stacking:</strong> Make all important decisions early in the day when your mental energy is highest. Schedule routine and low-stakes decisions for later. Never make a major decision when you are tired, hungry, or decision-fatigued.</div>
+    <div class="activity"><h3>Decision Audit</h3><p>List 10 small decisions you make daily. Identify which can be automated, routinized, or eliminated:</p>
+    <textarea rows="4" placeholder="Decision: What to wear — Solution: Create a 5-outfit rotation&#10;Decision: What to eat for lunch — Solution: Meal prep Sunday&#10;Decision: When to exercise — Solution: Fixed time 6am daily&#10;Decision: Check social media? — Solution: Blocked until 5pm" class="save-field" data-key="ch20-decisions"></textarea></div>`
+  },
+  {
+    num: 21, title: "The Productivity Stack",
+    subtitle: "Building your personal system of tools and routines",
+    content: `<p>A productivity stack is the integrated combination of tools, routines, and frameworks you use to manage your work and life. The best stack is not the most complex or the most popular — it is the one you actually use consistently.</p>
+    <div class="callout"><strong>Stack Principles:</strong> 1) Capture everything in one trusted inbox. 2) Process to zero regularly. 3) Maintain a single source of truth for tasks. 4) Review weekly. 5) Keep it simple enough that you never dread using it.</div>
+    <p>Components of a healthy stack: a capture tool (notebook or app), a calendar (time-blocked), a task manager (with next actions), a notes/reference system, and a review ritual. The specific tools matter less than the consistency of the practice.</p>
+    <div class="insight"><h3>The Stack Audit</h3><p>Every quarter, audit your productivity stack. Is every tool serving a clear purpose? Are there gaps? Have any tools become overhead? Simplify ruthlessly. The goal is to spend your energy on the work, not on managing the system.</p></div>
+    <div class="activity"><h3>Design Your Stack</h3><p>Map your current productivity stack. What tool do you use for each function? What's working? What needs to change?</p>
+    <textarea rows="5" placeholder="CAPTURE: Apple Notes app — Working well&#10;CALENDAR: Google Calendar — Needs time-blocking&#10;TASKS: Todoist — Too complex, need to simplify&#10;NOTES: Notion — Good for reference&#10;REVIEW: None — Need to add Sunday planning ritual" class="save-field" data-key="ch21-stack"></textarea></div>`
+  },
+  {
+    num: 22, title: "Sustainable High Performance",
+    subtitle: "Maintaining peak productivity without burnout",
+    youtube: "vDwzmJpI4io",
+    content: `<p>Sustainable high performance is the ability to produce consistently excellent results over the long term without sacrificing health, relationships, or well-being. It is not about working harder — it is about working smarter with built-in renewal cycles.</p>
+    <div class="callout tip"><strong>The Paradox of Rest:</strong> Rest is not the opposite of productivity — it is a prerequisite for it. Elite athletes, artists, and executives all understand that peak performance requires deliberate recovery. The same applies to knowledge work.</div>
+    <p>The four pillars of sustainable performance: 1) <strong>Strategic Renewal</strong> — regular breaks, sleep, and time off. 2) <strong>Emotional Resilience</strong> — managing stress and maintaining perspective. 3) <strong>Physical Foundation</strong> — nutrition, exercise, and sleep hygiene. 4) <strong>Purpose Alignment</strong> — working on things that matter to you.</p>
+    <div class="insight"><h3>The 100% Rule</h3><p>You cannot sustainably give 100% to everything. The myth of "having it all" creates burnout. Instead, give 100% to what matters most in each season, and accept 80% elsewhere. Perfectionism is the enemy of sustainability.</p></div>
+    <div class="activity"><h3>Your Sustainability Plan</h3><p>Commit to one change in each pillar to protect your long-term performance:</p>
+    <textarea rows="5" placeholder="Renewal: Take a 10-min break every 90 min&#10;Resilience: 5-min daily gratitude practice&#10;Physical: Walk 20 min daily, sleep by 10:30pm&#10;Purpose: Review quarterly goals monthly&#10;&#10;My one non-negotiable for this month:" class="save-field" data-key="ch22-sustainability"></textarea></div>`
+  }
+];
+
+class ProductivityApp {
+  constructor() {
+    this.storageKey = 'productivity_mastery_progress';
+    this.currentChapter = 0;
+    this.init();
+  }
+
+  getProgress() {
+    try {
+      return JSON.parse(localStorage.getItem(this.storageKey)) || { completed: [], data: {} };
+    } catch { return { completed: [], data: {} }; }
+  }
+
+  saveProgress(progress) {
+    localStorage.setItem(this.storageKey, JSON.stringify(progress));
+  }
+
+  isComplete(num) {
+    return this.getProgress().completed.includes(num);
+  }
+
+  toggleChapter(num) {
+    const progress = this.getProgress();
+    const idx = progress.completed.indexOf(num);
+    if (idx === -1) {
+      progress.completed.push(num);
+    } else {
+      progress.completed.splice(idx, 1);
+    }
+    this.saveProgress(progress);
+    this.renderTOC();
+    this.renderProgress();
+  }
+
+  markComplete(num) {
+    const progress = this.getProgress();
+    if (!progress.completed.includes(num)) {
+      progress.completed.push(num);
+      this.saveProgress(progress);
+      this.renderTOC();
+      this.renderProgress();
+    }
+  }
+
+  saveField(key, value) {
+    const progress = this.getProgress();
+    progress.data[key] = value;
+    this.saveProgress(progress);
+  }
+
+  loadField(key) {
+    return this.getProgress().data[key] || '';
+  }
+
+  renderTOC() {
+    const grid = document.getElementById('tocGrid');
+    grid.innerHTML = CHAPTERS.map(ch => `
+      <a class="toc-item ${this.isComplete(ch.num) ? 'completed' : ''}" onclick="app.goToChapter(${ch.num - 1})">
+        <span class="toc-num">${ch.num}</span>
+        <span>${ch.title}</span>
+      </a>
+    `).join('');
+  }
+
+  renderProgress() {
+    const progress = this.getProgress();
+    const pct = Math.round((progress.completed.length / CHAPTERS.length) * 100);
+    document.getElementById('progressPct').textContent = pct + '%';
+    document.getElementById('progressFill').style.width = pct + '%';
+  }
+
+  renderChapters() {
+    const container = document.getElementById('chaptersContainer');
+    container.innerHTML = CHAPTERS.map((ch, i) => {
+      const prev = i > 0 ? `<button class="prev" onclick="app.goToChapter(${i - 1})">Prev</button>` : '<button disabled>Prev</button>';
+      const nextBtn = i < CHAPTERS.length - 1
+        ? `<button class="next" onclick="app.goToChapter(${i + 1})">Next</button>`
+        : '<button disabled>Next</button>';
+      const completeBtn = !this.isComplete(ch.num)
+        ? `<button class="complete" onclick="app.markComplete(${ch.num}); app.goToChapter(${i + 1 < CHAPTERS.length ? i + 1 : i})">Mark Complete & Continue</button>`
+        : `<button class="complete" style="background:var(--success)" onclick="app.goToChapter(${i + 1 < CHAPTERS.length ? i + 1 : i})">Completed - Next</button>`;
+
+      const videoHtml = ch.youtube
+        ? `<div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/${ch.youtube}?rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>`
+        : '';
+
+      return `<div class="chapter" id="ch-${i}">
+        <div class="ch-num">Chapter ${ch.num} of ${CHAPTERS.length}</div>
+        <h2>${ch.title}</h2>
+        <p class="ch-subtitle">${ch.subtitle}</p>
+        ${videoHtml}
+        ${ch.content}
+        <div class="chapter-nav no-print">
+          ${prev}
+          ${completeBtn}
+          ${nextBtn}
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  showChapter(idx) {
+    document.querySelectorAll('.chapter').forEach(el => el.classList.remove('active'));
+    const el = document.getElementById('ch-' + idx);
+    if (el) {
+      el.classList.add('active');
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    this.currentChapter = idx;
+    this.loadFields();
+  }
+
+  goToChapter(idx) {
+    if (idx >= 0 && idx < CHAPTERS.length) {
+      this.saveFields();
+      this.showChapter(idx);
+    }
+  }
+
+  saveFields() {
+    document.querySelectorAll('.save-field').forEach(el => {
+      const key = el.dataset.key;
+      if (key) this.saveField(key, el.value);
+    });
+  }
+
+  loadFields() {
+    document.querySelectorAll('.save-field').forEach(el => {
+      const key = el.dataset.key;
+      if (key) el.value = this.loadField(key);
+    });
+  }
+
+  init() {
+    this.renderTOC();
+    this.renderProgress();
+    this.renderChapters();
+    this.showChapter(0);
+
+    // Auto-save fields on input
+    document.addEventListener('input', (e) => {
+      if (e.target.classList.contains('save-field')) {
+        const key = e.target.dataset.key;
+        if (key) this.saveField(key, e.target.value);
+      }
+    });
+  }
+}
+
+// Pomodoro Timer
+let pomodoroInterval = null;
+let pomodoroTime = 25 * 60;
+let pomodoroRunning = false;
+let pomodoroMode = 'work';
+
+function updatePomodoroDisplay() {
+  const m = String(Math.floor(pomodoroTime / 60)).padStart(2, '0');
+  const s = String(pomodoroTime % 60).padStart(2, '0');
+  document.getElementById('pomodoroDisplay').textContent = m + ':' + s;
+}
+
+function togglePomodoro() {
+  if (pomodoroRunning) {
+    clearInterval(pomodoroInterval);
+    pomodoroRunning = false;
+    document.getElementById('pomodoroBtn').textContent = 'Resume';
+  } else {
+    pomodoroRunning = true;
+    document.getElementById('pomodoroBtn').textContent = 'Pause';
+    pomodoroInterval = setInterval(() => {
+      if (pomodoroTime > 0) {
+        pomodoroTime--;
+        updatePomodoroDisplay();
+      } else {
+        clearInterval(pomodoroInterval);
+        pomodoroRunning = false;
+        document.getElementById('pomodoroBtn').textContent = 'Start';
+        if (pomodoroMode === 'work') {
+          setPomodoroMode('break');
+          pomodoroTime = 5 * 60;
+          updatePomodoroDisplay();
+          alert('Pomodoro complete! Take a 5-minute break.');
+        } else {
+          setPomodoroMode('work');
+          pomodoroTime = 25 * 60;
+          updatePomodoroDisplay();
+          alert('Break over! Ready for another pomodoro?');
+        }
+      }
+    }, 1000);
+  }
+}
+
+function resetPomodoro() {
+  clearInterval(pomodoroInterval);
+  pomodoroRunning = false;
+  document.getElementById('pomodoroBtn').textContent = 'Start';
+  if (pomodoroMode === 'work') {
+    pomodoroTime = 25 * 60;
+  } else {
+    pomodoroTime = 5 * 60;
+  }
+  updatePomodoroDisplay();
+}
+
+function setPomodoroMode(mode) {
+  pomodoroMode = mode;
+  resetPomodoro();
+}
+
+function resetAll() {
+  if (!confirm('Reset all progress? This cannot be undone.')) return;
+  localStorage.removeItem('productivity_mastery_progress');
+  location.reload();
+}
+const app = new ProductivityApp();
+</script>
+<footer class="ft" style="margin-top:48px;padding:24px 20px 32px;border-top:1px solid rgba(59,111,160,0.12);text-align:center">
+  <p style="font-size:11px;color:#7F8C9B;margin-bottom:2px">&copy; 2025 Elevate Shop. All rights reserved.</p>
+  <p style="font-size:10px;color:#A0AAB5">Empowering minds and building wealth, one download at a time.</p>
+</footer>
+</div>
+</body>
+</html>

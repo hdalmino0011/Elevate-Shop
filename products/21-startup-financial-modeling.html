@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Startup Financial Modeling — Elevate Shop</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --navy: #0f1b3d; --lime: #39ff14; --white: #ffffff; --dark: #0a122e; --gray: #1e2a4a; --light-gray: #e8ecf4; }
+body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif; background: var(--dark); color: var(--white); line-height: 1.7; }
+h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
+h1 { font-size: 2.6rem; }
+h2 { font-size: 1.8rem; color: var(--lime); border-bottom: 2px solid var(--lime); padding-bottom: 0.4rem; margin-bottom: 1.2rem; }
+h3 { font-size: 1.25rem; color: var(--lime); }
+code, .mono { font-family: 'Cascadia Code', 'Fira Code', 'Consolas', 'Courier New', monospace; }
+.top-bar { background: var(--navy); border-bottom: 2px solid var(--lime); padding: 1.2rem 2rem; position: sticky; top: 0; z-index: 100; }
+.top-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.8rem; }
+.top-title { font-size: 1.1rem; font-weight: 700; color: var(--lime); }
+.progress-wrap { flex: 1; min-width: 180px; max-width: 360px; }
+.progress-label { font-size: 0.8rem; margin-bottom: 0.25rem; display: flex; justify-content: space-between; }
+.progress-track { background: var(--gray); border-radius: 20px; height: 12px; overflow: hidden; }
+.progress-fill { height: 100%; width: 0%; background: var(--lime); border-radius: 20px; transition: width 0.4s ease; }
+.btn { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1.2rem; border: none; border-radius: 6px; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; text-decoration: none; }
+.btn-lime { background: var(--lime); color: var(--dark); }
+.btn-lime:hover { background: #2adf0a; transform: translateY(-1px); }
+.btn-outline { background: transparent; color: var(--lime); border: 1.5px solid var(--lime); }
+.btn-outline:hover { background: var(--lime); color: var(--dark); }
+.btn-small { padding: 0.3rem 0.9rem; font-size: 0.78rem; }
+.btn-danger { background: #e74c3c; color: #fff; }
+.btn-danger:hover { background: #c0392b; }
+.container { max-width: 1100px; margin: 0 auto; padding: 2rem; }
+.hero { text-align: center; padding: 3rem 1rem 1.5rem; }
+.hero h1 { font-size: 2.8rem; }
+.hero .sub { color: #a0b0d0; font-size: 1.1rem; margin-top: 0.6rem; max-width: 700px; margin-left: auto; margin-right: auto; }
+.hero .badge { display: inline-block; background: var(--lime); color: var(--dark); padding: 0.25rem 1rem; border-radius: 30px; font-weight: 700; font-size: 0.85rem; margin-bottom: 0.8rem; }
+.nav-chapter { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin: 1.5rem 0; flex-wrap: wrap; }
+.nav-chapter button { min-width: 120px; }
+.chapter { background: var(--navy); border: 1px solid var(--gray); border-radius: 12px; padding: 2rem; margin-bottom: 2rem; display: none; }
+.chapter.active { display: block; }
+.chapter .meta { font-size: 0.8rem; color: #6a7ba0; margin-bottom: 0.2rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.chapter p { margin-bottom: 1rem; color: #d0d8e8; }
+.chapter ul, .chapter ol { margin: 0.8rem 0 1.2rem 1.8rem; color: #d0d8e8; }
+.chapter li { margin-bottom: 0.4rem; }
+.chapter .highlight-box { background: var(--dark); border-left: 4px solid var(--lime); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1rem 0; }
+.chapter .highlight-box strong { color: var(--lime); }
+.chapter .formula-box { background: #0a0f1f; border: 1px solid var(--gray); padding: 1rem 1.2rem; border-radius: 8px; margin: 1rem 0; font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace; font-size: 0.95rem; color: var(--lime); overflow-x: auto; }
+.video-wrapper { position: relative; width: 100%; max-width: 640px; margin: 1.2rem 0; aspect-ratio: 16 / 9; }
+.video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 8px; }
+.save-area { margin-top: 1.5rem; padding-top: 1.2rem; border-top: 1px solid var(--gray); }
+.save-area label { display: block; font-size: 0.85rem; font-weight: 600; color: #a0b0d0; margin-bottom: 0.3rem; }
+.save-area textarea { width: 100%; min-height: 80px; background: var(--dark); border: 1px solid var(--gray); border-radius: 6px; padding: 0.7rem; color: var(--white); font-family: inherit; font-size: 0.9rem; resize: vertical; }
+.save-area textarea:focus { outline: none; border-color: var(--lime); }
+.save-area .btn-row { display: flex; gap: 0.6rem; margin-top: 0.6rem; flex-wrap: wrap; }
+footer { text-align: center; padding: 2.5rem 1rem; border-top: 1px solid var(--gray); margin-top: 2rem; color: #6a7ba0; }
+footer p { margin: 0.25rem 0; font-size: 0.9rem; }
+footer .tagline { color: #4a5a7a; font-style: italic; }
+@media (max-width: 700px) {
+  .container { padding: 1rem; }
+  .hero h1 { font-size: 1.8rem; }
+  .chapter { padding: 1.2rem; }
+  .top-bar { padding: 0.8rem 1rem; }
+  h2 { font-size: 1.4rem; }
+}
+@media print {
+  .top-bar, .save-area, .nav-chapter, .btn, .video-wrapper { display: none !important; }
+  .chapter { display: block !important; page-break-after: always; background: #fff; color: #000; border: none; }
+  body { background: #fff; color: #000; }
+  .chapter p, .chapter li, .chapter .highlight-box { color: #222; }
+  .chapter .highlight-box { background: #f0f4ff; }
+  .chapter h2 { color: #0f1b3d; border-bottom-color: #0f1b3d; }
+  .chapter .formula-box { color: #0f1b3d; background: #f5f5f5; }
+  .hero { padding: 1rem 0; }
+  .hero h1 { color: #0f1b3d; }
+  .hero .sub { color: #444; }
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar" id="topBar">
+  <div class="top-inner">
+    <div class="top-title">&#9632; Startup Financial Modeling</div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span id="progressText">0 / 20</span><span id="progressPct">0%</span></div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+      <button class="btn btn-outline btn-small" onclick="window.resetAll()">&#8635; Reset</button>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+<div class="hero">
+  <div class="badge">20 Chapters &bull; Video Course</div>
+  <h1>Startup Financial Modeling</h1>
+  <p class="sub">Learn to build realistic financial models for startups &mdash; revenue forecasting, expense projections, burn rate, runway, unit economics, scenario analysis, and investor pitch sheets.</p>
+</div>
+
+<div class="nav-chapter">
+  <button class="btn btn-outline" id="prevBtn" onclick="window.prevChapter()">&larr; Previous</button>
+  <span id="chapIndicator" style="font-weight:600;color:var(--lime);">Chapter 1 of 20</span>
+  <button class="btn btn-lime" id="nextBtn" onclick="window.nextChapter()">Next &rarr;</button>
+</div>
+
+<div id="chapterContainer">
+
+<div class="chapter active" data-chapter="1">
+<div class="meta">Chapter 1</div>
+<h2>Why Financial Models Matter</h2>
+<p><strong>The language of business.</strong> Every successful startup speaks the language of numbers. A financial model is more than a spreadsheet &mdash; it is a dynamic representation of your business logic, your assumptions, and your strategy. Investors demand it. Founders need it. Without a model, you are flying blind.</p>
+<p>Financial models serve three critical purposes: they force you to quantify your assumptions, they reveal the key drivers of your business, and they provide a common language for discussion with co-founders, advisors, and investors. A well-built model answers questions like "What happens if we grow 20% slower?" or "When do we need our next funding round?"</p>
+<div class="highlight-box"><strong>Key Insight:</strong> A financial model is not a prediction of the future; it is a tool for understanding your business under different scenarios. The process of building the model is often more valuable than the model itself.</p></div>
+<p>The best founders update their models weekly, not quarterly. They treat the model as a living document that evolves with the business. In this course, you will build your own complete startup financial model from scratch, learning each component step by step.</p>
+<div class="video-wrapper"><iframe src="https://www.youtube.com/embed/qp0HIF3SfI4" allowfullscreen loading="lazy"></iframe></div>
+<div class="save-area">
+  <label for="notes1">Your Notes (saved automatically)</label>
+  <textarea id="notes1" placeholder="Write your thoughts on this chapter..." oninput="window.saveNote(1)"></textarea>
+  <div class="btn-row">
+    <button class="btn btn-lime btn-small" onclick="window.toggleComplete(1)"><span id="status1">&#9634; Mark Complete</span></button>
+  </div>
+</div>
+</div>
+
+<div class="chapter" data-chapter="2">
+<div class="meta">Chapter 2</div>
+<h2>Revenue Forecasting</h2>
+<p><strong>Top-down vs bottom-up.</strong> Revenue is the engine of any business. There are two fundamental approaches to forecasting it. Top-down forecasting starts with the total addressable market (TAM) and assumes you capture a percentage of it. Bottom-up forecasting builds from individual unit sales &mdash; number of customers multiplied by average revenue per customer.</p>
+<p>Investors overwhelmingly prefer bottom-up forecasts because they are grounded in real operational metrics. A bottom-up model answers: "How many sales reps do we need to close 100 deals?" or "What is our conversion rate from trial to paid?" Top-down is useful for storytelling and sizing the opportunity, but bottom-up is where credibility lives.</p>
+<div class="highlight-box"><strong>Best Practice:</strong> Use top-down for your market narrative (the "why this can be huge") and bottom-up for your financial projections (the "how we actually get there"). Both belong in your pitch deck and your model.</div>
+<div class="formula-box">Revenue = Customers &times; Average Revenue Per Customer (ARPC)<br>or<br>SaaS Revenue = Subscribers &times; Monthly Recurring Revenue Per User (ARPU)</div>
+<p>Build your forecast with monthly granularity for the first 12&ndash;24 months, then annual projections for years 3&ndash;5. Always show your key assumptions clearly so anyone reading the model can understand what drives growth.</p>
+<div class="save-area">
+  <label for="notes2">Your Notes</label>
+  <textarea id="notes2" placeholder="Write your thoughts..." oninput="window.saveNote(2)"></textarea>
+  <div class="btn-row">
+    <button class="btn btn-lime btn-small" onclick="window.toggleComplete(2)"><span id="status2">&#9634; Mark Complete</span></button>
+  </div>
+</div>
+</div>
+
+<div class="chapter" data-chapter="3">
+<div class="meta">Chapter 3</div>
+<h2>Expense Projections</h2>
+<p><strong>Fixed vs variable costs.</strong> Every dollar you spend falls into one of two categories. Fixed costs remain constant regardless of revenue &mdash; rent, salaries, software subscriptions. Variable costs scale with revenue &mdash; payment processing fees, cloud hosting, customer support headcount. Understanding this distinction is critical for modeling profitability.</p>
+<p>Most startups fail because they underestimate how fast costs grow with revenue. This is called "cost creep." As you add customers, you need more servers, more support staff, more salespeople. Your model must account for these variable costs explicitly. A common mistake is treating all costs as fixed and then wondering why margins shrink as revenue grows.</p>
+<div class="video-wrapper"><iframe src="https://www.youtube.com/embed/SMYKAbbOefA" allowfullscreen loading="lazy"></iframe></div>
+<div class="highlight-box"><strong>Rule of Thumb:</strong> For SaaS companies, cost of goods sold (COGS) typically runs 20&ndash;40% of revenue. Include hosting, infrastructure, payment fees, and customer success headcount in COGS. Everything else is operating expense.</div>
+<p>Build your expense sheet by department: Engineering, Sales &amp; Marketing, General &amp; Administrative, and Customer Success. Within each department, separate fixed from variable costs. This structure makes it easy to adjust headcount or spending levels in your scenario analysis later.</p>
+<div class="save-area">
+  <label for="notes3">Your Notes</label>
+  <textarea id="notes3" placeholder="Write your thoughts..." oninput="window.saveNote(3)"></textarea>
+  <div class="btn-row">
+    <button class="btn btn-lime btn-small" onclick="window.toggleComplete(3)"><span id="status3">&#9634; Mark Complete</span></button>
+  </div>
+</div>
+</div>
+
+<div class="chapter" data-chapter="4">
+<div class="meta">Chapter 4</div>
+<h2>Burn Rate &amp; Runway</h2>
+<p><strong>How long until you need funding.</strong> Burn rate is the rate at which your startup spends cash. Gross burn is total monthly operating expenses. Net burn is gross burn minus monthly revenue. Runway is how many months you have until you run out of cash, calculated as current cash divided by net burn rate.</p>
+<p>These are the most watched metrics by investors. If your runway drops below 6 months, most VCs will consider your company at risk. Smart founders raise money when they have 12&ndash;18 months of runway remaining, not when they're down to 3 months. Running out of cash is the single biggest cause of startup failure.</p>
+<div class="formula-box">Gross Burn = Total Monthly Operating Expenses<br>Net Burn = Gross Burn &minus; Monthly Revenue<br>Runway (months) = Cash on Hand &divide; Net Burn</div>
+<div class="highlight-box"><strong>Critical:</strong> Always model your burn rate in a separate tab with clear drivers. Show how headcount additions, marketing spend, and infrastructure costs affect your monthly cash consumption. This is the first tab investors flip to.</div>
+<p>Build a cash runway chart that projects your cash balance forward 24 months. Mark the point where cash hits zero. This is your "drop dead" date. Now work backward to determine when you need to start the fundraising process (it takes 3&ndash;6 months to close a round).</p>
+<div class="save-area">
+  <label for="notes4">Your Notes</label>
+  <textarea id="notes4" placeholder="Write your thoughts..." oninput="window.saveNote(4)"></textarea>
+  <div class="btn-row">
+    <button class="btn btn-lime btn-small" onclick="window.toggleComplete(4)"><span id="status4">&#9634; Mark Complete</span></button>
+  </div>
+</div>
+</div>
+
+<div class="chapter" data-chapter="5">
+<div class="meta">Chapter 5</div>
+<h2>Unit Economics</h2>
+<p><strong>CAC, LTV, and the magic ratio.</strong> Unit economics tell you whether each customer is profitable. Customer Acquisition Cost (CAC) is the total sales and marketing cost divided by the number of new customers acquired. Lifetime Value (LTV) is the total revenue a customer generates over their entire relationship with your business.</p>
+<p>The LTV/CAC ratio is the single most important metric in venture capital. A ratio above 3x is considered healthy. Below 1x means you lose money on every customer. Below 3x means you need to optimize before scaling. Above 5x means you might be under-investing in growth.</p>
+<div class="video-wrapper"><iframe src="https://www.youtube.com/embed/cBzhCWV6Q7Q" allowfullscreen loading="lazy"></iframe></div>
+<div class="formula-box">CAC = Total Sales &amp; Marketing Cost &divide; New Customers Acquired<br>LTV = Average Revenue Per User &times; Gross Margin &times; Average Customer Lifespan (months)<br>LTV / CAC Ratio = LTV &divide; CAC</div>
+<p>Model both CAC and LTV with monthly granularity. Track how CAC changes as you scale sales channels. Track how LTV changes with retention improvements. The interplay between these two metrics drives your growth strategy and your fundraising narrative.</p>
+<div class="save-area">
+  <label for="notes5">Your Notes</label>
+  <textarea id="notes5" placeholder="Write your thoughts..." oninput="window.saveNote(5)"></textarea>
+  <div class="btn-row">
+    <button class="btn btn-lime btn-small" onclick="window.toggleComplete(5)"><span id="status5">&#9634; Mark Complete</span></button>
+  </div>
+</div>
+</div>
+
+<div class="chapter" data-chapter="6">
+<div class="meta">Chapter 6</div>
+<h2>Gross Margin Analysis</h2>
+<p><strong>Understanding your profit per sale.</strong> Gross margin is revenue minus the direct cost of delivering your product or service, expressed as a percentage of revenue. For SaaS businesses, gross margins typically range from 65% to 85%. For physical products, margins are often 30% to 50%. Gross margin reveals the fundamental economics of your business model.</p>
+<p>A low gross margin means you have less room for operating expenses and less tolerance for pricing pressure. Investors use gross margin as a proxy for business quality and defensibility. High-margin businesses can invest more in R&amp;D and sales, creating a competitive moat.</p>
+<div class="highlight-box"><strong>Key Metric:</strong> Never let gross margin decline as you scale. If your margin compresses with volume, your unit economics are broken. The model should show steady or improving gross margins over time.</div>
+<p>Build a gross margin waterfall that breaks down every component of cost of goods sold. Include hosting, support, payment processing, and any third-party services. Model how margin improves as you achieve economies of scale.</p>
+<div class="save-area">
+  <label for="notes6">Your Notes</label>
+  <textarea id="notes6" placeholder="Write your thoughts..." oninput="window.saveNote(6)"></textarea>
+  <div class="btn-row">
+    <button class="btn btn-lime btn-small" onclick="window.toggleComplete(6)"><span id="status6">&#9634; Mark Complete</span></button>
+  </div>
+</div>
+</div>
+
+<div class="chapter" data-chapter="7">
+<div class="meta">Chapter 7</div>
+<h2>Building a P&amp;L Statement</h2>
+<p><strong>Income and expenses.</strong> The Profit &amp; Loss statement (also called the income statement) summarizes revenue, costs, and expenses over a period. It shows whether your business is profitable. The standard P&amp;L structure: Revenue &minus; COGS = Gross Profit &minus; Operating Expenses = Operating Income (EBITDA) &minus; Interest &amp; Taxes = Net Income.</p>
+<p>Your financial model should generate a monthly P&amp;L for at least the first two years, then annual for years 3&ndash;5. Each line item should be calculated from operational drivers, not hard-coded. Revenue comes from your revenue model. COGS comes from your cost of goods sold model. Salaries come from your headcount plan.</p>
+<div class="video-wrapper"><iframe src="https://www.youtube.com/embed/xFr0FKnaLDk" allowfullscreen loading="lazy"></iframe></div>
+<div class="highlight-box"><strong>Best Practice:</strong> Never hard-code numbers in your P&amp;L. Every cell should be a formula referencing an assumption or a calculation from another sheet. This makes it easy to update assumptions and run scenarios.</div>
+<p>Include common line items: subscription revenue, professional services revenue, COGS (hosting, support), R&amp;D expenses, sales &amp; marketing, G&amp;A, depreciation, interest income/expense, and taxes. Show EBITDA and net income both in dollars and as a percentage of revenue.</p>
+<div class="save-area">
+  <label for="notes7">Your Notes</label>
+  <textarea id="notes7" placeholder="Write your thoughts..." oninput="window.saveNote(7)"></textarea>
+  <div class="btn-row">
+    <button class="btn btn-lime btn-small" onclick="window.toggleComplete(7)"><span id="status7">&#9634; Mark Complete</span></button>
+  </div>
+</div>
+</div>
+
+<div class="chapter" data-chapter="8">
+<div class="meta">Chapter 8</div>
+<h2>Balance Sheet Basics</h2>
+<p><strong>Assets, liabilities, equity.</strong> The balance sheet provides a snapshot of your company's financial position at a point in time. Assets = Liabilities + Shareholders' Equity. Assets include cash, accounts receivable, prepaid expenses, and equipment. Liabilities include accounts payable, accrued expenses, and debt. Equity includes common stock, preferred stock, and retained earnings.</p>
+<p>Most early-stage startups neglect the balance sheet because they focus on growth and burn rate. But investors will scrutinize your balance sheet, especially in later rounds. It reveals how you manage working capital, whether you have hidden liabilities, and how much equity has been diluted.</p>
+<div class="formula-box">Assets = Liabilities + Shareholders' Equity<br><br>Cash + Receivables + Inventory + Fixed Assets = Total Assets<br>Payables + Debt + Accrued Expenses = Total Liabilities<br>Common Stock + Preferred Stock + Retained Earnings = Total Equity</div>
+<p>In your model, build a projected balance sheet that links to the P&amp;L and cash flow statement. Cash flows from operations affect cash. Net income flows into retained earnings. Debt raises and repayments affect both cash and liabilities. The model should balance automatically.</p>
+<div class="save-area">
+  <label for="notes8">Your Notes</label>
+  <textarea id="notes8" placeholder="Write your thoughts..." oninput="window.saveNote(8)"></textarea>
+  <div class="btn-row">
+    <button class="btn btn-lime btn-small" onclick="window.toggleComplete(8)"><span id="status8">&#9634; Mark Complete</span></button>
+  </div>
+</div>
+</div>
+
+<div class="chapter" data-chapter="9">
+<div class="meta">Chapter 9</div>
+<h2>Cash Flow Statement</h2>
+<p><strong>Cash is king.</strong> Profit is an opinion; cash is a fact. The cash flow statement tracks the actual movement of cash in and out of your business across three categories: operating activities, investing activities, and financing activities. It reconciles net income (from the P&amp;L) to the actual change in cash (on the balance sheet).</p>
+<p>Many profitable startups have gone bankrupt because they ran out of cash. The cash flow statement reveals the timing mismatches between when you recognize revenue and when you collect cash, and between when you incur expenses and when you pay them. This is especially critical for startups with long sales cycles or subscription billing.</p>
+<div class="highlight-box"><strong>Warning:</strong> If your cash flow from operations is consistently negative, you have a business model problem, not a fundraising problem. Negative cash flow from operations means your core business burns cash even before you invest in growth.</div>
+<p>Build a detailed monthly cash flow projection. Show operating cash flow (collections minus payments), investing cash flow (equipment purchases), and financing cash flow (equity raises, debt). The bottom line is the net change in cash, which should match the change in cash on your balance sheet.</p>
+<div class="save-area">
+  <label for="notes9">Your Notes</label>
+  <textarea id="notes9" placeholder="Write your thoughts..." oninput="window.saveNote(9)"></textarea>
+  <div class="btn-row">
+    <button class="btn btn-lime btn-small" onclick="window.toggleComplete(9)"><span id="status9">&#9634; Mark Complete</span></button>
+  </div>
+</div>
+</div>
+
+<div class="chapter" data-chapter="10">
+<div class="meta">Chapter 10</div>
+<h2>Scenario Analysis</h2>
+<p><strong>Best, base, worst case.</strong> No forecast is perfectly accurate. Scenario analysis prepares you for different futures by modeling three versions of your business: a base case (your most likely plan), a best case (optimistic but realistic), and a worst case (conservative with downside risks). Each scenario changes key assumptions like growth rate, churn, pricing, and hiring pace.</p>
+<p>Investors want to see that you have thought about what could go wrong. They will ask: "What happens if your growth is half of what you project?" or "What if your largest customer churns?" Scenario analysis shows that you understand the key risks in your business and have contingency plans.</p>
+<div class="video-wrapper"><iframe src="https://www.youtube.com/embed/g9tG_Mrj90M" allowfullscreen loading="lazy"></iframe></div>
+<div class="highlight-box"><strong>Framework:</strong> Identify your 3&ndash;5 most important assumptions. Create scenarios by varying those assumptions by &plusmn;20&ndash;40%. Compare the outcomes on revenue, cash runway, and fundraising needs across all three scenarios.</div>
+<p>Build a dedicated scenario tab in your model with a dropdown to switch between cases. Alternatively, use Excel's scenario manager or build separate columns for each case. The goal is to understand the range of possible outcomes, not to pick the most flattering one.</p>
+<div class="save-area">
+  <label for="notes10">Your Notes</label>
+  <textarea id="notes10" placeholder="Write your thoughts..." oninput="window.saveNote(10)"></textarea>
+  <div class="btn-row">
+    <button class="btn btn-lime btn-small" onclick="window.toggleComplete(10)"><span id="status10">&#9634; Mark Complete</span></button>
+  </div>
+</div>
+</div>
+
+<div class="chapter" data-chapter="11">
+<div class="meta">Chapter 11</div>
+<h2>Sensitivity Analysis</h2>
+<p><strong>What moves the needle.</strong> Sensitivity analysis identifies which variables have the biggest impact on your financial outcomes. A tornado chart is the classic tool: it shows how changing each assumption by a fixed percentage affects your key output (revenue, profit, or valuation).</p>
+<p>The most sensitive variables in most startup models are: customer acquisition cost (CAC), monthly churn rate, average revenue per user (ARPU), and sales cycle length. A 10% improvement in any of these can swing your valuation by millions. Sensitivity analysis tells you where to focus your management attention.</p>
+<div class="highlight-box"><strong>Actionable Insight:</strong> If your model shows that reducing churn by 2% has twice the impact on valuation as doubling your ad spend, you know exactly where to deploy resources. Let the data guide your strategy.</div>
+<p>Build a data table in your model with your key output (e.g., Year 3 revenue) as the result. Vary two input assumptions at a time. Create a two-variable sensitivity table. Color-code the output so you can visually see which quadrant of assumptions produces the best outcomes.</p>
+<div class="save-area">
+  <label for="notes11">Your Notes</label>
+  <textarea id="notes11" placeholder="Write your thoughts..." oninput="window.saveNote(11)"></textarea>
+  <div class="btn-row">
+    <button class="btn btn-lime btn-small" onclick="window.toggleComplete(11)"><span id="status11">&#9634; Mark Complete</span></button>
+  </div>
+</div>
+</div>
+
+<div class="chapter" data-chapter="12">
+<div class="meta">Chapter 12</div>
+<h2>Break-Even Analysis</h2>
+<p><strong>When will you profit.</strong> Break-even is the point where total revenue equals total costs &mdash; you are no longer losing money. For startups, there are two break-even points: gross margin break-even (where gross profit covers operating expenses) and cash flow break-even (where cash in equals cash out).</p>
+<p>Your model should clearly show the month and year of both break-even points. Most venture-backed startups aim for break-even within 18&ndash;36 months. Investors want to know that you have a clear path to profitability, even if you are currently burning cash to grow.</p>
+<div class="formula-box">Break-Even Revenue = Total Fixed Costs &divide; Contribution Margin<br>Contribution Margin = (Revenue &minus; Variable Costs) &divide; Revenue</div>
+<div class="highlight-box"><strong>Key Insight:</strong> Break-even analysis helps you determine your pricing floor. If you know your fixed costs and variable costs per unit, you can calculate the minimum price you must charge to eventually become profitable. This is your pricing sanity check.</div>
+<p>Build a break-even chart in your model with revenue and total cost curves. The intersection point is your break-even. Add a data label showing the exact month and revenue amount. Update this calculation every month as your cost structure changes.</p>
+<div class="save-area">
+  <label for="notes12">Your Notes</label>
+  <textarea id="notes12" placeholder="Write your thoughts..." oninput="window.saveNote(12)"></textarea>
+  <div class="btn-row">
+    <button class="btn btn-lime btn-small" onclick="window.toggleComplete(12)"><span id="status12">&#9634; Mark Complete</span></button>
+  </div>
+</div>
+</div>
+
+<div class="chapter" data-chapter="13">
+<div class="meta">Chapter 13</div>
+<h2>Funding Rounds</h2>
+<p><strong>How models change at each stage.</strong> Your financial model evolves with each funding round. In the pre-seed stage, your model is simple &mdash; a 12-month cash flow projection with basic assumptions. By Series A, investors expect a full three-statement model with detailed unit economics and scenario analysis. By Series B, your model should include cohort analysis, LTV by segment, and a cap table.</p>
+<p>Each funding round also changes the capital structure of your company. New investors bring different term sheets, liquidation preferences, and board control. Your model should track the cumulative dilution across all rounds and show the ownership percentage for each stakeholder.</p>
+<div class="highlight-box"><strong>Rule of Thumb:</strong> Founders typically give up 15&ndash;25% per funding round. After a seed round and two VC rounds, founders often own 40&ndash;60% of the company combined. Model this explicitly to avoid surprises.</div>
+<p>Build a funding round summary tab that shows the date, amount raised, pre-money valuation, post-money valuation, and dilution for each round. Include a waterfall chart showing how proceeds are distributed in a liquidation scenario.</p>
+<div class="save-area">
+  <label for="notes13">Your Notes</label>
+  <textarea id="notes13" placeholder="Write your thoughts..." oninput="window.saveNote(13)"></textarea>
+  <div class="btn-row">
+    <button class="btn btn-lime btn-small" onclick="window.toggleComplete(13)"><span id="status13">&#9634; Mark Complete</span></button>
+  </div>
+</div>
+</div>
+
+<div class="chapter" data-chapter="14">
+<div class="meta">Chapter 14</div>
+<h2>Investor Pitch Sheets</h2>
+<p><strong>What VCs look for.</strong> When a venture capitalist opens your financial model, they flip to three things first: the cash flow projection (runway), the revenue build (growth rate and drivers), and the unit economics (LTV/CAC ratio). If these three tabs don't tell a compelling story, they never look at the rest.</p>
+<p>Professional-grade pitch sheets include: a cover page with key metrics (ARR, growth rate, gross margin, LTV/CAC), a revenue build with clear assumptions, a headcount plan showing team growth, a P&amp;L with EBITDA margin, a cash flow statement, a sensitivity table, and a use-of-funds slide explaining how the investment will be deployed.</p>
+<div class="video-wrapper"><iframe src="https://www.youtube.com/embed/as0uWN5ad64" allowfullscreen loading="lazy"></iframe></div>
+<div class="highlight-box"><strong>The Golden Rule:</strong> Every number in your pitch sheet should be traceable to an assumption in your model. If a VC asks "how did you get to $5M in Year 3 revenue?" you should be able to walk them through the math in 30 seconds.</div>
+<p>Format your pitch sheet with professional styling: consistent fonts, color-coded sections (green for revenue, blue for metrics, orange for expenses), and clear headers. Use sparklines to show trends. Include a summary dashboard with the 5&ndash;7 key metrics that matter most for your stage and business model.</p>
+<div class="save-area">
+  <label for="notes14">Your Notes</label>
+  <textarea id="notes14" placeholder="Write your thoughts..." oninput="window.saveNote(14)"></textarea>
+  <div class="btn-row">
+    <button class="btn btn-lime btn-small" onclick="window.toggleComplete(14)"><span id="status14">&#9634; Mark Complete</span></button>
+  </div>
+</div>
+</div>
+
+<div class="chapter" data-chapter="15">
+<div class="meta">Chapter 15</div>
+<h2>SaaS Metrics</h2>
+<p><strong>MRR, ARR, churn, expansion.</strong> SaaS businesses live and die by recurring revenue metrics. Monthly Recurring Revenue (MRR) is the lifeblood. Annual Recurring Revenue (ARR) is MRR &times; 12. Net Revenue Retention (NRR) measures how much revenue you keep from existing customers after churn and expansion, expressed as a percentage.</p>
+<p>Best-in-class SaaS companies have NRR above 120%, meaning existing customers are growing faster than churn is taking away. Negative net churn is the holy grail of SaaS. It means your customer base naturally grows revenue without any new sales. Public SaaS companies trade at premium valuations for high NRR.</p>
+<div class="formula-box">MRR = Number of Paying Customers &times; Average Revenue Per User<br>ARR = MRR &times; 12<br>Net Revenue Retention = (Starting MRR &minus; Churned MRR + Expansion MRR) &divide; Starting MRR</div>
+<div class="highlight-box"><strong>Benchmark:</strong> Top quartile SaaS companies have monthly logo churn below 2% and NRR above 120%. If your churn is above 5% monthly, you have a product-market fit problem, not a sales problem.</div>
+<p>Model your MRR breakdown by customer cohort. Show new MRR from new customers, expansion MRR from upsells, contraction MRR from downgrades, and churned MRR from cancellations. This "MRR waterfall" is the standard way SaaS companies report their growth drivers.</p>
+<div class="save-area">
+  <label for="notes15">Your Notes</label>
+  <textarea id="notes15" placeholder="Write your thoughts..." oninput="window.saveNote(15)"></textarea>
+  <div class="btn-row">
+    <button class="btn btn-lime btn-small" onclick="window.toggleComplete(15)"><span id="status15">&#9634; Mark Complete</span></button>
+  </div>
+</div>
+</div>
+
+<div class="chapter" data-chapter="16">
+<div class="meta">Chapter 16</div>
+<h2>Cohort Analysis</h2>
+<p><strong>Understanding customer behavior.</strong> Cohort analysis groups customers by the period they joined (monthly or quarterly) and tracks their behavior over time. It reveals patterns that aggregate metrics hide. A 5% monthly churn rate could mean either 5% of all customers churn every month (bad), or that all customers churn after 20 months (normal). Cohort analysis tells you which.</p>
+<p>The standard cohort table has acquisition months as rows and subsequent months as columns. Each cell shows retention rate, revenue, or usage for that cohort in that period. The diagonal shows how newer cohorts compare to older ones at the same age. Improving retention across cohorts is a sign of product improvement.</p>
+<div class="highlight-box"><strong>Critical Insight:</strong> Cohort analysis reveals whether your product is getting better over time. If newer cohorts have lower retention than older cohorts at the same age, your product experience is degrading. This is a red flag that needs immediate attention.</div>
+<p>Build a cohort retention table in your model with at least 12 months of cohorts. Color-code the cells from red (low retention) to green (high retention). The visual pattern tells a powerful story about your customer behavior and product-market fit.</p>
+<div class="save-area">
+  <label for="notes16">Your Notes</label>
+  <textarea id="notes16" placeholder="Write your thoughts..." oninput="window.saveNote(16)"></textarea>
+  <div class="btn-row">
+    <button class="btn btn-lime btn-small" onclick="window.toggleComplete(16)"><span id="status16">&#9634; Mark Complete</span></button>
+  </div>
+</div>
+</div>
+
+<div class="chapter" data-chapter="17">
+<div class="meta">Chapter 17</div>
+<h2>Headcount Planning</h2>
+<p><strong>The biggest expense.</strong> For most startups, salaries and benefits account for 60&ndash;80% of total operating expenses. Headcount planning is therefore the most important cost modeling exercise you will do. Every hire multiplies your costs by their salary plus benefits (typically 1.2&ndash;1.3x salary), plus office space, equipment, and management overhead.</p>
+<p>Build a headcount plan that shows each department's staffing by month. Include role, start date, salary, equity grant, and benefits cost. Show the cumulative headcount over time. This drives your salary expense line, which flows into your P&amp;L, which flows into your cash flow statement.</p>
+<div class="highlight-box"><strong>Rule of Thumb:</strong> Plan to hire 2&ndash;3 months before you need someone to be fully productive. New hires take 60&ndash;90 days to ramp. Your model should account for this lag between hiring and productivity, especially in sales roles.</div>
+<p>Include a hiring trigger in your model. For example: "Add one sales rep when current reps exceed 80% of quota capacity." This makes your headcount plan dynamic and driven by business performance rather than arbitrary timelines. Investors love this level of sophistication.</p>
+<div class="save-area">
+  <label for="notes17">Your Notes</label>
+  <textarea id="notes17" placeholder="Write your thoughts..." oninput="window.saveNote(17)"></textarea>
+  <div class="btn-row">
+    <button class="btn btn-lime btn-small" onclick="window.toggleComplete(17)"><span id="status17">&#9634; Mark Complete</span></button>
+  </div>
+</div>
+</div>
+
+<div class="chapter" data-chapter="18">
+<div class="meta">Chapter 18</div>
+<h2>Cap Table Basics</h2>
+<p><strong>Equity, dilution, vesting.</strong> The capitalization table (cap table) shows who owns what percentage of your company. It includes founders, employees (with option pools), angel investors, and venture capital firms. Every funding round and every new employee grant changes the cap table. Managing it accurately is a legal and fiduciary responsibility.</p>
+<p>Key cap table concepts: pre-money valuation (value before the investment), post-money valuation (value after the investment), option pool (shares reserved for future employees, typically 10&ndash;20%), and dilution (the reduction in ownership percentage caused by issuing new shares). A well-structured cap table is critical for closing VC rounds.</p>
+<div class="video-wrapper"><iframe src="https://www.youtube.com/embed/5fsm-QbN9r8" allowfullscreen loading="lazy"></iframe></div>
+<div class="formula-box">Post-Money Valuation = Pre-Money Valuation + Investment Amount<br>Founder Dilution = (Shares Issued to Investors) &divide; (Total Shares Outstanding After Round)<br>Option Pool = Typically 10&ndash;20% of Fully Diluted Shares</div>
+<p>Build a cap table that tracks each funding round: seed, Series A, Series B, etc. Show the number of shares issued, price per share, and ownership percentage for each stakeholder. Include a dilution waterfall that shows how ownership changes from founding through exit.</p>
+<div class="save-area">
+  <label for="notes18">Your Notes</label>
+  <textarea id="notes18" placeholder="Write your thoughts..." oninput="window.saveNote(18)"></textarea>
+  <div class="btn-row">
+    <button class="btn btn-lime btn-small" onclick="window.toggleComplete(18)"><span id="status18">&#9634; Mark Complete</span></button>
+  </div>
+</div>
+</div>
+
+<div class="chapter" data-chapter="19">
+<div class="meta">Chapter 19</div>
+<h2>Model Maintenance</h2>
+<p><strong>Updating as you grow.</strong> A financial model is not a one-time document. It needs regular maintenance to stay relevant and useful. Best practice is to update your model monthly with actual results, compare forecast to actuals, and adjust assumptions based on what you learned. This discipline turns your model from a static spreadsheet into a dynamic management tool.</p>
+<p>Each month, copy your actual revenue, expenses, and cash balance into the model. Calculate the variance between forecast and actual for every line item. Investigate variances larger than 10%. Update your forward-looking assumptions based on what the actuals are telling you. This is called "rolling forecast" and it is how professional finance teams operate.</p>
+<div class="highlight-box"><strong>Cadence:</strong> Schedule a 1-hour monthly model review meeting. Attendees: CEO, CFO/founder in charge of finance, and key department heads. Review: actuals vs forecast, updated runway, new scenarios, and key metric trends. Document decisions and assumption changes.</div>
+<p>Track your forecasting accuracy over time. If your revenue forecast was off by 30% last quarter, investigate why and improve. The goal is to get consistently within 10&ndash;15% accuracy. Investors notice when founders have a track record of reliable forecasting.</p>
+<div class="save-area">
+  <label for="notes19">Your Notes</label>
+  <textarea id="notes19" placeholder="Write your thoughts..." oninput="window.saveNote(19)"></textarea>
+  <div class="btn-row">
+    <button class="btn btn-lime btn-small" onclick="window.toggleComplete(19)"><span id="status19">&#9634; Mark Complete</span></button>
+  </div>
+</div>
+</div>
+
+<div class="chapter" data-chapter="20">
+<div class="meta">Chapter 20</div>
+<h2>Your Complete Financial Model Template</h2>
+<p><strong>Putting it all together.</strong> You now have all the building blocks to create a complete, investor-grade financial model. Let's assemble them into a single, integrated template. Your model should have the following sheets: Assumptions, Revenue, Headcount, Expenses (COGS + OpEx), P&amp;L, Balance Sheet, Cash Flow, Unit Economics, Scenario Analysis, Sensitivity, Cap Table, and Dashboard.</p>
+<p>Link every sheet back to the Assumptions tab. Color-code all input cells (blue for assumptions, black for calculations, green for outputs). Protect formula cells to prevent accidental editing. Include data validation dropdowns for scenario selection. Add a dashboard that pulls the 10 most important metrics to a single page.</p>
+<div class="highlight-box"><strong>Final Checklist:</strong> Before sharing with investors, verify: (1) Model balances (assets = liabilities + equity), (2) Cash flow ties to balance sheet, (3) All assumptions are clearly labeled, (4) Error checks pass (no #REF or #DIV/0 errors), (5) Print layout is professional, (6) At least three scenarios are included.</div>
+<p>Congratulations. You now have a complete startup financial model. Use it to raise funding, track your business, and make better decisions. Remember: the model is never finished &mdash; it grows with your company. Keep updating it, keep challenging your assumptions, and keep building.</p>
+<div class="save-area">
+  <label for="notes20">Your Notes</label>
+  <textarea id="notes20" placeholder="Write your thoughts..." oninput="window.saveNote(20)"></textarea>
+  <div class="btn-row">
+    <button class="btn btn-lime btn-small" onclick="window.toggleComplete(20)"><span id="status20">&#9634; Mark Complete</span></button>
+  </div>
+</div>
+</div>
+
+</div>
+
+<div class="nav-chapter" style="margin-top:0;">
+  <button class="btn btn-outline" onclick="window.prevChapter()">&larr; Previous</button>
+  <span style="color:#6a7ba0;font-size:0.85rem;">Navigate through all 20 chapters</span>
+  <button class="btn btn-lime" onclick="window.nextChapter()">Next &rarr;</button>
+</div>
+
+</div>
+
+<footer>
+  <p>&copy; 2025 Elevate Shop. All rights reserved.</p>
+  <p class="tagline">Empowering minds and building wealth, one download at a time.</p>
+</footer>
+
+<script>
+(function() {
+  var TOTAL = 20;
+  var current = 1;
+
+  function loadState() {
+    var state = {};
+    try {
+      var saved = localStorage.getItem('sfm_progress');
+      if (saved) { state = JSON.parse(saved); }
+    } catch(e) {}
+    if (!state.completed) state.completed = [];
+    if (!state.notes) state.notes = {};
+    return state;
+  }
+
+  function saveState(state) {
+    try { localStorage.setItem('sfm_progress', JSON.stringify(state)); } catch(e) {}
+  }
+
+  function getState() {
+    return loadState();
+  }
+
+  function updateProgress() {
+    var state = getState();
+    var done = state.completed.length;
+    var pct = Math.round((done / TOTAL) * 100);
+    document.getElementById('progressText').textContent = done + ' / ' + TOTAL;
+    document.getElementById('progressPct').textContent = pct + '%';
+    document.getElementById('progressFill').style.width = pct + '%';
+  }
+
+  function renderChapter(n) {
+    var chapters = document.querySelectorAll('.chapter');
+    for (var i = 0; i < chapters.length; i++) {
+      chapters[i].classList.remove('active');
+    }
+    var el = document.querySelector('.chapter[data-chapter="' + n + '"]');
+    if (el) el.classList.add('active');
+    document.getElementById('chapIndicator').textContent = 'Chapter ' + n + ' of ' + TOTAL;
+    document.getElementById('prevBtn').style.visibility = (n === 1) ? 'hidden' : 'visible';
+    document.getElementById('nextBtn').style.visibility = (n === TOTAL) ? 'hidden' : 'visible';
+    current = n;
+    updateProgress();
+  }
+
+  function restoreNotes() {
+    var state = getState();
+    for (var i = 1; i <= TOTAL; i++) {
+      var ta = document.getElementById('notes' + i);
+      if (ta && state.notes[i]) {
+        ta.value = state.notes[i];
+      }
+      if (state.completed.indexOf(i) !== -1) {
+        var span = document.getElementById('status' + i);
+        if (span) span.innerHTML = '&#9632; Completed';
+      }
+    }
+    updateProgress();
+  }
+
+  window.nextChapter = function() {
+    if (current < TOTAL) renderChapter(current + 1);
+  };
+
+  window.prevChapter = function() {
+    if (current > 1) renderChapter(current - 1);
+  };
+
+  window.toggleComplete = function(n) {
+    var state = getState();
+    var idx = state.completed.indexOf(n);
+    if (idx === -1) {
+      state.completed.push(n);
+    } else {
+      state.completed.splice(idx, 1);
+    }
+    saveState(state);
+    var span = document.getElementById('status' + n);
+    if (span) {
+      span.innerHTML = (idx === -1) ? '&#9632; Completed' : '&#9634; Mark Complete';
+    }
+    updateProgress();
+  };
+
+  window.saveNote = function(n) {
+    var state = getState();
+    var ta = document.getElementById('notes' + n);
+    if (ta) {
+      state.notes[n] = ta.value;
+      saveState(state);
+    }
+  };
+
+  window.resetAll = function() {
+    if (!confirm('Reset all progress and notes?')) return;
+    try { localStorage.removeItem('sfm_progress'); } catch(e) {}
+    for (var i = 1; i <= TOTAL; i++) {
+      var ta = document.getElementById('notes' + i);
+      if (ta) ta.value = '';
+      var span = document.getElementById('status' + i);
+      if (span) span.innerHTML = '&#9634; Mark Complete';
+    }
+    renderChapter(1);
+    updateProgress();
+  };
+
+  document.addEventListener('DOMContentLoaded', function() {
+    renderChapter(1);
+    restoreNotes();
+  });
+})();
+</script>
+</body>
+</html>

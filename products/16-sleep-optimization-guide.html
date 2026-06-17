@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sleep Optimization Guide | Elevate Shop</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f0e2e;color:#c0c0d0;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.7;overflow-x:hidden}
+body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(ellipse at 20% 50%,rgba(15,14,46,0.9) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(15,14,46,0.8) 0%,transparent 50%),radial-gradient(ellipse at 50% 80%,rgba(20,18,60,0.9) 0%,transparent 50%);pointer-events:none;z-index:0}
+.stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden}
+.star{position:absolute;border-radius:50%;background:#fff;animation:twinkle var(--d) ease-in-out infinite alternate}
+@keyframes twinkle{0%{opacity:0.2;transform:scale(0.8)}100%{opacity:1;transform:scale(1.2)}}
+.moon{position:fixed;top:30px;right:40px;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#f0d060,#d4b84a);box-shadow:0 0 60px rgba(240,208,96,0.3),0 0 120px rgba(240,208,96,0.15);z-index:1;opacity:0.7}
+.moon::after{content:'';position:absolute;top:8px;left:12px;width:22px;height:22px;border-radius:50%;background:rgba(15,14,46,0.3)}
+.moon::before{content:'';position:absolute;top:28px;left:32px;width:14px;height:14px;border-radius:50%;background:rgba(15,14,46,0.25)}
+.wrapper{position:relative;z-index:2;max-width:860px;margin:0 auto;padding:20px 24px 40px}
+header{text-align:center;padding:40px 0 30px;border-bottom:1px solid rgba(192,192,208,0.1)}
+h1{font-size:2.4em;color:#f0d060;letter-spacing:2px;font-weight:300;text-shadow:0 0 40px rgba(240,208,96,0.2)}
+.subtitle{font-size:1.05em;color:#b8b8d8;margin-top:8px;letter-spacing:4px;text-transform:uppercase;font-weight:300}
+header p{margin-top:12px;color:rgba(192,192,208,0.6);font-size:0.9em}
+.progress-section{display:flex;align-items:center;gap:16px;padding:20px 0;border-bottom:1px solid rgba(192,192,208,0.08);flex-wrap:wrap}
+.progress-bar-wrap{flex:1;min-width:160px;height:8px;background:rgba(192,192,208,0.1);border-radius:4px;overflow:hidden}
+.progress-bar-fill{height:100%;width:0%;background:linear-gradient(90deg,#f0d060,#d4b84a);border-radius:4px;transition:width 0.5s ease}
+.progress-text{font-size:0.9em;color:#b8b8d8;min-width:80px}
+.progress-text span{color:#f0d060;font-weight:600}
+.reset-btn{background:transparent;border:1px solid rgba(240,208,96,0.3);color:#f0d060;padding:6px 18px;border-radius:4px;cursor:pointer;font-size:0.85em;transition:all 0.3s;font-family:inherit}
+.reset-btn:hover{background:rgba(240,208,96,0.1);border-color:#f0d060}
+.nav-section{display:flex;justify-content:space-between;align-items:center;padding:16px 0;gap:12px}
+.nav-btn{background:rgba(192,192,208,0.06);border:1px solid rgba(192,192,208,0.15);color:#c0c0d0;padding:8px 22px;border-radius:4px;cursor:pointer;font-size:0.9em;transition:all 0.3s;font-family:inherit}
+.nav-btn:hover:not(:disabled){background:rgba(240,208,96,0.08);border-color:rgba(240,208,96,0.3);color:#f0d060}
+.nav-btn:disabled{opacity:0.3;cursor:default}
+.chapter-nav-num{font-size:0.85em;color:#b8b8d8}
+.chapter-nav-num span{color:#f0d060;font-weight:600}
+.chapter{display:none;padding:28px 0;border-bottom:1px solid rgba(192,192,208,0.06)}
+.chapter.active{display:block}
+.chapter h2{font-size:1.6em;color:#f0d060;font-weight:300;margin-bottom:6px;letter-spacing:0.5px}
+.chapter .ch-num{font-size:0.7em;color:#b8b8d8;font-weight:300;letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}
+.chapter p{margin:14px 0;color:#c0c0d0;font-size:0.98em}
+.chapter p strong{color:#e8e8f0}
+.video-wrap{margin:20px 0;position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:8px;box-shadow:0 4px 30px rgba(0,0,0,0.4);background:#0a091e}
+.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+.chapter-actions{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:18px}
+.complete-btn{background:transparent;border:1px solid rgba(240,208,96,0.3);color:#f0d060;padding:8px 24px;border-radius:4px;cursor:pointer;font-size:0.85em;transition:all 0.3s;font-family:inherit}
+.complete-btn.completed{background:rgba(240,208,96,0.15);border-color:#f0d060}
+.complete-btn:hover{background:rgba(240,208,96,0.1)}
+.note-area{margin-top:14px;width:100%}
+.note-area textarea{width:100%;min-height:72px;background:rgba(192,192,208,0.04);border:1px solid rgba(192,192,208,0.12);border-radius:4px;color:#c0c0d0;padding:10px 14px;font-size:0.9em;font-family:inherit;resize:vertical;transition:border-color 0.3s}
+.note-area textarea:focus{outline:0;border-color:rgba(240,208,96,0.3)}
+.note-saved{font-size:0.8em;color:rgba(240,208,96,0.5);margin-top:4px;display:none}
+footer{text-align:center;padding:32px 0 16px;color:rgba(192,192,208,0.35);font-size:0.82em;line-height:1.8}
+footer .tagline{font-style:italic;opacity:0.6}
+@media(max-width:640px){
+  h1{font-size:1.8em}
+  .moon{width:50px;height:50px;top:16px;right:16px}
+  .moon::after{width:14px;height:14px;top:5px;left:8px}
+  .moon::before{width:9px;height:9px;top:18px;left:20px}
+  .wrapper{padding:12px 14px 30px}
+  .progress-section{flex-direction:column;align-items:stretch;gap:10px}
+}
+@media print{
+  body{background:#fff;color:#111}
+  body::before,.stars,.moon{display:none}
+  .chapter{display:block!important;page-break-inside:avoid}
+  .video-wrap iframe{display:none}
+  .video-wrap{padding:0;height:auto}
+  .video-wrap::after{content:"[Video embed — view online]";display:block;padding:12px;background:#f4f4f4;color:#666;text-align:center;border-radius:4px;font-style:italic}
+  .nav-section{display:none}
+  .chapter-actions{display:none}
+  .note-area{display:none}
+  .reset-btn{display:none}
+  h1{color:#111}
+  .subtitle{color:#555}
+  .chapter h2{color:#111}
+  .chapter .ch-num{color:#888}
+  .chapter p{color:#333}
+  .progress-section{border-bottom:1px solid #ddd}
+  .progress-bar-wrap{background:#e0e0e0}
+  .progress-bar-fill{background:#333}
+  footer{color:#999}
+}
+</style>
+</head>
+<body>
+
+<div class="stars" id="stars"></div>
+<div class="moon"></div>
+
+<div class="wrapper">
+
+<header>
+  <h1>Sleep Optimization Guide</h1>
+  <div class="subtitle">Science-Based Restorative Sleep</div>
+  <p>Circadian Rhythm &bull; Light Management &bull; Temperature &bull; Sleep Hygiene &bull; Habit Tracking</p>
+</header>
+
+<div class="progress-section">
+  <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressFill"></div></div>
+  <div class="progress-text"><span id="progressCount">0</span> / 20 chapters</div>
+  <button class="reset-btn" onclick="window.resetAll()">Reset Progress</button>
+</div>
+
+<div class="nav-section">
+  <button class="nav-btn" id="prevBtn" onclick="window.prevChapter()">&larr; Previous</button>
+  <div class="chapter-nav-num">Chapter <span id="chapterNumDisplay">1</span> / 20</div>
+  <button class="nav-btn" id="nextBtn" onclick="window.nextChapter()">Next &rarr;</button>
+</div>
+
+<div id="chapterContainer">
+
+<div class="chapter active" data-ch="1">
+  <div class="ch-num">Chapter 1</div>
+  <h2>Why Sleep Matters</h2>
+  <p><strong>The science of restorative rest</strong></p>
+  <p>Sleep is not merely a passive state of unconsciousness — it is an active, highly orchestrated biological process essential for survival. During sleep, your brain engages in glymphatic clearance, flushing out metabolic waste products including beta-amyloid plaques associated with Alzheimer's disease. Your body repairs tissue, synthesizes hormones, and consolidates memories. Studies show that chronic sleep deprivation increases the risk of cardiovascular disease, obesity, diabetes, and immune dysfunction by disrupting inflammatory cytokine regulation.</p>
+  <p>Adults require 7–9 hours of quality sleep per night, yet over 35% of adults report sleeping fewer than 7 hours. The consequences extend beyond physical health: sleep debt impairs cognitive function equivalently to alcohol intoxication, reducing reaction times, decision-making ability, and emotional regulation. Your sleep quality directly determines your productivity, mood, and long-term health trajectory.</p>
+  <p>The good news is that sleep is trainable. By understanding the underlying mechanisms and applying evidence-based strategies, you can dramatically improve your sleep quality. This guide will walk you through the complete system for optimizing your sleep — from circadian rhythm alignment to environmental controls and habit formation.</p>
+  <div class="video-wrap"><iframe src="https://www.youtube.com/embed/qp0HIF3SfI4" allowfullscreen loading="lazy"></iframe></div>
+  <div class="chapter-actions">
+    <button class="complete-btn" id="completeBtn1" onclick="window.toggleComplete(1)">Mark Complete</button>
+  </div>
+  <div class="note-area">
+    <textarea id="notes1" oninput="window.saveNotes(1)" placeholder="Your notes for this chapter..."></textarea>
+    <div class="note-saved" id="noteSaved1">Notes saved</div>
+  </div>
+</div>
+
+<div class="chapter" data-ch="2">
+  <div class="ch-num">Chapter 2</div>
+  <h2>Circadian Rhythm</h2>
+  <p><strong>Your internal body clock</strong></p>
+  <p>The circadian rhythm is a 24-hour internal clock governed by the suprachiasmatic nucleus (SCN) in the hypothalamus. This master clock synchronizes every cell in your body to the day-night cycle via light exposure detected by specialized retinal ganglion cells. These cells project directly to the SCN, which then signals the pineal gland to release melatonin — the hormone that gates sleep onset. When your circadian rhythm is aligned, you fall asleep easily, sleep deeply, and wake refreshed without an alarm.</p>
+  <p>Misalignment occurs when light exposure patterns conflict with your internal biology — staring at screens late at night, irregular sleep schedules, or insufficient morning sunlight. This desynchronization elevates cortisol at the wrong times, suppresses melatonin production, and fragments sleep architecture. Even a 30-minute shift in bedtime can accumulate into significant circadian disruption over weeks.</p>
+  <p>To strengthen your rhythm: wake at the same time daily (including weekends), get 15–30 minutes of natural light within an hour of waking, avoid bright light after 10 PM, and eat meals on a consistent schedule. Your circadian system is remarkably responsive to routine — use it to your advantage.</p>
+  <div class="video-wrap"><iframe src="https://www.youtube.com/embed/SMYKAbbOefA" allowfullscreen loading="lazy"></iframe></div>
+  <div class="chapter-actions">
+    <button class="complete-btn" id="completeBtn2" onclick="window.toggleComplete(2)">Mark Complete</button>
+  </div>
+  <div class="note-area">
+    <textarea id="notes2" oninput="window.saveNotes(2)" placeholder="Your notes for this chapter..."></textarea>
+    <div class="note-saved" id="noteSaved2">Notes saved</div>
+  </div>
+</div>
+
+<div class="chapter" data-ch="3">
+  <div class="ch-num">Chapter 3</div>
+  <h2>Light &amp; Melatonin</h2>
+  <p><strong>Blue light management</strong></p>
+  <p>Light is the most powerful Zeitgeber (time-giver) for the human circadian system. Blue wavelength light (440–490 nm) suppresses melatonin production more potently than any other color. This mechanism evolved to signal daytime, but modern LED screens, overhead lights, and ambient electronics expose us to blue light well past sunset. Evening blue light exposure can reduce melatonin secretion by 50% or more, delaying sleep onset and reducing deep sleep duration.</p>
+  <p>Practical solutions include wearing blue-light-blocking glasses (amber-tinted lenses) 2–3 hours before bed, enabling night mode on all devices, replacing bright overhead lights with dim warm-toned lamps, and using apps like f.lux or built-in OS night shifts. The goal is not total darkness but reducing the melanopic lux reaching your eyes — the biological measure of light's effect on melatonin.</p>
+  <p>Morning light exposure is equally critical. Bright light in the early morning signals the SCN to cease melatonin production, set a strong circadian phase, and improve alertness. A 15-minute morning walk outdoors provides 10,000 lux of illumination — roughly 100 times brighter than typical indoor lighting. This contrast between bright days and dark nights is the foundation of healthy sleep.</p>
+  <div class="chapter-actions">
+    <button class="complete-btn" id="completeBtn3" onclick="window.toggleComplete(3)">Mark Complete</button>
+  </div>
+  <div class="note-area">
+    <textarea id="notes3" oninput="window.saveNotes(3)" placeholder="Your notes for this chapter..."></textarea>
+    <div class="note-saved" id="noteSaved3">Notes saved</div>
+  </div>
+</div>
+
+<div class="chapter" data-ch="4">
+  <div class="ch-num">Chapter 4</div>
+  <h2>Temperature Optimization</h2>
+  <p><strong>The perfect sleep environment</strong></p>
+  <p>Your body's core temperature must drop by approximately 1°C (1.8°F) to initiate and maintain sleep. This thermoregulatory process is driven by the circadian clock and is essential for the transition into deep non-REM sleep. When the bedroom is too warm, your body struggles to dissipate heat, delaying sleep onset and fragmenting overnight sleep. The optimal bedroom temperature for most adults is 65–68°F (18–20°C).</p>
+  <p>Strategies for temperature optimization include using breathable natural-fiber bedding (cotton, linen, or bamboo), wearing lightweight sleepwear, and taking a warm bath 60–90 minutes before bed — the subsequent rapid core cooling signals your body that it is time to sleep. Cooling mattress pads and pillows can also help individuals who tend to sleep hot. Keep your feet warm with socks if needed, as vasodilation in the hands and feet accelerates core heat loss.</p>
+  <p>Individual preferences vary, but the principle is universal: your sleeping environment should be cool enough that you feel comfortable under a light blanket. If you wake during the night feeling overheated, your bedroom temperature is likely too high. Experiment with thermostat settings, fan placement, and bedding materials to find your optimal sleep temperature.</p>
+  <div class="video-wrap"><iframe src="https://www.youtube.com/embed/cBzhCWV6Q7Q" allowfullscreen loading="lazy"></iframe></div>
+  <div class="chapter-actions">
+    <button class="complete-btn" id="completeBtn4" onclick="window.toggleComplete(4)">Mark Complete</button>
+  </div>
+  <div class="note-area">
+    <textarea id="notes4" oninput="window.saveNotes(4)" placeholder="Your notes for this chapter..."></textarea>
+    <div class="note-saved" id="noteSaved4">Notes saved</div>
+  </div>
+</div>
+
+<div class="chapter" data-ch="5">
+  <div class="ch-num">Chapter 5</div>
+  <h2>Sleep Hygiene</h2>
+  <p><strong>Evening rituals that work</strong></p>
+  <p>Sleep hygiene refers to the set of behavioral and environmental practices that promote consistent, uninterrupted sleep. The most critical element is consistency: going to bed and waking at the same time every day anchors your circadian rhythm more effectively than any other intervention. A pre-sleep wind-down routine of 30–60 minutes signals your brain that rest is approaching, allowing the transition from sympathetic to parasympathetic nervous system dominance.</p>
+  <p>Effective wind-down activities include reading a physical book (not a screen), gentle stretching or yoga, journaling to offload racing thoughts, listening to calm instrumental music or nature sounds, and practicing gratitude reflection. Avoid stimulating activities such as work emails, heated discussions, intense exercise, or action-packed entertainment in the hour before bed. The goal is to reduce cognitive arousal and lower physiological activation.</p>
+  <p>Create a sleep hygiene checklist: fixed bedtime and wake time, no caffeine after 2 PM, no alcohol within 3 hours of bed, dim lights after sunset, no screens in bed, and a cool dark room. Treat your sleep routine as non-negotiable — it is the behavioral foundation upon which all other sleep optimization techniques are built.</p>
+  <div class="chapter-actions">
+    <button class="complete-btn" id="completeBtn5" onclick="window.toggleComplete(5)">Mark Complete</button>
+  </div>
+  <div class="note-area">
+    <textarea id="notes5" oninput="window.saveNotes(5)" placeholder="Your notes for this chapter..."></textarea>
+    <div class="note-saved" id="noteSaved5">Notes saved</div>
+  </div>
+</div>
+
+<div class="chapter" data-ch="6">
+  <div class="ch-num">Chapter 6</div>
+  <h2>The Ideal Bedroom Setup</h2>
+  <p><strong>Darkness, quiet, comfort</strong></p>
+  <p>Your bedroom environment exerts a profound influence on sleep quality, independent of your internal physiology. Total darkness is essential — even small amounts of ambient light penetrate the eyelids and can suppress melatonin production. Invest in blackout curtains or use a high-quality sleep mask. Eliminate all light sources: cover LED indicators on electronics, close doors to block hallway light, and remove or cover glowing clocks.</p>
+  <p>Sound management is equally important. Intermittent noises — traffic, neighbors, household sounds — can trigger micro-arousals that fragment sleep without your awareness. White noise machines, fans, or nature-sound apps create a consistent auditory backdrop that masks disruptive sounds. For complete silence, consider foam earplugs. The ideal noise level is below 30 dB for undisturbed sleep.</p>
+  <p>Your mattress and pillow should support proper spinal alignment. Replace mattresses every 8–10 years and pillows every 1–2 years. Bedroom humidity should be 40–60% for optimal respiratory comfort. Keep the bedroom clutter-free and associate it exclusively with sleep and intimacy — remove work materials, exercise equipment, and screens. Your brain learns to associate the bedroom environment with rest, creating a powerful conditioned response that facilitates sleep onset.</p>
+  <div class="video-wrap"><iframe src="https://www.youtube.com/embed/xFr0FKnaLDk" allowfullscreen loading="lazy"></iframe></div>
+  <div class="chapter-actions">
+    <button class="complete-btn" id="completeBtn6" onclick="window.toggleComplete(6)">Mark Complete</button>
+  </div>
+  <div class="note-area">
+    <textarea id="notes6" oninput="window.saveNotes(6)" placeholder="Your notes for this chapter..."></textarea>
+    <div class="note-saved" id="noteSaved6">Notes saved</div>
+  </div>
+</div>
+
+<div class="chapter" data-ch="7">
+  <div class="ch-num">Chapter 7</div>
+  <h2>Nutrition for Sleep</h2>
+  <p><strong>Foods that help &amp; hurt</strong></p>
+  <p>Dietary patterns directly influence sleep architecture through multiple pathways. Tryptophan-rich foods (turkey, eggs, cheese, nuts, seeds) provide the precursor for serotonin and melatonin synthesis. Complex carbohydrates (oats, brown rice, quinoa) facilitate tryptophan transport across the blood-brain barrier. Magnesium-rich foods (leafy greens, almonds, pumpkin seeds, bananas) support GABA receptor activity, promoting relaxation and reducing nighttime awakenings.</p>
+  <p>Foods to avoid near bedtime include large meals (which cause digestive disruption and acid reflux), caffeine (which has a 6-hour half-life and can impair sleep even when consumed in the afternoon), alcohol (which fragments sleep architecture and suppresses REM sleep), and high-sugar or spicy foods (which can cause metabolic disruption and temperature dysregulation). Finish your last meal at least 2–3 hours before bed.</p>
+  <p>Sleep-promoting snacks if needed: a small banana with almond butter, a handful of cherries (natural melatonin source), warm milk or chamomile tea, or a small bowl of oatmeal with walnuts. Hydration matters too — drink enough water throughout the day but taper off in the 90 minutes before bed to minimize nighttime bathroom trips.</p>
+  <div class="chapter-actions">
+    <button class="complete-btn" id="completeBtn7" onclick="window.toggleComplete(7)">Mark Complete</button>
+  </div>
+  <div class="note-area">
+    <textarea id="notes7" oninput="window.saveNotes(7)" placeholder="Your notes for this chapter..."></textarea>
+    <div class="note-saved" id="noteSaved7">Notes saved</div>
+  </div>
+</div>
+
+<div class="chapter" data-ch="8">
+  <div class="ch-num">Chapter 8</div>
+  <h2>Exercise &amp; Sleep</h2>
+  <p><strong>Timing matters</strong></p>
+  <p>Regular physical activity is one of the most effective non-pharmacological interventions for improving sleep quality. Exercise increases sleep drive (homeostatic sleep pressure), reduces anxiety and depression symptoms, elevates body temperature (followed by compensatory cooling that promotes sleep), and reinforces circadian timing. Studies show that moderate aerobic exercise increases slow-wave sleep duration and reduces sleep onset latency.</p>
+  <p>Timing is crucial. Morning and early afternoon exercise are ideal for sleep promotion — exposure to outdoor light during morning exercise provides a dual benefit for circadian alignment. Moderate exercise 4–6 hours before bed can also be beneficial. However, vigorous high-intensity exercise within 90 minutes of bedtime can be counterproductive due to elevated cortisol, heart rate, and core temperature that delay sleep onset.</p>
+  <p>The type of exercise matters less than consistency. A combination of aerobic exercise (brisk walking, cycling, swimming) and resistance training produces the best sleep outcomes. Even 20 minutes of daily moderate activity significantly reduces insomnia severity. Yoga and gentle stretching in the evening can reduce physiological arousal and prepare the body for rest.</p>
+  <div class="chapter-actions">
+    <button class="complete-btn" id="completeBtn8" onclick="window.toggleComplete(8)">Mark Complete</button>
+  </div>
+  <div class="note-area">
+    <textarea id="notes8" oninput="window.saveNotes(8)" placeholder="Your notes for this chapter..."></textarea>
+    <div class="note-saved" id="noteSaved8">Notes saved</div>
+  </div>
+</div>
+
+<div class="chapter" data-ch="9">
+  <div class="ch-num">Chapter 9</div>
+  <h2>Stress &amp; Sleep</h2>
+  <p><strong>Breaking the insomnia cycle</strong></p>
+  <p>Stress and sleep share a bidirectional relationship: stress disrupts sleep, and poor sleep amplifies stress reactivity. The hypothalamic-pituitary-adrenal (HPA) axis drives this connection. When activated, the HPA axis releases cortisol and adrenaline, preparing the body for fight-or-flight — the exact opposite of the parasympathetic state required for sleep. Chronic stress keeps the HPA axis in a state of hyperarousal, leading to the classic insomnia pattern: difficulty falling asleep, frequent awakenings, and unrefreshing sleep.</p>
+  <p>Cognitive behavioral therapy for insomnia (CBT-I) is the gold-standard treatment for breaking this cycle. Core CBT-I techniques include stimulus control (only go to bed when sleepy; get out of bed if awake for more than 20 minutes), sleep restriction (consolidating time in bed to increase sleep drive), cognitive restructuring (challenging unhelpful beliefs about sleep), and relaxation training (progressive muscle relaxation, diaphragmatic breathing, guided imagery).</p>
+  <p>Stress management practices that support sleep include mindfulness meditation, which reduces rumination and physiological arousal; scheduled worry time (allocating 15 minutes earlier in the day to process concerns); and journaling before bed to offload thoughts. Remember that perfectionism about sleep itself creates performance anxiety — the pressure to sleep becomes the very thing keeping you awake.</p>
+  <div class="video-wrap"><iframe src="https://www.youtube.com/embed/g9tG_Mrj90M" allowfullscreen loading="lazy"></iframe></div>
+  <div class="chapter-actions">
+    <button class="complete-btn" id="completeBtn9" onclick="window.toggleComplete(9)">Mark Complete</button>
+  </div>
+  <div class="note-area">
+    <textarea id="notes9" oninput="window.saveNotes(9)" placeholder="Your notes for this chapter..."></textarea>
+    <div class="note-saved" id="noteSaved9">Notes saved</div>
+  </div>
+</div>
+
+<div class="chapter" data-ch="10">
+  <div class="ch-num">Chapter 10</div>
+  <h2>Sleep Disorders</h2>
+  <p><strong>When to seek help</strong></p>
+  <p>While occasional sleep difficulties are normal, chronic sleep problems may indicate an underlying sleep disorder requiring professional evaluation. Insomnia disorder affects 10–15% of adults and is characterized by difficulty falling or staying asleep for at least three months despite adequate opportunity for sleep. Obstructive sleep apnea (OSA) involves repeated airway collapse during sleep, causing oxygen desaturation and frequent awakenings — symptoms include loud snoring, gasping, daytime sleepiness, and morning headaches.</p>
+  <p>Restless legs syndrome (RLS) creates an irresistible urge to move the legs during rest, typically worse in the evening, affecting 5–10% of the population. Narcolepsy involves excessive daytime sleepiness and sudden sleep attacks, often with cataplexy (sudden muscle weakness triggered by emotion). Circadian rhythm disorders — including delayed sleep-wake phase disorder (common in adolescents) and advanced sleep-wake phase disorder (common in older adults) — involve a misalignment between the internal clock and desired sleep schedule.</p>
+  <p>Consult a sleep specialist if you experience persistent daytime fatigue despite adequate sleep time, loud snoring with breathing pauses, leg movements that disrupt sleep, or inability to stay awake during sedentary activities. A polysomnogram (sleep study) may be recommended for diagnosis. Many sleep disorders are highly treatable once properly identified — do not hesitate to seek professional help.</p>
+  <div class="chapter-actions">
+    <button class="complete-btn" id="completeBtn10" onclick="window.toggleComplete(10)">Mark Complete</button>
+  </div>
+  <div class="note-area">
+    <textarea id="notes10" oninput="window.saveNotes(10)" placeholder="Your notes for this chapter..."></textarea>
+    <div class="note-saved" id="noteSaved10">Notes saved</div>
+  </div>
+</div>
+
+<div class="chapter" data-ch="11">
+  <div class="ch-num">Chapter 11</div>
+  <h2>Napping</h2>
+  <p><strong>Power naps vs sleep disruption</strong></p>
+  <p>Napping is a double-edged sword. A well-timed short nap can restore alertness, improve cognitive performance, and reduce fatigue. However, poorly timed or excessively long naps can disrupt nighttime sleep and create a cycle of fragmented rest. The key variables are timing, duration, and individual sleep debt. A "power nap" of 10–20 minutes taken before 3 PM provides benefits without sleep inertia — the groggy feeling upon waking from deeper sleep stages.</p>
+  <p>Naps longer than 30 minutes risk entering slow-wave sleep, making it difficult to wake and potentially impairing nighttime sleep onset. The ideal nap window is 1:00–3:00 PM, aligning with the natural post-lunch dip in alertness (the "secondary sleep gate"). Napping after 4 PM delays the night-time sleep drive and should be avoided. For individuals with insomnia, napping is generally discouraged, as it reduces sleep drive and undermines the sleep consolidation process.</p>
+  <p>If you nap strategically: keep it short (10–20 minutes), set an alarm, nap in a slightly upright position to avoid deep sleep, and expose yourself to bright light immediately after waking. Caffeine naps — drinking coffee immediately before a 20-minute nap — combine the restorative effects of a nap with the onset of caffeine's alerting effects for maximum benefit.</p>
+  <div class="chapter-actions">
+    <button class="complete-btn" id="completeBtn11" onclick="window.toggleComplete(11)">Mark Complete</button>
+  </div>
+  <div class="note-area">
+    <textarea id="notes11" oninput="window.saveNotes(11)" placeholder="Your notes for this chapter..."></textarea>
+    <div class="note-saved" id="noteSaved11">Notes saved</div>
+  </div>
+</div>
+
+<div class="chapter" data-ch="12">
+  <div class="ch-num">Chapter 12</div>
+  <h2>Shift Work</h2>
+  <p><strong>Surviving non-traditional hours</strong></p>
+  <p>Shift work disrupts the natural alignment between the internal circadian clock and the external environment, placing workers at elevated risk for sleep disorders, cardiovascular disease, metabolic syndrome, and gastrointestinal problems. Approximately 20% of the workforce in industrialized nations engages in shift work, and the health consequences are significant — shift workers sleep 1–4 hours less per 24-hour period than day workers and experience higher rates of accidents and errors.</p>
+  <p>Strategies for shift work adaptation include strategic light management: wear blue-light-blocking glasses during the commute home after a night shift, use bright light exposure during the first part of a night shift to maintain alertness, and create complete darkness in the bedroom for daytime sleep using blackout curtains and a sleep mask. Maintain a consistent sleep schedule even on days off if possible — rotating schedules should rotate forward (clockwise) rather than backward to minimize circadian disruption.</p>
+  <p>Other mitigation strategies: limit consecutive night shifts, take strategic naps before and during shifts (20-minute naps), avoid heavy meals before daytime sleep, use caffeine only during the first half of your shift, and prioritize social support from family members who understand your schedule. If shift work is long-term, consider consulting a sleep specialist for personalized circadian phase management.</p>
+  <div class="video-wrap"><iframe src="https://www.youtube.com/embed/as0uWN5ad64" allowfullscreen loading="lazy"></iframe></div>
+  <div class="chapter-actions">
+    <button class="complete-btn" id="completeBtn12" onclick="window.toggleComplete(12)">Mark Complete</button>
+  </div>
+  <div class="note-area">
+    <textarea id="notes12" oninput="window.saveNotes(12)" placeholder="Your notes for this chapter..."></textarea>
+    <div class="note-saved" id="noteSaved12">Notes saved</div>
+  </div>
+</div>
+
+<div class="chapter" data-ch="13">
+  <div class="ch-num">Chapter 13</div>
+  <h2>Jet Lag</h2>
+  <p><strong>Resetting your clock fast</strong></p>
+  <p>Jet lag occurs when rapid travel across time zones creates a mismatch between your internal circadian clock and the local environment. The human circadian system adapts slowly — approximately one day per time zone eastward (which requires phase advancement) and 1.5 days per time zone westward (phase delay). Symptoms include daytime fatigue, nighttime insomnia, digestive issues, irritability, and cognitive impairment.</p>
+  <p>Light exposure is the most powerful tool for accelerating circadian adaptation. When traveling east, seek bright light in the early morning local time and avoid light in the late evening. When traveling west, seek bright light in the late afternoon and evening while avoiding morning light. Using a light-metering app can help you calibrate exposure precisely. Pre-adaptation — gradually shifting your sleep schedule by 30–60 minutes per day before travel — can significantly reduce jet lag severity.</p>
+  <p>Additional strategies: stay hydrated during flights, avoid alcohol and caffeine in-flight, set your watch to the destination time zone immediately upon boarding, eat meals according to destination meal times, take short naps (under 30 minutes) if needed, and use melatonin supplementation (0.5–5 mg) at destination bedtime to signal the new sleep phase. Morning outdoor light exposure on arrival is the single most effective intervention for rapid adaptation.</p>
+  <div class="chapter-actions">
+    <button class="complete-btn" id="completeBtn13" onclick="window.toggleComplete(13)">Mark Complete</button>
+  </div>
+  <div class="note-area">
+    <textarea id="notes13" oninput="window.saveNotes(13)" placeholder="Your notes for this chapter..."></textarea>
+    <div class="note-saved" id="noteSaved13">Notes saved</div>
+  </div>
+</div>
+
+<div class="chapter" data-ch="14">
+  <div class="ch-num">Chapter 14</div>
+  <h2>Sleep Tracking</h2>
+  <p><strong>Using data to improve</strong></p>
+  <p>Sleep tracking technology has democratized access to sleep data, but understanding what these metrics actually mean is essential for productive use. Consumer wearables (smartwatches, fitness trackers, smart rings) use actigraphy — motion detection — combined with heart rate variability to estimate sleep stages, total sleep time, and sleep efficiency. While less accurate than polysomnography for precise staging, these devices reliably track patterns and trends over time.</p>
+  <p>Key metrics to monitor: total sleep time (aim for 7–9 hours), sleep efficiency (time asleep vs time in bed, aim above 85%), sleep onset latency (time to fall asleep, ideally under 30 minutes), wake after sleep onset (WASO, aim under 30 minutes), and sleep regularity (consistency of bedtime and wake time). Track these metrics over weeks rather than fixating on single-night data — nightly variation is normal, and focusing too much on one bad night can create performance anxiety.</p>
+  <p>Use your sleep log — included in this guide — to correlate sleep metrics with daily factors: caffeine intake, exercise timing, meal times, stress levels, and evening light exposure. This pattern recognition is where sleep tracking becomes transformative. Identify your personal sleep drivers and adjust accordingly. Remember that data is a tool for insight, not a source of stress about sleep perfection.</p>
+  <div class="chapter-actions">
+    <button class="complete-btn" id="completeBtn14" onclick="window.toggleComplete(14)">Mark Complete</button>
+  </div>
+  <div class="note-area">
+    <textarea id="notes14" oninput="window.saveNotes(14)" placeholder="Your notes for this chapter..."></textarea>
+    <div class="note-saved" id="noteSaved14">Notes saved</div>
+  </div>
+</div>
+
+<div class="chapter" data-ch="15">
+  <div class="ch-num">Chapter 15</div>
+  <h2>Dream Recall</h2>
+  <p><strong>Remembering &amp; understanding dreams</strong></p>
+  <p>Dreaming occurs primarily during REM (rapid eye movement) sleep, which cycles approximately every 90 minutes throughout the night. Most adults spend about 2 hours per night dreaming, yet the majority of dreams are forgotten within minutes of waking. Dream recall is a trainable skill — the more attention you pay to dreams, the more you remember. REM sleep plays a critical role in emotional regulation, memory consolidation, and creative problem-solving.</p>
+  <p>To improve dream recall: keep a dream journal and pen on your nightstand, set the intention to remember dreams before falling asleep, lie still upon waking (dream memories fade quickly with movement), write down fragments immediately even if they seem nonsensical, and use a voice recorder if writing feels too effortful. With practice, you can increase dream recall from near zero to multiple dreams per night.</p>
+  <p>Understanding dream themes can provide insight into your subconscious processing of waking life. Common dream themes — being chased, falling, flying, losing teeth — often correlate with emotional states rather than literal predictions. Lucid dreaming (becoming aware that you are dreaming while still asleep) is an advanced skill that some practitioners use for nightmare management, creative exploration, and personal growth. Reality testing throughout the day builds the metacognitive awareness necessary for lucidity.</p>
+  <div class="chapter-actions">
+    <button class="complete-btn" id="completeBtn15" onclick="window.toggleComplete(15)">Mark Complete</button>
+  </div>
+  <div class="note-area">
+    <textarea id="notes15" oninput="window.saveNotes(15)" placeholder="Your notes for this chapter..."></textarea>
+    <div class="note-saved" id="noteSaved15">Notes saved</div>
+  </div>
+</div>
+
+<div class="chapter" data-ch="16">
+  <div class="ch-num">Chapter 16</div>
+  <h2>Sleep &amp; Aging</h2>
+  <p><strong>How needs change</strong></p>
+  <p>Sleep architecture evolves throughout the lifespan. Newborns spend 50% of sleep in REM (compared to 20% in adults) and require 14–17 hours daily for neural development. Adolescents experience a natural circadian phase delay — their melatonin release shifts later, making early school start times biologically inappropriate. As adults age beyond 65, sleep becomes more fragmented, with more time spent in light N1 and N2 sleep and less in slow-wave deep sleep.</p>
+  <p>These age-related changes include earlier wake times (advanced sleep phase), increased nighttime awakenings, reduced total sleep time, and decreased sleep efficiency. However, the need for sleep does not dramatically decrease with age — older adults still need 7–8 hours but may have more difficulty achieving continuous sleep. Medical conditions, medications, and increased prevalence of sleep apnea contribute to age-related sleep decline.</p>
+  <p>Strategies for healthy sleep at any age include maintaining an active lifestyle (physical activity preserves slow-wave sleep), getting bright morning light exposure (which strengthens the aging circadian system), managing nocturia by limiting fluids before bed, treating underlying sleep disorders, and avoiding the trap of spending excessive time in bed trying to force sleep. Sleep changes with age are normal, but poor sleep is not inevitable — proactive optimization works at any age.</p>
+  <div class="video-wrap"><iframe src="https://www.youtube.com/embed/5fsm-QbN9r8" allowfullscreen loading="lazy"></iframe></div>
+  <div class="chapter-actions">
+    <button class="complete-btn" id="completeBtn16" onclick="window.toggleComplete(16)">Mark Complete</button>
+  </div>
+  <div class="note-area">
+    <textarea id="notes16" oninput="window.saveNotes(16)" placeholder="Your notes for this chapter..."></textarea>
+    <div class="note-saved" id="noteSaved16">Notes saved</div>
+  </div>
+</div>
+
+<div class="chapter" data-ch="17">
+  <div class="ch-num">Chapter 17</div>
+  <h2>Children's Sleep</h2>
+  <p><strong>Helping the whole family</strong></p>
+  <p>Children's sleep needs vary dramatically by age: infants (4–11 months) need 12–15 hours, toddlers 11–14 hours, preschoolers 10–13 hours, school-age children 9–11 hours, and teenagers 8–10 hours. Consistent bedtime routines are the single most effective intervention for healthy childhood sleep. A predictable sequence — bath, brush teeth, story, tuck-in — creates security and conditions the child's nervous system for rest.</p>
+  <p>Common pediatric sleep challenges include bedtime resistance (often due to insufficient sleep drive or inconsistent routines), night terrors (which occur in non-REM sleep and do not require intervention), nightmares (which may indicate daytime stress), and sleepwalking (which is generally benign and resolves with age). Screen time before bed is particularly problematic for children because their developing brains are more sensitive to blue light suppression of melatonin.</p>
+  <p>For teenagers, the biological shift in circadian timing (delayed sleep phase) conflicts with early school start times, creating chronic sleep deprivation. Advocacy for later school start times, limiting evening screen use, and educating teens about sleep hygiene can help. Parents should model good sleep behavior — children learn sleep habits primarily by observing their parents. Family-wide sleep optimization benefits every member.</p>
+  <div class="chapter-actions">
+    <button class="complete-btn" id="completeBtn17" onclick="window.toggleComplete(17)">Mark Complete</button>
+  </div>
+  <div class="note-area">
+    <textarea id="notes17" oninput="window.saveNotes(17)" placeholder="Your notes for this chapter..."></textarea>
+    <div class="note-saved" id="noteSaved17">Notes saved</div>
+  </div>
+</div>
+
+<div class="chapter" data-ch="18">
+  <div class="ch-num">Chapter 18</div>
+  <h2>Meditation for Sleep</h2>
+  <p><strong>Guided relaxation techniques</strong></p>
+  <p>Meditation and mindfulness practices directly counteract the hyperarousal that underlies insomnia. Regular meditation reduces cortisol levels, increases parasympathetic activation, and improves emotional regulation — all of which support healthy sleep. Studies show that mindfulness-based stress reduction (MBSR) and mindfulness-based therapy for insomnia (MBTI) produce clinically significant improvements in sleep quality comparable to CBT-I.</p>
+  <p>Effective meditation techniques for sleep include body scan meditation (systematically relaxing each body part from toes to crown), diaphragmatic breathing (4-7-8 breathing: inhale for 4 counts, hold for 7, exhale for 8), progressive muscle relaxation (tensing and releasing muscle groups), and loving-kindness meditation (generating feelings of warmth and compassion). Even 10 minutes of practice before bed can significantly reduce sleep onset latency.</p>
+  <p>Guided sleep meditations — available through apps or recorded tracks — provide structured relaxation for beginners. Yoga nidra (yogic sleep) is a particularly powerful practice that induces a state of conscious relaxation between wakefulness and sleep, often described as more restorative than sleep itself. Consistent practice rewires the brain's stress-response circuitry, making spontaneous relaxation more accessible over time.</p>
+  <div class="chapter-actions">
+    <button class="complete-btn" id="completeBtn18" onclick="window.toggleComplete(18)">Mark Complete</button>
+  </div>
+  <div class="note-area">
+    <textarea id="notes18" oninput="window.saveNotes(18)" placeholder="Your notes for this chapter..."></textarea>
+    <div class="note-saved" id="noteSaved18">Notes saved</div>
+  </div>
+</div>
+
+<div class="chapter" data-ch="19">
+  <div class="ch-num">Chapter 19</div>
+  <h2>Supplements &amp; Sleep Aids</h2>
+  <p><strong>What actually works</strong></p>
+  <p>The supplement market for sleep is vast, but only a few interventions have robust scientific support. Melatonin is the most studied sleep supplement — effective for circadian rhythm disorders, jet lag, and delayed sleep phase, but less effective for general insomnia. Doses as low as 0.3–0.5 mg can be as effective as 5 mg with fewer side effects. Time-released formulations may help with sleep maintenance. Avoid nightly long-term use without medical supervision.</p>
+  <p>Magnesium (particularly magnesium glycinate or threonate) supports GABA function and has shown benefits for sleep quality, especially in individuals with magnesium deficiency. L-theanine, an amino acid found in green tea, promotes relaxation without sedation and improves sleep quality at doses of 200–400 mg. Glycine (3 grams before bed) reduces core body temperature and improves subjective sleep quality. Valerian root, ashwagandha, and GABA supplements have more mixed evidence.</p>
+  <p>Prescription sleep aids (zolpidem, eszopiclone, benzodiazepines) should be used only under medical supervision for short-term treatment. They carry risks of tolerance, dependence, cognitive impairment, and rebound insomnia. Cognitive behavioral therapy for insomnia is more effective than medication in the long term. Always consult a healthcare provider before starting any supplement regimen, especially if you are taking other medications or have underlying health conditions.</p>
+  <div class="chapter-actions">
+    <button class="complete-btn" id="completeBtn19" onclick="window.toggleComplete(19)">Mark Complete</button>
+  </div>
+  <div class="note-area">
+    <textarea id="notes19" oninput="window.saveNotes(19)" placeholder="Your notes for this chapter..."></textarea>
+    <div class="note-saved" id="noteSaved19">Notes saved</div>
+  </div>
+</div>
+
+<div class="chapter" data-ch="20">
+  <div class="ch-num">Chapter 20</div>
+  <h2>Your 30-Day Sleep Optimization Plan</h2>
+  <p><strong>Putting it all together</strong></p>
+  <p>The most powerful sleep optimization protocol is the one you actually follow. This 30-day plan integrates all the principles from this guide into a progressive, sustainable program. Do not try to implement everything at once — focus on mastering each phase before moving to the next. Use your sleep log (included below) to track daily progress and identify what works best for your unique physiology.</p>
+  <p><strong>Week 1 — Foundation:</strong> Set a fixed wake time (no exceptions, including weekends). Get 15 minutes of morning sunlight within 30 minutes of waking. Eliminate screens 60 minutes before bed. Set bedroom temperature to 66°F. <br><strong>Week 2 — Environment:</strong> Install blackout curtains or use a sleep mask. Introduce white noise. Optimize your pillow and mattress setup. Establish a consistent 30-minute wind-down routine. <br><strong>Week 3 — Lifestyle:</strong> No caffeine after 2 PM. No alcohol within 3 hours of bed. Finish dinner 3 hours before sleep. Add 20 minutes of morning exercise. Start a gratitude journal before bed. <br><strong>Week 4 — Refinement:</strong> Analyze your sleep log for patterns. Experiment with magnesium glycinate or L-theanine if needed. Practice 10 minutes of meditation before bed. Adjust your routine based on data. Identify your biggest remaining sleep challenge and create a targeted plan.</p>
+  <p>Remember that sleep optimization is not about perfection — it is about consistent improvement. Some nights will be better than others, and that is normal. Use the digital sleep log below to track your habits and progress. You have the knowledge and the tools. Now it is time to implement. Your future self will thank you for every night of restorative sleep you invest in today.</p>
+
+  <div class="chapter-actions">
+    <button class="complete-btn" id="completeBtn20" onclick="window.toggleComplete(20)">Mark Complete</button>
+  </div>
+  <div class="note-area">
+    <textarea id="notes20" oninput="window.saveNotes(20)" placeholder="Your notes for this chapter..."></textarea>
+    <div class="note-saved" id="noteSaved20">Notes saved</div>
+  </div>
+</div>
+
+</div>
+
+<footer>
+  &copy; 2025 Elevate Shop. All rights reserved.<br>
+  <span class="tagline">Empowering minds and building wealth, one download at a time.</span>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var totalChapters = 20;
+  var currentChapter = 1;
+
+  function generateStars(){
+    var container = document.getElementById('stars');
+    if(!container) return;
+    for(var i=0;i<200;i++){
+      var star = document.createElement('div');
+      star.className = 'star';
+      var size = Math.random() * 3 + 1;
+      star.style.width = size + 'px';
+      star.style.height = size + 'px';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.setProperty('--d', (Math.random() * 4 + 2) + 's');
+      star.style.animationDelay = Math.random() * 4 + 's';
+      star.style.opacity = Math.random() * 0.5 + 0.3;
+      container.appendChild(star);
+    }
+  }
+
+  function loadState(){
+    var state = JSON.parse(localStorage.getItem('sleepGuideProgress') || '{}');
+    for(var i=1;i<=totalChapters;i++){
+      var btn = document.getElementById('completeBtn'+i);
+      if(btn && state['ch'+i]){
+        btn.classList.add('completed');
+        btn.textContent = 'Completed';
+      }
+      var ta = document.getElementById('notes'+i);
+      if(ta && state['notes'+i]){
+        ta.value = state['notes'+i];
+      }
+    }
+    updateProgress();
+  }
+
+  function saveState(){
+    var state = JSON.parse(localStorage.getItem('sleepGuideProgress') || '{}');
+    for(var i=1;i<=totalChapters;i++){
+      var btn = document.getElementById('completeBtn'+i);
+      state['ch'+i] = btn && btn.classList.contains('completed') ? true : false;
+      var ta = document.getElementById('notes'+i);
+      if(ta) state['notes'+i] = ta.value;
+    }
+    localStorage.setItem('sleepGuideProgress', JSON.stringify(state));
+  }
+
+  function updateProgress(){
+    var count = 0;
+    for(var i=1;i<=totalChapters;i++){
+      var btn = document.getElementById('completeBtn'+i);
+      if(btn && btn.classList.contains('completed')) count++;
+    }
+    var pct = (count / totalChapters) * 100;
+    var fill = document.getElementById('progressFill');
+    var ctr = document.getElementById('progressCount');
+    if(fill) fill.style.width = pct + '%';
+    if(ctr) ctr.textContent = count;
+  }
+
+  function showChapter(n){
+    if(n<1 || n>totalChapters) return;
+    currentChapter = n;
+    var chapters = document.querySelectorAll('.chapter');
+    for(var i=0;i<chapters.length;i++){
+      chapters[i].classList.remove('active');
+    }
+    var el = document.querySelector('.chapter[data-ch="'+n+'"]');
+    if(el) el.classList.add('active');
+    var disp = document.getElementById('chapterNumDisplay');
+    if(disp) disp.textContent = n;
+    var prev = document.getElementById('prevBtn');
+    var next = document.getElementById('nextBtn');
+    if(prev) prev.disabled = (n===1);
+    if(next) next.disabled = (n===totalChapters);
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+
+  window.nextChapter = function(){
+    if(currentChapter < totalChapters) showChapter(currentChapter+1);
+  };
+
+  window.prevChapter = function(){
+    if(currentChapter > 1) showChapter(currentChapter-1);
+  };
+
+  window.toggleComplete = function(n){
+    var btn = document.getElementById('completeBtn'+n);
+    if(!btn) return;
+    btn.classList.toggle('completed');
+    if(btn.classList.contains('completed')){
+      btn.textContent = 'Completed';
+    } else {
+      btn.textContent = 'Mark Complete';
+    }
+    updateProgress();
+    saveState();
+  };
+
+  window.saveNotes = function(n){
+    var ta = document.getElementById('notes'+n);
+    if(!ta) return;
+    var state = JSON.parse(localStorage.getItem('sleepGuideProgress') || '{}');
+    state['notes'+n] = ta.value;
+    localStorage.setItem('sleepGuideProgress', JSON.stringify(state));
+    var saved = document.getElementById('noteSaved'+n);
+    if(saved){
+      saved.style.display = 'block';
+      clearTimeout(saved._timer);
+      saved._timer = setTimeout(function(){ saved.style.display = 'none'; }, 2000);
+    }
+  };
+
+  window.resetAll = function(){
+    if(!confirm('Reset all progress and notes? This cannot be undone.')) return;
+    localStorage.removeItem('sleepGuideProgress');
+    location.reload();
+  };
+
+  document.addEventListener('DOMContentLoaded', function(){
+    generateStars();
+    loadState();
+    showChapter(1);
+  });
+})();
+</script>
+
+</body>
+</html>

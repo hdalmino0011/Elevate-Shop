@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Real Estate Investing Basics – Elevate Shop</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{font-size:17px}
+body{
+  font-family:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+  background:#FEFAF5;color:#2A2A2A;line-height:1.8;padding:0;
+  -webkit-font-smoothing:antialiased
+}
+.container{max-width:780px;margin:0 auto;background:#FFFCFA;box-shadow:0 0 120px rgba(27,45,79,0.05)}
+header{
+  background:linear-gradient(135deg,#0A1628 0%,#1B2D4F 35%,#2C4A7C 65%,#1B2D4F 100%);
+  padding:72px 64px 56px;position:relative;overflow:hidden
+}
+header::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#C9994A,#D4A373,#C9994A,#D4A373,#C9994A)}
+header .sup{font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(212,163,115,0.5);margin-bottom:16px;font-family:Inter,Arial,sans-serif}
+header h1{font-family:Inter,'Helvetica Neue',Arial,sans-serif;font-size:48px;font-weight:700;color:#FFF;line-height:1.05;margin-bottom:12px}
+header h1 em{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;color:#D4A373}
+header .sub{font-size:16px;color:rgba(255,255,255,0.5);max-width:540px;line-height:1.6;margin-bottom:24px;font-family:Inter,Arial,sans-serif}
+header .meta{display:flex;gap:24px;flex-wrap:wrap;font-size:10px;color:rgba(212,163,115,0.3);letter-spacing:1.5px;text-transform:uppercase;font-family:Inter,Arial,sans-serif}
+.idx{background:#F5F3F0;padding:24px 48px;border-bottom:1px solid rgba(27,45,79,0.06)}
+.idx .idx-t{font-family:Inter,'Helvetica Neue',Arial,sans-serif;font-size:13px;color:#1B2D4F;margin-bottom:12px;letter-spacing:2px;text-transform:uppercase;font-weight:600}
+.idx ol{list-style:none;columns:3;column-gap:32px;padding:0;margin:0}
+.idx ol li{display:flex;gap:8px;align-items:baseline;padding:4px 0;border-bottom:1px solid rgba(27,45,79,0.02);break-inside:avoid}
+.idx ol li .n{font-family:Inter,'Helvetica Neue',Arial,sans-serif;font-size:12px;font-weight:700;color:#2C4A7C;min-width:24px}
+.idx ol li a{color:#5A5A6A;text-decoration:none;font-size:14px}
+.idx ol li a:hover{color:#2C4A7C}
+.pw{margin:0 72px 8px;padding:12px 0;border-bottom:1px solid rgba(27,45,79,0.04)}
+.pw .bar{background:#E8E3DD;border-radius:20px;height:4px;overflow:hidden}
+.pw .fill{background:linear-gradient(90deg,#2C4A7C,#C9994A);height:100%;border-radius:20px;transition:width 0.5s ease}
+.pw .m{display:flex;justify-content:space-between;align-items:center;margin-top:4px;font-size:10px;color:#7A7A8A;text-transform:uppercase;letter-spacing:1px;font-family:Inter,Arial,sans-serif}
+.pw .r{background:none;border:none;color:#7A7A8A;cursor:pointer;font-size:10px;text-transform:uppercase;letter-spacing:1px;padding:2px 0;transition:color 0.2s;font-family:Inter,Arial,sans-serif}
+.pw .r:hover{color:#2C4A7C}
+.main{padding:48px 72px 64px}
+h2{font-family:Inter,'Helvetica Neue',Arial,sans-serif;font-size:27px;font-weight:700;color:#0A1628;margin-top:52px;margin-bottom:4px;line-height:1.15;border-bottom:2px solid #D4A373;padding-bottom:12px;padding-top:16px;border-top:1px solid rgba(27,45,79,0.04)}
+h2 .cl{display:block;font-family:Inter,Arial,sans-serif;font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#2C4A7C;margin-bottom:2px}
+h3{font-family:Inter,'Helvetica Neue',Arial,sans-serif;font-size:21px;font-weight:600;color:#0A1628;margin-top:36px;margin-bottom:10px}
+p{font-size:17px;color:#3A3A3A;margin-bottom:16px;line-height:1.85}
+.dc::first-letter{font-family:'Cormorant Garamond',Georgia,serif;font-size:72px;font-weight:700;float:left;line-height:0.75;padding:8px 16px 4px 0;color:#2C4A7C}
+.qb{margin:28px 0;padding:24px 32px;background:#F5F3F0;border-radius:6px;border-left:3px solid #C9994A}
+.qb p{font-family:'Cormorant Garamond',Georgia,serif;font-size:20px;font-style:italic;color:#2A2A2A;margin-bottom:8px;line-height:1.5}
+.qb cite{font-size:13px;font-style:normal;color:#6A6A7A;display:block;font-family:Inter,Arial,sans-serif}
+.qb cite b{color:#2C4A7C;font-weight:600}
+.cd{margin:24px 0;padding:28px 32px;background:#FFF8F5;border-radius:6px;border:1px solid rgba(44,74,124,0.06)}
+.cd .lbl{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#2C4A7C;margin-bottom:4px;font-family:Inter,Arial,sans-serif}
+.cd h4{font-family:Inter,'Helvetica Neue',Arial,sans-serif;font-size:18px;margin:0 0 6px;color:#0A1628}
+.cd p{font-size:15px;color:#4A4A5A;margin-bottom:8px}
+.ec{margin:28px 0;border-radius:6px;overflow:hidden;border:1px solid rgba(44,74,124,0.06);background:#FFF8F5}
+.ec .h{display:flex;gap:16px;align-items:flex-start;padding:24px 28px 12px;border-bottom:1px solid rgba(44,74,124,0.04)}
+.ec .i{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#2C4A7C,#C9994A);color:#FFF;display:flex;align-items:center;justify-content:center;font-family:Inter,'Helvetica Neue',Arial,sans-serif;font-size:16px;font-weight:700;flex-shrink:0}
+.ec .info h4{margin:0;font-size:17px;color:#0A1628;font-family:Inter,Arial,sans-serif}
+.ec .info .role{font-size:12px;color:#6A6A7A;margin:1px 0 2px;font-family:Inter,Arial,sans-serif}
+.ec .info .qt{font-size:15px;font-style:italic;color:#2C4A7C}
+.ec .b{padding:16px 28px 24px}
+.ec .b p{font-size:15px;margin-bottom:10px;color:#3A3A3A}
+.ec .b p:last-child{margin-bottom:0}
+.stat{display:flex;gap:16px;margin:28px 0}
+.stat>div{flex:1;background:#F5F3F0;border-radius:6px;padding:20px 16px;text-align:center;border:1px solid rgba(44,74,124,0.04)}
+.stat .num{font-family:Inter,'Helvetica Neue',Arial,sans-serif;font-size:34px;font-weight:700;color:#2C4A7C;line-height:1}
+.stat .sl{font-size:11px;color:#6A6A7A;margin-top:4px;line-height:1.4;font-family:Inter,Arial,sans-serif}
+.dt{width:100%;border-collapse:collapse;font-size:14px;border-radius:6px;overflow:hidden;margin:20px 0}
+.dt thead{background:#0A1628}
+.dt th{padding:10px 12px;text-align:left;font-weight:600;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#D4A373;font-family:Inter,Arial,sans-serif}
+.dt td{padding:8px 12px;border-bottom:1px solid rgba(44,74,124,0.04);color:#4A4A5A;font-size:14px}
+.dt tbody tr:nth-child(even){background:#F5F3F0}
+.dt td input{width:100%;border:none;background:transparent;font-family:'JetBrains Mono',monospace;font-size:13px;color:#0A1628;outline:none;padding:2px 0;border-bottom:1px solid rgba(44,74,124,0.06)}
+.dt td input:focus{border-bottom-color:#2C4A7C}
+.dt td input[type="checkbox"]{width:16px;height:16px;accent-color:#2C4A7C;cursor:pointer}
+.dt tr:last-child td{border-bottom:none}
+.yt{margin:24px 0;border-radius:6px;overflow:hidden;border:1px solid rgba(44,74,124,0.06);background:#FFF8F5;padding:16px 20px}
+.yt .lbl{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#2C4A7C;margin-bottom:6px;font-family:Inter,Arial,sans-serif}
+.yt a{display:block;padding:10px 14px;background:#F5F3F0;border-radius:4px;color:#2A2A2A;text-decoration:none;font-size:14px;border:1px solid rgba(44,74,124,0.06);margin-top:4px}
+.yt a:first-of-type{margin-top:0}
+.yt a:hover{background:#EDE8E0;border-color:rgba(44,74,124,0.15)}
+.yt a::before{content:"\25B6";color:#2C4A7C;margin-right:8px;font-size:11px}
+.hb{margin:28px 0;padding:20px 24px;background:#F5F3F0;border-radius:6px;border-left:3px solid #2C4A7C}
+.hb p{font-size:15px;margin-bottom:0;color:#4A4A5A}
+.hb b{color:#0A1628}
+.ag{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0}
+.ag>div{background:#FFF8F5;border-radius:6px;padding:16px;border:1px solid rgba(44,74,124,0.04)}
+.ag .day{font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#2C4A7C;font-family:Inter,Arial,sans-serif}
+.ag .desc{font-size:14px;color:#4A4A5A;margin:4px 0 6px;line-height:1.5}
+.ag input[type="checkbox"]{width:16px;height:16px;accent-color:#2C4A7C;cursor:pointer}
+.fb{margin:48px 0 0;padding:36px;background:linear-gradient(135deg,#0A1628,#1B2D4F);border-radius:6px;border:1px solid rgba(44,74,124,0.06);text-align:center}
+.fb h2{font-family:'Cormorant Garamond',Georgia,serif;color:#FFF;margin-top:0;border-bottom:none;padding-bottom:0;font-size:32px}
+.fb p{color:rgba(255,255,255,0.65);font-size:16px;margin-bottom:12px;font-family:Inter,Arial,sans-serif}
+.fb p:last-child{margin-bottom:0}
+.fb b{color:#D4A373}
+.ft{margin-top:48px;padding:24px 72px 32px;border-top:1px solid rgba(44,74,124,0.04);text-align:center}
+.ft p{font-size:11px;color:#7A7A8A;margin-bottom:2px;font-family:Inter,Arial,sans-serif}
+.rb{background:#FFF8F5;border:1px solid rgba(44,74,124,0.05);padding:20px 24px;margin:20px 0;border-radius:6px}
+.rb label{font-size:11px;font-weight:600;color:#2C4A7C;display:block;margin-bottom:4px;font-family:Inter,Arial,sans-serif;text-transform:uppercase;letter-spacing:1px}
+.rb textarea{width:100%;border:none;background:rgba(44,74,124,0.03);font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;color:#2A2A2A;outline:none;padding:10px 12px;border-radius:4px;min-height:60px;resize:vertical}
+.rb textarea:focus{background:rgba(44,74,124,0.06)}
+input, textarea, select{color:#0A1628}
+input::placeholder, textarea::placeholder{color:rgba(10,22,40,0.3)}
+.tw{margin:24px 0}
+.tb{display:flex;gap:0;margin-bottom:12px}
+.tb button{background:none;border:none;padding:6px 16px;cursor:pointer;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:#7A7A8A;border-bottom:2px solid transparent;transition:all 0.2s;font-family:Inter,Arial,sans-serif}
+.tb button.on{color:#2C4A7C;border-bottom-color:#2C4A7C}
+.tp{display:none}
+.tp.on{display:block}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0A1628;color:#D4A373;padding:8px 20px;border-radius:30px;font-size:12px;font-family:Inter,Arial,sans-serif;z-index:999;animation:fadeUp 0.3s ease;box-shadow:0 4px 24px rgba(0,0,0,0.3);border:1px solid rgba(212,163,115,0.1)}
+@keyframes fadeUp{from{opacity:0;transform:translateX(-50%) translateY(10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+.rw{display:flex;gap:3px;flex-wrap:wrap;margin:8px 0 0}
+.rw button{width:30px;height:30px;border:1px solid rgba(44,74,124,0.15);border-radius:50%;background:transparent;cursor:pointer;font-size:12px;color:#5A5A6A;font-family:Inter;transition:all 0.15s}
+.rw button:hover{border-color:#2C4A7C;color:#2C4A7C}
+.rw button.on{background:#2C4A7C;color:#FFF;border-color:#2C4A7C;font-weight:700}
+.btn-save{display:inline-block;margin:8px 0 0;padding:6px 20px;cursor:pointer;font-family:Inter;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#FFF;background:linear-gradient(135deg,#2C4A7C,#C9994A);border:none;border-radius:4px;transition:opacity 0.2s}
+.btn-save:hover{opacity:0.85}
+.fbk{margin-top:8px;padding:6px 12px;border-radius:4px;display:none;font-size:13px;font-family:Inter}
+.fbk.ok{display:block;background:rgba(44,74,124,0.08);color:#2C4A7C}
+.fbk.fail{display:block;background:rgba(180,80,80,0.1);color:#B05050}
+.chk{display:flex;align-items:center;gap:10px;padding:6px 0}
+.chk input{width:16px;height:16px;accent-color:#2C4A7C;cursor:pointer;flex-shrink:0}
+.chk label{cursor:pointer;font-size:15px;color:#3A3A3A}
+.qz{margin:16px 0}
+.qz .q{font-size:16px;color:#0A1628;margin-bottom:8px;font-weight:600}
+.qz .qa{display:block;padding:8px 12px;margin:4px 0;background:#F5F3F0;border:1px solid rgba(44,74,124,0.06);border-radius:4px;cursor:pointer;font-size:15px;color:#3A3A3A;transition:all 0.15s}
+.qz .qa:hover{background:#EDE8E0;border-color:#C9994A}
+.qz .qa.cr{background:rgba(44,74,124,0.1);border-color:#2C4A7C;color:#2C4A7C;font-weight:600}
+.qz .qa.wr{background:rgba(180,80,80,0.08);border-color:#B05050;color:#B05050}
+.qz .qa.ds{cursor:default;opacity:0.7}
+.ctx{background:#F5F3F0;border:1px dashed rgba(44,74,124,0.2);padding:20px 24px;margin:20px 0;border-radius:6px;text-align:center}
+.ctx p{font-size:14px;color:#4A4A5A;margin-bottom:8px}
+.ctx .cval{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700;color:#2C4A7C}
+@media(max-width:700px){
+  html{font-size:16px}
+  header{padding:40px 28px 32px}
+  header h1{font-size:34px}
+  header .sub{font-size:14px}
+  .main{padding:28px 24px 40px}
+  .idx{padding:16px 20px;margin:0}
+  .idx ol{columns:2}
+  .pw{margin:0 24px 8px}
+  .stat{flex-direction:column}
+  .ag{grid-template-columns:1fr}
+  .ft{padding:20px 24px 24px}
+}
+@media(max-width:480px){
+  header{padding:28px 16px 24px}
+  header h1{font-size:28px}
+  header .meta{gap:12px;font-size:9px}
+  .main{padding:20px 14px 28px}
+  .idx{padding:12px 14px}
+  .idx ol{columns:1}
+  .cd{padding:16px 18px}
+  .ec .h{padding:16px 18px 8px}
+  .ec .b{padding:12px 18px 18px}
+  .qb{padding:16px 18px}
+  .stat>div{padding:14px 12px}
+  .stat .num{font-size:26px}
+  h2{font-size:23px}
+  h2 .cl{font-size:9px}
+  p{font-size:15px}
+  .dt{font-size:12px}
+  .dt td input{font-size:12px}
+  .ag{grid-template-columns:1fr}
+  .fb{padding:24px 18px}
+  .pw{margin:0 14px 8px}
+  .ft{padding:16px 14px 20px}
+}
+@media(max-width:360px){
+  html{font-size:15px}
+  header{padding:20px 12px}
+  header h1{font-size:24px}
+  .main{padding:14px 10px 24px}
+  .idx ol li a{font-size:13px}
+}
+@media print{
+  body{background:#FFF!important;color:#222!important}
+  .container{box-shadow:none;background:#FFF!important;max-width:100%}
+  body,.main p,.cd p,.ec .b p,.hb p,.fb p{color:#222!important}
+  header{background:#0A1628!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;padding:28px 24px}
+  header h1,.fb h2{color:#FFF!important}
+  h2,h3,.ec .info h4{color:#111!important}
+  .qb p{color:#333!important}
+  .idx ol li a{color:#333!important}
+  .dt td input{color:#333!important}
+  header .sup{color:#888!important}
+  .pw,.tw,.yt a,.rb textarea,.dt td input[type="checkbox"],.ag input[type="checkbox"],.rw,.qz,.ctx{display:none!important}
+  .dt{font-size:10pt}
+  .dt td{border-color:#CCC!important;color:#333!important}
+  .dt thead{background:#EEE!important}
+  .dt th{color:#000!important}
+  .dt tbody tr:nth-child(even){background:#F5F5F5!important}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="sup">Elevate Shop &bull; Premium Digital Course</div>
+  <h1>Real Estate Investing <em>Basics</em></h1>
+  <p class="sub">A complete beginner's guide to building wealth through property. Learn financing, analysis, the BRRRR method, landlording, and portfolio scaling from the industry's top minds.</p>
+  <div class="meta"><span>18 Chapters</span><span>Data-Driven</span><span>Expert Perspectives</span><span>Interactive Workbook</span></div>
+</header>
+
+<div class="idx">
+  <div class="idx-t">Contents</div>
+  <ol>
+    <li><span class="n">1</span><a href="#ch1">Why Real Estate?</a></li>
+    <li><span class="n">2</span><a href="#ch2">Property Types Explained</a></li>
+    <li><span class="n">3</span><a href="#ch3">Financial Foundations</a></li>
+    <li><span class="n">4</span><a href="#ch4">FHA and Low Down Payment Loans</a></li>
+    <li><span class="n">5</span><a href="#ch5">Conventional and Investment Loans</a></li>
+    <li><span class="n">6</span><a href="#ch6">Hard Money and Private Lending</a></li>
+    <li><span class="n">7</span><a href="#ch7">Property Analysis: Cap Rate and CoC</a></li>
+    <li><span class="n">8</span><a href="#ch8">Finding Off-Market Deals</a></li>
+    <li><span class="n">9</span><a href="#ch9">The BRRRR Method</a></li>
+    <li><span class="n">10</span><a href="#ch10">House Hacking</a></li>
+    <li><span class="n">11</span><a href="#ch11">Managing Rental Properties</a></li>
+    <li><span class="n">12</span><a href="#ch12">Cash Flow Analysis</a></li>
+    <li><span class="n">13</span><a href="#ch13">Value-Add Strategies</a></li>
+    <li><span class="n">14</span><a href="#ch14">1031 Exchanges</a></li>
+    <li><span class="n">15</span><a href="#ch15">Building Your Team</a></li>
+    <li><span class="n">16</span><a href="#ch16">Risk Mitigation</a></li>
+    <li><span class="n">17</span><a href="#ch17">Scaling Your Portfolio</a></li>
+    <li><span class="n">18</span><a href="#ch18">Your Action Plan</a></li>
+  </ol>
+</div>
+
+<div class="pw">
+  <div class="bar"><div class="fill" id="progFill" style="width:0%"></div></div>
+  <div class="m"><span id="progLabel">0 of 18 chapters complete</span><button class="r" onclick="resetAll()">Reset</button></div>
+</div>
+
+<div class="main">
+
+<h2 id="ch1"><span class="cl">Chapter 1</span>Why Real Estate?</h2>
+<p class="dc">Real estate has created more millionaires than any other asset class in history. Unlike stocks, which are paper assets subject to the whims of market sentiment, real estate is tangible, leveraged, and controllable. You can improve a property, raise rents, reduce expenses, and increase its value through your own efforts. This unique combination of leverage, control, and tax advantage makes real estate the most accessible path to wealth for ordinary people.</p>
+<p>Robert Kiyosaki, author of <em>Rich Dad Poor Dad</em>, has sold over 40 million books by advocating a simple principle: the rich buy assets that generate income, while the poor and middle class buy liabilities they think are assets. For Kiyosaki, real estate is the ultimate asset class because it combines cash flow, appreciation, tax benefits, and leverage. "Your house is not an asset," he famously wrote. "It's a liability if it takes money out of your pocket. But a rental property that puts money in your pocket every month is an asset."</p>
+<div class="qb"><p>&ldquo;The most powerful tool for building wealth is not your paycheck. It's your ability to acquire assets that generate income while you sleep. Real estate is the most reliable way to do that.&rdquo;</p><cite>&mdash; <b>Robert Kiyosaki</b>, Author of <em>Rich Dad Poor Dad</em>, entrepreneur and investor</cite></div>
+<p>Grant Cardone, who built a $5 billion real estate portfolio through Cardone Capital, started with nothing. He was $500,000 in debt at 25 before turning his life around through sales and real estate. "The greatest thing about real estate is that you can control the outcome," Cardone teaches. "You can't control the stock market, but you can control the quality of your tenants, the condition of your property, and the performance of your asset."</p>
+<div class="qb"><p>&ldquo;Real estate is the only asset class where you can use other people's money to get rich, have someone else pay down your debt, and get tax advantages while you sleep. There is nothing else like it.&rdquo;</p><cite>&mdash; <b>Grant Cardone</b>, Founder of Cardone Capital, real estate mogul</cite></p></div>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=okc53NjEcxw" target="_blank">Robert Kiyosaki &amp; Ken McElroy: Real Estate Advice That Made Me a Millionaire</a><a href="https://www.youtube.com/watch?v=OwSiTmCV4OA" target="_blank">Grant Cardone: The Rules I Broke to Build $5 Billion in Real Estate</a><a href="https://www.youtube.com/watch?v=RO-b9yqRuT4" target="_blank">BiggerPockets: 10 Things We Wish We Knew Before Buying a Rental</a></div>
+<div class="cd"><div class="lbl">Activity 1.1</div><h4>Your Real Estate Why</h4><p>Why are you interested in real estate investing? What does financial freedom look like to you? Write your personal vision.</p><textarea class="rb" id="ch1-why" style="margin:0;width:100%;min-height:70px" placeholder="I want to invest in real estate because..."></textarea><button class="btn-save" onclick="save('ch1-why')">Save</button></div>
+<div class="chk"><input type="checkbox" id="ch1-done" onchange="chkUpdate(this)"><label for="ch1-done">Mark chapter complete</label></div>
+
+<h2 id="ch2"><span class="cl">Chapter 2</span>Property Types Explained</h2>
+<p class="dc">Not all real estate is created equal. The type of property you invest in determines your financing options, tenant pool, management requirements, and return profile. Understanding the spectrum of property types is essential before you write your first offer.</p>
+<p>Single-family homes are the most common entry point for new investors. They are easy to finance, easy to manage, and appeal to the largest tenant pool. Duplexes, triplexes, and fourplexes fall under residential multifamily and offer unique advantages, especially for owner-occupants who can use FHA financing. Small multifamily properties often provide better cash flow than single-family because you spread fixed costs across multiple units.</p>
+<p>Medium and large multifamily (five units and up) are classified as commercial real estate. The financing is different&mdash;commercial loans are based on the property's income rather than your personal credit. Apartment buildings, mobile home parks, self-storage, and industrial properties fall into this category. Barbara Corcoran, who founded The Corcoran Group and built it into a $5 billion real estate company, started by renting apartments in New York City. She advises: "Buy the worst house on the best block. It's the single best piece of real estate advice I ever got."</p>
+<div class="qb"><p>&ldquo;Buy the worst house on the best block. Location is the one thing you cannot change about a property. Everything else can be fixed.&rdquo;</p><cite>&mdash; <b>Barbara Corcoran</b>, Real estate mogul, founder of The Corcoran Group, <em>Shark Tank</em> investor</cite></div>
+<div class="cd"><div class="lbl">Activity 2.1</div><h4>Property Type Assessment</h4><p>Which property type interests you most at this stage? What appeals to you about it? What concerns do you have?</p><textarea class="rb" id="ch2-type" style="margin:0;width:100%;min-height:60px" placeholder="I'm most interested in... because... My main concern is..."></textarea><button class="btn-save" onclick="save('ch2-type')">Save</button></div>
+<div class="chk"><input type="checkbox" id="ch2-done" onchange="chkUpdate(this)"><label for="ch2-done">Mark chapter complete</label></div>
+
+<h2 id="ch3"><span class="cl">Chapter 3</span>Financial Foundations</h2>
+<p class="dc">Before you buy your first property, your personal finances must be in order. Lenders evaluate your credit score, debt-to-income ratio, down payment savings, and employment history. The better your financial foundation, the better your financing options and interest rates.</p>
+<p>A credit score of 620 is the minimum for most FHA loans, but conventional loans typically require 660 or higher. The best rates go to borrowers with scores above 740. Your debt-to-income ratio should ideally be below 43%. And while some loans allow 3.5% down, having 20% down unlocks conventional financing without mortgage insurance. Dave Ramsey advises paying off all consumer debt before investing in real estate. "Real estate is a wealth-building tool, not a get-rich-quick scheme. If you're carrying credit card debt, fix that first," he says.</p>
+<div class="qb"><p>&ldquo;Real estate investing is a marathon, not a sprint. Get your financial house in order first, then build your rental portfolio one brick at a time.&rdquo;</p><cite>&mdash; <b>Dave Ramsey</b>, Financial author, radio host, real estate investor</cite></div>
+<div class="cd"><div class="lbl">Activity 3.1</div><h4>Financial Fitness Check</h4><p>Check your readiness:</p><div class="chk"><input type="checkbox" id="ch3c1" onchange="chkSimple('ch3c1')"><label for="ch3c1">Credit score above 620</label></div><div class="chk"><input type="checkbox" id="ch3c2" onchange="chkSimple('ch3c2')"><label for="ch3c2">Debt-to-income ratio below 43%</label></div><div class="chk"><input type="checkbox" id="ch3c3" onchange="chkSimple('ch3c3')"><label for="ch3c3">Emergency fund of 3-6 months expenses</label></div><div class="chk"><input type="checkbox" id="ch3c4" onchange="chkSimple('ch3c4')"><label for="ch3c4">No high-interest consumer debt</label></div></div>
+<div class="chk"><input type="checkbox" id="ch3-done" onchange="chkUpdate(this)"><label for="ch3-done">Mark chapter complete</label></div>
+
+<h2 id="ch4"><span class="cl">Chapter 4</span>FHA and Low Down Payment Loans</h2>
+<p class="dc">The Federal Housing Administration (FHA) loan program is the single most accessible path to homeownership and small real estate investing in America. With a down payment as low as 3.5% and credit requirements as low as 580, FHA loans have helped millions of people buy their first home&mdash;and their first investment property.</p>
+<p>The key to using FHA for investing is owner occupancy. You must live in the property for at least one year. But here's the strategy: buy a duplex, triplex, or fourplex, live in one unit, and rent the others. The rental income from the other units can help you qualify for the loan and may even cover your entire mortgage payment. This is called "house hacking," and it's how many of the most successful real estate investors started.</p>
+<p>David Greene, author of <em>Buy, Rehab, Rent, Refinance, Repeat</em> and one of the most respected voices in real estate, started his journey with a low-down-payment owner-occupied loan. "My first deal was a townhouse I bought with 3% down using an FHA loan. I lived in it, fixed it up, and rented it out when I moved. That one property started everything," he shares.</p>
+<div class="qb"><p>&ldquo;The biggest mistake new investors make is waiting until they have 20% down. You can start with 3.5% down if you buy a multifamily and live in one unit. That's how the game really works.&rdquo;</p><cite>&mdash; <b>David Greene</b>, Real estate investor, author, host of <em>The David Greene Show</em></cite></div>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=mZ-Pc-kG5kc" target="_blank">BiggerPockets: How to Buy Houses with No Money Down (5 Ways)</a></div>
+<div class="cd"><div class="lbl">Activity 4.1</div><h4>FHA Loan Eligibility Quiz</h4><div class="qz"><div class="q">What is the minimum down payment for an FHA loan?</div><div class="qa" data-correct="false" onclick="checkQ(this,4)">A. 10%</div><div class="qa" data-correct="true" onclick="checkQ(this,4)">B. 3.5%</div><div class="qa" data-correct="false" onclick="checkQ(this,4)">C. 20%</div><div class="qa" data-correct="false" onclick="checkQ(this,4)">D. 0%</div><div class="fbk" id="fb4"></div></div></div>
+<div class="chk"><input type="checkbox" id="ch4-done" onchange="chkUpdate(this)"><label for="ch4-done">Mark chapter complete</label></div>
+
+<h2 id="ch5"><span class="cl">Chapter 5</span>Conventional and Investment Loans</h2>
+<p class="dc">Once you move beyond owner-occupied properties, you enter the world of investment property loans. Conventional loans for non-owner-occupied properties typically require 15-25% down and carry slightly higher interest rates. But they offer speed, certainty, and the ability to scale quickly once you have equity built up.</p>
+<p>Ken McElroy, real estate expert and author of <em>The ABCs of Real Estate Investing</em>, emphasizes that understanding financing is the most overlooked skill among new investors. "People spend all their time looking at properties, but very little time understanding how money works. The best real estate investor is the one who understands financing best, because financing is what makes or breaks a deal."</p>
+<div class="qb"><p>&ldquo;Real estate is a game of financing, not properties. The person who understands money better will always outperform the person who just understands houses.&rdquo;</p><cite>&mdash; <b>Ken McElroy</b>, Real estate investor, author, Rich Dad advisor</cite></div>
+<div class="cd"><div class="lbl">Activity 5.1</div><h4>Loan Comparison Table</h4><table class="dt"><thead><tr><th>Loan Type</th><th>Min Down</th><th>Min Credit</th><th>Owner Occupy?</th></tr></thead><tbody><tr><td>FHA</td><td>3.5%</td><td>580</td><td>Yes</td></tr><tr><td>Conventional</td><td><input id="ch5-conv" placeholder="e.g. 15%"></td><td>660</td><td>Optional</td></tr><tr><td>VA</td><td>0%</td><td><input id="ch5-va" placeholder="e.g. 620"></td><td>Yes</td></tr><tr><td>Hard Money</td><td>10-20%</td><td>Flexible</td><td>No</td></tr></tbody></table><button class="btn-save" onclick="saveTable('ch5')">Save</button></div>
+<div class="chk"><input type="checkbox" id="ch5-done" onchange="chkUpdate(this)"><label for="ch5-done">Mark chapter complete</label></div>
+
+<h2 id="ch6"><span class="cl">Chapter 6</span>Hard Money and Private Lending</h2>
+<p class="dc">When traditional banks say no, hard money and private lenders say yes&mdash;at a price. Hard money lenders provide short-term loans (typically 6-24 months) secured by the property itself, at higher interest rates (8-15%). These loans are used for fix-and-flip projects or BRRRR deals where the property will be refinanced into permanent financing after repairs.</p>
+<p>Private money lenders are individuals who lend their own capital, often at better terms than hard money lenders. Brandon Turner, former VP at BiggerPockets and author of <em>The Book on Rental Property Investing</em>, built his portfolio largely through private money. "The single best way to find private money is to simply ask everyone you know. You will be surprised who has money sitting in a savings account earning 0.5% interest who would love to earn 8% secured by real estate."</p>
+<div class="qb"><p>&ldquo;Private money is everywhere. People are desperate for better returns than the bank gives them. If you can offer a fair return secured by real estate, you will never run out of money partners.&rdquo;</p><cite>&mdash; <b>Brandon Turner</b>, Real estate investor, author, former VP at BiggerPockets</cite></div>
+<div class="cd"><div class="lbl">Activity 6.1</div><h4>Identify Potential Lenders</h4><p>List five people in your network who might be interested in private lending. What could you offer them?</p><textarea class="rb" id="ch6-lenders" style="margin:0;width:100%;min-height:70px" placeholder="1. My uncle - has savings earning 1%. I could offer 8% secured by property.&#10;2. My college roommate - earns good salary, looking for passive investments."></textarea><button class="btn-save" onclick="save('ch6-lenders')">Save</button></div>
+<div class="chk"><input type="checkbox" id="ch6-done" onchange="chkUpdate(this)"><label for="ch6-done">Mark chapter complete</label></div>
+
+<h2 id="ch7"><span class="cl">Chapter 7</span>Property Analysis: Cap Rate and Cash-on-Cash</h2>
+<p class="dc">Numbers don't lie&mdash;but they can be misleading if you don't know which ones to look at. Two metrics dominate real estate analysis: the capitalization rate (cap rate) and the cash-on-cash return. The cap rate measures the property's unleveraged return: Net Operating Income divided by Purchase Price. A higher cap rate generally means higher risk and higher potential return. Cash-on-cash return measures the return on your actual invested cash after financing: Annual Pre-Tax Cash Flow divided by Total Cash Invested.</p>
+<p>Grant Cardone uses a rule of thumb: "Never buy a property that cannot produce at least a 6% cap rate and a 10% cash-on-cash return. Anything less is speculation, not investing." Of course, these numbers vary by market. In expensive coastal cities, cap rates may be 3-4%, while in the Midwest, 8-10% cap rates are common.</p>
+<div class="ec"><div class="h"><div class="i">DT</div><div class="info"><h4>Dave Meyer</h4><div class="role">Chief Investment Officer, BiggerPockets &bull; Data scientist</div><div class="qt">&ldquo;Real estate markets are cyclical. What matters most is not predicting the market but knowing how to analyze any deal in any market. The numbers tell the story.&rdquo;</div></div></div><div class="b"><p>Dave Meyer, author of <em>Real Estate by the Numbers</em>, applies data science to real estate investing. He teaches that the key to successful investing is not finding the perfect market but understanding the fundamentals of deal analysis. "Most beginners focus on the wrong numbers&mdash;like purchase price or square footage. The numbers that matter are NOI, cap rate, cash flow, and IRR. Learn those four, and you can evaluate any deal anywhere."</p></div></div>
+<div class="cd"><div class="lbl">Activity 7.1</div><h4>Cap Rate Calculator</h4><p>Enter the property details to calculate the cap rate.</p><p>Net Operating Income: $<input class="rb" id="ch7-noi" style="display:inline;width:120px;margin:0 4px;padding:4px 8px" placeholder="e.g. 24000"></p><p>Purchase Price: $<input class="rb" id="ch7-price" style="display:inline;width:120px;margin:0 4px;padding:4px 8px" placeholder="e.g. 300000"></p><button class="btn-save" onclick="calcCap()">Calculate Cap Rate</button><div class="fbk" id="fb-cap"></div></div>
+<div class="chk"><input type="checkbox" id="ch7-done" onchange="chkUpdate(this)"><label for="ch7-done">Mark chapter complete</label></div>
+
+<h2 id="ch8"><span class="cl">Chapter 8</span>Finding Off-Market Deals</h2>
+<p class="dc">The best real estate deals never appear on the MLS. Off-market properties&mdash;sourced directly from owners, through wholesalers, or via creative marketing&mdash;offer discounts of 10-30% compared to retail listings. The reason is simple: less competition means better pricing and more negotiation leverage.</p>
+<p>David Greene built his entire portfolio through off-market deals. His strategy is direct mail marketing to absentee owners&mdash;landlords who live far from their rental properties and may be tired of managing them. "I send 500 letters a week. Most get thrown away. But the few responses I get are pure gold&mdash;sellers who are motivated, flexible, and willing to negotiate. That's where the deals are."</p>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=S-wiehJ2hPM" target="_blank">BiggerPockets: How to Find $150K Rental Properties (in 2026)</a></div>
+<div class="cd"><div class="lbl">Activity 8.1</div><h4>Your Deal-Finding Strategy</h4><p>Which off-market strategy will you try first? What is your first specific action step?</p><textarea class="rb" id="ch8-deals" style="margin:0;width:100%;min-height:60px" placeholder="I will try direct mail to absentee owners. My first step: research county records to find out-of-state owners."></textarea><button class="btn-save" onclick="save('ch8-deals')">Save</button></div>
+<div class="chk"><input type="checkbox" id="ch8-done" onchange="chkUpdate(this)"><label for="ch8-done">Mark chapter complete</label></div>
+
+<h2 id="ch9"><span class="cl">Chapter 9</span>The BRRRR Method</h2>
+<p class="dc">The BRRRR method&mdash;Buy, Rehab, Rent, Refinance, Repeat&mdash;is the most powerful wealth-building strategy in real estate. It allows you to recycle the same capital across multiple deals, effectively allowing you to invest with the same money over and over. The goal is to create a property that, after renovation, is worth significantly more than your total investment, allowing you to pull your cash out through refinancing.</p>
+<p>David Greene, widely known as "Sir BRRRR," wrote the definitive book on the subject. He explains the ideal BRRRR scenario: "Buy a property below market value, add value through renovation, rent it to a quality tenant, refinance at the new higher appraised value, and pull out enough cash to do it again. If executed correctly, you own a cash-flowing asset with none of your own money left in the deal."</p>
+<div class="qb"><p>&ldquo;BRRRR is not a strategy for the faint of heart. It requires you to buy right, rehab right, and manage the refinance process carefully. But if you execute it correctly, it is the single fastest path to a substantial rental portfolio.&rdquo;</p><cite>&mdash; <b>David Greene</b>, Author of <em>Buy, Rehab, Rent, Refinance, Repeat</em></cite></div>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=4Wj9jpufTqo" target="_blank">BiggerPockets: The BRRRR Method for Beginners (Full Walkthrough)</a></div>
+<div class="cd"><div class="lbl">Activity 9.1</div><h4>BRRRR Deal Analysis</h4><table class="dt"><thead><tr><th>Component</th><th>Your Estimate</th></tr></thead><tbody><tr><td>Purchase Price</td><td><input id="ch9-buy" placeholder="$"></td></tr><tr><td>Rehab Cost</td><td><input id="ch9-rehab" placeholder="$"></td></tr><tr><td>After-Repair Value (ARV)</td><td><input id="ch9-arv" placeholder="$"></td></tr><tr><td>Estimated Rent</td><td><input id="ch9-rent" placeholder="$/month"></td></tr></tbody></table><button class="btn-save" onclick="saveTable('ch9')">Save</button></div>
+<div class="chk"><input type="checkbox" id="ch9-done" onchange="chkUpdate(this)"><label for="ch9-done">Mark chapter complete</label></div>
+
+<h2 id="ch10"><span class="cl">Chapter 10</span>House Hacking</h2>
+<p class="dc">House hacking is the art of living for free while building your real estate portfolio. The concept is simple: buy a multifamily property (duplex, triplex, or fourplex), live in one unit, and rent the others. The rental income covers your mortgage, taxes, and insurance&mdash;meaning you live rent-free while your tenants build your equity.</p>
+<p>This strategy is how Brandon Turner began his real estate journey. "I bought a fourplex with an FHA loan, put 3.5% down, lived in one unit, and rented the other three. My tenants paid my entire mortgage. I lived for free while my property appreciated and my tenants paid down my loan. That single decision set me on the path to financial freedom."</p>
+<div class="ctx"><p>Cost of House Hacking vs. Traditional Renting</p><div class="cval">House Hacking: $0/mo housing cost</div><div class="cval" style="color:#B05050">Traditional Renting: $1,200/mo (money gone forever)</div></div>
+<div class="cd"><div class="lbl">Activity 10.1</div><h4>House Hack Scenario Planner</h4><p>In your market, what would a duplex cost? What could each unit rent for? Run the numbers.</p><textarea class="rb" id="ch10-hack" style="margin:0;width:100%;min-height:60px" placeholder="Duplex price in my area: $___&#10;Unit 1 rent (I live here): $0&#10;Unit 2 rent: $___&#10;Mortgage payment: $___&#10;Net cost to me: $___"></textarea><button class="btn-save" onclick="save('ch10-hack')">Save</button></div>
+<div class="chk"><input type="checkbox" id="ch10-done" onchange="chkUpdate(this)"><label for="ch10-done">Mark chapter complete</label></div>
+
+<h2 id="ch11"><span class="cl">Chapter 11</span>Managing Rental Properties</h2>
+<p class="dc">Finding and financing a property is only half the battle. The day-to-day management of rental properties determines whether you build wealth or build stress. Good management starts before you buy&mdash;with systems, screening, and realistic expectations.</p>
+<p>Ken McElroy emphasizes that tenant screening is the single most important management skill. "I'd rather have a mediocre property with a great tenant than a great property with a bad tenant. The tenant makes or breaks the investment. Screen thoroughly, verify income, call previous landlords, and trust your gut."</p>
+<div class="qb"><p>&ldquo;The goal of property management is not to avoid problems&mdash;it's to have systems in place that handle problems efficiently. A good manager anticipates issues before they become emergencies.&rdquo;</p><cite>&mdash; <b>Ken McElroy</b>, Author of <em>Real Estate Investing for Beginners</em></cite></div>
+<div class="cd"><div class="lbl">Activity 11.1</div><h4>Management Checklist</h4><div class="chk"><input type="checkbox" id="ch11c1" onchange="chkSimple('ch11c1')"><label for="ch11c1">Written lease agreement reviewed by attorney</label></div><div class="chk"><input type="checkbox" id="ch11c2" onchange="chkSimple('ch11c2')"><label for="ch11c2">Tenant screening criteria documented</label></div><div class="chk"><input type="checkbox" id="ch11c3" onchange="chkSimple('ch11c3')"><label for="ch11c3">Rent collection system in place</label></div><div class="chk"><input type="checkbox" id="ch11c4" onchange="chkSimple('ch11c4')"><label for="ch11c4">Emergency contact list for repairs</label></div></div>
+<div class="chk"><input type="checkbox" id="ch11-done" onchange="chkUpdate(this)"><label for="ch11-done">Mark chapter complete</label></div>
+
+<h2 id="ch12"><span class="cl">Chapter 12</span>Cash Flow Analysis</h2>
+<p class="dc">Cash flow is the lifeblood of real estate investing. It's the money left over after all expenses are paid each month. Without positive cash flow, you're speculating on appreciation&mdash;which is gambling, not investing. Understanding the components of cash flow analysis is essential to making sound investment decisions.</p>
+<p>The three most reliable metrics for cash flow analysis are: Gross Rent Multiplier (GRM), Net Operating Income (NOI), and Cash-on-Cash Return. GRM gives a quick valuation comparison: property price divided by annual gross rent. NOI is gross income minus operating expenses (excluding mortgage). Cash-on-Cash measures your actual return on invested capital.</p>
+<div class="stat"><div><div class="num" id="cashflow-display">$0</div><div class="sl">Estimated Monthly Cash Flow</div></div><div><div class="num" id="coc-display">0%</div><div class="sl">Cash-on-Cash Return</div></div></div>
+<div class="cd"><div class="lbl">Activity 12.1</div><h4>Cash Flow Quick Calculator</h4><p>Monthly Rent: $<input class="rb" id="ch12-rent" style="display:inline;width:100px;margin:0 4px;padding:4px 8px"></p><p>Monthly Expenses (PITI + Mgmt + Maint): $<input class="rb" id="ch12-exp" style="display:inline;width:100px;margin:0 4px;padding:4px 8px"></p><p>Cash Invested (Down + Closing + Rehab): $<input class="rb" id="ch12-cash" style="display:inline;width:120px;margin:0 4px;padding:4px 8px"></p><button class="btn-save" onclick="calcCashflow()">Calculate</button><div class="fbk" id="fb-cf"></div></div>
+<div class="chk"><input type="checkbox" id="ch12-done" onchange="chkUpdate(this)"><label for="ch12-done">Mark chapter complete</label></div>
+
+<h2 id="ch13"><span class="cl">Chapter 13</span>Value-Add Strategies</h2>
+<p class="dc">The most successful real estate investors don't just buy properties&mdash;they create value. Value-add investing means increasing a property's Net Operating Income through physical improvements, operational efficiencies, or rent optimization. Every dollar added to the bottom line increases the property's value by a multiple.</p>
+<p>Grant Cardone's entire portfolio strategy is built on value-add. "We buy underperforming multifamily properties and improve them. Better management, cosmetic renovations, rent optimization, adding amenities. We typically increase NOI by 30-50% in the first two years, which doubles or triples the equity." The beauty of value-add is that you create equity through your own efforts rather than waiting for market appreciation.</p>
+<div class="cd"><div class="lbl">Activity 13.1</div><h4>Value-Add Brainstorm</h4><p>Think of a property you know. List three low-cost improvements that could increase its rental income or decrease expenses.</p><textarea class="rb" id="ch13-value" style="margin:0;width:100%;min-height:60px" placeholder="1. Add in-unit laundry ($50/mo premium)&#10;2. Install smart thermostats (lower utilities)&#10;3. Paint and new hardware (justify higher rent)"></textarea><button class="btn-save" onclick="save('ch13-value')">Save</button></div>
+<div class="chk"><input type="checkbox" id="ch13-done" onchange="chkUpdate(this)"><label for="ch13-done">Mark chapter complete</label></div>
+
+<h2 id="ch14"><span class="cl">Chapter 14</span>1031 Exchanges</h2>
+<p class="dc">One of the most powerful wealth-building tools available to real estate investors is the 1031 exchange. Named after Section 1031 of the Internal Revenue Code, this provision allows you to sell one investment property and reinvest the proceeds into a like-kind property while deferring all capital gains taxes. When executed repeatedly over a lifetime, 1031 exchanges allow investors to build massive portfolios without ever paying capital gains taxes until they eventually cash out&mdash;or pass the properties to heirs who receive a stepped-up basis.</p>
+<p>The rules are strict: you have 45 days to identify replacement properties and 180 days to close. The replacement property must be of equal or greater value, and all proceeds must be reinvested through a qualified intermediary. But for investors who understand the game, 1031 exchanges are the ultimate wealth accelerator.</p>
+<div class="cd"><div class="lbl">Activity 14.1</div><h4>1031 Exchange Quiz</h4><div class="qz"><div class="q">How many days do you have to identify a replacement property in a 1031 exchange?</div><div class="qa" data-correct="false" onclick="checkQ(this,14)">A. 30 days</div><div class="qa" data-correct="true" onclick="checkQ(this,14)">B. 45 days</div><div class="qa" data-correct="false" onclick="checkQ(this,14)">C. 60 days</div><div class="qa" data-correct="false" onclick="checkQ(this,14)">D. 90 days</div><div class="fbk" id="fb14"></div></div></div>
+<div class="chk"><input type="checkbox" id="ch14-done" onchange="chkUpdate(this)"><label for="ch14-done">Mark chapter complete</label></div>
+
+<h2 id="ch15"><span class="cl">Chapter 15</span>Building Your Team</h2>
+<p class="dc">No real estate investor succeeds alone. The most profitable investors build teams of experts who bring specialized knowledge and experience. Your core team should include a real estate agent who understands investment properties, a mortgage broker or lender who specializes in investment financing, a real estate attorney, a CPA who understands real estate tax strategy, a property manager or management company, and trusted contractors for repairs and renovations.</p>
+<p>Barbara Corcoran, who built The Corcoran Group into a New York real estate powerhouse, credits her success to surrounding herself with people who were smarter than she was. "I hired people who knew more than me in every area. My attorney, my CFO, my top agents&mdash;everyone was better at their job than I could ever be. That's how you build a billion-dollar company."</p>
+<div class="qb"><p>&ldquo;The most successful real estate investors don't know everything. They surround themselves with people who do. Your team is your most important asset.&rdquo;</p><cite>&mdash; <b>Barbara Corcoran</b>, Founder of The Corcoran Group, <em>Shark Tank</em> investor</cite></div>
+<div class="cd"><div class="lbl">Activity 15.1</div><h4>Your Team Roster</h4><p>List the professionals you need to find. For each, note what you'll look for in a candidate.</p><textarea class="rb" id="ch15-team" style="margin:0;width:100%;min-height:70px" placeholder="Agent: Specializes in investment properties, has own portfolio&#10;Lender: Offers DSCR loans, understands BRRRR&#10;Attorney: Real estate focus, reasonable flat fees"></textarea><button class="btn-save" onclick="save('ch15-team')">Save</button></div>
+<div class="chk"><input type="checkbox" id="ch15-done" onchange="chkUpdate(this)"><label for="ch15-done">Mark chapter complete</label></div>
+
+<h2 id="ch16"><span class="cl">Chapter 16</span>Risk Mitigation</h2>
+<p class="dc">Real estate investing involves risk&mdash;there is no way around it. But the best investors don't avoid risk; they manage it. Proper insurance, thorough inspections, legal structures, and cash reserves turn potentially catastrophic events into manageable inconveniences.</p>
+<p>Dave Ramsey's approach to risk is conservative but wise: "Never buy a rental property without a fully funded emergency fund, adequate insurance, and a clear understanding of what you'll do if the property sits vacant for six months. Real estate investing is about managing risk, not eliminating it." Minimum coverage should include property insurance, liability coverage (umbrella policy recommended), landlords insurance (not homeowners), and potentially loss of rent coverage.</p>
+<div class="cd"><div class="lbl">Activity 16.1</div><h4>Risk Assessment Checklist</h4><div class="chk"><input type="checkbox" id="ch16c1" onchange="chkSimple('ch16c1')"><label for="ch16c1">Landlord insurance policy in place</label></div><div class="chk"><input type="checkbox" id="ch16c2" onchange="chkSimple('ch16c2')"><label for="ch16c2">$1M+ umbrella liability policy</label></div><div class="chk"><input type="checkbox" id="ch16c3" onchange="chkSimple('ch16c3')"><label for="ch16c3">Property inspection completed before purchase</label></div><div class="chk"><input type="checkbox" id="ch16c4" onchange="chkSimple('ch16c4')"><label for="ch16c4">6-month vacancy reserve fund</label></div></div>
+<div class="chk"><input type="checkbox" id="ch16-done" onchange="chkUpdate(this)"><label for="ch16-done">Mark chapter complete</label></div>
+
+<h2 id="ch17"><span class="cl">Chapter 17</span>Scaling Your Portfolio</h2>
+<p class="dc">One rental property is a hobby. Five is a business. Twenty is wealth. Scaling from your first property to a significant portfolio requires a shift in mindset from being a landlord to being a real estate investor. The difference is systems, leverage, and delegation.</p>
+<p>David Greene's advice for scaling is to systematize everything. "When you have one property, you can manage it yourself. When you have ten, you need systems. When you have fifty, you need a team. The investors who fail to scale are the ones who try to do everything themselves. You must learn to delegate, systematize, and leverage other people's time and money."</p>
+<p>The most common scaling paths include: accumulating single-family homes one at a time, raising private capital to buy larger multifamily deals, syndicating deals with partners, or using the BRRRR method to recycle capital repeatedly. Each path has its own risk profile and return potential.</p>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=c_OwSqXjkg4" target="_blank">BiggerPockets: How to Build a Real Estate Portfolio from Scratch</a></div>
+<div class="cd"><div class="lbl">Activity 17.1</div><h4>Your Scaling Plan</h4><p>Describe your ideal portfolio size and composition. How many properties? What types? By when?</p><textarea class="rb" id="ch17-scale" style="margin:0;width:100%;min-height:60px" placeholder="My goal: 10 doors in 5 years. Mix of single-family and small multifamily. First property within 12 months."></textarea><button class="btn-save" onclick="save('ch17-scale')">Save</button></div>
+<div class="chk"><input type="checkbox" id="ch17-done" onchange="chkUpdate(this)"><label for="ch17-done">Mark chapter complete</label></div>
+
+<h2 id="ch18"><span class="cl">Chapter 18</span>Your Action Plan</h2>
+<p class="dc">Knowledge without action is entertainment. You have completed eighteen chapters of real estate education&mdash;now it is time to take action. The difference between those who eventually build wealth through real estate and those who only read about it is the decision to start, however imperfectly.</p>
+<p>Robert Kiyosaki's final challenge to every reader is simple: "Stop waiting for the perfect deal. There is no perfect deal. There is only the deal you analyze, negotiate, and execute. Your first deal will be your messiest and your best teacher. Go make mistakes. That's how you learn."</p>
+<div class="qb"><p>&ldquo;The biggest risk in real estate is not buying the wrong property. It's never buying at all. Start small, learn fast, and scale. Your first deal is your most important one.&rdquo;</p><cite>&mdash; <b>Grant Cardone</b>, Cardone Capital</cite></div>
+<div class="cd"><div class="lbl">Activity 18.1</div><h4>Your 90-Day Real Estate Action Plan</h4><p>Write your specific, measurable, time-bound action plan for the next 90 days.</p><textarea class="rb" id="ch18-plan" style="margin:0;width:100%;min-height:100px" placeholder="Days 1-30: Get pre-approved, define target markets, join local real estate investing group.&#10;Days 31-60: Analyze 10 properties, make 3 offers, tour 5 properties.&#10;Days 61-90: Get one property under contract, assemble team, complete due diligence."></textarea><button class="btn-save" onclick="save('ch18-plan')">Save</button></div>
+<div class="cd"><div class="lbl">Activity 18.2</div><h4>Commitment Rating</h4><p>On a scale of 1-10, how committed are you to taking action on real estate in the next 30 days?</p><div class="rw" id="rating-commit"><button onclick="setRating('commit',1,this)">1</button><button onclick="setRating('commit',2,this)">2</button><button onclick="setRating('commit',3,this)">3</button><button onclick="setRating('commit',4,this)">4</button><button onclick="setRating('commit',5,this)">5</button><button onclick="setRating('commit',6,this)">6</button><button onclick="setRating('commit',7,this)">7</button><button onclick="setRating('commit',8,this)">8</button><button onclick="setRating('commit',9,this)">9</button><button onclick="setRating('commit',10,this)">10</button></div></div>
+<div class="chk"><input type="checkbox" id="ch18-done" onchange="chkUpdate(this)"><label for="ch18-done">Mark chapter complete</label></div>
+
+<div class="tw">
+  <div class="tb">
+    <button class="on" onclick="switchTab('weekly',this)">Weekly</button>
+    <button onclick="switchTab('monthly',this)">Monthly Goals</button>
+    <button onclick="switchTab('deals',this)">Deal Tracker</button>
+  </div>
+  <div class="tp on" id="tab-weekly">
+    <h3>Weekly Real Estate Actions</h3>
+    <div class="chk"><input type="checkbox" id="pw1" onchange="chkSimple('pw1')"><label for="pw1">Analyze at least 1 potential deal</label></div>
+    <div class="chk"><input type="checkbox" id="pw2" onchange="chkSimple('pw2')"><label for="pw2">Review financing options / check rates</label></div>
+    <div class="chk"><input type="checkbox" id="pw3" onchange="chkSimple('pw3')"><label for="pw3">Network with one real estate professional</label></div>
+    <div class="chk"><input type="checkbox" id="pw4" onchange="chkSimple('pw4')"><label for="pw4">Read/listen to real estate education (30 min)</label></div>
+    <div class="chk"><input type="checkbox" id="pw5" onchange="chkSimple('pw5')"><label for="pw5">Review your financial readiness score</label></div>
+  </div>
+  <div class="tp" id="tab-monthly">
+    <h3>Monthly Real Estate Goals</h3>
+    <p>Set three goals for this month:</p>
+    <p>1. <input class="rb" id="pm1" style="display:inline;width:300px;margin:0 4px;padding:4px 8px"></p>
+    <p>2. <input class="rb" id="pm2" style="display:inline;width:300px;margin:0 4px;padding:4px 8px"></p>
+    <p>3. <input class="rb" id="pm3" style="display:inline;width:300px;margin:0 4px;padding:4px 8px"></p>
+    <button class="btn-save" onclick="saveMonthly()">Save Goals</button>
+  </div>
+  <div class="tp" id="tab-deals">
+    <h3>Deal Tracker</h3>
+    <p>Log properties you analyze:</p>
+    <table class="dt"><thead><tr><th>Address</th><th>Price</th><th>Cap Rate</th><th>CoC</th><th>Decided</th></tr></thead><tbody>
+    <tr><td><input id="d1a" placeholder="Address"></td><td><input id="d1p" placeholder="$"></td><td><input id="d1cap" placeholder="%"></td><td><input id="d1coc" placeholder="%"></td><td><input type="checkbox" id="d1d"></td></tr>
+    <tr><td><input id="d2a" placeholder="Address"></td><td><input id="d2p" placeholder="$"></td><td><input id="d2cap" placeholder="%"></td><td><input id="d2coc" placeholder="%"></td><td><input type="checkbox" id="d2d"></td></tr>
+    <tr><td><input id="d3a" placeholder="Address"></td><td><input id="d3p" placeholder="$"></td><td><input id="d3cap" placeholder="%"></td><td><input id="d3coc" placeholder="%"></td><td><input type="checkbox" id="d3d"></td></tr>
+    </tbody></table><button class="btn-save" onclick="saveDeals()">Save Deals</button>
+  </div>
+</div>
+
+<div class="fb">
+  <h2>Your Real Estate Journey Starts Now</h2>
+  <p>You now understand property types, financing options, deal analysis, the BRRRR method, management, and scaling. But knowledge is only potential. The real estate market rewards action, not intention. Your first deal will be imperfect. Your tenth will be smooth. Your hundredth will be a system. Every empire begins with a single brick.</p>
+  <p><b>Go find your first deal. The market is waiting.</b></p>
+</div>
+
+</div>
+
+<footer class="ft">
+  <p>&copy; 2025 Elevate Shop. All rights reserved.</p>
+  <p>Empowering minds and building wealth, one download at a time.</p>
+</footer>
+
+</div>
+
+<script>
+const TOTAL=18;
+const PREFIX='re_';
+function save(id){const el=document.getElementById(id);if(!el)return;localStorage.setItem(PREFIX+id,el.value);toast('Saved')}
+function saveTable(prefix){const tbl=document.querySelector('#ch'+prefix.replace('ch','')+' table');if(!tbl)return;tbl.querySelectorAll('input').forEach(el=>{localStorage.setItem(PREFIX+el.id,el.value)});toast('Table saved')}
+function chkSimple(id){const cb=document.getElementById(id);if(cb)localStorage.setItem(PREFIX+id,cb.checked?'1':'0')}
+function chkUpdate(el){localStorage.setItem(PREFIX+el.id,el.checked?'1':'0');updateProgress()}
+function updateProgress(){let done=0;for(let i=1;i<=TOTAL;i++){const cb=document.getElementById('ch'+i+'-done');if(cb&&cb.checked)done++}const pct=Math.round((done/TOTAL)*100);const pf=document.getElementById('progFill');if(pf)pf.style.width=pct+'%';const pl=document.getElementById('progLabel');if(pl)pl.textContent=done+' of '+TOTAL+' chapters complete'}
+function checkQ(el,num){const block=el.closest('.qz');if(!block)return;const opts=block.querySelectorAll('.qa');const fb=document.getElementById('fb'+num);opts.forEach(o=>{o.style.pointerEvents='none';o.classList.add('ds')});if(el.dataset.correct==='true'){el.classList.add('cr');if(fb){fb.textContent='Correct!';fb.className='fbk ok'}}else{el.classList.add('wr');if(fb){fb.textContent='Not quite. Review the chapter.';fb.className='fbk fail'}opts.forEach(o=>{if(o.dataset.correct==='true')o.classList.add('cr')})}}
+function setRating(key,val,btn){const row=btn.closest('.rw');if(!row)return;row.querySelectorAll('button').forEach(b=>b.classList.remove('on'));btn.classList.add('on');localStorage.setItem(PREFIX+'rating_'+key,val)}
+function calcCap(){const noi=parseFloat(document.getElementById('ch7-noi')?.value)||0;const price=parseFloat(document.getElementById('ch7-price')?.value)||0;const fb=document.getElementById('fb-cap');if(!fb)return;if(price<=0){fb.textContent='Enter a valid purchase price.';fb.className='fbk fail';return}const cap=((noi/price)*100).toFixed(2);fb.textContent='Cap Rate: '+cap+'%';fb.className='fbk ok'}
+function calcCashflow(){const rent=parseFloat(document.getElementById('ch12-rent')?.value)||0;const exp=parseFloat(document.getElementById('ch12-exp')?.value)||0;const cash=parseFloat(document.getElementById('ch12-cash')?.value)||0;const fb=document.getElementById('fb-cf');if(!fb)return;if(rent<=0||cash<=0){fb.textContent='Fill in all fields.';fb.className='fbk fail';return}const cf=rent-exp;const coc=cash>0?((cf*12)/cash*100).toFixed(1):0;document.getElementById('cashflow-display').textContent='$'+cf.toLocaleString();document.getElementById('coc-display').textContent=coc+'%';fb.textContent='Monthly CF: $'+cf.toLocaleString()+'. Cash-on-Cash: '+coc+'%.';fb.className='fbk ok'}
+function saveMonthly(){for(let i=1;i<=3;i++){const el=document.getElementById('pm'+i);if(el)localStorage.setItem(PREFIX+el.id,el.value)};toast('Goals saved')}
+function saveDeals(){for(let i=1;i<=3;i++){['a','p','cap','coc'].forEach(s=>{const el=document.getElementById('d'+i+s);if(el)localStorage.setItem(PREFIX+el.id,el.value)});const cb=document.getElementById('d'+i+'d');if(cb)localStorage.setItem(PREFIX+cb.id,cb.checked?'1':'0')};toast('Deals saved')}
+function switchTab(name,btn){document.querySelectorAll('.tb button').forEach(b=>b.classList.remove('on'));document.querySelectorAll('.tp').forEach(p=>p.classList.remove('on'));if(btn)btn.classList.add('on');const tp=document.getElementById('tab-'+name);if(tp)tp.classList.add('on')}
+function resetAll(){if(!confirm('Reset all progress?'))return;Object.keys(localStorage).filter(k=>k.startsWith(PREFIX)).forEach(k=>localStorage.removeItem(k));location.reload()}
+function toast(msg){const d=document.createElement('div');d.className='toast';d.textContent=msg;document.body.appendChild(d);setTimeout(()=>d.remove(),2200)}
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('textarea[id], input[id]').forEach(el=>{if(el.type!='checkbox'&&el.type!='button'&&el.type!='submit'){const v=localStorage.getItem(PREFIX+el.id);if(v!==null)el.value=v}});
+  document.querySelectorAll('input[type="checkbox"]').forEach(cb=>{if(localStorage.getItem(PREFIX+cb.id)==='1')cb.checked=true});
+  document.querySelectorAll('.rw').forEach(row=>{const key=row.id.replace('rating-','');const saved=localStorage.getItem(PREFIX+'rating_'+key);if(saved){row.querySelectorAll('button').forEach(b=>{if(parseInt(b.textContent)===parseInt(saved))b.classList.add('on')})}});
+  updateProgress()
+});
+</script>
+</body>
+</html>

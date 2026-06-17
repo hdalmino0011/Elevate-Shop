@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Gratitude Journal – 90-Day Guided Practice</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Georgia,'Times New Roman',serif;background:#f5e6c8;color:#3d2b1f;line-height:1.7;min-height:100vh}
+.paper-bg{background:linear-gradient(180deg,#fdf6e3 0%,#f5e6c8 50%,#efe0b8 100%);min-height:100vh;padding:20px}
+.container{max-width:820px;margin:0 auto;background:rgba(255,252,245,0.85);border-radius:20px;padding:40px 36px;box-shadow:0 8px 40px rgba(193,57,43,0.08),0 2px 12px rgba(0,0,0,0.04);position:relative}
+.container::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;border-radius:20px;background:url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none}
+/* header */
+header{text-align:center;padding-bottom:30px;border-bottom:2px solid #f5a623;margin-bottom:24px}
+header h1{font-size:2.4em;color:#c0392b;font-weight:400;letter-spacing:1px;margin-bottom:6px;text-shadow:1px 1px 2px rgba(192,57,43,0.1)}
+header .subtitle{font-size:1.05em;color:#8b6f47;font-style:italic}
+header .badge{display:inline-block;background:linear-gradient(135deg,#f5a623,#e8922a);color:#fff;padding:4px 18px;border-radius:20px;font-size:0.85em;margin-top:10px;letter-spacing:1px}
+/* progress */
+.progress-section{background:rgba(245,166,35,0.08);border-radius:12px;padding:16px 20px;margin-bottom:20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.progress-bar-wrap{flex:1;min-width:120px;height:18px;background:#e8dcc8;border-radius:10px;overflow:hidden;position:relative}
+.progress-fill{height:100%;width:0%;background:linear-gradient(90deg,#f5a623,#e8922a);border-radius:10px;transition:width 0.4s ease}
+#progressText{font-size:0.9em;color:#6b5a3e;white-space:nowrap;font-weight:600}
+.btn-reset{background:#c0392b;color:#fff;border:none;padding:6px 16px;border-radius:8px;cursor:pointer;font-size:0.82em;font-family:inherit;transition:background 0.2s}
+.btn-reset:hover{background:#a03022}
+/* navigation */
+.nav-bar{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.nav-bar button{background:linear-gradient(135deg,#fdf6e3,#f5e6c8);color:#3d2b1f;border:1px solid #e0cdb0;padding:8px 18px;border-radius:10px;cursor:pointer;font-size:0.92em;font-family:inherit;transition:all 0.2s}
+.nav-bar button:hover{background:linear-gradient(135deg,#f5a623,#e8922a);color:#fff;border-color:#f5a623}
+.nav-bar select{flex:1;min-width:100px;padding:8px 12px;border:1px solid #e0cdb0;border-radius:10px;background:#fdf6e3;font-size:0.92em;font-family:inherit;color:#3d2b1f;cursor:pointer}
+/* day grid */
+.day-grid-wrap{margin-bottom:20px;max-height:160px;overflow-y:auto;border:1px solid #e8dcc8;border-radius:12px;padding:10px;background:rgba(253,246,227,0.5)}
+.day-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:4px}
+.day-cell{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:0.72em;border-radius:6px;cursor:pointer;background:#f5e6c8;color:#6b5a3e;transition:all 0.2s;font-weight:600;border:1px solid transparent;min-width:0}
+.day-cell:hover{background:#f5a623;color:#fff;border-color:#e8922a}
+.day-cell.active{background:#c0392b;color:#fff;border-color:#c0392b}
+.day-cell.completed{background:#d4edda;color:#2d6a4f;border-color:#2d6a4f}
+.day-cell.active.completed{background:#c0392b;color:#fff;border-color:#c0392b}
+/* day content */
+.day-content{background:rgba(255,255,255,0.5);border-radius:16px;padding:30px 28px;border:1px solid #f0e4d0;margin-bottom:24px;min-height:300px}
+.day-header{display:flex;align-items:baseline;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+.day-number{font-size:0.85em;color:#8b6f47;background:#f5e6c8;padding:2px 14px;border-radius:20px;letter-spacing:0.5px}
+.day-title{font-size:1.6em;color:#c0392b;font-weight:400;margin:0}
+.guidance{font-size:0.98em;color:#4a3a2a;line-height:1.8;margin-bottom:16px}
+.prompt{padding:14px 18px;background:rgba(245,166,35,0.07);border-left:3px solid #f5a623;border-radius:0 8px 8px 0;margin-bottom:16px;font-size:0.98em;color:#3d2b1f}
+.prompt strong{color:#c0392b}
+.video-wrap{position:relative;width:100%;padding-bottom:56.25%;margin-bottom:18px;border-radius:12px;overflow:hidden}
+.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:12px}
+.note-area{width:100%;min-height:120px;padding:14px;border:1px solid #e0cdb0;border-radius:10px;background:#fdf6e3;font-family:inherit;font-size:0.95em;color:#3d2b1f;resize:vertical;transition:border 0.2s;margin-bottom:8px}
+.note-area:focus{outline:none;border-color:#f5a623;box-shadow:0 0 0 3px rgba(245,166,35,0.12)}
+.day-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:4px}
+.btn-save{background:linear-gradient(135deg,#f5a623,#e8922a);color:#fff;border:none;padding:10px 22px;border-radius:10px;cursor:pointer;font-size:0.92em;font-family:inherit;transition:all 0.2s}
+.btn-save:hover{background:linear-gradient(135deg,#e8922a,#d4821a);transform:translateY(-1px)}
+.btn-complete{background:transparent;border:2px solid #2d6a4f;color:#2d6a4f;padding:9px 22px;border-radius:10px;cursor:pointer;font-size:0.92em;font-family:inherit;transition:all 0.2s}
+.btn-complete:hover{background:#2d6a4f;color:#fff}
+.btn-complete.done{background:#2d6a4f;color:#fff}
+.btn-complete.done:hover{background:#1e4d38}
+.save-msg{font-size:0.82em;color:#8b6f47;font-style:italic;margin-left:8px;opacity:0;transition:opacity 0.3s}
+.save-msg.show{opacity:1}
+/* footer */
+footer{text-align:center;padding-top:24px;border-top:1px solid #e0cdb0;margin-top:8px}
+footer p{font-size:0.82em;color:#8b6f47;line-height:1.6}
+footer p:last-child{font-style:italic;margin-top:2px}
+/* print */
+@media print{
+body{background:#fff!important;padding:0!important}
+.paper-bg{background:#fff!important;padding:0!important}
+.container{box-shadow:none!important;border-radius:0!important;padding:20px!important;max-width:100%!important}
+.container::before{display:none!important}
+.progress-section,.nav-bar,.day-grid-wrap,.btn-reset,.btn-save,.btn-complete,.save-msg{display:none!important}
+.day-content{border:1px solid #ddd!important;page-break-inside:avoid;background:#fff!important}
+.note-area{border:1px dashed #aaa!important;background:#fafafa!important}
+.video-wrap{display:none!important}
+header{border-bottom-color:#aaa!important}
+footer{border-top-color:#aaa!important}
+}
+</style>
+</head>
+<body>
+<div class="paper-bg">
+<div class="container">
+
+<header>
+<h1>Daily Gratitude Journal</h1>
+<p class="subtitle">A 90-Day Guided Practice to Cultivate Gratitude &amp; Positivity</p>
+<div class="badge">&#9733; Golden Sunrise Edition</div>
+</header>
+
+<div class="progress-section">
+<div class="progress-bar-wrap"><div class="progress-fill" id="progressFill"></div></div>
+<span id="progressText">0 / 90 Completed</span>
+<button class="btn-reset" onclick="window.resetProgress()">Reset Progress</button>
+</div>
+
+<div class="nav-bar">
+<button onclick="window.prevDay()">&#8592; Previous</button>
+<select id="daySelector" onchange="window.goToDay(parseInt(this.value))"></select>
+<button onclick="window.nextDay()">Next &#8594;</button>
+</div>
+
+<div class="day-grid-wrap">
+<div class="day-grid" id="dayGrid"></div>
+</div>
+
+<div id="dayContent" class="day-content"></div>
+
+<footer>
+<p>&copy; 2025 Elevate Shop. All rights reserved.</p>
+<p>Empowering minds and building wealth, one download at a time.</p>
+</footer>
+
+</div>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+var daysData = [
+{day:1,title:'The First Sunrise',guidance:'Today marks the beginning of your gratitude journey. Take a moment to appreciate the simple fact that you are here, breathing, and ready to embrace all that life offers. This first step is the most important one you will take.',prompt:'What is one thing you are grateful for right now, in this exact moment?'},
+{day:2,title:'A Person\'s Kindness',guidance:'Think about someone who showed you kindness recently. It might have been a smile from a stranger, a helping hand from a colleague, or a reassuring word from a friend. Kindness ripples outward.',prompt:'Who was kind to you today, and how did their gesture make you feel?'},
+{day:3,title:'A Place You Love',guidance:'Close your eyes and imagine a place that brings you peace. It might be a cozy corner of your home, a park bench beneath an old oak, or the memory of a quiet shoreline. Places hold our stories.',prompt:'What place makes you feel most at peace, and what makes it so special to you?'},
+{day:4,title:'Your Body\'s Gift',guidance:'Your body works tirelessly for you every moment of every day. Your heart beats, your lungs breathe, your eyes take in the beauty around you. Today, appreciate one thing your body allows you to do.',prompt:'What physical ability or sensation are you most grateful for today?'},
+{day:5,title:'A Meal That Nourished',guidance:'Food is far more than fuel. It is culture, comfort, memory, and connection. Think about a meal you enjoyed recently that brought you more than just sustenance.',prompt:'What meal or taste are you grateful for, and what made it meaningful?'},
+{day:6,title:'The Gift of Today',guidance:'Every morning brings a new beginning, a fresh page in the story of your life. Today is a gift you did not earn but received anyway. Even ordinary days hold extraordinary beauty if we look closely enough.',prompt:'What is one thing about today that you are grateful for, even if it seemed ordinary?'},
+{day:7,title:'A Sound That Comforts',guidance:'Sounds shape how we experience the world. Rain on the roof, birds at dawn, a loved one\'s laugh, the crackle of a fireplace. These auditory gifts ground us in the present moment.',prompt:'What sound are you most grateful for, and why does it bring you comfort?'},
+{day:8,title:'Someone Who Believes in You',guidance:'Having someone who believes in you can change everything. Their faith becomes a mirror in which you see your own potential more clearly. Think of the people who have cheered you on.',prompt:'Who has believed in you, and how has their support made a difference in your life?'},
+{day:9,title:'A Moment of Stillness',guidance:'In our busy lives, moments of genuine stillness are precious gifts. When we slow down, we remember what truly matters. Stillness is not emptiness; it is a quiet fullness.',prompt:'When did you last feel truly still and at peace? What made that moment possible?'},
+{day:10,title:'Ten Days of Gratitude',guidance:'You have reached day ten, and that is worth celebrating. Ten days of showing up for yourself, ten days of noticing life\'s gifts. Look back at what you have written and see how far you have already come.',prompt:'What have you learned about yourself in these first ten days of practice?'},
+{day:11,title:'A Challenge You Overcame',guidance:'Challenges are the chisel that shapes our character. When you look back at a difficulty you have navigated, you can see the strength it built in you. You made it through, and you are stronger for it.',prompt:'What is one challenge you have overcome, and what did it teach you about yourself?'},
+{day:12,title:'The Gift of Disappointment',guidance:'Disappointment, though painful in the moment, often redirects us toward something better. A closed door can be the gentlest guide to a new path. Sometimes not getting what we want is the greatest gift.',prompt:'Think of a time when not getting what you wanted turned out to be a blessing. What happened?'},
+{day:13,title:'A Mistake That Taught You',guidance:'Mistakes are not failures but tuition for wisdom. Every person who has achieved anything worthwhile has a collection of mistakes that showed them the way. Your missteps have been your teachers.',prompt:'What mistake are you grateful for making, and what wisdom did it bring into your life?',videoId:'qp0HIF3SfI4'},
+{day:14,title:'Strength You Didn\'t Know You Had',guidance:'Hard times reveal hidden reserves of strength we never knew we possessed. When life tested you, you discovered depths of resilience that had always been there, waiting to be called upon.',prompt:'When did you surprise yourself with your own strength, and what inner resource did you discover?'},
+{day:15,title:'A Difficult Conversation',guidance:'Some conversations are hard in the moment but healing in the long run. Speaking honestly takes courage, and listening openly takes grace. Difficult dialogues often strengthen the bonds that matter most.',prompt:'Think of a difficult conversation that ultimately strengthened a relationship. What made it worth having?'},
+{day:16,title:'An Unexpected Change',guidance:'Change can be unsettling, but it is also the soil in which growth happens. What felt like disruption in the moment may later be recognized as redirection. Life\'s pivots often lead to beautiful new views.',prompt:'Think of an unexpected change that later proved to be exactly what you needed. How did it help you grow?'},
+{day:17,title:'A Fear You Faced',guidance:'Courage is not the absence of fear but the decision that something else is more important. Every time you have faced a fear, you have expanded the boundaries of what is possible for you.',prompt:'Think of a fear you faced, big or small. What did you discover on the other side of it?'},
+{day:18,title:'A Time You Said No',guidance:'Setting boundaries is an act of self-respect. Saying no to what drains you makes space for what fills you. Protecting your energy is not selfish; it is essential.',prompt:'Think of a time you said no to something that was not right for you. How did it feel to honor your own needs?'},
+{day:19,title:'A Lesson from Failure',guidance:'Failure is simply feedback. It tells us what did not work and points us toward what might. Every successful person has a graveyard of failures that paved the way to their achievements.',prompt:'What did something that did not work out teach you, and how has that lesson helped you since?'},
+{day:20,title:'Twenty Days Strong',guidance:'Twenty days of gratitude practice, and you are building a new habit of noticing life\'s gifts. This is no small thing. Consistency is the bridge between intention and transformation.',prompt:'What has changed in your perspective since you started this journey twenty days ago?'},
+{day:21,title:'A Letter to a Loved One',guidance:'Today, write a silent letter of gratitude to someone you love. Think about their impact on your life, the ways they have shaped you, and the moments you have shared. Love recognized is love multiplied.',prompt:'If you could thank one person for everything they mean to you, what would you say?'},
+{day:22,title:'A Friend Who Stayed',guidance:'Friends who stand by you through thick and thin are rare and precious treasures. They have seen you at your worst and chose to stay. Such friendship is one of life\'s greatest gifts.',prompt:'Think of a friend who has been a constant presence in your life. What does their friendship mean to you?'},
+{day:23,title:'A Mentor\'s Wisdom',guidance:'Someone along your path shared wisdom that shaped who you are today. A teacher, a parent, an older sibling, or even a stranger with exactly the right words at exactly the right moment.',prompt:'What piece of advice or wisdom are you most grateful for, and who shared it with you?'},
+{day:24,title:'A Stranger\'s Smile',guidance:'Small connections with strangers remind us of our shared humanity. A held door, a nod of acknowledgment, a brief exchange of smiles. These micro-moments of connection brighten the fabric of our days.',prompt:'Think of a brief but meaningful interaction with someone you did not know. How did it affect you?'},
+{day:25,title:'Forgiveness Given',guidance:'Forgiveness is not about condoning what happened; it is about freeing yourself from carrying the weight of resentment. When you forgive, you are the first to taste the peace it brings.',prompt:'Think of a time you forgave someone. How did letting go lighten your spirit?'},
+{day:26,title:'Forgiveness Received',guidance:'Being forgiven is a profound and humbling gift. Someone offered you grace when you did not deserve it, and that act of mercy may have changed the course of your life or your heart.',prompt:'Think of a time someone forgave you. How did their grace affect you?',videoId:'SMYKAbbOefA'},
+{day:27,title:'Shared Laughter',guidance:'Laughter shared with another person is one of life\'s purest joys. It bonds us, heals us, and reminds us not to take ourselves too seriously. A moment of genuine laughter can shift an entire day.',prompt:'Think of a moment of uncontrollable laughter with someone. What made it so special?'},
+{day:28,title:'A Shoulder to Lean On',guidance:'We all need support sometimes. Reaching out is not weakness; it is wisdom. Letting someone be there for you is a gift to them as well, allowing them to show their care in tangible ways.',prompt:'Who has been there for you during a difficult time, and how did their support help you through?'},
+{day:29,title:'A Relationship That Helped You Grow',guidance:'Some relationships challenge us to become better versions of ourselves. They may not be easy, but they are transformative. Growth often happens at the edges of our comfort zones, held by another\'s hand.',prompt:'Think of a relationship that pushed you to grow. What did it teach you about yourself?'},
+{day:30,title:'Thirty Days of Connection',guidance:'Thirty days of reflecting on the people in your life. You have thought about loved ones, friends, mentors, and even strangers. Every connection has shaped you in ways visible and invisible.',prompt:'How has your appreciation for the people in your life grown over these thirty days?'},
+{day:31,title:'Your Unique Strengths',guidance:'You have gifts that no one else in the world possesses in exactly the same combination. Your character strengths, talents, and qualities make you irreplaceable. Celebrating them is not arrogance; it is gratitude for how you were made.',prompt:'Which of your personal strengths are you most grateful for, and how do they serve you?'},
+{day:32,title:'A Skill You Developed',guidance:'Skills are not born; they are built. Each one represents hours of practice, patience, and perseverance. Whether it is cooking, writing, listening, or creating, your skills are evidence of your dedication.',prompt:'Think of a skill you have developed over time. How has it enriched your life or the lives of others?'},
+{day:33,title:'Your Body\'s Resilience',guidance:'Your body has carried you through every joy and every sorrow. It has healed from injuries, rested when exhausted, and kept going when you needed it most. Your physical resilience is a daily miracle.',prompt:'What aspect of your body\'s resilience are you most grateful for today?'},
+{day:34,title:'A Bad Habit You Broke',guidance:'Breaking a habit takes tremendous strength of will. It requires showing up for yourself day after day, choosing differently until the new path becomes the natural one. That effort says something powerful about you.',prompt:'Think of a habit you successfully changed or are working to change. What does your effort reveal about your character?'},
+{day:35,title:'Your Inner Voice',guidance:'Your inner voice can be your harshest critic or your greatest supporter. Today, notice the moments when your inner voice speaks with kindness. That gentle self-talk is a gift you can cultivate.',prompt:'When has your inner voice been kind to you, and how can you encourage more self-kindness?'},
+{day:36,title:'A Risk You Took',guidance:'Every risk you have ever taken expanded your world in some way. Even risks that did not pan out taught you something valuable. Courage is not about the outcome; it is about showing up despite uncertainty.',prompt:'Think of a risk you took that paid off, even in a small way. What did stepping out of your comfort zone teach you?'},
+{day:37,title:'Your Creativity',guidance:'Creativity is not limited to artists and musicians. It lives in how you solve problems, arrange your space, cook a meal, or tell a story. Your unique creative spark is something to celebrate.',prompt:'What creative aspect of yourself are you thankful for, and how does it show up in your daily life?'},
+{day:38,title:'A Dream You Are Pursuing',guidance:'Dreams give life direction and meaning. They call us forward into becoming who we are meant to be. The very act of pursuing a dream is a gift you give to your future self.',prompt:'What dream are you nurturing right now, and what excites you most about the journey toward it?'},
+{day:39,title:'Self-Compassion',guidance:'Being kind to yourself is not self-indulgence; it is self-preservation. When you treat yourself with the same compassion you would offer a dear friend, you create a foundation of inner peace that nothing can shake.',prompt:'Think of a moment when you showed yourself compassion instead of criticism. How did it feel?',videoId:'cBzhCWV6Q7Q'},
+{day:40,title:'Forty Days of Self-Discovery',guidance:'Forty days of turning your attention inward with kindness and curiosity. You have explored your strengths, your creativity, and your inner landscape. This self-knowledge is a treasure no one can take from you.',prompt:'How has your relationship with yourself evolved over these forty days of practice?'},
+{day:41,title:'A Struggle That Made You Wiser',guidance:'Struggles are among our most effective teachers. They strip away the non-essential and reveal what we are made of. The wisdom gained through difficulty is hard-earned and deeply held.',prompt:'Think of a difficult period that gave you lasting wisdom. What did it teach you that you now carry always?'},
+{day:42,title:'A Dark Cloud\'s Silver Lining',guidance:'Even in the darkest times, there are glimmers of light if we train ourselves to see them. A kind word, an unexpected help, a moment of beauty. These silver linings do not erase the pain, but they remind us that light still exists.',prompt:'Think of a hard experience that had an unexpected positive outcome. What was the silver lining?'},
+{day:43,title:'An Obstacle That Redirected You',guidance:'Obstacles are not always barriers; sometimes they are signposts pointing in a new direction. What felt like a block may have been the universe rerouting you toward a better destination.',prompt:'Think of an obstacle that changed your path for the better. Where did it ultimately lead you?'},
+{day:44,title:'A Painful Goodbye',guidance:'Goodbyes are some of life\'s hardest moments. But every ending creates space for a new beginning. The pain of letting go is the price of having loved or cared deeply, and it is a price worth paying.',prompt:'Think of a goodbye that was painful but necessary. How did that ending make room for something new in your life?'},
+{day:45,title:'A Time You Felt Broken',guidance:'Feeling broken is part of the human experience. It is not a sign of weakness but evidence that you have cared deeply, tried hard, and risked greatly. Every broken piece can be put back together, often more beautifully than before.',prompt:'Think of a time when you felt shattered. How did you begin to piece yourself back together?'},
+{day:46,title:'A Loss That Taught You Love',guidance:'Loss has a way of revealing the depth of our love. When we lose someone or something dear, we realize how much they meant to us. That love does not disappear; it transforms into gratitude for having had them at all.',prompt:'Think of a loss that expanded your capacity to love or appreciate. What did it teach you about love?'},
+{day:47,title:'A Moment of Despair That Passed',guidance:'Despair can feel endless when we are in it, but it always passes. The sun rises again, the heart continues beating, and life finds a way forward. Your presence here today is proof that you have made it through dark nights.',prompt:'Think of a moment of deep sadness that eventually lifted. What helped you find your way through it?'},
+{day:48,title:'A Scar You Carry',guidance:'Scars are not marks of shame; they are evidence of survival. Every scar, visible or invisible, tells a story of something you lived through. They are the map of your resilience.',prompt:'Think of a scar you carry, emotional or physical. What story of strength does it represent?'},
+{day:49,title:'A Hard Choice You Made',guidance:'Sometimes life asks us to choose between two difficult paths. The choices that align with our deepest values, even when hard, shape our character and define who we are becoming.',prompt:'Think of a hard choice you made that aligned with your values. How did it shape the person you are today?'},
+{day:50,title:'Fifty Days of Growth',guidance:'Halfway through your 90-day journey. Fifty days of finding gratitude even in the hard places, the painful moments, the struggles that shaped you. You have been doing the deep work of transformation.',prompt:'How has finding gratitude in difficult times changed your relationship with challenges?'},
+{day:51,title:'The Morning Sun',guidance:'Each sunrise is a promise of a new day, a fresh start, another chance. The morning light touches everything with gold and reminds us that no matter what happened yesterday, today is new.',prompt:'What do you love about the morning, and how does the start of a new day fill you with hope?'},
+{day:52,title:'A Tree You Love',guidance:'Trees are silent witnesses to our lives. They stand through seasons, weather, and years with quiet dignity. A tree that has meaning to you might be one you climbed as a child or one you pass on your daily walk.',prompt:'Think of a tree that holds meaning for you. What does its presence represent in your life?',videoId:'xFr0FKnaLDk'},
+{day:53,title:'The Sound of Rain',guidance:'Rain nourishes the earth and creates a calming rhythm that has soothed humans for millennia. There is a reason rainy days feel cozy and introspective. The sound of rain invites us to slow down and listen.',prompt:'What do you love about rainy days? How does the sound of rain affect your spirit?'},
+{day:54,title:'A Body of Water',guidance:'Oceans, lakes, rivers, and streams connect us to something larger than ourselves. Water in motion is mesmerizing; water at rest is mirror-like. Both remind us of the beauty of flow and reflection.',prompt:'Think of a body of water that brings you peace. What is it about water that soothes your soul?'},
+{day:55,title:'The Fresh Air',guidance:'Every breath connects you to the living world. The air that fills your lungs has traveled through forests, across oceans, and around the planet to reach you. Breathing is a constant, quiet miracle.',prompt:'How does being outdoors and breathing fresh air change your mood and perspective?'},
+{day:56,title:'A Flower\'s Beauty',guidance:'Flowers bloom without hurry, each in its own time, in its own way. They do not compare themselves to other flowers; they simply grow toward the light and share their beauty with the world.',prompt:'Think of a flower that brings you joy. What does its simple beauty teach you about life?'},
+{day:57,title:'The Night Sky',guidance:'Stars have guided travelers, inspired poets, and filled dreamers with wonder for all of human history. Looking up at the night sky reminds us of our place in the vast, beautiful cosmos.',prompt:'When did you last look at the night sky? What did you feel as you gazed at the stars?'},
+{day:58,title:'Animals That Bring Joy',guidance:'Animals have a way of living fully in the present moment. They do not worry about yesterday or tomorrow. Their presence reminds us to be here, now, and to find joy in simple things.',prompt:'Think of an animal that has brought joy to your life. What do you appreciate about them?'},
+{day:59,title:'The Changing Seasons',guidance:'Seasons remind us that change is natural, inevitable, and beautiful. Each season has its own gifts and lessons. Wherever you are in life\'s seasonal cycle, there is something to appreciate about this moment.',prompt:'What season are you in right now, literally or metaphorically? How are you embracing it?'},
+{day:60,title:'Sixty Days of Nature\'s Grace',guidance:'For sixty days you have been cultivating the habit of gratitude. The past ten days have focused on the natural world that surrounds and sustains you. Nature\'s beauty is a gift that keeps giving.',prompt:'How has noticing the natural world enriched your daily experience over these sixty days?'},
+{day:61,title:'A Possibility That Excites You',guidance:'The future is full of possibility, and some possibilities make your heart light up just thinking about them. Anticipating good things is itself a form of gratitude for what is yet to come.',prompt:'What is something on the horizon that excites you, and why does it make your heart sing?'},
+{day:62,title:'A Goal You Are Working Toward',guidance:'Goals give life direction and a sense of purpose. The journey toward a meaningful goal is as rich and rewarding as reaching the destination. Every step forward is something to celebrate.',prompt:'Think of a goal you are actively pursuing. How will achieving it change your life for the better?'},
+{day:63,title:'The Person You Are Becoming',guidance:'You are not the same person you were a year ago, or even a month ago. Growth is constant, even when invisible. The person you are becoming is worthy of your gratitude and excitement.',prompt:'What qualities are you developing that you are grateful for? Who are you growing into?'},
+{day:64,title:'A Future Adventure',guidance:'Adventure awaits, whether it is a trip to a new place, a new project, or a new chapter of life. The anticipation of adventure brings a special kind of energy and hope to our days.',prompt:'What adventure are you looking forward to, and what thrills you most about it?'},
+{day:65,title:'A Skill You Are Learning',guidance:'Learning keeps us young, curious, and engaged with life. Every new skill is a door to new experiences and new parts of yourself. The learner\'s mindset is a gift that keeps on giving.',prompt:'What is something new you are learning or want to learn? How does the process of growth excite you?',videoId:'g9tG_Mrj90M'},
+{day:66,title:'A Future Reunion',guidance:'There are people you have not seen in a while whom you will meet again. These future reunions carry the warmth of old memories and the promise of new ones to be made.',prompt:'Who do you look forward to reconnecting with, and what will you share when you meet again?'},
+{day:67,title:'A Dream Not Yet Born',guidance:'Some dreams are still taking shape in the quiet corners of your heart. They have not fully formed, but they are there, waiting for the right moment to emerge. Trust the process of becoming.',prompt:'What dream is forming in your heart that has not yet fully revealed itself? What is it trying to tell you?'},
+{day:68,title:'Health and Vitality',guidance:'Your future self will thank you for the care you give your body today. Every healthy choice is a gift to the person you will be tomorrow. Investing in your well-being is the most loving thing you can do.',prompt:'What are you doing now that your future self will be grateful for?'},
+{day:69,title:'A New Beginning',guidance:'Every ending carries within it the seed of a new beginning. Even as one chapter closes, another is waiting to be written. New beginnings are invitations to grow, explore, and become.',prompt:'What new beginning do you sense on the horizon? How are you preparing to welcome it?'},
+{day:70,title:'Seventy Days of Hope',guidance:'Seventy days of gratitude practice, and you are now looking forward with hope and anticipation. Gratitude for what is coming is a powerful force that shapes your future in beautiful ways.',prompt:'How has focusing on future blessings shifted your outlook? What hope are you carrying in your heart?'},
+{day:71,title:'The First Sip of Coffee or Tea',guidance:'Morning rituals are small but sacred. That first warm sip, the aroma, the quiet moment before the world wakes up. These tiny daily ceremonies ground us and mark the beginning of a new day.',prompt:'Think about the simple pleasure of your morning beverage. How does this small ritual ground your day?'},
+{day:72,title:'A Warm Blanket',guidance:'Comfort comes in simple, gentle forms. A soft blanket on a cool evening, a warm sweater, a cozy pair of socks. These small comforts are reminders that we are allowed to be warm and at ease.',prompt:'What small comfort are you grateful for today, and how does it make you feel cared for?'},
+{day:73,title:'A Good Night\'s Sleep',guidance:'Sleep restores, heals, and prepares us for a new day. Waking up after a restful night is one of life\'s underrated pleasures. Good sleep is a foundation for everything else.',prompt:'How does a restful night affect your ability to show up fully for your life the next day?'},
+{day:74,title:'The Taste of Your Favorite Food',guidance:'Flavors can transport us to happy memories and comfort us in difficult moments. Your favorite food is not just nourishment; it is nostalgia, joy, and love on a plate.',prompt:'What is your favorite comfort food, and what happy memories does it bring back for you?'},
+{day:75,title:'A Lazy Afternoon',guidance:'Doing nothing is sometimes exactly what we need. A lazy afternoon with no agenda, no obligations, nowhere to be. These unhurried hours are not wasted; they are replenished.',prompt:'Think of a lazy afternoon you enjoyed recently. Why is rest essential for a well-lived life?'},
+{day:76,title:'A Freshly Made Bed',guidance:'There is something magical about sliding into fresh, clean sheets at the end of a long day. These small sensory pleasures are everyday luxuries that are easy to overlook but wonderful to notice.',prompt:'What small daily comfort do you sometimes take for granted but are grateful for today?'},
+{day:77,title:'A Hug That Said Everything',guidance:'Sometimes a hug communicates more than words ever could. It says I am here, I care, you are safe, you are loved. Physical connection is a fundamental human need and a profound gift.',prompt:'Think of a hug that made you feel safe or understood. Who was it from, and what did it communicate?'},
+{day:78,title:'The Smell of Rain on Dry Ground',guidance:'Petrichor, the earthy scent of rain on dry soil, is one of nature\'s most beloved fragrances. Our senses connect us to the world in ways that bypass thought and speak directly to the heart.',prompt:'What everyday scent brings you joy, and how does it affect your mood?',videoId:'as0uWN5ad64'},
+{day:79,title:'A Good Book',guidance:'Books open doors to other worlds, other minds, other ways of being. A good book can be a friend, a teacher, a comfort, and an adventure all at once. Reading is a gift that keeps giving.',prompt:'Think of a book that moved, taught, or comforted you. What did it give you that you still carry?'},
+{day:80,title:'Eighty Days of Small Wonders',guidance:'For eighty days you have been training your mind to notice life\'s gifts, both big and small. The small wonders of everyday life are infinite once you start paying attention to them.',prompt:'What small joy have you discovered recently that you might have missed before this practice?'},
+{day:81,title:'Looking Back at Day One',guidance:'Remember how you felt when you wrote your first entry? Compare that person to who you are now. Eighty days of gratitude practice have changed you in ways visible and invisible.',prompt:'What is the most significant change you notice between the person who started Day One and who you are today?'},
+{day:82,title:'Your Favorite Entry',guidance:'Flip back through the pages of your journey. Some days will stand out as especially meaningful, moments when a particular prompt or realization landed deeply.',prompt:'Which day\'s reflection meant the most to you, and what made it so significant?'},
+{day:83,title:'A Pattern You Notice',guidance:'After eighty-three days of practice, patterns begin to emerge. You may notice certain themes recurring in what you are grateful for. These patterns are windows into what your heart values most.',prompt:'What patterns have you noticed in what you are consistently grateful for? What do they reveal about you?'},
+{day:84,title:'Gratitude as a Habit',guidance:'Eighty-four days is long enough for gratitude to become a genuine habit. What started as a daily exercise has likely begun to weave itself into the fabric of your natural thinking.',prompt:'How has regular gratitude practice changed your default mindset? Do you notice gratitude more automatically now?'},
+{day:85,title:'A Ripple You Have Created',guidance:'Your gratitude practice does not affect only you. When you carry more appreciation, patience, and kindness, it ripples outward to everyone you encounter. Your practice is a gift to the world.',prompt:'How has your attitude of gratitude influenced the people around you? What ripples have you noticed?'},
+{day:86,title:'Challenges Beyond Day Ninety',guidance:'The journal may have a final page, but your gratitude practice does not have to end. The question now is how you will carry this habit forward into the rest of your life.',prompt:'How will you continue your gratitude practice after Day Ninety? What will you do to keep this gift alive?'},
+{day:87,title:'Gratitude and Joy',guidance:'Gratitude and joy are deeply connected. Gratitude opens the door, and joy walks through. The more you practice noticing what is good, the more joy you will find waiting for you.',prompt:'How has practicing gratitude increased your capacity for joy? What does joy feel like to you now?'},
+{day:88,title:'Your Gratitude Toolkit',guidance:'Over these eighty-eight days, you have gathered tools, insights, and practices that work for you. These are the instruments of your ongoing wellbeing and the foundation of a grateful life.',prompt:'What are the most powerful gratitude practices you have discovered? Which will you carry forward?'},
+{day:89,title:'Almost There',guidance:'You are just one day away from completing ninety days of gratitude practice. Look at how far you have come. Think about what you would say to someone who is just starting their own journey.',prompt:'How do you feel about reaching this milestone? What would you tell someone beginning their gratitude journey today?'},
+{day:90,title:'The Full Circle',guidance:'You have completed ninety days of gratitude practice. This is a remarkable achievement worthy of celebration. You have trained your mind to notice beauty, to find light in darkness, and to appreciate the gift of being alive. Carry this with you always.',prompt:'What is the single most important thing you will take with you from this 90-day journey into all the days ahead?',videoId:'5fsm-QbN9r8'}
+];
+
+var state = loadState();
+var currentDay = state.currentDay || 1;
+
+function loadState(){
+try{
+var s=localStorage.getItem('grJourn');
+return s?JSON.parse(s):{completed:{},notes:{},currentDay:1};
+}catch(e){return {completed:{},notes:{},currentDay:1};}
+}
+
+function saveState(){
+try{localStorage.setItem('grJourn',JSON.stringify(state));}catch(e){}
+}
+
+function renderAll(){
+renderDayGrid();
+renderSelector();
+renderDay(currentDay);
+renderProgress();
+}
+
+function renderDayGrid(){
+var grid=document.getElementById('dayGrid');
+if(!grid)return;
+var h='';
+for(var i=1;i<=90;i++){
+var cls='day-cell';
+if(state.completed[i]) cls+=' completed';
+if(i===currentDay) cls+=' active';
+h+='<div class="'+cls+'" onclick="window.goToDay('+i+')">'+i+'</div>';
+}
+grid.innerHTML=h;
+}
+
+function renderSelector(){
+var sel=document.getElementById('daySelector');
+if(!sel)return;
+var v=sel.value;
+sel.innerHTML='<option value="">Go to day...</option>';
+for(var i=1;i<=90;i++){
+sel.innerHTML+='<option value="'+i+'">Day '+i+'</option>';
+}
+sel.value=v;
+}
+
+function renderProgress(){
+var fill=document.getElementById('progressFill');
+var txt=document.getElementById('progressText');
+if(!fill||!txt)return;
+var c=0;
+for(var i=1;i<=90;i++){if(state.completed[i])c++;}
+var pct=Math.round((c/90)*100);
+fill.style.width=pct+'%';
+txt.textContent=c+' / 90 Completed';
+}
+
+function renderDay(d){
+var cont=document.getElementById('dayContent');
+if(!cont)return;
+var day=daysData.find(function(x){return x.day===d});
+if(!day){cont.innerHTML='<p>Day not found.</p>';return;}
+var isComplete=!!state.completed[d];
+var note=state.notes[d]||'';
+var html='';
+html+='<div class="day-header">';
+html+='<span class="day-number">Day '+day.day+'</span>';
+html+='<h2 class="day-title">'+day.title+'</h2>';
+html+='</div>';
+html+='<p class="guidance">'+day.guidance+'</p>';
+html+='<div class="prompt"><strong>Today\'s Prompt:</strong> '+day.prompt+'</div>';
+if(day.videoId){
+html+='<div class="video-wrap"><iframe src="https://www.youtube.com/embed/'+day.videoId+'" allowfullscreen loading="lazy"></iframe></div>';
+}
+html+='<textarea class="note-area" id="note_'+d+'" placeholder="Write your thoughts here...">'+escapeHtml(note)+'</textarea>';
+html+='<div class="day-actions">';
+html+='<button class="btn-save" onclick="window.saveNote('+d+')">Save Entry</button>';
+html+='<button class="btn-complete'+(isComplete?' done':'')+'" id="cbtn_'+d+'" onclick="window.markComplete('+d+')">'+(isComplete?'&#10003; Complete':'Mark Complete')+'</button>';
+html+='<span class="save-msg" id="savemsg_'+d+'">&#10003; Saved!</span>';
+html+='</div>';
+cont.innerHTML=html;
+currentDay=d;
+state.currentDay=d;
+saveState();
+renderDayGrid();
+renderSelector();
+renderProgress();
+var sel=document.getElementById('daySelector');
+if(sel)sel.value=d;
+}
+
+function escapeHtml(s){
+if(!s)return'';
+return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+window.goToDay=function(d){
+d=parseInt(d);
+if(isNaN(d)||d<1||d>90)return;
+renderDay(d);
+};
+
+window.prevDay=function(){
+var d=currentDay-1;
+if(d<1)d=90;
+renderDay(d);
+};
+
+window.nextDay=function(){
+var d=currentDay+1;
+if(d>90)d=1;
+renderDay(d);
+};
+
+window.markComplete=function(d){
+d=parseInt(d);
+if(isNaN(d)||d<1||d>90)return;
+if(state.completed[d]){
+delete state.completed[d];
+}else{
+state.completed[d]=true;
+}
+saveState();
+// re-render just this day and progress/grid
+renderDay(d);
+renderProgress();
+renderDayGrid();
+};
+
+window.saveNote=function(d){
+d=parseInt(d);
+if(isNaN(d)||d<1||d>90)return;
+var ta=document.getElementById('note_'+d);
+if(ta)state.notes[d]=ta.value;
+saveState();
+var msg=document.getElementById('savemsg_'+d);
+if(msg){msg.classList.add('show');setTimeout(function(){msg.classList.remove('show');},2000);}
+};
+
+window.resetProgress=function(){
+if(!confirm('Are you sure you want to reset all progress? This will clear all completed days and notes.'))return;
+state={completed:{},notes:{},currentDay:1};
+saveState();
+renderAll();
+};
+
+renderAll();
+})();
+</script>
+</body>
+</html>

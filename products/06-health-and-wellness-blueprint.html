@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Health &amp; Wellness Blueprint</title>
+<style>
+:root {
+  --primary: #0B4D4F;
+  --primary-light: #126E70;
+  --accent: #8CB08B;
+  --accent-dark: #6E8F6D;
+  --gold: #D4A373;
+  --text: #1A2A2A;
+  --text-light: #5A7272;
+  --bg: #F7FBF8;
+  --card-bg: #FFFFFF;
+  --success: #4A9E6E;
+  --warning: #C9955E;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif; background: var(--bg); color: var(--text); line-height: 1.8; }
+h1, h2, h3, h4, .ch-num, .badge, .progress-header h3, .toc-item, button { font-family: 'Inter', 'Helvetica Neue', system-ui, sans-serif; }
+.container { max-width: 750px; margin: 0 auto; padding: 20px; }
+@media print { .no-print { display: none !important; } body { background: #fff; } }
+
+.cover { background: linear-gradient(135deg, var(--primary) 0%, #0A3F41 50%, #083234 100%); padding: 80px 40px 60px; text-align: center; border-radius: 0 0 8px 8px; position: relative; overflow: hidden; }
+.cover::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); opacity: 0.5; }
+.cover h1 { color: #fff; font-size: 3em; font-weight: 700; letter-spacing: -1px; margin-bottom: 12px; position: relative; }
+.cover .subtitle { color: var(--accent); font-size: 1.2em; margin-bottom: 20px; position: relative; font-family: 'Cormorant Garamond', serif; }
+.cover .badge { display: inline-block; background: var(--accent-dark); color: #fff; padding: 8px 24px; border-radius: 30px; font-size: 0.85em; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; position: relative; }
+
+.toc { background: var(--card-bg); border-radius: 12px; padding: 30px 35px; margin: 30px 0; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
+.toc h2 { color: var(--primary); font-size: 1.5em; margin-bottom: 20px; font-weight: 600; }
+.toc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 6px; }
+.toc-item { display: flex; align-items: center; gap: 10px; padding: 5px 10px; border-radius: 6px; cursor: pointer; transition: all 0.2s; text-decoration: none; color: var(--text); font-size: 0.9em; }
+.toc-item:hover { background: #EAF3ED; color: var(--primary); }
+.toc-num { width: 26px; height: 26px; background: var(--primary); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7em; font-weight: 600; flex-shrink: 0; }
+.toc-item.completed .toc-num { background: var(--success); }
+.toc-item.completed::after { content: '\2713'; color: var(--success); font-weight: 700; margin-left: auto; }
+
+.progress-section { background: var(--card-bg); border-radius: 12px; padding: 20px 30px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+.progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.progress-header h3 { font-size: 0.95em; color: var(--primary); font-weight: 600; }
+.progress-header span { font-weight: 700; color: var(--primary-light); }
+.progress-bar { height: 8px; background: #EAF3ED; border-radius: 10px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 10px; transition: width 0.5s ease; width: 0%; }
+.reset-btn { display: inline-block; margin-top: 12px; padding: 6px 18px; background: var(--warning); color: #fff; border: none; border-radius: 6px; font-size: 0.8em; cursor: pointer; }
+.reset-btn:hover { opacity: 0.85; }
+
+.chapter { display: none; background: var(--card-bg); border-radius: 16px; padding: 50px 45px; margin: 20px 0; box-shadow: 0 2px 20px rgba(0,0,0,0.04); }
+.chapter.active { display: block; animation: fadeIn 0.4s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.chapter h2 { color: var(--primary); font-size: 1.6em; margin-bottom: 6px; font-weight: 600; }
+.chapter .ch-num { color: var(--accent-dark); font-weight: 600; font-size: 0.85em; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px; }
+.chapter .ch-subtitle { color: var(--text-light); font-size: 1em; margin-bottom: 25px; font-style: italic; }
+.chapter::before { content: ''; display: block; height: 1px; background: var(--accent); opacity: 0.3; margin-bottom: 30px; }
+
+.chapter p:first-of-type::first-letter { font-size: 4.5rem; font-weight: 700; float: left; margin-right: 0.5rem; line-height: 0.8; color: var(--primary); }
+
+.video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; margin: 30px 0; border-radius: 12px; overflow: hidden; background: #000; }
+.video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+.activity { background: linear-gradient(135deg, #F0F7F2, #E8F0EA); border-left: 4px solid var(--accent-dark); border-radius: 0 12px 12px 0; padding: 25px 30px; margin: 25px 0; }
+.activity h3 { color: var(--primary); font-size: 1em; margin-bottom: 12px; font-weight: 600; }
+.activity h3::before { content: '\270E'; margin-right: 8px; color: var(--accent-dark); }
+.activity textarea, .activity input[type="text"], .activity input[type="number"] { width: 100%; background: #fff; border: 1px solid #C8DAD0; border-radius: 8px; padding: 12px 15px; font-family: 'Cormorant Garamond', serif; font-size: 0.95em; color: var(--text); margin-top: 8px; resize: vertical; }
+.activity textarea:focus, .activity input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(11,77,79,0.1); }
+
+.callout { background: #F0F7F2; border-left: 4px solid var(--primary); border-radius: 0 12px 12px 0; padding: 20px 25px; margin: 25px 0; }
+.callout.warning { background: #FFF8F0; border-left-color: var(--warning); }
+.callout.tip { background: #F0FAF4; border-left-color: var(--success); }
+.callout strong { color: var(--primary); }
+
+.insight { background: var(--primary); color: #fff; border-radius: 12px; padding: 25px 30px; margin: 25px 0; }
+.insight h3 { color: var(--gold); margin-bottom: 10px; font-size: 1em; font-weight: 600; }
+.insight p { color: #C8DAD0; }
+
+.quiz { margin: 20px 0; }
+.quiz-option { display: block; padding: 10px 15px; margin: 6px 0; border: 2px solid #C8DAD0; border-radius: 8px; cursor: pointer; transition: all 0.2s; background: #fff; }
+.quiz-option:hover { border-color: var(--primary); }
+.quiz-option.selected { border-color: var(--primary); background: #EAF3ED; }
+.quiz-option.correct { border-color: var(--success); background: #E8F8EF; }
+.quiz-option.incorrect { border-color: #C95555; background: #FDE8E8; }
+.quiz-feedback { margin-top: 10px; padding: 10px; border-radius: 8px; display: none; }
+.quiz-feedback.show { display: block; }
+
+.rating { display: flex; gap: 8px; margin: 10px 0; flex-wrap: wrap; }
+.rating button { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #C8DAD0; background: #fff; cursor: pointer; font-weight: 700; color: var(--text-light); transition: all 0.2s; }
+.rating button.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+.rating button:hover { border-color: var(--primary); }
+
+.checklist label { display: flex; align-items: center; gap: 10px; padding: 6px 0; cursor: pointer; }
+.checklist input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--primary); }
+.checklist label.checked { text-decoration: line-through; color: var(--text-light); }
+
+.habit-grid { display: grid; grid-template-columns: 120px repeat(7, 1fr); gap: 2px; margin: 15px 0; overflow-x: auto; }
+.habit-grid .habit-label { font-weight: 600; font-size: 0.8em; padding: 6px; display: flex; align-items: center; }
+.habit-grid .day-header { text-align: center; font-weight: 700; font-size: 0.7em; color: var(--text-light); text-transform: uppercase; padding: 4px; }
+.habit-grid .habit-cell { width: 100%; aspect-ratio: 1; border: 1px solid #C8DAD0; border-radius: 4px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; font-size: 1em; background: #fff; }
+.habit-grid .habit-cell:hover { border-color: var(--primary); }
+.habit-grid .habit-cell.checked { background: var(--primary); border-color: var(--primary); color: #fff; }
+
+.chapter-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 35px; }
+.chapter-nav button { background: var(--primary); color: #fff; border: none; padding: 12px 28px; border-radius: 8px; font-size: 0.9em; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif; }
+.chapter-nav button:hover { background: var(--primary-light); transform: translateY(-1px); }
+.chapter-nav button:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+.chapter-nav button.next { background: var(--accent-dark); }
+.chapter-nav button.next:hover { background: var(--accent); }
+.chapter-nav button.complete { background: var(--success); }
+
+footer { text-align: center; padding: 40px 20px; color: var(--text-light); font-size: 0.85em; border-top: 1px solid #E0EDE4; margin-top: 40px; }
+footer a { color: var(--primary); text-decoration: none; }
+
+@media (max-width: 700px) {
+  .cover h1 { font-size: 2em; }
+  .chapter { padding: 30px 20px; }
+  .toc { padding: 20px; }
+  .toc-grid { grid-template-columns: 1fr; }
+  .habit-grid { grid-template-columns: 60px repeat(7, 1fr); }
+  .chapter-nav { flex-direction: column; }
+  .chapter-nav button { width: 100%; }
+  .chapter p:first-of-type::first-letter { font-size: 3rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="cover">
+  <div class="badge">Elevate Shop — Premium Course</div>
+  <h1>Health &amp; Wellness<br>Blueprint</h1>
+  <p class="subtitle">A 90-Day System for Optimal Health, Vitality &amp; Longevity</p>
+</div>
+
+<div class="progress-section no-print">
+  <div class="progress-header">
+    <h3>Course Progress</h3>
+    <span id="progressPct">0%</span>
+  </div>
+  <div class="progress-bar">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+  <button class="reset-btn" onclick="resetAll()">Reset Progress</button>
+</div>
+
+<div class="toc no-print">
+  <h2>Table of Contents</h2>
+  <div class="toc-grid" id="tocGrid"></div>
+</div>
+
+<div id="chaptersContainer"></div>
+
+<footer>
+  <p>&copy; 2025 Elevate Shop. All rights reserved.</p>
+  <p>Empowering minds and building wealth, one download at a time.</p>
+</footer>
+
+</div>
+
+<script>
+const CHAPTERS = [
+  {
+    num: 1, title: "Foundations of Health",
+    subtitle: "Your 90-day journey to a new baseline",
+    content: `<p>Health is not the absence of disease. It is a state of full physical, mental, and social well-being. This course is built on that definition. Over 90 days, you will rebuild your relationship with sleep, nutrition, movement, stress, and purpose.</p>
+    <div class="callout"><strong>The Health Stack:</strong> Sleep is the foundation. Nutrition is the fuel. Exercise is the stimulus. Stress management is the regulator. Purpose is the driver. Neglect any one, and the whole system weakens. Strengthen all five, and you become antifragile.</div>
+    <p>The 90-day timeline is deliberate. Research shows that lasting habit change requires repetition across multiple physiological cycles. By day 90, your new behaviors will be encoded not just in memory, but in your biology — your gut microbiome, your muscle fibers, your neural pathways.</p>
+    <div class="insight"><h3>Your Starting Point</h3><p>Before we build, we must measure. Rate your current state in each pillar: sleep, nutrition, exercise, stress management, and purpose. Be honest. This is your baseline.</p></div>
+    <div class="activity"><h3>Health Baseline Assessment</h3><p>Rate each pillar from 1 (critical) to 10 (optimal):</p>
+    <div class="rating" data-key="ch1-sleep"><label>Sleep:</label><span id="r-sleep"></span></div>
+    <div class="rating" data-key="ch1-nutrition"><label>Nutrition:</label><span id="r-nutrition"></span></div>
+    <div class="rating" data-key="ch1-exercise"><label>Exercise:</label><span id="r-exercise"></span></div>
+    <div class="rating" data-key="ch1-stress"><label>Stress Mgmt:</label><span id="r-stress"></span></div>
+    <div class="rating" data-key="ch1-purpose"><label>Purpose:</label><span id="r-purpose"></span></div>
+    <textarea rows="3" placeholder="What is your primary health goal for these 90 days?" class="save-field" data-key="ch1-goal"></textarea></div>`
+  },
+  {
+    num: 2, title: "The Pillars of Longevity",
+    subtitle: "Dr. Peter Attia's framework for a longer, better life",
+    content: `<p>Dr. Peter Attia, author of <em>Outlive</em>, defines longevity as having two components: lifespan (how long you live) and healthspan (how well you live). His framework rests on four pillars: exercise, nutrition, sleep, and emotional health.</p>
+    <div class="callout"><strong>Medicine 3.0:</strong> Attia argues that medicine has moved through three eras. Medicine 1.0 was based on tradition and anecdote. Medicine 2.0 is evidence-based but reactive — it waits for disease. Medicine 3.0 is proactive, personalized, and focused on preventing the four horsemen: heart disease, cancer, neurodegenerative disease, and metabolic disease.</div>
+    <p>The centenarian decathlon: rather than training to look good, train to be able to do what you love at age 100. Carry groceries, play with grandchildren, hike, get up from the floor. These are the outcomes that matter. Your training should be built around them.</p>
+    <div class="insight"><h3>Your Healthspan Vision</h3><p>Close your eyes and imagine yourself at age 90. What can you still do? Who is with you? What brings you joy? Write that vision below. This is your north star.</p></div>
+    <div class="activity"><h3>Longevity Vision Statement</h3><p>Describe your ideal healthspan at age 90 in 3-5 sentences:</p>
+    <textarea rows="3" placeholder="At 90, I want to..." class="save-field" data-key="ch2-vision"></textarea></div>`
+  },
+  {
+    num: 3, title: "Sleep: The Foundation",
+    subtitle: "Andrew Huberman's protocols for deep, restorative sleep",
+    youtube: "q1Ss8sTbFBY",
+    content: `<p>Sleep is the single most impactful health intervention available to you. Dr. Andrew Huberman calls it "the foundation of all mental health, physical health, and performance." Without quality sleep, every other pillar crumbles.</p>
+    <div class="callout"><strong>Sleep Architecture:</strong> A full sleep cycle runs about 90 minutes and includes light sleep, deep sleep (restorative, physical repair), and REM sleep (memory consolidation, emotional processing). Most adults need 4-6 complete cycles per night — roughly 6-9 hours.</div>
+    <p>Huberman's non-negotiables: view morning sunlight within 30-60 minutes of waking (triggers cortisol release that sets your circadian clock), avoid bright artificial light after 10 PM, keep your bedroom cool (65-68°F / 18-20°C), and be consistent with your wake time within 1 hour every day.</p>
+    <div class="callout tip"><strong>NSDR Protocol:</strong> Non-Sleep Deep Rest (also called Yoga Nidra) is a practice of lying still and bringing your awareness through your body. 10-30 minutes of NSDR can restore mental focus and even trigger some of the restorative benefits of sleep. Use it when you wake at 3 AM and can't fall back asleep.</div>
+    <div class="activity"><h3>Sleep Hygiene Audit</h3><p>Check which sleep hygiene practices you currently follow and commit to one new one:</p>
+    <div class="checklist" data-key="ch3-checklist">
+      <label><input type="checkbox" class="chk-item"> Morning sunlight within 60 min of waking</label>
+      <label><input type="checkbox" class="chk-item"> No caffeine after 2 PM</label>
+      <label><input type="checkbox" class="chk-item"> Bedroom at 65-68°F</label>
+      <label><input type="checkbox" class="chk-item"> No screens 60 min before bed</label>
+      <label><input type="checkbox" class="chk-item"> Consistent wake time ±1 hour</label>
+      <label><input type="checkbox" class="chk-item"> Dark room (blackout curtains or eye mask)</label>
+    </div>
+    <textarea rows="2" placeholder="The one sleep habit I will commit to this week:" class="save-field" data-key="ch3-commit"></textarea></div>`
+  },
+  {
+    num: 4, title: "Circadian Rhythm Optimization",
+    subtitle: "Aligning your daily biology with the sun",
+    content: `<p>Your circadian rhythm is a ~24-hour internal clock that regulates nearly every biological process: hormone release, body temperature, metabolism, cognitive performance, and sleep-wake cycles. When aligned, you feel energized during the day and sleepy at night.</p>
+    <div class="callout"><strong>The Master Clock:</strong> The suprachiasmatic nucleus (SCN) in your brain is the master clock. Its primary time-setter is light — specifically, the blue wavelengths in morning sunlight. Morning light signals the SCN to start the day's cortisol and melatonin timing.</div>
+    <p>Beyond light: meal timing also entrains peripheral clocks in your liver, muscles, and fat tissue. Eating late at night confuses these clocks and is linked to worse metabolic health. The ideal: eat your largest meals earlier in the day and finish your last meal 3-4 hours before bed.</p>
+    <div class="insight"><h3>The Circadian Day</h3><p>6-8 AM: Sunrise, light exposure, gentle movement<br>8 AM-12 PM: Peak cognitive performance, deep work<br>12-3 PM: Post-lunch dip, light activity, naps<br>3-6 PM: Second wind, physical exercise<br>6-9 PM: Wind down, dim lights, connection<br>9 PM+: Darkness, no screens, prepare for sleep</p></div>
+    <div class="activity"><h3>Design Your Circadian Day</h3><p>Based on your natural tendencies, map your ideal day aligned with circadian principles:</p>
+    <textarea rows="5" placeholder="6:30 AM: Wake, sunlight walk&#10;7:00 AM: Cold shower&#10;7:30 AM: Breakfast (largest meal)&#10;8:00-11:00 AM: Deep work&#10;12:00 PM: Lunch&#10;1:00 PM: Short walk&#10;..." class="save-field" data-key="ch4-schedule"></textarea></div>`
+  },
+  {
+    num: 5, title: "Morning Routine for Health",
+    subtitle: "Starting each day with vitality and intention",
+    content: `<p>How you start your morning sets the trajectory for your entire day. A deliberate morning routine anchored in health practices creates momentum, regulates your nervous system, and ensures you invest in yourself before the world demands your attention.</p>
+    <div class="callout"><strong>The Optimal Morning Stack:</strong> 1) Wake at a consistent time. 2) Hydrate (16-32 oz water). 3) Morning sunlight (10-15 min). 4) Intentional movement (walk, stretch, or exercise). 5) Cold exposure (30 sec - 3 min cold shower). 6) Mindfulness (5 min breathwork or meditation). 7) Nourishing breakfast (protein + fiber).</div>
+    <p>The key is not to adopt all seven overnight. Start with one. Add the next when the first becomes automatic. Morning routines are built, not born. Consistency matters more than complexity.</p>
+    <div class="insight"><h3>The 5-Minute Minimum</h3><p>On your worst days, do five minutes. Five minutes of sunlight. Five minutes of stretching. Five minutes of quiet. The minimum viable routine ensures you never skip entirely. Momentum is preserved. The habit survives.</p></div>
+    <div class="activity"><h3>Build Your Morning Stack</h3><p>List the elements of your ideal morning routine in order. Mark which you already do and which you will add:</p>
+    <textarea rows="4" placeholder="1. [ ] Wake 6:00 AM (currently 6:30)&#10;2. [X] Water 16oz (already do)&#10;3. [ ] Sunlight walk 10 min (will add week 1)&#10;4. [ ] Cold shower 1 min (will add week 2)&#10;..." class="save-field" data-key="ch5-morning"></textarea></div>`
+  },
+  {
+    num: 6, title: "Nutrition Fundamentals",
+    subtitle: "Macronutrients, micronutrients, and building a balanced plate",
+    content: `<p>Nutrition is the most complex pillar, but the fundamentals are simple. Your body needs macronutrients (protein, carbohydrates, fat) for energy and structure, and micronutrients (vitamins, minerals) for the chemical reactions that keep you alive.</p>
+    <div class="callout"><strong>The Protein Target:</strong> Most adults need 1.6-2.2 grams of protein per kilogram of body weight daily, especially as they age. Protein is the primary structural component of every cell. Adequate intake preserves muscle mass, supports immune function, and keeps you satiated.</div>
+    <p>The plate model: fill half your plate with vegetables and fruit, a quarter with protein, and a quarter with complex carbohydrates and healthy fats. Prioritize whole, minimally processed foods. If it comes in a box and has ingredients you cannot pronounce, question it.</p>
+    <div class="callout tip"><strong>The 80/20 Rule for Nutrition:</strong> Aim for 80% of your calories from whole, nutrient-dense foods. Reserve 20% for flexibility and enjoyment. Perfection is unsustainable. The 80/20 approach yields 90% of the benefits with none of the rigidity.</div>
+    <div class="activity"><h3>Nutrition Scorecard</h3><p>Rate your current nutrition quality (1-10) in each category. Then commit to one upgrade per category:</p>
+    <textarea rows="4" placeholder="Protein intake: 5/10 — Will add eggs or Greek yogurt to breakfast&#10;Vegetable intake: 3/10 — Will add a side salad to lunch&#10;Hydration: 6/10 — Will carry a water bottle&#10;Processed foods: 4/10 — Will swap chips for nuts" class="save-field" data-key="ch6-nutrition"></textarea></div>`
+  },
+  {
+    num: 7, title: "Gut Health & Microbiome",
+    subtitle: "Rich Roll & Dr. Will Bulsiewicz on the power of fiber",
+    youtube: "9jDsQU1UEAo",
+    content: `<p>Your gut microbiome — the trillions of bacteria, fungi, and viruses living in your digestive tract — is arguably the most important organ system you never think about. It influences your immune system, mood, weight, and even your risk for chronic disease.</p>
+    <div class="callout"><strong>Fiber is Fuel:</strong> Dr. Will Bulsiewicz, author of <em>Fiber Fueled</em>, argues that fiber is the single most important nutrient for gut health. Most adults eat 10-15 grams of fiber daily. The optimal target is 40-50 grams. Fiber feeds beneficial gut bacteria, which produce short-chain fatty acids that reduce inflammation and support metabolic health.</div>
+    <p>Rich Roll, vegan ultra-endurance athlete and podcast host, advocates for plant diversity as the key to a healthy microbiome. His recommendation: aim for 30 different plant foods per week. Each plant species feeds different bacterial strains. Diversity in, diversity out.</p>
+    <div class="insight"><h3>Gut Health Rules</h3><p>1. Eat 40+ grams of fiber daily. 2. Consume fermented foods (kimchi, sauerkraut, yogurt, kefir). 3. Eat 30+ different plant species weekly. 4. Avoid unnecessary antibiotics and processed foods. 5. Manage stress (stress directly alters the microbiome).</p></div>
+    <div class="activity"><h3>Plant Diversity Challenge</h3><p>List the plants you ate in the last 24 hours. Count them. Then list 5 new plants you will add this week:</p>
+    <textarea rows="3" placeholder="Plants eaten yesterday: oats, banana, spinach, broccoli, apple, rice, onion = 7&#10;Plants to add: kale, sweet potato, lentils, blueberries, almonds" class="save-field" data-key="ch7-plants"></textarea></div>`
+  },
+  {
+    num: 8, title: "Food as Medicine",
+    subtitle: "Dr. Mark Hyman on eating for healing and prevention",
+    youtube: "3dppG0JwPag",
+    content: `<p>Dr. Mark Hyman, director of the Cleveland Clinic Center for Functional Medicine, teaches that food is not just calories — it is information. Every bite you take contains signals that interact with your genes, hormones, and immune system in real time.</p>
+    <div class="callout"><strong>Phytochemical Power:</strong> Plants contain thousands of phytochemicals — compounds that protect against disease, reduce inflammation, support detoxification, and optimize cellular function. The most powerful sign of a food's healing potential? Flavor. A tomato that bursts with flavor is packed with phytochemicals. A bland one is not.</div>
+    <p>Hyman's "Food as Medicine" principles: eat real food (not processed), prioritize plants, include healthy fats (olive oil, avocado, nuts, seeds), choose quality protein (wild fish, pastured eggs, grass-fed meat if you eat it), and avoid sugar, refined oils, and artificial additives.</p>
+    <div class="callout warning"><strong>The Bitter Truth:</strong> Bitter foods — bitter melon, arugula, dandelion greens, dark chocolate — are among the most healing because they stimulate digestive enzymes and activate detoxification pathways. If you don't eat bitter, your body misses crucial regulatory signals.</div>
+    <div class="activity"><h3>Anti-Inflammatory Meal Plan</h3><p>Design one day of anti-inflammatory eating. Include breakfast, lunch, dinner, and snacks:</p>
+    <textarea rows="4" placeholder="Breakfast: Veggie omelet + avocado + berries&#10;Lunch: Salmon salad with mixed greens, olive oil, nuts&#10;Snack: Apple + almond butter&#10;Dinner: Stir-fried broccoli, bell peppers, tofu, quinoa" class="save-field" data-key="ch8-meals"></textarea></div>`
+  },
+  {
+    num: 9, title: "Meal Prep & Planning",
+    subtitle: "Making healthy eating practical and sustainable",
+    content: `<p>The best nutrition plan is worthless if you cannot execute it consistently. Meal prep and planning bridge the gap between intention and action. When healthy food is already prepared, the decision to eat well becomes effortless.</p>
+    <div class="callout"><strong>The Sunday Reset:</strong> Dedicate 60-90 minutes each week to: 1) Plan your menu, 2) Grocery shop, 3) Wash and chop vegetables, 4) Cook grains and proteins in bulk, 5) Portion into containers. This single habit eliminates the 5 PM "what's for dinner" scramble.</div>
+    <p>Batch cooking strategies: cook once, eat thrice. Make large batches of staples — quinoa, roasted vegetables, grilled chicken, lentils — and combine them in different ways throughout the week. A grain bowl Monday becomes a wrap Tuesday and a soup Wednesday.</p>
+    <div class="insight"><h3>The 3-Container System</h3><p>Keep three containers in your fridge at all times: #1 protein (grilled chicken, hard-boiled eggs, tofu), #2 vegetables (roasted or raw), #3 grains/quinoa. Combine any two, add a sauce or dressing, and you have a meal in under 5 minutes.</p></div>
+    <div class="activity"><h3>Weekly Meal Prep Plan</h3><p>Plan your prep for this week:</p>
+    <textarea rows="4" placeholder="Prep day: Sunday 10 AM (90 min)&#10;Protein: Grilled chicken thighs, hard-boiled eggs&#10;Veggies: Roasted broccoli + bell peppers, chopped salad&#10;Grains: Quinoa, brown rice&#10;Snacks: Cut vegetables, hummus, fruit&#10;Sauces: Tahini dressing, olive oil + lemon" class="save-field" data-key="ch9-prep"></textarea></div>`
+  },
+  {
+    num: 10, title: "Strength Training",
+    subtitle: "Dr. Peter Attia's protocol for muscle, bone, and metabolic health",
+    youtube: "ExFMe4fOsUg",
+    content: `<p>Dr. Peter Attia emphasizes that muscle mass and strength are among the most powerful predictors of longevity. After age 30, adults lose 3-8% of muscle mass per decade — a process called sarcopenia that accelerates after 60. Resistance training is the antidote.</p>
+    <div class="callout"><strong>The Minimum Effective Dose:</strong> Two strength sessions per week, each 45-60 minutes, targeting all major muscle groups. That is enough to maintain and even build muscle at any age. The key variables: progressive overload (gradually increasing weight or reps), proper form, and consistency.</div>
+    <p>The four pillars of exercise according to Attia: 1) Stability (core, balance, injury prevention), 2) Strength (muscular force production), 3) Aerobic Efficiency (fat oxidation at low intensities), 4) Peak Aerobic Capacity (VO2 max). All four are trainable at any age.</p>
+    <div class="insight"><h3>The Centenarian Decathlon</h3><p>Attia's framework: choose 10 physical tasks you want to be able to do at age 100. Then train backward from those. Examples: carry two bags of groceries from the car, get up from the floor unassisted, hike 3 miles, play with grandchildren, stand on one foot for 30 seconds.</p></div>
+    <div class="activity"><h3>Your Strength Baseline</h3><p>Test your current strength: How many pushups can you do? How long can you plank? Can you get up from the floor without using your hands? Record your numbers, then retest in 90 days:</p>
+    <textarea rows="3" placeholder="Pushups: 15&#10;Plank: 45 seconds&#10;Floor-to-stand (no hands): Yes&#10;Squat (bodyweight): 20 reps" class="save-field" data-key="ch10-strength"></textarea></div>`
+  },
+  {
+    num: 11, title: "Cardiovascular Fitness & VO2 Max",
+    subtitle: "Building endurance and maximizing heart health",
+    content: `<p>Your VO2 max — the maximum amount of oxygen your body can use during intense exercise — is one of the strongest predictors of longevity. A higher VO2 max is associated with lower risk of heart disease, diabetes, and all-cause mortality.</p>
+    <div class="callout"><strong>Zone 2 Training:</strong> Zone 2 is the intensity at which you can still hold a conversation but are breathing noticeably harder. This is approximately 60-70% of your max heart rate. Zone 2 training improves mitochondrial density and fat oxidation. Aim for 150-180 minutes of Zone 2 per week.</div>
+    <p>To build VO2 max, incorporate one weekly session of high-intensity interval training: 4 minutes of hard effort (reaching 90-95% of max heart rate) followed by 4 minutes of active recovery, repeated 4 times. This is the 4x4 protocol and is among the most time-efficient cardiovascular interventions.</p>
+    <div class="callout tip"><strong>Walking After Meals:</strong> A 10-15 minute walk after meals can reduce post-meal blood sugar spikes by up to 30%. This simple habit improves metabolic health without requiring additional exercise time. Walk. It is the most underrated health intervention.</div>
+    <div class="activity"><h3>Cardio Plan</h3><p>Design your weekly cardiovascular training schedule:</p>
+    <textarea rows="4" placeholder="Monday: 45 min Zone 2 (brisk walk/jog)&#10;Tuesday: Rest&#10;Wednesday: 45 min Zone 2 (cycling)&#10;Thursday: 4x4 HIIT (4 min hard, 4 min easy)&#10;Friday: 30 min Zone 2 + 15 min walk after dinner&#10;Saturday: 60 min hike or long walk&#10;Sunday: Rest" class="save-field" data-key="ch11-cardio"></textarea></div>`
+  },
+  {
+    num: 12, title: "Mobility, Flexibility & Stability",
+    subtitle: "Keeping your body functional and pain-free",
+    content: `<p>Mobility is the ability to move your joints through their full range of motion. Flexibility is the ability of your muscles to lengthen. Stability is your ability to control and maintain positions. Together, they determine whether you move gracefully or stiffly.</p>
+    <div class="callout"><strong>The Sitting Epidemic:</strong> The average adult spends 9-10 hours per day sitting. This shortens hip flexors, weakens glutes, rounds shoulders, and creates a cascade of compensatory patterns. The antidote is not a perfect yoga practice — it is frequent positional variation.</div>
+    <p>Minimum viable mobility routine: 5 minutes of targeted stretching before bed or after waking. Cat-cow, 90-90 hip stretch, doorway chest stretch, hamstring stretch, and thoracic spine rotation. Five minutes daily beats 60 minutes once a week.</p>
+    <div class="insight"><h3>Movement Snacks</h3><p>Every 30-60 minutes of sitting, stand up and move for 60 seconds. Walk to the kitchen, do a few squats, stretch your hips. These "movement snacks" prevent the accumulation of stiffness and reduce the metabolic damage of prolonged sitting.</p></div>
+    <div class="activity"><h3>Mobility Routine Builder</h3><p>Create your 5-minute daily mobility routine. List 5 stretches or movements:</p>
+    <textarea rows="3" placeholder="1. Neck rolls (30 sec)&#10;2. Cat-cow spine (60 sec)&#10;3. 90-90 hip stretch each side (60 sec)&#10;4. Thoracic spine rotation each side (60 sec)&#10;5. Hamstring stretch (60 sec)" class="save-field" data-key="ch12-mobility"></textarea></div>`
+  },
+  {
+    num: 13, title: "Cold Exposure & Breathwork",
+    subtitle: "The Wim Hof Method for resilience and energy",
+    youtube: "Np0jGp6442A",
+    content: `<p>Wim Hof, known as "The Iceman," has demonstrated that humans can voluntarily influence their autonomic nervous system and immune response through a combination of cold exposure, breathing techniques, and mindset. His method has been validated by multiple scientific studies.</p>
+    <div class="callout"><strong>The Cold Cascade:</strong> Cold exposure triggers a massive release of norepinephrine, dopamine, and beta-endorphins. It activates brown adipose tissue (which burns calories for heat), reduces inflammation, improves circulation, and builds mental resilience. The benefits increase with regular practice.</div>
+    <p>The Wim Hof breathing method: 30-40 deep, powerful breaths (inhale through the nose or mouth, exhale through the mouth), followed by a breath retention after the final exhale. Hold until you feel the urge to breathe, then take a deep inhale and hold for 15 seconds. Repeat for 3-4 rounds.</p>
+    <div class="callout warning"><strong>Safety First:</strong> Never practice breath-hold exercises near water, while driving, or in any situation where loss of consciousness could be dangerous. Start slowly. Listen to your body. Cold exposure should be gradual — start with 30 seconds at the end of a warm shower, then extend.</div>
+    <div class="activity"><h3>Cold & Breath Check-in</h3><p>Rate your experience after your next cold exposure and breathwork session:</p>
+    <textarea rows="3" placeholder="Date:&#10;Cold duration: 60 seconds at end of shower&#10;Shivering level (1-10): 4&#10;Energy after (1-10): 8&#10;Breathwork rounds completed: 3&#10;How I felt:" class="save-field" data-key="ch13-cold"></textarea></div>`
+  },
+  {
+    num: 14, title: "Stress Management & HRV",
+    subtitle: "Mastering your nervous system for resilience and recovery",
+    content: `<p>Stress is not the enemy. Chronic, unmanaged stress is. The stress response (sympathetic nervous system) evolved for short-term threats — running from predators. In modern life, it is activated by emails, traffic, deadlines, and news — often all day, every day.</p>
+    <div class="callout"><strong>Heart Rate Variability (HRV):</strong> HRV measures the variation in time between heartbeats. Higher HRV indicates a flexible, resilient nervous system that can switch between stress and recovery efficiently. Lower HRV suggests a system stuck in fight-or-flight. HRV is trainable through breathwork, sleep, exercise, and stress management.</div>
+    <p>Practical stress management: 1) Box breathing (inhale 4, hold 4, exhale 4, hold 4) for 3 minutes. 2) Scheduled "worry time" — 15 minutes daily where you allow yourself to worry, then close the loop. 3) A digital sunset — no screens 60 minutes before bed. 4) Regular HRV monitoring with a wearable.</p>
+    <div class="insight"><h3>The Relaxation Response</h3><p>Dr. Herbert Benson of Harvard identified the "relaxation response" — a physiological state of deep rest that counteracts the stress response. It can be triggered by 10-20 minutes of focused breathwork, meditation, or repetitive prayer. This is your built-in reset button.</p></div>
+    <div class="activity"><h3>Stress Log</h3><p>For one week, log your stress triggers and your recovery practices. Identify patterns:</p>
+    <textarea rows="4" placeholder="Monday: Trigger = email overload 10AM. Recovery = 3 min box breathing. Felt better after.&#10;Tuesday: Trigger = traffic 6PM. Recovery = walked 10 min after arriving home." class="save-field" data-key="ch14-stress"></textarea></div>`
+  },
+  {
+    num: 15, title: "Meditation & Mind-Body Connection",
+    subtitle: "Dr. Joe Dispenza on changing your biology through awareness",
+    youtube: "SbB385kHqOY",
+    content: `<p>Dr. Joe Dispenza, researcher and author, has documented how meditation creates measurable changes in the brain and body. His work shows that when people learn to regulate their nervous system through meditation, they can reduce pain, improve immune function, and even reverse disease markers.</p>
+    <div class="callout"><strong>The Quantum Field:</strong> Dispenza teaches that the present moment is where transformation occurs. When you sit in meditation and let go of the past (which is stored in your body as stress) and the future (which is anxiety), you enter a state of coherence where the body can heal.</div>
+    <p>His research data: in a week-long meditation retreat, 100% of participants with chronic pain began producing their own endogenous opioids. fMRI scans show the brain becomes more integrated, less siloed, and more coherent. The key is sustained practice — not occasional, but daily.</p>
+    <div class="callout tip"><strong>Start Small:</strong> If sitting meditation feels impossible, start with 2 minutes. Just sit and focus on your breath. When your mind wanders, gently return to the breath. Two minutes a day is infinitely better than zero. Build to 5, then 10, then 20 minutes over weeks.</div>
+    <div class="activity"><h3>Meditation Log</h3><p>Record your meditation practice daily for one week:</p>
+    <textarea rows="4" placeholder="Day 1: 5 min breath focus. Mind wandered 10 times. Felt restless.&#10;Day 2: 5 min. Calmer. Noticed tension in shoulders.&#10;Day 3: 7 min. Brief moment of stillness. Interesting." class="save-field" data-key="ch15-meditation"></textarea></div>`
+  },
+  {
+    num: 16, title: "Breathwork Techniques",
+    subtitle: "Using the breath to regulate energy, focus, and calm",
+    content: `<p>Your breath is the only autonomic function you can consciously control. This makes it a direct interface between your voluntary and involuntary nervous systems. Through breathwork, you can shift your state in seconds.</p>
+    <div class="callout"><strong>Three Breathwork Modes:</strong> 1) Calming (extend exhale — inhale 4, exhale 6-8). 2) Energizing (sharper inhales — Wim Hof breathing, or inhale 4, exhale 4). 3) Balancing (box breathing — equal inhale, hold, exhale, hold). Use the mode that matches your desired outcome.</div>
+    <p>The physiological sigh: a double inhale through the nose followed by a long exhale through the mouth. This is the fastest known way to reduce stress. It reinflates collapsed alveoli and activates the vagus nerve. One to three physiological sighs can drop your heart rate within seconds.</p>
+    <div class="insight"><h3>Breathwork Protocol</h3><p>Morning energizer: 3 rounds Wim Hof breathing + cold shower. Midday reset: 5 minutes box breathing (4-4-4-4). Evening wind-down: 5 minutes extended exhale (4-6-8 pattern) before sleep. Emergency stress: 3 physiological sighs.</p></div>
+    <div class="activity"><h3>Breathwork Practice Log</h3><p>Practice one breathwork technique today and rate its effect (1-10):</p>
+    <textarea rows="3" placeholder="Technique: Box breathing (4-4-4-4)&#10;Duration: 5 minutes&#10;Before HRV/stress (1-10): 6&#10;After HRV/stress (1-10): 3&#10;Notes: Felt calmer within 2 minutes" class="save-field" data-key="ch16-breathwork"></textarea></div>`
+  },
+  {
+    num: 17, title: "Hydration & Electrolytes",
+    subtitle: "The overlooked foundation of cellular health",
+    content: `<p>Water is involved in every biochemical reaction in your body. Even mild dehydration — a 1-2% loss of body water — impairs cognitive performance, physical endurance, mood, and metabolic function. Yet most adults walk around in a state of chronic low-grade dehydration.</p>
+    <div class="callout"><strong>How Much Water?</strong> The old "8 glasses a day" is a simplification. A better target: 30-40 ml per kg of body weight. For a 70 kg person, that is 2.1-2.8 liters. Increase if you exercise, sweat, or live in a hot climate. Thirst is a late indicator — sip throughout the day.</div>
+    <p>Electrolytes — sodium, potassium, magnesium, calcium — are minerals that conduct electrical charges in your body. They regulate nerve function, muscle contraction, hydration, and pH balance. If you drink large amounts of water without electrolytes, you can dilute your sodium levels (hyponatremia).</p>
+    <div class="callout tip"><strong>The Morning Hydration Hack:</strong> Drink 16-32 oz of water with a pinch of sea salt and a squeeze of lemon within 30 minutes of waking. This rehydrates you after sleep, provides electrolytes, and supports digestion and metabolism. Add a magnesium supplement at night for deeper sleep.</div>
+    <div class="activity"><h3>Hydration Tracker</h3><p>Track your water intake for one day. Aim for your target based on body weight:</p>
+    <textarea rows="3" placeholder="Body weight: 70 kg&#10;Target: 2.4 L&#10;8 AM: 500 ml (with salt + lemon)&#10;10 AM: 300 ml&#10;12 PM: 400 ml&#10;3 PM: 500 ml&#10;6 PM: 400 ml&#10;8 PM: 300 ml&#10;Total: 2.4 L ✓" class="save-field" data-key="ch17-hydration"></textarea></div>`
+  },
+  {
+    num: 18, title: "Supplements & Micronutrients",
+    subtitle: "Dr. Rhonda Patrick on filling nutritional gaps",
+    youtube: "iOvvw3jb6cs",
+    content: `<p>Dr. Rhonda Patrick has dedicated her career to identifying the micronutrients and behavioral protocols that optimize health and longevity. She emphasizes that supplements should complement, not replace, a nutrient-dense diet. The foundation is always whole foods.</p>
+    <div class="callout"><strong>Four Critical Micronutrients:</strong> 1) Omega-3 fatty acids (EPA/DHA) — low levels are associated with increased mortality. Target Omega-3 Index of 8%+. 2) Vitamin D — crucial for immune function, bone health, mood. Most adults are deficient. 3) Magnesium — involved in 300+ enzymatic reactions, including sleep, muscle function, and blood sugar regulation. 4) Sulforaphane — from cruciferous vegetables, supports detoxification and cellular protection.</div>
+    <p>Patrick's protocol: marine omega-3s (1-2 g EPA + DHA daily), vitamin D3 (2,000-5,000 IU based on blood levels), magnesium threonate or glycinate before bed, and sulforaphane from broccoli sprouts or supplement. Test before supplementing: measure your Omega-3 Index and vitamin D levels.</p>
+    <div class="insight"><h3>The Supplement Stack</h3><p>Morning: Omega-3 (with food), Vitamin D3 + K2, B-complex<br>Evening: Magnesium glycinate/threonate, Apigenin, Theanine<br>With meals: Sulforaphane (broccoli sprouts or supplement)<br>Foundation: High-quality multivitamin, creatine 5g daily (for muscle & brain)</p></div>
+    <div class="activity"><h3>Supplement Audit</h3><p>List the supplements you currently take and identify gaps based on Dr. Patrick's recommendations:</p>
+    <textarea rows="3" placeholder="Current: Vitamin D (2000 IU), Magnesium (glycinate 200mg)&#10;Gaps: Omega-3 — need to add fish oil&#10;Goal: Get Omega-3 Index tested this month" class="save-field" data-key="ch18-supplements"></textarea></div>`
+  },
+  {
+    num: 19, title: "Hormone Health",
+    subtitle: "Balancing the endocrine system for energy, mood, and vitality",
+    content: `<p>Your hormones are chemical messengers that regulate nearly every aspect of your health: metabolism, growth, reproduction, mood, sleep, and stress response. Hormonal imbalances — in men and women — are more common than most realize and often masquerade as other issues.</p>
+    <div class="callout"><strong>Key Hormones:</strong> Testosterone (muscle, libido, energy, mood), Cortisol (stress response, circadian rhythm), Thyroid (metabolism, temperature, energy), Insulin (blood sugar regulation, fat storage), Estrogen/Progesterone (reproductive health, bone density, mood). Each is influenced by lifestyle.</div>
+    <p>Lifestyle interventions for hormonal health: sleep 7-9 hours (hormones are primarily produced during sleep), strength training (increases testosterone and growth hormone), manage stress (chronic stress elevates cortisol and suppresses other hormones), eat adequate fat (hormones are made from cholesterol and fat), and maintain a healthy body composition.</p>
+    <div class="callout warning"><strong>Endocrine Disruptors:</strong> Many common products contain chemicals that interfere with hormone function: BPA in plastics, phthalates in fragrances, pesticides in conventionally grown produce. Use glass or stainless steel for food storage, choose fragrance-free products, and wash produce thoroughly.</div>
+    <div class="activity"><h3>Hormone Health Check</h3><p>Rate each area (1-10) and note one action you will take:</p>
+    <textarea rows="4" placeholder="Sleep quality: 6 — Will aim for 7.5 hours consistently&#10;Stress level: 4 — Will do 5 min breathwork daily&#10;Strength training: 3 — Will add 2 sessions/week&#10;Dietary fat: 7 — Good, adding avocado daily&#10;Overall energy: 5 — Focus on sleep + stress first" class="save-field" data-key="ch19-hormones"></textarea></div>`
+  },
+  {
+    num: 20, title: "Metabolic Health & Blood Sugar",
+    subtitle: "Preventing and reversing metabolic dysfunction",
+    content: `<p>Metabolic health is defined by optimal levels of blood sugar, triglycerides, HDL cholesterol, blood pressure, and waist circumference — without medication. Only 12% of American adults are metabolically healthy. The root driver of metabolic dysfunction is often insulin resistance.</p>
+    <div class="callout"><strong>Insulin Resistance:</strong> When cells stop responding to insulin, the pancreas produces more to compensate. Over time, this leads to chronically high insulin levels, weight gain, fatty liver, and eventually type 2 diabetes. The earliest sign: a fasting insulin level above 5-8 mIU/L (most labs only flag extreme values).</div>
+    <p>Blood sugar regulation strategies: eat protein and fiber before carbohydrates, walk after meals, avoid liquid sugar (soda, juice, sweetened coffee), eat within a 10-12 hour window, prioritize sleep (poor sleep causes insulin resistance), and build muscle (muscle is your largest glucose sink).</p>
+    <div class="insight"><h3>The Glucose Order</h3><p>Jessie Inchauspé (Glucose Goddess) recommends eating food in this order: Fiber first (vegetables), then protein and fat, then starches and sugars last. This simple sequencing reduces post-meal glucose spikes by up to 75% compared to eating the same food in reverse order.</p></div>
+    <div class="activity"><h3>Blood Sugar Awareness</h3><p>For 3 days, log your meals and note: did you include fiber first? Did you walk after? How did you feel 1-2 hours post-meal?</p>
+    <textarea rows="4" placeholder="Day 1 breakfast: Eggs + avocado + spinach (fiber first ✓). Walked 10 min after. Felt good, sustained energy.&#10;Day 1 lunch: Salad with chicken + quinoa. Fiber first ✓. No walk. Felt slightly sluggish by 3PM." class="save-field" data-key="ch20-blood-sugar"></textarea></div>`
+  },
+  {
+    num: 21, title: "Intermittent Fasting & Time-Restricted Eating",
+    subtitle: "Using meal timing for metabolic flexibility",
+    content: `<p>Time-restricted eating (TRE) is the practice of consuming all calories within a consistent daily window, typically 8-10 hours. It is not about restricting what you eat, but when. TRE supports circadian biology, improves metabolic health, and may extend lifespan.</p>
+    <div class="callout"><strong>The Science:</strong> When you eat, insulin rises and the body is in "fed mode" — storing energy, building tissue. After ~12 hours without food, the body shifts to "fasted mode" — burning stored fat for fuel, activating cellular repair pathways (autophagy), and reducing inflammation. Extending the fasting period amplifies these benefits.</div>
+    <p>Common protocols: 16:8 (fast 16 hours, eat in 8-hour window, e.g., 12 PM - 8 PM) is the most sustainable for most people. 14:10 is gentler. 18:6 is more aggressive. The key is consistency — not a perfect daily window. Even a 12-hour overnight fast is beneficial for most people.</p>
+    <div class="callout tip"><strong>Start With Breakfast:</strong> The easiest way to begin TRE is to push breakfast 1-2 hours later each week until you reach your target window. Skip the late-night snack. Your body needs 3-4 hours of digestive rest before sleep.</div>
+    <div class="activity"><h3>TRE Protocol Design</h3><p>Design your time-restricted eating protocol for the next week:</p>
+    <textarea rows="3" placeholder="Protocol: 16:8 (12 PM - 8 PM eating window)&#10;First meal: 12 PM (protein + vegetables)&#10;Last meal: 7:30 PM (finished by 8 PM)&#10;Morning beverage: Water, black coffee, green tea only&#10;Challenges I anticipate: Social dinners&#10;My solution: Adjust window on special occasions, get back on track next day" class="save-field" data-key="ch21-tre"></textarea></div>`
+  },
+  {
+    num: 22, title: "Environment & Toxin Reduction",
+    subtitle: "Creating a healthy living space for optimal well-being",
+    content: `<p>Your health is shaped not only by what you put in your body, but by what surrounds you. The air you breathe, the water you drink, the products you use on your skin, and the materials in your home all contribute to your total toxic burden.</p>
+    <div class="callout"><strong>Total Load:</strong> Your body has sophisticated detoxification systems (liver, kidneys, lymphatic system, skin). But when the influx of toxins exceeds your body's capacity to process them, they accumulate. Reducing your total load through environmental choices gives your detox systems room to function.</div>
+    <p>Practical steps: 1) Use a water filter (especially for drinking and cooking). 2) Choose fragrance-free cleaning and personal care products ("fragrance" can contain hundreds of undisclosed chemicals). 3) Open windows for 5-15 minutes daily even in winter. 4) Use a HEPA air purifier in the bedroom. 5) Store food in glass, not plastic. 6) Remove shoes at the door.</p>
+    <div class="insight"><h3>The 5% Rule</h3><p>You do not need to overhaul everything at once. Change 5% of your exposures per week. This week, switch your drinking water to filtered. Next week, swap one plastic container for glass. Small, consistent changes compound into a radically different exposure profile over a year.</p></div>
+    <div class="activity"><h3>Environmental Audit</h3><p>Walk through your home and list 5 changes you will make this month to reduce toxin exposure:</p>
+    <textarea rows="3" placeholder="1. Replace plastic water bottles with stainless steel&#10;2. Switch to fragrance-free laundry detergent&#10;3. Add a HEPA filter to bedroom&#10;4. Open kitchen window for 10 min each morning&#10;5. Swap non-stick pans for cast iron or stainless steel" class="save-field" data-key="ch22-environment"></textarea></div>`
+  },
+  {
+    num: 23, title: "Social Connection & Health",
+    subtitle: "Why relationships are the hidden pillar of longevity",
+    content: `<p>The Harvard Study of Adult Development, spanning 85+ years, found that the single strongest predictor of health and happiness in old age was not cholesterol levels or exercise habits. It was the quality of one's relationships. Loneliness is as damaging as smoking 15 cigarettes per day.</p>
+    <div class="callout"><strong>Social Physiology:</strong> Positive social interactions trigger oxytocin release, which reduces cortisol, lowers blood pressure, and improves immune function. Conversely, chronic loneliness activates the same neural pathways as physical pain and keeps the stress response chronically engaged.</div>
+    <p>Practical social health: schedule regular connection (weekly dinner with family, monthly friend meetup), join a group with shared interests (sports, book club, volunteer organization), invest in one deep conversation per week (beyond surface-level small talk), and repair ruptures (unresolved conflict erodes health).</p>
+    <div class="insight"><h3>The 5:1 Ratio</h3><p>Psychologist John Gottman found that healthy relationships have a 5:1 ratio of positive to negative interactions. For every critical comment, there should be five positive ones. This applies to partners, family, friends, and even colleagues. Increase your deposits in the emotional bank account.</p></div>
+    <div class="activity"><h3>Connection Audit</h3><p>Rate your social health and identify one action to strengthen community:</p>
+    <textarea rows="3" placeholder="Deep friendships: 6/10 — Will call one friend this week for a real conversation&#10;Family connection: 5/10 — Will start a weekly family dinner&#10;Community involvement: 3/10 — Will join a local hiking group&#10;Overall social health: 5/10" class="save-field" data-key="ch23-social"></textarea></div>`
+  },
+  {
+    num: 24, title: "Tracking & Measuring Progress",
+    subtitle: "Using data to optimize your health journey",
+    content: `<p>What gets measured gets managed. Tracking key biomarkers helps you understand what works for your body, provides motivation through visible progress, and catches problems early. But tracking can also become obsessive. Find the minimum data needed to inform, not overwhelm.</p>
+    <div class="callout"><strong>Key Biomarkers to Track:</strong> 1) Resting heart rate (lower = better fitness). 2) Heart rate variability (higher = better recovery). 3) Sleep duration and quality. 4) Body composition (not just weight). 5) Waist-to-hip ratio. 6) Blood pressure. 7) Fasting glucose and insulin. 8) Physical performance (pushups, plank, VO2 max estimate).</div>
+    <p>Annual lab work: complete blood count, comprehensive metabolic panel, lipid panel, fasting glucose, hemoglobin A1c, vitamin D, Omega-3 Index, hs-CRP (inflammation), TSH (thyroid), free testosterone, and ferritin (iron stores). Compare year over year.</p>
+    <div class="callout tip"><strong>The Minimum Viable Tracker:</strong> Track only 3 things daily for 90 days: 1) Sleep hours, 2) A 1-10 energy rating, 3) A ✓/✗ for whether you completed your key health habit. After 90 days, review for patterns. Too much data creates noise. Three metrics create signal.</div>
+    <div class="activity"><h3>Weekly Check-in Template</h3><p>Use this template to check in weekly:</p>
+    <textarea rows="4" placeholder="Week 1 check-in:&#10;Avg sleep: 7.2 hours&#10;Avg energy (1-10): 6.5&#10;Habit compliance: 5/7 days&#10;Weight: 165 lbs&#10;HRV (if tracked): 45 ms&#10;Subjective notes: Felt better by end of week, sleep improving&#10;Focus for next week: Add afternoon walk" class="save-field" data-key="ch24-tracking"></textarea></div>`
+  },
+  {
+    num: 25, title: "The 90-Day Integration Plan",
+    subtitle: "Bringing it all together for lasting transformation",
+    content: `<p>You now have the complete toolkit. The remaining question is not what to do, but how to sustain it. Knowledge without action is trivia. Action without consistency is wasted effort. Consistency without joy is unsustainable.</p>
+    <div class="callout"><strong>The 90-Day Structure:</strong> Month 1 — Foundation: sleep, hydration, morning sunlight, one strength session per week. Month 2 — Expansion: add Zone 2 cardio, meal prep, meditation, cold exposure. Month 3 — Integration: fine-tune nutrition, add breathwork, optimize environment, build community. Each month builds on the previous.</div>
+    <p>The rule of three: at any time, focus on only three health habits. When they become automatic (usually 4-6 weeks), pick three new ones. This prevents overwhelm while ensuring continuous improvement. In one year, that is 18-36 new habits entrenched.</p>
+    <div class="insight"><h3>Your Health Mission</h3><p>This is not a 90-day program. This is a new operating system for your body and mind. The 90 days are just the beginning — the time it takes to lay the neural and physiological groundwork for a lifetime of thriving. Your future self is counting on you.</p></div>
+    <div class="activity"><h3>The 90-Day Commitment</h3><p>Write your 90-day commitment. What will you focus on each month? What will you protect against? What is the one non-negotiable?</p>
+    <textarea rows="4" placeholder="My 90-Day Commitment:&#10;Month 1 focus: Sleep + hydration + 2 strength sessions/week&#10;Month 2 add: Zone 2 walking, meal prep Sundays&#10;Month 3 add: Daily meditation, cold exposure&#10;My non-negotiable: 7+ hours of sleep every night&#10;I will protect this by: No screens after 10 PM, consistent 6:30 AM wake" class="save-field" data-key="ch25-commitment"></textarea></div>`
+  }
+];
+
+class WellnessApp {
+  constructor() {
+    this.storageKey = 'wellness_blueprint_progress';
+    this.currentChapter = 0;
+    this.init();
+  }
+
+  getProgress() {
+    try { return JSON.parse(localStorage.getItem(this.storageKey)) || { completed: [], data: {} }; }
+    catch { return { completed: [], data: {} }; }
+  }
+
+  saveProgress(p) {
+    localStorage.setItem(this.storageKey, JSON.stringify(p));
+  }
+
+  isComplete(num) {
+    return this.getProgress().completed.includes(num);
+  }
+
+  markComplete(num) {
+    const p = this.getProgress();
+    if (!p.completed.includes(num)) {
+      p.completed.push(num);
+      this.saveProgress(p);
+      this.renderTOC();
+      this.renderProgress();
+    }
+  }
+
+  saveField(key, value) {
+    const p = this.getProgress();
+    p.data[key] = value;
+    this.saveProgress(p);
+  }
+
+  loadField(key) {
+    return this.getProgress().data[key] || '';
+  }
+
+  renderTOC() {
+    const grid = document.getElementById('tocGrid');
+    if (!grid) return;
+    grid.innerHTML = CHAPTERS.map(ch =>
+      `<a class="toc-item ${this.isComplete(ch.num) ? 'completed' : ''}" onclick="app.goToChapter(${ch.num - 1})">
+        <span class="toc-num">${ch.num}</span>
+        <span>${ch.title}</span>
+      </a>`
+    ).join('');
+  }
+
+  renderProgress() {
+    const p = this.getProgress();
+    const pct = Math.round((p.completed.length / CHAPTERS.length) * 100);
+    const el = document.getElementById('progressPct');
+    const fill = document.getElementById('progressFill');
+    if (el) el.textContent = pct + '%';
+    if (fill) fill.style.width = pct + '%';
+  }
+
+  renderChapters() {
+    const container = document.getElementById('chaptersContainer');
+    if (!container) return;
+    container.innerHTML = CHAPTERS.map((ch, i) => {
+      const prev = i > 0 ? `<button class="prev" onclick="app.goToChapter(${i - 1})">Previous</button>` : '<button disabled>Previous</button>';
+      const next = i < CHAPTERS.length - 1 ? `<button class="next" onclick="app.goToChapter(${i + 1})">Next</button>` : '<button disabled>Next</button>';
+      const complete = !this.isComplete(ch.num)
+        ? `<button class="complete" onclick="app.markComplete(${ch.num}); app.goToChapter(${i + 1 < CHAPTERS.length ? i + 1 : i})">Mark Complete &amp; Continue</button>`
+        : `<button class="complete" style="background:var(--success)" onclick="app.goToChapter(${i + 1 < CHAPTERS.length ? i + 1 : i})">✓ Completed — Next</button>`;
+      const video = ch.youtube ? `<div class="video-wrapper"><iframe src="https://www.youtube-nocookie.com/embed/${ch.youtube}?rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>` : '';
+      return `<div class="chapter" id="ch-${i}">
+        <div class="ch-num">Chapter ${ch.num} of ${CHAPTERS.length}</div>
+        <h2>${ch.title}</h2>
+        <p class="ch-subtitle">${ch.subtitle}</p>
+        ${video}${ch.content}
+        <div class="chapter-nav no-print">${prev}${complete}${next}</div>
+      </div>`;
+    }).join('');
+  }
+
+  showChapter(idx) {
+    document.querySelectorAll('.chapter').forEach(el => el.classList.remove('active'));
+    const el = document.getElementById('ch-' + idx);
+    if (el) { el.classList.add('active'); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    this.currentChapter = idx;
+    this.loadFields();
+  }
+
+  goToChapter(idx) {
+    if (idx >= 0 && idx < CHAPTERS.length) { this.saveFields(); this.showChapter(idx); }
+  }
+
+  saveFields() {
+    document.querySelectorAll('.save-field').forEach(el => {
+      if (el.dataset.key) this.saveField(el.dataset.key, el.value);
+    });
+  }
+
+  loadFields() {
+    document.querySelectorAll('.save-field').forEach(el => {
+      if (el.dataset.key) el.value = this.loadField(el.dataset.key);
+    });
+  }
+
+  init() {
+    this.renderTOC();
+    this.renderProgress();
+    this.renderChapters();
+    this.showChapter(0);
+    document.addEventListener('input', e => {
+      if (e.target.classList.contains('save-field') && e.target.dataset.key)
+        this.saveField(e.target.dataset.key, e.target.value);
+    });
+    document.addEventListener('change', e => {
+      if (e.target.classList.contains('chk-item')) {
+        const key = e.target.closest('.checklist')?.dataset.key;
+        if (key) {
+          const labels = e.target.closest('.checklist').querySelectorAll('label');
+          const checked = [];
+          labels.forEach((l, i) => { if (l.querySelector('input').checked) checked.push(i); });
+          this.saveField(key, JSON.stringify(checked));
+        }
+        e.target.closest('label')?.classList.toggle('checked', e.target.checked);
+      }
+    });
+    this.initRatings();
+  }
+
+  initRatings() {
+    document.querySelectorAll('.rating').forEach(container => {
+      const key = container.dataset.key;
+      const saved = this.loadField(key);
+      for (let i = 1; i <= 10; i++) {
+        const btn = document.createElement('button');
+        btn.textContent = i;
+        if (saved == i) btn.classList.add('active');
+        btn.onclick = () => {
+          container.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          this.saveField(key, i);
+        };
+        container.appendChild(btn);
+      }
+    });
+  }
+}
+
+function resetAll() {
+  if (!confirm('Reset all progress? This cannot be undone.')) return;
+  localStorage.removeItem('wellness_blueprint_progress');
+  location.reload();
+}
+const app = new WellnessApp();
+</script>
+</body>
+</html>

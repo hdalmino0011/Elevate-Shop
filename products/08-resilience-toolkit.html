@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Resilience Toolkit – Elevate Shop</title>
+<style>
+:root {
+  --indigo: #1B2838;
+  --indigo-light: #2A3F55;
+  --gold: #C9A84C;
+  --gold-light: #E8D5A3;
+  --celadon: #88A096;
+  --terracotta: #C25D3A;
+  --cream: #F7F5F0;
+  --text: #1A1A1A;
+  --text-light: #6A7068;
+  --card: #FFFFFF;
+  --success: #4A9E6E;
+  --danger: #C0392B;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', 'Helvetica Neue', system-ui, sans-serif; background: var(--cream); color: var(--text); line-height: 1.7; }
+h1, h2, h3, h4, .ch-body, .save-field, .quote-text { font-family: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif; }
+.container { max-width: 800px; margin: 0 auto; padding: 20px; }
+@media print { .no-print { display: none !important; } body { background: #fff; } }
+
+/* Cover - Kintsugi Theme */
+.cover { background: linear-gradient(160deg, var(--indigo) 0%, #0F1A28 40%, #1A2A3A 100%); padding: 0; text-align: center; border-radius: 0 0 12px 12px; position: relative; overflow: hidden; }
+.cover::before { content: ''; position: absolute; inset: 0; background:
+  linear-gradient(75deg, transparent 40%, rgba(201,168,76,0.04) 40%, rgba(201,168,76,0.04) 42%, transparent 42%),
+  linear-gradient(-65deg, transparent 55%, rgba(201,168,76,0.03) 55%, rgba(201,168,76,0.03) 57%, transparent 57%),
+  linear-gradient(15deg, transparent 70%, rgba(201,168,76,0.02) 70%, rgba(201,168,76,0.02) 72%, transparent 72%); }
+.cover-inner { position: relative; padding: 80px 40px 60px; z-index: 1; }
+.cover-kintsugi { width: 80px; height: 4px; background: var(--gold); margin: 0 auto 20px; border-radius: 2px; position: relative; }
+.cover-kintsugi::before { content: ''; position: absolute; top: -6px; left: 20px; width: 40px; height: 2px; background: var(--gold); border-radius: 1px; transform: rotate(-15deg); }
+.cover-kintsugi::after { content: ''; position: absolute; top: 4px; right: 15px; width: 30px; height: 2px; background: var(--gold); border-radius: 1px; transform: rotate(10deg); }
+.cover h1 { color: #fff; font-size: 2.8em; font-weight: 300; letter-spacing: 4px; margin-bottom: 8px; text-shadow: 0 2px 20px rgba(0,0,0,0.3); }
+.cover h1 strong { font-weight: 600; color: var(--gold); }
+.cover .subtitle { color: var(--gold-light); font-size: 1em; margin-bottom: 6px; letter-spacing: 2px; font-weight: 300; }
+.cover .badge { display: inline-block; background: var(--terracotta); color: #fff; padding: 8px 28px; border-radius: 30px; font-size: 0.75em; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; }
+.cover-footer { padding: 16px 40px; border-top: 1px solid rgba(201,168,76,0.12); display: flex; justify-content: center; gap: 36px; color: rgba(232,213,163,0.4); font-size: 0.7em; letter-spacing: 1px; text-transform: uppercase; }
+
+/* Progress */
+.progress-section { background: var(--card); border-radius: 12px; padding: 20px 30px; margin: 20px 0; box-shadow: 0 2px 15px rgba(0,0,0,0.03); border: 1px solid rgba(201,168,76,0.08); }
+.progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.progress-header h3 { font-size: 0.9em; color: var(--indigo); font-weight: 600; }
+.progress-header span { font-weight: 700; color: var(--terracotta); }
+.progress-bar { height: 6px; background: #E8E5E0; border-radius: 10px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--indigo), var(--gold)); border-radius: 10px; transition: width 0.5s ease; width: 0%; }
+.reset-btn { display: inline-block; margin-top: 12px; padding: 6px 18px; background: var(--danger); color: #fff; border: none; border-radius: 6px; font-size: 0.75em; cursor: pointer; font-family: 'Inter', sans-serif; }
+.reset-btn:hover { opacity: 0.85; }
+
+/* TOC */
+.toc { background: var(--card); border-radius: 12px; padding: 30px 35px; margin: 20px 0; box-shadow: 0 2px 15px rgba(0,0,0,0.03); border: 1px solid rgba(201,168,76,0.06); }
+.toc h2 { color: var(--indigo); font-size: 1.3em; margin-bottom: 18px; font-weight: 600; display: flex; align-items: center; gap: 10px; }
+.toc h2::before { content: '\2630'; color: var(--gold); font-size: 0.9em; }
+.toc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 5px; }
+.toc-item { display: flex; align-items: center; gap: 10px; padding: 5px 10px; border-radius: 6px; cursor: pointer; transition: all 0.2s; text-decoration: none; color: var(--text); font-size: 0.85em; }
+.toc-item:hover { background: rgba(201,168,76,0.06); color: var(--indigo); }
+.toc-num { width: 24px; height: 24px; background: var(--indigo); color: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.65em; font-weight: 600; flex-shrink: 0; }
+.toc-item.completed .toc-num { background: var(--success); color: #fff; }
+.toc-item.completed::after { content: '\2713'; color: var(--success); font-weight: 700; margin-left: auto; }
+
+/* Chapter */
+.chapter { display: none; background: var(--card); border-radius: 16px; margin: 20px 0; box-shadow: 0 2px 25px rgba(0,0,0,0.03); overflow: hidden; border: 1px solid rgba(201,168,76,0.06); }
+.chapter.active { display: block; animation: fadeIn 0.4s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+.ch-header { padding: 35px 45px 25px; border-bottom: 1px solid rgba(201,168,76,0.08); position: relative; }
+.ch-header::after { content: ''; position: absolute; bottom: -1px; left: 45px; width: 60px; height: 2px; background: var(--gold); }
+.ch-number { color: var(--gold); font-size: 0.65em; letter-spacing: 4px; text-transform: uppercase; font-weight: 600; }
+.ch-header h2 { color: var(--indigo); font-size: 1.6em; margin: 4px 0 8px; font-weight: 600; letter-spacing: -0.5px; }
+.ch-subtitle { color: var(--text-light); font-size: 0.9em; font-style: italic; }
+
+.ch-body { padding: 30px 45px; }
+.ch-body p { margin-bottom: 14px; font-size: 1.05em; color: var(--text); }
+
+/* Gold accent line */
+.gold-line { width: 40px; height: 2px; background: var(--gold); margin: 20px 0; border-radius: 1px; }
+
+/* Info box */
+.info-box { background: rgba(201,168,76,0.04); border-left: 3px solid var(--gold); padding: 18px 22px; margin: 18px 0; border-radius: 0 8px 8px 0; }
+.info-box p { font-size: 0.95em; margin-bottom: 0 !important; color: var(--text-light); }
+
+/* Key insight callout */
+.insight { background: rgba(27,40,56,0.03); border-radius: 10px; padding: 20px 24px; margin: 18px 0; }
+.insight h4 { font-family: 'Inter', sans-serif; font-size: 0.8em; color: var(--indigo); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+.insight p { font-size: 1em; margin-bottom: 0 !important; }
+
+/* Quote block */
+.quoteblock { margin: 18px 0; padding: 0 0 0 24px; border-left: 2px solid var(--terracotta); }
+.quoteblock .qt { font-family: 'Cormorant Garamond', serif; font-size: 1.1em; font-style: italic; color: var(--indigo); }
+.quoteblock .qa { font-size: 0.8em; color: var(--text-light); margin-top: 2px; }
+
+/* Exercise */
+.exercise { background: linear-gradient(135deg, rgba(201,168,76,0.03), rgba(194,93,58,0.02)); border-radius: 12px; padding: 24px; margin: 24px 0; border: 1px solid rgba(201,168,76,0.1); }
+.exercise h4 { font-family: 'Inter', sans-serif; font-size: 0.8em; color: var(--terracotta); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+.exercise h4::before { content: '\25B8\00A0'; color: var(--gold); }
+.exercise textarea { width: 100%; background: rgba(255,255,255,0.6); border: 1px solid rgba(201,168,76,0.15); border-radius: 8px; padding: 14px; font-family: 'Cormorant Garamond', serif; font-size: 1em; color: var(--text); resize: vertical; min-height: 70px; transition: border 0.2s; }
+.exercise textarea:focus { outline: none; border-color: var(--gold); }
+
+/* YouTube */
+.yt-wrap { margin: 24px 0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+.yt-wrap iframe { width: 100%; height: 380px; border: none; display: block; }
+
+/* Save field general */
+.save-field { width: 100%; background: rgba(255,255,255,0.5); border: 1px solid rgba(201,168,76,0.12); border-radius: 8px; padding: 12px 14px; font-family: 'Cormorant Garamond', serif; font-size: 0.95em; color: var(--text); resize: vertical; transition: all 0.2s; }
+.save-field:focus { outline: none; border-color: var(--gold); background: rgba(255,255,255,0.8); }
+
+/* Navigation */
+.nav-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 20px; padding: 16px 45px 35px; }
+.nav-btn { padding: 10px 24px; background: transparent; color: var(--indigo); border: 1px solid var(--indigo); border-radius: 8px; font-size: 0.85em; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.2s; }
+.nav-btn:hover { background: var(--indigo); color: #fff; }
+.nav-btn:disabled { opacity: 0.3; cursor: default; background: transparent; color: var(--text-light); border-color: var(--text-light); }
+.nav-center { font-size: 0.85em; color: var(--text-light); font-family: 'Inter', sans-serif; }
+
+.complete-section { text-align: center; padding: 0 45px 10px; }
+.complete-btn { padding: 12px 40px; background: var(--gold); color: var(--indigo); border: none; border-radius: 8px; font-size: 0.9em; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.2s; letter-spacing: 0.5px; }
+.complete-btn:hover { background: var(--terracotta); color: #fff; transform: translateY(-1px); }
+.complete-btn.completed { background: var(--success); color: #fff; }
+
+@media (max-width: 600px) {
+  .cover h1 { font-size: 1.8em; }
+  .ch-header { padding: 25px 20px; }
+  .ch-body { padding: 20px; }
+  .yt-wrap iframe { height: 200px; }
+  .nav-btn { padding: 8px 14px; font-size: 0.75em; }
+  .cover-footer { flex-wrap: wrap; gap: 12px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="cover no-print">
+  <div class="cover-inner">
+    <div class="cover-kintsugi"></div>
+    <div class="badge">22-Chapter Course</div>
+    <h1>The<br><strong>Resilience</strong> Toolkit</h1>
+    <p class="subtitle">The Art of Bending Without Breaking</p>
+    <div class="cover-kintsugi" style="margin-top:28px"></div>
+  </div>
+  <div class="cover-footer">
+    <span>22 Chapters</span>
+    <span>&#9670;</span>
+    <span>Science-Based</span>
+    <span>&#9670;</span>
+    <span>Practical Tools</span>
+  </div>
+</div>
+
+<div class="progress-section no-print">
+  <div class="progress-header">
+    <h3>Your Progress</h3>
+    <span id="progressPct">0%</span>
+  </div>
+  <div class="progress-bar">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+  <button class="reset-btn" onclick="resetAll()">Reset Progress</button>
+</div>
+
+<div class="toc no-print">
+  <h2>Table of Contents</h2>
+  <div class="toc-grid" id="tocGrid"></div>
+</div>
+
+<div id="chaptersContainer"></div>
+
+<footer class="ft" style="margin-top:48px;padding:24px 20px 32px;border-top:1px solid rgba(201,168,76,0.1);text-align:center">
+  <p style="font-size:11px;color:#6A7068;margin-bottom:2px">&copy; 2025 Elevate Shop. All rights reserved.</p>
+  <p style="font-size:10px;color:#8A9088">Empowering minds and building wealth, one download at a time.</p>
+</footer>
+</div>
+
+<script>
+const PREFIX = 'rt_';
+const CH = [
+  { n:1, t:'What Resilience Really Means', s:'Redefining resilience beyond just bouncing back.' },
+  { n:2, t:'The Adversity Mindset', s:'How you interpret struggle shapes your capacity to endure.' },
+  { n:3, t:'Understanding Your Stress Response', s:'The physiology of pressure and how to work with it.' },
+  { n:4, t:'Emotional Regulation', s:'Mastering your emotions so they don\'t master you.' },
+  { n:5, t:'Cognitive Reframing', s:'Changing the stories that limit your strength.' },
+  { n:6, t:'Post-Traumatic Growth', s:'How adversity can become a catalyst for profound change.' },
+  { n:7, t:'Building Support Systems', s:'No one thrives alone — the science of connection.' },
+  { n:8, t:'Self-Compassion', s:'The surprising strength in treating yourself with kindness.' },
+  { n:9, t:'Boundary Setting', s:'Protecting your energy as an act of resilience.' },
+  { n:10, t:'Adaptability', s:'The flexible mind outlasts the rigid one.' },
+  { n:11, t:'Grit & Perseverance', s:'The power of passion and sustained effort.' },
+  { n:12, t:'Learned Optimism', s:'Training your brain to see possibilities.' },
+  { n:13, t:'Values Clarification', s:'Your inner compass when the storm hits.' },
+  { n:14, t:'Meaning-Making', s:'How finding purpose in pain transforms suffering.' },
+  { n:15, t:'Physical Resilience', s:'The body\'s role in mental and emotional strength.' },
+  { n:16, t:'Sleep & Recovery', s:'Rest as the foundation of all resilience.' },
+  { n:17, t:'Mindfulness & Resilience', s:'Present-moment awareness as a strength practice.' },
+  { n:18, t:'Forgiveness & Letting Go', s:'Releasing what no longer serves your growth.' },
+  { n:19, t:'Crisis Preparation', s:'Building your resilience before the storm.' },
+  { n:20, t:'Resilience in Relationships', s:'Strengthening bonds through hard times.' },
+  { n:21, t:'Sustaining Resilience', s:'Avoiding burnout and maintaining strength long-term.' },
+  { n:22, t:'Your Resilience Plan', s:'A personal strategy for a lifetime of fortitude.' }
+];
+
+const YT = {
+  1: 'NWH8N-BvhAw',
+  4: 'iCvmsMzlF7o',
+  8: 'RcGyVTAoXEU',
+  11: 'H14bBuluwB8',
+  13: 'Q7vYuKvpneM',
+  17: 'rNxC16mlO60',
+  20: 'w6RdMZV3YR4'
+};
+
+const CONTENT = {
+  1: {
+    p: [
+      'Resilience is not about being invincible. It is about being flexible — like bamboo that bends in the wind but does not break. True resilience is the capacity to absorb difficulty, adapt, and emerge with your core intact.',
+      'Modern research defines resilience as a dynamic process of positive adaptation in the face of adversity. It is not a fixed trait you are born with. It is a set of skills, attitudes, and behaviors that can be learned and strengthened over time.',
+      'The word comes from the Latin resilire — to leap back. But contemporary resilience science goes further: it is not just about bouncing back to where you were, but bouncing forward to a stronger, wiser version of yourself.'
+    ],
+    q: [
+      ['Resilience is not about never falling. It is about how quickly you get back up.', 'Unknown'],
+      ['The human capacity for burden is like bamboo — far more flexible than you\'d ever believe at first glance.', 'Jodi Picoult'],
+      ['Rock bottom became the solid foundation on which I rebuilt my life.', 'J.K. Rowling']
+    ],
+    e: 'Think of a difficult experience you navigated. What strengths did you discover in yourself during that time? What helped you keep going?'
+  },
+  2: {
+    p: [
+      'Your mindset is the lens through which you view every challenge. Psychologist Carol Dweck\'s research shows that those with a growth mindset — the belief that abilities can be developed — handle setbacks far better than those with a fixed mindset.',
+      'The adversity mindset asks: "What can this struggle teach me?" rather than "Why is this happening to me?" It shifts you from victim to student of your own experience.',
+      'Stoic philosophers called this amor fati — the love of fate. Not a passive resignation, but an active embrace of everything that happens as material for growth. Every obstacle becomes fuel.'
+    ],
+    q: [
+      ['The impediment to action advances action. What stands in the way becomes the way.', 'Marcus Aurelius'],
+      ['Life is not about waiting for the storm to pass. It is about learning to dance in the rain.', 'Vivian Greene'],
+      ['A man is but what he thinks about all day long.', 'Ralph Waldo Emerson']
+    ],
+    e: 'Think of a current challenge. Write down three ways this difficulty could ultimately serve your growth or teach you something valuable.'
+  },
+  3: {
+    p: [
+      'Your body\'s stress response — the sympathetic nervous system — evolved to help you survive immediate threats. But in modern life, this system often stays activated long after the danger has passed, leading to burnout and illness.',
+      'The key is not to eliminate stress (impossible) but to build what researchers call "stress recovery" — the ability to return to baseline after a stressful event. This is where true resilience lives.',
+      'Practices like deep breathing, cold exposure, and movement activate the parasympathetic nervous system, helping your body down-regulate. Stress is not the enemy. Chronic, unrecovered stress is.'
+    ],
+    q: [
+      ['It is not stress that kills us. It is our reaction to it.', 'Hans Selye'],
+      ['The greatest weapon against stress is our ability to choose one thought over another.', 'William James'],
+      ['You can\'t stop the waves, but you can learn to surf.', 'Jon Kabat-Zinn']
+    ],
+    e: 'Rate your current stress level 1-10. Take 10 slow breaths (5 in, 5 out). Re-rate your stress. What changed?'
+  },
+  4: {
+    p: [
+      'Emotional regulation is not about suppressing feelings. It is about recognizing, naming, and working with your emotions so they inform rather than control your decisions.',
+      'Brené Brown\'s research on vulnerability reveals that the ability to feel deeply — including painful emotions — is a prerequisite for resilience. You cannot selectively numb. When you numb sadness, you also numb joy.',
+      'The RAIN technique (Recognize, Allow, Investigate, Nurture) offers a structured way to work with difficult emotions. Recognize what is happening, Allow it to be there, Investigate with curiosity, and Nurture yourself with compassion.'
+    ],
+    q: [
+      ['Vulnerability is not winning or losing; it is having the courage to show up and be seen when we have no control over the outcome.', 'Brené Brown'],
+      ['Between stimulus and response there is a space. In that space is our power to choose our response.', 'Viktor Frankl'],
+      ['Feelings are just visitors. Let them come and go.', 'Mooji']
+    ],
+    e: 'Describe a recent moment when an emotion overwhelmed you. What triggered it? What would it look like to pause and respond rather than react?'
+  },
+  5: {
+    p: [
+      'Cognitive reframing is the practice of identifying and changing the stories you tell yourself about your circumstances. It is one of the most powerful tools in the resilience toolkit.',
+      'Psychologist Albert Ellis developed the ABC model: Activating event, Beliefs about the event, and Consequences. The beliefs you hold — not the event itself — determine your emotional and behavioral response.',
+      'Reframing is not toxic positivity. It is not pretending everything is fine. It is asking: "Is this belief helpful? Is it true? What is a more balanced perspective?"'
+    ],
+    q: [
+      ['The happiness of your life depends upon the quality of your thoughts.', 'Marcus Aurelius'],
+      ['Whether you think you can or think you can\'t, you\'re right.', 'Henry Ford'],
+      ['A man is but the product of his thoughts. What he thinks, he becomes.', 'Mahatma Gandhi']
+    ],
+    e: 'Identify a recurring negative thought about a challenge you face. Write it down. Then write three alternative, more balanced perspectives on the same situation.'
+  },
+  6: {
+    p: [
+      'Post-traumatic growth (PTG) is a phenomenon where people report positive psychological changes following highly challenging life experiences. It is not the same as resilience — it goes beyond recovering to actually thriving.',
+      'Psychologists Richard Tedeschi and Lawrence Calhoun identified five domains of PTG: greater appreciation of life, improved relationships, new possibilities, personal strength, and spiritual or existential growth.',
+      'PTG does not mean the trauma was good or that suffering is desirable. It means that the human spirit has a remarkable capacity to find meaning and growth through the darkest valleys.'
+    ],
+    q: [
+      ['What the caterpillar calls the end of the world, the master calls a butterfly.', 'Richard Bach'],
+      ['Turn your wounds into wisdom.', 'Oprah Winfrey'],
+      ['In the middle of every difficulty lies opportunity.', 'Albert Einstein']
+    ],
+    e: 'Reflect on a hardship you have faced. In which of the five PTG domains (life appreciation, relationships, new possibilities, personal strength, spiritual growth) have you experienced change?'
+  },
+  7: {
+    p: [
+      'Resilience is not a solo endeavor. Decades of research show that social support is one of the strongest predictors of how well people weather adversity.',
+      'Support systems buffer stress in multiple ways: they provide emotional comfort, practical help, perspective, and accountability. They remind you that you are not alone.',
+      'Building a support system means cultivating relationships before crisis hits. Identify your inner circle — those who lift you up, tell you the truth, and show up when it matters.'
+    ],
+    q: [
+      ['The bond that links your true family is not one of blood, but of respect and joy in each other\'s life.', 'Richard Bach'],
+      ['We are only as strong as we are united, as weak as we are divided.', 'J.K. Rowling'],
+      ['A problem shared is a problem halved.', 'Proverb']
+    ],
+    e: 'Name three people you could call in a crisis. If you do not have three, write down one step you can take this week to deepen a connection or build a new one.'
+  },
+  8: {
+    p: [
+      'Self-compassion — treating yourself with the same kindness you would offer a good friend — is a cornerstone of resilience. Psychologist Kristin Neff identifies three components: self-kindness, common humanity, and mindful awareness.',
+      'Many people fear self-compassion will make them weak or complacent. Research shows the opposite: self-compassionate individuals are more motivated, take more responsibility for mistakes, and recover faster from setbacks.',
+      'When you make a mistake, notice your inner critic. Instead of harsh judgment, try placing a hand on your heart and saying: "This is hard. I am learning. I am doing my best."'
+    ],
+    q: [
+      ['You yourself, as much as anybody in the entire universe, deserve your love and affection.', 'Buddha'],
+      ['Talk to yourself like you would to someone you love.', 'Brené Brown'],
+      ['Having compassion starts and ends with having compassion for all those unwanted parts of ourselves.', 'Pema Chödrön']
+    ],
+    e: 'Write a letter to yourself from the perspective of a kind, wise friend. What would they say to you about the challenge you are currently facing?'
+  },
+  9: {
+    p: [
+      'Boundaries are not walls. They are gates — gates you choose to open or close based on what protects your energy, values, and well-being.',
+      'Resilient people are skilled at saying no to what drains them so they can say yes to what matters. Boundaries protect your capacity to show up fully when it counts.',
+      'Setting a boundary often feels uncomfortable at first. You may fear disappointing others. But every time you set a boundary, you send a message — to yourself and others — that your well-being matters.'
+    ],
+    q: [
+      ['The difference between successful people and very successful people is that very successful people say no to almost everything.', 'Warren Buffett'],
+      ['Daring to set boundaries is about having the courage to love ourselves, even when we risk disappointing others.', 'Brené Brown'],
+      ['No is a complete sentence.', 'Anne Lamott']
+    ],
+    e: 'Identify one area of your life where you need a stronger boundary. Write exactly what that boundary looks like and one specific action you will take to establish it.'
+  },
+  10: {
+    p: [
+      'Adaptability is the cognitive flexibility to adjust your thinking and behavior in response to changing circumstances. It is the opposite of rigid thinking — the ability to pivot when the situation demands it.',
+      'Charles Darwin\'s insight was not that the strongest species survive, but the most adaptable. The same is true for individuals. Those who can revise their assumptions and try new approaches thrive in uncertainty.',
+      'Adaptability can be practiced. Seek out small doses of novelty, challenge your routines, and expose yourself to different perspectives. Each small stretch expands your adaptive capacity.'
+    ],
+    q: [
+      ['It is not the strongest of the species that survive, nor the most intelligent, but the one most responsive to change.', 'Charles Darwin'],
+      ['The measure of intelligence is the ability to change.', 'Albert Einstein'],
+      ['The art of life lies in a constant readjustment to our surroundings.', 'Kakuzo Okakura']
+    ],
+    e: 'Think of a belief or routine you have held for a long time. What would happen if you challenged it? Design one small experiment to try a different approach this week.'
+  },
+  11: {
+    p: [
+      'Angela Duckworth\'s research defines grit as passion and sustained perseverance toward long-term goals. Grit is the stamina to keep going when the initial excitement fades and the road gets hard.',
+      'Grit is less about talent and more about effort. Duckworth\'s formula: talent × effort = skill, and skill × effort = achievement. Effort counts twice.',
+      'The good news: grit can be cultivated. It grows when you practice deliberate effort toward meaningful goals, develop a growth mindset, and connect your daily actions to a larger purpose.'
+    ],
+    q: [
+      ['Grit is living life like it is a marathon, not a sprint.', 'Angela Duckworth'],
+      ['The difference between a successful person and others is not a lack of strength, not a lack of knowledge, but rather a lack in will.', 'Vince Lombardi'],
+      ['Energy and persistence conquer all things.', 'Benjamin Franklin']
+    ],
+    e: 'Identify a goal you have been pursuing inconsistently. Write one specific action you will take every day this week — no matter how small — to move toward it.'
+  },
+  12: {
+    p: [
+      'Learned optimism, pioneered by Martin Seligman, is the practice of challenging your explanatory style — how you explain events to yourself. Optimists see setbacks as temporary, specific, and external, rather than permanent, pervasive, and personal.',
+      'This is not about blind positivity. It is about accuracy. Depressed and pessimistic thinking is often distorted — it is not more "realistic" than optimistic thinking. Both are interpretations.',
+      'The ABCDE method helps retrain your thinking: Adversity, Beliefs, Consequences, Disputation, Energization. Identify the belief, dispute it with evidence, and notice the energizing effect.'
+    ],
+    q: [
+      ['Optimism is the faith that leads to achievement. Nothing can be done without hope and confidence.', 'Helen Keller'],
+      ['A pessimist sees difficulty in every opportunity. An optimist sees opportunity in every difficulty.', 'Winston Churchill'],
+      ['Even the darkest night will end and the sun will rise.', 'Victor Hugo']
+    ],
+    e: 'Think of a recent setback. Write down your immediate explanation for it. Now challenge that explanation — what are three alternative, more optimistic interpretations that could also be true?'
+  },
+  13: {
+    p: [
+      'When the storm hits, your values are your anchor. They guide your decisions when emotions are high and clarity is low.',
+      'Values clarification is the process of identifying what matters most to you — not what society, family, or culture says should matter. Your values are your unique compass.',
+      'In acceptance and commitment therapy (ACT), values are distinguished from goals. Goals can be completed; values are ongoing directions. You never "complete" being kind or courageous. You practice it again and again.'
+    ],
+    q: [
+      ['He who has a why to live for can bear almost any how.', 'Friedrich Nietzsche'],
+      ['When values are clear, decisions are easy.', 'Roy E. Disney'],
+      ['The soul that has no established purpose loses itself.', 'Michel de Montaigne']
+    ],
+    e: 'List your top five values. For each, write one specific action you can take this week that aligns with that value, especially when you face difficulty.'
+  },
+  14: {
+    p: [
+      'Viktor Frankl, a psychiatrist and Holocaust survivor, argued that the primary human drive is not pleasure but meaning. Those who can find meaning in suffering have an extraordinary capacity to endure.',
+      'Meaning can be found in three ways: through creating a work or doing a deed, through experiencing something or encountering someone, and through the attitude we take toward unavoidable suffering.',
+      'The question is not "Why me?" but "What now?" Meaning-making is the active process of weaving even painful experiences into a coherent, purposeful life narrative.'
+    ],
+    q: [
+      ['When we are no longer able to change a situation, we are challenged to change ourselves.', 'Viktor Frankl'],
+      ['The meaning of life is to find your gift. The purpose of life is to give it away.', 'Pablo Picasso'],
+      ['Life is never made unbearable by circumstances, but only by lack of meaning and purpose.', 'Viktor Frankl']
+    ],
+    e: 'Think of a painful experience. How has it changed you? What did it teach you about what matters? Write a short paragraph reframing this experience as part of a larger story.'
+  },
+  15: {
+    p: [
+      'Mental and emotional resilience are built on a physical foundation. The body and mind are not separate — they are one integrated system. When your body is depleted, your capacity to handle stress diminishes.',
+      'Exercise is one of the most effective resilience-building practices. It trains your body to handle physical stress, releases endorphins, and increases BDNF — a protein that protects your brain from stress damage.',
+      'You do not need extreme workouts. Regular movement — walking, strength training, yoga — builds the physical reserve you draw on during tough times.'
+    ],
+    q: [
+      ['Physical fitness is not only one of the most important keys to a healthy body, it is the basis of dynamic and creative intellectual activity.', 'John F. Kennedy'],
+      ['A sound mind in a sound body is a short but full description of a happy state in this world.', 'John Locke'],
+      ['Take care of your body. It is the only place you have to live.', 'Jim Rohn']
+    ],
+    e: 'Design one simple physical practice you can do every day for the next week — even if only 10 minutes. What movement makes you feel stronger and more centered?'
+  },
+  16: {
+    p: [
+      'Sleep is the foundation of resilience. During deep sleep, your brain processes emotions, consolidates memories, and clears metabolic waste. Without adequate rest, your stress response becomes hypersensitive.',
+      'Matthew Walker\'s research shows that sleep-deprived individuals are 30% less able to regulate emotions. Lack of sleep amplifies negative reactions and diminishes your capacity for rational decision-making.',
+      'Prioritizing sleep is not a luxury or a sign of weakness. It is a strategic investment in your ability to handle whatever comes your way.'
+    ],
+    q: [
+      ['Sleep is the single most effective thing we can do to reset our brain and body health each day.', 'Matthew Walker'],
+      ['The best bridge between despair and hope is a good night\'s sleep.', 'Matthew Walker'],
+      ['A well-spent day brings happy sleep.', 'Leonardo da Vinci']
+    ],
+    e: 'Audit your current sleep habits. Write down your ideal bedtime and wake time. Identify one change you can make this week to improve your sleep quality.'
+  },
+  17: {
+    p: [
+      'Mindfulness is the practice of paying attention to the present moment with openness and curiosity. It builds resilience by training your ability to stay grounded when everything around you is uncertain.',
+      'Regular mindfulness practice literally changes the structure of your brain. It thickens the prefrontal cortex (responsible for executive function) and shrinks the amygdala (the fear center).',
+      'You do not need to meditate for hours. Even 5-10 minutes of daily practice — focusing on your breath, body scan, or mindful walking — can significantly improve your stress recovery capacity.'
+    ],
+    q: [
+      ['You cannot stop the waves, but you can learn to surf.', 'Jon Kabat-Zinn'],
+      ['The present moment is filled with joy and happiness. If you are attentive, you will see it.', 'Thich Nhat Hanh'],
+      ['Almost everything will work again if you unplug it for a few minutes, including you.', 'Anne Lamott']
+    ],
+    e: 'Set a timer for 5 minutes. Sit quietly and focus only on your breath. Each time your mind wanders, gently bring it back. Afterward, write one sentence about what you noticed.'
+  },
+  18: {
+    p: [
+      'Forgiveness is often misunderstood as condoning harmful behavior. True forgiveness is the decision to release resentment and the desire for revenge — not for their sake, but for yours.',
+      'Holding onto grudges keeps your stress response activated. Forgiveness lowers blood pressure, reduces anxiety, and improves immune function. It is a health practice as much as a spiritual one.',
+      'Letting go does not mean forgetting or reconciling. It means choosing not to carry the weight of past wounds into your future. It is an act of self-respect and a declaration that you will not be defined by what was done to you.'
+    ],
+    q: [
+      ['Forgiveness is not an occasional act. It is a permanent attitude.', 'Martin Luther King Jr.'],
+      ['The weak can never forgive. Forgiveness is the attribute of the strong.', 'Mahatma Gandhi'],
+      ['To forgive is to set a prisoner free and discover that the prisoner was you.', 'Lewis B. Smedes']
+    ],
+    e: 'Is there someone (including yourself) you need to forgive? Write a letter expressing your feelings and your decision to forgive. You do not need to send it — the act of writing is for you.'
+  },
+  19: {
+    p: [
+      'Resilience is not something you magically access in a crisis. It is something you build before the crisis hits. Preparation is the proactive side of resilience.',
+      'Mental preparation — sometimes called stress inoculation — involves visualizing challenging scenarios and planning your response. Firefighters, soldiers, and elite athletes all use this technique.',
+      'Practical preparation also matters: building an emergency fund, maintaining your health, nurturing relationships, and having basic contingency plans. These reduce the shock of unexpected events.'
+    ],
+    q: [
+      ['By failing to prepare, you are preparing to fail.', 'Benjamin Franklin'],
+      ['The time to repair the roof is when the sun is shining.', 'John F. Kennedy'],
+      ['In the middle of difficulty lies opportunity.', 'Albert Einstein']
+    ],
+    e: 'Identify one area of your life where you feel unprepared for a potential crisis. Write three specific actions you can take this month to strengthen that area.'
+  },
+  20: {
+    p: [
+      'Relationships are both a source of stress and a source of strength during hard times. The quality of your connections determines how well you weather life\'s storms.',
+      'Resilient relationships are characterized by open communication, mutual support, and the ability to repair after conflict. They are not conflict-free — they are conflict-competent.',
+      'When you share your struggles with trusted people, you give them permission to share theirs. Vulnerability begets vulnerability. Resilience becomes contagious.'
+    ],
+    q: [
+      ['Connection is why we are here. It is what gives purpose and meaning to our lives.', 'Brené Brown'],
+      ['The best way to cheer yourself up is to try to cheer somebody else up.', 'Mark Twain'],
+      ['We cannot live only for ourselves. A thousand fibers connect us with our fellow men.', 'Herman Melville']
+    ],
+    e: 'Identify one relationship you want to strengthen. Write down one specific conversation you need to have or one gesture of connection you can offer this week.'
+  },
+  21: {
+    p: [
+      'Sustaining resilience over the long term requires more than just coping techniques. It requires a lifestyle that supports your capacity to handle ongoing challenges without burning out.',
+      'Burnout is not a sign of weakness. It is a sign of prolonged exposure to demands without adequate recovery. The resilient person builds recovery into their rhythm of life.',
+      'The Japanese concept of kaizen — continuous small improvement — applies here. Resilience is not a destination. It is a practice. You maintain it through daily habits, not heroic efforts.'
+    ],
+    q: [
+      ['Almost everything will work again if you unplug it for a few minutes, including you.', 'Anne Lamott'],
+      ['Rest when you are weary. Refresh and renew yourself, your body, your mind, your spirit. Then get back to work.', 'Ralph Marston'],
+      ['The time to relax is when you don\'t have time for it.', 'Sydney J. Harris']
+    ],
+    e: 'What are your early warning signs of burnout? Write them down. Now create a simple recovery plan: what will you do when you notice these signs appearing?'
+  },
+  22: {
+    p: [
+      'You now have a comprehensive toolkit. The final step is integrating these practices into a personalized resilience plan that fits your life, your circumstances, and your values.',
+      'A good resilience plan includes: your support system, your go-to coping strategies, your early warning signs, your recovery practices, and your sources of meaning. Write it down and revisit it regularly.',
+      'Remember: resilience is not about never falling. It is about knowing — deep in your bones — that you have everything you need to get back up. The gold in the kintsugi is not the repair. It is the beauty of having survived.'
+    ],
+    q: [
+      ['The greatest glory in living lies not in never falling, but in rising every time we fall.', 'Nelson Mandela'],
+      ['Rock bottom became the solid foundation on which I rebuilt my life.', 'J.K. Rowling'],
+      ['You may have to fight a battle more than once to win it.', 'Margaret Thatcher']
+    ],
+    e: 'Create your personal resilience plan. Write: (1) My support system (2) My go-to coping strategies (3) My early warning signs (4) My recovery practices (5) My sources of meaning.'
+  }
+};
+
+const storageKey = PREFIX + 'progress';
+
+function getProgress() {
+  try { return JSON.parse(localStorage.getItem(storageKey)) || { completed: [], data: {} }; } catch { return { completed: [], data: {} }; }
+}
+function saveProgress(p) {
+  localStorage.setItem(storageKey, JSON.stringify(p));
+}
+
+function render() {
+  let p = getProgress();
+  let total = CH.length;
+  let done = p.completed.length;
+
+  // TOC
+  let tg = document.getElementById('tocGrid');
+  tg.innerHTML = '';
+  CH.forEach(c => {
+    let a = document.createElement('a');
+    a.className = 'toc-item' + (p.completed.includes(c.n) ? ' completed' : '');
+    a.href = '#';
+    a.dataset.ch = c.n;
+    a.innerHTML = '<span class="toc-num">' + c.n + '</span> ' + c.t;
+    a.onclick = (e) => { e.preventDefault(); showCh(c.n); };
+    tg.appendChild(a);
+  });
+
+  document.getElementById('progressPct').textContent = Math.round(done/total*100) + '%';
+  document.getElementById('progressFill').style.width = (done/total*100) + '%';
+
+  let container = document.getElementById('chaptersContainer');
+  container.innerHTML = '';
+  CH.forEach(c => {
+    let ct = CONTENT[c.n];
+    let yt = YT[c.n];
+    let div = document.createElement('div');
+    div.className = 'chapter';
+    div.id = 'ch-' + c.n;
+
+    let ytHtml = yt ? '<div class="yt-wrap"><iframe src="https://www.youtube.com/embed/' + yt + '" allowfullscreen loading="lazy"></iframe></div>' : '';
+    let paras = ct.p.map(p => '<p>' + p + '</p>').join('');
+    let quotes = ct.q.map(q => '<div class="quoteblock"><p class="qt">' + q[0] + '</p><p class="qa">' + q[1] + '</p></div>').join('');
+    let exHtml = '<div class="exercise"><h4>Your Reflection</h4><textarea class="save-field" data-key="ch' + c.n + '-ex" placeholder="Write your reflection here...">' + (p.data['ch' + c.n + '-ex'] || '') + '</textarea></div>';
+
+    div.innerHTML = `
+      <div class="ch-header">
+        <div class="ch-number">Chapter ` + c.n + `</div>
+        <h2>` + c.t + `</h2>
+        <p class="ch-subtitle">` + c.s + `</p>
+      </div>
+      <div class="ch-body">
+        ` + ytHtml + `
+        ` + paras + `
+        <div class="gold-line"></div>
+        ` + quotes + `
+        ` + exHtml + `
+        <div class="complete-section">
+          <button class="complete-btn" onclick="toggleCh(` + c.n + `)">` + (p.completed.includes(c.n) ? '\u2713 Completed' : 'Mark Complete') + `</button>
+        </div>
+        <div class="nav-bar">
+          <button class="nav-btn" onclick="prevCh()"` + (c.n == 1 ? ' disabled' : '') + `>\u2190 Previous</button>
+          <span class="nav-center">` + c.n + ` of ` + total + `</span>
+          <button class="nav-btn" onclick="nextCh()"` + (c.n == total ? ' disabled' : '') + `>Next \u2192</button>
+        </div>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+
+  showCh(1);
+  loadSaved();
+}
+
+let currentCh = 1;
+
+function showCh(n) {
+  document.querySelectorAll('.chapter').forEach(c => c.classList.remove('active'));
+  let el = document.getElementById('ch-' + n);
+  if (el) { el.classList.add('active'); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  currentCh = n;
+  window.location.hash = 'ch-' + n;
+}
+
+function nextCh() { if (currentCh < CH.length) showCh(currentCh + 1); }
+function prevCh() { if (currentCh > 1) showCh(currentCh - 1); }
+
+function toggleCh(n) {
+  let p = getProgress();
+  let idx = p.completed.indexOf(n);
+  if (idx > -1) { p.completed.splice(idx, 1); } else { p.completed.push(n); }
+  saveProgress(p);
+  render();
+}
+
+function loadSaved() {
+  document.querySelectorAll('.save-field').forEach(el => {
+    el.addEventListener('input', function() {
+      let pp = getProgress();
+      pp.data[this.dataset.key] = this.value;
+      saveProgress(pp);
+    });
+  });
+}
+
+function resetAll() {
+  if (!confirm('Reset all progress? This will erase all completed chapters and saved reflections.')) return;
+  localStorage.removeItem(storageKey);
+  location.reload();
+}
+
+window.addEventListener('hashchange', function() {
+  let m = window.location.hash.match(/ch-(\d+)/);
+  if (m) { let n = parseInt(m[1]); if (n >= 1 && n <= CH.length) showCh(n); }
+});
+
+render();
+</script>
+</body>
+</html>

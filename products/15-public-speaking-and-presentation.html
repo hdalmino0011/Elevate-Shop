@@ -1,0 +1,671 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Public Speaking Confidence – Elevate Shop</title>
+<style>
+:root {
+  --bg: #0D0D0D;
+  --surface: #141414;
+  --card-bg: rgba(255,255,255,0.03);
+  --gold: #F5C518;
+  --curtain: #8B1A1A;
+  --ivory: #F0E8D8;
+  --silver: #B8B8B8;
+  --text: #F0E8D8;
+  --dim: #8A8078;
+  --muted: #5A5550;
+  --success: #6B9E7A;
+  --danger: #B84A4A;
+  --border: rgba(245,197,24,0.08);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+h1, h2, h3, .ch-body p, .qt { font-family: 'Playfair Display', 'Georgia', serif; }
+h2 { font-weight: 700; }
+.container { max-width: 800px; margin: 0 auto; padding: 20px; }
+@media print { .no-print { display: none !important; } body { background: #fff; color: #000; } .chapter { break-inside: avoid; } }
+
+body::before {
+  content: ''; position: fixed; inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 25%, rgba(245,197,24,0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(139,26,26,0.02) 0%, transparent 40%);
+  pointer-events: none; z-index: 0;
+}
+.container { position: relative; z-index: 1; }
+
+.cover {
+  background: linear-gradient(160deg, #080808 0%, #0D0D0D 30%, #141414 50%, #0D0D0D 80%, #080808 100%);
+  padding: 0; text-align: center; border-radius: 16px; position: relative; overflow: hidden;
+  border: 1px solid var(--border);
+}
+.cover::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse at 50% 15%, rgba(245,197,24,0.05) 0%, transparent 45%);
+}
+.cover::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), var(--curtain), var(--gold), transparent);
+}
+.cover-inner { padding: 70px 40px 50px; position: relative; z-index: 1; }
+.cover-badge {
+  display: inline-block;
+  background: rgba(245,197,24,0.06); border: 1px solid rgba(245,197,24,0.12);
+  color: var(--gold); padding: 5px 20px; border-radius: 2px;
+  font-size: 0.5em; font-weight: 500; letter-spacing: 5px; text-transform: uppercase;
+  margin-bottom: 16px; font-family: 'Inter', sans-serif;
+}
+.cover h1 {
+  color: var(--ivory); font-size: 3em; font-weight: 400; letter-spacing: 1px;
+  margin-bottom: 6px; line-height: 1.12;
+}
+.cover h1 strong { font-weight: 700; color: var(--gold); }
+.cover .subtitle {
+  color: rgba(240,232,216,0.35); font-size: 0.8em; font-family: 'Inter', sans-serif;
+  font-weight: 300; letter-spacing: 6px; text-transform: uppercase;
+}
+.cover-icon { font-size: 2em; margin: 16px 0 6px; opacity: 0.08; color: var(--gold); letter-spacing: 10px; }
+.cover-stats { display: flex; justify-content: center; gap: 36px; flex-wrap: wrap; }
+.cover-stat { text-align: center; }
+.cover-stat-num { font-size: 1.5em; font-weight: 700; color: var(--curtain); font-family: 'Inter', sans-serif; display: block; line-height: 1; }
+.cover-stat-lbl { font-size: 0.5em; color: rgba(240,232,216,0.25); text-transform: uppercase; letter-spacing: 2px; font-weight: 500; margin-top: 2px; }
+.cover-footer {
+  padding: 14px 40px; display: flex; justify-content: center; gap: 28px;
+  color: rgba(240,232,216,0.1); font-size: 0.5em; letter-spacing: 4px; text-transform: uppercase;
+  background: rgba(0,0,0,0.2); border-top: 1px solid var(--border);
+  font-family: 'Inter', sans-serif;
+}
+
+.progress-section {
+  background: var(--card-bg); backdrop-filter: blur(12px);
+  border-radius: 12px; padding: 20px 26px; margin: 20px 0;
+  border: 1px solid var(--border);
+}
+.progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.progress-header h3 { font-size: 0.7em; color: var(--dim); font-weight: 500; font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 2px; }
+.progress-header span { font-weight: 700; color: var(--gold); font-size: 0.9em; }
+.progress-bar { height: 3px; background: rgba(255,255,255,0.03); border-radius: 10px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--curtain), var(--gold)); border-radius: 10px; transition: width 0.5s; width: 0%; }
+.progress-sub { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }
+.progress-sub span { font-size: 0.6em; color: var(--dim); font-family: 'Inter', sans-serif; }
+.reset-btn { padding: 4px 14px; background: rgba(184,74,74,0.08); color: var(--danger); border: 1px solid rgba(184,74,74,0.12); border-radius: 4px; font-size: 0.6em; cursor: pointer; font-family: 'Inter', sans-serif; }
+.reset-btn:hover { background: rgba(184,74,74,0.12); }
+
+.toc {
+  background: var(--card-bg); backdrop-filter: blur(12px);
+  border-radius: 12px; padding: 26px 28px; margin: 20px 0;
+  border: 1px solid var(--border);
+}
+.toc h2 { font-size: 1em; margin-bottom: 14px; color: var(--ivory); font-weight: 600; }
+.toc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 3px; }
+.toc-item {
+  display: flex; align-items: center; gap: 10px; padding: 5px 10px; border-radius: 6px;
+  cursor: pointer; font-size: 0.78em; color: var(--text); text-decoration: none;
+}
+.toc-item:hover { background: rgba(245,197,24,0.04); }
+.toc-num {
+  width: 24px; height: 24px; background: rgba(245,197,24,0.06); color: var(--gold);
+  border: 1px solid rgba(245,197,24,0.1); border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.55em; font-weight: 700; flex-shrink: 0; font-family: 'Inter', sans-serif;
+}
+.toc-item.completed .toc-num { background: rgba(107,158,122,0.1); color: var(--success); border-color: rgba(107,158,122,0.15); }
+.toc-item.completed::after { content: '\2713'; color: var(--success); font-weight: 700; margin-left: auto; font-size: 0.9em; }
+
+.chapter { display: none; background: var(--card-bg); backdrop-filter: blur(12px); border-radius: 16px; margin: 20px 0; overflow: hidden; border: 1px solid var(--border); }
+.chapter.active { display: block; animation: fadeIn 0.3s; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+.ch-head { padding: 32px 40px 22px; background: linear-gradient(135deg, rgba(245,197,24,0.03), rgba(20,20,20,0.5)); border-bottom: 1px solid var(--border); }
+.ch-num { color: var(--curtain); font-size: 0.5em; letter-spacing: 4px; text-transform: uppercase; font-weight: 600; font-family: 'Inter', sans-serif; }
+.ch-head h2 { color: var(--ivory); font-size: 1.7em; margin: 4px 0 4px; letter-spacing: -0.3px; }
+.ch-sub { color: var(--dim); font-size: 0.85em; font-style: italic; }
+.ch-body { padding: 28px 40px 10px; }
+.ch-body p { font-size: 1.05em; margin-bottom: 14px; color: var(--text); }
+.ch-body p:first-of-type::first-letter { font-size: 4.5rem; font-weight: 700; float: left; margin-right: 0.5rem; line-height: 0.8; color: var(--gold); }
+
+.qb { margin: 14px 0; padding: 12px 0 12px 22px; border-left: 2px solid rgba(245,197,24,0.1); }
+.qb .qt { font-size: 1em; font-style: italic; color: var(--text); }
+.qb .qa { font-size: 0.75em; color: var(--dim); margin-top: 2px; font-family: 'Inter', sans-serif; }
+
+.bio-card { display: flex; gap: 16px; margin: 18px 0; padding: 18px 20px; background: rgba(139,26,26,0.04); border-radius: 10px; border: 1px solid rgba(139,26,26,0.08); align-items: flex-start; }
+.bio-card .b-icon { width: 44px; height: 44px; border-radius: 50%; background: var(--curtain); color: var(--ivory); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 1.1em; font-weight: 700; flex-shrink: 0; }
+.bio-card .b-info { flex: 1; }
+.bio-card .b-name { font-family: 'Playfair Display', serif; font-size: 1em; color: var(--gold); font-weight: 600; }
+.bio-card .b-desc { font-size: 0.8em; color: var(--dim); margin: 1px 0 3px; font-family: 'Inter', sans-serif; }
+.bio-card .b-quote { font-size: 0.85em; font-style: italic; color: var(--text); font-family: 'Georgia', serif; }
+
+.ex { background: rgba(245,197,24,0.02); border-radius: 10px; padding: 22px 24px; margin: 22px 0; border: 1px solid rgba(245,197,24,0.04); }
+.ex h4 { font-size: 0.6em; color: var(--gold); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 8px; font-family: 'Inter', sans-serif; }
+.ex h4::before { content: '\25CB\00A0'; }
+.ex textarea { width: 100%; background: rgba(0,0,0,0.15); border: 1px solid rgba(255,255,255,0.04); border-radius: 6px; padding: 12px; font-family: 'Inter', sans-serif; font-size: 0.85em; color: var(--text); resize: vertical; min-height: 60px; }
+.ex textarea:focus { outline: none; border-color: var(--gold); }
+
+.quiz { margin: 18px 0; }
+.quiz-q { font-size: 0.9em; margin-bottom: 10px; color: var(--text); }
+.quiz-opt {
+  display: block; width: 100%; text-align: left;
+  padding: 10px 16px; margin: 5px 0; background: rgba(0,0,0,0.1);
+  border: 1px solid rgba(255,255,255,0.04); border-radius: 6px;
+  color: var(--text); font-family: 'Inter', sans-serif; font-size: 0.8em; cursor: pointer;
+  transition: all 0.2s;
+}
+.quiz-opt:hover { background: rgba(245,197,24,0.04); border-color: rgba(245,197,24,0.08); }
+.quiz-opt.correct { background: rgba(107,158,122,0.1); border-color: var(--success); color: var(--success); }
+.quiz-opt.wrong { background: rgba(184,74,74,0.1); border-color: var(--danger); color: var(--danger); }
+.quiz-opt:disabled { cursor: default; opacity: 0.7; }
+.quiz-fb { font-size: 0.75em; margin-top: 6px; padding: 6px 12px; border-radius: 4px; }
+.quiz-fb.ok { color: var(--success); background: rgba(107,158,122,0.06); }
+.quiz-fb.fail { color: var(--danger); background: rgba(184,74,74,0.06); }
+
+.chk-list { margin: 18px 0; }
+.chk-item { display: flex; align-items: center; gap: 10px; padding: 6px 10px; cursor: pointer; font-size: 0.85em; color: var(--text); }
+.chk-item input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--gold); cursor: pointer; flex-shrink: 0; }
+.chk-item label { cursor: pointer; flex: 1; }
+.chk-item.done label { text-decoration: line-through; color: var(--dim); }
+
+.rating-wrap { margin: 18px 0; }
+.rating-wrap p { font-size: 0.85em; margin-bottom: 8px; }
+.rating-btns { display: flex; gap: 4px; flex-wrap: wrap; }
+.rating-btn {
+  width: 36px; height: 32px; background: rgba(0,0,0,0.1); border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 4px; color: var(--dim); font-family: 'Inter', sans-serif; font-size: 0.7em;
+  cursor: pointer; text-align: center;
+}
+.rating-btn:hover { border-color: var(--gold); color: var(--gold); }
+.rating-btn.on { background: rgba(245,197,24,0.08); border-color: var(--gold); color: var(--gold); }
+
+.yt-wrap { margin: 20px 0; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
+.yt-wrap iframe { width: 100%; height: 380px; border: none; display: block; }
+
+.nav-bar { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; padding: 10px 0 24px; }
+.nav-btn { padding: 8px 20px; background: transparent; color: var(--text); border: 1px solid rgba(240,232,216,0.08); border-radius: 6px; font-size: 0.75em; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif; }
+.nav-btn:hover { background: rgba(245,197,24,0.06); border-color: var(--gold); color: var(--gold); }
+.nav-btn:disabled { opacity: 0.2; cursor: default; background: transparent; color: var(--dim); border-color: rgba(255,255,255,0.02); }
+.nav-center { font-size: 0.75em; color: var(--dim); font-family: 'Inter', sans-serif; }
+
+.complete-wrap { text-align: center; padding-top: 4px; }
+.complete-btn { padding: 10px 36px; background: rgba(245,197,24,0.08); color: var(--gold); border: 1px solid rgba(245,197,24,0.12); border-radius: 6px; font-size: 0.8em; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif; }
+.complete-btn:hover { background: rgba(245,197,24,0.12); border-color: var(--gold); }
+.complete-btn.done { background: rgba(107,158,122,0.08); color: var(--success); border-color: rgba(107,158,122,0.12); }
+.complete-btn.done:hover { background: rgba(107,158,122,0.12); }
+
+@media (max-width: 600px) {
+  .cover h1 { font-size: 2em; }
+  .cover-inner { padding: 50px 24px 36px; }
+  .ch-head { padding: 24px 20px; }
+  .ch-body { padding: 20px; }
+  .yt-wrap iframe { height: 200px; }
+  .toc-grid { grid-template-columns: 1fr; }
+  .cover-footer { gap: 14px; flex-wrap: wrap; padding: 12px 20px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="cover no-print">
+  <div class="cover-inner">
+    <div class="cover-badge">Premium Course</div>
+    <h1>Public Speaking <strong>Confidence</strong></h1>
+    <p class="subtitle">Command the stage. Captivate any audience.</p>
+    <div class="cover-icon">&#9679; &#9675; &#9679; &#9675; &#9679;</div>
+    <div class="cover-stats">
+      <div class="cover-stat"><span class="cover-stat-num">22</span><span class="cover-stat-lbl">Chapters</span></div>
+      <div class="cover-stat"><span class="cover-stat-num">250+</span><span class="cover-stat-lbl">Insights</span></div>
+      <div class="cover-stat"><span class="cover-stat-num">8</span><span class="cover-stat-lbl">Masterclasses</span></div>
+    </div>
+  </div>
+  <div class="cover-footer">
+    <span>Presence</span>
+    <span>&#9670;</span>
+    <span>Delivery</span>
+    <span>&#9670;</span>
+    <span>Storytelling</span>
+    <span>&#9670;</span>
+    <span>Impact</span>
+  </div>
+</div>
+
+<div class="progress-section no-print">
+  <div class="progress-header">
+    <h3>Stage Progress</h3>
+    <span id="pct">0%</span>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="fill"></div></div>
+  <div class="progress-sub">
+      <span id="doneCount">0 of 22 chapters completed</span>
+    <button class="reset-btn" onclick="window.resetAll()">&#8635; Reset</button>
+  </div>
+</div>
+
+<div class="toc no-print">
+  <h2>Program</h2>
+  <div class="toc-grid" id="tocGrid"></div>
+</div>
+
+<div id="container"></div>
+
+<footer style="margin-top:48px;padding:24px 20px 32px;border-top:1px solid rgba(245,197,24,0.04);text-align:center">
+  <p style="font-size:11px;color:#5A5550;margin-bottom:2px">&copy; 2025 Elevate Shop. All rights reserved.</p>
+  <p style="font-size:10px;color:#4A4540">Empowering minds and building wealth, one download at a time.</p>
+</footer>
+</div>
+<script>
+(function() {
+var KEY = 'ps_progress';
+function load() { try { return JSON.parse(localStorage.getItem(KEY)) || {c:[],d:{}}; } catch(e) { return {c:[],d:{}}; } }
+function save(s) { localStorage.setItem(KEY, JSON.stringify(s)); }
+
+var CH = [
+  {t:'The Art of Public Speaking',s:'Public speaking is not a talent. It is a skill that anyone can learn and master.'},
+  {t:'Understanding Your Audience',s:'The best speakers do not talk at people. They connect with them.'},
+  {t:'Crafting Your Message',s:'Every great speech has a single core idea. Find yours and build everything around it.'},
+  {t:'Structuring Your Presentation',s:'A clear structure guides your audience. A confused structure loses them.'},
+  {t:'Storytelling in Speeches',s:'Stories are the most powerful tool in a speaker\'s toolkit. Use them generously.'},
+  {t:'Opening with Impact',s:'You have thirty seconds to earn their attention. Make every word count.'},
+  {t:'Closing with Power',s:'The end of your speech is what they will remember most. Make it unforgettable.'},
+  {t:'Vocal Variety & Presence',s:'Your voice is an instrument. Learn to play it with skill and intention.'},
+  {t:'Body Language & Stage Movement',s:'Your body speaks before you say a word. Command the space with confidence.'},
+  {t:'Managing Nervousness',s:'The goal is not to eliminate nerves. It is to channel them into energy and passion.'},
+  {t:'Visual Aids & Slides',s:'Your slides are not your speech. They are the backdrop. Do not let them steal the show.'},
+  {t:'Connecting with the Audience',s:'The best speakers make every person in the room feel like the speech is for them.'},
+  {t:'Handling Q&A',s:'The Q&A is where credibility is won or lost. Prepare for it as thoroughly as the speech.'},
+  {t:'Impromptu Speaking',s:'The ability to speak without preparation is a skill that can be practiced and mastered.'},
+  {t:'Persuasive Speaking',s:'The best speeches do not just inform. They move people to think, feel, and act differently.'},
+  {t:'Technical Presentations',s:'Complex ideas require simple explanations. The expert\'s curse is assuming too much.'},
+  {t:'Speaking to Inspire',s:'Inspirational speaking is not about being loud. It is about being authentic and vulnerable.'},
+  {t:'Digital & Virtual Presentations',s:'Speaking through a screen requires different skills. Master the virtual stage.'},
+  {t:'Developing Your Unique Style',s:'The best speakers do not imitate. They find their own voice and refine it.'},
+  {t:'The Speaker\'s Journey',s:'Every great speaker started as a beginner. The only difference is they did not quit.'},
+  {t:'The Power of Pause and Silence',s:'Silence is not empty. It is full of meaning. Master the pause to master the room.'},
+  {t:'Building a Speaking Career',s:'Turn your speaking skills into a career. Opportunities come to those who are prepared.'}
+];
+
+var YT = {
+  1:'qp0HIF3SfI4', 4:'C0c6pBqJc_0', 7:'UF8uR6Z6KLc', 10:'Z6YgR9L5k3M', 13:'iCvmsMzlF7o', 16:'7Gj6rXr8Zq4', 19:'5tSTk1083VY'
+};
+
+var P = {
+1:[
+'Public speaking is the single most valuable skill you can develop in your lifetime. It affects your career, your relationships, and your ability to influence the world around you. Yet most people fear it more than death. This course is designed to transform that fear into fuel.',
+'The ancient Greeks understood the power of the spoken word. Aristotle defined rhetoric as the art of persuasion in any given situation. He identified three pillars: ethos (credibility), pathos (emotion), and logos (logic). Every great speech in history has used all three.',
+'Simon Sinek, one of the most viewed TED speakers of all time, built his career around a simple but powerful framework: Start with Why. He argues that people do not buy what you do; they buy why you do it. This principle applies to every speech you will ever give.'
+],
+2:[
+'Dale Carnegie, author of How to Win Friends and Influence People, said, "Talk to someone about themselves and they will listen for hours." The most important preparation you can do for any speech is to understand who will be in the room and what they care about.',
+'Your audience is not a monolith. Every person in that room has unique hopes, fears, and motivations. The best speakers find the common thread that unites them and weave their message around it.',
+'Before you write a single word, answer these three questions: Who is my audience? What do they already know? What do they need to hear? Your answers will determine every decision you make.'
+],
+3:[
+'A speech without a clear message is noise. The greatest speakers distill complex ideas into simple, memorable messages. Martin Luther King Jr. did not say "I have a complex set of policy proposals." He said "I have a dream." That is the power of a single, focused message.',
+'To find your core message, complete this sentence: After hearing my speech, I want my audience to know one thing: ____. If you cannot fill in that blank, you are not ready to speak.',
+'Once you have your core message, everything else in your speech serves it. Every story, every statistic, every quote is there to reinforce that single idea. If it does not serve the message, cut it.'
+],
+4:[
+'The standard structure for any presentation is simple: tell them what you are going to tell them, tell them, tell them what you told them. This three-act structure has been used for thousands of years because it works.',
+'Steve Jobs was a master of presentation structure. His keynotes followed a precise pattern: a powerful opening, a clear problem statement, a demonstration of the solution, and an inspiring conclusion. He rehearsed every transition until it was seamless.',
+'Your introduction should accomplish three things: grab attention, establish your credibility, and preview your main points. Your body should develop each point with evidence and examples. Your conclusion should summarize, inspire, and call to action.'
+],
+5:[
+'Humans are wired for stories. Neuroscientists have shown that when we hear a story, our brains release oxytocin, the chemical that facilitates empathy and connection. A fact engages the mind. A story engages the heart.',
+'Brene Brown, a research professor and one of the most popular TED speakers, built her brand around the power of vulnerability and storytelling. Her research shows that the most effective communicators are those who are willing to share their struggles.',
+'The best stories have three elements: a character the audience cares about, a challenge that creates tension, and a resolution that teaches a lesson. Your personal stories are your most powerful speaking asset.'
+],
+6:[
+'You never get a second chance to make a first impression. The first thirty seconds of your speech determine whether the audience will lean in or tune out. Invest more time in your opening than any other part of your speech.',
+'Maya Angelou once said, "People will forget what you said, people will forget what you did, but people will never forget how you made them feel." Your opening must evoke an emotion: curiosity, surprise, concern, or hope.',
+'Never start with an apology. Never say "I am nervous" or "I am not prepared." The audience would not have known until you told them. Start with confidence, even if you have to fake it until it becomes real.'
+],
+7:[
+'The end of your speech is what your audience will remember most. Psychologists call this the recency effect the tendency to remember the last thing we hear more vividly than the middle. Your closing is your final gift to the audience.',
+'Winston Churchill, one of history\'s greatest orators, was famous for his powerful closings. His speeches during World War II ended with calls to action that galvanized a nation: "We shall fight on the beaches. We shall never surrender."',
+'A great closing does three things: summarizes your core message, paints a vision of a better future, and calls the audience to specific action. End with a line they can remember and repeat.'
+],
+8:[
+'Your voice is the most powerful instrument you own. It can convey confidence, warmth, authority, and passion all through subtle changes in pitch, pace, and volume. Most speakers never learn to use their voice as the tool it is.',
+'Tony Robbins, who speaks to tens of thousands of people at a time, uses his voice with surgical precision. He shifts from a whisper to a roar, from a rapid-fire pace to a dramatic pause, keeping his audience engaged through sheer vocal variety.',
+'There are three levers of vocal delivery: volume (loud to soft), pace (fast to slow), and pitch (high to low). A great speaker moves between all three. A monotone speaker loses the audience within sixty seconds.'
+],
+9:[
+'Amy Cuddy, a Harvard researcher, discovered that our body language shapes not only how others see us, but how we see ourselves. Her TED talk on power poses is one of the most viewed of all time, proving that how you hold your body changes your psychology.',
+'Your posture communicates your confidence before you speak a single word. Stand tall with your shoulders back. Keep your weight evenly distributed. Keep your hands visible and use gestures that are intentional, not nervous.',
+'Eye contact is the most powerful non-verbal tool. Instead of scanning the room, look at one person at a time, hold eye contact for one complete thought, then move to another person. This makes every listener feel personally addressed.'
+],
+10:[
+'Mark Twain said, "There are only two types of speakers in the world: the nervous and the liars." Every great speaker, without exception, experiences some form of nervousness before they speak. The difference is they have learned to channel it.',
+'Your body cannot tell the difference between excitement and anxiety. The physical symptoms are identical: racing heart, sweaty palms, rapid breathing. The only difference is how you interpret them. Reframe your nerves as energy and enthusiasm.',
+'Preparation is the most powerful antidote to anxiety. The more prepared you are, the less your brain has to fear. Practice your speech out loud at least five times. Practice in the exact conditions you will perform. Familiarity reduces fear.'
+],
+11:[
+'Chris Anderson, the curator of TED Talks, says that the worst presentations are those where the speaker reads from their slides. Your slides are not your speech. They are the visual backdrop. The audience came to see you, not your slides.',
+'Death by PowerPoint is real. Research shows that bullet points actually reduce retention. The most effective slides contain a single image, a single word, or a single idea. If your audience has to read, they cannot listen.',
+'Use slides to illustrate what you cannot describe with words alone. A photograph, a diagram, a short video clip these are powerful. A list of five bullet points is not. When in doubt, leave it out.'
+],
+12:[
+'Oprah Winfrey, one of the most influential communicators of our time, built her career on the ability to connect with people. Her secret is simple: she listens with full presence. Connection begins not with what you say, but with how you make people feel.',
+'Reading the room is a skill that separates good speakers from great ones. If the energy is low, adjust your energy upward. If they look confused, clarify. If they seem skeptical, address their concerns directly.',
+'Humor is one of the fastest ways to build rapport. But it must serve the message, not distract from it. Self-deprecating humor is especially effective because it makes you relatable without making anyone else feel uncomfortable.'
+],
+13:[
+'Barack Obama, widely considered one of the greatest speakers of the modern era, treated Q&A sessions as opportunities, not threats. He would listen carefully, repeat the question to ensure understanding, and then answer with clarity and confidence.',
+'When you do not know the answer to a question, say so. "I don\'t know, but I will find out for you" is always better than a fabricated or rambling answer. Audiences respect honesty far more than false expertise.',
+'Use the bridging technique: acknowledge the question, then bridge to your key message. Start with, "That\'s a great question. What that tells me is that we need to focus on..." Then deliver your prepared message.'
+],
+14:[
+'Martin Luther King Jr. delivered his "I Have a Dream" speech with preparation and practice. But he also improvised brilliantly. In the middle of the speech, gospel singer Mahalia Jackson shouted "Tell them about the dream, Martin!" He set aside his notes and spoke from his heart. That improvised section became the most famous part.',
+'The ability to speak without preparation is a skill that can be practiced. The best impromptu speakers use a simple structure: point, reason, example, point. State your main point. Give a reason. Share an example. Restate your point.',
+'When asked to speak unexpectedly, buy yourself time. Pause. Take a breath. Say "Thank you for that question." Then use the PREP structure (Point, Reason, Example, Point). This framework works in any situation.'
+],
+15:[
+'Mel Robbins, the author of The 5 Second Rule, built her speaking career around a simple, actionable message. She argues that persuasion is not about manipulating people. It is about helping them see a truth they were not ready to see before.',
+'Aristotle\'s three pillars of persuasion ethos, pathos, logos are as relevant today as they were 2,300 years ago. Ethos is your credibility and character. Pathos is the emotional connection. Logos is the logic and evidence. The most persuasive speeches use all three.',
+'Know your audience\'s current belief before you try to change it. Persuasion begins where your audience is, not where you want them to be. If you try to move them too far too fast, they will resist.'
+],
+16:[
+'Albert Einstein said, "If you cannot explain it simply, you do not understand it well enough." This is the fundamental challenge of technical presentations: the more you know, the harder it is to communicate clearly.',
+'Les Brown, one of the world\'s most celebrated motivational speakers, grew up in poverty and was labeled "educable mentally retarded" as a child. He transformed his life through the power of speaking and now commands stages worldwide. His story proves that your past does not determine your future.',
+'When explaining complex topics, start with what your audience already knows. Build from familiar to unfamiliar. Use analogies that connect new information to existing knowledge. Avoid jargon unless you define it clearly.'
+],
+17:[
+'Nelson Mandela spent 27 years in prison, yet emerged without bitterness. His inaugural speech as president of South Africa was a masterclass in inspirational speaking. He focused on unity, forgiveness, and hope qualities that transcend politics and touch the human heart.',
+'Inspirational speaking is not about being loud or dramatic. It is about being authentic and vulnerable. The most inspiring speakers share their struggles as openly as their successes. They make their audience feel seen, understood, and capable of more.',
+'Hope is the most powerful emotion you can evoke in an audience. Leave them with hope. But hope without direction is just entertainment. Always pair inspiration with a clear path forward.'
+],
+18:[
+'Speaking through a screen is a fundamentally different skill than speaking on a physical stage. The energy that works in a large room can feel overwhelming through a camera. The nuance that works on video can get lost in a large venue.',
+'Your energy needs to be higher on video. The screen dilutes your presence by 30 percent at minimum. Amplify your gestures, your vocal variety, and your facial expressions to compensate for the loss of physical presence.',
+'Eye contact through a camera lens is harder than eye contact with a live audience. Look directly at the lens, not at your own image on the screen. Position the camera at eye level. Good lighting and audio are non-negotiable.'
+],
+19:[
+'Susan Cain, author of Quiet, is a self-described introvert who became a bestselling author and sought-after speaker. She proved that you do not need to be an extrovert to be a great speaker. Your unique personality is your differentiator.',
+'Your style will evolve over time. Embrace the evolution. What works at one stage may not work at the next. The best speakers have a style that feels effortless, but that effortlessness is the result of years of deliberate practice.',
+'Study great speakers. Analyze what they do. But do not copy them. Blend their techniques with your personality. The best speakers do not imitate. They find their own voice and refine it over a lifetime.'
+],
+20:[
+'David Goggins, a former Navy SEAL and ultra-endurance athlete, was told he was not good enough his entire life. He used speaking as a way to share his journey from adversity to achievement. His raw, unfiltered style connects deeply with audiences who crave authenticity.',
+'Every great speaker started as a beginner. The only difference between them and everyone else is that they did not quit. Your first ten speeches will not be great. Your hundredth will be significantly better. The key is to keep showing up.',
+'Your voice matters. The world needs to hear what you have to say. Do not let fear silence you. The most important speech you will ever give is the one you almost did not give. Give it anyway.'
+],
+21:[
+'Eckhart Tolle, author of The Power of Now, teaches that silence is not the absence of sound. It is a presence in itself. In public speaking, the pause is one of the most underutilized and most powerful tools at your disposal.',
+'When you pause before an important word, you signal that what follows is significant. When you pause after an important statement, you give the audience time to absorb it. When you pause during a transition, you give yourself time to reset.',
+'Most speakers are afraid of silence. They fill every gap with "um," "uh," "like," or "you know." Silence is your friend. A well-placed three-second pause can command more attention than a minute of talking. Practice sitting in silence until it feels comfortable.'
+],
+22:[
+'Eric Thomas, known as the "Hip Hop Preacher," went from being homeless to becoming one of the most sought-after motivational speakers in the world. He built his career by being relentlessly authentic, incredibly prepared, and always willing to serve his audience.',
+'Building a speaking career requires three things: expertise in a specific area, a distinctive voice, and a relentless work ethic. Create content. Share it publicly. Offer to speak for free at first. Collect testimonials. Build a portfolio. Raise your rates.',
+'The best speakers are not those who seek the stage. They are those who have a message that demands to be heard. Focus on becoming someone worth listening to, and the speaking opportunities will follow.'
+]};
+
+var BIO = {
+1:{name:'Simon Sinek',init:'SS',desc:'Leadership expert, author of Start With Why, and one of the most-watched TED speakers of all time.',quote:'People don\'t buy what you do; they buy why you do it.'},
+2:{name:'Dale Carnegie',init:'DC',desc:'Author of How to Win Friends and Influence People, pioneer of public speaking education.',quote:'There are always three speeches for every one you actually gave: the one you practiced, the one you gave, and the one you wish you gave.'},
+3:{name:'Aristotle',init:'AR',desc:'Ancient Greek philosopher who defined the art of rhetoric with ethos, pathos, and logos.',quote:'The educated differ from the uneducated as much as the living from the dead.'},
+4:{name:'Steve Jobs',init:'SJ',desc:'Co-founder of Apple, renowned for his iconic product launch presentations.',quote:'The most powerful person in the world is the storyteller.'},
+5:{name:'Brene Brown',init:'BB',desc:'Research professor at University of Houston, author, and TED speaker on vulnerability and courage.',quote:'Vulnerability is not winning or losing; it\'s having the courage to show up when you can\'t control the outcome.'},
+6:{name:'Maya Angelou',init:'MA',desc:'Poet, memoirist, and civil rights activist. One of the most powerful voices of the 20th century.',quote:'People will forget what you said, people will forget what you did, but people will never forget how you made them feel.'},
+7:{name:'Winston Churchill',init:'WC',desc:'British Prime Minister whose speeches rallied a nation during World War II.',quote:'Success is not final, failure is not fatal: it is the courage to continue that counts.'},
+8:{name:'Tony Robbins',init:'TR',desc:'Peak performance coach, motivational speaker, and author who speaks to millions worldwide.',quote:'The way we communicate with others and with ourselves ultimately determines the quality of our lives.'},
+9:{name:'Amy Cuddy',init:'AC',desc:'Harvard social psychologist whose TED talk on power poses revolutionized how we think about body language.',quote:'Your body language shapes who you are.'},
+10:{name:'Mark Twain',init:'MT',desc:'Author and humorist known for his wit, storytelling ability, and countless memorable quotes.',quote:'There are only two types of speakers in the world: the nervous and the liars.'},
+11:{name:'Chris Anderson',init:'CA',desc:'Curator of TED Talks and author of TED Talks: The Official Guide to Public Speaking.',quote:'The greatest speakers are the ones who are able to take complex ideas and express them in simple terms.'},
+12:{name:'Oprah Winfrey',init:'OW',desc:'Media executive, talk show host, and one of the most influential communicators in modern history.',quote:'The greatest discovery of all time is that a person can change his future by merely changing his attitude.'},
+13:{name:'Barack Obama',init:'BO',desc:'44th President of the United States, widely regarded as one of the greatest orators of the modern era.',quote:'Change will not come if we wait for some other person or some other time. We are the ones we\'ve been waiting for.'},
+14:{name:'Martin Luther King Jr.',init:'MK',desc:'Civil rights leader whose "I Have a Dream" speech is one of the most iconic speeches in history.',quote:'The time is always right to do what is right.'},
+15:{name:'Mel Robbins',init:'MR',desc:'Author, motivational speaker, and creator of The 5 Second Rule methodology.',quote:'You are one decision away from a totally different life.'},
+16:{name:'Les Brown',init:'LB',desc:'Legendary motivational speaker who overcame poverty and labels to become a world-renowned speaker.',quote:'Your past does not equal your future.'},
+17:{name:'Nelson Mandela',init:'NM',desc:'South African anti-apartheid revolutionary and president who inspired the world with his message of forgiveness.',quote:'It always seems impossible until it is done.'},
+18:{name:'Susan Cain',init:'SC',desc:'Author of Quiet: The Power of Introverts in a World That Can\'t Stop Talking.',quote:'There\'s zero correlation between being the best talker and having the best ideas.'},
+19:{name:'David Goggins',init:'DG',desc:'Former Navy SEAL, ultra-endurance athlete, and motivational speaker known for his relentless mindset.',quote:'Most people never get to know who they truly are because they quit too early.'},
+20:{name:'Eric Thomas',init:'ET',desc:'Motivational speaker known as the Hip Hop Preacher, went from homelessness to global influence.',quote:'When you want to succeed as bad as you want to breathe, then you will be successful.'},
+21:{name:'Eckhart Tolle',init:'ET2',desc:'Spiritual teacher and author of The Power of Now, emphasizing presence and the power of silence.',quote:'Sometimes letting things go is an act of far greater power than defending or hanging on.'},
+22:{name:'Malala Yousafzai',init:'MY',desc:'Youngest Nobel Prize laureate, education activist, and a powerful speaker for human rights.',quote:'One child, one teacher, one book, one pen can change the world.'}
+};
+
+var C = {
+1:[['Public speaking is the art of diluting a 10-minute idea and making it feel like a lifetime of wisdom.','Unknown'],['All great speakers were bad speakers first.','Ralph Waldo Emerson'],['Speech is power. Speech is to persuade, to convert, to compel.','Ralph Waldo Emerson']],
+2:[['The most important thing about communication is hearing what is not being said.','Peter Drucker'],['Speak as if you are having a conversation with a friend maginified.','Unknown'],['Knowing your audience is about understanding their hopes, fears, and unmet needs.','Unknown']],
+3:[['A speech is a journey. Every journey needs a destination.','Unknown'],['If you cannot summarize your speech in one sentence, you do not know what you are talking about.','Unknown'],['The best speeches are built around a single idea. Everything else serves that idea.','Unknown']],
+4:[['A great speech makes the audience forget there was ever a structure.','Unknown'],['Structure is not the enemy of creativity. It is the container that allows creativity to flow.','Unknown'],['Tell them what you are going to tell them. Tell them. Tell them what you told them.','Unknown']],
+5:[['Facts tell. Stories sell. If you want to move an audience, tell them a story.','Unknown'],['Your personal stories are your most powerful speaking asset.','Unknown'],['When you tell a story, your audience\'s brains light up as if they are experiencing it themselves.','Unknown']],
+6:[['Your opening must grab attention, establish relevance, and preview the journey.','Unknown'],['A great opening makes the audience lean in. A weak opening makes them tune out.','Unknown'],['Never start with an apology. The audience would not know you are nervous unless you tell them.','Unknown']],
+7:[['End with a line that echoes. Your closing words should be memorable enough to quote.','Unknown'],['The most powerful closings circle back to the opening.','Unknown'],['A call to action without specificity is not a call to action.','Unknown']],
+8:[['The human voice is the most beautiful instrument, but it is the most difficult to play.','Richard Strauss'],['Variety in vocal delivery keeps your audience engaged. Monotone is the death of attention.','Unknown'],['The pause is the most underrated tool in public speaking. Silence is full of meaning.','Unknown']],
+9:[['Stage presence is about being fully present in your own skin.','Unknown'],['Movement commands attention and signals confidence. A frozen speaker looks afraid.','Unknown'],['Your posture communicates your confidence before you speak a single word.','Unknown']],
+10:[['The goal is not to eliminate nervousness. The goal is to channel it.','Unknown'],['The best speakers still get nervous. They have learned to use the energy.','Unknown'],['Preparation is the antidote to anxiety. The more prepared you are, the less your brain has to fear.','Unknown']],
+11:[['A slide should contain one idea. More than one means more than one slide.','Unknown'],['Death by PowerPoint is real. Use images, not bullet points.','Unknown'],['Minimalism is the highest form of slide design.','Unknown']],
+12:[['Connection is not about what you say. It is about how you make people feel.','Unknown'],['Authenticity is the fastest path to connection. People connect with real people.','Unknown'],['Vulnerability is a superpower on stage. When you share your struggles, the audience sees themselves in you.','Unknown']],
+13:[['The Q&A is where credibility is won or lost. Prepare for it as thoroughly as the speech.','Unknown'],['When you do not know the answer, say so. It is better than fabricating.','Unknown'],['Repeat the question before answering. It ensures everyone heard and gives you time.','Unknown']],
+14:[['Impromptu speaking is a skill that can be learned, practiced, and mastered.','Unknown'],['The best impromptu speakers use structure: point, reason, example, point.','Unknown'],['When asked to speak unexpectedly, pause, breathe, say thank you, then speak.','Unknown']],
+15:[['The most persuasive speakers genuinely believe their message. Passion is contagious.','Unknown'],['Ethos, pathos, logos the three pillars of persuasion are as relevant as ever.','Aristotle'],['Stories are the most persuasive form of communication because they bypass resistance.','Unknown']],
+16:[['Complex ideas require simple explanations. The expert\'s curse is assuming too much.','Unknown'],['Use analogies to explain the unfamiliar by comparing it to the familiar.','Unknown'],['Assume your audience is smart but knows nothing about your specific topic.','Unknown']],
+17:[['Share your struggles, not just your successes. People are inspired by adversity overcome.','Unknown'],['Hope is the most powerful emotion you can evoke. Leave them with hope.','Unknown'],['Inspiration without direction is just entertainment.','Unknown']],
+18:[['Your energy needs to be higher on video. The screen dilutes your presence.','Unknown'],['Lighting and audio matter more than content on video. Bad audio is unforgivable.','Unknown'],['Keep virtual presentations shorter. Attention spans are shorter on screens.','Unknown']],
+19:[['The best speakers do not imitate. They find their own voice and refine it.','Unknown'],['Your personality is your differentiator. Let it show on stage.','Unknown'],['Blend techniques from great speakers with your natural personality.','Unknown']],
+20:[['Every great speaker started as a beginner. The only difference is they did not quit.','Unknown'],['You do not need to be the best speaker. You need to be better than yesterday.','Unknown'],['The most important speech you will ever give is the one you almost did not give.','Unknown']],
+21:[['Silence is not empty. It is full of presence. A well-placed pause is powerful.','Unknown'],['The pause gives the audience time to absorb and you time to breathe.','Unknown'],['Fill your silence with intention, not with filler words. Every um is a lost opportunity.','Unknown']],
+22:[['Build a speaking career with expertise, a distinctive voice, and relentless work ethic.','Unknown'],['Create content, share publicly, speak for free, collect testimonials, then raise your rates.','Unknown'],['Focus on becoming someone worth listening to. The opportunities will follow.','Unknown']]
+};
+var ACT = {
+1:{type:'textarea',label:'Speaker Reflection',q:'Write your thoughts on public speaking. What do you fear most? What excites you?'},
+2:{type:'quiz',q:'What is the most important step before writing a speech?',opts:['Research your topic deeply','Know your audience','Write a catchy title','Find the right font'],correct:1},
+3:{type:'textarea',label:'Message Exercise',q:'Write your core message in one sentence. After hearing my speech, the audience will know one thing...'},
+4:{type:'checklist',label:'Structure Checklist',items:['I have a powerful opening that grabs attention','I have 3 clear main points','I have transitions between each section','I have a strong closing with a call to action']},
+5:{type:'textarea',label:'Your Story',q:'Write a personal story with a character, a challenge, and a lesson that supports your core message.'},
+6:{type:'quiz',q:'What should you never do at the start of a speech?',opts:['Smile at the audience','Pause before speaking','Apologize for being nervous','Make eye contact'],correct:2},
+7:{type:'checklist',label:'Closing Checklist',items:['I summarize my core message','I paint a vision of a better future','I include a specific call to action','I end with a memorable final line']},
+8:{type:'rating',label:'Rate your vocal variety',q:'On a scale of 1-10, how would you rate your current vocal variety?',key:'rating_vocal'},
+9:{type:'textarea',label:'Body Language Practice',q:'Stand in front of a mirror. Practice your opening 3 times. What do you notice about your posture and gestures?'},
+10:{type:'quiz',q:'How should you interpret the physical symptoms of nervousness?',opts:['A sign you should not speak','Excitement and energy to channel','A medical emergency','A reason to cancel'],correct:1},
+11:{type:'checklist',label:'Slide Design Checklist',items:['Each slide contains one idea','No bullet points with more than 5 words','Images support the message','Slides work without me reading them']},
+12:{type:'textarea',label:'Connection Exercise',q:'Describe a time you felt deeply connected to an audience. What made that moment special?'},
+13:{type:'rating',label:'Q&A Confidence',q:'How confident are you handling Q&A sessions?',key:'rating_qa'},
+14:{type:'quiz',q:'What does PREP stand for in impromptu speaking?',opts:['Prepare, Rehearse, Execute, Present','Point, Reason, Example, Point','Problem, Response, Plan','Practice, Review, Perform'],correct:1},
+15:{type:'textarea',label:'Persuasion Plan',q:'What belief do you want to change in your audience? Where are they now and where do you want them to be?'},
+16:{type:'checklist',label:'Technical Talk Prep',items:['I can explain my topic to a 12-year-old','I have at least 2 analogies ready','I defined all jargon terms','I have a visual for each concept']},
+17:{type:'textarea',label:'Inspiration Exercise',q:'Share a personal struggle you overcame. How did it change you? How can your story inspire others?'},
+18:{type:'quiz',q:'What is the most important technical element for virtual presentations?',opts:['Fancy transitions','Good lighting and audio','Virtual backgrounds','Props'],correct:1},
+19:{type:'rating',label:'Speaking Style',q:'How well-defined is your unique speaking style?',key:'rating_style'},
+20:{type:'textarea',label:'Your Speaker Journey',q:'Where are you on your speaking journey? What is your next milestone? Write your commitment to keep growing.'},
+21:{type:'checklist',label:'Pause Practice Log',items:['I practiced pausing 3 seconds before key words','I recorded myself and counted filler words','I used a deliberate pause in conversation','I sat in silence for 30 seconds comfortably']},
+22:{type:'textarea',label:'Your Speaking Career Vision',q:'Describe your vision for your speaking career. Where do you want to speak? What message do you want to share?'}
+};
+
+function build() {
+  var s = load();
+  var total = CH.length;
+  var done = s.c.length;
+
+  var tg = document.getElementById('tocGrid');
+  if (tg) {
+    tg.innerHTML = CH.map(function(c,i) {
+      return '<a class="toc-item'+(s.c.indexOf(i+1)>=0?' completed':'')+'" data-n="'+(i+1)+'"><span class="toc-num">'+(i+1)+'</span>'+c.t+'</a>';
+    }).join('');
+    tg.querySelectorAll('.toc-item').forEach(function(a) {
+      a.onclick = function(e) { e.preventDefault(); show(parseInt(this.dataset.n)); };
+    });
+  }
+
+  var pctEl = document.getElementById('pct');
+  var fillEl = document.getElementById('fill');
+  var doneEl = document.getElementById('doneCount');
+  if (pctEl) pctEl.textContent = Math.round(done/total*100)+'%';
+  if (fillEl) fillEl.style.width = (done/total*100)+'%';
+  if (doneEl) doneEl.textContent = done+' of '+total+' chapters completed';
+
+  var ct = document.getElementById('container');
+  if (!ct) return;
+  ct.innerHTML = '';
+
+  CH.forEach(function(c,i) {
+    var n = i+1;
+    var yt = YT[n];
+    var ps = P[n] || [];
+    var bio = BIO[n];
+    var qs = C[n] || [];
+    var act = ACT[n] || {type:'textarea',label:'Exercise',q:'Write your thoughts here...'};
+
+    var yth = yt ? '<div class="yt-wrap"><iframe src="https://www.youtube.com/embed/'+yt+'" allowfullscreen loading="lazy"></iframe></div>' : '';
+
+    var ph = ps.map(function(p) { return '<p>'+p+'</p>'; }).join('');
+
+    var bioh = bio ? '<div class="bio-card"><div class="b-icon">'+bio.init+'</div><div class="b-info"><div class="b-name">'+bio.name+'</div><div class="b-desc">'+bio.desc+'</div><div class="b-quote">"'+bio.quote+'"</div></div></div>' : '';
+
+    var qh = qs.map(function(q) {
+      return '<div class="qb"><p class="qt">\u201C'+q[0]+'\u201D</p><p class="qa">\u2014 '+q[1]+'</p></div>';
+    }).join('');
+
+    var acth = '';
+    if (act.type === 'textarea') {
+      var savedVal = s.d['ch'+n+'_ta'] || '';
+      acth = '<div class="ex"><h4>\u25CB\u00A0Reflection Exercise</h4><textarea class="act-ta" data-n="'+n+'" data-key="ch'+n+'_ta" placeholder="'+act.q+'">'+savedVal+'</textarea></div>';
+    } else if (act.type === 'quiz') {
+      var qSaved = s.d['ch'+n+'_quiz'];
+      var optsHtml = '';
+      for (var oi = 0; oi < act.opts.length; oi++) {
+        var cls = '';
+        var disabled = '';
+        if (qSaved !== undefined) {
+          disabled = ' disabled';
+          if (oi === act.correct) cls = ' correct';
+          else if (qSaved == oi) cls = ' wrong';
+        }
+        optsHtml += '<button class="quiz-opt'+cls+'" data-ch="'+n+'" data-opt="'+oi+'" data-correct="'+act.correct+'"'+disabled+'>'+(oi+1)+'. '+act.opts[oi]+'</button>';
+      }
+      var fb = '';
+      if (qSaved !== undefined) {
+        fb = qSaved == act.correct ? 'Correct!' : 'Not quite. The answer was: '+act.opts[act.correct];
+      }
+      acth = '<div class="ex"><h4>\u25CB\u00A0Knowledge Check</h4><div class="quiz" id="quiz_'+n+'"><p class="quiz-q">'+act.q+'</p>'+optsHtml+'<div class="quiz-fb'+(qSaved!==undefined?(qSaved==act.correct?' ok':' fail'):'')+'" id="qfb_'+n+'">'+fb+'</div></div></div>';
+    } else if (act.type === 'checklist') {
+      var chkSaved = [];
+      try { chkSaved = JSON.parse(s.d['ch'+n+'_chk'] || '[]'); } catch(e) {}
+      var itemsHtml = '';
+      for (var ii = 0; ii < act.items.length; ii++) {
+        var checked = chkSaved.indexOf(ii) >= 0;
+        itemsHtml += '<div class="chk-item'+(checked?' done':'')+'"><input type="checkbox" class="act-chk" data-ch="'+n+'" data-idx="'+ii+'"'+(checked?' checked':'')+'><label>'+act.items[ii]+'</label></div>';
+      }
+      acth = '<div class="ex"><h4>\u25CB\u00A0'+act.label+'</h4><div class="chk-list" data-ch="'+n+'">'+itemsHtml+'</div></div>';
+    } else if (act.type === 'rating') {
+      var rSaved = s.d[act.key];
+      var rBtns = '';
+      for (var ri = 1; ri <= 10; ri++) {
+        rBtns += '<button class="rating-btn'+(rSaved==ri?' on':'')+'" data-key="'+act.key+'" data-val="'+ri+'">'+ri+'</button>';
+      }
+      acth = '<div class="ex"><h4>\u25CB\u00A0Self Assessment</h4><div class="rating-wrap"><p>'+act.q+'</p><div class="rating-btns" data-key="'+act.key+'">'+rBtns+'</div></div></div>';
+    }
+
+    var html = '<div class="chapter" id="ch'+n+'">'
+      + '<div class="ch-head"><div class="ch-num">Chapter '+n+'</div><h2>'+c.t+'</h2><p class="ch-sub">\u201C'+c.s+'\u201D</p></div>'
+      + '<div class="ch-body">'
+      + ph + yth + bioh + qh + acth
+      + '<div class="complete-wrap"><button class="complete-btn'+(s.c.indexOf(n)>=0?' done':'')+'" data-n="'+n+'">'+(s.c.indexOf(n)>=0?'\u2713 Completed':'Mark Complete')+'</button></div>'
+      + '<div class="nav-bar">'
+      + '<button class="nav-btn" onclick="prev()"'+(n===1?' disabled':'')+'>\u2190 Previous</button>'
+      + '<span class="nav-center">'+n+' of '+total+'</span>'
+      + '<button class="nav-btn" onclick="next()"'+(n===total?' disabled':'')+'>Next \u2192</button>'
+      + '</div></div></div>';
+    ct.innerHTML += html;
+  });
+
+  document.querySelectorAll('.chapter').forEach(function(d) { d.classList.remove('active'); });
+  var f = document.getElementById('ch1');
+  if (f) f.classList.add('active');
+
+  bindEvents();
+}
+
+function bindEvents() {
+  document.querySelectorAll('.act-ta').forEach(function(ta) {
+    ta.addEventListener('input', function() {
+      var ss = load();
+      ss.d[this.dataset.key] = this.value;
+      save(ss);
+    });
+  });
+
+  document.querySelectorAll('.quiz-opt:not([disabled])').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var ch = parseInt(this.dataset.ch);
+      var opt = parseInt(this.dataset.opt);
+      var correct = parseInt(this.dataset.correct);
+      var ss = load();
+      ss.d['ch'+ch+'_quiz'] = opt;
+      save(ss);
+      build();
+      show(ch);
+    });
+  });
+
+  document.querySelectorAll('.act-chk').forEach(function(cb) {
+    cb.addEventListener('change', function() {
+      var ch = parseInt(this.dataset.ch);
+      var idx = parseInt(this.dataset.idx);
+      var ss = load();
+      var arr = [];
+      try { arr = JSON.parse(ss.d['ch'+ch+'_chk'] || '[]'); } catch(e) {}
+      if (this.checked) {
+        if (arr.indexOf(idx) < 0) arr.push(idx);
+      } else {
+        var pos = arr.indexOf(idx);
+        if (pos >= 0) arr.splice(pos, 1);
+      }
+      ss.d['ch'+ch+'_chk'] = JSON.stringify(arr);
+      save(ss);
+      this.closest('.chk-item').classList.toggle('done', this.checked);
+    });
+  });
+
+  document.querySelectorAll('.rating-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var key = this.dataset.key;
+      var val = this.dataset.val;
+      var ss = load();
+      ss.d[key] = parseInt(val);
+      save(ss);
+      var parent = this.closest('.rating-btns');
+      parent.querySelectorAll('.rating-btn').forEach(function(b) { b.classList.remove('on'); });
+      this.classList.add('on');
+    });
+  });
+
+  document.querySelectorAll('.complete-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var n = parseInt(this.dataset.n);
+      toggle(n);
+    });
+  });
+}
+
+var cur = 1;
+window.show = function(n) {
+  document.querySelectorAll('.chapter').forEach(function(d) { d.classList.remove('active'); });
+  var el = document.getElementById('ch'+n);
+  if (el) { el.classList.add('active'); el.scrollIntoView({behavior:'smooth',block:'start'}); }
+  cur = n;
+};
+window.next = function() { if (cur < CH.length) show(cur+1); };
+window.prev = function() { if (cur > 1) show(cur-1); };
+
+function toggle(n) {
+  var s = load();
+  var idx = s.c.indexOf(n);
+  if (idx > -1) { s.c.splice(idx,1); } else { s.c.push(n); }
+  save(s);
+  build();
+  show(n);
+}
+window.toggle = toggle;
+
+window.resetAll = function() {
+  if (!confirm('Reset all progress?')) return;
+  localStorage.removeItem(KEY);
+  location.reload();
+};
+
+build();
+})();
+</script></body></html>

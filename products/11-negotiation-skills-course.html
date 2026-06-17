@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Negotiation Skills Course – Elevate Shop</title>
+<style>
+:root {
+  --bg: #1A0A0C;
+  --surface: #2D1115;
+  --card-bg: rgba(255,255,255,0.03);
+  --burgundy: #6B1D2A;
+  --champagne: #F5E6CA;
+  --bronze: #CDA873;
+  --cream: #F0E4D4;
+  --muted: #9A7B7B;
+  --text: #EDE0D8;
+  --dim: #A08888;
+  --danger: #C0392B;
+  --success: #7DB34A;
+  --border: rgba(245,230,202,0.08);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+h1, h2, h3, .ch-body p, .qt { font-family: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif; }
+h2 { font-weight: 600; }
+.container { max-width: 800px; margin: 0 auto; padding: 20px; }
+@media print { .no-print { display: none !important; } body { background: #fff; color: #000; } }
+
+/* Marble-like texture */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(107,29,42,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 80%, rgba(205,168,115,0.04) 0%, transparent 50%),
+    repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,255,255,0.005) 60px, rgba(255,255,255,0.005) 61px);
+  pointer-events: none; z-index: 0;
+}
+.container { position: relative; z-index: 1; }
+
+/* Cover */
+.cover {
+  background: linear-gradient(160deg, #0D0506 0%, #1A0A0C 20%, #2D1115 50%, #1A0A0C 80%, #0D0506 100%);
+  padding: 0; text-align: center; border-radius: 16px; position: relative; overflow: hidden;
+  border: 1px solid var(--border);
+}
+.cover::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(205,168,115,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 20% 70%, rgba(107,29,42,0.1) 0%, transparent 40%);
+}
+.cover::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--bronze), var(--champagne), var(--bronze), transparent);
+}
+.cover-inner { padding: 70px 40px 50px; position: relative; z-index: 1; }
+.cover-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(205,168,115,0.08); border: 1px solid rgba(205,168,115,0.15);
+  color: var(--bronze); padding: 5px 18px; border-radius: 2px;
+  font-size: 0.6em; font-weight: 500; letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 18px; font-family: 'Inter', sans-serif;
+}
+.cover-badge::before { content: '\25C6'; font-size: 0.7em; }
+.cover h1 {
+  color: var(--champagne); font-size: 3.4em; font-weight: 400; letter-spacing: 1px;
+  margin-bottom: 6px; line-height: 1.1;
+}
+.cover h1 strong { font-weight: 700; color: var(--bronze); }
+.cover .subtitle {
+  color: var(--dim); font-size: 0.9em; font-family: 'Inter', sans-serif;
+  font-weight: 300; letter-spacing: 4px; text-transform: uppercase;
+}
+.cover-emblem {
+  font-size: 2.5em; margin: 14px 0 6px; opacity: 0.15; letter-spacing: 12px; color: var(--bronze);
+}
+.cover-stats {
+  display: flex; justify-content: center; gap: 36px; margin-top: 18px; flex-wrap: wrap;
+}
+.cover-stat { text-align: center; }
+.cover-stat-num { font-size: 1.5em; font-weight: 700; color: var(--bronze); font-family: 'Inter', sans-serif; display: block; line-height: 1; }
+.cover-stat-lbl { font-size: 0.5em; color: var(--dim); text-transform: uppercase; letter-spacing: 2px; font-weight: 500; margin-top: 2px; }
+.cover-footer {
+  padding: 14px 40px; display: flex; justify-content: center; gap: 28px;
+  color: rgba(245,230,202,0.2); font-size: 0.6em; letter-spacing: 2px; text-transform: uppercase;
+  background: rgba(0,0,0,0.25); border-top: 1px solid var(--border);
+  font-family: 'Inter', sans-serif;
+}
+
+/* Progress */
+.progress-section {
+  background: var(--card-bg); backdrop-filter: blur(12px);
+  border-radius: 12px; padding: 20px 26px; margin: 20px 0;
+  border: 1px solid var(--border);
+}
+.progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.progress-header h3 { font-size: 0.75em; color: var(--dim); font-weight: 500; font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 2px; }
+.progress-header span { font-weight: 700; color: var(--bronze); font-size: 0.9em; }
+.progress-bar { height: 3px; background: rgba(255,255,255,0.04); border-radius: 10px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--burgundy), var(--bronze)); border-radius: 10px; transition: width 0.5s; width: 0%; }
+.progress-sub { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }
+.progress-sub span { font-size: 0.6em; color: var(--dim); font-family: 'Inter', sans-serif; }
+.reset-btn {
+  padding: 4px 14px; background: rgba(192,57,43,0.08); color: var(--danger);
+  border: 1px solid rgba(192,57,43,0.15); border-radius: 4px;
+  font-size: 0.6em; cursor: pointer; font-family: 'Inter', sans-serif;
+  transition: all 0.2s;
+}
+.reset-btn:hover { background: rgba(192,57,43,0.15); }
+
+/* TOC */
+.toc {
+  background: var(--card-bg); backdrop-filter: blur(12px);
+  border-radius: 12px; padding: 26px 28px; margin: 20px 0;
+  border: 1px solid var(--border);
+}
+.toc h2 { font-size: 1em; margin-bottom: 14px; color: var(--champagne); font-weight: 600; }
+.toc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 3px; }
+.toc-item {
+  display: flex; align-items: center; gap: 10px; padding: 5px 10px; border-radius: 6px;
+  cursor: pointer; font-size: 0.78em; color: var(--text); text-decoration: none;
+  transition: background 0.2s;
+}
+.toc-item:hover { background: rgba(205,168,115,0.05); }
+.toc-num {
+  width: 24px; height: 24px; background: rgba(107,29,42,0.3); color: var(--bronze);
+  border-radius: 4px; display: flex; align-items: center; justify-content: center;
+  font-size: 0.6em; font-weight: 700; flex-shrink: 0; font-family: 'Inter', sans-serif;
+  border: 1px solid rgba(205,168,115,0.15);
+}
+.toc-item.completed .toc-num { background: rgba(125,179,74,0.15); color: var(--success); border-color: rgba(125,179,74,0.2); }
+.toc-item.completed::after { content: '\2713'; color: var(--success); font-weight: 700; margin-left: auto; font-size: 0.9em; }
+
+/* Chapter */
+.chapter { display: none; background: var(--card-bg); backdrop-filter: blur(12px); border-radius: 16px; margin: 20px 0; overflow: hidden; border: 1px solid var(--border); }
+.chapter.active { display: block; animation: fadeIn 0.35s; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+.ch-head {
+  padding: 34px 40px 22px;
+  background: linear-gradient(135deg, rgba(107,29,42,0.08), rgba(13,5,6,0.3));
+  border-bottom: 1px solid var(--border);
+}
+.ch-num {
+  color: var(--bronze); font-size: 0.55em; letter-spacing: 3px; text-transform: uppercase;
+  font-weight: 600; font-family: 'Inter', sans-serif;
+}
+.ch-head h2 { color: var(--champagne); font-size: 1.7em; margin: 4px 0 4px; letter-spacing: -0.3px; }
+.ch-sub { color: var(--dim); font-size: 0.85em; font-style: italic; }
+
+.ch-body { padding: 30px 40px 10px; }
+.ch-body p { font-size: 1.05em; margin-bottom: 14px; color: var(--text); }
+
+/* Quote */
+.qb {
+  margin: 14px 0; padding: 14px 0 14px 20px;
+  border-left: 2px solid rgba(205,168,115,0.15);
+}
+.qb .qt { font-size: 1.05em; font-style: italic; color: var(--text); }
+.qb .qa { font-size: 0.75em; color: var(--dim); margin-top: 2px; font-family: 'Inter', sans-serif; }
+
+/* Exercise */
+.ex {
+  background: rgba(205,168,115,0.03); border-radius: 10px; padding: 22px 24px;
+  margin: 22px 0; border: 1px solid rgba(205,168,115,0.06);
+}
+.ex h4 {
+  font-size: 0.65em; color: var(--bronze); text-transform: uppercase; letter-spacing: 2px;
+  margin-bottom: 8px; font-family: 'Inter', sans-serif;
+}
+.ex h4::before { content: '\25C6\00A0'; }
+.ex textarea {
+  width: 100%; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 6px; padding: 12px; font-family: 'Inter', sans-serif;
+  font-size: 0.85em; color: var(--text); resize: vertical; min-height: 60px;
+}
+.ex textarea:focus { outline: none; border-color: var(--bronze); }
+
+/* YouTube */
+.yt-wrap { margin: 20px 0; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
+.yt-wrap iframe { width: 100%; height: 380px; border: none; display: block; }
+
+/* Nav */
+.nav-bar { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; padding: 10px 0 24px; }
+.nav-btn {
+  padding: 8px 20px; background: transparent; color: var(--text);
+  border: 1px solid rgba(245,230,202,0.1); border-radius: 6px;
+  font-size: 0.75em; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif;
+  transition: all 0.2s;
+}
+.nav-btn:hover { background: rgba(205,168,115,0.08); border-color: var(--bronze); color: var(--bronze); }
+.nav-btn:disabled { opacity: 0.2; cursor: default; background: transparent; color: var(--dim); border-color: rgba(255,255,255,0.03); }
+.nav-center { font-size: 0.75em; color: var(--dim); font-family: 'Inter', sans-serif; }
+
+.complete-wrap { text-align: center; padding-top: 4px; }
+.complete-btn {
+  padding: 10px 36px; background: rgba(205,168,115,0.08); color: var(--bronze);
+  border: 1px solid rgba(205,168,115,0.15); border-radius: 6px;
+  font-size: 0.8em; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif;
+  transition: all 0.2s;
+}
+.complete-btn:hover { background: rgba(205,168,115,0.15); border-color: var(--bronze); }
+.complete-btn.done { background: rgba(125,179,74,0.08); color: var(--success); border-color: rgba(125,179,74,0.15); }
+.complete-btn.done:hover { background: rgba(125,179,74,0.15); }
+
+@media (max-width: 600px) {
+  .cover h1 { font-size: 2em; }
+  .cover-inner { padding: 50px 24px 36px; }
+  .ch-head { padding: 24px 20px; }
+  .ch-body { padding: 20px; }
+  .yt-wrap iframe { height: 200px; }
+  .toc-grid { grid-template-columns: 1fr; }
+  .cover-footer { gap: 14px; flex-wrap: wrap; padding: 12px 20px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="cover no-print">
+  <div class="cover-inner">
+    <div class="cover-badge">Masterclass</div>
+    <h1>Negotiation <strong>Skills</strong></h1>
+    <p class="subtitle">Master the art of getting to yes</p>
+    <div class="cover-emblem">&#9830; &#9672; &#9830;</div>
+    <div class="cover-stats">
+      <div class="cover-stat"><span class="cover-stat-num">20</span><span class="cover-stat-lbl">Chapters</span></div>
+      <div class="cover-stat"><span class="cover-stat-num">200+</span><span class="cover-stat-lbl">Strategies</span></div>
+      <div class="cover-stat"><span class="cover-stat-num">7</span><span class="cover-stat-lbl">Expert Talks</span></div>
+    </div>
+  </div>
+  <div class="cover-footer">
+    <span>Preparation</span>
+    <span>&#9830;</span>
+    <span>Tactics</span>
+    <span>&#9830;</span>
+    <span>Psychology</span>
+    <span>&#9830;</span>
+    <span>Closing</span>
+  </div>
+</div>
+
+<div class="progress-section no-print">
+  <div class="progress-header">
+    <h3>Progress Tracker</h3>
+    <span id="pct">0%</span>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="fill"></div></div>
+  <div class="progress-sub">
+    <span id="doneCount">0 of 20 chapters completed</span>
+    <button class="reset-btn" onclick="resetAll()">&#8635; Reset</button>
+  </div>
+</div>
+
+<div class="toc no-print">
+  <h2>Course Outline</h2>
+  <div class="toc-grid" id="tocGrid"></div>
+</div>
+
+<div id="container"></div>
+
+<footer style="margin-top:48px;padding:24px 20px 32px;border-top:1px solid rgba(245,230,202,0.06);text-align:center">
+  <p style="font-size:11px;color:#7A5A5A;margin-bottom:2px">&copy; 2025 Elevate Shop. All rights reserved.</p>
+  <p style="font-size:10px;color:#5A3A3A">Empowering minds and building wealth, one download at a time.</p>
+</footer>
+</div>
+
+<script>
+(function() {
+var KEY = 'ns_progress';
+function load() { try { return JSON.parse(localStorage.getItem(KEY)) || {c:[],d:{}}; } catch { return {c:[],d:{}}; } }
+function save(s) { localStorage.setItem(KEY, JSON.stringify(s)); }
+
+var CH = [
+  {t:'The Art of Negotiation',s:'Everything in life is negotiable — the question is whether you show up to the table.'},
+  {t:'Understanding Your BATNA',s:'Your best alternative gives you the power to walk away.'},
+  {t:'Preparation & Research',s:'The negotiation is won or lost before you ever sit down.'},
+  {t:'Building Rapport',s:'People negotiate with people they like and trust.'},
+  {t:'Active Listening',s:'The most powerful tool in any negotiator\'s toolkit.'},
+  {t:'The Power of Questions',s:'He who asks the questions controls the conversation.'},
+  {t:'Framing & Anchoring',s:'Set the terms of reference before the other side does.'},
+  {t:'Creating Value',s:'Expand the pie before you divide it.'},
+  {t:'Handling Objections',s:'Every objection is a request for more information in disguise.'},
+  {t:'Emotional Intelligence',s:'Master your emotions or they will master your deal.'},
+  {t:'Body Language & Non-Verbals',s:'What is not being said is often more important than what is.'},
+  {t:'Negotiation Tactics',s:'Knowing the plays means never being caught off guard.'},
+  {t:'Dealing with Difficult Negotiators',s:'When the other side plays hardball, you need a different game plan.'},
+  {t:'Negotiating Salary & Compensation',s:'Knowing your worth and asking for it with confidence.'},
+  {t:'Business & Contract Negotiation',s:'Deals are made on paper but sealed in relationships.'},
+  {t:'Cross-Cultural Negotiation',s:'What works in one culture can fail catastrophically in another.'},
+  {t:'Negotiating in Relationships',s:'The most important deals are the ones with the people you love.'},
+  {t:'Closing the Deal',s:'Knowing when to push and when to accept.'},
+  {t:'Post-Negotiation Reflection',s:'Every negotiation is a lesson if you are willing to learn.'},
+  {t:'Becoming a Master Negotiator',s:'Negotiation is not a talent. It is a skill built one conversation at a time.'}
+];
+
+var YT = {
+  1:'SMYKAbbOefA', 4:'qp0HIF3SfI4', 7:'cBzhCWV6Q7Q', 10:'xFr0FKnaLDk', 13:'g9tG_Mrj90M', 16:'as0uWN5ad64', 19:'5fsm-QbN9r8'
+};
+
+var C = {
+1:[['Everything is negotiable. Whether or not the negotiation is easy is another thing.','Carrie Fisher'],['In business as in life, you do not get what you deserve. You get what you negotiate.','Chester L. Karrass'],['The most important thing in communication is hearing what is not being said.','Peter Drucker'],['Negotiation is not a fight. It is a conversation with a purpose.','Unknown'],['You do not get what you want. You get what you are willing to ask for.','Unknown'],['The greatest negotiation is the one you have with yourself every day.','Unknown'],['Negotiation is the art of letting the other party have your way.','Daniele Vare'],['The first rule of negotiation is to understand that it is not about winning or losing. It is about finding a solution that works for both.','Unknown'],['If you cannot say no, your yes means nothing.','Unknown'],['The negotiation begins the moment you decide to engage. Preparation starts even earlier.','Unknown']],
+2:[['Your BATNA is the single most important concept in negotiation. Know it. Improve it. Use it.','Roger Fisher'],['The party with the best alternatives has the most power. Never negotiate without knowing your walkaway.','Unknown'],['A strong BATNA gives you the confidence to say no and the patience to wait for a better yes.','Unknown'],['Do not just know your BATNA. Work to improve it before you negotiate.','Unknown'],['The more alternatives you have, the less you need this deal. That is true power.','Unknown'],['Weak BATNA means weak position. Strengthen your alternatives before strengthening your arguments.','Unknown'],['Knowing what you will do if this deal fails is the foundation of negotiation confidence.','Unknown'],['The best negotiators are never desperate. Desperation is the smell of a weak BATNA.','Unknown'],['Your walkaway point is not a weakness. It is your line in the sand.','Unknown'],['Preparation means knowing not just what you want, but what you will do if you do not get it.','Unknown']],
+3:[['By failing to prepare, you are preparing to fail.','Benjamin Franklin'],['The negotiation is won or lost before you ever sit down at the table. Preparation is everything.','Unknown'],['Know your goals. Know your limits. Know your counterpart. Know the context. Nothing less.','Unknown'],['Research your counterpart as if you were preparing for a chess match. Their history reveals their patterns.','Unknown'],['Preparation is not about scripting every word. It is about knowing the territory so well that you can navigate any path.','Unknown'],['The more you know about the other side, the more levers you have. Information is power.','Unknown'],['Walk into any negotiation with more information than the other side. That is your edge.','Unknown'],['Good preparation answers the question: what does success look like? Great preparation asks: what does it look like for them?','Unknown'],['The prepared mind sees opportunities the unprepared mind misses.','Unknown'],['Preparation is the only part of negotiation you fully control. Do not waste it.','Unknown']],
+4:[['People do not care how much you know until they know how much you care.','Theodore Roosevelt'],['Rapport is the foundation of all successful negotiations. Without it, you are just two people talking at each other.','Unknown'],['The best negotiators are those who make the other side feel heard, understood, and respected.','Unknown'],['Mirroring is not manipulation. It is the biological basis of connection.','Unknown'],['People would rather do business with someone they like than someone they do not. It is that simple.','Unknown'],['Before you try to influence someone, connect with them. Connection creates receptivity.','Unknown'],['Small talk is not small. It is the bridge to big agreements.','Unknown'],['Find something genuinely interesting about the other person. Authentic curiosity builds trust.','Unknown'],['The fastest way to build rapport is to listen more than you speak.','Unknown'],['Rapport is built in the first five minutes. The rest of the negotiation happens in the context of that connection.','Unknown']],
+5:[['The most basic of all human needs is the need to understand and be understood.','Ralph Nichols'],['Most people do not listen with the intent to understand. They listen with the intent to reply.','Stephen R. Covey'],['Listening is the most powerful negotiation tool because it gives you information. Talking gives them information.','Unknown'],['When you truly listen, you hear what the other side actually needs — which is often different from what they are asking for.','Unknown'],['The quieter you become, the more you hear.','Rumi'],['Active listening is not waiting for your turn to speak. It is being fully present to what the other person is communicating.','Unknown'],['People reveal their priorities through the details they volunteer. Listen for what they emphasize.','Unknown'],['The best negotiators talk less and learn more.','Unknown'],['Silence is a question. Use it generously.','Unknown'],['When you make someone feel heard, they lower their guard. That is when real negotiation begins.','Unknown']],
+6:[['Quality questions create a quality life. Successful people ask better questions.','Tony Robbins'],['He who asks the questions controls the conversation.','Unknown'],['The art of negotiation is the art of asking the right question at the right time.','Unknown'],['Questions disarm defenses. Answers reveal information. Both are essential.','Unknown'],['Ask why three times. The first answer is never the real answer.','Unknown'],['Open-ended questions invite the other side to reveal their priorities, constraints, and interests.','Unknown'],['The most powerful question in negotiation: help me understand your perspective.','Unknown'],['A well-placed question is worth more than a well-crafted argument.','Unknown'],['What if questions open up possibilities that declarative statements close down.','Unknown'],['When you are stuck, ask a question. It is the only way forward.','Unknown']],
+7:[['Anchoring is not about being aggressive. It is about being informed.','Unknown'],['The first number mentioned in a negotiation is not just a number. It is a frame that shapes everything that follows.','Unknown'],['He who frames the debate controls the outcome.','Unknown'],['The anchor sets the range. If you do not set it, the other side will.','Unknown'],['A high anchor does not mean you will get it. But it makes your real target seem reasonable by comparison.','Unknown'],['Framing is not about lying. It is about presenting the same reality in a way that favors your position.','Unknown'],['Every number in a negotiation is a statement of value. The first statement sets the tone.','Unknown'],['When you receive an extreme anchor, do not counter immediately. Pause. Question. Reframe.','Unknown'],['The best anchors are supported by data. A number with a reason is harder to dismiss.','Unknown'],['Anchoring works because the human mind needs a reference point. Provide one that works for you.','Unknown']],
+8:[['Negotiation is not about dividing a fixed pie. It is about baking a bigger one.','Unknown'],['The best deals are those where both sides leave feeling they got more than they gave.','Unknown'],['When you focus on interests rather than positions, new possibilities emerge.','Roger Fisher'],['Create value before you claim it. The pie must exist before you can divide it.','Unknown'],['The genius of negotiation is finding what the other side values that costs you little, and what you value that costs them little.','Unknown'],['Trade concessions that are cheap for you but valuable for them. That is value creation.','Unknown'],['Every negotiation has the potential for mutual gain. The skill is in finding it.','Unknown'],['Do not just fight over the last piece. Ask: what if we baked another pie?','Unknown'],['The most successful negotiators enter with an abundance mindset. Scarcity thinking kills creativity.','Unknown'],['Value creation requires curiosity. You must understand what the other side truly wants.','Unknown']],
+9:[['An objection is not a rejection. It is a request for more information.','Unknown'],['The first objection is almost never the real objection. Keep digging.','Unknown'],['Do not defend. Understand. Every objection is a window into the other side\'s fear or need.','Unknown'],['Thank them for the objection. It shows they are engaged and considering your proposal.','Unknown'],['The best response to an objection is a question that reframes the concern.','Unknown'],['Objections are not obstacles. They are signposts pointing to what matters most to them.','Unknown'],['Price objections are almost always value objections in disguise.','Unknown'],['A well-handled objection builds more trust than a conversation with no objections.','Unknown'],['Do not fear objections. Welcome them. They are the path to a deal that works.','Unknown'],['When they say no, they are not rejecting you. They are rejecting the current offer. Find out why.','Unknown']],
+10:[['Emotions are not the enemy of negotiation. Ignorance of emotions is.','Unknown'],['The single most important thing you can bring to a negotiation is a calm, centered presence.','Unknown'],['When emotions run high, logic runs low. Recognize it. Name it. Pause.','Unknown'],['Fear wants you to settle. Anger wants you to punish. Greed wants you to push too far. Master them all.','Unknown'],['Emotional intelligence is the ability to read the room and regulate yourself within it.','Unknown'],['The best negotiators are not cold. They are aware. They feel the emotion without being controlled by it.','Unknown'],['When you feel your temperature rising, ask for a break. The best decisions are never made in the heat of the moment.','Unknown'],['Empathy is not weakness. It is the ability to see the world from their side while holding your own ground.','Unknown'],['Your counterpart\'s emotions are data. What are they telling you about their priorities?','Unknown'],['Competence without emotional intelligence is like a scalpel without a steady hand. Precision without control cuts the wrong thing.','Unknown']],
+11:[['The most important thing in communication is hearing what is not being said.','Peter Drucker'],['Your body speaks before your mouth does. Make sure they are saying the same thing.','Unknown'],['In negotiation, what is not being said is often more important than what is.','Unknown'],['Watch the eyes. Watch the hands. Watch the posture. The body does not lie as easily as the mouth.','Unknown'],['Crossed arms may mean defensiveness — or they may mean cold. Never assume. Look for clusters.','Unknown'],['Mirroring body language builds rapport. But do it subtly. Overt mirroring is creepy.','Unknown'],['The most powerful non-verbal signal is a comfortable pause. Silence conveys confidence.','Unknown'],['When their words say yes but their body says maybe, trust the body.','Unknown'],['Eye contact communicates honesty and confidence. But too much becomes a power play. Find the balance.','Unknown'],['Learn to read the room before you learn to read the contract. The contract is the easy part.','Unknown']],
+12:[['All is fair in love and war. Negotiation is neither. There are tactics, and there is integrity.','Unknown'],['The best tactic is to have no tactic at all. Authenticity is the ultimate strategy.','Unknown'],['Know the common tactics not so you can use them, but so you can recognize when they are being used on you.','Unknown'],['The flinch — a visible reaction to an offer — can shift the terms in your favor. But use it sparingly.','Unknown'],['Good cop, bad cop is older than the hills. Recognize it and address it directly.','Unknown'],['The nibble — asking for one small additional concession after the deal is set — works because people want closure.','Unknown'],['When you recognize a tactic, name it. Transparency defuses manipulation.','Unknown'],['Deadline pressure is a tactic. Ask: does this deadline serve the deal or just stress me?','Unknown'],['The best defense against tactics is preparation. If you know the plays, you cannot be caught off guard.','Unknown'],['Never negotiate out of fear or desperation. Both are exploited by tactical players.','Unknown']],
+13:[['When the other side plays hardball, the first rule is: do not play their game.','Unknown'],['Difficult negotiators are often difficult because they are afraid, unprepared, or unempowered.','Unknown'],['The aggressive negotiator wants you to react. Do not. Stay calm, stay curious, stay in control.','Unknown'],['When they attack, redirect. Ask a question. Shift from positions to interests.','Unknown'],['The silent negotiator is trying to make you uncomfortable. Out-silence them.','Unknown'],['The manipulator relies on you not noticing. Once you notice, they lose their power.','Unknown'],['Do not take the bait. When they provoke, your response is your choice.','Unknown'],['Some people negotiate by wearing you down. Set your limits and hold them.','Unknown'],['The most difficult counterpart is not the aggressive one. It is the one who agrees to everything and then changes the terms.','Unknown'],['When nothing else works, be willing to walk away. The ability to walk away is the ultimate power.','Unknown']],
+14:[['The single most important salary negotiation happens before you ever discuss numbers. It happens when you build your case.','Unknown'],['Know your market value. Data is the antidote to doubt.','Unknown'],['Do not just ask for more money. Ask for what you are worth, and show the evidence.','Unknown'],['Salary negotiation is not about demanding. It is about demonstrating.','Unknown'],['The first person to name a number loses — in most cases. Let them set the anchor.','Unknown'],['Negotiate the whole package: salary, bonus, equity, benefits, flexibility, growth. Total compensation includes everything.','Unknown'],['Women are statistically less likely to negotiate salary. Every time you negotiate, you pave the way for others.','Unknown'],['Your batna in salary negotiation is your next best offer. Always have options.','Unknown'],['Never accept the first offer. There is almost always room to move.','Unknown'],['The best time to negotiate salary is after they have decided they want you, but before you have accepted.','Unknown']],
+15:[['Business negotiation is not about winning a battle. It is about structuring a relationship that lasts.','Unknown'],['The contract is the skeleton. The relationship is the muscle. Both are necessary.','Unknown'],['Never accept a verbal promise in a business deal. Get it in writing.','Unknown'],['The best business deals are those where both sides are motivated to perform. Structure incentives carefully.','Unknown'],['Negotiate the exit before you negotiate the entry. Knowing how it ends shapes how it begins.','Unknown'],['Complex deals require patience. Good business negotiators are willing to go slow to go fast.','Unknown'],['Every clause in a contract was written to solve a problem that happened before. Understand the history behind the terms.','Unknown'],['Do not let lawyers do the negotiating. Use lawyers to execute the deal you have already shaped.','Unknown'],['The best time to discuss difficult terms is when the relationship is still being built, not after it has soured.','Unknown'],['A deal that is good for both sides is a deal that will last. Short-term wins at their expense will come back to you.','Unknown']],
+16:[['Culture is not right or wrong. It is different. The skill is navigating the difference.','Unknown'],['In some cultures, relationship comes before business. In others, time is money. Know which table you are at.','Unknown'],['The first rule of cross-cultural negotiation: do not assume your rules apply.','Unknown'],['Silence means agreement in some cultures. It means deep consideration in others. It means disagreement in a few. Know the difference.','Unknown'],['The directness that works in New York can offend in Tokyo. Adapt your style to the context.','Unknown'],['Learn the greeting protocol. First impressions carry disproportionate weight across cultures.','Unknown'],['Status matters differently in different cultures. Understand who the real decision-maker is.','Unknown'],['Time orientation varies: monochronic cultures value punctuality; polychronic cultures value relationships over schedules.','Unknown'],['The best cross-cultural negotiators are humble students of culture, not experts.','Unknown'],['When in doubt, ask about their preferences. Respectful curiosity is universally appreciated.','Unknown']],
+17:[['The quality of your relationships determines the quality of your life. Negotiate them with care.','Unknown'],['In personal relationships, winning the argument is losing the connection.','Unknown'],['The most important negotiation you will ever have is with the people you love. Approach it with the utmost care.','Unknown'],['In relationships, the goal is not agreement on everything. It is understanding and respect.','Unknown'],['Compromise in relationships is not weakness. It is wisdom.','Unknown'],['The relationship is the deal. Never sacrifice the relationship for a short-term gain.','Unknown'],['Listen to understand, not to prepare your rebuttal. Especially with those you love.','Unknown'],['The most powerful phrase in a relationship negotiation: help me understand.','Unknown'],['In relationships, arguing about money is never about money. It is about values, security, and respect.','Unknown'],['The best relationship negotiations end with both people feeling heard and valued. That is the only win.','Unknown']],
+18:[['Closing is not the end of the negotiation. It is the beginning of the implementation.','Unknown'],['Know when to stop negotiating. Many good deals are destroyed by trying to get one more concession.','Unknown'],['The close is not about pressure. It is about clarity. Both sides know what they are agreeing to.','Unknown'],['If you have done the work — preparation, rapport, value creation — closing is the natural next step.','Unknown'],['Do not confuse the close with the end. The relationship continues.','Unknown'],['Summarize what has been agreed. Write it down. Both sides confirm. That is a clean close.','Unknown'],['The best closers are not the ones who push the hardest. They are the ones who make agreement feel like the obvious choice.','Unknown'],['When you sense hesitation, do not push. Explore the hesitation. The answer will tell you what is missing.','Unknown'],['A good deal closed today is better than a perfect deal that never happens.','Unknown'],['Close with gratitude, not triumph. You are celebrating an agreement, not a victory.','Unknown']],
+19:[['Experience is not what happens to you. It is what you do with what happens to you.','Aldous Huxley'],['Every negotiation is a lesson. If you are not learning, you are not paying attention.','Unknown'],['The best negotiators keep a journal. They review what worked, what did not, and what they will do differently.','Unknown'],['After every negotiation, ask: what did I learn about myself? What did I learn about the other side?','Unknown'],['Reflection turns experience into insight. Insight turns into skill.','Unknown'],['The questions you ask yourself after the negotiation matter as much as the questions you asked during it.','Unknown'],['Did I prepare enough? Did I listen enough? Did I create value? The honest answers are gold.','Unknown'],['Do not dwell on mistakes. Document them, learn from them, and let them go.','Unknown'],['The negotiation is over. The learning is forever.','Unknown'],['Keep a negotiation scorecard. Track your preparation quality, listening ratio, and outcomes over time.','Unknown']],
+20:[['The greatest negotiators are not born. They are built one conversation at a time.','Unknown'],['Mastery is not about knowing everything. It is about being a perpetual student of human interaction.','Unknown'],['You do not need to be the smartest person in the room. You need to be the most curious.','Unknown'],['The master negotiator makes the complex simple and the difficult comfortable.','Unknown'],['Negotiation is a skill. Like any skill, it is developed through deliberate practice, feedback, and reflection.','Unknown'],['The best negotiators are those who never stop learning, never stop practicing, and never stop caring.','Unknown'],['Your reputation as a negotiator is built deal by deal. Protect it, and it will open doors for you.','Unknown'],['The ultimate negotiation is the one you have with yourself: the choice between comfort and growth.','Unknown'],['Mastery is not a destination. It is a direction. Keep moving.','Unknown'],['Go into every conversation with the intention to create value, build understanding, and find a way forward. The rest is technique.','Unknown']]
+};
+
+function build() {
+  var s = load();
+  var total = CH.length;
+  var done = s.c.length;
+
+  var tg = document.getElementById('tocGrid');
+  tg.innerHTML = CH.map(function(c,i) { return '<a class="toc-item'+(s.c.includes(i+1)?' completed':'')+'" data-n="'+(i+1)+'"><span class="toc-num">'+(i+1)+'</span>'+c.t+'</a>'; }).join('');
+  tg.querySelectorAll('.toc-item').forEach(function(a) { a.onclick = function(e) { e.preventDefault(); show(parseInt(this.dataset.n)); }; });
+
+  document.getElementById('pct').textContent = Math.round(done/total*100)+'%';
+  document.getElementById('fill').style.width = (done/total*100)+'%';
+  document.getElementById('doneCount').textContent = done+' of '+total+' chapters completed';
+
+  var ct = document.getElementById('container');
+  ct.innerHTML = '';
+  CH.forEach(function(c,i) {
+    var n = i+1;
+    var yt = YT[n];
+    var qs = C[n] || [];
+    var yth = yt ? '<div class="yt-wrap"><iframe src="https://www.youtube.com/embed/'+yt+'" allowfullscreen loading="lazy"></iframe></div>' : '';
+    var qh = qs.map(function(q) { return '<div class="qb"><p class="qt">\u201C'+q[0]+'\u201D</p><p class="qa">\u2014 '+q[1]+'</p></div>'; }).join('');
+    var val = s.d['ch'+n] || '';
+
+    var html = '<div class="chapter" id="ch'+n+'">'
+      + '<div class="ch-head"><div class="ch-num">Chapter '+n+'</div><h2>'+c.t+'</h2><p class="ch-sub">\u201C'+c.s+'\u201D</p></div>'
+      + '<div class="ch-body">'
+      + yth + qh
+      + '<div class="ex"><h4>Negotiation Exercise</h4><textarea class="ex-ta" data-n="'+n+'" placeholder="Write your reflections, strategies, or practice notes here...">'+val+'</textarea></div>'
+      + '<div class="complete-wrap"><button class="complete-btn'+(s.c.includes(n)?' done':'')+'" onclick="toggle('+n+')">'+(s.c.includes(n)?'\u2713 Completed':'Mark Complete')+'</button></div>'
+      + '<div class="nav-bar">'
+      + '<button class="nav-btn" onclick="prev()"'+(n===1?' disabled':'')+'>\u2190 Previous</button>'
+      + '<span class="nav-center">'+n+' of '+total+'</span>'
+      + '<button class="nav-btn" onclick="next()"'+(n===total?' disabled':'')+'>Next \u2192</button>'
+      + '</div></div></div>';
+    ct.innerHTML += html;
+  });
+
+  document.querySelectorAll('.chapter').forEach(function(d) { d.classList.remove('active'); });
+  var f = document.getElementById('ch1');
+  if (f) f.classList.add('active');
+
+  document.querySelectorAll('.ex-ta').forEach(function(ta) {
+    ta.addEventListener('input', function() {
+      var ss = load();
+      ss.d['ch'+this.dataset.n] = this.value;
+      save(ss);
+    });
+  });
+}
+
+var cur = 1;
+window.show = function(n) {
+  document.querySelectorAll('.chapter').forEach(function(d) { d.classList.remove('active'); });
+  var el = document.getElementById('ch'+n);
+  if (el) { el.classList.add('active'); el.scrollIntoView({behavior:'smooth',block:'start'}); }
+  cur = n;
+};
+window.next = function() { if (cur < CH.length) show(cur+1); };
+window.prev = function() { if (cur > 1) show(cur-1); };
+function toggle(n) {
+  var s = load();
+  var idx = s.c.indexOf(n);
+  if (idx > -1) { s.c.splice(idx,1); } else { s.c.push(n); }
+  save(s);
+  build();
+  show(n);
+}
+window.toggle = toggle;
+window.resetAll = function() {
+  if (!confirm('Reset all progress?')) return;
+  localStorage.removeItem(KEY);
+  location.reload();
+};
+build();
+})();
+</script>
+</body>
+</html>

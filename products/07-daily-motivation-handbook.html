@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Motivation Handbook – Elevate Shop</title>
+<style>
+:root {
+  --deep: #0F172A;
+  --navy: #1E293B;
+  --sunrise: #F59E0B;
+  --amber: #D97706;
+  --orange: #EA580C;
+  --light: #FFF7ED;
+  --text: #1C1917;
+  --muted: #78716C;
+  --card: #FFFFFF;
+  --success: #10B981;
+  --danger: #EF4444;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--light); color: var(--text); line-height: 1.7; }
+.container { max-width: 800px; margin: 0 auto; padding: 20px; }
+@media print { .no-print { display: none !important; } }
+
+/* Cover */
+.cover { background: linear-gradient(135deg, var(--deep) 0%, var(--navy) 50%, #312E81 100%); padding: 0; text-align: center; border-radius: 0 0 16px 16px; position: relative; overflow: hidden; }
+.cover::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--sunrise), var(--orange), var(--sunrise)); }
+.cover-inner { padding: 70px 40px 50px; position: relative; z-index: 1; }
+.cover-sun { width: 60px; height: 60px; background: radial-gradient(circle, var(--sunrise), var(--amber)); border-radius: 50%; margin: 0 auto 20px; box-shadow: 0 0 40px rgba(245,158,11,0.3); }
+.cover h1 { color: #fff; font-size: 2.6em; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
+.cover h1 span { color: var(--sunrise); }
+.cover .subtitle { color: #94A3B8; font-size: 1em; margin-bottom: 4px; }
+.cover .badge { display: inline-block; background: var(--orange); color: #fff; padding: 6px 24px; border-radius: 20px; font-size: 0.75em; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-top: 16px; }
+.cover-footer { padding: 14px 40px; display: flex; justify-content: center; gap: 32px; color: rgba(148,163,184,0.5); font-size: 0.7em; letter-spacing: 1px; text-transform: uppercase; background: rgba(0,0,0,0.2); }
+
+/* Progress */
+.progress-section { background: var(--card); border-radius: 12px; padding: 20px 28px; margin: 20px 0; box-shadow: 0 1px 8px rgba(0,0,0,0.04); }
+.progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.progress-header h3 { font-size: 0.85em; color: var(--text); font-weight: 600; }
+.progress-header span { font-weight: 700; color: var(--orange); font-size: 0.9em; }
+.progress-bar { height: 6px; background: #E2E8F0; border-radius: 10px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--sunrise), var(--orange)); border-radius: 10px; transition: width 0.5s; width: 0%; }
+.reset-btn { margin-top: 10px; padding: 5px 16px; background: var(--danger); color: #fff; border: none; border-radius: 6px; font-size: 0.7em; cursor: pointer; }
+.reset-btn:hover { opacity: 0.85; }
+
+/* TOC */
+.toc { background: var(--card); border-radius: 12px; padding: 28px; margin: 20px 0; box-shadow: 0 1px 8px rgba(0,0,0,0.04); }
+.toc h2 { font-size: 1.2em; margin-bottom: 16px; font-weight: 600; color: var(--deep); }
+.toc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 4px; }
+.toc-item { display: flex; align-items: center; gap: 8px; padding: 4px 8px; border-radius: 6px; cursor: pointer; font-size: 0.82em; color: var(--text); text-decoration: none; }
+.toc-item:hover { background: #FFF7ED; }
+.toc-num { width: 22px; height: 22px; background: var(--navy); color: var(--sunrise); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.6em; font-weight: 600; flex-shrink: 0; }
+.toc-item.completed .toc-num { background: var(--success); color: #fff; }
+.toc-item.completed::after { content: '\2713'; color: var(--success); font-weight: 700; margin-left: auto; }
+
+/* Day */
+.day { display: none; background: var(--card); border-radius: 16px; margin: 20px 0; box-shadow: 0 1px 12px rgba(0,0,0,0.04); overflow: hidden; }
+.day.active { display: block; animation: fadeIn 0.3s; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+.d-head { background: linear-gradient(135deg, var(--deep), var(--navy)); padding: 32px 40px 24px; }
+.d-num { color: var(--sunrise); font-size: 0.65em; letter-spacing: 3px; text-transform: uppercase; font-weight: 600; }
+.d-head h2 { color: #fff; font-size: 1.5em; margin: 4px 0; font-weight: 700; }
+.d-theme { color: #94A3B8; font-size: 0.85em; font-style: italic; }
+
+.d-body { padding: 28px 40px; }
+
+/* Quote card */
+.qc { padding: 12px 16px 12px 20px; border-left: 3px solid var(--sunrise); margin-bottom: 8px; background: rgba(245,158,11,0.02); border-radius: 0 6px 6px 0; }
+.qc:last-child { margin-bottom: 0; }
+.qc .qt { font-size: 0.95em; color: var(--text); line-height: 1.6; }
+.qc .qa { font-size: 0.78em; color: var(--muted); margin-top: 2px; }
+
+/* Divider */
+.dd { text-align: center; margin: 24px 0; color: var(--sunrise); font-size: 0.75em; letter-spacing: 4px; opacity: 0.3; }
+
+/* Reflection */
+.ref { margin-top: 20px; padding: 20px; background: #FFF7ED; border-radius: 10px; border: 1px solid rgba(245,158,11,0.1); }
+.ref h3 { font-size: 0.8em; color: var(--amber); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.ref textarea { width: 100%; background: #fff; border: 1px solid #E2E8F0; border-radius: 8px; padding: 12px; font-family: 'Inter', sans-serif; font-size: 0.9em; color: var(--text); resize: vertical; min-height: 60px; }
+.ref textarea:focus { outline: none; border-color: var(--sunrise); }
+
+/* Challenge */
+.chal { margin-top: 16px; padding: 16px 20px; background: linear-gradient(135deg, rgba(245,158,11,0.04), rgba(234,88,12,0.02)); border-radius: 10px; border: 1px solid rgba(245,158,11,0.1); }
+.chal-label { display: inline-block; background: var(--orange); color: #fff; padding: 2px 12px; border-radius: 12px; font-size: 0.65em; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+.chal p { font-size: 0.9em; color: var(--text); }
+
+/* YouTube */
+.yt-wrap { margin: 20px 0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+.yt-wrap iframe { width: 100%; height: 380px; border: none; display: block; }
+
+/* Nav */
+.nav-bar { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; padding: 12px 0 28px; }
+.nav-btn { padding: 8px 20px; background: transparent; color: var(--navy); border: 1px solid var(--navy); border-radius: 8px; font-size: 0.8em; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif; }
+.nav-btn:hover { background: var(--navy); color: #fff; }
+.nav-btn:disabled { opacity: 0.25; cursor: default; background: transparent; color: var(--muted); border-color: #D1D5DB; }
+.nav-center { font-size: 0.8em; color: var(--muted); }
+
+.complete-wrap { text-align: center; padding-top: 8px; }
+.complete-btn { padding: 10px 36px; background: var(--sunrise); color: var(--deep); border: none; border-radius: 8px; font-size: 0.85em; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; }
+.complete-btn:hover { background: var(--amber); color: #fff; }
+.complete-btn.done { background: var(--success); color: #fff; }
+
+@media (max-width: 600px) {
+  .cover h1 { font-size: 1.8em; }
+  .d-head { padding: 24px 20px; }
+  .d-body { padding: 20px; }
+  .yt-wrap iframe { height: 200px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="cover no-print">
+  <div class="cover-inner">
+    <div class="cover-sun"></div>
+    <div class="badge">31-Day Journey</div>
+    <h1>The Daily<br>Motivation <span>Handbook</span></h1>
+    <p class="subtitle">500+ quotes from history's greatest minds</p>
+    <div class="cover-sun" style="width:30px;height:30px;margin-top:20px"></div>
+  </div>
+  <div class="cover-footer">
+    <span>500+ Quotes</span>
+    <span>&#9670;</span>
+    <span>31 Days</span>
+    <span>&#9670;</span>
+    <span>31 Challenges</span>
+  </div>
+</div>
+
+<div class="progress-section no-print">
+  <div class="progress-header">
+    <h3>Your Journey</h3>
+    <span id="pct">0%</span>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="fill"></div></div>
+  <button class="reset-btn" onclick="resetAll()">Reset Progress</button>
+</div>
+
+<div class="toc no-print">
+  <h2>Table of Contents</h2>
+  <div class="toc-grid" id="tocGrid"></div>
+</div>
+
+<div id="container"></div>
+
+<footer style="margin-top:48px;padding:24px 20px 32px;border-top:1px solid #E2E8F0;text-align:center">
+  <p style="font-size:11px;color:#78716C;margin-bottom:2px">&copy; 2025 Elevate Shop. All rights reserved.</p>
+  <p style="font-size:10px;color:#A8A29E">Empowering minds and building wealth, one download at a time.</p>
+</footer>
+</div>
+
+<script>
+(function() {
+const STORE = 'dmh_progress';
+function load() { try { return JSON.parse(localStorage.getItem(STORE)) || {c:[],d:{}}; } catch { return {c:[],d:{}}; } }
+function save(s) { localStorage.setItem(STORE, JSON.stringify(s)); }
+
+const DAYS = [
+  {t:'Courage',s:'The foundation of every virtue.'},
+  {t:'Perseverance',s:'The quiet resolve to keep going.'},
+  {t:'Self-Belief',s:'The voice that whispers you can.'},
+  {t:'Purpose',s:'The why that makes every how bearable.'},
+  {t:'Discipline',s:'The bridge between goals and achievement.'},
+  {t:'Resilience',s:'The art of bending without breaking.'},
+  {t:'Action',s:'The antidote to fear and doubt.'},
+  {t:'Growth',s:'The expansion of becoming more.'},
+  {t:'Focus',s:'The power of choosing one thing.'},
+  {t:'Gratitude',s:'Turning what we have into enough.'},
+  {t:'Greatness',s:'The pursuit of your highest potential.'},
+  {t:'Patience',s:'The quiet confidence in time.'},
+  {t:'Change',s:'The only constant and greatest teacher.'},
+  {t:'Strength',s:'The will to rise above.'},
+  {t:'Vision',s:'Seeing what others cannot.'},
+  {t:'Excellence',s:'Doing ordinary things extraordinarily well.'},
+  {t:'Passion',s:'The fire when motivation fades.'},
+  {t:'Consistency',s:'Small hinges swing big doors.'},
+  {t:'Possibility',s:'The belief that what is not yet can be.'},
+  {t:'Wisdom',s:'Knowledge born of experience.'},
+  {t:'Leadership',s:'The courage to go first.'},
+  {t:'Service',s:'The secret to a meaningful life.'},
+  {t:'Mindfulness',s:'The gift of being fully present.'},
+  {t:'Persistence',s:'Refusing to let failure become final.'},
+  {t:'Inspiration',s:'The spark that ignites fires.'},
+  {t:'Character',s:'Who you are when no one watches.'},
+  {t:'Creativity',s:'Bringing something new into existence.'},
+  {t:'Peace',s:'Stillness at the center of the storm.'},
+  {t:'Legacy',s:'What you live every day.'},
+  {t:'Transformation',s:'Becoming who you can be.'},
+  {t:'Celebration',s:'Honoring how far you have come.'}
+];
+
+const CHALLENGES = [
+  'Face one fear today and take one small step toward it.',
+  'Write down a goal you gave up on. Commit to restarting it today.',
+  'List three things you genuinely admire about yourself.',
+  'Write a one-sentence purpose for this season of your life.',
+  'Do the hardest thing on your list first thing tomorrow.',
+  'Recall a past failure. Write one lesson it taught you.',
+  'Take one action today you have been putting off for over a week.',
+  'Do something today that scares you a little.',
+  'Set a timer and focus on ONE task for 30 minutes — no distractions.',
+  'Write down five things you are grateful for right now.',
+  'Do one thing today that raises your own standard of excellence.',
+  'Identify one area where you are rushing. Decide to slow down.',
+  'Change one small routine — take a different route, eat something new.',
+  'Do one thing today that requires real mental or physical strength.',
+  'Write a clear description of where you want to be in 5 years.',
+  'Do one ordinary task today with extraordinary care.',
+  'Identify what makes you feel most alive. Schedule time for it this week.',
+  'Pick one small positive habit and do it today without fail.',
+  'Write a goal that seems impossible. List three steps that make it possible.',
+  'Call someone older and wiser. Ask them for one piece of life advice.',
+  'Encourage someone today. Be specific about what you admire in them.',
+  'Do one act of kindness for a stranger without expecting anything in return.',
+  'Spend 5 minutes in complete silence, focusing only on your breath.',
+  'Identify one goal you gave up on. Take one step toward it today.',
+  'Find something beautiful — a sunset, a song, a conversation — and pause to appreciate it.',
+  'Make a decision based purely on what is right, not what is easy.',
+  'Create something — write, draw, cook, or build — with no judgment.',
+  'Write down one thing you need to let go of. Consciously release it.',
+  'Do something today that will impact someone long after you are gone.',
+  'Write one limiting belief about yourself. Replace it with an empowering one.',
+  'Write a letter to your future self celebrating how far you have come.'
+];
+
+const YT_LINKS = { 2:'xFr0FKnaLDk', 7:'g9tG_Mrj90M', 11:'as0uWN5ad64', 16:'5fsm-QbN9r8', 20:'cBzhCWV6Q7Q', 25:'qp0HIF3SfI4', 30:'SMYKAbbOefA' };
+
+const Q = {
+  1:['Courage is not the absence of fear, but the judgment that something is more important than fear.','Ambrose Redmoon','Courage is resistance to fear, mastery of fear — not absence of fear.','Mark Twain','The only thing we have to fear is fear itself.','Franklin D. Roosevelt','Success is not final, failure is not fatal: it is the courage to continue that counts.','Winston Churchill','Life shrinks or expands in proportion to one\'s courage.','Anaïs Nin','Courage is the first of human qualities because it guarantees all others.','Aristotle','You cannot swim for new horizons until you have courage to lose sight of the shore.','William Faulkner','I learned that courage was not the absence of fear, but the triumph over it.','Nelson Mandela','It takes courage to grow up and become who you really are.','E.E. Cummings','Courage is being scared to death but saddling up anyway.','John Wayne','Have the courage to follow your heart and intuition.','Steve Jobs','The brave man is not he who does not feel afraid, but he who conquers that fear.','Nelson Mandela','What would life be if we had no courage to attempt anything?','Vincent van Gogh','Courage is the power to let go of the familiar.','Raymond Lindquist','Courage is like a muscle. We strengthen it by use.','Ruth Gordon'],
+  2:['Perseverance is not a long race; it is many short races one after another.','Walter Elliott','It does not matter how slowly you go as long as you do not stop.','Confucius','Our greatest glory is not in never falling, but in rising every time we fall.','Confucius','Perseverance, secret of all triumphs.','Victor Hugo','The man who moves a mountain begins by carrying away small stones.','Confucius','By perseverance the snail reached the ark.','Charles Spurgeon','Energy and persistence conquer all things.','Benjamin Franklin','When you come to the end of your rope, tie a knot and hang on.','Franklin D. Roosevelt','The key to perseverance is not willpower — it is a clear why.','James Clear','Persist and persevere, and most things that are attainable are possible.','Brian Tracy','The road to success is dotted with many tempting parking spaces.','Will Rogers','A little more persistence, a little more effort, and what seemed hopeless failure may turn to glorious success.','Elbert Hubbard','Perseverance is failing 19 times and succeeding the 20th.','Julie Andrews','The difference between a successful person and others is a lack of will.','Vince Lombardi','Perseverance is the hard work you do after you get tired of the hard work you already did.','Newt Gingrich'],
+  3:['Believe you can and you\'re halfway there.','Theodore Roosevelt','Self-belief is the first secret of success.','Ralph Waldo Emerson','As soon as you trust yourself, you will know how to live.','Goethe','The moment you doubt whether you can fly, you cease forever to be able to do it.','J.M. Barrie','If you hear a voice say you cannot paint, then by all means paint and that voice will be silenced.','Vincent van Gogh','Doubt kills more dreams than failure ever will.','Suzy Kassem','Trust yourself. You know more than you think you do.','Benjamin Spock','Self-belief can be learned and practiced.','Mel Robbins','Believe in yourself and all that you are. Know that there is something inside you greater than any obstacle.','Christian D. Larson','Once we believe in ourselves, we can risk curiosity, wonder, and spontaneous delight.','E.E. Cummings','You are braver than you believe, stronger than you seem, and smarter than you think.','A.A. Milne','The question isn\'t who is going to let me; it\'s who is going to stop me.','Ayn Rand','Act as if what you do makes a difference. It does.','William James','Don\'t let the noise of others\' opinions drown out your own inner voice.','Steve Jobs','Your belief in yourself is the most powerful currency you will ever own.','Unknown'],
+  4:['The two most important days in your life are the day you are born and the day you find out why.','Mark Twain','He who has a why to live for can bear almost any how.','Nietzsche','The purpose of life is to be useful, to be honorable, to be compassionate, to have it make some difference.','Ralph Waldo Emerson','Where your fear is, there is your task.','Carl Jung','Life is never made unbearable by circumstances, but only by lack of meaning and purpose.','Viktor Frankl','The meaning of life is to find your gift. The purpose is to give it away.','Pablo Picasso','Your purpose is the thing that makes you feel most alive.','Tony Robbins','The grand essentials of happiness: something to do, something to love, something to hope for.','Alexander Chalmers','If you can\'t figure out your purpose, figure out your passions. Your purpose will align.','Simon Sinek','When you are inspired by some great purpose, all your thoughts break their bonds.','Patanjali','A person without a sense of purpose is like a ship without a rudder.','Napoleon Hill','What you get by achieving goals is not as important as what you become.','Zig Ziglar','Your purpose is not a destination — it is a direction. It becomes clearer as you walk.','Ryan Holiday','The soul without a purpose loses itself.','Michel de Montaigne','Where purpose is unknown, life becomes a wandering in the dark.','Unknown'],
+  5:['Discipline is the bridge between goals and accomplishment.','Jim Rohn','The first and greatest victory is to conquer yourself.','Plato','We are what we repeatedly do. Excellence, then, is not an act, but a habit.','Aristotle','Self-discipline is the finest quality of every successful person.','Brian Tracy','No man is free who is not master of himself.','Epictetus','Discipline is choosing between what you want now and what you want most.','Abraham Lincoln','The pain of discipline weighs ounces; the pain of regret weighs tons.','Jim Rohn','You have power over your mind — not outside events. Realize this and you will find strength.','Marcus Aurelius','Freedom is not doing what you want. Freedom is the capacity to do what you ought.','Jocko Willink','Mastering others is strength. Mastering yourself is true power.','Lao Tzu','With self-discipline, almost anything is possible.','Theodore Roosevelt','Success is nothing more than a few simple disciplines practiced every day.','Jim Rohn','The chains of habit are too weak to be felt until they are too strong to be broken.','Samuel Johnson'],
+  6:['Resilience is knowing that you are the only one with the power to pick yourself up.','Mary Holloway','Fall seven times, stand up eight.','Japanese Proverb','The oak fought the wind and was broken; the willow bent and survived.','Robert Jordan','Rock bottom became the solid foundation on which I rebuilt my life.','J.K. Rowling','It\'s not about how hard you hit. It\'s about how hard you can get hit and keep moving forward.','Sylvester Stallone','Turn your wounds into wisdom.','Oprah Winfrey','What doesn\'t kill me makes me stronger.','Nietzsche','In the middle of difficulty lies opportunity.','Albert Einstein','The world breaks everyone, and afterward some are strong at the broken places.','Ernest Hemingway','Resilience is born by grounding yourself in your own sense of purpose.','Brené Brown','You may have to fight a battle more than once to win it.','Margaret Thatcher','The human capacity for burden is like bamboo — far more flexible than you\'d believe.','Jodi Picoult'],
+  7:['The secret of getting ahead is getting started.','Mark Twain','An ounce of action is worth a ton of theory.','Ralph Waldo Emerson','Action is the antidote to despair.','Joan Baez','Well done is better than well said.','Benjamin Franklin','Knowing is not enough; we must apply. Willing is not enough; we must do.','Goethe','The distance between dreams and reality is called action.','Unknown','Take the first step in faith. You don\'t have to see the whole staircase.','Martin Luther King Jr.','Action cures fear.','David J. Schwartz','He who deliberates fully before taking a step will spend his entire life on one leg.','Chinese Proverb','The path from dream to reality is paved with action, not intention.','Robin Sharma','The only way to make sense out of change is to plunge into it, move with it, and join the dance.','Alan Watts','If you want something you\'ve never had, you must be willing to do something you\'ve never done.','Thomas Jefferson'],
+  8:['Growth is the only evidence of life.','John Henry Newman','Growth begins at the end of your comfort zone.','Neale Donald Walsch','A comfort zone is a beautiful place, but nothing ever grows there.','John Assaraf','Don\'t judge each day by the harvest you reap but by the seeds you plant.','Robert Louis Stevenson','We can\'t become what we need to be by remaining what we are.','Max DePree','The only way to grow is to challenge everything you think you know.','James Clear','Growth is never by mere chance; it is the result of forces working together.','James Cash Penney','The mind, once stretched by a new idea, never returns to its original dimensions.','Ralph Waldo Emerson','Change is inevitable. Growth is optional.','John C. Maxwell','The only person you are destined to become is the person you decide to be.','Ralph Waldo Emerson','One can choose to go back toward safety or forward toward growth. Growth must be chosen again and again.','Abraham Maslow'],
+  9:['The ability to concentrate and use your time well is everything.','Lee Iacocca','Concentrate all your thoughts upon the work at hand. The sun\'s rays do not burn until brought to a focus.','Alexander Graham Bell','Focus is the art of knowing what to ignore.','James Clear','The successful warrior is the average man, with laser-like focus.','Bruce Lee','Lack of direction, not lack of time, is the problem.','Zig Ziglar','Your focus determines your reality.','George Lucas','Where attention goes, energy flows.','James Redfield','Focus on being productive instead of busy.','Tim Ferriss','The key is not to prioritize what\'s on your schedule but to schedule your priorities.','Stephen Covey','Nothing can add more power to your life than concentrating all your energies on a limited set of targets.','Nido Qubein','Single-tasking is the ultimate productivity hack.','Cal Newport'],
+  10:['Gratitude turns what we have into enough.','Aesop','Gratitude is not only the greatest of virtues, but the parent of all others.','Cicero','The root of joy is gratefulness.','David Steindl-Rast','Gratitude is the healthiest of all human emotions.','Zig Ziglar','Happiness is not something you postpone for the future; it is something you design for the present.','Jim Rohn','Gratitude unlocks the fullness of life. It turns what we have into enough, and more.','Melody Beattie','When you are grateful, fear disappears and abundance appears.','Tony Robbins','Cultivate the habit of being grateful for every good thing that comes to you.','Ralph Waldo Emerson','Enjoy the little things, for one day you may realize they were the big things.','Robert Brault','Do not spoil what you have by desiring what you have not.','Epicurus','This is a wonderful day. I\'ve never seen this one before.','Maya Angelou'],
+  11:['Greatness is not a function of circumstance. It is a matter of conscious choice.','Jim Collins','The secret of greatness: do something, do it well, do it until you can\'t be ignored.','Ryan Holiday','Greatness is not born. It is cultivated through relentless discipline.','David Goggins','A man\'s worth is no greater than the worth of his ambitions.','Marcus Aurelius','Greatness is a lot of small things done well, day after day.','Unknown','Most people settle for mediocrity because they are afraid of the work greatness requires.','Eric Thomas','There is no passion in playing small — in settling for less than you are capable of living.','Nelson Mandela','The greatest danger is not that our aim is too high and we miss it, but that it is too low and we reach it.','Michelangelo','You were born to win. But to be a winner you must plan to win, prepare to win, and expect to win.','Zig Ziglar','Great minds discuss ideas; average minds discuss events; small minds discuss people.','Eleanor Roosevelt'],
+  12:['Patience is not the ability to wait, but the ability to keep a good attitude while waiting.','Joyce Meyer','The two most powerful warriors are patience and time.','Leo Tolstoy','Have patience. All things are difficult before they become easy.','Saadi','Patience is bitter, but its fruit is sweet.','Aristotle','Trees that are slow to grow bear the best fruit.','Molière','Adopt the pace of nature: her secret is patience.','Ralph Waldo Emerson','Patience and perseverance have a magical effect before which difficulties disappear.','John Quincy Adams','One moment of patience may ward off great disaster.','Chinese Proverb','Patience is the companion of wisdom.','St. Augustine','Sometimes things are not falling apart. They are falling into place.','Unknown','Rivers know this: there is no hurry. We shall get there someday.','A.A. Milne'],
+  13:['Change is the law of life. Those who look only to the past are certain to miss the future.','John F. Kennedy','The measure of intelligence is the ability to change.','Albert Einstein','It is not the strongest that survive, but the most responsive to change.','Charles Darwin','Change before you have to.','Jack Welch','What the caterpillar calls the end of the world, the master calls a butterfly.','Richard Bach','If you don\'t like something, change it. If you can\'t change it, change your attitude.','Maya Angelou','Be the change you wish to see in the world.','Mahatma Gandhi','Change is painful, but nothing is as painful as staying stuck somewhere you don\'t belong.','Mandy Hale','To improve is to change; to be perfect is to change often.','Winston Churchill','The first step toward change is awareness. The second is acceptance.','Nathaniel Branden','All great changes are preceded by chaos.','Deepak Chopra'],
+  14:['Strength does not come from physical capacity. It comes from an indomitable will.','Mahatma Gandhi','That which does not kill us makes us stronger.','Nietzsche','The strongest principle of growth lies in human choice.','George Eliot','You have power over your mind — not outside events. Realize this and you will find strength.','Marcus Aurelius','Do not pray for easy lives. Pray to be stronger.','John F. Kennedy','Sometimes you don\'t realize your own strength until you face your greatest weakness.','Susan Gale','What lies behind us and before us are tiny matters compared to what lies within us.','Ralph Waldo Emerson','Strength is not about never showing weakness. It\'s about showing up anyway.','Brené Brown','I am not what happened to me. I am what I choose to become.','Carl Jung','You never know how strong you are until being strong is your only choice.','Bob Marley'],
+  15:['Where there is no vision, the people perish.','Proverbs','The only thing worse than being blind is having sight but no vision.','Helen Keller','Vision is the art of seeing what is invisible to others.','Jonathan Swift','If you can dream it, you can do it.','Walt Disney','A leader sees what others cannot see and has the courage to act on it.','John C. Maxwell','Cherish your visions. They are the blueprints of your ultimate achievements.','Napoleon Hill','The future belongs to those who believe in the beauty of their dreams.','Eleanor Roosevelt','Your vision becomes clear only when you look into your own heart.','Carl Jung','If you are working on something exciting, the vision pulls you.','Steve Jobs','Create the highest, grandest vision possible for your life.','Oprah Winfrey','First comes thought; then plans; then transformation. The beginning is in your imagination.','Napoleon Hill'],
+  16:['The quality of your life is in direct proportion to your commitment to excellence.','Vince Lombardi','Excellence is not a skill. It is an attitude.','Ralph Marston','We are what we repeatedly do. Excellence is a habit.','Aristotle','Excellence is doing ordinary things extraordinarily well.','John W. Gardner','Excellence is never accidental. It is the result of high intention and sincere effort.','Will Durant','Perfection is not attainable, but if we chase perfection we can catch excellence.','Vince Lombardi','Excellence is to do a common thing in an uncommon way.','Booker T. Washington','Small daily improvements over time lead to stunning results.','James Clear','Strive for continuous improvement instead of perfection.','Kim Collins','Anything worth doing well is worth doing poorly at first.','Raymond Chandler'],
+  17:['There is no passion in playing small — in settling for less than you are capable of living.','Nelson Mandela','When you are passionate about something, you work because you want to, not because you have to.','Simon Sinek','Passion is energy. Feel the power from focusing on what excites you.','Oprah Winfrey','Do what you love and the money will follow.','Marsha Sinetar','Passion is the genesis of genius.','Tony Robbins','Nothing great has ever been accomplished without passion.','Hegel','The only way to do great work is to love what you do.','Steve Jobs','I have no special talents. I am only passionately curious.','Albert Einstein','Don\'t ask what the world needs. Ask what makes you come alive, and go do that.','Howard Thurman','When work, commitment, and pleasure become one, nothing is impossible.','Unknown'],
+  18:['Success is the product of daily habits — not once-in-a-lifetime transformations.','James Clear','Consistency is what transforms average into excellence.','Unknown','The secret of getting ahead is getting started. The secret of staying ahead is consistency.','Mark Twain','It\'s not what we do once in a while that shapes our lives, but what we do consistently.','Tony Robbins','You don\'t have to be extreme, just consistent.','Unknown','Motivation gets you started. Consistency keeps you going.','Jim Rohn','Success doesn\'t come from what you do occasionally, but from what you do consistently.','Marie Forleo','Rome wasn\'t built in a day, but they worked on it every single day.','Unknown','The best way to predict the future is to create it — every day.','Peter Drucker','It is better to take many small steps in the right direction than to make a great leap and stumble back.','Chinese Proverb'],
+  19:['Everything you\'ve ever wanted is on the other side of fear.','George Addair','The impossible is often the untried.','Jim Goodwin','Start where you are. Use what you have. Do what you can.','Arthur Ashe','Whatever the mind can conceive and believe, it can achieve.','Napoleon Hill','The only limits you have are the limits you believe.','Wayne Dyer','Impossible is just a big word thrown around by small men.','Muhammad Ali','It always seems impossible until it\'s done.','Nelson Mandela','All things are possible until they are proved impossible.','Pearl S. Buck','The secret of change is to focus your energy on building the new.','Socrates','Possibility is the birthplace of hope.','Unknown'],
+  20:['Knowledge speaks, but wisdom listens.','Jimi Hendrix','The only true wisdom is knowing you know nothing.','Socrates','Turn your wounds into wisdom.','Oprah Winfrey','The wise man speaks because he has something to say; the fool because he has to say something.','Plato','A wise man learns from the mistakes of others. A fool learns from his own.','Latin Proverb','Wisdom is not a product of schooling but of the lifelong attempt to acquire it.','Albert Einstein','The beginning of wisdom is the definition of terms.','Socrates','He who learns but does not think is lost. He who thinks but does not learn is in danger.','Confucius','The art of being wise is the art of knowing what to overlook.','William James','Do not go where the path may lead, go instead where there is no path and leave a trail.','Ralph Waldo Emerson'],
+  21:['A leader knows the way, goes the way, and shows the way.','John C. Maxwell','The greatest leader gets people to do the greatest things.','Ronald Reagan','Leadership is the capacity to translate vision into reality.','Warren Bennis','A good leader takes more than their share of the blame and less than their share of the credit.','Arnold Glasow','Leadership is not about being in charge. It is about taking care of those in your charge.','Simon Sinek','The function of leadership is to produce more leaders, not more followers.','Ralph Nader','The first responsibility of a leader is to define reality. The last is to say thank you.','Max DePree','A leader has the courage to stand alone and the compassion to listen.','Douglas MacArthur','To handle yourself, use your head; to handle others, use your heart.','Eleanor Roosevelt','A leader is best when people barely know he exists. When his work is done, they say: we did it ourselves.','Lao Tzu'],
+  22:['The best way to find yourself is to lose yourself in the service of others.','Mahatma Gandhi','Life\'s most urgent question: what are you doing for others?','Martin Luther King Jr.','Service to others is the rent you pay for your room here on earth.','Muhammad Ali','No one is useless who lightens the burdens of another.','Charles Dickens','We make a living by what we get. We make a life by what we give.','Winston Churchill','Only a life lived for others is a life worthwhile.','Albert Einstein','The simplest acts of kindness are more powerful than a thousand prayers.','Mahatma Gandhi','Everybody can be great because everybody can serve.','Martin Luther King Jr.','The best thing to do with the best things in life is to give them away.','Dorothy Day','Service is the highest form of leadership.','Unknown'],
+  23:['The present moment is filled with joy. If you are attentive, you will see it.','Thich Nhat Hanh','Wherever you are, be there totally.','Eckhart Tolle','Mindfulness is befriending ourselves and our experience.','Jon Kabat-Zinn','Life is available only in the present moment.','Thich Nhat Hanh','The greatest weapon against stress is our ability to choose one thought over another.','William James','Almost everything will work again if you unplug it for a few minutes, including you.','Anne Lamott','In the midst of movement and chaos, keep stillness inside of you.','Deepak Chopra','If you want to conquer anxiety, live in the moment, live in the breath.','Amit Ray','Peace comes from within. Do not seek it without.','Buddha','Feelings come and go like clouds. The clear mind is the sky.','Unknown'],
+  24:['Our greatest glory is not in never falling, but in rising every time we fall.','Confucius','Success is stumbling from failure to failure with no loss of enthusiasm.','Winston Churchill','A river cuts through rock not because of its power, but its persistence.','Jim Watkins','Energy and persistence conquer all things.','Benjamin Franklin','Consider the postage stamp: its usefulness consists in sticking to one thing until it gets there.','Josh Billings','I do not think any quality is so essential to success as perseverance.','John D. Rockefeller','Most important things are accomplished by people who kept trying when there seemed no hope.','Dale Carnegie','Nothing in the world can take the place of persistence. Talent will not. Genius will not. Persistence and determination alone are omnipotent.','Calvin Coolidge','Through perseverance many win success out of certain failure.','Benjamin Disraeli'],
+  25:['Inspiration exists, but it has to find you working.','Pablo Picasso','Don\'t wait for inspiration. It comes while working.','Henri Matisse','Inspiration is a guest that does not visit the lazy.','Tchaikovsky','Amateurs sit and wait for inspiration. The rest of us just get up and go to work.','Stephen King','Inspiration is the windfall from hard work.','Twyla Tharp','Creativity is contagious, pass it on.','Albert Einstein','You can\'t use up creativity. The more you use, the more you have.','Maya Angelou','Inspiration comes from showing up and doing the work.','James Clear','The work you do when you don\'t feel like working is the work that changes everything.','Unknown','The greatest inspiration is born from the deepest struggle.','Unknown'],
+  26:['Character is doing the right thing when nobody is looking.','J.C. Watts','The final forming of your character lies in your own hands.','Anne Frank','Be more concerned with your character than your reputation. Your character is who you really are.','John Wooden','Nearly all men can stand adversity, but if you want to test character, give them power.','Abraham Lincoln','The best index to character is how you treat people who can\'t do you any good.','Abigail Van Buren','A person\'s character is their fate.','Heraclitus','Character is like a tree and reputation like a shadow. The shadow is what we think of it; the tree is the real thing.','Abraham Lincoln','Good character is not formed in a week. It is created little by little, day by day.','Heraclitus'],
+  27:['Creativity is intelligence having fun.','Albert Einstein','Every child is an artist. The problem is how to remain one once we grow up.','Pablo Picasso','Creativity is seeing what others see and thinking what no one else thought.','Albert Einstein','The creative adult is the child who survived.','Ursula K. Le Guin','Imagination is more important than knowledge.','Albert Einstein','Creativity takes courage.','Henri Matisse','There is no doubt that creativity is the most important human resource.','Edward de Bono','The desire to create is one of the deepest yearnings of the human soul.','Dieter F. Uchtdorf','Creativity is not a talent. It is a way of operating.','John Cleese','The world is but a canvas to the imagination.','Henry David Thoreau'],
+  28:['Peace comes from within. Do not seek it without.','Buddha','Nothing can bring you peace but yourself.','Ralph Waldo Emerson','Peace is not the absence of conflict, but the ability to cope with it.','Unknown','If we have no peace, it is because we have forgotten we belong to each other.','Mother Teresa','You find peace not by rearranging your circumstances but by realizing who you are at the deepest level.','Eckhart Tolle','The life of inner peace is the easiest type of existence.','Norman Vincent Peale','The mind is like water. When turbulent it\'s difficult to see. When calm, everything becomes clear.','Prasad Mahes','There is no path to peace. Peace is the path.','Mahatma Gandhi','Let us not look back in anger, nor forward in fear, but around in awareness.','James Thurber','Grant me the serenity to accept what I cannot change, courage to change what I can, and wisdom to know the difference.','Reinhold Niebuhr'],
+  29:['What you leave behind is not what is engraved in stone, but what is woven into the lives of others.','Pericles','Legacy is not leaving something for people. It is leaving something in people.','Peter Strople','Carve your name on hearts, not tombstones.','Shannon L. Alder','Your legacy is what you do every day. Your legacy is every life you touch.','Unknown','The only thing you take with you is what you leave behind.','Unknown','Plant trees under whose shade you do not expect to sit.','Nelson Henderson','We make a living by what we get. We make a life by what we give.','Winston Churchill','Your life is your message to the world. Make it inspiring.','Unknown','What you do has far greater impact than what you say.','Stephen Covey','Act as if what you do makes a difference. It does.','William James'],
+  30:['Transformation is not a future event. It is a present-day activity.','Jillian Michaels','Transformation is a process, not an event. There is no arrival. There is only becoming.','Unknown','The snake cannot shed its skin while staying inside it. Neither can you.','Unknown','The only way to make sense out of change is to join the dance.','Alan Watts','Your life does not get better by chance. It gets better by change.','Jim Rohn','In the middle of every difficulty lies opportunity.','Albert Einstein','The moment you accept responsibility for everything is the moment you gain the power to change anything.','Unknown','When you change the way you look at things, the things you look at change.','Wayne Dyer','Change is hard at first, messy in the middle, and gorgeous at the end.','Robin Sharma','The old you is not a failure. The old you is a foundation.','Unknown'],
+  31:['Celebrate what you want to see more of.','Tom Peters','The more you praise and celebrate your life, the more there is to celebrate.','Oprah Winfrey','Joy is what happens when we allow ourselves to recognize how good things really are.','Marianne Williamson','Celebrate endings — they precede new beginnings.','Jonathan Lockwood Huie','Happiness is not something you postpone for the future. It is something you design for the present.','Jim Rohn','Gratitude is the celebration of the present moment.','Unknown','You cannot wait for the world to celebrate you. You must learn to celebrate yourself.','Unknown','Life is not measured by the number of breaths we take, but by the moments that take our breath away.','Unknown','And suddenly you know: it\'s time to start something new and trust the magic of beginnings.','Meister Eckhart','When you arise in the morning, think of what a privilege it is to be alive.','Marcus Aurelius']
+};
+
+function build() {
+  let s = load();
+  let total = DAYS.length;
+  let done = s.c.length;
+
+  // TOC
+  let tg = document.getElementById('tocGrid');
+  tg.innerHTML = DAYS.map((d,i) => '<a class="toc-item'+(s.c.includes(i+1)?' completed':'')+'" href="#" data-n="'+(i+1)+'"><span class="toc-num">'+(i+1)+'</span> Day '+(i+1)+': '+d.t+'</a>').join('');
+  tg.querySelectorAll('.toc-item').forEach(a => a.onclick = function(e) { e.preventDefault(); show(parseInt(this.dataset.n)); });
+
+  document.getElementById('pct').textContent = Math.round(done/total*100)+'%';
+  document.getElementById('fill').style.width = (done/total*100)+'%';
+
+  // Days
+  let c = document.getElementById('container');
+  c.innerHTML = '';
+  DAYS.forEach((d,i) => {
+    let n = i+1;
+    let q = Q[n] || [];
+    let yt = YT_LINKS[n];
+    let ch = CHALLENGES[i];
+    let qhtml = '';
+    for (let j = 0; j < q.length; j += 2) {
+      qhtml += '<div class="qc"><p class="qt">\u201C' + q[j] + '\u201D</p><p class="qa">' + q[j+1] + '</p></div>';
+    }
+    let ythtml = yt ? '<div class="yt-wrap"><iframe src="https://www.youtube.com/embed/'+yt+'" allowfullscreen loading="lazy"></iframe></div>' : '';
+    let val = s.d['day'+n] || '';
+    let doneClass = s.c.includes(n) ? ' done' : '';
+    let btnText = s.c.includes(n) ? '\u2713 Completed' : 'Mark Complete';
+
+    let html = '<div class="day" id="day'+n+'">'
+      + '<div class="d-head"><div class="d-num">Day '+n+'</div><h2>'+d.t+'</h2><p class="d-theme">\u201C'+d.s+'\u201D</p></div>'
+      + '<div class="d-body">'
+      + ythtml
+      + qhtml
+      + '<div class="dd">\u25C6 \u25C6 \u25C6</div>'
+      + '<div class="ref"><h3>Your Reflection</h3><textarea id="ref'+n+'" class="ref-ta" data-n="'+n+'" placeholder="What resonated most with you today?">'+val+'</textarea></div>'
+      + '<div class="chal"><span class="chal-label">Daily Challenge</span><p>\u25B6 '+ch+'</p></div>'
+      + '<div class="complete-wrap"><button class="complete-btn'+doneClass+'" onclick="toggle('+n+')" id="btn'+n+'">'+btnText+'</button></div>'
+      + '<div class="nav-bar">'
+      + '<button class="nav-btn" onclick="prev()"'+(n===1?' disabled':'')+'>\u2190 Previous</button>'
+      + '<span class="nav-center">Day '+n+' of '+total+'</span>'
+      + '<button class="nav-btn" onclick="next()"'+(n===total?' disabled':'')+'>Next \u2192</button>'
+      + '</div></div></div>';
+    c.innerHTML += html;
+  });
+
+  // Hide all, show first
+  document.querySelectorAll('.day').forEach(d => d.classList.remove('active'));
+  let first = document.getElementById('day1');
+  if (first) first.classList.add('active');
+
+  // Load saved reflections
+  document.querySelectorAll('.ref-ta').forEach(ta => {
+    ta.addEventListener('input', function() {
+      let ss = load();
+      ss.d['day'+this.dataset.n] = this.value;
+      save(ss);
+    });
+  });
+}
+
+let cur = 1;
+window.show = function(n) {
+  document.querySelectorAll('.day').forEach(d => d.classList.remove('active'));
+  let el = document.getElementById('day'+n);
+  if (el) { el.classList.add('active'); el.scrollIntoView({behavior:'smooth',block:'start'}); }
+  cur = n;
+};
+window.next = function() { if (cur < DAYS.length) show(cur+1); };
+window.prev = function() { if (cur > 1) show(cur-1); };
+
+function toggle(n) {
+  let s = load();
+  let idx = s.c.indexOf(n);
+  if (idx > -1) { s.c.splice(idx,1); } else { s.c.push(n); }
+  save(s);
+  build();
+  show(n);
+}
+window.toggle = toggle;
+
+window.resetAll = function() {
+  if (!confirm('Reset all progress? This cannot be undone.')) return;
+  localStorage.removeItem(STORE);
+  location.reload();
+};
+
+build();
+})();
+</script>
+</body>
+</html>

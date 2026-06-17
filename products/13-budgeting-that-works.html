@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Budgeting That Works — Elevate Shop</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: #f5f7fa; color: #2d2d2d; line-height: 1.8;
+}
+.container { max-width: 860px; margin: 0 auto; padding: 24px 20px 0; }
+.header {
+  text-align: center; padding: 48px 24px 32px; background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+  border-radius: 16px; margin-bottom: 32px; position: relative; overflow: hidden;
+}
+.header::after {
+  content: ''; position: absolute; bottom: -30px; right: -30px;
+  width: 180px; height: 180px; border-radius: 50%;
+  background: rgba(74, 222, 128, 0.12);
+}
+.header h1 {
+  font-size: 2.4rem; font-weight: 800; color: #4ade80; letter-spacing: -0.5px; position: relative; z-index: 1;
+}
+.header .subtitle {
+  color: rgba(255,255,255,0.75); font-size: 1.1rem; margin-top: 8px; position: relative; z-index: 1;
+}
+.header .badge {
+  display: inline-block; background: rgba(74,222,128,0.15); color: #4ade80;
+  padding: 4px 16px; border-radius: 20px; font-size: 0.85rem; margin-top: 12px; position: relative; z-index: 1;
+}
+.progress-section {
+  background: #fff; border-radius: 12px; padding: 20px 24px; margin-bottom: 24px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06); display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+}
+.progress-label { font-size: 0.9rem; font-weight: 600; color: #2d2d2d; white-space: nowrap; }
+.progress-bar-wrap { flex: 1; min-width: 140px; height: 10px; background: #e5e7eb; border-radius: 10px; overflow: hidden; }
+.progress-bar-fill { height: 100%; background: #4ade80; border-radius: 10px; transition: width 0.4s ease; width: 0%; }
+.progress-text { font-size: 0.85rem; color: #6b7280; white-space: nowrap; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 8px 18px; border: none; border-radius: 8px; font-size: 0.85rem; font-weight: 600;
+  cursor: pointer; transition: all 0.2s; text-decoration: none;
+}
+.btn-sm { padding: 6px 14px; font-size: 0.8rem; }
+.btn-mint { background: #4ade80; color: #2d2d2d; }
+.btn-mint:hover { background: #22c55e; }
+.btn-outline { background: transparent; color: #6b7280; border: 1.5px solid #d1d5db; }
+.btn-outline:hover { border-color: #4ade80; color: #2d2d2d; }
+.btn-ghost { background: transparent; color: #6b7280; }
+.btn-ghost:hover { background: #f3f4f6; color: #2d2d2d; }
+.btn-danger { background: #ef4444; color: #fff; }
+.btn-danger:hover { background: #dc2626; }
+.nav-bar {
+  display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap;
+}
+.nav-bar .btn { flex: 1; }
+.chapter {
+  background: #fff; border-radius: 16px; padding: 32px; margin-bottom: 20px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06); display: none;
+}
+.chapter.active { display: block; }
+.chapter-number {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 50%; background: #4ade80; color: #2d2d2d;
+  font-weight: 800; font-size: 0.9rem; margin-bottom: 12px;
+}
+.chapter h2 { font-size: 1.6rem; font-weight: 700; color: #2d2d2d; margin-bottom: 16px; line-height: 1.3; }
+.chapter p { color: #4b5563; margin-bottom: 16px; font-size: 1rem; }
+.chapter .video-wrap {
+  position: relative; width: 100%; padding-bottom: 56.25%; margin: 20px 0; border-radius: 12px; overflow: hidden;
+  background: #e5e7eb;
+}
+.chapter .video-wrap iframe {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
+}
+.chapter-actions {
+  display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 20px; padding-top: 20px;
+  border-top: 1px solid #e5e7eb;
+}
+.chapter-actions textarea {
+  width: 100%; padding: 12px 16px; border: 1.5px solid #d1d5db; border-radius: 10px;
+  font-family: inherit; font-size: 0.9rem; resize: vertical; min-height: 80px; transition: border-color 0.2s;
+  color: #2d2d2d; background: #fafafa;
+}
+.chapter-actions textarea:focus { outline: none; border-color: #4ade80; background: #fff; }
+.chapter-actions textarea::placeholder { color: #9ca3af; }
+.status-badge {
+  display: inline-flex; align-items: center; gap: 4px; padding: 4px 12px; border-radius: 20px;
+  font-size: 0.75rem; font-weight: 600;
+}
+.status-done { background: #d1fae5; color: #065f46; }
+.status-pending { background: #f3f4f6; color: #6b7280; }
+.footer {
+  text-align: center; padding: 32px 20px; margin-top: 32px;
+  border-top: 1px solid #e5e7eb; color: #6b7280; font-size: 0.85rem;
+}
+.footer p + p { margin-top: 4px; }
+.footer .tagline { color: #4ade80; font-weight: 500; }
+@media print {
+  .nav-bar, .progress-section, .chapter-actions, .btn, .video-wrap { display: none !important; }
+  .chapter { display: block !important; page-break-after: always; box-shadow: none; border: 1px solid #ddd; }
+  .header { background: #2d2d2d !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .header h1 { color: #4ade80 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .chapter-number { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { background: #fff; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>Budgeting That Works</h1>
+    <p class="subtitle">A proven system to save money, reduce financial stress, and reach your goals — without deprivation.</p>
+    <span class="badge">15 Chapters &bull; Interactive Workbook</span>
+  </div>
+
+  <div class="progress-section" id="progressSection">
+    <span class="progress-label">Progress</span>
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" id="progressFill"></div>
+    </div>
+    <span class="progress-text" id="progressText">0 / 15 completed</span>
+    <button class="btn btn-sm btn-danger" onclick="window.resetProgress()">Reset</button>
+  </div>
+
+  <div class="nav-bar">
+    <button class="btn btn-outline" onclick="window.prevChapter()">&larr; Previous</button>
+    <button class="btn btn-mint" onclick="window.nextChapter()">Next &rarr;</button>
+  </div>
+
+  <!-- CHAPTER 1 -->
+  <div class="chapter active" id="ch1">
+    <div class="chapter-number">1</div>
+    <h2>Why Most Budgets Fail — The Psychology of Spending</h2>
+    <p>Every year, millions of people create budgets with the best intentions, only to abandon them within weeks. The problem isn't a lack of discipline — it's that most budgets ignore how our brains actually work. Behavioral economists have shown that we make financial decisions emotionally first, then rationalize them logically. When a budget feels like a punishment, our brain rebels.</p>
+    <p>The key to a budget that sticks is aligning it with your values and psychology. Instead of restricting every dollar, the most effective systems create <strong>flexible boundaries</strong> that leave room for joy. This course will teach you methods that work with your nature, not against it. You'll learn why willpower is a limited resource and how to structure your finances so that saving happens automatically.</p>
+    <p>We'll also explore the concept of "mental accounting" — how we treat money differently depending on its source or intended use. By understanding these biases, you can design a budget that feels natural and sustainable rather than forced and temporary.</p>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/qp0HIF3SfI4" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="chapter-actions">
+      <textarea id="notes1" placeholder="Write your notes for this chapter..." oninput="window.saveNotes(1)"></textarea>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;width:100%">
+        <button class="btn btn-mint btn-sm" onclick="window.toggleComplete(1)">Mark Complete</button>
+        <span class="status-badge status-pending" id="status1">Pending</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAPTER 2 -->
+  <div class="chapter" id="ch2">
+    <div class="chapter-number">2</div>
+    <h2>The 50/30/20 Method — Needs, Wants, Savings Simplified</h2>
+    <p>Popularized by Senator Elizabeth Warren, the 50/30/20 rule is one of the simplest and most effective budgeting frameworks. It divides your after-tax income into three categories: <strong>50% for needs</strong> (housing, utilities, groceries, transport), <strong>30% for wants</strong> (dining out, entertainment, shopping), and <strong>20% for savings and debt repayment</strong>. This structure is forgiving enough to stick with long-term.</p>
+    <p>To apply it, start by calculating your monthly after-tax income. Then list all your essential expenses — anything you truly need to survive and work. If necessities exceed 50%, you'll need to either reduce those costs or adjust the ratios temporarily. The wants category gives you permission to enjoy life without guilt, which is exactly why this method works better than ultra-restrictive budgets.</p>
+    <p>The 20% savings slice is non-negotiable but can include retirement contributions, emergency fund building, and extra debt payments. Over time, as your income grows, you can shift more toward savings. This method is ideal for beginners because it requires minimal tracking — just a high-level awareness of where your money goes each month.</p>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/SMYKAbbOefA" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="chapter-actions">
+      <textarea id="notes2" placeholder="Write your notes for this chapter..." oninput="window.saveNotes(2)"></textarea>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;width:100%">
+        <button class="btn btn-mint btn-sm" onclick="window.toggleComplete(2)">Mark Complete</button>
+        <span class="status-badge status-pending" id="status2">Pending</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAPTER 3 -->
+  <div class="chapter" id="ch3">
+    <div class="chapter-number">3</div>
+    <h2>Zero-Based Budgeting — Giving Every Dollar a Job</h2>
+    <p>Zero-based budgeting (ZBB) is the practice of allocating every dollar of income to a specific expense, savings goal, or investment before the month begins. At the end, your income minus your expenses equals <strong>zero</strong>. This doesn't mean you spend everything — it means you've assigned a purpose to every dollar, including amounts earmarked for savings and investments.</p>
+    <p>ZBB forces you to be intentional. Instead of wondering where your money went, you decide in advance. Start by listing your monthly income, then list every category: rent, groceries, utilities, debt payments, savings, entertainment, and even a "miscellaneous" line. Keep adjusting until the difference is zero. Any surplus gets assigned — perhaps to an extra debt payment or a savings goal.</p>
+    <p>The power of ZBB is that it reveals wasteful spending and aligns your money with your priorities. It works best for people who enjoy detailed planning and have relatively predictable incomes. Tools like spreadsheets or budgeting apps make it easier. The discipline of assigning every dollar creates a sense of control that many find deeply liberating.</p>
+    <div class="chapter-actions">
+      <textarea id="notes3" placeholder="Write your notes for this chapter..." oninput="window.saveNotes(3)"></textarea>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;width:100%">
+        <button class="btn btn-mint btn-sm" onclick="window.toggleComplete(3)">Mark Complete</button>
+        <span class="status-badge status-pending" id="status3">Pending</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAPTER 4 -->
+  <div class="chapter" id="ch4">
+    <div class="chapter-number">4</div>
+    <h2>The Envelope System — Cash-Based Spending Control</h2>
+    <p>The envelope system is a classic budgeting method where you allocate cash into envelopes labeled for different spending categories: groceries, dining out, entertainment, clothing, etc. Once an envelope is empty, you stop spending in that category until the next month. This tangible, visual system makes overspending nearly impossible.</p>
+    <p>In the digital age, you can replicate the envelope system using apps like EveryDollar, YNAB (You Need A Budget), or Goodbudget. The principle remains the same: preset limits per category, and once the digital envelope hits zero, transactions are declined or must be shifted from another category. This creates a powerful friction against impulse purchases.</p>
+    <p>Research shows that paying with cash psychologically "hurts" more than swiping a card, which naturally curbs spending. The envelope system is especially effective for variable categories like groceries and entertainment where overspending is most common. Start with 4-5 categories, track diligently for two months, and adjust the amounts as you learn your true spending patterns.</p>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/cBzhCWV6Q7Q" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="chapter-actions">
+      <textarea id="notes4" placeholder="Write your notes for this chapter..." oninput="window.saveNotes(4)"></textarea>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;width:100%">
+        <button class="btn btn-mint btn-sm" onclick="window.toggleComplete(4)">Mark Complete</button>
+        <span class="status-badge status-pending" id="status4">Pending</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAPTER 5 -->
+  <div class="chapter" id="ch5">
+    <div class="chapter-number">5</div>
+    <h2>Tracking Your Expenses — Tools, Apps, and Habits</h2>
+    <p>You cannot manage what you do not measure. Expense tracking is the foundation of every successful budget. For at least one month, commit to recording every single purchase — no matter how small. This includes the morning coffee, the parking meter, and the subscription you forgot about. The data you collect will be eye-opening.</p>
+    <p>There are three main approaches: <strong>manual tracking</strong> (notebook or spreadsheet), <strong>app-based tracking</strong> (Mint, YNAB, PocketGuard), and <strong>bank-integrated tools</strong> that automatically categorize transactions. Manual tracking creates the most awareness because you actively record each expense. Apps save time but can create distance from your money. Choose whichever you'll actually use consistently.</p>
+    <p>The key habit is a <strong>daily check-in</strong> — 5 minutes each evening to review and categorize the day's spending. Weekly reviews help you spot trends before they become problems. After 30 days, you'll have a complete picture of your cash flow. Most people discover they spend 15-30% more than they estimated on non-essentials. That awareness alone often leads to significant behavioral change.</p>
+    <div class="chapter-actions">
+      <textarea id="notes5" placeholder="Write your notes for this chapter..." oninput="window.saveNotes(5)"></textarea>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;width:100%">
+        <button class="btn btn-mint btn-sm" onclick="window.toggleComplete(5)">Mark Complete</button>
+        <span class="status-badge status-pending" id="status5">Pending</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAPTER 6 -->
+  <div class="chapter" id="ch6">
+    <div class="chapter-number">6</div>
+    <h2>Cutting Without Feeling Deprived — Smart Reductions</h2>
+    <p>Traditional budgeting advice tells you to cut lattes and avocado toast. But deprivation-based cutting almost never works long-term. Instead, use the <strong>value-based spending</strong> approach: cut expenses that don't align with your values, and double down on what matters to you. If you love dining out with friends, keep that budget high and cut streaming services you barely watch.</p>
+    <p>Start by reviewing your last three months of expenses. Highlight every line item as "high value," "medium value," or "low value." Low-value expenses — things you pay for but don't truly enjoy — are your first candidates for elimination. These are often subscriptions, memberships, or convenience purchases that have become habits rather than conscious choices.</p>
+    <p>Next, look for <strong>strategic substitutions</strong>: cook one extra meal at home per week, negotiate insurance and internet rates, switch to a lower-cost phone plan, or buy generic brands. Small changes of 5-10% per category add up to hundreds of dollars monthly. The goal isn't to feel poor — it's to redirect money toward what genuinely enriches your life.</p>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/xFr0FKnaLDk" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="chapter-actions">
+      <textarea id="notes6" placeholder="Write your notes for this chapter..." oninput="window.saveNotes(6)"></textarea>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;width:100%">
+        <button class="btn btn-mint btn-sm" onclick="window.toggleComplete(6)">Mark Complete</button>
+        <span class="status-badge status-pending" id="status6">Pending</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAPTER 7 -->
+  <div class="chapter" id="ch7">
+    <div class="chapter-number">7</div>
+    <h2>Building an Emergency Fund — 3-6 Month Essentials</h2>
+    <p>An emergency fund is money set aside for unexpected expenses — job loss, medical bills, car repairs, or home maintenance. Financial experts recommend saving 3 to 6 months of essential living expenses in a separate high-yield savings account. This fund is not an investment; it's insurance against life's curveballs.</p>
+    <p>Start with a <strong>mini-emergency fund</strong> of $1,000-2,000 while you pay off high-interest debt, then build toward the full 3-6 month target. To calculate your number, add up your essential monthly expenses (housing, utilities, food, transport, insurance, minimum debt payments) and multiply by 3, then 6. That range is your goal. Most people need $5,000-15,000 depending on their cost of living.</p>
+    <p>Build your fund by automating a fixed amount from each paycheck directly into your savings account. Cut temporary "want" spending, use windfalls (tax refunds, bonuses, gifts), and consider a side hustle for accelerated saving. Once fully funded, the emergency fund provides profound peace of mind — you'll make better financial decisions from a position of security rather than scarcity.</p>
+    <div class="chapter-actions">
+      <textarea id="notes7" placeholder="Write your notes for this chapter..." oninput="window.saveNotes(7)"></textarea>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;width:100%">
+        <button class="btn btn-mint btn-sm" onclick="window.toggleComplete(7)">Mark Complete</button>
+        <span class="status-badge status-pending" id="status7">Pending</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAPTER 8 -->
+  <div class="chapter" id="ch8">
+    <div class="chapter-number">8</div>
+    <h2>Sinking Funds — Planning for Irregular Expenses</h2>
+    <p>A sinking fund is a savings account designated for an anticipated future expense. Unlike an emergency fund (for unexpected events), sinking funds are for planned but irregular costs: car insurance paid annually, Christmas gifts, vacations, home repairs, or a new laptop. By saving a little each month, you avoid debt when these bills arrive.</p>
+    <p>To set up sinking funds, list every irregular expense you expect in the next 12 months. Divide each by 12 to determine your monthly contribution. For example, if car insurance is $1,200 per year, save $100 per month. Create separate sub-accounts or use a budgeting app with sinking fund categories. This transforms large scary bills into manageable monthly amounts.</p>
+    <p>Sinking funds reduce financial stress dramatically. When the annual insurance bill arrives, you simply transfer the money from your sinking fund and move on. No panic, no credit card debt. Common sinking fund categories: vehicle maintenance, medical deductibles, property taxes, home repairs, travel, gifts, and annual subscriptions. Start with the three biggest irregular expenses you face.</p>
+    <div class="chapter-actions">
+      <textarea id="notes8" placeholder="Write your notes for this chapter..." oninput="window.saveNotes(8)"></textarea>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;width:100%">
+        <button class="btn btn-mint btn-sm" onclick="window.toggleComplete(8)">Mark Complete</button>
+        <span class="status-badge status-pending" id="status8">Pending</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAPTER 9 -->
+  <div class="chapter" id="ch9">
+    <div class="chapter-number">9</div>
+    <h2>Debt Snowball vs Avalanche — Which to Choose</h2>
+    <p>Two dominant strategies exist for paying off debt: the <strong>snowball method</strong> and the <strong>avalanche method</strong>. The snowball method, popularized by Dave Ramsey, focuses on listing debts from smallest to largest balance. You pay minimums on everything except the smallest debt, which you attack with all extra cash. Once that's paid off, you roll that payment to the next smallest — building momentum like a snowball.</p>
+    <p>The avalanche method is mathematically superior: you list debts by highest interest rate first and target those. This saves the most money on interest over time. However, behavioral finance research shows the snowball method often works better in practice because the quick wins provide psychological motivation that keeps people on track. The best method is ultimately the one you will actually follow consistently.</p>
+    <p>A hybrid approach works well for many: use the avalanche method for debts with similar balances, but if one debt is significantly smaller, pay it off first for the motivational boost. Whichever method you choose, the key is to stop accumulating new debt first, then commit to a monthly debt payoff amount that fits your budget. Track progress visually — seeing debts disappear is powerful motivation.</p>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/g9tG_Mrj90M" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="chapter-actions">
+      <textarea id="notes9" placeholder="Write your notes for this chapter..." oninput="window.saveNotes(9)"></textarea>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;width:100%">
+        <button class="btn btn-mint btn-sm" onclick="window.toggleComplete(9)">Mark Complete</button>
+        <span class="status-badge status-pending" id="status9">Pending</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAPTER 10 -->
+  <div class="chapter" id="ch10">
+    <div class="chapter-number">10</div>
+    <h2>Budgeting with Variable Income — For Freelancers & Entrepreneurs</h2>
+    <p>If your income fluctuates month to month, traditional budgeting methods can feel impossible. The solution is to budget based on your <strong>minimum guaranteed income</strong>, not your average. Track your last 6-12 months of income and identify the lowest month. Use that number as your baseline budget. Any income above that goes to savings, debt, or discretionary spending.</p>
+    <p>Another strategy is the <strong>percentage-based budget</strong>: allocate percentages of whatever comes in. For example, 50% to needs, 30% to savings and taxes, 20% to wants. When you have a high-income month, you save more. In lean months, you tighten the wants category. This flexibility is essential for entrepreneurs, freelancers, commission-based workers, and gig economy participants.</p>
+    <p>Self-employed individuals must also account for taxes, which aren't withheld automatically. Set aside 25-30% of every payment in a separate tax savings account. Use sinking funds for business expenses like equipment and software. The key principle: live on less than your average income, save the surplus in high months, and build a larger emergency fund (6-9 months) to smooth out the natural income cycles.</p>
+    <div class="chapter-actions">
+      <textarea id="notes10" placeholder="Write your notes for this chapter..." oninput="window.saveNotes(10)"></textarea>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;width:100%">
+        <button class="btn btn-mint btn-sm" onclick="window.toggleComplete(10)">Mark Complete</button>
+        <span class="status-badge status-pending" id="status10">Pending</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAPTER 11 -->
+  <div class="chapter" id="ch11">
+    <div class="chapter-number">11</div>
+    <h2>Saving for Big Goals — House, Car, Vacation</h2>
+    <p>Large financial goals require a different approach than everyday budgeting. Whether you're saving for a down payment on a house, a new car, or a dream vacation, you need a dedicated savings plan with a clear timeline and monthly target. The formula is simple: divide your goal amount by the number of months until you need the money — that's your monthly savings target.</p>
+    <p>Use <strong>separate high-yield savings accounts</strong> for each big goal to track progress visually and avoid the temptation to dip into these funds. Automate monthly transfers so saving happens before you can spend. Named accounts — "Hawaii 2026" or "New Home Fund" — create an emotional connection that boosts motivation. Consider increasing your savings rate by redirecting raises, bonuses, or side income directly to these goals.</p>
+    <p>To accelerate progress, look for ways to increase income rather than just cut expenses. A temporary side hustle, selling unused items, or freelance work can dramatically speed up goal achievement. Visual tracking — progress bars, vision boards, or a savings thermometer — keeps you motivated during the long middle phase. Celebrate milestones along the way to maintain momentum.</p>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/as0uWN5ad64" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="chapter-actions">
+      <textarea id="notes11" placeholder="Write your notes for this chapter..." oninput="window.saveNotes(11)"></textarea>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;width:100%">
+        <button class="btn btn-mint btn-sm" onclick="window.toggleComplete(11)">Mark Complete</button>
+        <span class="status-badge status-pending" id="status11">Pending</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAPTER 12 -->
+  <div class="chapter" id="ch12">
+    <div class="chapter-number">12</div>
+    <h2>The 30-Day Rule — Curb Impulse Purchases</h2>
+    <p>Impulse buying is the enemy of every budget. The 30-Day Rule is a simple but powerful technique: whenever you feel the urge to buy something non-essential that costs more than a threshold you set (say $50), wait 30 days. If you still want it after 30 days — and it fits your budget — then make the purchase. Most impulse desires fade within 48 hours.</p>
+    <p>During the 30-day waiting period, research the purchase thoroughly. Read reviews, compare prices, and consider whether it aligns with your financial goals. Many people find that the initial excitement passes, revealing the item as unnecessary. For smaller impulse purchases (under your threshold), use the <strong>24-hour rule</strong> — wait one day before buying. This simple pause is enough to break the dopamine-spending cycle.</p>
+    <p>Create friction for online shopping: remove saved credit cards from websites, unsubscribe from promotional emails, and use browser extensions that block one-click purchasing. Before any non-essential purchase, ask yourself: "Would I rather have this thing, or the financial freedom it represents?" This mental reframing shifts your perspective from instant gratification to long-term satisfaction.</p>
+    <div class="chapter-actions">
+      <textarea id="notes12" placeholder="Write your notes for this chapter..." oninput="window.saveNotes(12)"></textarea>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;width:100%">
+        <button class="btn btn-mint btn-sm" onclick="window.toggleComplete(12)">Mark Complete</button>
+        <span class="status-badge status-pending" id="status12">Pending</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAPTER 13 -->
+  <div class="chapter" id="ch13">
+    <div class="chapter-number">13</div>
+    <h2>Budget Reviews — Weekly & Monthly Check-Ins</h2>
+    <p>A budget isn't a set-it-and-forget-it document. It requires regular check-ins to stay effective. Schedule a <strong>weekly review</strong> (15-30 minutes every Sunday) to track spending against your categories, adjust for the week ahead, and catch any overspending early. This prevents small problems from becoming month-end crises.</p>
+    <p>Monthly reviews are more comprehensive: compare actual spending to your budget, categorize any variances, and decide whether to adjust the budget or your behavior. Review your progress toward financial goals — how much did you save? How much debt did you pay down? Celebrating progress, even small wins, reinforces the habit. Use this time to update your net worth statement as well.</p>
+    <p>Quarterly reviews are for the big picture: Are your financial goals still aligned with your values? Has your income or lifestyle changed significantly? Do your savings rates need adjustment? These deeper reviews ensure your budget serves your life, not the other way around. Consistency matters more than perfection — even an imperfect budget reviewed regularly will outperform a perfect one that's ignored.</p>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/5fsm-QbN9r8" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="chapter-actions">
+      <textarea id="notes13" placeholder="Write your notes for this chapter..." oninput="window.saveNotes(13)"></textarea>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;width:100%">
+        <button class="btn btn-mint btn-sm" onclick="window.toggleComplete(13)">Mark Complete</button>
+        <span class="status-badge status-pending" id="status13">Pending</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAPTER 14 -->
+  <div class="chapter" id="ch14">
+    <div class="chapter-number">14</div>
+    <h2>Budgeting as a Couple — Team Approach to Money</h2>
+    <p>Money is one of the leading causes of relationship stress. The solution isn't to avoid talking about it — it's to build a shared system that works for both partners. Start with a <strong>money date</strong>: a regular, non-judgmental meeting where you review finances together, celebrate wins, and plan for the future. No blame, no shame — just teamwork.</p>
+    <p>There are three common approaches for couples: <strong>fully joint</strong> (all money pooled, all decisions together), <strong>fully separate</strong> (each manages their own, split shared expenses), and <strong>hybrid</strong> (joint account for shared expenses, separate accounts for personal spending). The hybrid model often works best because it preserves autonomy while ensuring bills are covered and goals are shared.</p>
+    <p>Regardless of the structure, successful couples agree on a shared vision for their financial future. Discuss your individual money stories, fears, and dreams. Set joint goals — a house, travel, early retirement — and create a budget that moves you toward them together. Schedule monthly money dates and practice gratitude for what you're building as a team. Transparency and communication are the foundation.</p>
+    <div class="chapter-actions">
+      <textarea id="notes14" placeholder="Write your notes for this chapter..." oninput="window.saveNotes(14)"></textarea>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;width:100%">
+        <button class="btn btn-mint btn-sm" onclick="window.toggleComplete(14)">Mark Complete</button>
+        <span class="status-badge status-pending" id="status14">Pending</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAPTER 15 -->
+  <div class="chapter" id="ch15">
+    <div class="chapter-number">15</div>
+    <h2>Automating Your Finances — Set It and Forget It</h2>
+    <p>Automation is the ultimate tool for financial consistency. When your savings, investments, and bill payments happen automatically, you never need to rely on willpower again. Set up <strong>automatic transfers</strong> from your checking account to savings and investment accounts on every payday. If the money moves before you see it, you won't miss it.</p>
+    <p>Automate bill payments for fixed expenses (rent, utilities, insurance, subscriptions) to avoid late fees and credit score damage. Use auto-pay features with caution — always schedule them for after your pay date and keep a buffer in your checking account to prevent overdrafts. For variable bills like credit cards, automate at least the minimum payment, then pay extra manually when you can.</p>
+    <p>The ultimate automated system: your paycheck is direct-deposited and split between accounts — a percentage to checking for monthly expenses, a percentage to savings for goals, a percentage to retirement. All bills are on auto-pay. You manually check in for 15 minutes each week to ensure everything is on track. This system requires discipline to set up but almost zero ongoing effort — giving you more time and mental energy for what matters.</p>
+    <div class="chapter-actions">
+      <textarea id="notes15" placeholder="Write your notes for this chapter..." oninput="window.saveNotes(15)"></textarea>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;width:100%">
+        <button class="btn btn-mint btn-sm" onclick="window.toggleComplete(15)">Mark Complete</button>
+        <span class="status-badge status-pending" id="status15">Pending</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>&copy; 2025 Elevate Shop. All rights reserved.</p>
+    <p class="tagline">Empowering minds and building wealth, one download at a time.</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  var TOTAL = 15;
+  var current = 1;
+
+  function loadState() {
+    var state = { completed: [], notes: {} };
+    try {
+      var raw = localStorage.getItem('budgeting_works_progress');
+      if (raw) { var parsed = JSON.parse(raw); if (parsed && typeof parsed === 'object') { state = parsed; } }
+    } catch(e) {}
+    if (!state.completed || !Array.isArray(state.completed)) state.completed = [];
+    if (!state.notes || typeof state.notes !== 'object') state.notes = {};
+    return state;
+  }
+
+  function saveState(state) {
+    try { localStorage.setItem('budgeting_works_progress', JSON.stringify(state)); } catch(e) {}
+  }
+
+  function updateUI() {
+    var state = loadState();
+    var count = state.completed.length;
+    var pct = Math.round((count / TOTAL) * 100);
+    var fill = document.getElementById('progressFill');
+    var txt = document.getElementById('progressText');
+    if (fill) fill.style.width = pct + '%';
+    if (txt) txt.textContent = count + ' / ' + TOTAL + ' completed';
+    for (var i = 1; i <= TOTAL; i++) {
+      var badge = document.getElementById('status' + i);
+      if (badge) {
+        if (state.completed.indexOf(i) !== -1) {
+          badge.className = 'status-badge status-done';
+          badge.textContent = 'Complete';
+        } else {
+          badge.className = 'status-badge status-pending';
+          badge.textContent = 'Pending';
+        }
+      }
+      var ta = document.getElementById('notes' + i);
+      if (ta && state.notes[i] !== undefined && state.notes[i] !== null) {
+        if (ta.value !== state.notes[i]) { ta.value = state.notes[i]; }
+      }
+    }
+  }
+
+  function showChapter(num) {
+    for (var i = 1; i <= TOTAL; i++) {
+      var el = document.getElementById('ch' + i);
+      if (el) el.className = 'chapter' + (i === num ? ' active' : '');
+    }
+    current = num;
+  }
+
+  window.nextChapter = function() {
+    if (current < TOTAL) { showChapter(current + 1); window.scrollTo(0, 0); }
+  };
+
+  window.prevChapter = function() {
+    if (current > 1) { showChapter(current - 1); window.scrollTo(0, 0); }
+  };
+
+  window.toggleComplete = function(num) {
+    var state = loadState();
+    var idx = state.completed.indexOf(num);
+    if (idx !== -1) { state.completed.splice(idx, 1); } else { state.completed.push(num); }
+    state.completed.sort(function(a,b){return a-b;});
+    saveState(state);
+    updateUI();
+  };
+
+  window.saveNotes = function(num) {
+    var ta = document.getElementById('notes' + num);
+    if (!ta) return;
+    var state = loadState();
+    state.notes[num] = ta.value;
+    saveState(state);
+  };
+
+  window.resetProgress = function() {
+    if (!confirm('Reset all progress and notes? This cannot be undone.')) return;
+    var state = { completed: [], notes: {} };
+    saveState(state);
+    updateUI();
+  };
+
+  document.addEventListener('DOMContentLoaded', function() {
+    showChapter(1);
+    updateUI();
+  });
+})();
+</script>
+</body>
+</html>

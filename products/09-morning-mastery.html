@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Mastery Course – Elevate Shop</title>
+<style>
+:root {
+  --lavender: #7B6FA0;
+  --blush: #E8A87C;
+  --cream: #FCFAF5;
+  --warm: #F5F0EB;
+  --charcoal: #3D3440;
+  --muted: #8A7E8A;
+  --card: #FFFFFF;
+  --success: #7FA88C;
+  --danger: #C9706E;
+  --gold: #D4A76A;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--cream); color: var(--charcoal); line-height: 1.7; }
+h1, h2, h3, .ch-body p, .qt { font-family: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif; }
+h2 { font-weight: 600; }
+.container { max-width: 780px; margin: 0 auto; padding: 20px; }
+@media print { .no-print { display: none !important; } }
+
+/* Cover */
+.cover { background: linear-gradient(150deg, #6B5B95 0%, #7B6FA0 30%, #B8A9C9 70%, #E8DCD1 100%); padding: 0; text-align: center; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.cover::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 50%, rgba(255,255,255,0.08) 0%, transparent 60%), radial-gradient(ellipse at 80% 30%, rgba(232,168,124,0.06) 0%, transparent 50%); }
+.cover-inner { padding: 70px 40px 50px; position: relative; z-index: 1; }
+.cover-icon { font-size: 2.5em; margin-bottom: 10px; display: block; color: rgba(255,255,255,0.3); letter-spacing: 8px; }
+.cover h1 { color: #fff; font-size: 3em; font-weight: 300; letter-spacing: 2px; margin-bottom: 6px; text-shadow: 0 2px 15px rgba(0,0,0,0.1); }
+.cover h1 strong { font-weight: 700; color: var(--blush); }
+.cover .subtitle { color: rgba(255,255,255,0.7); font-size: 1em; margin-bottom: 4px; font-family: 'Inter', sans-serif; font-weight: 300; letter-spacing: 3px; text-transform: uppercase; }
+.cover .badge { display: inline-block; background: rgba(255,255,255,0.15); backdrop-filter: blur(4px); color: #fff; padding: 6px 24px; border-radius: 20px; font-size: 0.7em; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; margin-top: 16px; border: 1px solid rgba(255,255,255,0.1); }
+.cover-footer { padding: 14px 40px; display: flex; justify-content: center; gap: 28px; color: rgba(255,255,255,0.35); font-size: 0.65em; letter-spacing: 1px; text-transform: uppercase; background: rgba(0,0,0,0.08); }
+
+/* Progress */
+.progress-section { background: var(--card); border-radius: 14px; padding: 18px 26px; margin: 20px 0; box-shadow: 0 2px 12px rgba(0,0,0,0.03); }
+.progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.progress-header h3 { font-size: 0.85em; color: var(--charcoal); font-weight: 600; font-family: 'Inter', sans-serif; }
+.progress-header span { font-weight: 700; color: var(--blush); font-size: 0.9em; }
+.progress-bar { height: 5px; background: #EDE8E4; border-radius: 10px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--lavender), var(--blush)); border-radius: 10px; transition: width 0.5s; width: 0%; }
+.reset-btn { margin-top: 10px; padding: 5px 16px; background: var(--danger); color: #fff; border: none; border-radius: 6px; font-size: 0.7em; cursor: pointer; font-family: 'Inter', sans-serif; }
+.reset-btn:hover { opacity: 0.85; }
+
+/* TOC */
+.toc { background: var(--card); border-radius: 14px; padding: 26px 30px; margin: 20px 0; box-shadow: 0 2px 12px rgba(0,0,0,0.03); }
+.toc h2 { font-size: 1.2em; margin-bottom: 14px; color: var(--charcoal); font-family: 'Inter', sans-serif; }
+.toc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 4px; }
+.toc-item { display: flex; align-items: center; gap: 8px; padding: 4px 8px; border-radius: 6px; cursor: pointer; font-size: 0.82em; color: var(--charcoal); text-decoration: none; }
+.toc-item:hover { background: var(--warm); }
+.toc-num { width: 22px; height: 22px; background: var(--lavender); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.6em; font-weight: 600; flex-shrink: 0; }
+.toc-item.completed .toc-num { background: var(--success); }
+.toc-item.completed::after { content: '\2713'; color: var(--success); font-weight: 700; margin-left: auto; }
+
+/* Chapter */
+.chapter { display: none; background: var(--card); border-radius: 16px; margin: 20px 0; overflow: hidden; box-shadow: 0 2px 16px rgba(0,0,0,0.03); }
+.chapter.active { display: block; animation: fadeIn 0.35s; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+.ch-head { padding: 32px 40px 22px; background: linear-gradient(135deg, #FCFAF5, #F5F0EB); border-bottom: 1px solid #EDE8E4; }
+.ch-num { color: var(--lavender); font-size: 0.6em; letter-spacing: 3px; text-transform: uppercase; font-weight: 600; font-family: 'Inter', sans-serif; }
+.ch-head h2 { color: var(--charcoal); font-size: 1.6em; margin: 2px 0 4px; letter-spacing: -0.3px; }
+.ch-sub { color: var(--muted); font-size: 0.85em; font-style: italic; }
+
+.ch-body { padding: 28px 40px; }
+.ch-body p { font-size: 1.08em; margin-bottom: 14px; color: var(--charcoal); }
+
+/* Quote */
+.qb { margin: 16px 0; padding: 0 0 0 22px; border-left: 2px solid var(--blush); }
+.qb .qt { font-size: 1.05em; font-style: italic; color: var(--charcoal); }
+.qb .qa { font-size: 0.8em; color: var(--muted); margin-top: 1px; }
+
+/* Exercise */
+.ex { background: var(--warm); border-radius: 12px; padding: 22px 24px; margin: 22px 0; border: 1px solid #EDE8E4; }
+.ex h4 { font-size: 0.75em; color: var(--lavender); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; font-family: 'Inter', sans-serif; }
+.ex h4::before { content: '\2726\00A0'; }
+.ex textarea { width: 100%; background: #fff; border: 1px solid #E2DCD6; border-radius: 8px; padding: 12px; font-family: 'Cormorant Garamond', serif; font-size: 1em; color: var(--charcoal); resize: vertical; min-height: 60px; }
+.ex textarea:focus { outline: none; border-color: var(--lavender); }
+
+/* YouTube */
+.yt-wrap { margin: 20px 0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+.yt-wrap iframe { width: 100%; height: 380px; border: none; display: block; }
+
+/* Nav */
+.nav-bar { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; padding: 10px 0 24px; }
+.nav-btn { padding: 8px 20px; background: transparent; color: var(--charcoal); border: 1px solid #D4CCC8; border-radius: 8px; font-size: 0.8em; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif; }
+.nav-btn:hover { background: var(--lavender); color: #fff; border-color: var(--lavender); }
+.nav-btn:disabled { opacity: 0.25; cursor: default; background: transparent; color: var(--muted); border-color: #E2DCD6; }
+.nav-center { font-size: 0.8em; color: var(--muted); font-family: 'Inter', sans-serif; }
+
+.complete-wrap { text-align: center; padding-top: 6px; }
+.complete-btn { padding: 10px 36px; background: var(--lavender); color: #fff; border: none; border-radius: 8px; font-size: 0.85em; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.2s; }
+.complete-btn:hover { background: var(--blush); }
+.complete-btn.done { background: var(--success); }
+
+@media (max-width: 600px) {
+  .cover h1 { font-size: 2em; }
+  .ch-head { padding: 24px 20px; }
+  .ch-body { padding: 20px; }
+  .yt-wrap iframe { height: 200px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="cover no-print">
+  <div class="cover-inner">
+    <div class="cover-icon">&#9733; &#9789; &#9728;</div>
+    <div class="badge">20-Chapter Course</div>
+    <h1>Morning <strong>Mastery Course</strong></h1>
+    <p class="subtitle">Design the morning. Design your life.</p>
+    <div class="cover-icon" style="font-size:1.2em;margin-top:16px;opacity:0.2">&#8764; &#8764; &#8764;</div>
+  </div>
+  <div class="cover-footer">
+    <span>20 Chapters</span>
+    <span>&#9670;</span>
+    <span>Science-Based</span>
+    <span>&#9670;</span>
+    <span>Daily Practices</span>
+  </div>
+</div>
+
+<div class="progress-section no-print">
+  <div class="progress-header">
+    <h3>Your Progress</h3>
+    <span id="pct">0%</span>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="fill"></div></div>
+  <button class="reset-btn" onclick="resetAll()">Reset Progress</button>
+</div>
+
+<div class="toc no-print">
+  <h2>Table of Contents</h2>
+  <div class="toc-grid" id="tocGrid"></div>
+</div>
+
+<div id="container"></div>
+
+<footer style="margin-top:48px;padding:24px 20px 32px;border-top:1px solid #EDE8E4;text-align:center">
+  <p style="font-size:11px;color:#8A7E8A;margin-bottom:2px">&copy; 2025 Elevate Shop. All rights reserved.</p>
+  <p style="font-size:10px;color:#A89EA8">Empowering minds and building wealth, one download at a time.</p>
+</footer>
+</div>
+
+<script>
+(function() {
+const KEY = 'mm_progress';
+function load() { try { return JSON.parse(localStorage.getItem(KEY)) || {c:[],d:{}}; } catch { return {c:[],d:{}}; } }
+function save(s) { localStorage.setItem(KEY, JSON.stringify(s)); }
+
+const CH = [
+  {t:'The Power of Your Morning',s:'Why the first hour shapes everything that follows.'},
+  {t:'Why Mornings Matter More Than You Think',s:'The science behind circadian rhythms and peak performance.'},
+  {t:'Finding Your Ideal Wake-Up Time',s:'Aligning your chronotype with your life demands.'},
+  {t:'The First Five Minutes',s:'How you start determines how you finish.'},
+  {t:'Hydrate & Nourish',s:'Fueling your brain and body for the day ahead.'},
+  {t:'Morning Movement',s:'Activating your body to sharpen your mind.'},
+  {t:'Meditation & Mindfulness',s:'Training your attention before the noise begins.'},
+  {t:'Journaling for Clarity',s:'Clearing your mind on paper every morning.'},
+  {t:'Reading & Learning',s:'Feeding your mind before the world demands its share.'},
+  {t:'Planning Your Day',s:'The art of intentional prioritization.'},
+  {t:'Digital Discipline',s:'Why your phone should wait.'},
+  {t:'Cold Exposure & Energy',s:'Using temperature to wake up your nervous system.'},
+  {t:'Gratitude Practice',s:'Starting your day with what is right.'},
+  {t:'Affirmations & Visualization',s:'Programming your mind for success.'},
+  {t:'Morning Creativity',s:'Capturing your best ideas before the world intrudes.'},
+  {t:'Nature & Fresh Air',s:'The simplest way to reset your biology.'},
+  {t:'Weekly & Seasonal Routines',s:'Adapting your morning to your life rhythm.'},
+  {t:'Overcoming Resistance',s:'What to do when you do not want to get up.'},
+  {t:'Building the Habit',s:'Making your morning routine stick for life.'},
+  {t:'Your Personal Morning Code',s:'Designing your non-negotiable morning.'}
+];
+
+const YT = {
+  1:'-2PQ4eQ6EKc', 4:'Lp7E973zozc', 7:'WDv4AWk0J3U', 10:'zsNY1hrU6wY', 13:'5J6jAC6XxAI', 16:'g9yg5cDagJ0', 19:'g9tG_Mrj90M'
+};
+
+const C = {
+1:[['The morning of each day is a blank page. Your story begins fresh.','Unknown'],['Win the morning, win the day.','Tim Ferriss'],['How we spend our days is, of course, how we spend our lives.','Annie Dillard'],['The way you start your day sets the tone for everything that follows.','Robin Sharma'],['Morning is when I am awake and there is a dawn in me.','Henry David Thoreau'],['Your morning routine is the foundation upon which you build your entire day — and your entire life.','Hal Elrod'],['Lose an hour in the morning, and you will spend the rest of the day looking for it.','Richard Whately'],['The early morning has gold in its mouth.','Benjamin Franklin'],['Discipline is the bridge between goals and accomplishment. Those who master their mornings master their lives.','Unknown'],['Give me six hours to chop down a tree and I will spend the first four sharpening the axe.','Abraham Lincoln']],
+2:[['Circadian rhythms are the foundation of every biological process in your body.','Satchin Panda'],['Light is the most powerful zeitgeber — time-giver — for your internal clock.','Andrew Huberman'],['Your biology runs on a 24-hour cycle that predates humanity. Ignore it at your peril.','Matthew Walker'],['Every cell in your body keeps time. The question is: what time are you keeping?','Unknown'],['The body is a clock. The mind is a conductor. When they align, magic happens.','Unknown'],['Sunlight in your eyes within the first hour of waking sets your entire physiology for the day.','Andrew Huberman'],['The circadian rhythm is not just about sleep. It governs mood, metabolism, immunity, and cognition.','Russell Foster'],['You cannot outperform a broken biology. Sleep, light, and timing are the hidden drivers of success.','Unknown'],['When you align your life with your natural rhythms, effort becomes ease.','Unknown'],['There is a time for everything, and a season for every activity under the heavens.','Ecclesiastes 3:1']],
+3:[['The secret of your future is hidden in your daily routine.','Mike Murdock'],['Early to bed and early to rise makes a man healthy, wealthy, and wise.','Benjamin Franklin'],['It is well to be up before daybreak, for such habits contribute to health, wealth, and wisdom.','Aristotle'],['The sun has not caught me in bed in fifty years.','Thomas Jefferson'],['I love the feeling of being awake and alert while the rest of the world is still asleep.','Unknown'],['How you wake up each day is your first victory. Make it count.','Unknown'],['To be awake is to be alive. Most people are only half-awake.','Henry David Thoreau'],['The early morning belongs to the achievers, the dreamers, and the ones who refuse to settle.','Unknown'],['Find your wake-up time — not society\'s, not Instagram\'s — yours.','Unknown'],['When you control the start of your day, you control more of your life.','Unknown']],
+4:[['The first five minutes after waking are the most important five minutes of your day.','Mel Robbins'],['Do not check your phone. Do not hit snooze. Do not negotiate with yourself.','Mel Robbins'],['The moment you have an instinct to act on a goal, you must physically move within five seconds or your brain will kill it.','Mel Robbins'],['What you do in the first five minutes determines the trajectory of your next five hours.','Unknown'],['Don\'t let your brain talk you out of greatness before your feet hit the floor.','Unknown'],['The snooze button is a negotiation with a version of you that wants less.','Unknown'],['Start the day with a win — however small. That momentum carries.','James Clear'],['You are never going to feel like it. Do it anyway.','Mel Robbins'],['The first decision of your day is the most important. Make it intentional.','Unknown'],['Count 5-4-3-2-1 and move. Thinking is the enemy of action.','Mel Robbins']],
+5:[['Drink water first. Your brain is dehydrated after eight hours without fluid.','Unknown'],['You cannot pour from an empty cup. Hydration is the first form of self-care.','Unknown'],['The brain is 73% water. Even mild dehydration impairs mood, energy, and cognition.','S. N. Cheuvront'],['Start your morning with water before caffeine. Your cells will thank you.','Unknown'],['The quality of your morning determines the quality of your day. Hydration is step one.','Unknown'],['Food is information for your body. What you eat in the morning programs your metabolism.','Dr. Mark Hyman'],['A high-protein breakfast stabilizes blood sugar and reduces cravings for hours.','Unknown'],['Eat breakfast like a king, lunch like a prince, and dinner like a pauper.','Adelle Davis'],['The first meal is an opportunity to fuel your body for excellence. Do not waste it on sugar.','Unknown'],['Hydrate. Nourish. Repeat. The basics are the advanced.','Unknown']],
+6:[['Exercise is the single most powerful tool you have to optimize your brain function.','John J. Ratey'],['Movement is medicine. Especially in the morning.','Unknown'],['A morning workout is a declaration that your health matters more than your excuses.','Unknown'],['The body achieves what the mind believes. Move first, think better.','Unknown'],['You don\'t have to run a marathon. Ten minutes of movement changes your biology.','Unknown'],['Morning exercise boosts mood, focus, and energy for up to twelve hours.','Unknown'],['When you move your body, you release the stress of yesterday and prepare for the challenges of today.','Unknown'],['Sweat is the best reset button. Hit it every morning.','Unknown'],['The best exercise is the one you will actually do. Consistency beats intensity.','James Clear'],['Physical fitness is the foundation of all other forms of excellence.','John F. Kennedy']],
+7:[['The present moment is filled with joy and happiness. If you are attentive, you will see it.','Thich Nhat Hanh'],['Meditation is not about stopping thoughts, but recognizing that you are more than your thoughts.','Unknown'],['You should sit in meditation for twenty minutes a day — unless you are too busy, then you should sit for an hour.','Zen Proverb'],['The mind is like water. When it is turbulent, it is difficult to see. When calm, everything becomes clear.','Prasad Mahes'],['Five minutes of morning meditation can transform the quality of your entire day.','Unknown'],['Before you speak, before you act, pause. The pause is where wisdom lives.','Unknown'],['The greatest weapon against stress is our ability to choose one thought over another.','William James'],['Quiet the mind, and the soul will speak.','Ma Jaya Sati Bhagavati'],['Feelings come and go like clouds. The clear mind is the sky.','Unknown'],['The practice of mindfulness is the art of waking up to your own life.','Jon Kabat-Zinn']],
+8:[['Journaling is the art of thinking on paper. It clarifies the mind and calms the soul.','Unknown'],['I write entirely to find out what I am thinking.','Joan Didion'],['The habit of journaling is the single most impactful practice I have found for mental clarity.','Tim Ferriss'],['Writing reveals what you really think. It cuts through the noise.','Unknown'],['Pour your heart onto the page. The morning is the best time for this — before the world tells you what to think.','Unknown'],['Your journal is the place where you can be completely honest without consequence. Use it.','Unknown'],['The unexamined life is not worth living.','Socrates'],['Morning pages — three pages of stream-of-consciousness writing — changed my life.','Julia Cameron'],['Every morning, write down what you are grateful for, what you will focus on, and who you will be.','Unknown'],['Writing in the morning is like taking a shower for the mind.','Unknown']],
+9:[['The capacity to learn is a gift; the ability to learn is a skill; the willingness to learn is a choice.','Brian Herbert'],['Read 20 pages of a great book every morning. In a year, that is over 7,000 pages.','Unknown'],['Leaders are readers. The mind grows by what it feeds on.','Unknown'],['I cannot live without books.','Thomas Jefferson'],['The reading of all good books is like a conversation with the finest minds of past centuries.','René Descartes'],['Feed your mind before you feed your inbox. The world can wait 30 minutes.','Unknown'],['If you want to get smarter, read. It is that simple.','Charlie Munger'],['Learning is the only thing the mind never exhausts, never fears, and never regrets.','Leonardo da Vinci'],['Morning reading sets the mental tone for the entire day. Choose wisely.','Unknown'],['The book you read in the morning becomes the person you are by evening.','Unknown']],
+10:[['The key is not to prioritize what is on your schedule, but to schedule your priorities.','Stephen Covey'],['Plan your day the night before or first thing in the morning. Never drift.','Unknown'],['If you fail to plan, you are planning to fail.','Benjamin Franklin'],['The most productive people are not those who do more, but those who do what matters.','Unknown'],['Write down your top three priorities every morning. Do them before anything else.','Unknown'],['An hour of planning saves ten hours of doing.','Unknown'],['Your calendar is a mirror of your values. Look at it honestly.','Unknown'],['Decide what you want your day to look like before the world decides for you.','Unknown'],['Without a plan, you become a passenger in your own life. With a plan, you become the pilot.','Unknown'],['The best way to predict the future is to create it. And the best time to start is this morning.','Peter Drucker']],
+11:[['Your phone is a tool. Do not let it become your master.','Unknown'],['The first hour of the day should belong to you, not to the world.','Unknown'],['Checking email first thing is like opening your front door to strangers before you have had breakfast.','Unknown'],['Every notification is a request for your attention. Be selective about what you grant access to.','Unknown'],['Digital minimalism is not about using less technology. It is about using technology in service of what matters.','Cal Newport'],['The average person checks their phone 96 times a day. Do not let the first one be before you have even brushed your teeth.','Unknown'],['When you reach for your phone first thing, you let the world\'s priorities hijack yours.','Unknown'],['The first five minutes of the day set the tone. Do not give them to algorithms.','Unknown'],['Phone off. Airplane mode. Or better yet — leave it in another room until you have had your morning.','Unknown'],['Attention is the most valuable thing you have. Guard it like a dragon guards gold.','Unknown']],
+12:[['Cold exposure wakes up your nervous system in a way that coffee never can.','Andrew Huberman'],['The cold shower is a micro-dose of adversity. It trains resilience before breakfast.','Unknown'],['Dopamine levels remain elevated for hours after cold exposure. It is nature\'s focus drug.','Andrew Huberman'],['Leaning into discomfort first thing builds the courage muscle for the rest of the day.','Unknown'],['Cold water is the ultimate alarm clock. It demands your full presence.','Unknown'],['The shock of cold water is a reminder: you are alive. Feel it.','Unknown'],['What begins as a physical challenge becomes a mental victory. Every single time.','Unknown'],['Start with 30 seconds of cold at the end of your shower. Build from there.','Unknown'],['Discipline in the cold translates to discipline in life.','Unknown'],['The water is never as cold as your mind tells you it will be. The same is true for most fears.','Unknown']],
+13:[['Gratitude turns what we have into enough.','Aesop'],['The root of joy is gratefulness.','David Steindl-Rast'],['Gratitude is not only the greatest of virtues, but the parent of all others.','Cicero'],['Start each day with a grateful heart. It changes everything.','Unknown'],['When you are grateful, fear disappears and abundance appears.','Tony Robbins'],['Gratitude unlocks the fullness of life. It turns what we have into enough and more.','Melody Beattie'],['Write down three things you are grateful for every morning. In two weeks, you will be a different person.','Unknown'],['Gratitude is the healthiest of all human emotions. The more you express it, the more you find to be grateful for.','Zig Ziglar'],['Do not spoil what you have by desiring what you do not have. Gratitude is the remedy.','Epicurus'],['Enjoy the little things. One day you will look back and realize they were the big things.','Robert Brault']],
+14:[['What you think about, you bring about. Morning is the time to choose your thoughts.','Unknown'],['Affirmations reprogram the subconscious mind. Say them out loud in the morning.','Unknown'],['I am the master of my fate. I am the captain of my soul.','William Ernest Henley'],['Your mind believes what you tell it consistently. Tell it the truth about who you are becoming.','Unknown'],['Visualization is daydreaming with a purpose. See your day unfold perfectly before it begins.','Unknown'],['The more clearly you see your future, the more powerfully you move toward it.','Unknown'],['Every morning, close your eyes and see yourself succeeding. Your brain cannot tell the difference between real and imagined.','Unknown'],['An affirmation is a declaration of what you intend to be true. Say it until it is.','Unknown'],['First, you create your beliefs. Then your beliefs create you. Choose wisely.','Unknown'],['The mind is everything. What you think, you become.','Buddha']],
+15:[['Creativity is intelligence having fun.','Albert Einstein'],['The morning brain is a creative brain. Capture your ideas before the world steals your attention.','Unknown'],['You can\'t use up creativity. The more you use, the more you have.','Maya Angelou'],['The best ideas come in the shower, on a walk, or in the stillness of morning.','Unknown'],['Your first thoughts of the day are often your most original. Write them down.','Unknown'],['Every child is an artist. The problem is how to remain one once we grow up.','Pablo Picasso'],['Don\'t think. Thinking is the enemy of creativity. Just write, draw, create.','Ray Bradbury'],['Creativity is not a talent. It is a way of operating.','John Cleese'],['Morning is the muse\'s favorite hour. Show up and she will too.','Unknown'],['Do something creative before you do something reactive. The order matters.','Unknown']],
+16:[['In every walk with nature, one receives far more than he seeks.','John Muir'],['Look deep into nature, and then you will understand everything better.','Albert Einstein'],['Nature does not hurry, yet everything is accomplished.','Lao Tzu'],['Sunlight in your eyes early in the morning is the single most important thing you can do for your circadian rhythm.','Andrew Huberman'],['Fresh air clears the mind. No app can replicate it.','Unknown'],['The morning walk is a moving meditation. It grounds you before the ground shifts.','Unknown'],['Step outside. Breathe. The world is still there, and so are you.','Unknown'],['Five minutes of morning sunlight sets your entire biology for optimal function.','Andrew Huberman'],['Adopt the pace of nature: her secret is patience.','Ralph Waldo Emerson'],['I go to nature to be soothed and healed, and to have my senses put in order.','John Burroughs']],
+17:[['Routines are the architecture of our days. But they need not be rigid.','Unknown'],['What serves you in one season may not serve you in another. Adapt your morning.','Unknown'],['The wise adapt their habits to the season. The foolish cling to what once worked.','Unknown'],['Life changes. Your morning routine should change with it.','Unknown'],['Do not let the perfect morning be the enemy of the good morning. Some days, just showing up counts.','Unknown'],['Sunday is for planning. Monday is for executing. Your weekly rhythm deserves attention.','Unknown'],['The changing seasons are a reminder: everything has a cycle. Honor yours.','Unknown'],['A routine that works in summer may need adjustment in winter. Be flexible.','Unknown'],['Your morning practice should be a conversation with your current life, not a museum of past habits.','Unknown'],['Consistency is important. Adaptability is essential. The wise balance both.','Unknown']],
+18:[['The only way out is through. The only way to start is now.','Unknown'],['Resistance is a sign that what you are about to do matters. Do not stop.','Steven Pressfield'],['The morning is when resistance is weakest and your will is strongest. Strike first.','Unknown'],['You will never feel like it. That is the point. Action creates motivation, not the other way around.','Unknown'],['The hardest part of any journey is the first step. Take it before your brain talks you out of it.','Unknown'],['When the alarm goes off, count 5-4-3-2-1 and move. No thinking. No negotiating.','Mel Robbins'],['Discipline is choosing between what you want now and what you want most.','Abraham Lincoln'],['The pain of discipline weighs ounces. The pain of regret weighs tons.','Jim Rohn'],['Start before you are ready. You will never be ready. The readiness is in the starting.','Unknown'],['The bed is comfortable. The life you want is worth leaving it for.','Unknown']],
+19:[['Habits are the compound interest of self-improvement.','James Clear'],['Small daily improvements over time lead to stunning results.','James Clear'],['You do not rise to the level of your goals. You fall to the level of your systems.','James Clear'],['The first habit you should build is the habit of building habits.','Unknown'],['It takes an average of 66 days to form a new habit. Do not quit before day 21.','Phillippa Lally'],['Make it easy. Make it attractive. Make it satisfying. Make it obvious.','James Clear'],['Habits are the distillation of identity. Every action is a vote for the person you want to become.','James Clear'],['The best way to start a new habit is to make it so small you cannot say no.','James Clear'],['Do not break the chain. Consistency matters more than intensity.','Unknown'],['Your morning routine will not change your life in one day. But it will in one year.','Unknown']],
+20:[['The most powerful morning routine is the one you actually do.','Unknown'],['Your personal morning code is not about perfection. It is about intention.','Unknown'],['Design your morning around your values, not someone else\'s template.','Unknown'],['The best routine is bespoke. It fits your life, your biology, your goals.','Unknown'],['A morning routine is a statement: I matter. My day matters. My life matters.','Unknown'],['The goal is not to have the perfect morning. The goal is to have a morning that moves you toward the person you want to be.','Unknown'],['Your morning is your foundation. Build it with care, and everything else will stand.','Unknown'],['The sun rises without asking permission. So should you.','Unknown'],['You have been given another day. What will you do with it? That starts with how you begin it.','Unknown'],['The morning is not something to survive. It is something to design. Start tomorrow.','Unknown']]
+};
+
+function build() {
+  let s = load();
+  let total = CH.length;
+  let done = s.c.length;
+
+  let tg = document.getElementById('tocGrid');
+  tg.innerHTML = CH.map((c,i) => '<a class="toc-item'+(s.c.includes(i+1)?' completed':'')+'" data-n="'+(i+1)+'"><span class="toc-num">'+(i+1)+'</span>'+c.t+'</a>').join('');
+  tg.querySelectorAll('.toc-item').forEach(a => a.onclick = function(e) { e.preventDefault(); show(parseInt(this.dataset.n)); });
+
+  document.getElementById('pct').textContent = Math.round(done/total*100)+'%';
+  document.getElementById('fill').style.width = (done/total*100)+'%';
+
+  let ct = document.getElementById('container');
+  ct.innerHTML = '';
+  CH.forEach((c,i) => {
+    let n = i+1;
+    let yt = YT[n];
+    let qs = C[n] || [];
+    let yth = yt ? '<div class="yt-wrap"><iframe src="https://www.youtube.com/embed/'+yt+'" allowfullscreen loading="lazy"></iframe></div>' : '';
+    let qh = qs.map(q => '<div class="qb"><p class="qt">\u201C'+q[0]+'\u201D</p><p class="qa">'+q[1]+'</p></div>').join('');
+    let val = s.d['ch'+n] || '';
+
+    let html = '<div class="chapter" id="ch'+n+'">'
+      + '<div class="ch-head"><div class="ch-num">Chapter '+n+'</div><h2>'+c.t+'</h2><p class="ch-sub">\u201C'+c.s+'\u201D</p></div>'
+      + '<div class="ch-body">'
+      + yth + qh
+      + '<div class="ex"><h4>Morning Exercise</h4><textarea class="ex-ta" data-n="'+n+'" placeholder="Write your reflections, insights, or morning plan here...">'+val+'</textarea></div>'
+      + '<div class="complete-wrap"><button class="complete-btn'+(s.c.includes(n)?' done':'')+'" onclick="toggle('+n+')">'+(s.c.includes(n)?'\u2713 Completed':'Mark Complete')+'</button></div>'
+      + '<div class="nav-bar">'
+      + '<button class="nav-btn" onclick="prev()"'+(n===1?' disabled':'')+'>\u2190 Previous</button>'
+      + '<span class="nav-center">'+n+' of '+total+'</span>'
+      + '<button class="nav-btn" onclick="next()"'+(n===total?' disabled':'')+'>Next \u2192</button>'
+      + '</div></div></div>';
+    ct.innerHTML += html;
+  });
+
+  document.querySelectorAll('.chapter').forEach(d => d.classList.remove('active'));
+  let f = document.getElementById('ch1');
+  if (f) f.classList.add('active');
+
+  document.querySelectorAll('.ex-ta').forEach(ta => {
+    ta.addEventListener('input', function() {
+      let ss = load();
+      ss.d['ch'+this.dataset.n] = this.value;
+      save(ss);
+    });
+  });
+}
+
+let cur = 1;
+window.show = function(n) {
+  document.querySelectorAll('.chapter').forEach(d => d.classList.remove('active'));
+  let el = document.getElementById('ch'+n);
+  if (el) { el.classList.add('active'); el.scrollIntoView({behavior:'smooth',block:'start'}); }
+  cur = n;
+};
+window.next = function() { if (cur < CH.length) show(cur+1); };
+window.prev = function() { if (cur > 1) show(cur-1); };
+function toggle(n) {
+  let s = load();
+  let idx = s.c.indexOf(n);
+  if (idx > -1) { s.c.splice(idx,1); } else { s.c.push(n); }
+  save(s);
+  build();
+  show(n);
+}
+window.toggle = toggle;
+window.resetAll = function() {
+  if (!confirm('Reset all progress?')) return;
+  localStorage.removeItem(KEY);
+  location.reload();
+};
+build();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Influencer Growth Blueprint — Elevate Shop</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#1a1a2e;--rose:#e8a87c;--white:#ffffff;--card:#232344;--text:#d0d0e0;--muted:#8888a0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:0}
+.holder{max-width:820px;margin:0 auto;padding:30px 20px 60px}
+/* shimmer */
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+.shimmer{background:linear-gradient(90deg,transparent 0%,rgba(232,168,124,0.07) 50%,transparent 100%);background-size:200% 100%;animation:shimmer 4s ease-in-out infinite}
+/* header */
+.title-block{text-align:center;padding:40px 0 20px}
+.title-block h1{font-size:2.4rem;color:var(--white);letter-spacing:-0.5px;margin-bottom:6px}
+.title-block .sub{color:var(--rose);font-size:1.05rem;letter-spacing:1px;text-transform:uppercase}
+.title-block .tagline{color:var(--muted);font-size:0.9rem;margin-top:8px}
+/* progress */
+.progress-wrap{background:var(--card);border-radius:12px;padding:16px 20px;margin:20px 0 24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.progress-bar-bg{flex:1;min-width:180px;height:12px;background:#2a2a4a;border-radius:20px;overflow:hidden}
+.progress-bar-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--rose),#d4946a);border-radius:20px;transition:width 0.5s ease}
+.progress-label{color:var(--rose);font-weight:700;font-size:0.9rem;white-space:nowrap}
+.btn-reset{background:transparent;border:1px solid var(--rose);color:var(--rose);padding:6px 16px;border-radius:20px;cursor:pointer;font-size:0.8rem;transition:0.2s}
+.btn-reset:hover{background:var(--rose);color:var(--bg)}
+/* nav */
+.chapter-nav{display:flex;justify-content:space-between;gap:12px;margin:0 0 20px}
+.chapter-nav button{background:var(--card);border:none;color:var(--rose);padding:8px 20px;border-radius:8px;cursor:pointer;font-size:0.9rem;transition:0.2s}
+.chapter-nav button:hover{background:rgba(232,168,124,0.15)}
+.chapter-nav button:disabled{opacity:0.3;cursor:default}
+/* chapters */
+.chapter{background:var(--card);border-radius:16px;padding:28px;margin-bottom:24px;border:1px solid transparent;transition:0.3s}
+.chapter.completed{border-color:var(--rose);box-shadow:0 0 20px rgba(232,168,124,0.08)}
+.chapter h2{color:var(--white);font-size:1.35rem;margin-bottom:4px}
+.chapter .ch-num{color:var(--rose);font-size:0.8rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;display:block}
+.chapter p{margin-bottom:14px;font-size:0.95rem}
+.chapter iframe{width:100%;height:180px;border-radius:10px;margin:10px 0 14px;border:none}
+.chapter textarea{width:100%;background:#1e1e3a;border:1px solid #333366;border-radius:8px;color:var(--text);padding:10px;font-family:inherit;font-size:0.85rem;resize:vertical;min-height:56px;margin:6px 0 8px;outline:none;transition:0.2s}
+.chapter textarea:focus{border-color:var(--rose)}
+.chapter-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:6px}
+.chapter-actions .btn-complete{background:transparent;border:1px solid var(--rose);color:var(--rose);padding:6px 18px;border-radius:20px;cursor:pointer;font-size:0.82rem;transition:0.2s}
+.chapter-actions .btn-complete:hover,.chapter-actions .btn-complete.done{background:var(--rose);color:var(--bg)}
+.chapter-actions .status{font-size:0.8rem;color:var(--muted);margin-left:4px}
+.chapter-actions .status.done{color:#6fcf97}
+/* footer */
+footer{text-align:center;padding:40px 0 10px;border-top:1px solid #2a2a4a;margin-top:30px}
+footer p{color:var(--muted);font-size:0.82rem;margin-bottom:4px}
+footer .brand{color:var(--rose);font-weight:600}
+/* print */
+@media print{
+body{background:#fff;color:#222}
+.holder{max-width:100%;padding:0.5in}
+.title-block h1{color:#222}
+.chapter{background:#fff;border:1px solid #ccc;border-radius:6px;padding:16px;break-inside:avoid}
+.chapter h2{color:#222}
+.chapter .ch-num{color:#b87333}
+.chapter p{color:#333}
+.progress-wrap,.chapter-nav,.chapter-actions,.chapter textarea,.btn-reset,.shimmer{display:none!important}
+footer{border-top-color:#ccc}
+footer p{color:#555}
+.chapter iframe{display:none}
+}
+</style>
+</head>
+<body>
+<div class="holder">
+
+<div class="title-block shimmer">
+<h1>Influencer Growth Blueprint</h1>
+<div class="sub">Step-by-Step Guide</div>
+<div class="tagline">Building a loyal audience &amp; turning your personal brand into a profitable business</div>
+</div>
+
+<div class="progress-wrap">
+<div class="progress-label" id="progLabel">0 / 20</div>
+<div class="progress-bar-bg"><div class="progress-bar-fill" id="progFill"></div></div>
+<button class="btn-reset" onclick="window.resetProgress()">Reset Progress</button>
+</div>
+
+<div class="chapter-nav">
+<button id="prevBtn" onclick="window.prevChapter()">&larr; Previous</button>
+<button id="nextBtn" onclick="window.nextChapter()">Next &rarr;</button>
+</div>
+
+<div id="chapters"></div>
+
+<footer>
+<p>&copy; 2025 Elevate Shop. All rights reserved.</p>
+<p>Empowering minds and building wealth, one download at a time.</p>
+</footer>
+</div>
+
+<script>
+(function(){
+  var chapters = [
+    {n:"What is an Influencer?",sub:"Defining Your Path"},
+    {n:"Finding Your Niche",sub:"Passion + Profit Intersection"},
+    {n:"Defining Your Brand Voice",sub:"Authenticity Matters"},
+    {n:"Content Pillars",sub:"Your 3-5 Core Topics"},
+    {n:"Platform Selection",sub:"Where Your Audience Lives"},
+    {n:"Creating a Content Engine",sub:"Consistent Output Systems"},
+    {n:"Growing Your Audience",sub:"From 0 to 10K Followers"},
+    {n:"Engagement Loops",sub:"Building Community, Not Just Followers"},
+    {n:"Visual Identity",sub:"Photography, Editing, Aesthetic"},
+    {n:"Storytelling",sub:"Keeping Your Audience Hooked"},
+    {n:"Collaborations",sub:"Growing Through Others"},
+    {n:"The Algorithm Game",sub:"Working with Platform Algorithms"},
+    {n:"Analytics",sub:"What to Track and How to Improve"},
+    {n:"First 5 Monetization Methods",sub:"Starting to Earn"},
+    {n:"Brand Deals",sub:"Pitching, Negotiating, Delivering"},
+    {n:"Digital Products",sub:"Courses, Ebooks, Templates"},
+    {n:"Affiliate Marketing",sub:"Passive Income Streams"},
+    {n:"Building a Team",sub:"When and Who to Hire"},
+    {n:"Legal &amp; Finance",sub:"Contracts, Taxes, Entities"},
+    {n:"Your 12-Month Influencer Growth Roadmap",sub:"The Big Picture"}
+  ];
+
+  var youtubeIds = ["qp0HIF3SfI4","SMYKAbbOefA","cBzhCWV6Q7Q","xFr0FKnaLDk","g9tG_Mrj90M","as0uWN5ad64","5fsm-QbN9r8"];
+
+  var content = [
+    // Ch 1
+    "An influencer is someone who has the power to affect the purchasing decisions of others because of their authority, knowledge, position, or relationship with their audience. In the digital age, this translates to individuals who build communities around shared interests and values, leveraging social media platforms to amplify their voice. The path to becoming an influencer is not about fame\u2014it\u2019s about impact. True influence comes from trust, consistency, and a deep understanding of the people you serve. Whether you aspire to be a micro-influencer with 10,000 engaged followers or a macro-influencer reaching millions, the foundation is always the same: authentic connection.",
+    "To begin your journey, you need to define what success looks like for you. Do you want to educate, entertain, inspire, or a mix of all three? Your content strategy will flow directly from this purpose. Remember that influence is built one interaction at a time. Every comment you reply to, every story you share, and every piece of value you deliver compounds over time. The most successful influencers treat their personal brand as a business from day one\u2014they show up consistently, track their growth, and continuously refine their message based on audience feedback.",
+    "This blueprint will walk you through every stage of building an influencer brand, from niche selection to monetization and scaling. By the end, you will have a clear roadmap to turn your passion into a profitable, sustainable business. Let\u2019s begin."
+  ];
+  // Ch 2
+  content.push("Niche selection is the single most important decision you will make as an influencer. A niche is a focused segment of a larger market. Rather than being a generic lifestyle influencer, you might focus on vegan meal prep for busy professionals, or tech reviews for creative freelancers. The sweet spot lies at the intersection of three things: what you are passionate about, what you are knowledgeable in, and what has market demand. If you choose a niche purely for profit but have no genuine interest, your content will feel hollow and your audience will sense it.");
+  content.push("To validate your niche, spend a week researching potential topics. Look at existing creators in each space\u2014how engaged are their audiences? What questions keep appearing in comments? Are there gaps that are not being addressed? Tools like Google Trends, AnswerThePublic, and platform search bars can reveal what people are actively searching for. Write down your top three niche ideas and grade each one on passion, expertise, and profitability. Your goal is to find a lane where you can be both authoritative and enthusiastic, because that is where your best content will come from.");
+
+  // Ch 3
+  content.push("Your brand voice is the personality and emotion infused into your communication. It is how you speak to your audience across captions, videos, stories, and comments. A consistent brand voice builds familiarity and trust\u2014your followers will know what to expect from you and will feel like they are engaging with a real person, not a content factory. Start by defining three adjectives that describe your voice: are you witty and irreverent? Warm and nurturing? Bold and provocative? Write these down and refer to them every time you create content.");
+  content.push("Authenticity does not mean sharing every detail of your life. It means aligning your content with your true values and personality. Your audience can detect performative behavior instantly. Instead of trying to emulate another influencer\u2019s style, lean into what makes you unique. Perhaps you have a quirky way of explaining complex topics, or a calm and soothing presence that helps people feel grounded. These differentiators are your competitive advantage. Once you define your voice, apply it consistently across every touchpoint\u2014from your Instagram bio to your YouTube outro.");
+
+  // Ch 4
+  content.push("Content pillars are the 3\u20135 core topics that define your content strategy. They ensure you never run out of ideas and that your feed feels cohesive rather than random. For example, a fitness influencer might have pillars of: workouts, nutrition, mindset, recovery, and product reviews. Each pillar acts as a category under which you can brainstorm dozens of specific posts or videos. The key is to choose pillars that serve your audience\u2019s needs while also allowing you to showcase your expertise and personality.");
+  content.push("Once your pillars are established, create a content matrix: for each pillar, brainstorm at least 10 content ideas in different formats (educational, entertaining, inspirational, behind-the-scenes). This gives you a library of ideas you can pull from. Revisit your pillars every quarter to see if any need to evolve. As your audience grows, their needs will shift, and your pillars should adapt accordingly. A strong pillar structure is the backbone of a sustainable content engine.");
+
+  // Ch 5
+  content.push("Not every platform is right for every influencer. The key is to go where your target audience already spends their time, while also considering the format that plays to your strengths. If you love long-form storytelling, YouTube is your home. If you excel at short, punchy visuals, TikTok or Instagram Reels might be better. If your audience is professionals and you create educational content, LinkedIn or a newsletter could be goldmines. Trying to be everywhere at once leads to burnout; instead, master one platform before expanding to others.");
+  content.push("When selecting your primary platform, also consider the monetization opportunities available. YouTube offers AdSense revenue, memberships, and Super Chat. Instagram provides brand deals, affiliate links, and subscription badges. TikTok has a creator fund and live gifting. A newsletter lets you own your audience directly. A good strategy is to pick one primary platform for growth and one secondary platform for repurposed content. This focused approach gives you depth without spreading too thin.");
+
+  // Ch 6
+  content.push("A content engine is a repeatable system for producing content consistently. Without a system, you will rely on bursts of inspiration, which inevitably leads to inconsistency and burnout. Start by deciding your posting cadence\u20141\u20133 times per week on your primary platform, with stories or updates in between. Use a content calendar (a simple spreadsheet or Notion database works) to plan 2\u20134 weeks ahead. Batch-create your content on dedicated days so that production is efficient and stress-free.");
+  content.push("An effective content engine includes four phases: ideation (brainstorming and validating topics), creation (writing, filming, editing), publishing (scheduling and posting), and analysis (reviewing performance data to inform the next cycle). Tools like Trello, Asana, or even a physical notebook can help you track each phase. The most important habit is showing up consistently. Consistency compounds trust and signals to platform algorithms that you are an active creator worth promoting. Over a year, showing up weekly will yield exponential results.");
+
+  // Ch 7
+  content.push("Growing from 0 to 10,000 followers requires a strategic approach. The first 1,000 are the hardest because you have no social proof. During this phase, focus on creating exceptional content that provides clear value\u2014tutorials, insights, entertainment, or emotional resonance. Engage actively in your niche community by commenting on larger creators\u2019 posts and joining relevant conversations. Use 2\u20133 relevant hashtags per post, optimize your profile with a clear bio and link, and ensure your content has a strong hook in the first 3 seconds.");
+  content.push("As you gain traction, leverage cross-promotion and collaboration. Shout-out swaps, guest appearances, and collaborative content expose you to established audiences. Consistency with your posting schedule is critical. Analyze which of your posts perform best and create more of that content. Between 1K and 5K followers, momentum builds: your engagement rate should stay high even as your follower count grows. By 10K, you will have a clear sense of what works and a community that trusts your voice. From there, focus shifts to deepening relationships and monetizing.");
+
+  // Ch 8
+  content.push("Engagement loops are techniques that encourage your audience to interact with your content and with each other, creating a self-sustaining community. Instead of one-way broadcasting, think of your content as conversation starters. Ask questions in your captions, use polls in stories, host live Q&A sessions, and reply to comments within the first hour of posting. When followers see you engaging back, they feel valued and are more likely to comment again in the future. This behavior signals to algorithms that your content is high-quality and worth amplifying.");
+  content.push("Building community goes beyond vanity metrics. Create a private Discord or Facebook group where your most engaged followers can connect directly. Host weekly challenges or themed days (e.g., Motivation Monday, Wins Wednesday) to give your community shared rituals. Spotlight your followers\u2019 content or testimonials to make them feel seen. The stronger the emotional connection your audience feels to you and to each other, the more loyal they will be. Loyal communities drive long-term success because members become your advocates and evangelists.");
+
+  // Ch 9
+  content.push("Visual identity is the visual language that makes your content instantly recognizable. It includes your color palette, typography, lighting style, composition, and editing consistency. A cohesive visual identity signals professionalism and makes your profile stand out in a crowded feed. Start by choosing a primary and secondary color palette that reflects your brand personality\u2014for example, soft neutrals for a calming wellness brand or bold neons for an energetic fitness brand. Use these colors consistently in your thumbnails, graphics, and overlays.");
+  content.push("Photography and videography quality matter immensely. You do not need a professional camera to start: modern smartphones can produce stunning content with proper lighting and composition. Natural window light is your best friend for a soft, premium look. For videos, prioritize clear audio\u2014a simple lavalier microphone makes a huge difference. Develop a consistent editing style using the same filters, fonts, and transitions. Apps like Lightroom, CapCut, and Canva can help you maintain uniformity. When your content looks cohesive, your brand feels more credible and memorable.");
+
+  // Ch 10
+  content.push("Storytelling is the most powerful tool in an influencer\u2019s arsenal. Facts tell, but stories sell. A well-told story triggers emotional responses and makes your content unforgettable. The classic storytelling arc\u2014setup, conflict, resolution\u2014applies perfectly to short-form and long-form content alike. Open with a hook that creates curiosity or tension, walk through the journey or lesson, and close with a takeaway or call to action. Your personal stories of failure, growth, and breakthrough are your most authentic assets; do not be afraid to share vulnerability.");
+  content.push("To keep your audience hooked, vary your content\u2019s narrative structure. Use cliffhangers in a multi-post series, interesting transitions in videos, and rhetorical questions that make people pause and think. Study your favorite creators and map out their storytelling techniques. Notice how they build anticipation, create relatability, and deliver payoff. The more you practice weaving stories into your content, the more naturally it will come. Remember, people may forget a stat, but they will never forget how you made them feel.");
+
+  // Ch 11
+  content.push("Collaborations are one of the fastest ways to grow your audience and credibility. By partnering with other creators, you tap into their trust capital and introduce your brand to a warm audience. There are many formats: guest appearances on podcasts or YouTube channels, Instagram Lives together, co-created content series, or simple shout-out swaps. The key is to find collaborators whose audience overlaps with yours but who are not direct competitors\u2014a complementary niche partnership is far more effective than a duplicative one.");
+  content.push("When reaching out for a collaboration, be specific about the value you bring. Instead of a generic DM, send a short email or message outlining a concrete content idea, the mutual benefit, and why their audience would love it. Always over-deliver on collaborations and promote the content enthusiastically after it goes live. Building genuine relationships with other creators in your space can lead to ongoing partnerships, referral traffic, and even friendships. In the influencer economy, your network is your net worth.");
+
+  // Ch 12
+  content.push("Platform algorithms can feel like mysterious black boxes, but they operate on predictable principles. Every major platform\u2014Instagram, TikTok, YouTube, LinkedIn\u2014prioritizes content that keeps users on the platform longer. Key signals include: watch time (or time spent), engagement (likes, comments, shares, saves), completion rate, and recency. The better your content performs on these metrics, the more the algorithm will show it to new audiences. Understanding these signals allows you to reverse-engineer success.");
+  content.push("To work with algorithms, focus on two things: hook retention and posting timing. Your hook must grab attention within the first 1\u20133 seconds, and your content must deliver on the promise of the hook. Post when your audience is most active (check your analytics dashboard). Use trending audio or formats when appropriate, but only if they fit your brand. Algorithms increasingly reward originality and community engagement over trends. Consistency also signals reliability to the algorithm: creators who post on a schedule get more distribution over time.");
+
+  // Ch 13
+  content.push("Analytics transform guesswork into a science. Every platform provides a dashboard\u2014Instagram Insights, YouTube Studio, TikTok Analytics\u2014that reveals how your content is performing. The key numbers to track are: reach (unique viewers), engagement rate (interactions per impression), watch time (for video), follower growth rate, and conversion rate (clicks on links or purchases). Rather than obsessing over vanity metrics like raw follower count, focus on engagement rate and audience retention, because these indicate genuine resonance.");
+  content.push("Set a weekly or biweekly review ritual where you examine your top 5 and bottom 5 posts from the period. Ask yourself: what did the top posts have in common? Was it the topic, the format, the time of day, or the hook? Use these insights to double down on what works and pivot away from what does not. Keep a simple spreadsheet tracking your weekly numbers. Over months, this data will reveal trends and patterns that can guide your entire content strategy. Data-driven creators win in the long run.");
+
+  // Ch 14
+  content.push("Monetization is where your influence becomes a business. The first five methods every influencer should explore are: (1) brand sponsorships and deals, (2) affiliate marketing through networks like Amazon Associates or ShareASale, (3) digital products such as ebooks, templates, or presets, (4) paid communities or memberships (Patreon, Substack), and (5) services like consulting, coaching, or freelance work. You do not need a massive following to start monetizing\u2014even a few hundred engaged followers can generate income through the right offers.");
+  content.push("The key to early monetization is to start before you feel ready. Create a simple digital product related to your niche and offer it to your audience. Test affiliate links in your content and track what converts. Pitch small brands that align with your values for paid collaborations. Each revenue stream reinforces the others\u2014brand deals become easier when you have products and affiliates already earning. Diversification protects you from relying on any single income source. Start with one method, get your first dollar, and build from there.");
+
+  // Ch 15
+  content.push("Brand deals are the most common revenue source for influencers, but they require skill to execute well. A brand deal typically involves creating sponsored content that promotes a product or service in exchange for payment. To land deals, you need a media kit: a one-page PDF that summarizes your audience demographics, engagement rate, past collaborations, and the value you offer. Pitch brands that genuinely align with your niche and values\u2014your audience will see through inauthentic sponsorships immediately.");
+  content.push("When negotiating, know your worth. Research industry rate cards: a common baseline is $10\u2013100 per 1,000 followers for a single post, adjusted for engagement rate. However, rates vary widely by niche and platform. Negotiate based on deliverables (e.g., one YouTube video + two Instagram Stories) rather than a flat follower count. Always deliver high-quality content that serves your audience first, with the brand message woven in naturally. After the campaign, provide the brand with analytics showing reach, impressions, and engagement. Strong results lead to repeat deals and referrals.");
+
+  // Ch 16
+  content.push("Digital products are one of the highest-leverage ways to monetize your influence because they require a one-time creation effort but can sell indefinitely. Common digital products include PDF guides and ebooks, printable planners, video courses, Notion templates, preset packs for photo/video editing, and spreadsheet tools. The beauty of digital products is that you keep 100% of the profit (minus platform fees), and there are no inventory or shipping costs. Start simple: a 20-page ebook or a 5-video mini-course can validate demand before you invest in a larger product.");
+  content.push("To create a digital product, identify a specific problem your audience faces that your expertise can solve. Outline the content, create it using tools like Canva, Google Docs, or screen recording software, and set up a payment and delivery system through Gumroad, Payhip, or a simple Stripe integration. Price your product based on value\u2014a comprehensive course might be $50\u2013200, while a template pack could be $10\u201330. Promote it through your content, email list, and social channels. Even a small launch to an engaged audience can generate significant revenue.");
+
+  // Ch 17
+  content.push("Affiliate marketing earns you a commission every time someone purchases a product through your unique link. It is passive income in the sense that once your content is published, it can generate commissions for months or years without additional effort. The most successful affiliate creators promote products they genuinely use and love, embedding links naturally into tutorials, reviews, and recommendation lists. Popular affiliate networks include Amazon Associates, ShareASale, RewardStyle (LTK), and Impact.");
+  content.push("To excel at affiliate marketing, focus on high-intent content: product reviews, comparison videos, \u201cX things I love\u201d roundups, and tutorials that require a specific tool. Track which links convert best using link-shortening tools like Bitly or the affiliate network\u2019s dashboard. Disclose affiliate relationships transparently as required by law (e.g., #ad or \u201cThis post contains affiliate links\u201d). Over time, build a library of content that earns passive commissions. Many full-time influencers generate 30\u201350% or more of their income through affiliate marketing.");
+
+  // Ch 18
+  content.push("There comes a point when doing everything yourself limits your growth. Signs it is time to build a team include: you are consistently working more than 40 hours per week, your content quality is suffering due to time constraints, you are missing collaboration or brand deal opportunities because you cannot handle the workload, or you have revenue that can sustainably support help. Building a team does not mean hiring full-time employees immediately\u2014start with freelancers and virtual assistants for specific tasks.");
+  content.push("The first roles to hire are typically: a virtual assistant (admin, scheduling, inbox management), an editor (video or photo editing to free up your time), and a community manager (handling comments, DMs, and engagement). As you scale, you might add a brand manager (to handle outreach and negotiations), a strategist (to plan content and growth), and a web developer (for your website or digital products). Hire slowly, onboard thoroughly, and maintain your brand voice by creating clear guidelines. A great team amplifies your impact while letting you focus on your zone of genius.");
+
+  // Ch 19
+  content.push("Legal and financial foundations are critical for turning your influence into a sustainable business. At minimum, you should: register your business as a legal entity (LLC or sole proprietorship depending on your country), open a separate business bank account, understand your tax obligations (including self-employment tax, sales tax on products, and income tax), and use contracts for every brand deal and collaboration. Standard contract terms include scope of work, payment terms, usage rights, cancellation policies, and confidentiality clauses.");
+  content.push("Consult with a tax professional and a business attorney who understands the creator economy. They can advise on entity structure, intellectual property protection (trademarking your brand name, copyrighting your content), and liability considerations. Keep meticulous records of all income and expenses using tools like QuickBooks, FreshBooks, or a simple spreadsheet. Set aside 25\u201330% of every payment for taxes. Building proper financial habits early prevents costly mistakes later and positions you as a serious professional in the eyes of brands and partners.");
+
+  // Ch 20
+  content.push("Your 12-month influencer growth roadmap is your high-level plan from where you are today to where you want to be. Months 1\u20133: Define your niche, brand voice, and content pillars. Set up your primary platform and create 30\u201360 pieces of content. Focus on consistency and learning what resonates. Months 4\u20136: Double down on what works, grow to 1,000\u20135,000 followers, begin collaborations, and start your first monetization method (affiliate marketing or a small digital product). Build an email list from day one.");
+  content.push("Months 7\u20139: Scale your content engine, hire your first freelancer if needed, pursue brand deals, and launch a more comprehensive digital product. Deepen community engagement with a group or membership. Months 10\u201312: Optimize analytics, diversify revenue streams, reinvest profits into better equipment or team, and plan the next year\u2019s strategy. This roadmap is flexible\u2014adjust it based on your niche, platform, and pace. The most important thing is to start, stay consistent, and keep learning. Your influence journey begins now.");
+
+  var placements = [0, 1, 2, 4, 5, 7, 8, 10, 11, 13];
+
+  function render(){
+    var html = "", i, c, pID, yID, noteKey, compKey, savedNote, isComp;
+    for(i = 0; i < chapters.length; i++){
+      c = chapters[i];
+      noteKey = "ignote_"+i;
+      compKey = "igcomp_"+i;
+      savedNote = localStorage.getItem(noteKey) || "";
+      isComp = localStorage.getItem(compKey) === "true";
+      yID = (placements.indexOf(i) >= 0 && placements.indexOf(i) < youtubeIds.length) ? youtubeIds[placements.indexOf(i)] : null;
+      html += '<div class="chapter' + (isComp ? ' completed' : '') + '" id="ch' + i + '">';
+      html += '<span class="ch-num">Chapter ' + (i+1) + ' &mdash; ' + c.sub + '</span>';
+      html += '<h2>' + c.n + '</h2>';
+      html += '<p>' + content[i*2] + '</p>';
+      html += '<p>' + content[i*2+1] + '</p>';
+      if(yID){
+        html += '<iframe src="https://www.youtube.com/embed/' + yID + '" allowfullscreen loading="lazy"></iframe>';
+      }
+      html += '<textarea id="note_' + i + '" placeholder="Write your notes for this chapter..." data-key="' + noteKey + '">' + savedNote.replace(/</g,"&lt;") + '</textarea>';
+      html += '<div class="chapter-actions">';
+      html += '<button class="btn-complete' + (isComp ? ' done' : '') + '" id="comp_' + i + '" onclick="window.toggleComplete(' + i + ')">' + (isComp ? 'Complete' : 'Mark Complete') + '</button>';
+      html += '<span class="status' + (isComp ? ' done' : '') + '" id="stat_' + i + '">' + (isComp ? 'Done' : 'Not done') + '</span>';
+      html += '</div></div>';
+    }
+    document.getElementById("chapters").innerHTML = html;
+
+    // attach note saving
+    for(i = 0; i < chapters.length; i++){
+      (function(idx){
+        var ta = document.getElementById("note_"+idx);
+        if(ta){
+          ta.addEventListener("input", function(){
+            localStorage.setItem(this.getAttribute("data-key"), this.value);
+          });
+        }
+      })(i);
+    }
+    updateProgress();
+  }
+
+  function updateProgress(){
+    var done = 0, i, key;
+    for(i = 0; i < chapters.length; i++){
+      if(localStorage.getItem("igcomp_"+i) === "true") done++;
+    }
+    var pct = Math.round((done / chapters.length) * 100);
+    document.getElementById("progLabel").textContent = done + " / " + chapters.length;
+    document.getElementById("progFill").style.width = pct + "%";
+  }
+
+  window.toggleComplete = function(idx){
+    var key = "igcomp_"+idx;
+    var cur = localStorage.getItem(key) === "true";
+    var next = !cur;
+    localStorage.setItem(key, next ? "true" : "false");
+    var ch = document.getElementById("ch"+idx);
+    if(ch){ ch.className = "chapter" + (next ? " completed" : ""); }
+    var btn = document.getElementById("comp_"+idx);
+    if(btn){ btn.className = "btn-complete" + (next ? " done" : ""); btn.textContent = next ? "Complete" : "Mark Complete"; }
+    var st = document.getElementById("stat_"+idx);
+    if(st){ st.className = "status" + (next ? " done" : ""); st.textContent = next ? "Done" : "Not done"; }
+    updateProgress();
+  };
+
+  window.resetProgress = function(){
+    if(!confirm("Reset all progress? This cannot be undone.")) return;
+    var i;
+    for(i = 0; i < chapters.length; i++){
+      localStorage.removeItem("igcomp_"+i);
+      localStorage.removeItem("ignote_"+i);
+    }
+    render();
+  };
+
+  window.prevChapter = function(){
+    var scroll = window.scrollY;
+    var chs = document.querySelectorAll(".chapter");
+    var cur = -1;
+    chs.forEach(function(el, idx){
+      var rect = el.getBoundingClientRect();
+      if(rect.top <= 150 && rect.bottom > 0) cur = idx;
+    });
+    if(cur > 0){
+      document.getElementById("ch"+(cur-1)).scrollIntoView({behavior:"smooth",block:"start"});
+    }
+  };
+
+  window.nextChapter = function(){
+    var chs = document.querySelectorAll(".chapter");
+    var cur = -1;
+    chs.forEach(function(el, idx){
+      var rect = el.getBoundingClientRect();
+      if(rect.top <= 150 && rect.bottom > 0) cur = idx;
+    });
+    if(cur >= 0 && cur < chs.length-1){
+      document.getElementById("ch"+(cur+1)).scrollIntoView({behavior:"smooth",block:"start"});
+    }
+  };
+
+  render();
+})();
+</script>
+</body>
+</html>

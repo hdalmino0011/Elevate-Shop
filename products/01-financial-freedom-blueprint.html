@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Financial Freedom Blueprint – Elevate Shop</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{font-size:17px}
+body{
+  font-family:Inter,'Helvetica Neue',Arial,sans-serif;
+  background:#051008;color:#D4C8B8;line-height:1.8;padding:0;
+  -webkit-font-smoothing:antialiased
+}
+.container{max-width:860px;margin:0 auto;background:#09180E;box-shadow:0 0 120px rgba(27,138,75,0.06)}
+header{
+  background:linear-gradient(135deg,#030A05 0%,#0D2E1A 35%,#081A10 70%,#030A05 100%);
+  padding:72px 64px 56px;position:relative;overflow:hidden
+}
+header::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#1B8A4B,#C9994A,#1B8A4B,#C9994A,#1B8A4B)}
+header .sup{font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(201,153,74,0.5);margin-bottom:16px}
+header h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:54px;font-weight:700;color:#F0E6D0;line-height:1.05;margin-bottom:12px}
+header h1 em{font-style:italic;color:#C9994A}
+header .sub{font-size:16px;color:rgba(212,200,184,0.35);max-width:520px;line-height:1.6;margin-bottom:24px}
+header .meta{display:flex;gap:24px;flex-wrap:wrap;font-size:10px;color:rgba(201,153,74,0.25);letter-spacing:1.5px;text-transform:uppercase}
+.idx{background:#081A0E;padding:24px 48px;border-bottom:1px solid rgba(201,153,74,0.04)}
+.idx .idx-t{font-family:'Cormorant Garamond',Georgia,serif;font-size:14px;color:#F0E6D0;margin-bottom:12px;letter-spacing:1px}
+.idx ol{list-style:none;columns:2;column-gap:36px;padding:0;margin:0}
+.idx ol li{display:flex;gap:8px;align-items:baseline;padding:3px 0;border-bottom:1px solid rgba(201,153,74,0.02);break-inside:avoid}
+.idx ol li .n{font-family:'Cormorant Garamond',Georgia,serif;font-size:14px;font-weight:700;color:#C9994A;min-width:22px}
+.idx ol li a{color:#9A8A78;text-decoration:none;font-size:13px}
+.idx ol li a:hover{color:#C9994A}
+.pw{margin:0 72px 8px;padding:12px 0;border-bottom:1px solid rgba(201,153,74,0.04)}
+.pw .bar{background:#081A0E;border-radius:20px;height:4px;overflow:hidden}
+.pw .fill{background:linear-gradient(90deg,#1B8A4B,#C9994A);height:100%;border-radius:20px;transition:width 0.5s ease}
+.pw .m{display:flex;justify-content:space-between;align-items:center;margin-top:4px;font-size:10px;color:#5A5048;text-transform:uppercase;letter-spacing:1px}
+.pw .r{background:none;border:none;color:#5A5048;cursor:pointer;font-size:10px;text-transform:uppercase;letter-spacing:1px;padding:2px 0;transition:color 0.2s}
+.pw .r:hover{color:#C9994A}
+.main{padding:48px 72px 64px}
+h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:30px;font-weight:700;color:#F0E6D0;margin-top:56px;margin-bottom:4px;line-height:1.15;border-bottom:2px solid #1B8A4B;padding-bottom:12px}
+h2 .cl{display:block;font-family:Inter,Arial,sans-serif;font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#C9994A;margin-bottom:2px}
+h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:24px;font-weight:600;color:#F0E6D0;margin-top:36px;margin-bottom:10px}
+p{font-size:15px;color:#C8BBA8;margin-bottom:16px;line-height:1.85}
+.dc::first-letter{font-family:'Cormorant Garamond',Georgia,serif;font-size:72px;font-weight:700;float:left;line-height:0.75;padding:8px 16px 4px 0;color:#F0E6D0}
+.qb{margin:28px 0;padding:24px 32px;background:#081A0E;border-radius:6px;border-left:3px solid #C9994A}
+.qb p{font-family:'Cormorant Garamond',Georgia,serif;font-size:19px;font-style:italic;color:#E0D4C0;margin-bottom:8px;line-height:1.5}
+.qb cite{font-size:12px;font-style:normal;color:#8A7A68;display:block}
+.qb cite b{color:#C9994A;font-weight:600}
+.cd{margin:24px 0;padding:28px 32px;background:#081A0E;border-radius:6px;border:1px solid rgba(201,153,74,0.05)}
+.cd .lbl{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#C9994A;margin-bottom:4px}
+.cd h4{font-family:'Cormorant Garamond',Georgia,serif;font-size:20px;margin:0 0 6px;color:#F0E6D0}
+.cd p{font-size:14px;color:#A89888;margin-bottom:8px}
+.ec{margin:28px 0;border-radius:6px;overflow:hidden;border:1px solid rgba(201,153,74,0.06);background:#081A0E}
+.ec .h{display:flex;gap:16px;align-items:flex-start;padding:24px 28px 12px;border-bottom:1px solid rgba(201,153,74,0.04)}
+.ec .i{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#1B8A4B,#C9994A);color:#051008;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',Georgia,serif;font-size:18px;font-weight:700;flex-shrink:0}
+.ec .info h4{margin:0;font-size:16px;color:#F0E6D0}
+.ec .info .role{font-size:12px;color:#8A7A68;margin:1px 0 2px}
+.ec .info .qt{font-size:14px;font-style:italic;color:#C9994A}
+.ec .b{padding:16px 28px 24px}
+.ec .b p{font-size:14px;margin-bottom:10px;color:#C8BBA8}
+.ec .b p:last-child{margin-bottom:0}
+.stat{display:flex;gap:16px;margin:28px 0}
+.stat>div{flex:1;background:#081A0E;border-radius:6px;padding:20px 16px;text-align:center;border:1px solid rgba(201,153,74,0.04)}
+.stat .num{font-family:'Cormorant Garamond',Georgia,serif;font-size:34px;font-weight:700;color:#C9994A;line-height:1}
+.stat .sl{font-size:11px;color:#8A7A68;margin-top:4px;line-height:1.4}
+.dt{width:100%;border-collapse:collapse;font-size:13px;border-radius:6px;overflow:hidden;margin:20px 0}
+.dt thead{background:#030A05}
+.dt th{padding:10px 12px;text-align:left;font-weight:600;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#C9994A}
+.dt td{padding:8px 12px;border-bottom:1px solid rgba(201,153,74,0.04);color:#B8AA98;font-size:13px}
+.dt tbody tr:nth-child(even){background:#051008}
+.dt td input{width:100%;border:none;background:transparent;font-family:'JetBrains Mono',monospace;font-size:12px;color:#F0E6D0;outline:none;padding:2px 0;border-bottom:1px solid rgba(201,153,74,0.06)}
+.dt td input:focus{border-bottom-color:#C9994A}
+.dt td input[type="checkbox"]{width:16px;height:16px;accent-color:#C9994A;cursor:pointer}
+.dt tr:last-child td{border-bottom:none}
+.yt{margin:24px 0;border-radius:6px;overflow:hidden;border:1px solid rgba(201,153,74,0.06);background:#081A0E;padding:16px 20px}
+.yt .lbl{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#C9994A;margin-bottom:6px}
+.yt a{display:block;padding:10px 14px;background:#051008;border-radius:4px;color:#D4C8B8;text-decoration:none;font-size:13px;border:1px solid rgba(201,153,74,0.06);margin-top:4px}
+.yt a:first-of-type{margin-top:0}
+.yt a:hover{background:#09180E;border-color:rgba(201,153,74,0.15)}
+.yt a::before{content:"\25B6";color:#C9994A;margin-right:8px;font-size:11px}
+.hb{margin:28px 0;padding:20px 24px;background:#081A0E;border-radius:6px;border-left:3px solid #C9994A}
+.hb p{font-size:14px;margin-bottom:0;color:#B8AA98}
+.hb b{color:#F0E6D0}
+.ag{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0}
+.ag>div{background:#081A0E;border-radius:6px;padding:16px;border:1px solid rgba(201,153,74,0.04)}
+.ag .day{font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#C9994A}
+.ag .desc{font-size:13px;color:#B8AA98;margin:4px 0 6px;line-height:1.5}
+.ag input[type="checkbox"]{width:16px;height:16px;accent-color:#C9994A;cursor:pointer}
+.fb{margin:48px 0 0;padding:36px;background:linear-gradient(135deg,#030A05,#0D2E1A);border-radius:6px;border:1px solid rgba(201,153,74,0.06);text-align:center}
+.fb h2{font-family:'Cormorant Garamond',Georgia,serif;color:#F0E6D0;margin-top:0;border-bottom:none;padding-bottom:0}
+.fb p{color:#B8AA98;font-size:15px;margin-bottom:12px}
+.fb p:last-child{margin-bottom:0}
+.fb b{color:#C9994A}
+.ft{margin-top:48px;padding:24px 72px 32px;border-top:1px solid rgba(201,153,74,0.04);text-align:center}
+.ft p{font-size:11px;color:#5A5048;margin-bottom:2px}
+.rb{background:#081A0E;border:1px solid rgba(201,153,74,0.05);padding:20px 24px;margin:20px 0;border-radius:6px}
+.rb label{font-size:12px;font-weight:600;color:#C9994A;display:block;margin-bottom:4px}
+.rb textarea{width:100%;border:none;background:rgba(201,153,74,0.03);font-family:Inter,sans-serif;font-size:13px;color:#F0E6D0;outline:none;padding:10px 12px;border-radius:4px;min-height:60px;resize:vertical}
+.rb textarea:focus{background:rgba(201,153,74,0.06)}
+.tw{margin:24px 0}
+.tb{display:flex;gap:0;margin-bottom:12px}
+.tb button{background:none;border:none;padding:6px 16px;cursor:pointer;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:#5A5048;border-bottom:2px solid transparent;transition:all 0.2s;font-family:Inter,Arial,sans-serif}
+.tb button.on{color:#C9994A;border-bottom-color:#C9994A}
+.tp{display:none}
+.tp.on{display:block}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0D2E1A;color:#C9994A;padding:8px 20px;border-radius:30px;font-size:12px;font-family:Inter,Arial,sans-serif;z-index:999;animation:fadeUp 0.3s ease;box-shadow:0 4px 24px rgba(0,0,0,0.5);border:1px solid rgba(201,153,74,0.1)}
+@keyframes fadeUp{from{opacity:0;transform:translateX(-50%) translateY(10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+.rw{display:flex;gap:3px;flex-wrap:wrap;margin:8px 0 0}
+.rw button{width:30px;height:30px;border:1px solid rgba(201,153,74,0.15);border-radius:50%;background:transparent;cursor:pointer;font-size:12px;color:#6A5A48;font-family:Inter;transition:all 0.15s}
+.rw button:hover{border-color:#C9994A;color:#C9994A}
+.rw button.on{background:#C9994A;color:#051008;border-color:#C9994A;font-weight:700}
+.btn-save{display:inline-block;margin:8px 0 0;padding:6px 20px;cursor:pointer;font-family:Inter;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#051008;background:linear-gradient(135deg,#1B8A4B,#C9994A);border:none;border-radius:4px;transition:opacity 0.2s}
+.btn-save:hover{opacity:0.85}
+.fbk{margin-top:8px;padding:6px 12px;border-radius:4px;display:none;font-size:12px;font-family:Inter}
+.fbk.ok{display:block;background:rgba(201,153,74,0.08);color:#C9994A}
+.fbk.fail{display:block;background:rgba(180,80,60,0.1);color:#C08060}
+.chk{display:flex;align-items:center;gap:10px;padding:6px 0}
+.chk input{width:16px;height:16px;accent-color:#C9994A;cursor:pointer;flex-shrink:0}
+.chk label{cursor:pointer;font-size:14px;color:#C8BBA8}
+input, textarea, select{color:#FFFFFF}
+input::placeholder, textarea::placeholder{color:rgba(255,255,255,0.35)}
+@media(max-width:700px){
+  html{font-size:15px}
+  header{padding:40px 28px 32px}
+  header h1{font-size:34px}
+  header .sub{font-size:14px}
+  .main{padding:28px 24px 40px}
+  .idx{padding:16px 20px;margin:0}
+  .idx ol{columns:1}
+  .pw{margin:0 24px 8px}
+  .stat{flex-direction:column}
+  .ag{grid-template-columns:1fr}
+  .ft{padding:20px 24px 24px}
+}
+@media(max-width:480px){
+  header{padding:28px 16px 24px}
+  header h1{font-size:26px}
+  header .meta{gap:12px;font-size:9px}
+  .main{padding:20px 14px 28px}
+  .idx{padding:12px 14px}
+  .cd{padding:16px 18px}
+  .ec .h{padding:16px 18px 8px}
+  .ec .b{padding:12px 18px 18px}
+  .qb{padding:16px 18px}
+  .stat>div{padding:14px 12px}
+  .stat .num{font-size:26px}
+  h2{font-size:24px}
+  h2 .cl{font-size:9px}
+  p{font-size:14px}
+  .dt{font-size:12px}
+  .dt td input{font-size:11px}
+  .ag{grid-template-columns:1fr}
+  .fb{padding:24px 18px}
+  .pw{margin:0 14px 8px}
+  .ft{padding:16px 14px 20px}
+}
+@media(max-width:360px){
+  html{font-size:14px}
+  header{padding:20px 12px}
+  header h1{font-size:22px}
+  .main{padding:14px 10px 24px}
+  .idx ol li a{font-size:12px}
+}
+@media print{
+  body{background:#fff}
+  .container{box-shadow:none;background:#fff}
+  body,.main p,.cd p,.ec .b p,.hb p,.fb p{color:#333!important}
+  header{background:#081A0E!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;padding:32px 28px}
+  header h1,.fb h2{color:#000}
+  h2,h3,.ec .info h4{color:#111}
+  .qb p{color:#333}
+  .idx ol li a{color:#333}
+  .dt td input{color:#333}
+  header .sup{color:#666}
+  .pw,.tw,.yt a,.rb textarea,.dt td input[type="checkbox"],.ag input[type="checkbox"]{display:none!important}
+  .dt{font-size:10pt}
+  .dt td{border-color:#ddd;color:#333}
+  .dt thead{background:#eee}
+  .dt th{color:#000}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="sup">Elevate Shop &bull; Premium Digital Course</div>
+  <h1>Financial Freedom <em>Blueprint</em></h1>
+  <p class="sub">A comprehensive system to transform your relationship with money, build lasting wealth, and achieve complete financial independence.</p>
+  <div class="meta"><span>21 Chapters</span><span>Interactive Workbook</span><span>Expert Wisdom</span><span>Action Plans</span></div>
+</header>
+
+<div class="idx">
+  <div class="idx-t">Contents</div>
+  <ol>
+    <li><span class="n">1</span><a href="#ch1">The Wealth Mindset Shift</a></li>
+    <li><span class="n">2</span><a href="#ch2">Debt Elimination That Works</a></li>
+    <li><span class="n">3</span><a href="#ch3">Budgeting Systems That Work</a></li>
+    <li><span class="n">4</span><a href="#ch4">Multiple Income Streams</a></li>
+    <li><span class="n">5</span><a href="#ch5">The Art of Investing</a></li>
+    <li><span class="n">6</span><a href="#ch6">Real Estate &amp; Alternative Assets</a></li>
+    <li><span class="n">7</span><a href="#ch7">Retirement &amp; The 4% Rule</a></li>
+    <li><span class="n">8</span><a href="#ch8">Tax Efficiency &amp; Legal Strategies</a></li>
+    <li><span class="n">9</span><a href="#ch9">Building Generational Wealth</a></li>
+    <li><span class="n">10</span><a href="#ch10">Entrepreneurship &amp; Side Hustles</a></li>
+    <li><span class="n">11</span><a href="#ch11">Protecting Your Wealth</a></li>
+    <li><span class="n">12</span><a href="#ch12">Mastering Credit &amp; Scores</a></li>
+    <li><span class="n">13</span><a href="#ch13">The Psychology of Spending</a></li>
+    <li><span class="n">14</span><a href="#ch14">Financial Boundaries in Relationships</a></li>
+    <li><span class="n">15</span><a href="#ch15">Negotiation &amp; Earning Power</a></li>
+    <li><span class="n">16</span><a href="#ch16">Passive Income &amp; Digital Assets</a></li>
+    <li><span class="n">17</span><a href="#ch17">Emergency Funds &amp; Liquidity</a></li>
+    <li><span class="n">18</span><a href="#ch18">Global Markets &amp; Diversification</a></li>
+    <li><span class="n">19</span><a href="#ch19">Estate Planning &amp; Legacy</a></li>
+    <li><span class="n">20</span><a href="#ch20">Philanthropy &amp; Impact Investing</a></li>
+    <li><span class="n">21</span><a href="#ch21">Financial Independence &amp; Action Plan</a></li>
+  </ol>
+</div>
+
+<div class="pw">
+  <div class="bar"><div class="fill" id="progFill" style="width:0%"></div></div>
+  <div class="m"><span id="progLabel">0 of 21 chapters complete</span><button class="r" onclick="resetAll()">Reset</button></div>
+</div>
+
+<div class="main">
+
+<h2 id="ch1"><span class="cl">Chapter 1</span>The Wealth Mindset Shift</h2>
+<p class="dc">Money is not merely a medium of exchange&mdash;it is a mirror reflecting your deepest beliefs about worth, security, and possibility. Before any spreadsheet, budget, or investment account matters, you must confront the story you tell yourself about wealth. Every financial habit&mdash;whether saving, spending, or investing&mdash;is rooted in a psychological framework built over years of experience, culture, and upbringing. The good news is that frameworks can be rewritten.</p>
+<p>Warren Buffett, the Oracle of Omaha and one of the wealthiest people in history, began his investing journey at age eleven. He famously said, &ldquo;The most important investment you can make is in yourself.&rdquo; This is not idle platitude. Buffett reads hundreds of pages daily, studies businesses relentlessly, and attributes his success not to luck but to continuous learning and a disciplined mindset. His life demonstrates that financial freedom begins long before you have money&mdash;it begins with how you think.</p>
+<div class="qb"><p>&ldquo;The most important investment you can make is in yourself.&rdquo;</p><cite>&mdash; <b>Warren Buffett</b>, Chairman &amp; CEO, Berkshire Hathaway</cite></div>
+<p>Dave Ramsey, America&rsquo;s trusted voice on personal finance, has helped millions eliminate debt through his Baby Steps program. He teaches, &ldquo;You must get your mind right about money before you can ever get your finances right.&rdquo; Ramsey&rsquo;s own journey&mdash;from building a multi-million-dollar real estate portfolio at twenty-six to losing it all, then rebuilding from scratch&mdash;gives him unique authority.</p>
+<div class="qb"><p>&ldquo;A budget is telling your money where to go instead of wondering where it went.&rdquo;</p><cite>&mdash; <b>Dave Ramsey</b>, Author of <em>The Total Money Makeover</em></cite></div>
+<p>Ray Dalio, founder of Bridgewater Associates (the world&rsquo;s largest hedge fund), offers a systematic approach. He argues, &ldquo;Pain plus Reflection equals Progress.&rdquo; Dalio treats financial decisions as data points in a feedback loop.</p>
+<div class="qb"><p>&ldquo;Don&rsquo;t fall in love with your decisions&mdash;test them relentlessly.&rdquo;</p><cite>&mdash; <b>Ray Dalio</b>, Founder, Bridgewater Associates</cite></div>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=g2jSLsQQC4M" target="_blank">Warren Buffett on When to Sell Stocks</a><a href="https://www.youtube.com/watch?v=oOxUl87T3EE" target="_blank">Dave Ramsey on His Biggest 2026 Concern</a></div>
+<div class="cd"><div class="lbl">Activity 1.1</div><h4>Reflection: Your Money Story</h4><p>Write a short paragraph about your earliest memory of money. What did your parents or guardians teach you about wealth? How does that story still influence your decisions today?</p><textarea class="rb" id="ch1-story" style="margin:0;width:100%;min-height:70px" placeholder="e.g., My grandmother always said money was the root of all evil, and for years I believed that wealth was something to be ashamed of..."></textarea><button class="btn-save" onclick="save('ch1-story')">Save</button></div>
+<div class="chk"><input type="checkbox" id="ch1-done" onchange="chkUpdate(this)"><label for="ch1-done">Mark chapter complete</label></div>
+
+<h2 id="ch2"><span class="cl">Chapter 2</span>Debt Elimination That Works</h2>
+<p class="dc">Debt is the most insidious obstacle on the path to financial freedom&mdash;not because it is insurmountable, but because it thrives in silence. When you ignore your debt, it compounds, not just financially but emotionally. The shame, the stress, the sleepless nights&mdash;these are the hidden costs of borrowed money. Yet every dollar of debt can be systematically dismantled with the right strategy.</p>
+<p>Dave Ramsey&rsquo;s &ldquo;Debt Snowball&rdquo; method is the gold standard for psychological momentum. You list all debts from smallest balance to largest, regardless of interest rate. You attack the smallest with every extra dollar while making minimum payments on the rest. When that one is gone, you roll its payment into the next.</p>
+<div class="qb"><p>&ldquo;You need quick wins to stay motivated. Pay off the smallest debt first, then roll that payment into the next one. It&rsquo;s not about math&mdash;it&rsquo;s about momentum.&rdquo;</p><cite>&mdash; <b>Dave Ramsey</b> on the Snowball Method</cite></div>
+<p>Warren Buffett offers a contrasting perspective: &ldquo;The best thing you can do is avoid debt altogether.&rdquo; He has always maintained a fortress-like balance sheet. Berkshire Hathaway carries minimal debt. Buffett&rsquo;s advice is simple but profound&mdash;if you cannot pay cash, you cannot afford it.</p>
+<div class="qb"><p>&ldquo;Never invest in a business you cannot understand. Never borrow money you cannot repay.&rdquo;</p><cite>&mdash; <b>Warren Buffett</b></cite></div>
+<p>Ray Dalio&rsquo;s approach to debt is clinical. In <em>Principles</em>, he writes about &ldquo;deleveraging&rdquo;&mdash;the process of reducing debt relative to income. For personal finance, this translates to tracking your debt-to-income ratio and setting a target.</p>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=oOxUl87T3EE" target="_blank">Dave Ramsey on the Biggest Financial Concern for 2026</a><a href="https://www.youtube.com/watch?v=PHe0bXAIuk0" target="_blank">Ray Dalio: How the Economic Machine Works</a></div>
+<div class="cd"><div class="lbl">Activity 2.1</div><h4>Your Debt Inventory</h4><p>List each debt you have, its balance, and its interest rate. Order them from smallest to largest balance (your snowball attack plan).</p><textarea class="rb" id="ch2-debts" style="margin:0;width:100%;min-height:80px" placeholder="1. Medical Bill &ndash; $800 at 0%&#10;2. Credit Card &ndash; $1,200 at 22%&#10;3. Auto Loan &ndash; $4,500 at 6%&#10;4. Student Loan &ndash; $15,000 at 5%"></textarea><button class="btn-save" onclick="save('ch2-debts')">Save</button></div>
+<div class="cd"><div class="lbl">Activity 2.2</div><h4>Rate Your Debt Stress</h4><p>On a scale of 1 to 10, how stressed are you about your current debt situation?</p><div class="rw" id="rating-debtstress"><button onclick="setRating('debtstress',1,this)">1</button><button onclick="setRating('debtstress',2,this)">2</button><button onclick="setRating('debtstress',3,this)">3</button><button onclick="setRating('debtstress',4,this)">4</button><button onclick="setRating('debtstress',5,this)">5</button><button onclick="setRating('debtstress',6,this)">6</button><button onclick="setRating('debtstress',7,this)">7</button><button onclick="setRating('debtstress',8,this)">8</button><button onclick="setRating('debtstress',9,this)">9</button><button onclick="setRating('debtstress',10,this)">10</button></div></div>
+<div class="chk"><input type="checkbox" id="ch2-done" onchange="chkUpdate(this)"><label for="ch2-done">Mark chapter complete</label></div>
+
+<h2 id="ch3"><span class="cl">Chapter 3</span>Budgeting Systems That Work</h2>
+<p class="dc">A budget is not a straitjacket&mdash;it is a set of wings. When you give every dollar a name, you take control of your financial destiny. Most people avoid budgeting because they associate it with deprivation. In reality, a well-designed budget is the single most powerful tool for aligning your spending with your values.</p>
+<p>The zero-based budget approach requires your income minus your outgo to equal zero. Every dollar is allocated&mdash;to expenses, savings, investments, or giving. Nothing is left unassigned. Dave Ramsey calls it &ldquo;telling your money what to do.&rdquo; Without this system, money leaks away on coffee, subscriptions, and impulse purchases.</p>
+<div class="qb"><p>&ldquo;A budget is not a limit&mdash;it&rsquo;s a plan. And a plan is what transforms dreams into reality.&rdquo;</p><cite>&mdash; <b>Dave Ramsey</b></cite></div>
+<p>Warren Buffett applies the same philosophy to his personal spending, despite his billions. He still lives in the same Omaha house he bought in 1958 for $31,500. He once said, &ldquo;If you buy things you don&rsquo;t need, you will soon sell things you need.&rdquo;</p>
+<div class="qb"><p>&ldquo;The less you need, the more you have. Simplicity is the ultimate sophistication in finance.&rdquo;</p><cite>&mdash; <b>Warren Buffett</b></cite></div>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=oOxUl87T3EE" target="_blank">Dave Ramsey&rsquo;s Financial Planning Advice</a><a href="https://www.youtube.com/watch?v=g2jSLsQQC4M" target="_blank">Warren Buffett on Investment Discipline</a></div>
+<div class="cd"><div class="lbl">Activity 3.1</div><h4>Build Your Zero-Based Budget</h4><p>Enter your monthly numbers below. Every dollar should be assigned a purpose.</p><table class="dt"><thead><tr><th>Category</th><th>Amount ($)</th></tr></thead><tbody><tr><td>Monthly Income</td><td><input id="ch3-income" placeholder="e.g. 5000"></td></tr><tr><td>Housing</td><td><input id="ch3-housing" placeholder="e.g. 1500"></td></tr><tr><td>Food</td><td><input id="ch3-food" placeholder="e.g. 600"></td></tr><tr><td>Transport</td><td><input id="ch3-transport" placeholder="e.g. 300"></td></tr><tr><td>Utilities</td><td><input id="ch3-utils" placeholder="e.g. 250"></td></tr><tr><td>Savings</td><td><input id="ch3-savings" placeholder="e.g. 800"></td></tr><tr><td>Debt</td><td><input id="ch3-debt" placeholder="e.g. 500"></td></tr><tr><td>Discretionary</td><td><input id="ch3-fun" placeholder="e.g. 400"></td></tr></tbody></table><button class="btn-save" onclick="saveBudget()">Save Budget</button></div>
+<div class="chk"><input type="checkbox" id="ch3-done" onchange="chkUpdate(this)"><label for="ch3-done">Mark chapter complete</label></div>
+
+<h2 id="ch4"><span class="cl">Chapter 4</span>Multiple Income Streams</h2>
+<p class="dc">Relying on a single paycheck is one of the greatest risks you can take. Job loss, illness, or economic downturns can erase your income overnight. The financially free build multiple streams&mdash;some active, some passive&mdash;so that the failure of one never means financial ruin. Diversification applies not just to your investments but to your income itself.</p>
+<p>Warren Buffett&rsquo;s primary income comes not from a salary but from the dividends and capital gains of Berkshire Hathaway&rsquo;s portfolio. He built a system where money works for him. His advice: &ldquo;Never depend on a single source of income. Make investments to create a second source.&rdquo;</p>
+<div class="qb"><p>&ldquo;If you don&rsquo;t find a way to make money while you sleep, you will work until you die.&rdquo;</p><cite>&mdash; <b>Warren Buffett</b></cite></div>
+<p>Dave Ramsey teaches that before you can build multiple income streams, you must first master one. &ldquo;Gazelle intensity&rdquo; on your primary career creates the cash flow needed to fund side ventures.</p>
+<div class="qb"><p>&ldquo;Your income is your greatest wealth-building tool. Increase it, protect it, and multiply it.&rdquo;</p><cite>&mdash; <b>Dave Ramsey</b></cite></div>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=PHe0bXAIuk0" target="_blank">Ray Dalio Explains How the Economy Works</a><a href="https://www.youtube.com/watch?v=g2jSLsQQC4M" target="_blank">Warren Buffett on Long-Term Investing</a></div>
+<div class="cd"><div class="lbl">Activity 4.1</div><h4>Brainstorm Your Next Income Stream</h4><p>Describe one side hustle or passive income idea you could start in the next 90 days. What is the very first step you need to take?</p><textarea class="rb" id="ch4-idea" style="margin:0;width:100%;min-height:70px" placeholder="e.g., Sell digital planners on Etsy. First step: research top-selling planners and create three templates."></textarea><button class="btn-save" onclick="save('ch4-idea')">Save</button></div>
+<div class="chk"><input type="checkbox" id="ch4-done" onchange="chkUpdate(this)"><label for="ch4-done">Mark chapter complete</label></div>
+
+<h2 id="ch5"><span class="cl">Chapter 5</span>The Art of Investing</h2>
+<p class="dc">Investing is not gambling. It is the systematic deployment of capital into assets that generate returns over time. The difference between speculation and investing is a framework: you must understand what you own, why you own it, and what you expect it to return.</p>
+<p>Warren Buffett&rsquo;s philosophy is built on &ldquo;value investing&rdquo;&mdash;buying a dollar of assets for fifty cents. He looks for companies with durable competitive advantages (what he calls a &ldquo;moat&rdquo;), strong management, and reasonable prices. He has held Coca-Cola for over thirty years, collecting dividends and watching the value compound.</p>
+<div class="qb"><p>&ldquo;The stock market is a device for transferring money from the impatient to the patient.&rdquo;</p><cite>&mdash; <b>Warren Buffett</b></cite></div>
+<div class="ec"><div class="h"><div class="i">JB</div><div class="info"><h4>John Bogle</h4><div class="role">Founder, Vanguard Group &bull; Creator of the first index fund</div><div class="qt">&ldquo;Don&rsquo;t look for the needle in the haystack. Just buy the haystack.&rdquo;</div></div></div><div class="b"><p>John Bogle revolutionised investing by making it accessible, affordable, and evidence-based. In 1975, he founded The Vanguard Group and launched the first index mutual fund, which simply tracked the S&P 500. The financial establishment ridiculed the idea, calling it &ldquo;un-American.&rdquo; Bogle&rsquo;s counterargument was devastating: the stock market as a whole must, by definition, deliver the average return of all investors. By buying the entire market through an index fund, you capture that average return. Active fund managers, after their fees, must collectively underperform the market. Bogle&rsquo;s insight has been validated by decades of data. Vanguard now manages over $8 trillion in assets. His legacy: investing is not about beating the market; it is about participating in human economic progress with humility, patience, and discipline.</p></div></div>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=g2jSLsQQC4M" target="_blank">Warren Buffett Explains When to Sell Stocks</a><a href="https://www.youtube.com/watch?v=PHe0bXAIuk0" target="_blank">Ray Dalio&rsquo;s Economic Machine</a></div>
+<div class="cd"><div class="lbl">Activity 5.1</div><h4>Quick Quiz</h4><p>What is a &ldquo;moat&rdquo; in investing?</p><div class="quiz-block"><div class="quiz-opt" data-correct="false" onclick="checkQ(this,5)">A. A company&rsquo;s cash reserve</div><div class="quiz-opt" data-correct="false" onclick="checkQ(this,5)">B. A defensive stock</div><div class="quiz-opt" data-correct="true" onclick="checkQ(this,5)">C. A durable competitive advantage</div><div class="quiz-opt" data-correct="false" onclick="checkQ(this,5)">D. A market downturn</div><div class="fbk" id="fb5"></div></div></div>
+<div class="chk"><input type="checkbox" id="ch5-done" onchange="chkUpdate(this)"><label for="ch5-done">Mark chapter complete</label></div>
+
+<h2 id="ch6"><span class="cl">Chapter 6</span>Real Estate &amp; Alternative Assets</h2>
+<p class="dc">Real estate has created more millionaires than any other asset class. Unlike stocks, which are paper assets, real estate is tangible&mdash;you can touch it, improve it, and control its value through active management. But it also requires capital, due diligence, and a willingness to get your hands dirty.</p>
+<p>Warren Buffett owns real estate through Berkshire Hathaway&rsquo;s subsidiaries but rarely buys individual properties himself. His perspective: &ldquo;Real estate is a wonderful asset if you buy it right and hold it forever.&rdquo;</p>
+<div class="qb"><p>&ldquo;The best time to buy real estate was twenty years ago. The second-best time is when everyone else is selling.&rdquo;</p><cite>&mdash; <b>Warren Buffett</b></cite></div>
+<p>Dave Ramsey strongly advocates for owning rental properties&mdash;but only after you are debt-free and have a fully funded emergency fund. He teaches the &ldquo;1 percent rule&rdquo;: never buy a rental property unless the monthly rent is at least 1 percent of the purchase price.</p>
+<div class="qb"><p>&ldquo;Landlording is not passive income&mdash;it&rsquo;s a side business. But if you do it right, it can be incredibly lucrative.&rdquo;</p><cite>&mdash; <b>Dave Ramsey</b></cite></div>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=oOxUl87T3EE" target="_blank">Dave Ramsey&rsquo;s Real Estate Advice</a><a href="https://www.youtube.com/watch?v=g2jSLsQQC4M" target="_blank">Warren Buffett&rsquo;s Investment Strategy</a></div>
+<div class="cd"><div class="lbl">Activity 6.1</div><h4>Evaluate a Rental Property</h4><p>Purchase Price: $<input class="rb" id="ch6-price" style="display:inline;width:120px;margin:0 4px;padding:4px 8px" placeholder="e.g. 300000"></p><p>Expected Monthly Rent: $<input class="rb" id="ch6-rent" style="display:inline;width:120px;margin:0 4px;padding:4px 8px" placeholder="e.g. 3000"></p><button class="btn-save" onclick="evalRental()">Evaluate</button><div class="fbk" id="fb-rental"></div></div>
+<div class="chk"><input type="checkbox" id="ch6-done" onchange="chkUpdate(this)"><label for="ch6-done">Mark chapter complete</label></div>
+
+<h2 id="ch7"><span class="cl">Chapter 7</span>Retirement &amp; The 4% Rule</h2>
+<p class="dc">Retirement is not an age; it is a financial number. When your investment portfolio can generate enough income to cover your expenses indefinitely, you have achieved financial independence. The &ldquo;4 percent rule&rdquo; states that you can withdraw 4 percent of your portfolio each year, adjusted for inflation, and have a high probability of never running out of money over thirty years.</p>
+<p>Warren Buffett&rsquo;s advice for retirement savers is brutally simple: &ldquo;A low-cost S&amp;P 500 index fund is the best investment for most people.&rdquo; He has instructed that 90 percent of his wife&rsquo;s inheritance be placed in an S&amp;P 500 index fund and 10 percent in short-term government bonds.</p>
+<div class="qb"><p>&ldquo;Consistently buy an S&amp;P 500 low-cost index fund. Keep buying through thick and thin. The results will be excellent.&rdquo;</p><cite>&mdash; <b>Warren Buffett</b> on Retirement Savings</cite></div>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=g2jSLsQQC4M" target="_blank">Warren Buffett&rsquo;s Retirement Advice</a><a href="https://www.youtube.com/watch?v=PHe0bXAIuk0" target="_blank">Ray Dalio on Economic Principles</a></div>
+<div class="cd"><div class="lbl">Activity 7.1</div><h4>Calculate Your Retirement Number</h4><p>Use the 4 percent rule: multiply your annual expenses by 25. That&rsquo;s your target portfolio.</p><p>Annual expenses in retirement: $<input class="rb" id="ch7-expenses" style="display:inline;width:120px;margin:0 4px;padding:4px 8px" placeholder="e.g. 40000"></p><button class="btn-save" onclick="calcRetire()">Calculate</button><div class="fbk" id="fb-retire"></div></div>
+<div class="chk"><input type="checkbox" id="ch7-done" onchange="chkUpdate(this)"><label for="ch7-done">Mark chapter complete</label></div>
+
+<h2 id="ch8"><span class="cl">Chapter 8</span>Tax Efficiency &amp; Legal Strategies</h2>
+<p class="dc">Paying taxes is patriotic; paying more than required is foolish. The tax code rewards certain behaviors&mdash;investing, homeownership, entrepreneurship&mdash;with deductions, credits, and preferential rates. Understanding these mechanisms can save you tens of thousands of dollars over your lifetime.</p>
+<p>Warren Buffett famously pays a lower effective tax rate than his secretary&mdash;not because of loopholes, but because capital gains are taxed at a lower rate than ordinary income. His advice: &ldquo;Use tax-advantaged accounts to their fullest. A Roth IRA is the greatest gift the government has ever given the middle class.&rdquo;</p>
+<div class="qb"><p>&ldquo;The best way to reduce your tax bill is to invest for the long term in tax-advantaged accounts.&rdquo;</p><cite>&mdash; <b>Warren Buffett</b></cite></div>
+<p>Dave Ramsey teaches the &ldquo;Tax-Free Freedom&rdquo; strategy: maximize Roth IRA and Roth 401(k) contributions. He also advises using Health Savings Accounts (HSAs) as triple-tax-advantaged retirement vehicles.</p>
+<div class="qb"><p>&ldquo;A Roth IRA is the single best investment vehicle available to the average American. Max it out every year.&rdquo;</p><cite>&mdash; <b>Dave Ramsey</b></cite></div>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=oOxUl87T3EE" target="_blank">Dave Ramsey on Tax-Free Retirement</a><a href="https://www.youtube.com/watch?v=g2jSLsQQC4M" target="_blank">Warren Buffett&rsquo;s Investment Wisdom</a></div>
+<div class="cd"><div class="lbl">Activity 8.1</div><h4>Tax-Advantaged Accounts Checklist</h4><div class="chk"><input type="checkbox" id="tax1" onchange="chkSimple('tax1')"><label for="tax1">Roth IRA &mdash; max $7,000/year</label></div><div class="chk"><input type="checkbox" id="tax2" onchange="chkSimple('tax2')"><label for="tax2">401(k) / Roth 401(k) &mdash; max $23,000/year</label></div><div class="chk"><input type="checkbox" id="tax3" onchange="chkSimple('tax3')"><label for="tax3">HSA (Health Savings Account) &mdash; max $4,150/year</label></div><div class="chk"><input type="checkbox" id="tax4" onchange="chkSimple('tax4')"><label for="tax4">529 Education Savings Plan</label></div></div>
+<div class="chk"><input type="checkbox" id="ch8-done" onchange="chkUpdate(this)"><label for="ch8-done">Mark chapter complete</label></div>
+
+<h2 id="ch9"><span class="cl">Chapter 9</span>Building Generational Wealth</h2>
+<p class="dc">True wealth is not measured in what you accumulate for yourself, but in what you build for those who come after you. Generational wealth is the financial legacy that endures beyond your lifetime&mdash;assets, values, and wisdom passed down through generations. The wealthy families of the world think in centuries, not fiscal years.</p>
+<p>Warren Buffett plans to give away 99 percent of his fortune to philanthropic causes, with only a modest inheritance for his children. He said, &ldquo;A very rich person should leave his kids enough to do anything but not enough to do nothing.&rdquo;</p>
+<div class="qb"><p>&ldquo;The best inheritance you can give your children is the capacity to build their own wealth.&rdquo;</p><cite>&mdash; <b>Warren Buffett</b></cite></div>
+<p>Dave Ramsey teaches that generational wealth requires three pillars: eliminate debt so you don&rsquo;t pass it down, build wealth through consistent investing, and teach your children financial principles.</p>
+<div class="qb"><p>&ldquo;Wealth that is not paired with wisdom will be squandered. Teach your kids while you still have time.&rdquo;</p><cite>&mdash; <b>Dave Ramsey</b></cite></div>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=g2jSLsQQC4M" target="_blank">Warren Buffett&rsquo;s Life Advice</a><a href="https://www.youtube.com/watch?v=oOxUl87T3EE" target="_blank">Dave Ramsey on Financial Wisdom</a></div>
+<div class="cd"><div class="lbl">Activity 9.1</div><h4>Your Family Wealth Mission</h4><p>Write one paragraph describing the financial legacy you want to leave. What values would you want passed down alongside the money?</p><textarea class="rb" id="ch9-legacy" style="margin:0;width:100%;min-height:70px" placeholder="The legacy I want to leave is..."></textarea><button class="btn-save" onclick="save('ch9-legacy')">Save</button></div>
+<div class="chk"><input type="checkbox" id="ch9-done" onchange="chkUpdate(this)"><label for="ch9-done">Mark chapter complete</label></div>
+
+<h2 id="ch10"><span class="cl">Chapter 10</span>Entrepreneurship &amp; Side Hustles</h2>
+<p class="dc">The fastest path to financial freedom often runs through entrepreneurship. Whether it&rsquo;s a full-time business or a side hustle, creating value for others is the most direct way to increase your income beyond what any employer can offer.</p>
+<p>Warren Buffett&rsquo;s entrepreneurial journey began with a pinball machine business at age fourteen. He learned that owning assets that generated cash flow was far more lucrative than trading time for money at a job.</p>
+<div class="qb"><p>&ldquo;Someone&rsquo;s sitting in the shade today because someone planted a tree a long time ago. Plant your tree today.&rdquo;</p><cite>&mdash; <b>Warren Buffett</b> on Entrepreneurship</cite></div>
+<p>Dave Ramsey started his real estate business at twenty-six, amassing a $4 million portfolio before losing it all when banks called his loans. He rebuilt from scratch using the principles he now teaches.</p>
+<div class="qb"><p>&ldquo;Do not go into debt to start a business. Save cash, start small, and grow slowly. Fast growth kills more businesses than slow growth.&rdquo;</p><cite>&mdash; <b>Dave Ramsey</b></cite></div>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=oOxUl87T3EE" target="_blank">Dave Ramsey&rsquo;s Business Advice</a><a href="https://www.youtube.com/watch?v=PHe0bXAIuk0" target="_blank">Ray Dalio&rsquo;s Principles for Success</a></div>
+<div class="cd"><div class="lbl">Activity 10.1</div><h4>Validate Your Business Idea</h4><p>1. What specific problem does your idea solve? 2. Who will pay for the solution?</p><textarea class="rb" id="ch10-validate" style="margin:0;width:100%;min-height:70px" placeholder="Problem: ...&#10;Customer: ..."></textarea><button class="btn-save" onclick="save('ch10-validate')">Save</button></div>
+<div class="chk"><input type="checkbox" id="ch10-done" onchange="chkUpdate(this)"><label for="ch10-done">Mark chapter complete</label></div>
+
+<h2 id="ch11"><span class="cl">Chapter 11</span>Protecting Your Wealth</h2>
+<p class="dc">You have built wealth. Now you must protect it. Insurance and estate planning are the walls and roof of your financial fortress. Without them, a single lawsuit, illness, or accident can erase decades of disciplined saving.</p>
+<p>Warren Buffett runs an insurance company (GEICO is part of Berkshire Hathaway) and understands risk better than almost anyone. For individuals, he recommends term life insurance (not whole life) and umbrella liability policies.</p>
+<div class="qb"><p>&ldquo;Insurance is the business of taking risks that other people don&rsquo;t want and pricing them correctly.&rdquo;</p><cite>&mdash; <b>Warren Buffett</b></cite></div>
+<p>Dave Ramsey&rsquo;s Baby Steps include a fully funded emergency fund before any aggressive investing. He recommends term life insurance at 10 to 12 times your annual income.</p>
+<div class="qb"><p>&ldquo;You should never have more personal liability than necessary. Structure your affairs to protect your family&rsquo;s financial security.&rdquo;</p><cite>&mdash; <b>Dave Ramsey</b></cite></div>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=oOxUl87T3EE" target="_blank">Dave Ramsey&rsquo;s Insurance Guide</a><a href="https://www.youtube.com/watch?v=g2jSLsQQC4M" target="_blank">Warren Buffett on Risk Management</a></div>
+<div class="cd"><div class="lbl">Activity 11.1</div><h4>Insurance Audit Checklist</h4><div class="chk"><input type="checkbox" id="ins1" onchange="chkSimple('ins1')"><label for="ins1">Term Life Insurance (10&ndash;12x annual income)</label></div><div class="chk"><input type="checkbox" id="ins2" onchange="chkSimple('ins2')"><label for="ins2">Disability Insurance (covers 60%+ of income)</label></div><div class="chk"><input type="checkbox" id="ins3" onchange="chkSimple('ins3')"><label for="ins3">Health Insurance (catastrophic coverage)</label></div><div class="chk"><input type="checkbox" id="ins4" onchange="chkSimple('ins4')"><label for="ins4">Umbrella Liability Policy (assets over $500k)</label></div></div>
+<div class="chk"><input type="checkbox" id="ch11-done" onchange="chkUpdate(this)"><label for="ch11-done">Mark chapter complete</label></div>
+
+<h2 id="ch12"><span class="cl">Chapter 12</span>Mastering Credit &amp; Scores</h2>
+<p class="dc">Your credit score is not a measure of your worth as a human being&mdash;it is a measure of your reliability as a borrower. Yet this single three-digit number can determine whether you qualify for a mortgage, what interest rate you pay on a car loan, and whether a landlord accepts your rental application.</p>
+<p>The FICO score is composed of five factors: payment history (35%), amounts owed (30%), length of credit history (15%), new credit (10%), and credit mix (10%). The single most important action is paying every bill on time, every time.</p>
+<div class="qb"><p>&ldquo;A good credit score is a financial asset that saves you thousands of dollars in interest over your lifetime. Protect it like any other asset.&rdquo;</p><cite>&mdash; Financial Industry Standard</cite></div>
+<p>Dave Ramsey takes a contrarian view: he argues that credit scores are unnecessary if you pay cash for everything. However, he acknowledges that most people will need a mortgage eventually.</p>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=oOxUl87T3EE" target="_blank">Dave Ramsey on Credit Scores</a><a href="https://www.youtube.com/watch?v=PHe0bXAIuk0" target="_blank">Understanding Economic Cycles</a></div>
+<div class="cd"><div class="lbl">Activity 12.1</div><h4>Credit Health Assessment</h4><p>Rate your current credit health and write one specific action you will take this month to improve or maintain it.</p><textarea class="rb" id="ch12-credit" style="margin:0;width:100%;min-height:70px" placeholder="My current credit score is approximately ____. This month I will ____."></textarea><button class="btn-save" onclick="save('ch12-credit')">Save</button></div>
+<div class="cd"><div class="lbl">Activity 12.2</div><h4>Credit Factor Checklist</h4><div class="chk"><input type="checkbox" id="cr1" onchange="chkSimple('cr1')"><label for="cr1">Pay all bills on time</label></div><div class="chk"><input type="checkbox" id="cr2" onchange="chkSimple('cr2')"><label for="cr2">Keep credit utilization below 30%</label></div><div class="chk"><input type="checkbox" id="cr3" onchange="chkSimple('cr3')"><label for="cr3">Avoid opening unnecessary accounts</label></div><div class="chk"><input type="checkbox" id="cr4" onchange="chkSimple('cr4')"><label for="cr4">Review credit report annually for errors</label></div></div>
+<div class="chk"><input type="checkbox" id="ch12-done" onchange="chkUpdate(this)"><label for="ch12-done">Mark chapter complete</label></div>
+
+<h2 id="ch13"><span class="cl">Chapter 13</span>The Psychology of Spending</h2>
+<p class="dc">Why do we spend money we know we should save? The answer lies not in mathematics but in psychology. Every purchase is driven by an emotional need&mdash;for status, comfort, security, belonging, or excitement. The financially free person learns to recognize these emotional drivers.</p>
+<p>Dr. Thomas Gilovich&rsquo;s research reveals that experiential purchases (travel, concerts, dining with friends) produce more lasting happiness than material purchases (clothes, gadgets, cars). Experiences become part of our identity, while material objects lose their novelty quickly.</p>
+<div class="qb"><p>&ldquo;Money can buy happiness, but only if you spend it on experiences rather than things, and on others rather than yourself.&rdquo;</p><cite>&mdash; <b>Dr. Thomas Gilovich</b>, Cornell University</cite></div>
+<p>Warren Buffett&rsquo;s approach to spending is legendary for its simplicity. He still drives an older car, lives in the same house from 1958, and doesn&rsquo;t derive pleasure from conspicuous consumption.</p>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=g2jSLsQQC4M" target="_blank">Warren Buffett on Consumer Behavior</a><a href="https://www.youtube.com/watch?v=oOxUl87T3EE" target="_blank">Dave Ramsey on Curbing Impulse Spending</a></div>
+<div class="cd"><div class="lbl">Activity 13.1</div><h4>Spending Triggers Journal</h4><p>Identify your top three emotional spending triggers (e.g., stress, boredom, social pressure). For each, write a healthier alternative.</p><textarea class="rb" id="ch13-triggers" style="margin:0;width:100%;min-height:70px" placeholder="Trigger 1: Boredom &#8594; Instead of shopping, I will go for a walk.&#10;Trigger 2: ..."></textarea><button class="btn-save" onclick="save('ch13-triggers')">Save</button></div>
+<div class="chk"><input type="checkbox" id="ch13-done" onchange="chkUpdate(this)"><label for="ch13-done">Mark chapter complete</label></div>
+
+<h2 id="ch14"><span class="cl">Chapter 14</span>Financial Boundaries in Relationships</h2>
+<p class="dc">Money is the leading cause of stress in relationships&mdash;more than infidelity, in-laws, or parenting disagreements. Yet most couples enter financial partnerships without a conversation about values, goals, or boundaries. The result is conflict, secrecy, and mutual resentment.</p>
+<p>Dave Ramsey has counseled thousands of couples through his Financial Peace University. His approach: have a monthly budget meeting with your spouse or partner. No surprises. No secrets. Every dollar is planned together.</p>
+<div class="qb"><p>&ldquo;Marriage is the union of two people&mdash;and two bank accounts. If you can&rsquo;t agree on money, you can&rsquo;t agree on much.&rdquo;</p><cite>&mdash; <b>Dave Ramsey</b></cite></div>
+<p>Warren Buffett&rsquo;s advice: &ldquo;The most important financial decision you will ever make is who you marry. Marry the right person, and your financial life will be infinitely easier.&rdquo;</p>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=oOxUl87T3EE" target="_blank">Dave Ramsey on Money and Marriage</a><a href="https://www.youtube.com/watch?v=PHe0bXAIuk0" target="_blank">Ray Dalio on Radical Transparency</a></div>
+<div class="cd"><div class="lbl">Activity 14.1</div><h4>Your Financial Partnership Agreement</h4><p>Write three financial agreements you and your partner will commit to (e.g., spending limits without discussion, savings goals, debt repayment plans).</p><textarea class="rb" id="ch14-agreement" style="margin:0;width:100%;min-height:70px" placeholder="1. Any single purchase over $200 requires discussion.&#10;2. We will save 15% of our combined income.&#10;3. ..."></textarea><button class="btn-save" onclick="save('ch14-agreement')">Save</button></div>
+<div class="chk"><input type="checkbox" id="ch14-done" onchange="chkUpdate(this)"><label for="ch14-done">Mark chapter complete</label></div>
+
+<h2 id="ch15"><span class="cl">Chapter 15</span>Negotiation &amp; Earning Power</h2>
+<p class="dc">Negotiation is the single most underrated financial skill. A 5 percent raise on a $60,000 salary is $3,000 per year&mdash;every year of your career. Negotiating a $50 reduction on your monthly rent saves $600 per year. Over a decade, these skills can add hundreds of thousands of dollars to your net worth.</p>
+<p>Warren Buffett is known for his patient, principled negotiation style. He doesn&rsquo;t haggle&mdash;he makes a fair offer and walks away if it&rsquo;s not accepted. His rule: &ldquo;Price is what you pay. Value is what you get.&rdquo;</p>
+<div class="qb"><p>&ldquo;The most powerful word in negotiation is &lsquo;no.&rsquo; It gives you leverage, clarity, and self-respect.&rdquo;</p><cite>&mdash; <b>Warren Buffett</b></cite></div>
+<p>Dave Ramsey teaches that negotiation is about service, not confrontation. When asking for a raise, frame it around the value you bring, not your personal needs.</p>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=g2jSLsQQC4M" target="_blank">Warren Buffett on Negotiation</a><a href="https://www.youtube.com/watch?v=oOxUl87T3EE" target="_blank">Dave Ramsey on Asking for a Raise</a></div>
+<div class="cd"><div class="lbl">Activity 15.1</div><h4>Salary Negotiation Script</h4><p>Write a script for your next salary or raise negotiation. Include: your accomplishments, the value you bring, and your specific request.</p><textarea class="rb" id="ch15-script" style="margin:0;width:100%;min-height:70px" placeholder="I wanted to discuss my compensation. Over the past year, I have achieved [accomplishments]. Based on my performance and market research, I am requesting [specific amount]."></textarea><button class="btn-save" onclick="save('ch15-script')">Save</button></div>
+<div class="cd"><div class="lbl">Activity 15.2</div><h4>Bill Negotiation Tracker</h4><div class="chk"><input type="checkbox" id="neg1" onchange="chkSimple('neg1')"><label for="neg1">Negotiated internet/cable bill</label></div><div class="chk"><input type="checkbox" id="neg2" onchange="chkSimple('neg2')"><label for="neg2">Negotiated insurance premium</label></div><div class="chk"><input type="checkbox" id="neg3" onchange="chkSimple('neg3')"><label for="neg3">Negotiated rent or mortgage rate</label></div><div class="chk"><input type="checkbox" id="neg4" onchange="chkSimple('neg4')"><label for="neg4">Negotiated a subscription or service fee</label></div></div>
+<div class="chk"><input type="checkbox" id="ch15-done" onchange="chkUpdate(this)"><label for="ch15-done">Mark chapter complete</label></div>
+
+<h2 id="ch16"><span class="cl">Chapter 16</span>Passive Income &amp; Digital Assets</h2>
+<p class="dc">The internet has democratized the creation of passive income. Twenty years ago, building a passive income stream required significant capital for real estate or businesses. Today, anyone with a laptop and expertise can create digital assets that generate income while they sleep.</p>
+<p>Warren Buffett&rsquo;s concept of &ldquo;economic moats&rdquo; applies perfectly to digital assets. A well-designed online course, a popular YouTube channel, or a library of digital templates creates a competitive advantage that grows over time.</p>
+<div class="qb"><p>&ldquo;Digital assets are the modern equivalent of owning the factory instead of working on the assembly line. Build them once, collect forever.&rdquo;</p><cite>&mdash; Modern Wealth Principle</cite></div>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=PHe0bXAIuk0" target="_blank">Ray Dalio on Building Systems</a><a href="https://www.youtube.com/watch?v=g2jSLsQQC4M" target="_blank">Warren Buffett on Long-Term Assets</a></div>
+<div class="cd"><div class="lbl">Activity 16.1</div><h4>Digital Asset Brainstorm</h4><p>What knowledge or skill could you package into a digital product? Describe the product, audience, and price point.</p><textarea class="rb" id="ch16-digital" style="margin:0;width:100%;min-height:70px" placeholder="Product: Budget spreadsheet template for freelancers&#10;Audience: Freelance professionals aged 25-45&#10;Price: $27"></textarea><button class="btn-save" onclick="save('ch16-digital')">Save</button></div>
+<div class="cd"><div class="lbl">Activity 16.2</div><h4>Passive Income ROI Calculator</h4><p>Hours to create: <input class="rb" id="ch16-hours" style="display:inline;width:100px;margin:0 4px;padding:4px 8px"></p><p>Monthly income: $<input class="rb" id="ch16-monthly" style="display:inline;width:100px;margin:0 4px;padding:4px 8px"></p><p>Lifetime (months): <input class="rb" id="ch16-life" style="display:inline;width:100px;margin:0 4px;padding:4px 8px"></p><button class="btn-save" onclick="calcPassive()">Calculate ROI</button><div class="fbk" id="fb-passive"></div></div>
+<div class="chk"><input type="checkbox" id="ch16-done" onchange="chkUpdate(this)"><label for="ch16-done">Mark chapter complete</label></div>
+
+<h2 id="ch17"><span class="cl">Chapter 17</span>Emergency Funds &amp; Liquidity</h2>
+<p class="dc">An emergency fund is not an investment&mdash;it is insurance against life. When the car breaks down, the roof springs a leak, or a job loss occurs, the emergency fund is what prevents you from adding debt to your misfortune.</p>
+<p>Dave Ramsey&rsquo;s Baby Step 1 is a $1,000 starter emergency fund. Baby Step 3 is a fully funded emergency fund of 3 to 6 months of expenses. He insists on this before any aggressive investing.</p>
+<div class="qb"><p>&ldquo;An emergency fund is your buffer between life&rsquo;s unexpected punches and financial ruin. Don&rsquo;t leave home without it.&rdquo;</p><cite>&mdash; <b>Dave Ramsey</b></cite></div>
+<p>Warren Buffett keeps a massive cash reserve at Berkshire Hathaway&mdash;over $150 billion. He calls it a &ldquo;fortress balance sheet.&rdquo; This cash allows him to buy when others are forced to sell.</p>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=oOxUl87T3EE" target="_blank">Dave Ramsey on Emergency Funds</a><a href="https://www.youtube.com/watch?v=PHe0bXAIuk0" target="_blank">Ray Dalio on Preparing for the Unexpected</a></div>
+<div class="cd"><div class="lbl">Activity 17.1</div><h4>Emergency Fund Calculator</h4><p>Monthly expenses: $<input class="rb" id="ch17-expenses" style="display:inline;width:100px;margin:0 4px;padding:4px 8px"></p><p>Months to cover: <input class="rb" id="ch17-months" style="display:inline;width:100px;margin:0 4px;padding:4px 8px"></p><button class="btn-save" onclick="calcEmergency()">Calculate Goal</button><div class="fbk" id="fb-emergency"></div></div>
+<div class="cd"><div class="lbl">Activity 17.2</div><h4>Emergency Fund Tracker</h4><div class="chk"><input type="checkbox" id="em1" onchange="chkSimple('em1')"><label for="em1">$1,000 starter fund (Baby Step 1)</label></div><div class="chk"><input type="checkbox" id="em2" onchange="chkSimple('em2')"><label for="em2">3 months of expenses saved</label></div><div class="chk"><input type="checkbox" id="em3" onchange="chkSimple('em3')"><label for="em3">6 months of expenses saved</label></div></div>
+<div class="chk"><input type="checkbox" id="ch17-done" onchange="chkUpdate(this)"><label for="ch17-done">Mark chapter complete</label></div>
+
+<h2 id="ch18"><span class="cl">Chapter 18</span>Global Markets &amp; Diversification</h2>
+<p class="dc">The US stock market represents approximately 55 percent of the world&rsquo;s total market capitalization. If your entire portfolio is in US stocks, you are betting that America will outperform the rest of the world for your entire investing lifetime.</p>
+<p>Warren Buffett has famously advised most investors to simply buy a low-cost S&P 500 index fund. However, Berkshire Hathaway itself owns significant international holdings, including investments in Japan, Canada, and Europe.</p>
+<div class="qb"><p>&ldquo;The world is interconnected financially. Your portfolio should reflect that reality. Don&rsquo;t bet exclusively on one country.&rdquo;</p><cite>&mdash; <b>Warren Buffett</b></cite></div>
+<p>Ray Dalio&rsquo;s &ldquo;All Weather&rdquo; portfolio includes significant international exposure. Different countries are at different stages of the economic cycle, and a globally diversified portfolio smooths returns over time.</p>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=PHe0bXAIuk0" target="_blank">Ray Dalio on the Global Economy</a><a href="https://www.youtube.com/watch?v=g2jSLsQQC4M" target="_blank">Warren Buffett on International Investing</a></div>
+<div class="cd"><div class="lbl">Activity 18.1</div><h4>Your Global Allocation Plan</h4><p>Describe your current international exposure and what percentage of your portfolio you plan to allocate globally.</p><textarea class="rb" id="ch18-global" style="margin:0;width:100%;min-height:70px" placeholder="Currently I have ____% invested internationally. My target is ____%."></textarea><button class="btn-save" onclick="save('ch18-global')">Save</button></div>
+<div class="chk"><input type="checkbox" id="ch18-done" onchange="chkUpdate(this)"><label for="ch18-done">Mark chapter complete</label></div>
+
+<h2 id="ch19"><span class="cl">Chapter 19</span>Estate Planning &amp; Legacy</h2>
+<p class="dc">If you die without a will, the government decides who gets your assets. If you become incapacitated without a power of attorney, a court decides who manages your finances. Estate planning is for anyone who wants to protect their family.</p>
+<p>Warren Buffett has structured his estate to give 99 percent of his wealth to philanthropic causes. His estate plan reflects careful thought about legacy, tax efficiency, and family values.</p>
+<div class="qb"><p>&ldquo;Estate planning is the ultimate act of love for your family. It ensures your hard-earned assets go where you intend.&rdquo;</p><cite>&mdash; Financial Planning Standard</cite></div>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=oOxUl87T3EE" target="_blank">Dave Ramsey on Estate Planning</a><a href="https://www.youtube.com/watch?v=g2jSLsQQC4M" target="_blank">Warren Buffett on Leaving a Legacy</a></div>
+<div class="cd"><div class="lbl">Activity 19.1</div><h4>Estate Planning Checklist</h4><div class="chk"><input type="checkbox" id="est1" onchange="chkSimple('est1')"><label for="est1">Last Will and Testament</label></div><div class="chk"><input type="checkbox" id="est2" onchange="chkSimple('est2')"><label for="est2">Durable Power of Attorney (Financial)</label></div><div class="chk"><input type="checkbox" id="est3" onchange="chkSimple('est3')"><label for="est3">Healthcare Power of Attorney</label></div><div class="chk"><input type="checkbox" id="est4" onchange="chkSimple('est4')"><label for="est4">Living Will / Advance Directive</label></div><div class="chk"><input type="checkbox" id="est5" onchange="chkSimple('est5')"><label for="est5">Beneficiary Designations Updated</label></div></div>
+<div class="chk"><input type="checkbox" id="ch19-done" onchange="chkUpdate(this)"><label for="ch19-done">Mark chapter complete</label></div>
+
+<h2 id="ch20"><span class="cl">Chapter 20</span>Philanthropy &amp; Impact Investing</h2>
+<p class="dc">Money is a tool, and the most fulfilled wealthy people use that tool to make a difference. Philanthropy is not just for billionaires&mdash;anyone can allocate a portion of their resources to causes they care about.</p>
+<p>Warren Buffett has pledged to give away 99 percent of his fortune. Through The Giving Pledge, he and Bill Gates have inspired hundreds of billionaires to commit to giving away at least half of their wealth.</p>
+<div class="qb"><p>&ldquo;The more you give, the more you live. Generosity is not a drain on wealth&mdash;it is a multiplier of meaning.&rdquo;</p><cite>&mdash; <b>Warren Buffett</b></cite></div>
+<p>Dave Ramsey teaches that giving should be a line item in every budget&mdash;not what&rsquo;s left over after everything else. He recommends 10 percent of your income as a giving target.</p>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=g2jSLsQQC4M" target="_blank">Warren Buffett on The Giving Pledge</a><a href="https://www.youtube.com/watch?v=oOxUl87T3EE" target="_blank">Dave Ramsey on Generosity</a></div>
+<div class="cd"><div class="lbl">Activity 20.1</div><h4>Your Giving Plan</h4><p>What causes matter most to you? How much do you want to give annually? Write your philanthropic mission.</p><textarea class="rb" id="ch20-giving" style="margin:0;width:100%;min-height:70px" placeholder="My giving mission: I will allocate ____% of my income to [causes]. My goal is to give $____ per year by [year]."></textarea><button class="btn-save" onclick="save('ch20-giving')">Save</button></div>
+<div class="chk"><input type="checkbox" id="ch20-done" onchange="chkUpdate(this)"><label for="ch20-done">Mark chapter complete</label></div>
+
+<h2 id="ch21"><span class="cl">Chapter 21</span>Financial Independence &amp; Action Plan</h2>
+<p class="dc">Financial independence is not about being rich. It is about having enough&mdash;enough that work becomes optional, enough that your time is your own, enough that you can pursue what matters without financial pressure.</p>
+<p>Warren Buffett&rsquo;s definition of success has nothing to do with money. When asked how he measures success, he said: &ldquo;The people who love you love you.&rdquo;</p>
+<div class="qb"><p>&ldquo;The best time to start was twenty years ago. The second-best time is now. Whatever your financial situation today, you have the power to change it.&rdquo;</p><cite>&mdash; <b>Warren Buffett</b></cite></div>
+<p>Dave Ramsey&rsquo;s final challenge: &ldquo;Live like no one else now, so later you can live like no one else.&rdquo;</p>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=g2jSLsQQC4M" target="_blank">Warren Buffett&rsquo;s Most Important Advice</a><a href="https://www.youtube.com/watch?v=oOxUl87T3EE" target="_blank">Dave Ramsey&rsquo;s 7 Baby Steps</a></div>
+<div class="cd"><div class="lbl">Activity 21.1</div><h4>Your FI Timeline Calculator</h4><p>Current portfolio: $<input class="rb" id="ch21-portfolio" style="display:inline;width:120px;margin:0 4px;padding:4px 8px"></p><p>Annual savings: $<input class="rb" id="ch21-savings" style="display:inline;width:120px;margin:0 4px;padding:4px 8px"></p><p>Annual expenses: $<input class="rb" id="ch21-expenses" style="display:inline;width:120px;margin:0 4px;padding:4px 8px"></p><p>Expected return (%): <input class="rb" id="ch21-return" style="display:inline;width:80px;margin:0 4px;padding:4px 8px"></p><button class="btn-save" onclick="calcFI()">Calculate FI Timeline</button><div class="fbk" id="fb-fi"></div></div>
+<div class="cd"><div class="lbl">Activity 21.2</div><h4>Your Freedom Commitment</h4><p>Write your commitment to yourself. What specific actions will you take in the next 30 days? What kind of life are you building?</p><textarea class="rb" id="ch21-commitment" style="margin:0;width:100%;min-height:80px" placeholder="I commit to:&#10;1. Create a zero-based budget this week&#10;2. Open a Roth IRA and fund it with $X&#10;3. ..."></textarea><button class="btn-save" onclick="save('ch21-commitment')">Save</button></div>
+<div class="chk"><input type="checkbox" id="ch21-done" onchange="chkUpdate(this)"><label for="ch21-done">Mark chapter complete</label></div>
+
+<div class="tw">
+  <div class="tb">
+    <button class="on" onclick="switchTab('daily',this)">Daily</button>
+    <button onclick="switchTab('weekly',this)">Weekly Review</button>
+    <button onclick="switchTab('monthly',this)">Monthly Goals</button>
+  </div>
+  <div class="tp on" id="tab-daily">
+    <h3>Daily Financial Habits</h3>
+    <div class="chk"><input type="checkbox" id="pd1" onchange="chkSimple('pd1')"><label for="pd1">Review today&rsquo;s spending</label></div>
+    <div class="chk"><input type="checkbox" id="pd2" onchange="chkSimple('pd2')"><label for="pd2">Read or listen to something educational about money</label></div>
+    <div class="chk"><input type="checkbox" id="pd3" onchange="chkSimple('pd3')"><label for="pd3">Practice a no-spend day on non-essentials</label></div>
+    <div class="chk"><input type="checkbox" id="pd4" onchange="chkSimple('pd4')"><label for="pd4">Log all expenses in your tracker</label></div>
+    <div class="chk"><input type="checkbox" id="pd5" onchange="chkSimple('pd5')"><label for="pd5">Visualize your financial goals for two minutes</label></div>
+  </div>
+  <div class="tp" id="tab-weekly">
+    <h3>Weekly Financial Review</h3>
+    <p>Reflect on your financial week:</p>
+    <textarea class="rb" id="pl-weekly" style="margin:0;width:100%;min-height:80px" placeholder="What went well? What can I improve? Did I stick to my budget?"></textarea>
+    <button class="btn-save" onclick="save('pl-weekly')">Save Review</button>
+  </div>
+  <div class="tp" id="tab-monthly">
+    <h3>Monthly Goals</h3>
+    <p>Set your top 3 financial goals for this month:</p>
+    <p>1. <input class="rb" id="pm1" style="display:inline;width:300px;margin:0 4px;padding:4px 8px"></p>
+    <p>2. <input class="rb" id="pm2" style="display:inline;width:300px;margin:0 4px;padding:4px 8px"></p>
+    <p>3. <input class="rb" id="pm3" style="display:inline;width:300px;margin:0 4px;padding:4px 8px"></p>
+    <button class="btn-save" onclick="saveMonthly()">Save Goals</button>
+  </div>
+</div>
+
+<div class="fb">
+  <h2>The Journey of a Thousand Miles</h2>
+  <p>Every financially free person you admire started exactly where you are right now: uncertain, hopeful, and looking for a path forward. The difference between those who achieve financial freedom and those who only dream of it is not intelligence, luck, or inheritance. It is the decision to start.</p>
+  <p><b>Your future self is counting on you. The best time to plant a tree was twenty years ago. The second best time is now. Go build your financial freedom.</b></p>
+</div>
+
+</div>
+
+<footer class="ft">
+  <p>&copy; 2025 Elevate Shop. All rights reserved.</p>
+  <p>Empowering minds and building wealth, one download at a time.</p>
+</footer>
+
+</div>
+
+<script>
+const TOTAL=21;
+function save(id){const el=document.getElementById(id);if(!el)return;localStorage.setItem('elv1_'+id,el.value);toast('Saved')}
+function chkSimple(id){const cb=document.getElementById(id);if(cb)localStorage.setItem('elv1_'+id,cb.checked?'1':'0')}
+function chkUpdate(el){localStorage.setItem('elv1_'+el.id,el.checked?'1':'0');updateProgress()}
+function updateProgress(){let done=0;for(let i=1;i<=TOTAL;i++){const cb=document.getElementById('ch'+i+'-done');if(cb&&cb.checked)done++}const pct=Math.round((done/TOTAL)*100);const pf=document.getElementById('progFill');if(pf)pf.style.width=pct+'%';const pl=document.getElementById('progLabel');if(pl)pl.textContent=done+' of '+TOTAL+' chapters complete'}
+function checkQ(el,num){const block=el.closest('.quiz-block');if(!block)return;const opts=block.querySelectorAll('.quiz-opt');const fb=document.getElementById('fb'+num);opts.forEach(o=>o.style.pointerEvents='none');if(el.dataset.correct==='true'){el.classList.add('correct');if(fb){fb.textContent='Correct!';fb.className='fbk ok'}}else{el.classList.add('incorrect');if(fb){fb.textContent='Not quite. Review and try again.';fb.className='fbk fail'}opts.forEach(o=>{if(o.dataset.correct==='true')o.classList.add('correct')})}}
+function setRating(key,val,btn){const row=btn.closest('.rw');if(!row)return;row.querySelectorAll('button').forEach(b=>b.classList.remove('on'));btn.classList.add('on');localStorage.setItem('elv1_rating_'+key,val)}
+function calcRetire(){const exp=parseFloat(document.getElementById('ch7-expenses')?.value)||0;const fb=document.getElementById('fb-retire');if(!fb)return;if(exp<=0){fb.textContent='Enter your annual expenses.';fb.className='fbk fail';return}fb.textContent='Target portfolio: $'+(exp*25).toLocaleString()+' (based on the 4% rule).';fb.className='fbk ok'}
+function calcPassive(){const h=parseFloat(document.getElementById('ch16-hours')?.value)||0;const m=parseFloat(document.getElementById('ch16-monthly')?.value)||0;const l=parseFloat(document.getElementById('ch16-life')?.value)||0;const fb=document.getElementById('fb-passive');if(!fb)return;if(h<=0||m<=0||l<=0){fb.textContent='Fill in all fields.';fb.className='fbk fail';return}const total=m*l;fb.textContent='Lifetime income: $'+total.toLocaleString()+'. ROI: '+((total-h)/h*100).toFixed(0)+'x your time.';fb.className='fbk ok'}
+function calcEmergency(){const exp=parseFloat(document.getElementById('ch17-expenses')?.value)||0;const months=parseFloat(document.getElementById('ch17-months')?.value)||0;const fb=document.getElementById('fb-emergency');if(!fb)return;if(exp<=0||months<=0){fb.textContent='Fill in both fields.';fb.className='fbk fail';return}fb.textContent='Target emergency fund: $'+(exp*months).toLocaleString();fb.className='fbk ok'}
+function calcFI(){const p=parseFloat(document.getElementById('ch21-portfolio')?.value)||0;const s=parseFloat(document.getElementById('ch21-savings')?.value)||0;const e=parseFloat(document.getElementById('ch21-expenses')?.value)||0;const r=parseFloat(document.getElementById('ch21-return')?.value)||7;const fb=document.getElementById('fb-fi');if(!fb)return;if(e<=0){fb.textContent='Enter annual expenses.';fb.className='fbk fail';return}const target=e*25;let years=0;let cur=p;const rate=r/100;while(cur<target&&years<60){cur=cur*(1+rate)+s;years++}if(years>=60){fb.textContent='Consider increasing savings or reducing expenses.';fb.className='fbk fail'}else{fb.textContent='FI target: $'+target.toLocaleString()+'. At current pace: ~'+years+' years.';fb.className='fbk ok'}}
+function saveBudget(){['ch3-income','ch3-housing','ch3-food','ch3-transport','ch3-utils','ch3-savings','ch3-debt','ch3-fun'].forEach(id=>{const el=document.getElementById(id);if(el)localStorage.setItem('elv1_'+id,el.value)});toast('Budget saved')}
+function saveMonthly(){['pm1','pm2','pm3'].forEach(id=>{const el=document.getElementById(id);if(el)localStorage.setItem('elv1_'+id,el.value)});toast('Goals saved')}
+function switchTab(name,btn){document.querySelectorAll('.tb button').forEach(b=>b.classList.remove('on'));document.querySelectorAll('.tp').forEach(p=>p.classList.remove('on'));if(btn)btn.classList.add('on');const tp=document.getElementById('tab-'+name);if(tp)tp.classList.add('on')}
+function resetAll(){if(!confirm('Reset all progress?'))return;Object.keys(localStorage).filter(k=>k.startsWith('elv1_')).forEach(k=>localStorage.removeItem(k));location.reload()}
+function toast(msg){const d=document.createElement('div');d.className='toast';d.textContent=msg;document.body.appendChild(d);setTimeout(()=>d.remove(),2200)}
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('.rb textarea,.rb input[type="text"],textarea[id], input[id]').forEach(el=>{if(el.type!='checkbox'&&el.type!='button'){const v=localStorage.getItem('elv1_'+el.id);if(v!==null)el.value=v}});
+  document.querySelectorAll('input[type="checkbox"]').forEach(cb=>{if(localStorage.getItem('elv1_'+cb.id)==='1')cb.checked=true});
+  document.querySelectorAll('.rw').forEach(row=>{const key=row.id.replace('rating-','');const saved=localStorage.getItem('elv1_rating_'+key);if(saved){row.querySelectorAll('button').forEach(b=>{if(parseInt(b.textContent)===parseInt(saved))b.classList.add('on')})}});
+  updateProgress()
+});
+</script>
+</body>
+</html>

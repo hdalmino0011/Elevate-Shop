@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wealth Mindset Masterclass – Elevate Shop</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{font-size:18px}
+body{
+  font-family:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+  background:#FEFAF5;color:#2A2A2A;line-height:1.8;padding:0;
+  -webkit-font-smoothing:antialiased
+}
+.container{max-width:780px;margin:0 auto;background:#FFFCFA;box-shadow:0 0 120px rgba(107,63,160,0.04)}
+header{
+  background:linear-gradient(135deg,#1A0A2E 0%,#3B1F6E 30%,#5C2D91 60%,#3B1F6E 100%);
+  padding:72px 64px 56px;position:relative;overflow:hidden
+}
+header::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#D4A0A0,#E8C4C8,#D4A0A0,#E8C4C8,#D4A0A0)}
+header .sup{font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(232,196,200,0.5);margin-bottom:16px;font-family:Inter,Arial,sans-serif}
+header h1{font-family:Inter,'Helvetica Neue',Arial,sans-serif;font-size:50px;font-weight:700;color:#FFF;line-height:1.05;margin-bottom:12px}
+header h1 em{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;color:#E8C4C8}
+header .sub{font-size:16px;color:rgba(255,255,255,0.45);max-width:540px;line-height:1.6;margin-bottom:24px;font-family:Inter,Arial,sans-serif}
+header .meta{display:flex;gap:24px;flex-wrap:wrap;font-size:10px;color:rgba(232,196,200,0.3);letter-spacing:1.5px;text-transform:uppercase;font-family:Inter,Arial,sans-serif}
+.idx{background:#F8F0F5;padding:24px 48px;border-bottom:1px solid rgba(107,63,160,0.06)}
+.idx .idx-t{font-family:Inter,'Helvetica Neue',Arial,sans-serif;font-size:13px;color:#3B1F6E;margin-bottom:12px;letter-spacing:2px;text-transform:uppercase;font-weight:600}
+.idx ol{list-style:none;columns:3;column-gap:32px;padding:0;margin:0}
+.idx ol li{display:flex;gap:8px;align-items:baseline;padding:4px 0;border-bottom:1px solid rgba(107,63,160,0.02);break-inside:avoid}
+.idx ol li .n{font-family:Inter,'Helvetica Neue',Arial,sans-serif;font-size:12px;font-weight:700;color:#5C2D91;min-width:24px}
+.idx ol li a{color:#6B5B6B;text-decoration:none;font-size:14px}
+.idx ol li a:hover{color:#5C2D91}
+.pw{margin:0 72px 8px;padding:12px 0;border-bottom:1px solid rgba(107,63,160,0.04)}
+.pw .bar{background:#F0E6EE;border-radius:20px;height:4px;overflow:hidden}
+.pw .fill{background:linear-gradient(90deg,#5C2D91,#D4A0A0);height:100%;border-radius:20px;transition:width 0.5s ease}
+.pw .m{display:flex;justify-content:space-between;align-items:center;margin-top:4px;font-size:10px;color:#8A7A8A;text-transform:uppercase;letter-spacing:1px;font-family:Inter,Arial,sans-serif}
+.pw .r{background:none;border:none;color:#8A7A8A;cursor:pointer;font-size:10px;text-transform:uppercase;letter-spacing:1px;padding:2px 0;transition:color 0.2s;font-family:Inter,Arial,sans-serif}
+.pw .r:hover{color:#5C2D91}
+.main{padding:48px 72px 64px}
+h2{font-family:Inter,'Helvetica Neue',Arial,sans-serif;font-size:28px;font-weight:700;color:#1A0A2E;margin-top:56px;margin-bottom:4px;line-height:1.15;border-bottom:2px solid #E4C8D0;padding-bottom:12px}
+h2 .cl{display:block;font-family:Inter,Arial,sans-serif;font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#5C2D91;margin-bottom:2px}
+h3{font-family:Inter,'Helvetica Neue',Arial,sans-serif;font-size:22px;font-weight:600;color:#1A0A2E;margin-top:36px;margin-bottom:10px}
+p{font-size:17px;color:#3A3A3A;margin-bottom:16px;line-height:1.85}
+.dc::first-letter{font-family:'Cormorant Garamond',Georgia,serif;font-size:72px;font-weight:700;float:left;line-height:0.75;padding:8px 16px 4px 0;color:#5C2D91}
+.qb{margin:28px 0;padding:24px 32px;background:#F8F0F5;border-radius:6px;border-left:3px solid #D4A0A0}
+.qb p{font-family:'Cormorant Garamond',Georgia,serif;font-size:20px;font-style:italic;color:#2A1A2A;margin-bottom:8px;line-height:1.5}
+.qb cite{font-size:13px;font-style:normal;color:#7A6A7A;display:block;font-family:Inter,Arial,sans-serif}
+.qb cite b{color:#5C2D91;font-weight:600}
+.cd{margin:24px 0;padding:28px 32px;background:#FFF8F5;border-radius:6px;border:1px solid rgba(107,63,160,0.06)}
+.cd .lbl{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#5C2D91;margin-bottom:4px;font-family:Inter,Arial,sans-serif}
+.cd h4{font-family:Inter,'Helvetica Neue',Arial,sans-serif;font-size:18px;margin:0 0 6px;color:#1A0A2E}
+.cd p{font-size:15px;color:#5A4A5A;margin-bottom:8px}
+.ec{margin:28px 0;border-radius:6px;overflow:hidden;border:1px solid rgba(107,63,160,0.06);background:#FFF8F5}
+.ec .h{display:flex;gap:16px;align-items:flex-start;padding:24px 28px 12px;border-bottom:1px solid rgba(107,63,160,0.04)}
+.ec .i{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#5C2D91,#D4A0A0);color:#FFF;display:flex;align-items:center;justify-content:center;font-family:Inter,'Helvetica Neue',Arial,sans-serif;font-size:16px;font-weight:700;flex-shrink:0}
+.ec .info h4{margin:0;font-size:17px;color:#1A0A2E;font-family:Inter,Arial,sans-serif}
+.ec .info .role{font-size:12px;color:#7A6A7A;margin:1px 0 2px;font-family:Inter,Arial,sans-serif}
+.ec .info .qt{font-size:15px;font-style:italic;color:#5C2D91}
+.ec .b{padding:16px 28px 24px}
+.ec .b p{font-size:15px;margin-bottom:10px;color:#3A3A3A}
+.ec .b p:last-child{margin-bottom:0}
+.stat{display:flex;gap:16px;margin:28px 0}
+.stat>div{flex:1;background:#F8F0F5;border-radius:6px;padding:20px 16px;text-align:center;border:1px solid rgba(107,63,160,0.04)}
+.stat .num{font-family:Inter,'Helvetica Neue',Arial,sans-serif;font-size:34px;font-weight:700;color:#5C2D91;line-height:1}
+.stat .sl{font-size:11px;color:#7A6A7A;margin-top:4px;line-height:1.4;font-family:Inter,Arial,sans-serif}
+.dt{width:100%;border-collapse:collapse;font-size:14px;border-radius:6px;overflow:hidden;margin:20px 0}
+.dt thead{background:#1A0A2E}
+.dt th{padding:10px 12px;text-align:left;font-weight:600;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#D4A0A0;font-family:Inter,Arial,sans-serif}
+.dt td{padding:8px 12px;border-bottom:1px solid rgba(107,63,160,0.04);color:#4A3A4A;font-size:14px}
+.dt tbody tr:nth-child(even){background:#F8F0F5}
+.dt td input{width:100%;border:none;background:transparent;font-family:'JetBrains Mono',monospace;font-size:13px;color:#1A0A2E;outline:none;padding:2px 0;border-bottom:1px solid rgba(107,63,160,0.06)}
+.dt td input:focus{border-bottom-color:#5C2D91}
+.dt td input[type="checkbox"]{width:16px;height:16px;accent-color:#5C2D91;cursor:pointer}
+.dt tr:last-child td{border-bottom:none}
+.yt{margin:24px 0;border-radius:6px;overflow:hidden;border:1px solid rgba(107,63,160,0.06);background:#FFF8F5;padding:16px 20px}
+.yt .lbl{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#5C2D91;margin-bottom:6px;font-family:Inter,Arial,sans-serif}
+.yt a{display:block;padding:10px 14px;background:#F8F0F5;border-radius:4px;color:#2A2A2A;text-decoration:none;font-size:14px;border:1px solid rgba(107,63,160,0.06);margin-top:4px}
+.yt a:first-of-type{margin-top:0}
+.yt a:hover{background:#F0E6F0;border-color:rgba(107,63,160,0.15)}
+.yt a::before{content:"\25B6";color:#5C2D91;margin-right:8px;font-size:11px}
+.hb{margin:28px 0;padding:20px 24px;background:#F8F0F5;border-radius:6px;border-left:3px solid #5C2D91}
+.hb p{font-size:15px;margin-bottom:0;color:#4A3A4A}
+.hb b{color:#1A0A2E}
+.ag{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0}
+.ag>div{background:#FFF8F5;border-radius:6px;padding:16px;border:1px solid rgba(107,63,160,0.04)}
+.ag .day{font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#5C2D91;font-family:Inter,Arial,sans-serif}
+.ag .desc{font-size:14px;color:#4A3A4A;margin:4px 0 6px;line-height:1.5}
+.ag input[type="checkbox"]{width:16px;height:16px;accent-color:#5C2D91;cursor:pointer}
+.fb{margin:48px 0 0;padding:36px;background:linear-gradient(135deg,#1A0A2E,#3B1F6E);border-radius:6px;border:1px solid rgba(107,63,160,0.06);text-align:center}
+.fb h2{font-family:'Cormorant Garamond',Georgia,serif;color:#FFF;margin-top:0;border-bottom:none;padding-bottom:0;font-size:32px}
+.fb p{color:rgba(255,255,255,0.65);font-size:16px;margin-bottom:12px;font-family:Inter,Arial,sans-serif}
+.fb p:last-child{margin-bottom:0}
+.fb b{color:#E8C4C8}
+.ft{margin-top:48px;padding:24px 72px 32px;border-top:1px solid rgba(107,63,160,0.04);text-align:center}
+.ft p{font-size:11px;color:#8A7A8A;margin-bottom:2px;font-family:Inter,Arial,sans-serif}
+.rb{background:#FFF8F5;border:1px solid rgba(107,63,160,0.05);padding:20px 24px;margin:20px 0;border-radius:6px}
+.rb label{font-size:11px;font-weight:600;color:#5C2D91;display:block;margin-bottom:4px;font-family:Inter,Arial,sans-serif;text-transform:uppercase;letter-spacing:1px}
+.rb textarea{width:100%;border:none;background:rgba(107,63,160,0.03);font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;color:#2A2A2A;outline:none;padding:10px 12px;border-radius:4px;min-height:60px;resize:vertical}
+.rb textarea:focus{background:rgba(107,63,160,0.06)}
+input, textarea, select{color:#1A0A2E}
+input::placeholder, textarea::placeholder{color:rgba(26,10,46,0.3)}
+.tw{margin:24px 0}
+.tb{display:flex;gap:0;margin-bottom:12px}
+.tb button{background:none;border:none;padding:6px 16px;cursor:pointer;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:#8A7A8A;border-bottom:2px solid transparent;transition:all 0.2s;font-family:Inter,Arial,sans-serif}
+.tb button.on{color:#5C2D91;border-bottom-color:#5C2D91}
+.tp{display:none}
+.tp.on{display:block}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#2A1A3A;color:#E8C4C8;padding:8px 20px;border-radius:30px;font-size:12px;font-family:Inter,Arial,sans-serif;z-index:999;animation:fadeUp 0.3s ease;box-shadow:0 4px 24px rgba(0,0,0,0.3);border:1px solid rgba(232,196,200,0.1)}
+@keyframes fadeUp{from{opacity:0;transform:translateX(-50%) translateY(10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+.rw{display:flex;gap:3px;flex-wrap:wrap;margin:8px 0 0}
+.rw button{width:30px;height:30px;border:1px solid rgba(107,63,160,0.15);border-radius:50%;background:transparent;cursor:pointer;font-size:12px;color:#6A5A6A;font-family:Inter;transition:all 0.15s}
+.rw button:hover{border-color:#5C2D91;color:#5C2D91}
+.rw button.on{background:#5C2D91;color:#FFF;border-color:#5C2D91;font-weight:700}
+.btn-save{display:inline-block;margin:8px 0 0;padding:6px 20px;cursor:pointer;font-family:Inter;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#FFF;background:linear-gradient(135deg,#5C2D91,#D4A0A0);border:none;border-radius:4px;transition:opacity 0.2s}
+.btn-save:hover{opacity:0.85}
+.fbk{margin-top:8px;padding:6px 12px;border-radius:4px;display:none;font-size:13px;font-family:Inter}
+.fbk.ok{display:block;background:rgba(92,45,145,0.08);color:#5C2D91}
+.fbk.fail{display:block;background:rgba(180,80,80,0.1);color:#B05050}
+.chk{display:flex;align-items:center;gap:10px;padding:6px 0}
+.chk input{width:16px;height:16px;accent-color:#5C2D91;cursor:pointer;flex-shrink:0}
+.chk label{cursor:pointer;font-size:15px;color:#3A3A3A}
+.qz{margin:16px 0}
+.qz .q{font-size:16px;color:#1A0A2E;margin-bottom:8px;font-weight:600}
+.qz .qa{display:block;padding:8px 12px;margin:4px 0;background:#F8F0F5;border:1px solid rgba(107,63,160,0.06);border-radius:4px;cursor:pointer;font-size:15px;color:#3A3A3A;transition:all 0.15s}
+.qz .qa:hover{background:#F0E6F0;border-color:#D4A0A0}
+.qz .qa.cr{background:rgba(92,45,145,0.1);border-color:#5C2D91;color:#5C2D91;font-weight:600}
+.qz .qa.wr{background:rgba(180,80,80,0.08);border-color:#B05050;color:#B05050}
+.qz .qa.ds{cursor:default;opacity:0.7}
+@media(max-width:700px){
+  html{font-size:16px}
+  header{padding:40px 28px 32px}
+  header h1{font-size:34px}
+  header .sub{font-size:14px}
+  .main{padding:28px 24px 40px}
+  .idx{padding:16px 20px;margin:0}
+  .idx ol{columns:2}
+  .pw{margin:0 24px 8px}
+  .stat{flex-direction:column}
+  .ag{grid-template-columns:1fr}
+  .ft{padding:20px 24px 24px}
+}
+@media(max-width:480px){
+  header{padding:28px 16px 24px}
+  header h1{font-size:28px}
+  header .meta{gap:12px;font-size:9px}
+  .main{padding:20px 14px 28px}
+  .idx{padding:12px 14px}
+  .idx ol{columns:1}
+  .cd{padding:16px 18px}
+  .ec .h{padding:16px 18px 8px}
+  .ec .b{padding:12px 18px 18px}
+  .qb{padding:16px 18px}
+  .stat>div{padding:14px 12px}
+  .stat .num{font-size:26px}
+  h2{font-size:24px}
+  h2 .cl{font-size:9px}
+  p{font-size:15px}
+  .dt{font-size:12px}
+  .dt td input{font-size:12px}
+  .ag{grid-template-columns:1fr}
+  .fb{padding:24px 18px}
+  .pw{margin:0 14px 8px}
+  .ft{padding:16px 14px 20px}
+}
+@media(max-width:360px){
+  html{font-size:15px}
+  header{padding:20px 12px}
+  header h1{font-size:24px}
+  .main{padding:14px 10px 24px}
+  .idx ol li a{font-size:13px}
+}
+@media print{
+  body{background:#FFF!important;color:#222!important}
+  .container{box-shadow:none;background:#FFF!important;max-width:100%}
+  body,.main p,.cd p,.ec .b p,.hb p,.fb p{color:#222!important}
+  header{background:#1A0A2E!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;padding:28px 24px}
+  header h1,.fb h2{color:#FFF!important}
+  h2,h3,.ec .info h4{color:#111!important}
+  .qb p{color:#333!important}
+  .idx ol li a{color:#333!important}
+  .dt td input{color:#333!important}
+  header .sup{color:#AAA!important}
+  .pw,.tw,.yt a,.rb textarea,.dt td input[type="checkbox"],.ag input[type="checkbox"],.rw,.qz{display:none!important}
+  .dt{font-size:10pt}
+  .dt td{border-color:#CCC!important;color:#333!important}
+  .dt thead{background:#EEE!important}
+  .dt th{color:#000!important}
+  .dt tbody tr:nth-child(even){background:#F5F5F5!important}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="sup">Elevate Shop &bull; Premium Digital Course</div>
+  <h1>Wealth Mindset <em>Masterclass</em></h1>
+  <p class="sub">Bridging psychology and finance to reveal the hidden beliefs that shape your financial reality. Rewire scarcity into abundance through neuroscience, visualization, and daily practice.</p>
+  <div class="meta"><span>21 Chapters</span><span>Psychological Framework</span><span>Expert Wisdom</span><span>Interactive Workbook</span></div>
+</header>
+
+<div class="idx">
+  <div class="idx-t">Contents</div>
+  <ol>
+    <li><span class="n">1</span><a href="#ch1">The Hidden Blueprint</a></li>
+    <li><span class="n">2</span><a href="#ch2">Scarcity vs. Abundance</a></li>
+    <li><span class="n">3</span><a href="#ch3">The Neuroplasticity Principle</a></li>
+    <li><span class="n">4</span><a href="#ch4">The Stories We Tell Ourselves</a></li>
+    <li><span class="n">5</span><a href="#ch5">Emotional Intelligence and Wealth</a></li>
+    <li><span class="n">6</span><a href="#ch6">The Inner Critic Unveiled</a></li>
+    <li><span class="n">7</span><a href="#ch7">Fear and the Financial Brain</a></li>
+    <li><span class="n">8</span><a href="#ch8">Healing the Wounds of Lack</a></li>
+    <li><span class="n">9</span><a href="#ch9">The Comparison Trap</a></li>
+    <li><span class="n">10</span><a href="#ch10">Resistance and Procrastination</a></li>
+    <li><span class="n">11</span><a href="#ch11">Growth Mindset in Action</a></li>
+    <li><span class="n">12</span><a href="#ch12">The Identity Shift</a></li>
+    <li><span class="n">13</span><a href="#ch13">Visualization and Creation</a></li>
+    <li><span class="n">14</span><a href="#ch14">Affirmations That Work</a></li>
+    <li><span class="n">15</span><a href="#ch15">The Power of Gratitude</a></li>
+    <li><span class="n">16</span><a href="#ch16">The Abundance Ritual</a></li>
+    <li><span class="n">17</span><a href="#ch17">Your Environment Shapes You</a></li>
+    <li><span class="n">18</span><a href="#ch18">The Peer Group Effect</a></li>
+    <li><span class="n">19</span><a href="#ch19">Giving and Receiving</a></li>
+    <li><span class="n">20</span><a href="#ch20">Embodying the Future You</a></li>
+    <li><span class="n">21</span><a href="#ch21">The Lifelong Practice</a></li>
+  </ol>
+</div>
+
+<div class="pw">
+  <div class="bar"><div class="fill" id="progFill" style="width:0%"></div></div>
+  <div class="m"><span id="progLabel">0 of 21 chapters complete</span><button class="r" onclick="resetAll()">Reset</button></div>
+</div>
+
+<div class="main">
+
+<h2 id="ch1"><span class="cl">Chapter 1</span>The Hidden Blueprint</h2>
+<p class="dc">Every financial decision you have ever made was guided by an invisible script written long before you could read. This script, etched into your neural architecture during childhood, encodes beliefs about money, worth, and possibility that operate beneath conscious awareness. The Hidden Blueprint is the collection of assumptions, emotional responses, and behavioral patterns that constitute your financial identity. Changing your financial life without addressing this blueprint is like repainting a house built on a crumbling foundation&mdash;cosmetic improvement that cannot last.</p>
+<p>Dr. Carol Dweck, the Stanford psychologist who pioneered the concept of mindset, spent decades studying how our beliefs about our own abilities shape our outcomes. In her landmark book <em>Mindset: The New Psychology of Success</em>, she distinguishes between the fixed mindset&mdash;the belief that our qualities are carved in stone&mdash;and the growth mindset, the belief that abilities can be developed through dedication and effort. When applied to wealth, this distinction is transformative. A fixed mindset says, "I am not good with money." A growth mindset says, "I can learn to manage money effectively."</p>
+<div class="qb"><p>&ldquo;Becoming is better than being. The fixed mindset does not allow people the luxury of becoming. They have to already be.&rdquo;</p><cite>&mdash; <b>Dr. Carol Dweck</b>, Professor of Psychology, Stanford University</cite></div>
+<p>Tony Robbins, the world-renowned strategist and author of <em>Money: Master the Game</em>, argues that the primary obstacle to wealth is not a lack of financial education but a lack of emotional mastery. "Where focus goes, energy flows," he teaches. If your attention is locked on scarcity, your entire nervous system organizes around that reality, confirming it again and again through selective perception.</p>
+<div class="qb"><p>&ldquo;The only thing keeping you from getting what you want is the story you keep telling yourself about why you can't have it.&rdquo;</p><cite>&mdash; <b>Tony Robbins</b>, Author &amp; Strategist</cite></div>
+<p>James Clear, author of <em>Atomic Habits</em>, offers a systems-based approach. He writes that your financial identity is not determined by what you want but by what you repeatedly do. Tiny shifts, repeated daily, rewrite the blueprint at the level of behavior. Each small action is a vote for the person you wish to become.</p>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=7zEM7Wq0CUM" target="_blank">Carol Dweck: The Power of Believing You Can Improve</a><a href="https://www.youtube.com/watch?v=M9c1pAeD-j4" target="_blank">Tony Robbins: The Science of Achievement</a><a href="https://www.youtube.com/watch?v=T7i5oY-hMFs" target="_blank">James Clear: Atomic Habits in Action</a></div>
+<div class="cd"><div class="lbl">Activity 1.1</div><h4>Your Money Origin Story</h4><p>Think back to your earliest money memory. What did you observe? What did you conclude about wealth, success, and your own potential? Write freely&mdash;this is the beginning of uncovering your Hidden Blueprint.</p><textarea class="rb" id="ch1-origin" style="margin:0;width:100%;min-height:80px" placeholder="I remember watching my mother count coins at the kitchen table. She always seemed worried, and I concluded that money was a source of stress..."></textarea><button class="btn-save" onclick="save('ch1-origin')">Save</button></div>
+<div class="cd"><div class="lbl">Activity 1.2</div><h4>Identify Your Blueprint Beliefs</h4><p>Check all that resonate with you:</p><div class="chk"><input type="checkbox" id="ch1b1" onchange="chkSimple('ch1b1')"><label for="ch1b1">Money is hard to earn</label></div><div class="chk"><input type="checkbox" id="ch1b2" onchange="chkSimple('ch1b2')"><label for="ch1b2">Rich people are greedy</label></div><div class="chk"><input type="checkbox" id="ch1b3" onchange="chkSimple('ch1b3')"><label for="ch1b3">I don't deserve wealth</label></div><div class="chk"><input type="checkbox" id="ch1b4" onchange="chkSimple('ch1b4')"><label for="ch1b4">Money doesn't buy happiness</label></div><div class="chk"><input type="checkbox" id="ch1b5" onchange="chkSimple('ch1b5')"><label for="ch1b5">There's never enough</label></div><div class="chk"><input type="checkbox" id="ch1b6" onchange="chkSimple('ch1b6')"><label for="ch1b6">I'll never understand finances</label></div></div>
+<div class="chk"><input type="checkbox" id="ch1-done" onchange="chkUpdate(this)"><label for="ch1-done">Mark chapter complete</label></div>
+
+<h2 id="ch2"><span class="cl">Chapter 2</span>Scarcity vs. Abundance</h2>
+<p class="dc">The lens through which you view the world determines what you see. Scarcity consciousness operates from the assumption that resources are limited and that your share must be fought for, hoarded, and protected. Abundance consciousness operates from the conviction that there is enough for everyone, that opportunity is infinite, and that generosity is the natural expression of confidence. These are not merely philosophical positions&mdash;they are neurological states that shape perception, decision-making, and behavior.</p>
+<p>Dr. Stephen Covey, author of <em>The 7 Habits of Highly Effective People</em>, introduced the concept of the Scarcity vs. Abundance mindset. In his framework, scarcity mentality is zero-sum: if someone else wins, you lose. Abundance mentality recognizes the pie can be expanded; there is enough for everyone to thrive. Covey observed that this distinction permeates every aspect of life, from business negotiations to personal relationships.</p>
+<div class="qb"><p>&ldquo;The abundance mentality is the belief that there is plenty out there for everybody.&rdquo;</p><cite>&mdash; <b>Dr. Stephen Covey</b>, Author of <em>The 7 Habits of Highly Effective People</em></cite></div>
+<p>Lynne Twist, author of <em>The Soul of Money</em>, spent decades working with the world&rsquo;s wealthiest and poorest people. She discovered that the experience of scarcity is not correlated with net worth. Billionaires can feel impoverished; subsistence farmers can feel wealthy. "Scarcity," she writes, "is a lie we have been taught to believe." The shift from scarcity to abundance is not about acquiring more money&mdash;it is about changing your relationship with what you already have.</p>
+<div class="qb"><p>&ldquo;For the soul, money is not an issue&mdash;except in the stories we tell about money.&rdquo;</p><cite>&mdash; <b>Lynne Twist</b>, Author of <em>The Soul of Money</em></cite></div>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=7zEM7Wq0CUM" target="_blank">Carol Dweck: Growth Mindset vs. Fixed Mindset</a><a href="https://www.youtube.com/watch?v=UO00jYz1UMc" target="_blank">Lynne Twist: The Soul of Money</a></div>
+<div class="cd"><div class="lbl">Activity 2.1</div><h4>The Scarcity Audit</h4><p>Write down three areas of your life where you feel scarcity most acutely (money, time, love, energy, opportunity). For each, write one piece of evidence that contradicts the scarcity belief.</p><textarea class="rb" id="ch2-audit" style="margin:0;width:100%;min-height:80px" placeholder="1. Money scarcity: I feel I never have enough. But I have always paid my bills and never gone hungry."></textarea><button class="btn-save" onclick="save('ch2-audit')">Save</button></div>
+<div class="cd"><div class="lbl">Activity 2.2</div><h4>Abundance Perspective Shift</h4><p>Rate your current abundance mindset (1 = deep scarcity, 10 = full abundance):</p><div class="rw" id="rating-abundance"><button onclick="setRating('abundance',1,this)">1</button><button onclick="setRating('abundance',2,this)">2</button><button onclick="setRating('abundance',3,this)">3</button><button onclick="setRating('abundance',4,this)">4</button><button onclick="setRating('abundance',5,this)">5</button><button onclick="setRating('abundance',6,this)">6</button><button onclick="setRating('abundance',7,this)">7</button><button onclick="setRating('abundance',8,this)">8</button><button onclick="setRating('abundance',9,this)">9</button><button onclick="setRating('abundance',10,this)">10</button></div></div>
+<div class="chk"><input type="checkbox" id="ch2-done" onchange="chkUpdate(this)"><label for="ch2-done">Mark chapter complete</label></div>
+
+<h2 id="ch3"><span class="cl">Chapter 3</span>The Neuroplasticity Principle</h2>
+<p class="dc">For decades, the scientific establishment believed the adult brain was fixed&mdash;a finished organ that could only decline with age. The discovery of neuroplasticity shattered this assumption. The brain, we now know, rewires itself in response to experience throughout life. Every thought, every repeated pattern, every focused attention strengthens some neural pathways while weakening others. This means your current money mindset is not destiny. It is simply the current configuration of a system that can be redesigned.</p>
+<p>Dr. Joe Dispenza, a neuroscientist and author of <em>Breaking the Habit of Being Yourself</em>, explains that the brain cannot distinguish between a real experience and one vividly imagined. When you mentally rehearse a new financial identity with emotional intensity, your brain begins laying down the same neural circuitry as if the experience had actually occurred. This is the biological basis for the power of visualization.</p>
+<div class="qb"><p>&ldquo;The moment you change your mind is the moment you change your biology. Your brain is plastic. It can be rewired.&rdquo;</p><cite>&mdash; <b>Dr. Joe Dispenza</b>, Neuroscientist, Author of <em>Breaking the Habit of Being Yourself</em></cite></div>
+<div class="ec"><div class="h"><div class="i">NT</div><div class="info"><h4>Dr. Norman Doidge</h4><div class="role">Psychiatrist &bull; Author of <em>The Brain That Changes Itself</em></div><div class="qt">&ldquo;Neuroplasticity is the property of the brain that allows it to change its structure and function in response to experience.&rdquo;</div></div></div><div class="b"><p>Dr. Doidge's exploration of neuroplasticity documented extraordinary cases: stroke victims relearning to walk decades after their injury, people born with half a brain functioning normally, individuals rewiring neural circuits to overcome learning disabilities. His central finding is revolutionary: the brain is not a machine but a living, dynamic organ that reorganizes itself continuously. Every financial habit you wish to change is a neural pattern that can be replaced. The key is repetition with emotional engagement.</p></div>
+<p>The practical implication is profound. If you spend twenty minutes daily visualizing yourself as financially free, feeling the emotions of that reality, your brain will begin to treat this as a familiar state. Your perception will shift, opportunities will become visible, and your behavior will align unconsciously with your new self-image.</p>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=3SJ8IRjH3Tw" target="_blank">Dr. Joe Dispenza: Rewiring the Brain for Change</a><a href="https://www.youtube.com/watch?v=7NsfJZ2K8Jw" target="_blank">Dr. Norman Doidge: The Brain That Changes Itself</a></div>
+<div class="cd"><div class="lbl">Activity 3.1</div><h4>Quick Quiz: Neuroplasticity</h4><div class="qz"><div class="q">What does neuroplasticity allow the brain to do?</div><div class="qa" data-correct="false" onclick="checkQ(this,3)">A. Maintain its structure throughout life</div><div class="qa" data-correct="true" onclick="checkQ(this,3)">B. Rewire itself in response to experience</div><div class="qa" data-correct="false" onclick="checkQ(this,3)">C. Grow new neurons only in childhood</div><div class="qa" data-correct="false" onclick="checkQ(this,3)">D. Store memories in specific locations</div><div class="fbk" id="fb3"></div></div></div>
+<div class="chk"><input type="checkbox" id="ch3-done" onchange="chkUpdate(this)"><label for="ch3-done">Mark chapter complete</label></div>
+
+<h2 id="ch4"><span class="cl">Chapter 4</span>The Stories We Tell Ourselves</h2>
+<p class="dc">Human beings are narrative creatures. We make sense of our lives through stories, and the stories we tell about money are among the most powerful. These narratives often form in childhood and operate as self-fulfilling prophecies. "People like me don't become wealthy." "Money is the root of all evil." "I'm just not a numbers person." Each of these is a story, not a fact. And because stories are constructed, they can be deconstructed and rewritten.</p>
+<p>Dr. Brene Brown, a research professor at the University of Houston who has spent two decades studying vulnerability, courage, and shame, teaches that the stories we tell ourselves about worthiness are the foundation of our lives. In <em>Daring Greatly</em>, she writes that scarcity is the "never enough" problem: never good enough, never safe enough, never successful enough. The antidote is not more money, but the courage to show up and be seen in a life of abundance.</p>
+<div class="qb"><p>&ldquo;Owning our story and loving ourselves through that process is the bravest thing we will ever do.&rdquo;</p><cite>&mdash; <b>Dr. Brene Brown</b>, Research Professor, Author of <em>Daring Greatly</em></cite></div>
+<p>Byron Katie, author of <em>Loving What Is</em>, developed a process called "The Work" that systematically dismantles the stories that cause suffering. She asks four questions: Is it true? Can you absolutely know it's true? How do you react when you believe that thought? Who would you be without that thought? Applying these questions to money narratives reveals that most of what we believe about wealth is inherited, untested, and optional.</p>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=8-JXOnFOXQY" target="_blank">Brene Brown: The Power of Vulnerability</a><a href="https://www.youtube.com/watch?v=1kUbdJszxRc" target="_blank">Byron Katie: The Work on Money Stories</a></div>
+<div class="cd"><div class="lbl">Activity 4.1</div><h4>Story Deconstruction</h4><p>Write one limiting money story you have told yourself repeatedly. Then apply the questions: Is it absolutely true? How does believing it affect you? Who would you be without it?</p><textarea class="rb" id="ch4-story" style="margin:0;width:100%;min-height:80px" placeholder="Story: I am bad with money.&#10;Is it absolutely true? No. I have successfully budgeted before.&#10;How does believing this affect me? I avoid looking at my finances.&#10;Who would I be without it? Someone who confidently manages their money."></textarea><button class="btn-save" onclick="save('ch4-story')">Save</button></div>
+<div class="chk"><input type="checkbox" id="ch4-done" onchange="chkUpdate(this)"><label for="ch4-done">Mark chapter complete</label></div>
+
+<h2 id="ch5"><span class="cl">Chapter 5</span>Emotional Intelligence and Wealth</h2>
+<p class="dc">Emotions are not obstacles to rational financial decision-making; they are data. Every financial decision is saturated with emotion, whether acknowledged or not. The person who can name their feelings, understand their origins, and choose their response has a decisive advantage over someone who is unconsciously driven by emotional currents.</p>
+<p>Daniel Goleman, the psychologist who popularized emotional intelligence, identifies four domains: self-awareness, self-regulation, empathy, and social skill. Applied to wealth, self-awareness means recognizing your emotional patterns around money. Self-regulation means choosing how to respond when financial anxiety arises. Empathy allows you to understand the money behaviors of those around you. Social skill enables you to negotiate, collaborate, and build financial partnerships effectively.</p>
+<div class="qb"><p>&ldquo;If your emotional abilities are not in hand, if you do not have self-awareness, if you are not able to manage your distressing emotions, if you cannot have empathy and effective relationships, then no matter how smart you are, you are not going to get very far.&rdquo;</p><cite>&mdash; <b>Daniel Goleman</b>, Psychologist, Author of <em>Emotional Intelligence</em></cite></div>
+<p>T. Harv Eker, author of <em>Secrets of the Millionaire Mind</em>, observed that every financial behavior is driven by a deep emotional root: fear, guilt, shame, anger, or love. Until you uncover the root emotion beneath your spending, saving, or avoiding patterns, no budget or investment strategy will stick. The emotion must be felt, understood, and integrated.</p>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=Y7m9eNoBn3Q" target="_blank">Daniel Goleman: Emotional Intelligence Explained</a><a href="https://www.youtube.com/watch?v=JU_mCbYVAnA" target="_blank">T. Harv Eker: Secrets of the Millionaire Mind</a></div>
+<div class="cd"><div class="lbl">Activity 5.1</div><h4>Your Emotional Money Map</h4><p>Complete the table with your most common financial emotions and their triggers.</p><table class="dt"><thead><tr><th>Emotion</th><th>Triggering Situation</th></tr></thead><tbody><tr><td>Anxiety</td><td><input id="ch5-anxiety" placeholder="e.g. When I check my bank balance"></td></tr><tr><td>Shame</td><td><input id="ch5-shame" placeholder="e.g. When I overspend"></td></tr><tr><td>Guilt</td><td><input id="ch5-guilt" placeholder="e.g. When I buy something for myself"></td></tr><tr><td>Excitement</td><td><input id="ch5-excite" placeholder="e.g. When I receive a bonus"></td></tr><tr><td>Fear</td><td><input id="ch5-fear" placeholder="e.g. When I think about retirement"></td></tr></tbody></table><button class="btn-save" onclick="saveTable('ch5')">Save</button></div>
+<div class="chk"><input type="checkbox" id="ch5-done" onchange="chkUpdate(this)"><label for="ch5-done">Mark chapter complete</label></div>
+
+<h2 id="ch6"><span class="cl">Chapter 6</span>The Inner Critic Unveiled</h2>
+<p class="dc">There is a voice inside your head that comments on your every financial move. It says you spent too much, saved too little, invested incorrectly, or started too late. This Inner Critic is not your enemy&mdash;it is a misdirected protection mechanism, a guardian that believes harsh judgment will keep you safe from failure. But in the realm of wealth building, the Inner Critic is the single greatest saboteur of progress.</p>
+<p>Dr. Kristin Neff, a pioneer in self-compassion research at the University of Texas, has demonstrated that self-criticism is not an effective motivator. People who treat themselves with kindness and understanding after setbacks are more resilient, more persistent, and more successful than those who engage in harsh self-judgment. The three components of self-compassion&mdash;self-kindness, common humanity, and mindfulness&mdash;create the psychological safety needed to take financial risks and learn from mistakes.</p>
+<div class="qb"><p>&ldquo;Instead of mercilessly judging and criticizing yourself for various inadequacies or shortcomings, self-compassion means you are kind and understanding when confronted with personal failings.&rdquo;</p><cite>&mdash; <b>Dr. Kristin Neff</b>, Professor of Psychology, UT Austin</cite></div>
+<p>Dr. Rick Hanson, a neuropsychologist and author of <em>Hardwiring Happiness</em>, teaches that the brain has a negativity bias&mdash;it clings to negative experiences like Velcro but lets positive ones slide away like Teflon. This evolutionary survival mechanism makes the Inner Critic&rsquo;s voice disproportionately loud. The antidote is deliberate, repeated internalization of positive experiences and accomplishments.</p>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=11U0h0DPu7k" target="_blank">Kristin Neff: Self-Compassion and Well-Being</a><a href="https://www.youtube.com/watch?v=bo0g3RrZB0I" target="_blank">Rick Hanson: Hardwiring Happiness</a></div>
+<div class="cd"><div class="lbl">Activity 6.1</div><h4>Inner Critic Dialogue</h4><p>Write what your Inner Critic says about your financial life. Then respond with the voice of self-compassion. Example: Critic: "You'll never get out of debt." Self-compassion: "I am doing my best, and every payment brings me closer to freedom."</p><textarea class="rb" id="ch6-critic" style="margin:0;width:100%;min-height:80px" placeholder="Inner Critic: ...&#10;Self-Compassion: ..."></textarea><button class="btn-save" onclick="save('ch6-critic')">Save</button></div>
+<div class="chk"><input type="checkbox" id="ch6-done" onchange="chkUpdate(this)"><label for="ch6-done">Mark chapter complete</label></div>
+
+<h2 id="ch7"><span class="cl">Chapter 7</span>Fear and the Financial Brain</h2>
+<p class="dc">The amygdala, a small almond-shaped structure deep in the brain, is the seat of fear. When it detects a threat&mdash;real or imagined&mdash;it hijacks the rational brain and triggers fight, flight, or freeze responses. For many people, checking a bank account, opening an investment statement, or even thinking about retirement activates this ancient fear circuitry. The financial brain responds to the threat of loss more intensely than the promise of gain, a phenomenon called loss aversion, first described by Nobel laureates Daniel Kahneman and Amos Tversky.</p>
+<p>Dr. Daniel Kahneman, in his book <em>Thinking, Fast and Slow</em>, describes two systems of thought: System 1, which is fast, intuitive, and emotional, and System 2, which is slow, deliberate, and rational. Financial decisions driven by System 1 are often fear-based and suboptimal. The goal of the Wealth Mindset Masterclass is to bridge these two systems, honoring the information that emotions provide while allowing the rational brain to guide decisions.</p>
+<div class="qb"><p>&ldquo;The brain is a machine for jumping to conclusions. The key is to know when to trust your intuition and when to question it.&rdquo;</p><cite>&mdash; <b>Dr. Daniel Kahneman</b>, Nobel Laureate in Economics, Author of <em>Thinking, Fast and Slow</em></cite></div>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=CjVQJdIrDJ0" target="_blank">Daniel Kahneman: Thinking, Fast and Slow</a></div>
+<div class="cd"><div class="lbl">Activity 7.1</div><h4>Fear Inventory</h4><p>List three financial fears. For each, rate the likelihood (1-10) and the worst-case scenario. Then write a realistic best-case scenario.</p><textarea class="rb" id="ch7-fears" style="margin:0;width:100%;min-height:80px" placeholder="Fear 1: Running out of money in retirement.&#10;Likelihood: 3/10.&#10;Worst case: I live frugally on Social Security.&#10;Best case: My investments grow and I travel the world."></textarea><button class="btn-save" onclick="save('ch7-fears')">Save</button></div>
+<div class="chk"><input type="checkbox" id="ch7-done" onchange="chkUpdate(this)"><label for="ch7-done">Mark chapter complete</label></div>
+
+<h2 id="ch8"><span class="cl">Chapter 8</span>Healing the Wounds of Lack</h2>
+<p class="dc">Childhood experiences with money leave lasting imprints. If you grew up in an environment where money was a source of conflict, shame, or anxiety, your nervous system learned to associate financial matters with threat. These childhood money wounds&mdash;whether rooted in poverty, parental conflict over finances, or messages of unworthiness&mdash;must be healed before lasting abundance can take root.</p>
+<p>Dr. Gabor Mat&eacute;, a physician and author of <em>When the Body Says No</em>, has spent decades studying how childhood adversity shapes adult health and behavior. He emphasizes that the wounds of lack are not character flaws but adaptations to environment. The healing journey involves acknowledging these wounds without shame, understanding their origins, and consciously choosing new patterns.</p>
+<div class="qb"><p>&ldquo;The question is not why the addiction, but why the pain. The same applies to financial scarcity. Ask not why the lack, but why the wound.&rdquo;</p><cite>&mdash; <b>Dr. Gabor Mat&eacute;</b>, Physician, Author of <em>When the Body Says No</em></cite></div>
+<div class="cd"><div class="lbl">Activity 8.1</div><h4>Healing Letter</h4><p>Write a letter to your younger self about money. Offer compassion, understanding, and wisdom. What would you want that younger self to know about worth, abundance, and possibility?</p><textarea class="rb" id="ch8-letter" style="margin:0;width:100%;min-height:80px" placeholder="Dear younger me, I want you to know that the lack we experienced was never our fault..."></textarea><button class="btn-save" onclick="save('ch8-letter')">Save</button></div>
+<div class="chk"><input type="checkbox" id="ch8-done" onchange="chkUpdate(this)"><label for="ch8-done">Mark chapter complete</label></div>
+
+<h2 id="ch9"><span class="cl">Chapter 9</span>The Comparison Trap</h2>
+<p class="dc">In an age of social media, we see curated highlights of everyone else's financial lives. The colleague who bought a new house. The acquaintance who retired at forty. The influencer who seems to generate wealth effortlessly. Comparison triggers feelings of inadequacy, impatience, and shame that can derail your own financial journey. The antidote is not to stop looking at others but to change what you see when you look.</p>
+<p>Dr. Sonja Lyubomirsky, a leading researcher in happiness, found that social comparison is one of the strongest predictors of unhappiness. People who frequently compare themselves to others report lower life satisfaction, regardless of their actual circumstances. Her research suggests that gratitude practice and mindfulness of one's own progress are effective counters to the comparison trap.</p>
+<div class="qb"><p>&ldquo;The only person you should compare yourself to is the person you were yesterday. Your financial journey is uniquely yours. Honor its pace.&rdquo;</p><cite>&mdash; <b>Dr. Sonja Lyubomirsky</b>, Professor of Psychology, UC Riverside</cite></div>
+<div class="cd"><div class="lbl">Activity 9.1</div><h4>Your Progress Timeline</h4><p>Write three financial or personal wins from the past year that matter to you, regardless of what anyone else has achieved.</p><textarea class="rb" id="ch9-wins" style="margin:0;width:100%;min-height:60px" placeholder="1. Paid off $500 of credit card debt.&#10;2. Started an emergency fund.&#10;3. Had an honest conversation about money with my partner."></textarea><button class="btn-save" onclick="save('ch9-wins')">Save</button></div>
+<div class="chk"><input type="checkbox" id="ch9-done" onchange="chkUpdate(this)"><label for="ch9-done">Mark chapter complete</label></div>
+
+<h2 id="ch10"><span class="cl">Chapter 10</span>Resistance and Procrastination</h2>
+<p class="dc">You know what to do. Create a budget. Open an investment account. Start a side hustle. Negotiate a raise. Yet you don't do it. The gap between knowing and doing is inhabited by Resistance, a force that Steven Pressfield, in <em>The War of Art</em>, describes as the most toxic force on the planet. Resistance manifests as procrastination, distraction, self-doubt, and busyness. It is the voice that says "I'll start tomorrow."</p>
+<p>Pressfield writes that Resistance targets the activities that most contribute to our growth and purpose. The more important a financial action is to your future, the louder Resistance will scream. The only way to defeat Resistance is to show up every day and do the work, regardless of how you feel.</p>
+<div class="qb"><p>&ldquo;The most important thing about art is to work. Nothing else matters except sitting down every day and trying. The same is true for building wealth.&rdquo;</p><cite>&mdash; <b>Steven Pressfield</b>, Author of <em>The War of Art</em></cite></div>
+<div class="cd"><div class="lbl">Activity 10.1</div><h4>Identify Your Resistance</h4><p>What financial task have you been avoiding? Break it into the smallest possible first step. Commit to doing just that step today.</p><textarea class="rb" id="ch10-resist" style="margin:0;width:100%;min-height:60px" placeholder="Avoiding: Opening a retirement account.&#10;First step: Research two low-cost index funds."></textarea><button class="btn-save" onclick="save('ch10-resist')">Save</button></div>
+<div class="chk"><input type="checkbox" id="ch10-done" onchange="chkUpdate(this)"><label for="ch10-done">Mark chapter complete</label></div>
+
+<h2 id="ch11"><span class="cl">Chapter 11</span>Growth Mindset in Action</h2>
+<p class="dc">A growth mindset is not merely an optimistic outlook&mdash;it is an active orientation toward learning, challenge, and persistence. When applied to wealth, it transforms every financial setback into data, every mistake into tuition, and every success into evidence of further possibility.</p>
+<p>Dr. Carol Dweck's research in classrooms shows that students praised for effort rather than intelligence develop a growth mindset: they embrace challenges, persist through obstacles, learn from criticism, and find inspiration in others' success. The same principles apply to financial growth. When you view your financial abilities as developable rather than fixed, you approach budgeting, investing, and earning with curiosity rather than dread.</p>
+<div class="qb"><p>&ldquo;In a growth mindset, challenges are exciting rather than threatening. So rather than thinking, oh, I'm going to reveal my weaknesses, you think, wow, here's a chance to grow.&rdquo;</p><cite>&mdash; <b>Dr. Carol Dweck</b></cite></div>
+<div class="cd"><div class="lbl">Activity 11.1</div><h4>Reframe Your Financial Challenges</h4><p>Write a current financial challenge. Then reframe it in growth mindset language.</p><table class="dt"><thead><tr><th style="width:50%">Fixed Mindset Thought</th><th style="width:50%">Growth Mindset Reframe</th></tr></thead><tbody><tr><td><input id="ch11-fixed" placeholder="e.g. I'm just not good at investing"></td><td><input id="ch11-growth" placeholder="e.g. I can learn investing with practice"></td></tr></tbody></table><button class="btn-save" onclick="saveTable('ch11')">Save</button></div>
+<div class="chk"><input type="checkbox" id="ch11-done" onchange="chkUpdate(this)"><label for="ch11-done">Mark chapter complete</label></div>
+
+<h2 id="ch12"><span class="cl">Chapter 12</span>The Identity Shift</h2>
+<p class="dc">The most profound transformation in the Wealth Mindset journey is the Identity Shift&mdash;the moment when you stop seeing yourself as someone who struggles with money and begin seeing yourself as someone who naturally attracts, manages, and grows wealth. This is not positive thinking; it is identity re-formation.</p>
+<p>James Clear writes that every action you take is a vote for the type of person you wish to become. You do not need to win the election in one day. You simply need to cast votes consistently. Each time you make a financially responsible decision, you are voting for the identity of a financially responsible person. Each time you invest, you are voting for the identity of an investor. Over time, the evidence accumulates, and the new identity becomes self-sustaining.</p>
+<div class="qb"><p>&ldquo;Every action you take is a vote for the type of person you wish to become. No single instance will transform your beliefs, but as the votes build up, so does the evidence of your new identity.&rdquo;</p><cite>&mdash; <b>James Clear</b>, Author of <em>Atomic Habits</em></cite></div>
+<div class="cd"><div class="lbl">Activity 12.1</div><h4>Identity Affirmation</h4><p>Complete this sentence ten different ways: "I am the kind of person who..." (e.g., saves money each month, invests consistently, makes intentional financial decisions).</p><textarea class="rb" id="ch12-identity" style="margin:0;width:100%;min-height:80px" placeholder="I am the kind of person who..."></textarea><button class="btn-save" onclick="save('ch12-identity')">Save</button></div>
+<div class="chk"><input type="checkbox" id="ch12-done" onchange="chkUpdate(this)"><label for="ch12-done">Mark chapter complete</label></div>
+
+<h2 id="ch13"><span class="cl">Chapter 13</span>Visualization and Creation</h2>
+<p class="dc">Visualization is not wishful thinking; it is a neurobiological technique that primes the brain to recognize and create the conditions for success. When you vividly imagine yourself living a life of financial freedom, your reticular activating system (RAS)&mdash;the brain's filter for relevant information&mdash;begins to notice opportunities that align with that vision.</p>
+<p>Dr. Joe Dispenza teaches meditation methods that combine visualization with elevated emotions. The formula is simple: imagine your desired financial reality with such detail and emotional intensity that your brain cannot distinguish it from an actual memory. This creates a new reference point that your brain will work to match in the external world. The key components: clarity of vision, emotional embodiment, and repetition.</p>
+<div class="ec"><div class="h"><div class="i">NW</div><div class="info"><h4>Napoleon Hill</h4><div class="role">Author &bull; <em>Think and Grow Rich</em></div><div class="qt">&ldquo;Whatever the mind can conceive and believe, it can achieve.&rdquo;</div></div></div><div class="b"><p>Napoleon Hill spent twenty years studying the wealthiest people of his era, at the request of Andrew Carnegie. His book <em>Think and Grow Rich</em> remains one of the bestselling personal finance books of all time. Hill identified six steps to turn desire for wealth into reality: fix in your mind the exact amount of money you desire, determine exactly what you will give in return, set a definite date, create a definite plan, write a clear statement combining these elements, and read that statement aloud twice daily, seeing, feeling, and believing yourself already in possession of the money.</p></div></div>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=3SJ8IRjH3Tw" target="_blank">Dr. Joe Dispenza: Meditation and Visualization</a><a href="https://www.youtube.com/watch?v=jDsg_7_aTNM" target="_blank">Napoleon Hill: Think and Grow Rich Summary</a></div>
+<div class="cd"><div class="lbl">Activity 13.1</div><h4>Wealth Visualization Script</h4><p>Write a detailed visualization of your ideal financial future. Include sensory details: What does your home look like? How do you spend your mornings? How do you feel when you check your accounts?</p><textarea class="rb" id="ch13-visual" style="margin:0;width:100%;min-height:80px" placeholder="I wake up in my home, sunlight streaming through large windows. I check my phone and see my investment portfolio has grown..."></textarea><button class="btn-save" onclick="save('ch13-visual')">Save</button></div>
+<div class="chk"><input type="checkbox" id="ch13-done" onchange="chkUpdate(this)"><label for="ch13-done">Mark chapter complete</label></div>
+
+<h2 id="ch14"><span class="cl">Chapter 14</span>Affirmations That Work</h2>
+<p class="dc">Affirmations have earned a reputation as wishful thinking, but when used correctly, they are a tool for neuroplastic change. The key difference between effective and ineffective affirmations is emotional resonance and believability. An affirmation that is too far from your current reality will be rejected by your subconscious as false. An effective affirmation bridges the gap between where you are and where you want to be.</p>
+<p>Dr. Tara Swart, a neuroscientist and author of <em>The Source</em>, explains that affirmations work by activating the brain's reward system and creating new neural pathways. She recommends affirmations that are present tense, specific, and emotionally charged. Instead of "I am wealthy," which a scarcity-conditioned brain may reject, try "I am open to receiving abundance" or "I am capable of creating financial security."</p>
+<div class="qb"><p>&ldquo;Your brain is wired to protect you from the unknown. Affirmations rewire it to embrace possibility.&rdquo;</p><cite>&mdash; <b>Dr. Tara Swart</b>, Neuroscientist, Author of <em>The Source</em></cite></div>
+<div class="cd"><div class="lbl">Activity 14.1</div><h4>Design Your Affirmations</h4><p>Write three personal affirmations that feel true and stretch you slightly.</p><p>1. <input class="rb" id="ch14a1" style="display:inline;width:350px;margin:0 4px;padding:4px 8px" placeholder="e.g. I am learning to manage money with confidence"></p><p>2. <input class="rb" id="ch14a2" style="display:inline;width:350px;margin:0 4px;padding:4px 8px" placeholder="e.g. I deserve financial abundance"></p><p>3. <input class="rb" id="ch14a3" style="display:inline;width:350px;margin:0 4px;padding:4px 8px" placeholder="e.g. I attract opportunities for wealth"></p><button class="btn-save" onclick="saveAffs()">Save</button></div>
+<div class="chk"><input type="checkbox" id="ch14-done" onchange="chkUpdate(this)"><label for="ch14-done">Mark chapter complete</label></div>
+
+<h2 id="ch15"><span class="cl">Chapter 15</span>The Power of Gratitude</h2>
+<p class="dc">Gratitude is the foundation of abundance consciousness. If you cannot appreciate what you already have, more will never satisfy you. The wealthiest people in the world who lack gratitude live in perpetual scarcity. The poorest who practice gratitude live in abundance. Gratitude is not a denial of ambition; it is the platform from which ambition can operate without desperation.</p>
+<p>Dr. Robert Emmons, the world's leading scientific expert on gratitude at UC Davis, has demonstrated that people who keep gratitude journals report higher levels of positive emotions, better sleep, more resilience, and stronger relationships. They are also more likely to achieve their financial goals because they approach them from a state of sufficiency rather than deficit.</p>
+<div class="qb"><p>&ldquo;Gratitude blocks toxic emotions like envy, resentment, regret, and depression, which can otherwise destroy our ability to build a good life.&rdquo;</p><cite>&mdash; <b>Dr. Robert Emmons</b>, Professor of Psychology, UC Davis</cite></div>
+<div class="cd"><div class="lbl">Activity 15.1</div><h4>Gratitude for Your Financial Present</h4><p>Write five specific things you are grateful for about your current financial situation, no matter how small.</p><textarea class="rb" id="ch15-gratitude" style="margin:0;width:100%;min-height:60px" placeholder="1. I have a roof over my head.&#10;2. I have food in my kitchen.&#10;3. I have the ability to earn income.&#10;4. I have clean drinking water.&#10;5. I have access to education about money."></textarea><button class="btn-save" onclick="save('ch15-gratitude')">Save</button></div>
+<div class="chk"><input type="checkbox" id="ch15-done" onchange="chkUpdate(this)"><label for="ch15-done">Mark chapter complete</label></div>
+
+<h2 id="ch16"><span class="cl">Chapter 16</span>The Abundance Ritual</h2>
+<p class="dc">Daily rituals bridge intention and behavior. An Abundance Ritual is a short, consistent practice that reorients your nervous system toward prosperity. It might combine gratitude, visualization, affirmation, and intentional action into a five-minute morning practice. The key is not the specific content but the consistency. Over time, the ritual trains your brain to default to abundance rather than scarcity.</p>
+<p>Tony Robbins begins every morning with a "priming" ritual: ten minutes of breathing exercises, three minutes of gratitude, three minutes of visualization of his goals, and three minutes of feeling the emotions of having already achieved them. He has maintained this practice for decades and attributes much of his success to this daily neurological reset.</p>
+<div class="qb"><p>&ldquo;If you want to take the island, burn the boats. Commit fully to your abundance practice. Half measures yield half results.&rdquo;</p><cite>&mdash; <b>Tony Robbins</b></cite></div>
+<div class="cd"><div class="lbl">Activity 16.1</div><h4>Design Your Abundance Ritual</h4><p>Create a 5-minute daily ritual. Choose elements: breathwork, gratitude (3 items), visualization (2 min), affirmation (repeat 3 times). Write your sequence below.</p><textarea class="rb" id="ch16-ritual" style="margin:0;width:100%;min-height:70px" placeholder="1. 1 minute: Deep breathing, centering.&#10;2. 1 minute: Three things I'm grateful for.&#10;3. 2 minutes: Visualizing my financial goal.&#10;4. 1 minute: Repeat my core affirmation."></textarea><button class="btn-save" onclick="save('ch16-ritual')">Save</button></div>
+<div class="chk"><input type="checkbox" id="ch16-done" onchange="chkUpdate(this)"><label for="ch16-done">Mark chapter complete</label></div>
+
+<h2 id="ch17"><span class="cl">Chapter 17</span>Your Environment Shapes Your Mind</h2>
+<p class="dc">The spaces you inhabit, the media you consume, and the tools you use all shape your mindset. An environment cluttered with scarcity signals&mdash;unpaid bills stacked on the counter, news about economic collapse, friends who complain about money&mdash;reinforces scarcity consciousness. An environment designed for abundance&mdash;organized finances, educational content, tools for tracking progress&mdash;supports wealth consciousness.</p>
+<p>James Clear's concept of "environment design" suggests that making good behaviors easy and bad behaviors hard is more effective than willpower. If you want to save more money, automate your savings so you never see the money. If you want to invest, put your investment app on your home screen. If you want to reduce spending, unsubscribe from marketing emails and remove saved credit card information from online stores.</p>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=T7i5oY-hMFs" target="_blank">James Clear: How to Design Your Environment for Success</a></div>
+<div class="cd"><div class="lbl">Activity 17.1</div><h4>Environment Audit</h4><p>What three changes can you make to your physical or digital environment to support your wealth mindset?</p><textarea class="rb" id="ch17-env" style="margin:0;width:100%;min-height:60px" placeholder="1. Set up automatic transfers to savings.&#10;2. Remove shopping apps from my phone.&#10;3. Follow financial education accounts on social media."></textarea><button class="btn-save" onclick="save('ch17-env')">Save</button></div>
+<div class="chk"><input type="checkbox" id="ch17-done" onchange="chkUpdate(this)"><label for="ch17-done">Mark chapter complete</label></div>
+
+<h2 id="ch18"><span class="cl">Chapter 18</span>The Peer Group Effect</h2>
+<p class="dc">You are the average of the five people you spend the most time with. This adage, attributed to Jim Rohn, captures a profound truth about human psychology. Wealth consciousness is contagious. So is scarcity consciousness. The people around you shape your norms, expectations, and beliefs about what is possible.</p>
+<p>Jim Rohn, the late philosopher and mentor to Tony Robbins, taught that the most significant factor in personal growth is the decision to associate with people who challenge and inspire you. "If you want to be successful, find someone who has achieved the results you want and copy what they do." This is not about using people as stepping stones; it is about recognizing that mindsets are transmitted through relationship.</p>
+<div class="qb"><p>&ldquo;You are the average of the five people you spend the most time with. Choose your associations carefully.&rdquo;</p><cite>&mdash; <b>Jim Rohn</b>, Philosopher, Entrepreneur, Mentor</cite></div>
+<div class="cd"><div class="lbl">Activity 18.1</div><h4>Peer Group Assessment</h4><p>List the five people you spend the most time with. What messages do they send about money? What would you like to add to your circle?</p><textarea class="rb" id="ch18-peers" style="margin:0;width:100%;min-height:70px" placeholder="The people I spend time with tend to...&#10;I would like to add someone who..."></textarea><button class="btn-save" onclick="save('ch18-peers')">Save</button></div>
+<div class="chk"><input type="checkbox" id="ch18-done" onchange="chkUpdate(this)"><label for="ch18-done">Mark chapter complete</label></div>
+
+<h2 id="ch19"><span class="cl">Chapter 19</span>Giving and Receiving</h2>
+<p class="dc">The flow of money is a cycle. Holding too tightly stifles its movement; giving freely opens channels for receiving. This is not a mystical law but a psychological reality. Generosity shifts your identity from deprivation to sufficiency. When you give, you send a signal to your brain: I have enough. And enough is the foundation of more.</p>
+<p>Dr. Elizabeth Dunn, a social psychologist at the University of British Columbia, has conducted extensive research on the relationship between money and happiness. Her studies consistently show that spending money on others produces more happiness than spending on oneself. Even small acts of generosity&mdash;buying a coffee for a stranger, donating to a cause&mdash;elevate mood and reinforce a sense of abundance.</p>
+<div class="qb"><p>&ldquo;The best way to feel wealthy is to give. Generosity is the ultimate abundance practice.&rdquo;</p><cite>&mdash; <b>Dr. Elizabeth Dunn</b>, Professor of Psychology, UBC</cite></div>
+<div class="cd"><div class="lbl">Activity 19.1</div><h4>Generosity Plan</h4><p>How can you incorporate generosity into your financial life this month? It need not be monetary&mdash;time, attention, and skill are also forms of giving.</p><textarea class="rb" id="ch19-giving" style="margin:0;width:100%;min-height:60px" placeholder="This month, I will give..."></textarea><button class="btn-save" onclick="save('ch19-giving')">Save</button></div>
+<div class="chk"><input type="checkbox" id="ch19-done" onchange="chkUpdate(this)"><label for="ch19-done">Mark chapter complete</label></div>
+
+<h2 id="ch20"><span class="cl">Chapter 20</span>Embodying the Future You</h2>
+<p class="dc">The final stage of the Wealth Mindset transformation is embodiment. You do not merely think like a wealthy person. You feel, act, walk, speak, and make decisions like one. Embodiment means your new identity has moved from conceptual understanding to lived reality. It is the difference between knowing the lyrics of a song and being able to sing it from your chest without thinking.</p>
+<p>Eckhart Tolle, author of <em>The Power of Now</em>, teaches that the future exists only as a thought in the present moment. When you embody your future self now, you collapse the distance between where you are and where you want to be. The feelings of gratitude, confidence, and generosity that you associate with financial freedom can be practiced today, regardless of your bank balance. When you feel those feelings now, you become magnetic to the circumstances that match them.</p>
+<div class="qb"><p>&ldquo;You are here to enable the divine purpose of the universe to unfold. That is how important you are. Your wealth is a tool for that unfolding.&rdquo;</p><cite>&mdash; <b>Eckhart Tolle</b>, Author of <em>The Power of Now</em></cite></div>
+<div class="cd"><div class="lbl">Activity 20.1</div><h4>Embodying Practice</h4><p>Describe three things your future financially free self does differently in their daily life. Start doing one of them today.</p><textarea class="rb" id="ch20-embody" style="margin:0;width:100%;min-height:70px" placeholder="My future self wakes up without financial anxiety. They review their investments with curiosity, not fear. They give generously without second-guessing."></textarea><button class="btn-save" onclick="save('ch20-embody')">Save</button></div>
+<div class="chk"><input type="checkbox" id="ch20-done" onchange="chkUpdate(this)"><label for="ch20-done">Mark chapter complete</label></div>
+
+<h2 id="ch21"><span class="cl">Chapter 21</span>The Lifelong Practice</h2>
+<p class="dc">The Wealth Mindset is not a destination; it is a practice. Like physical fitness, it requires consistent attention, occasional discipline, and the grace to restart when you fall off. The neural pathways of scarcity were built over decades. They will not disappear overnight. But each day you practice abundance, those pathways weaken and the new pathways strengthen.</p>
+<p>Marianne Williamson, author of <em>A Return to Love</em>, wrote words that have inspired millions: "Our deepest fear is not that we are inadequate. Our deepest fear is that we are powerful beyond measure. It is our light, not our darkness that most frightens us. Your playing small does not serve the world." The Wealth Mindset is ultimately about claiming your power, not just to accumulate money, but to contribute your unique gifts to the world without the constriction of financial fear.</p>
+<div class="qb"><p>&ldquo;As we let our own light shine, we unconsciously give other people permission to do the same. As we are liberated from our own fear, our presence automatically liberates others.&rdquo;</p><cite>&mdash; <b>Marianne Williamson</b>, Author of <em>A Return to Love</em></cite></div>
+<div class="yt"><div class="lbl">Video Resources</div><a href="https://www.youtube.com/watch?v=W5W5qrD1_uo" target="_blank">Marianne Williamson: Our Deepest Fear</a><a href="https://www.youtube.com/watch?v=M9c1pAeD-j4" target="_blank">Tony Robbins: Life and Wealth Principles</a></div>
+<div class="cd"><div class="lbl">Activity 21.1</div><h4>Your Wealth Mindset Commitment</h4><p>Write a one-paragraph commitment to your Wealth Mindset practice. Include what you will do daily, who you are becoming, and how you will handle setbacks.</p><textarea class="rb" id="ch21-commit" style="margin:0;width:100%;min-height:80px" placeholder="I commit to practicing my Abundance Ritual daily. I am becoming a person who naturally attracts, manages, and grows wealth. When I face setbacks, I will greet them with curiosity, not shame, and return to my practice without judgment."></textarea><button class="btn-save" onclick="save('ch21-commit')">Save</button></div>
+<div class="chk"><input type="checkbox" id="ch21-done" onchange="chkUpdate(this)"><label for="ch21-done">Mark chapter complete</label></div>
+
+<div class="tw">
+  <div class="tb">
+    <button class="on" onclick="switchTab('daily',this)">Daily</button>
+    <button onclick="switchTab('weekly',this)">Weekly Review</button>
+    <button onclick="switchTab('monthly',this)">Monthly Goals</button>
+  </div>
+  <div class="tp on" id="tab-daily">
+    <h3>Daily Abundance Practice</h3>
+    <div class="chk"><input type="checkbox" id="pd1" onchange="chkSimple('pd1')"><label for="pd1">Morning Abundance Ritual (5 min)</label></div>
+    <div class="chk"><input type="checkbox" id="pd2" onchange="chkSimple('pd2')"><label for="pd2">Read or listen to something about mindset</label></div>
+    <div class="chk"><input type="checkbox" id="pd3" onchange="chkSimple('pd3')"><label for="pd3">Practice gratitude &mdash; write three things</label></div>
+    <div class="chk"><input type="checkbox" id="pd4" onchange="chkSimple('pd4')"><label for="pd4">Notice a scarcity thought and reframe it</label></div>
+    <div class="chk"><input type="checkbox" id="pd5" onchange="chkSimple('pd5')"><label for="pd5">Take one intentional financial action</label></div>
+  </div>
+  <div class="tp" id="tab-weekly">
+    <h3>Weekly Reflection</h3>
+    <p>Reflect on your abundance practice this week. What patterns did you notice? What shifted?</p>
+    <textarea class="rb" id="pl-weekly" style="margin:0;width:100%;min-height:80px" placeholder="This week I noticed..."></textarea>
+    <button class="btn-save" onclick="save('pl-weekly')">Save Review</button>
+  </div>
+  <div class="tp" id="tab-monthly">
+    <h3>Monthly Wealth Mindset Goals</h3>
+    <p>Set three goals for the month ahead:</p>
+    <p>1. <input class="rb" id="pm1" style="display:inline;width:300px;margin:0 4px;padding:4px 8px"></p>
+    <p>2. <input class="rb" id="pm2" style="display:inline;width:300px;margin:0 4px;padding:4px 8px"></p>
+    <p>3. <input class="rb" id="pm3" style="display:inline;width:300px;margin:0 4px;padding:4px 8px"></p>
+    <button class="btn-save" onclick="saveMonthly()">Save Goals</button>
+  </div>
+</div>
+
+<div class="fb">
+  <h2>Your Wealth Mindset Journey Begins</h2>
+  <p>You have completed the Wealth Mindset Masterclass. But the real work&mdash;the daily practice of abundance, the rewiring of neural pathways, the embodiment of your wealthiest self&mdash;begins now. You have the tools. You have the knowledge. The only question is: will you practice?</p>
+  <p><b>Your wealthiest self is not a future version of you. It is the version of you that shows up today, chooses abundance, and takes one more step. Go practice.</b></p>
+</div>
+
+</div>
+
+<footer class="ft">
+  <p>&copy; 2025 Elevate Shop. All rights reserved.</p>
+  <p>Empowering minds and building wealth, one download at a time.</p>
+</footer>
+
+</div>
+
+<script>
+const TOTAL=21;
+const PREFIX='els_';
+function save(id){const el=document.getElementById(id);if(!el)return;localStorage.setItem(PREFIX+id,el.value);toast('Saved')}
+function saveTable(prefix){const tbl=document.querySelector('#ch'+prefix.replace('ch','')+' table');if(!tbl)return;tbl.querySelectorAll('input').forEach(el=>{localStorage.setItem(PREFIX+el.id,el.value)});toast('Table saved')}
+function chkSimple(id){const cb=document.getElementById(id);if(cb)localStorage.setItem(PREFIX+id,cb.checked?'1':'0')}
+function chkUpdate(el){localStorage.setItem(PREFIX+el.id,el.checked?'1':'0');updateProgress()}
+function updateProgress(){let done=0;for(let i=1;i<=TOTAL;i++){const cb=document.getElementById('ch'+i+'-done');if(cb&&cb.checked)done++}const pct=Math.round((done/TOTAL)*100);const pf=document.getElementById('progFill');if(pf)pf.style.width=pct+'%';const pl=document.getElementById('progLabel');if(pl)pl.textContent=done+' of '+TOTAL+' chapters complete'}
+function checkQ(el,num){const block=el.closest('.qz');if(!block)return;const opts=block.querySelectorAll('.qa');const fb=document.getElementById('fb'+num);opts.forEach(o=>{o.style.pointerEvents='none';o.classList.add('ds')});if(el.dataset.correct==='true'){el.classList.add('cr');if(fb){fb.textContent='Correct!';fb.className='fbk ok'}}else{el.classList.add('wr');if(fb){fb.textContent='Not quite. Consider reviewing the chapter.';fb.className='fbk fail'}opts.forEach(o=>{if(o.dataset.correct==='true')o.classList.add('cr')})}}
+function setRating(key,val,btn){const row=btn.closest('.rw');if(!row)return;row.querySelectorAll('button').forEach(b=>b.classList.remove('on'));btn.classList.add('on');localStorage.setItem(PREFIX+'rating_'+key,val)}
+function saveAffs(){for(let i=1;i<=3;i++){const el=document.getElementById('ch14a'+i);if(el)localStorage.setItem(PREFIX+el.id,el.value)};toast('Affirmations saved')}
+function saveMonthly(){for(let i=1;i<=3;i++){const el=document.getElementById('pm'+i);if(el)localStorage.setItem(PREFIX+el.id,el.value)};toast('Goals saved')}
+function switchTab(name,btn){document.querySelectorAll('.tb button').forEach(b=>b.classList.remove('on'));document.querySelectorAll('.tp').forEach(p=>p.classList.remove('on'));if(btn)btn.classList.add('on');const tp=document.getElementById('tab-'+name);if(tp)tp.classList.add('on')}
+function resetAll(){if(!confirm('Reset all progress?'))return;Object.keys(localStorage).filter(k=>k.startsWith(PREFIX)).forEach(k=>localStorage.removeItem(k));location.reload()}
+function toast(msg){const d=document.createElement('div');d.className='toast';d.textContent=msg;document.body.appendChild(d);setTimeout(()=>d.remove(),2200)}
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('textarea[id], input[id]').forEach(el=>{if(el.type!='checkbox'&&el.type!='button'&&el.type!='submit'){const v=localStorage.getItem(PREFIX+el.id);if(v!==null)el.value=v}});
+  document.querySelectorAll('input[type="checkbox"]').forEach(cb=>{if(localStorage.getItem(PREFIX+cb.id)==='1')cb.checked=true});
+  document.querySelectorAll('.rw').forEach(row=>{const key=row.id.replace('rating-','');const saved=localStorage.getItem(PREFIX+'rating_'+key);if(saved){row.querySelectorAll('button').forEach(b=>{if(parseInt(b.textContent)===parseInt(saved))b.classList.add('on')})}});
+  updateProgress()
+});
+</script>
+</body>
+</html>

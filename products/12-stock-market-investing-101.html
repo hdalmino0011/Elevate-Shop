@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stock Market Investing 101 — Elevate Shop</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green: #1a3c2a;
+    --green-light: #2a5a3e;
+    --gold: #c9a84c;
+    --gold-light: #e0c875;
+    --gold-dark: #a8882e;
+    --cream: #f5f0e8;
+    --cream-dark: #e8e0d0;
+    --cream-light: #fcf9f5;
+    --brown: #5c3d2e;
+    --text: #2c1810;
+    --text-light: #5a4a3a;
+    --border-ornate: #b89a4a;
+    --success: #3a7d44;
+    --shadow: rgba(26,60,42,0.15);
+  }
+
+  body {
+    font-family: 'Georgia', 'Palatino Linotype', 'Book Antiqua', 'Times New Roman', serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.8;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px 30px 20px;
+  }
+
+  /* ===== ORNATE BORDER ===== */
+  .ornate-border {
+    border: 3px double var(--gold);
+    border-radius: 0;
+    position: relative;
+    background: var(--cream-light);
+    box-shadow:
+      inset 0 0 0 6px var(--cream-light),
+      inset 0 0 0 8px var(--gold),
+      0 8px 32px var(--shadow);
+    padding: 36px 40px 40px;
+    margin-bottom: 40px;
+  }
+  .ornate-border::before,
+  .ornate-border::after {
+    content: "\2767";
+    position: absolute;
+    font-size: 32px;
+    color: var(--gold);
+    font-family: 'Georgia', serif;
+  }
+  .ornate-border::before { top: -6px; left: 50%; transform: translateX(-50%); }
+  .ornate-border::after { bottom: -6px; left: 50%; transform: translateX(-50%); }
+
+  .ornate-corner {
+    position: relative;
+  }
+  .ornate-corner::before, .ornate-corner::after {
+    content: "";
+    position: absolute;
+    width: 40px; height: 40px;
+    border-color: var(--gold);
+    border-style: solid;
+  }
+  .ornate-corner::before {
+    top: 8px; left: 8px;
+    border-width: 3px 0 0 3px;
+  }
+  .ornate-corner::after {
+    top: 8px; right: 8px;
+    border-width: 3px 3px 0 0;
+  }
+
+  /* ===== TITLE SECTION ===== */
+  .title-section {
+    text-align: center;
+    position: relative;
+    padding: 20px 0 10px;
+  }
+  .title-section .badge {
+    display: inline-block;
+    background: var(--green);
+    color: var(--gold);
+    font-family: 'Georgia', 'Palatino Linotype', serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 4px 24px;
+    margin-bottom: 20px;
+  }
+  .title-section h1 {
+    font-family: 'Georgia', 'Palatino Linotype', 'Book Antiqua', serif;
+    font-size: 42px;
+    font-weight: 900;
+    color: var(--green);
+    letter-spacing: 1px;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .title-section h1 span { color: var(--gold); }
+  .title-section .subtitle {
+    font-family: 'Georgia', 'Palatino Linotype', 'Book Antiqua', serif;
+    font-size: 19px;
+    font-style: italic;
+    color: var(--text-light);
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+  }
+  .title-section .divider-line {
+    width: 120px; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 12px auto;
+  }
+  .title-section .detail {
+    font-size: 13px;
+    color: var(--text-light);
+    letter-spacing: 1px;
+  }
+  .title-section .detail em { color: var(--gold-dark); font-style: normal; }
+
+  /* ===== PROGRESS BAR ===== */
+  .progress-wrapper {
+    background: var(--cream-light);
+    border: 1px solid var(--gold);
+    padding: 20px 28px;
+    margin-bottom: 36px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .progress-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+  .progress-info .label {
+    font-family: 'Georgia', 'Palatino Linotype', 'Book Antiqua', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--green);
+    letter-spacing: 0.5px;
+  }
+  .progress-info .count {
+    font-family: 'Georgia', 'Palatino Linotype', 'Book Antiqua', serif;
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--gold-dark);
+    line-height: 1;
+  }
+  .progress-bar-outer {
+    flex: 1;
+    min-width: 120px;
+    height: 10px;
+    background: var(--cream-dark);
+    border: 1px solid var(--gold);
+    border-radius: 0;
+    overflow: hidden;
+  }
+  .progress-bar-inner {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--green), var(--gold));
+    transition: width 0.6s ease;
+  }
+  .btn-reset {
+    background: none;
+    border: 1px solid var(--gold);
+    color: var(--brown);
+    font-family: 'Georgia', 'Palatino Linotype', 'Book Antiqua', serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+    padding: 6px 18px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+  .btn-reset:hover {
+    background: var(--gold);
+    color: var(--cream-light);
+  }
+
+  /* ===== CHAPTER NAV ===== */
+  .chapter-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+  .chapter-nav select {
+    background: var(--cream-light);
+    border: 1px solid var(--gold);
+    color: var(--green);
+    font-family: 'Georgia', 'Palatino Linotype', 'Book Antiqua', serif;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 8px 16px;
+    flex: 1;
+    min-width: 180px;
+    cursor: pointer;
+  }
+  .chapter-nav select:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
+  .nav-btns { display: flex; gap: 8px; }
+  .nav-btn {
+    background: var(--green);
+    border: none;
+    color: var(--cream-light);
+    font-family: 'Georgia', 'Palatino Linotype', 'Book Antiqua', serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 8px 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+  }
+  .nav-btn:hover { background: var(--gold); color: var(--green); }
+  .nav-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    background: var(--cream-dark);
+    color: var(--text-light);
+  }
+
+  /* ===== CHAPTER ===== */
+  .chapter {
+    display: none;
+    background: var(--cream-light);
+    border: 1px solid var(--cream-dark);
+    padding: 36px 40px 32px;
+    margin-bottom: 30px;
+    position: relative;
+  }
+  .chapter.active { display: block; }
+  .chapter::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--green), var(--gold), var(--green));
+  }
+  .chapter-number {
+    font-family: 'Georgia', 'Palatino Linotype', 'Book Antiqua', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gold-dark);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  .chapter h2 {
+    font-family: 'Georgia', 'Palatino Linotype', 'Book Antiqua', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--green);
+    line-height: 1.3;
+    margin-bottom: 16px;
+  }
+  .chapter h2 .ch-number {
+    color: var(--gold);
+    margin-right: 6px;
+  }
+  .chapter p {
+    margin-bottom: 14px;
+    text-align: justify;
+    font-size: 14.5px;
+  }
+  .chapter ul, .chapter ol {
+    margin: 10px 0 14px 24px;
+    font-size: 14.5px;
+  }
+  .chapter li { margin-bottom: 6px; }
+  .chapter blockquote {
+    border-left: 3px solid var(--gold);
+    padding: 10px 20px;
+    margin: 14px 0;
+    background: rgba(201,168,76,0.06);
+    font-style: italic;
+    color: var(--text-light);
+    font-size: 14px;
+  }
+  .chapter blockquote cite {
+    display: block;
+    margin-top: 4px;
+    font-size: 12px;
+    color: var(--gold-dark);
+    font-style: normal;
+    letter-spacing: 0.5px;
+  }
+
+  .video-wrapper {
+    margin: 18px 0;
+    position: relative;
+    width: 100%;
+    max-width: 560px;
+    border: 2px solid var(--cream-dark);
+  }
+  .video-wrapper iframe {
+    display: block;
+    width: 100%;
+    height: 315px;
+    border: none;
+  }
+
+  /* ===== CHAPTER ACTIONS ===== */
+  .chapter-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--cream-dark);
+    flex-wrap: wrap;
+  }
+  .btn-complete {
+    background: none;
+    border: 2px solid var(--gold);
+    color: var(--green);
+    font-family: 'Georgia', 'Palatino Linotype', 'Book Antiqua', serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 7px 22px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    min-width: 160px;
+  }
+  .btn-complete:hover { background: var(--gold); color: var(--cream-light); }
+  .btn-complete.completed {
+    background: var(--green);
+    border-color: var(--green);
+    color: var(--gold);
+  }
+  .btn-complete.completed:hover { background: var(--green-light); }
+
+  .notes-section { flex: 1; min-width: 200px; }
+  .notes-section label {
+    display: block;
+    font-family: 'Georgia', 'Palatino Linotype', 'Book Antiqua', serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-light);
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .notes-section textarea {
+    width: 100%;
+    background: var(--cream);
+    border: 1px solid var(--cream-dark);
+    color: var(--text);
+    font-family: 'Georgia', 'Palatino Linotype', 'Book Antiqua', serif;
+    font-size: 14px;
+    padding: 8px 12px;
+    resize: vertical;
+    min-height: 48px;
+    transition: border 0.3s;
+  }
+  .notes-section textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: var(--cream-light);
+  }
+
+  /* ===== CHAPTER LIST (bottom) ===== */
+  .chapter-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 8px;
+    margin: 30px 0;
+    padding: 20px 24px;
+    background: var(--cream-light);
+    border: 1px solid var(--cream-dark);
+  }
+  .chapter-list .cl-item {
+    font-family: 'Georgia', 'Palatino Linotype', 'Book Antiqua', serif;
+    font-size: 13px;
+    padding: 5px 10px;
+    cursor: pointer;
+    color: var(--text-light);
+    border-left: 2px solid transparent;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: block;
+  }
+  .chapter-list .cl-item:hover {
+    color: var(--green);
+    border-left-color: var(--gold);
+    background: rgba(201,168,76,0.06);
+  }
+  .chapter-list .cl-item.active-ch {
+    color: var(--green);
+    border-left-color: var(--green);
+    background: rgba(26,60,42,0.05);
+    font-weight: 700;
+  }
+  .chapter-list .cl-item.done {
+    color: var(--gold-dark);
+  }
+  .chapter-list .cl-item.done::after {
+    content: " \2713";
+    color: var(--success);
+  }
+
+  /* ===== FOOTER ===== */
+  .site-footer {
+    text-align: center;
+    padding: 28px 20px 16px;
+    border-top: 2px solid var(--gold);
+    margin-top: 10px;
+  }
+  .site-footer .footer-line1 {
+    font-family: 'Georgia', 'Palatino Linotype', 'Book Antiqua', serif;
+    font-size: 14px;
+    color: var(--text-light);
+    letter-spacing: 0.5px;
+  }
+  .site-footer .footer-line2 {
+    font-family: 'Georgia', 'Palatino Linotype', 'Book Antiqua', serif;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--gold-dark);
+    margin-top: 2px;
+  }
+
+  /* ===== PRINT ===== */
+  @media print {
+    body { background: #fff; color: #000; font-size: 12px; }
+    .page { max-width: none; padding: 20px; }
+    .ornate-border { box-shadow: none; border-color: #333; padding: 20px; }
+    .ornate-border::before, .ornate-border::after { display: none; }
+    .progress-wrapper { display: none; }
+    .chapter-nav { display: none; }
+    .chapter { display: block !important; page-break-inside: avoid; border-color: #ccc; padding: 20px; margin-bottom: 20px; }
+    .chapter::before { display: none; }
+    .chapter-actions { display: none; }
+    .video-wrapper { display: none; }
+    .chapter-list { display: none; }
+    .site-footer { border-top-color: #333; }
+    .btn-reset, .nav-btn, .btn-complete { display: none; }
+    .notes-section { display: none; }
+  }
+
+  @media (max-width: 640px) {
+    .page { padding: 16px 12px; }
+    .ornate-border { padding: 20px 16px; }
+    .title-section h1 { font-size: 28px; }
+    .chapter { padding: 24px 18px; }
+    .chapter h2 { font-size: 20px; }
+    .chapter-nav { flex-direction: column; }
+    .nav-btns { width: 100%; }
+    .nav-btn { flex: 1; text-align: center; font-size: 12px; padding: 8px 10px; }
+    .chapter-actions { flex-direction: column; }
+    .btn-complete { width: 100%; }
+    .progress-wrapper { flex-direction: column; align-items: stretch; text-align: center; }
+    .chapter-list { grid-template-columns: 1fr 1fr; }
+    .video-wrapper iframe { height: 200px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ===== TITLE SECTION ===== -->
+  <div class="ornate-border">
+    <div class="title-section">
+      <div class="badge">Elevate Shop — Premium Course</div>
+      <h1>Stock Market<br><span>Investing 101</span></h1>
+      <div class="divider-line"></div>
+      <p class="subtitle">A Beginner&rsquo;s Guide to Building Wealth Through the Markets</p>
+      <p class="detail">18 Chapters &bull; <em>Stocks &amp; Bonds</em> &bull; <em>ETFs &amp; Mutual Funds</em> &bull; <em>Value &amp; Growth Investing</em> &bull; <em>Risk Management</em></p>
+    </div>
+  </div>
+
+  <!-- ===== PROGRESS ===== -->
+  <div class="progress-wrapper" id="progressWrapper">
+    <div class="progress-info">
+      <span class="label">Progress</span>
+      <span class="count" id="progressCount">0 / 18</span>
+    </div>
+    <div class="progress-bar-outer">
+      <div class="progress-bar-inner" id="progressBarInner"></div>
+    </div>
+    <button class="btn-reset" onclick="window.resetProgress()">Reset All</button>
+  </div>
+
+  <!-- ===== NAVIGATION ===== -->
+  <div class="chapter-nav">
+    <select id="chapterSelect" onchange="window.goToChapter(parseInt(this.value))">
+      <option value="1">Chapter 1 — What is the Stock Market?</option>
+      <option value="2">Chapter 2 — Stocks vs Bonds vs ETFs vs Mutual Funds</option>
+      <option value="3">Chapter 3 — Opening a Brokerage Account</option>
+      <option value="4">Chapter 4 — Understanding Market Indices</option>
+      <option value="5">Chapter 5 — Value Investing Fundamentals</option>
+      <option value="6">Chapter 6 — Growth Investing</option>
+      <option value="7">Chapter 7 — Dollar-Cost Averaging</option>
+      <option value="8">Chapter 8 — Dividend Investing</option>
+      <option value="9">Chapter 9 — ETFs &amp; Index Funds</option>
+      <option value="10">Chapter 10 — Risk Management</option>
+      <option value="11">Chapter 11 — Fundamental Analysis</option>
+      <option value="12">Chapter 12 — Technical Analysis Basics</option>
+      <option value="13">Chapter 13 — Building Your First Portfolio</option>
+      <option value="14">Chapter 14 — Retirement Accounts</option>
+      <option value="15">Chapter 15 — Tax Implications</option>
+      <option value="16">Chapter 16 — Market Cycles &amp; Psychology</option>
+      <option value="17">Chapter 17 — Common Mistakes</option>
+      <option value="18">Chapter 18 — Creating Your Investment Plan</option>
+    </select>
+    <div class="nav-btns">
+      <button class="nav-btn" id="prevBtn" onclick="window.prevChapter()">Prev</button>
+      <button class="nav-btn" id="nextBtn" onclick="window.nextChapter()">Next</button>
+    </div>
+  </div>
+
+  <!-- ===== CHAPTERS ===== -->
+  <div id="chapterContainer">
+
+    <!-- CH 1 -->
+    <div class="chapter" id="ch1">
+      <div class="chapter-number">Chapter One</div>
+      <h2><span class="ch-number">I.</span> What is the Stock Market?</h2>
+      <p>The stock market is a vast network of exchanges where shares of publicly traded companies are bought and sold. It traces its roots to 17th-century Amsterdam, where the Dutch East India Company issued the first shares to finance global trade expeditions. Today, the stock market serves two fundamental purposes: it allows companies to raise capital by selling ownership stakes, and it gives investors the opportunity to own a piece of those companies and share in their profits.</p>
+      <p>Major exchanges like the New York Stock Exchange (NYSE) and the Nasdaq operate as auction markets where buyers and sellers meet through electronic systems to determine fair prices. When you buy a share of stock, you are purchasing a fractional ownership claim on a company&rsquo;s assets and earnings. The price of a share moves based on supply and demand, influenced by everything from corporate earnings reports to global economic news.</p>
+      <p>Understanding how the market works is the first step to becoming a confident investor. The market is not a casino &mdash; it is a mechanism for capital allocation that has historically rewarded patient, disciplined investors. Over the long term, the stock market has delivered average annual returns of approximately 7&ndash;10% after inflation, making it one of the most powerful wealth-building tools available.</p>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/qp0HIF3SfI4" title="Simon Sinek" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="chapter-actions">
+        <button class="btn-complete" id="complete1" onclick="window.toggleComplete(1)">Mark Complete</button>
+        <div class="notes-section">
+          <label for="notes1">Your Notes</label>
+          <textarea id="notes1" placeholder="Write your notes for this chapter&hellip;"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- CH 2 -->
+    <div class="chapter" id="ch2">
+      <div class="chapter-number">Chapter Two</div>
+      <h2><span class="ch-number">II.</span> Stocks vs Bonds vs ETFs vs Mutual Funds</h2>
+      <p>Each investment vehicle serves a different role in a portfolio. <strong>Stocks</strong> represent equity ownership in a company. They offer the highest long-term growth potential but also come with greater volatility. When you buy a stock, you become a shareholder and can benefit from price appreciation and dividends. However, stockholders are last in line if a company goes bankrupt.</p>
+      <p><strong>Bonds</strong> are debt instruments. When you buy a bond, you are lending money to a government or corporation in exchange for regular interest payments and the return of principal at maturity. Bonds are generally safer than stocks but offer lower returns. Government bonds (Treasuries) are considered virtually risk-free, while corporate bonds carry varying degrees of credit risk.</p>
+      <p><strong>ETFs</strong> (Exchange-Traded Funds) and <strong>mutual funds</strong> are pooled investment vehicles that hold a collection of stocks, bonds, or other assets. ETFs trade like stocks on exchanges throughout the day, while mutual funds are priced once daily after market close. Both offer instant diversification. ETFs typically have lower expense ratios and are more tax-efficient, making them ideal for long-term investors. Mutual funds may offer active management but often come with higher fees.</p>
+      <p>Understanding these differences allows you to construct a portfolio that matches your risk tolerance, time horizon, and financial goals. Most beginners are best served starting with a broad-market ETF before adding individual stocks or bonds.</p>
+      <div class="chapter-actions">
+        <button class="btn-complete" id="complete2" onclick="window.toggleComplete(2)">Mark Complete</button>
+        <div class="notes-section">
+          <label for="notes2">Your Notes</label>
+          <textarea id="notes2" placeholder="Write your notes for this chapter&hellip;"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- CH 3 -->
+    <div class="chapter" id="ch3">
+      <div class="chapter-number">Chapter Three</div>
+      <h2><span class="ch-number">III.</span> Opening a Brokerage Account</h2>
+      <p>To begin investing, you need a brokerage account &mdash; an account that allows you to buy and sell securities. The first step is choosing a reputable online broker. Modern brokers like Vanguard, Fidelity, Charles Schwab, and newer fintech platforms offer commission-free trading, no account minimums, and user-friendly mobile apps. When evaluating brokers, consider fees, investment options, research tools, and customer service.</p>
+      <p>Once you select a broker, you will complete an application that collects personal information, including your Social Security number, employment details, and financial profile. The broker uses this to verify your identity and determine your investor status. Most applications are approved within minutes. You will then link your bank account via ACH transfer to fund your new brokerage account.</p>
+      <p>After funding, you can begin placing trades. A typical brokerage account gives you access to stocks, ETFs, mutual funds, bonds, options, and sometimes commodities or crypto. For beginners, starting with a simple &ldquo;cash account&rdquo; (no margin) and sticking to broad-market ETFs is a prudent approach. Many brokers also offer robo-advisors that automatically build and manage a diversified portfolio based on your risk tolerance.</p>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/SMYKAbbOefA" title="Tony Robbins" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="chapter-actions">
+        <button class="btn-complete" id="complete3" onclick="window.toggleComplete(3)">Mark Complete</button>
+        <div class="notes-section">
+          <label for="notes3">Your Notes</label>
+          <textarea id="notes3" placeholder="Write your notes for this chapter&hellip;"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- CH 4 -->
+    <div class="chapter" id="ch4">
+      <div class="chapter-number">Chapter Four</div>
+      <h2><span class="ch-number">IV.</span> Understanding Market Indices</h2>
+      <p>Market indices are benchmarks that track the performance of a selected group of stocks, giving investors a snapshot of how the overall market or a specific sector is performing. The three most widely followed U.S. indices are the S&amp;P 500, the Dow Jones Industrial Average, and the Nasdaq Composite.</p>
+      <p>The <strong>S&amp;P 500</strong> includes 500 of the largest publicly traded U.S. companies by market capitalization. It is considered the best single gauge of the U.S. stock market because it covers approximately 80% of total U.S. equity market value. Most index funds and ETFs track the S&amp;P 500, making it the benchmark of choice for long-term investors.</p>
+      <p>The <strong>Dow Jones Industrial Average</strong> consists of 30 blue-chip companies and is price-weighted, meaning stocks with higher share prices have more influence. The <strong>Nasdaq Composite</strong> includes over 3,000 stocks listed on the Nasdaq exchange, with a heavy tilt toward technology companies. Other important indices include the Russell 2000 (small-cap stocks) and the Wilshire 5000 (total U.S. market).</p>
+      <p>By understanding indices, you can evaluate how your portfolio performs relative to the broader market. A common goal for passive investors is to match the return of a broad index like the S&amp;P 500 through low-cost index funds.</p>
+      <div class="chapter-actions">
+        <button class="btn-complete" id="complete4" onclick="window.toggleComplete(4)">Mark Complete</button>
+        <div class="notes-section">
+          <label for="notes4">Your Notes</label>
+          <textarea id="notes4" placeholder="Write your notes for this chapter&hellip;"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- CH 5 -->
+    <div class="chapter" id="ch5">
+      <div class="chapter-number">Chapter Five</div>
+      <h2><span class="ch-number">V.</span> Value Investing Fundamentals</h2>
+      <p>Value investing is the art of buying securities at a price below their intrinsic value. The philosophy was pioneered by Benjamin Graham, often called the &ldquo;father of value investing,&rdquo; in his seminal books <em>Security Analysis</em> (1934) and <em>The Intelligent Investor</em> (1949). Graham taught that the market is a voting machine in the short term but a weighing machine in the long term &mdash; prices eventually reflect true worth.</p>
+      <p>His most famous disciple, Warren Buffett, has built Berkshire Hathaway into one of the world&rsquo;s most valuable companies by applying value investing principles. The core idea is to identify companies with strong fundamentals &mdash; solid earnings, manageable debt, competitive advantages (economic moats), and capable management &mdash; whose stock prices are temporarily depressed due to market sentiment or short-term problems.</p>
+      <p>Key metrics value investors use include the price-to-earnings (P/E) ratio, price-to-book (P/B) ratio, dividend yield, and debt-to-equity ratio. A low P/E ratio relative to industry peers may indicate an undervalued stock. However, value investing requires patience; it can take months or years for the market to recognize a company&rsquo;s true worth. The margin of safety &mdash; buying at a significant discount to intrinsic value &mdash; protects against errors in judgment.</p>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/cBzhCWV6Q7Q" title="Jim Rohn" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="chapter-actions">
+        <button class="btn-complete" id="complete5" onclick="window.toggleComplete(5)">Mark Complete</button>
+        <div class="notes-section">
+          <label for="notes5">Your Notes</label>
+          <textarea id="notes5" placeholder="Write your notes for this chapter&hellip;"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- CH 6 -->
+    <div class="chapter" id="ch6">
+      <div class="chapter-number">Chapter Six</div>
+      <h2><span class="ch-number">VI.</span> Growth Investing</h2>
+      <p>Growth investing focuses on companies that are expected to grow earnings and revenue at an above-average rate compared to their industry or the overall market. Growth investors are willing to pay a premium for stocks that demonstrate strong momentum, innovative products, and large addressable markets. Unlike value investors, they prioritize future potential over current valuation.</p>
+      <p>Typical characteristics of growth stocks include high revenue growth rates, expanding profit margins, reinvestment of earnings into research and development, and leadership in emerging industries such as technology, biotechnology, renewable energy, and cloud computing. Companies like Amazon, Tesla, Nvidia, and Shopify have been classic growth stocks, rewarding long-term shareholders with extraordinary returns.</p>
+      <p>The risks of growth investing are significant. High expectations mean that any miss in earnings can trigger sharp price declines. Growth stocks also tend to be more volatile and are particularly sensitive to interest rate changes, as higher rates reduce the present value of future earnings. Successful growth investing requires careful research, a long time horizon, and the discipline to hold through inevitable drawdowns.</p>
+      <div class="chapter-actions">
+        <button class="btn-complete" id="complete6" onclick="window.toggleComplete(6)">Mark Complete</button>
+        <div class="notes-section">
+          <label for="notes6">Your Notes</label>
+          <textarea id="notes6" placeholder="Write your notes for this chapter&hellip;"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- CH 7 -->
+    <div class="chapter" id="ch7">
+      <div class="chapter-number">Chapter Seven</div>
+      <h2><span class="ch-number">VII.</span> Dollar-Cost Averaging</h2>
+      <p>Dollar-cost averaging (DCA) is an investment strategy where you invest a fixed dollar amount at regular intervals, regardless of the asset&rsquo;s price. Instead of trying to time the market &mdash; buying low and selling high &mdash; DCA removes emotion from investing and harnesses the power of consistency. When prices are low, your fixed dollar amount buys more shares; when prices are high, it buys fewer shares.</p>
+      <p>For example, if you invest $500 every month into an S&amp;P 500 index fund, you automatically buy more shares during market downturns and fewer during rallies. Over time, this can lower your average cost per share compared to investing a lump sum at a single point in time. DCA is particularly effective for investors with regular income who want to build wealth gradually without the stress of market timing.</p>
+      <p>Research shows that lump-sum investing tends to outperform DCA about two-thirds of the time in rising markets because time in the market beats timing the market. However, DCA reduces the risk of investing a large amount just before a market crash, making it psychologically easier for nervous beginners to start investing. Many brokerages offer automatic investment plans that make DCA effortless.</p>
+      <div class="chapter-actions">
+        <button class="btn-complete" id="complete7" onclick="window.toggleComplete(7)">Mark Complete</button>
+        <div class="notes-section">
+          <label for="notes7">Your Notes</label>
+          <textarea id="notes7" placeholder="Write your notes for this chapter&hellip;"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- CH 8 -->
+    <div class="chapter" id="ch8">
+      <div class="chapter-number">Chapter Eight</div>
+      <h2><span class="ch-number">VIII.</span> Dividend Investing</h2>
+      <p>Dividend investing is a strategy focused on buying stocks and funds that regularly distribute a portion of their profits to shareholders. Dividends provide a steady stream of passive income that can be reinvested to compound returns or used as cash flow in retirement. Companies that pay consistent dividends tend to be mature, financially stable businesses with predictable earnings.</p>
+      <p>Dividend aristocrats are S&amp;P 500 companies that have increased their dividend payouts for at least 25 consecutive years. Examples include Coca-Cola, Procter &amp; Gamble, Johnson &amp; Johnson, and McDonald&rsquo;s. These companies demonstrate resilience across economic cycles and a commitment to returning value to shareholders. Dividend yields typically range from 2% to 5%, though higher yields can signal financial distress.</p>
+      <p>The power of dividend investing is magnified through reinvestment. By enrolling in a Dividend Reinvestment Plan (DRIP), your dividends automatically purchase additional shares, creating a compounding effect. Over decades, reinvested dividends can account for a substantial portion of total returns &mdash; historically, dividends have contributed approximately 40% of the S&amp;P 500&rsquo;s total return since 1930.</p>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/xFr0FKnaLDk" title="Les Brown" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="chapter-actions">
+        <button class="btn-complete" id="complete8" onclick="window.toggleComplete(8)">Mark Complete</button>
+        <div class="notes-section">
+          <label for="notes8">Your Notes</label>
+          <textarea id="notes8" placeholder="Write your notes for this chapter&hellip;"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- CH 9 -->
+    <div class="chapter" id="ch9">
+      <div class="chapter-number">Chapter Nine</div>
+      <h2><span class="ch-number">IX.</span> ETFs &amp; Index Funds</h2>
+      <p>Exchange-traded funds (ETFs) and index funds have revolutionized investing by offering low-cost, diversified exposure to entire markets. An index fund is a mutual fund designed to track the performance of a specific index, such as the S&amp;P 500. ETFs are similar but trade on stock exchanges throughout the day, offering greater flexibility. Both are passively managed and charge significantly lower fees than actively managed funds.</p>
+      <p>The case for index investing is compelling. Over the long term, the vast majority of actively managed mutual funds fail to beat their benchmark index after fees. By simply owning the entire market through a low-cost index fund or ETF, you capture the market&rsquo;s return with minimal effort. Vanguard&rsquo;s S&amp;P 500 ETF (VOO) charges an expense ratio of just 0.03%, meaning you pay only $3 per year for every $10,000 invested.</p>
+      <p>Beyond total market funds, specialized ETFs provide exposure to specific sectors (technology, healthcare, energy), asset classes (bonds, real estate, commodities), investment styles (value, growth), and geographic regions (emerging markets, Europe, Asia-Pacific). Building a portfolio of 3&ndash;5 broadly diversified ETFs can provide global diversification with rock-bottom costs, making ETFs the ideal foundation for a beginner investor.</p>
+      <div class="chapter-actions">
+        <button class="btn-complete" id="complete9" onclick="window.toggleComplete(9)">Mark Complete</button>
+        <div class="notes-section">
+          <label for="notes9">Your Notes</label>
+          <textarea id="notes9" placeholder="Write your notes for this chapter&hellip;"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- CH 10 -->
+    <div class="chapter" id="ch10">
+      <div class="chapter-number">Chapter Ten</div>
+      <h2><span class="ch-number">X.</span> Risk Management</h2>
+      <p>Risk management is the most overlooked yet most critical aspect of successful investing. No matter how brilliant your stock picks, poor risk management can destroy your portfolio. The three pillars of risk management are position sizing, stop losses, and diversification. Together, they ensure that no single mistake can derail your financial future.</p>
+      <p>Position sizing means never allocating too much of your portfolio to a single investment. A common rule is to limit any individual stock to no more than 5% of your total portfolio. Stop losses are predetermined price levels at which you sell a stock to cap your downside. A classic approach is a 15&ndash;25% trailing stop for long positions. Diversification spreads risk across different asset classes, sectors, and geographies.</p>
+      <p>The correlation between assets matters: when stocks fall, bonds often rise, providing a hedge. Adding real estate (REITs), commodities (gold), and cash to a stock/bond portfolio can further reduce volatility. Modern portfolio theory teaches that the optimal portfolio is not the one with the highest return but the one that offers the best risk-adjusted return. A well-diversified investor can sleep soundly during market turmoil.</p>
+      <p>Your time horizon is your greatest risk-management tool. Investors with decades until retirement can tolerate more volatility because they have time to recover from downturns. Those nearing retirement should shift toward more conservative allocations to preserve capital.</p>
+      <div class="chapter-actions">
+        <button class="btn-complete" id="complete10" onclick="window.toggleComplete(10)">Mark Complete</button>
+        <div class="notes-section">
+          <label for="notes10">Your Notes</label>
+          <textarea id="notes10" placeholder="Write your notes for this chapter&hellip;"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- CH 11 -->
+    <div class="chapter" id="ch11">
+      <div class="chapter-number">Chapter Eleven</div>
+      <h2><span class="ch-number">XI.</span> Fundamental Analysis</h2>
+      <p>Fundamental analysis is the process of evaluating a company&rsquo;s financial health, competitive position, and growth prospects to determine its intrinsic value. It involves reading financial statements &mdash; the income statement, balance sheet, and cash flow statement &mdash; and calculating key ratios that reveal how efficiently a company operates and how fairly it is priced.</p>
+      <p>The <strong>Price-to-Earnings (P/E) ratio</strong> is the most widely used valuation metric. It compares a company&rsquo;s stock price to its earnings per share (EPS). A high P/E may indicate that investors expect strong future growth, while a low P/E may suggest an undervalued or troubled company. <strong>Earnings Per Share (EPS)</strong> measures a company&rsquo;s profit divided by its outstanding shares. Consistent EPS growth is a hallmark of a healthy business.</p>
+      <p>Other important metrics include the <strong>Price-to-Book (P/B) ratio</strong>, which compares market value to book value; the <strong>Debt-to-Equity ratio</strong>, which measures financial leverage; the <strong>Return on Equity (ROE)</strong>, which shows how effectively management uses shareholder capital; and the <strong>Free Cash Flow (FCF)</strong>, which represents cash available for dividends, buybacks, or reinvestment. Mastering fundamental analysis gives you the confidence to make informed investment decisions based on data rather than hype.</p>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/g9tG_Mrj90M" title="Mel Robbins" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="chapter-actions">
+        <button class="btn-complete" id="complete11" onclick="window.toggleComplete(11)">Mark Complete</button>
+        <div class="notes-section">
+          <label for="notes11">Your Notes</label>
+          <textarea id="notes11" placeholder="Write your notes for this chapter&hellip;"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- CH 12 -->
+    <div class="chapter" id="ch12">
+      <div class="chapter-number">Chapter Twelve</div>
+      <h2><span class="ch-number">XII.</span> Technical Analysis Basics</h2>
+      <p>Technical analysis is the study of market data &mdash; primarily price and volume &mdash; to forecast future price movements. Unlike fundamental analysis, which examines a company&rsquo;s financial health, technical analysis focuses on market psychology and patterns of supply and demand. The core belief is that all available information is already reflected in the price, and that price movements tend to follow trends.</p>
+      <p>The most basic concept is the <strong>trend</strong>: an uptrend is a series of higher highs and higher lows; a downtrend is lower highs and lower lows. Traders use trendlines, moving averages (50-day, 200-day), and the Relative Strength Index (RSI) to identify direction and momentum. <strong>Support and resistance</strong> levels are price zones where buying or selling pressure historically emerges. A breakout above resistance or breakdown below support signals a potential trend change.</p>
+      <p>Volume confirms price moves. Rising prices on increasing volume suggest strong conviction; rising prices on declining volume may indicate weakness. Candlestick charts, developed by Japanese rice traders in the 18th century, provide visual patterns such as doji, hammer, and engulfing that can signal reversals. While technical analysis is controversial among academics, many successful traders use it to time entries and exits in conjunction with fundamental analysis.</p>
+      <div class="chapter-actions">
+        <button class="btn-complete" id="complete12" onclick="window.toggleComplete(12)">Mark Complete</button>
+        <div class="notes-section">
+          <label for="notes12">Your Notes</label>
+          <textarea id="notes12" placeholder="Write your notes for this chapter&hellip;"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- CH 13 -->
+    <div class="chapter" id="ch13">
+      <div class="chapter-number">Chapter Thirteen</div>
+      <h2><span class="ch-number">XIII.</span> Building Your First Portfolio</h2>
+      <p>Constructing your first portfolio is an exciting milestone. The process begins with defining your investment goals, time horizon, and risk tolerance. Are you saving for a down payment in five years, funding your child&rsquo;s education in 15 years, or building retirement wealth over 30+ years? Your answers will determine the right asset allocation &mdash; the mix of stocks, bonds, and cash in your portfolio.</p>
+      <p>A classic rule of thumb is to hold 100 minus your age in stocks. A 25-year-old would hold 75% stocks and 25% bonds, while a 60-year-old would hold 40% stocks and 60% bonds. This reflects the decreasing ability to tolerate risk as you approach your goal. Within the stock portion, diversify across U.S. large-cap, U.S. small-cap, and international stocks. Within bonds, consider U.S. Treasuries, investment-grade corporate bonds, and inflation-protected securities (TIPS).</p>
+      <p>A simple three-fund portfolio consisting of a total U.S. stock market index fund, a total international stock index fund, and a total bond market index fund provides global diversification at near-zero cost. As your portfolio grows, you can add real estate (REITs), commodities, or sector-specific funds. The key is to keep costs low, stay disciplined, and rebalance annually to maintain your target allocation.</p>
+      <div class="chapter-actions">
+        <button class="btn-complete" id="complete13" onclick="window.toggleComplete(13)">Mark Complete</button>
+        <div class="notes-section">
+          <label for="notes13">Your Notes</label>
+          <textarea id="notes13" placeholder="Write your notes for this chapter&hellip;"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- CH 14 -->
+    <div class="chapter" id="ch14">
+      <div class="chapter-number">Chapter Fourteen</div>
+      <h2><span class="ch-number">XIV.</span> Retirement Accounts</h2>
+      <p>Retirement accounts offer powerful tax advantages that can dramatically accelerate your wealth building. The most common employer-sponsored plan is the <strong>401(k)</strong>, which allows you to contribute pre-tax dollars up to an annual limit (in 2025, $23,000 for those under 50, plus a $7,500 catch-up for those 50+). Many employers match a portion of your contributions &mdash; this is free money that you should always claim.</p>
+      <p><strong>Traditional IRAs</strong> (Individual Retirement Accounts) allow pre-tax contributions with tax-deferred growth. You pay taxes when you withdraw in retirement. <strong>Roth IRAs</strong> use after-tax contributions, but qualified withdrawals in retirement are entirely tax-free. The choice between Traditional and Roth depends on whether you expect to be in a higher or lower tax bracket in retirement. For most young investors, a Roth IRA is advantageous because they are likely in a lower bracket now than later.</p>
+      <p>The contribution limit for IRAs in 2025 is $7,000 ($8,000 for 50+). One of the most powerful retirement strategies is the &ldquo;backdoor Roth IRA&rdquo; for high earners who exceed the income limits for direct Roth contributions. Additionally, self-employed individuals can use SEP IRAs or Solo 401(k)s, which allow much higher contribution limits. Regardless of the account type, the key is to start early, contribute consistently, and invest in low-cost diversified funds.</p>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/as0uWN5ad64" title="David Goggins" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="chapter-actions">
+        <button class="btn-complete" id="complete14" onclick="window.toggleComplete(14)">Mark Complete</button>
+        <div class="notes-section">
+          <label for="notes14">Your Notes</label>
+          <textarea id="notes14" placeholder="Write your notes for this chapter&hellip;"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- CH 15 -->
+    <div class="chapter" id="ch15">
+      <div class="chapter-number">Chapter Fifteen</div>
+      <h2><span class="ch-number">XV.</span> Tax Implications</h2>
+      <p>Taxes are a significant factor in investment returns. Understanding how different investments and accounts are taxed can help you keep more of your hard-earned gains. The most important distinction is between <strong>taxable accounts</strong> (standard brokerage accounts) and <strong>tax-advantaged accounts</strong> (IRAs, 401(k)s). In tax-advantaged accounts, you defer or avoid taxes on investment gains.</p>
+      <p>In a taxable brokerage account, you owe taxes on both dividends and capital gains. <strong>Qualified dividends</strong> (from most U.S. stocks held for more than 60 days) are taxed at the capital gains rate (0%, 15%, or 20%, depending on income), while <strong>ordinary dividends</strong> are taxed at your marginal income rate. <strong>Short-term capital gains</strong> (assets held for less than one year) are taxed as ordinary income, making them significantly more expensive than <strong>long-term capital gains</strong>.</p>
+      <p><strong>Tax-loss harvesting</strong> is a strategy where you sell investments at a loss to offset capital gains, reducing your tax bill. Unused losses can carry forward to future years. ETFs are more tax-efficient than mutual funds because their unique creation/redemption process minimizes capital gains distributions. To minimize taxes, prioritize tax-advantaged accounts for retirement savings, hold tax-efficient ETFs in taxable accounts, and consider municipal bonds for tax-free income.</p>
+      <div class="chapter-actions">
+        <button class="btn-complete" id="complete15" onclick="window.toggleComplete(15)">Mark Complete</button>
+        <div class="notes-section">
+          <label for="notes15">Your Notes</label>
+          <textarea id="notes15" placeholder="Write your notes for this chapter&hellip;"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- CH 16 -->
+    <div class="chapter" id="ch16">
+      <div class="chapter-number">Chapter Sixteen</div>
+      <h2><span class="ch-number">XVI.</span> Market Cycles &amp; Psychology</h2>
+      <p>Financial markets move in cycles driven by human emotion as much as economic fundamentals. A <strong>bull market</strong> is characterized by rising prices and widespread optimism; a <strong>bear market</strong> is defined by a decline of 20% or more from recent highs, accompanied by fear and pessimism. Since 1929, the S&amp;P 500 has experienced 27 bear markets, averaging a decline of 36% and lasting about 14 months.</p>
+      <p>Behavioral finance studies how psychological biases affect investment decisions. <strong>Fear of missing out (FOMO)</strong> drives investors to buy at market tops; <strong>panic selling</strong> causes them to sell at bottoms. <strong>Confirmation bias</strong> leads investors to seek information that supports their existing beliefs while ignoring contradictory evidence. <strong>Loss aversion</strong> &mdash; the tendency to feel losses more intensely than equivalent gains &mdash; often leads to holding losing positions too long.</p>
+      <p>The legendary investor Sir John Templeton said, &ldquo;Bull markets are born on pessimism, grow on skepticism, mature on optimism, and die on euphoria.&rdquo; Understanding market psychology helps you recognize your own emotional reactions and make rational decisions. The best investors are those who can remain calm when others are fearful and cautious when others are greedy.</p>
+      <div class="chapter-actions">
+        <button class="btn-complete" id="complete16" onclick="window.toggleComplete(16)">Mark Complete</button>
+        <div class="notes-section">
+          <label for="notes16">Your Notes</label>
+          <textarea id="notes16" placeholder="Write your notes for this chapter&hellip;"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- CH 17 -->
+    <div class="chapter" id="ch17">
+      <div class="chapter-number">Chapter Seventeen</div>
+      <h2><span class="ch-number">XVII.</span> Common Mistakes</h2>
+      <p>Even experienced investors fall prey to predictable mistakes. The most damaging is <strong>emotional trading</strong> &mdash; making impulsive buy or sell decisions based on fear, greed, or panic. This often manifests as buying at the top of a bubble because &ldquo;everyone else is doing it&rdquo; or selling at the bottom of a crash because &ldquo;this time it&rsquo;s different.&rdquo; The remedy is a written investment plan that you stick to regardless of market conditions.</p>
+      <p><strong>Chasing hype and performance</strong> is another common error. Investors pile into the hottest stock, sector, or fund just after it has already appreciated significantly, often buying near the peak. Similarly, selling a well-performing investment too early to &ldquo;lock in gains&rdquo; can cap your upside. <strong>Trying to time the market</strong> is nearly impossible even for professionals; studies show that missing just the 10 best trading days in a 20-year period can cut your returns in half.</p>
+      <p>Other frequent mistakes include overdiversifying (holding dozens of funds with overlapping holdings), underdiversifying (betting too heavily on one stock or sector), ignoring fees, neglecting to rebalance, and failing to account for inflation. The antidote to all these mistakes is education, discipline, and a long-term perspective. Remember that investing is a marathon, not a sprint.</p>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/5fsm-QbN9r8" title="Eric Thomas" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="chapter-actions">
+        <button class="btn-complete" id="complete17" onclick="window.toggleComplete(17)">Mark Complete</button>
+        <div class="notes-section">
+          <label for="notes17">Your Notes</label>
+          <textarea id="notes17" placeholder="Write your notes for this chapter&hellip;"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- CH 18 -->
+    <div class="chapter" id="ch18">
+      <div class="chapter-number">Chapter Eighteen</div>
+      <h2><span class="ch-number">XVIII.</span> Creating Your Investment Plan</h2>
+      <p>A comprehensive investment plan is your roadmap to financial independence. It should begin with a clear statement of your goals: What are you investing for, how much do you need, and by when? Quantify every goal &mdash; retirement at age 60 with $2 million, a down payment of $80,000 in 7 years, a child&rsquo;s college fund of $150,000 in 18 years &mdash; and work backward to determine how much you need to save each month.</p>
+      <p>Your plan should specify your asset allocation (stock/bond mix), your chosen investments (specific funds or individual securities), your contribution schedule (monthly automatic investments), and your rebalancing frequency (annually or when allocations drift by more than 5%). Include contingency plans: What will you do if the market drops 30%? What if you lose your job? Having predetermined responses prevents emotional mistakes.</p>
+      <p>Review your plan annually and rebalance to maintain your target allocation. Rebalancing involves selling assets that have grown beyond their target weight and buying those that have fallen below, effectively forcing you to buy low and sell high. Over decades of consistent investing, the combination of compounding returns, disciplined saving, and strategic rebalancing can transform even modest monthly contributions into substantial wealth. Start today, stay the course, and let time work for you.</p>
+      <blockquote>
+        &ldquo;The stock market is a device for transferring money from the impatient to the patient.&rdquo;
+        <cite>&mdash; Warren Buffett</cite>
+      </blockquote>
+      <div class="chapter-actions">
+        <button class="btn-complete" id="complete18" onclick="window.toggleComplete(18)">Mark Complete</button>
+        <div class="notes-section">
+          <label for="notes18">Your Notes</label>
+          <textarea id="notes18" placeholder="Write your notes for this chapter&hellip;"></textarea>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== CHAPTER LIST ===== -->
+  <div class="chapter-list" id="chapterList">
+    <a class="cl-item" data-ch="1" onclick="window.goToChapter(1)">1. What is the Stock Market?</a>
+    <a class="cl-item" data-ch="2" onclick="window.goToChapter(2)">2. Stocks vs Bonds vs ETFs vs Mutual Funds</a>
+    <a class="cl-item" data-ch="3" onclick="window.goToChapter(3)">3. Opening a Brokerage Account</a>
+    <a class="cl-item" data-ch="4" onclick="window.goToChapter(4)">4. Understanding Market Indices</a>
+    <a class="cl-item" data-ch="5" onclick="window.goToChapter(5)">5. Value Investing Fundamentals</a>
+    <a class="cl-item" data-ch="6" onclick="window.goToChapter(6)">6. Growth Investing</a>
+    <a class="cl-item" data-ch="7" onclick="window.goToChapter(7)">7. Dollar-Cost Averaging</a>
+    <a class="cl-item" data-ch="8" onclick="window.goToChapter(8)">8. Dividend Investing</a>
+    <a class="cl-item" data-ch="9" onclick="window.goToChapter(9)">9. ETFs &amp; Index Funds</a>
+    <a class="cl-item" data-ch="10" onclick="window.goToChapter(10)">10. Risk Management</a>
+    <a class="cl-item" data-ch="11" onclick="window.goToChapter(11)">11. Fundamental Analysis</a>
+    <a class="cl-item" data-ch="12" onclick="window.goToChapter(12)">12. Technical Analysis Basics</a>
+    <a class="cl-item" data-ch="13" onclick="window.goToChapter(13)">13. Building Your First Portfolio</a>
+    <a class="cl-item" data-ch="14" onclick="window.goToChapter(14)">14. Retirement Accounts</a>
+    <a class="cl-item" data-ch="15" onclick="window.goToChapter(15)">15. Tax Implications</a>
+    <a class="cl-item" data-ch="16" onclick="window.goToChapter(16)">16. Market Cycles &amp; Psychology</a>
+    <a class="cl-item" data-ch="17" onclick="window.goToChapter(17)">17. Common Mistakes</a>
+    <a class="cl-item" data-ch="18" onclick="window.goToChapter(18)">18. Creating Your Investment Plan</a>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="footer-line1">&copy; 2025 Elevate Shop. All rights reserved.</div>
+    <div class="footer-line2">Empowering minds and building wealth, one download at a time.</div>
+  </footer>
+
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  var TOTAL = 18;
+  var currentChapter = 1;
+
+  function saveState() {
+    var data = {};
+    for (var i = 1; i <= TOTAL; i++) {
+      var completeKey = 'ch_complete_' + i;
+      var notesKey = 'ch_notes_' + i;
+      data[completeKey] = localStorage.getItem(completeKey) || 'false';
+      data[notesKey] = localStorage.getItem(notesKey) || '';
+    }
+    data.currentChapter = currentChapter;
+    return data;
+  }
+
+  function loadFromStorage() {
+    for (var i = 1; i <= TOTAL; i++) {
+      var completeKey = 'ch_complete_' + i;
+      var notesKey = 'ch_notes_' + i;
+      if (localStorage.getItem(completeKey) === 'true') {
+        var btn = document.getElementById('complete' + i);
+        if (btn) { btn.textContent = 'Completed'; btn.classList.add('completed'); }
+        var item = document.querySelector('.cl-item[data-ch="' + i + '"]');
+        if (item) item.classList.add('done');
+      }
+      var savedNotes = localStorage.getItem(notesKey);
+      if (savedNotes) {
+        var ta = document.getElementById('notes' + i);
+        if (ta) ta.value = savedNotes;
+      }
+    }
+    var savedCh = parseInt(localStorage.getItem('currentChapter'), 10);
+    if (savedCh && savedCh >= 1 && savedCh <= TOTAL) currentChapter = savedCh;
+  }
+
+  function updateProgress() {
+    var count = 0;
+    for (var i = 1; i <= TOTAL; i++) {
+      if (localStorage.getItem('ch_complete_' + i) === 'true') count++;
+    }
+    var el = document.getElementById('progressCount');
+    var bar = document.getElementById('progressBarInner');
+    if (el) el.textContent = count + ' / ' + TOTAL;
+    if (bar) bar.style.width = (count / TOTAL * 100) + '%';
+  }
+
+  function updateNavButtons() {
+    var prev = document.getElementById('prevBtn');
+    var next = document.getElementById('nextBtn');
+    if (prev) prev.disabled = (currentChapter <= 1);
+    if (next) next.disabled = (currentChapter >= TOTAL);
+  }
+
+  function updateSelect() {
+    var sel = document.getElementById('chapterSelect');
+    if (sel) sel.value = currentChapter;
+  }
+
+  function updateChapterList() {
+    var items = document.querySelectorAll('.cl-item');
+    items.forEach(function(el) {
+      el.classList.remove('active-ch');
+      if (parseInt(el.getAttribute('data-ch'), 10) === currentChapter) {
+        el.classList.add('active-ch');
+      }
+    });
+  }
+
+  function showChapter(num) {
+    for (var i = 1; i <= TOTAL; i++) {
+      var ch = document.getElementById('ch' + i);
+      if (ch) ch.classList.remove('active');
+    }
+    var target = document.getElementById('ch' + num);
+    if (target) target.classList.add('active');
+    currentChapter = num;
+    localStorage.setItem('currentChapter', num);
+    updateSelect();
+    updateNavButtons();
+    updateChapterList();
+    // Scroll to top of chapter
+    var container = document.getElementById('chapterContainer');
+    if (container) container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  window.goToChapter = function(num) {
+    if (num >= 1 && num <= TOTAL) showChapter(num);
+  };
+
+  window.nextChapter = function() {
+    if (currentChapter < TOTAL) showChapter(currentChapter + 1);
+  };
+
+  window.prevChapter = function() {
+    if (currentChapter > 1) showChapter(currentChapter - 1);
+  };
+
+  window.toggleComplete = function(num) {
+    var key = 'ch_complete_' + num;
+    var btn = document.getElementById('complete' + num);
+    var item = document.querySelector('.cl-item[data-ch="' + num + '"]');
+    if (localStorage.getItem(key) === 'true') {
+      localStorage.setItem(key, 'false');
+      if (btn) { btn.textContent = 'Mark Complete'; btn.classList.remove('completed'); }
+      if (item) item.classList.remove('done');
+    } else {
+      localStorage.setItem(key, 'true');
+      if (btn) { btn.textContent = 'Completed'; btn.classList.add('completed'); }
+      if (item) item.classList.add('done');
+    }
+    updateProgress();
+  };
+
+  window.resetProgress = function() {
+    if (!confirm('Reset all progress and notes? This cannot be undone.')) return;
+    for (var i = 1; i <= TOTAL; i++) {
+      localStorage.removeItem('ch_complete_' + i);
+      localStorage.removeItem('ch_notes_' + i);
+      var btn = document.getElementById('complete' + i);
+      if (btn) { btn.textContent = 'Mark Complete'; btn.classList.remove('completed'); }
+      var ta = document.getElementById('notes' + i);
+      if (ta) ta.value = '';
+      var item = document.querySelector('.cl-item[data-ch="' + i + '"]');
+      if (item) item.classList.remove('done');
+    }
+    updateProgress();
+  };
+
+  // Auto-save notes on input
+  function setupNotesAutoSave() {
+    for (var i = 1; i <= TOTAL; i++) {
+      (function(ch) {
+        var ta = document.getElementById('notes' + ch);
+        if (ta) {
+          ta.addEventListener('input', function() {
+            localStorage.setItem('ch_notes_' + ch, ta.value);
+          });
+        }
+      })(i);
+    }
+  }
+
+  // Init
+  loadFromStorage();
+  showChapter(currentChapter);
+  updateProgress();
+  setupNotesAutoSave();
+
+})();
+</script>
+</body>
+</html>

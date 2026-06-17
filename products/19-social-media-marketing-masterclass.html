@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Media Marketing Masterclass — Elevate Shop</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+  background: #0d0d1a;
+  color: #e0e0e0;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+.bg-grid {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(233,30,99,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,188,212,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+.wrapper { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 30px 20px 60px; }
+/* header */
+.hero {
+  text-align: center; padding: 50px 30px 40px; margin-bottom: 30px;
+  background: linear-gradient(135deg, rgba(233,30,99,0.15), rgba(156,39,176,0.15), rgba(0,188,212,0.1));
+  border-radius: 24px; border: 1px solid rgba(233,30,99,0.2);
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; top: -60%; left: -20%; width: 140%; height: 140%;
+  background: radial-gradient(ellipse at 30% 50%, rgba(233,30,99,0.08), transparent 60%),
+              radial-gradient(ellipse at 70% 50%, rgba(0,188,212,0.08), transparent 60%);
+  pointer-events: none;
+}
+.hero h1 {
+  font-size: 2.4em; font-weight: 800; letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #e91e63, #9c27b0, #00bcd4);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; margin-bottom: 10px; position: relative;
+}
+.hero p { font-size: 1.12em; color: #aaa; position: relative; }
+.hero .badge {
+  display: inline-block; margin-top: 14px; padding: 6px 20px;
+  border-radius: 20px; background: rgba(233,30,99,0.15); border: 1px solid rgba(233,30,99,0.3);
+  font-size: 0.85em; color: #e91e63; position: relative;
+}
+/* progress */
+.progress-section {
+  background: rgba(255,255,255,0.04); border-radius: 16px; padding: 20px 25px;
+  margin-bottom: 30px; border: 1px solid rgba(255,255,255,0.06);
+  display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+}
+.progress-bar-wrap { flex: 1; min-width: 160px; }
+.progress-label {
+  display: flex; justify-content: space-between; font-size: 0.88em; margin-bottom: 6px; color: #ccc;
+}
+.progress-bar {
+  width: 100%; height: 10px; border-radius: 10px; background: rgba(255,255,255,0.08); overflow: hidden;
+}
+.progress-fill {
+  height: 100%; width: 0%; border-radius: 10px;
+  background: linear-gradient(90deg, #e91e63, #9c27b0, #00bcd4);
+  transition: width 0.5s ease;
+}
+.btn-reset {
+  padding: 8px 22px; border: 1px solid rgba(233,30,99,0.4); border-radius: 10px;
+  background: rgba(233,30,99,0.1); color: #e91e63; cursor: pointer; font-size: 0.85em;
+  font-weight: 600; transition: all 0.25s; white-space: nowrap;
+}
+.btn-reset:hover { background: rgba(233,30,99,0.25); border-color: #e91e63; }
+/* nav */
+.chapter-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 24px; gap: 12px;
+}
+.chapter-nav button {
+  padding: 10px 24px; border: none; border-radius: 12px; cursor: pointer;
+  font-size: 0.9em; font-weight: 600; transition: all 0.25s;
+}
+.btn-prev, .btn-next {
+  background: linear-gradient(135deg, rgba(233,30,99,0.2), rgba(156,39,176,0.2));
+  color: #e0e0e0; border: 1px solid rgba(233,30,99,0.2);
+}
+.btn-prev:hover, .btn-next:hover { background: linear-gradient(135deg, rgba(233,30,99,0.35), rgba(156,39,176,0.35)); }
+.btn-prev:disabled, .btn-next:disabled { opacity: 0.3; cursor: default; }
+.chapter-counter { font-size: 0.9em; color: #999; font-weight: 600; }
+/* chapter card */
+.chapter {
+  display: none;
+  background: rgba(255,255,255,0.03); border-radius: 20px; padding: 35px;
+  margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+.chapter.active { display: block; }
+.chapter h2 { font-size: 1.6em; font-weight: 700; margin-bottom: 6px; }
+.chapter .ch-subtitle {
+  font-size: 0.85em; color: #9c27b0; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 1px; margin-bottom: 16px;
+}
+.chapter .ch-number {
+  display: inline-block; background: linear-gradient(135deg, #e91e63, #9c27b0);
+  color: #fff; width: 32px; height: 32px; border-radius: 50%; text-align: center;
+  line-height: 32px; font-size: 0.75em; font-weight: 700; margin-right: 10px; vertical-align: middle;
+}
+.chapter p { margin-bottom: 14px; color: #ccc; font-size: 0.98em; }
+.vid-wrap {
+  position: relative; width: 100%; padding-bottom: 56.25%; margin: 18px 0;
+  border-radius: 14px; overflow: hidden; background: #000;
+}
+.vid-wrap iframe {
+  position: absolute; inset: 0; width: 100%; height: 100%; border: none;
+}
+.notes-area {
+  width: 100%; min-height: 80px; padding: 14px; border-radius: 12px; margin: 14px 0 10px;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  color: #e0e0e0; font-size: 0.93em; font-family: inherit; resize: vertical;
+  transition: border 0.25s;
+}
+.notes-area:focus { outline: none; border-color: #9c27b0; }
+.btn-complete {
+  padding: 12px 28px; border: none; border-radius: 12px; cursor: pointer;
+  font-size: 0.93em; font-weight: 700; transition: all 0.3s; margin-top: 4px;
+  background: linear-gradient(135deg, #e91e63, #9c27b0);
+  color: #fff; box-shadow: 0 4px 16px rgba(233,30,99,0.25);
+}
+.btn-complete:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(233,30,99,0.35); }
+.btn-complete.completed {
+  background: linear-gradient(135deg, #00bcd4, #0097a7);
+  box-shadow: 0 4px 16px rgba(0,188,212,0.25);
+}
+.btn-complete.completed:hover { box-shadow: 0 6px 24px rgba(0,188,212,0.35); }
+.chapter-actions { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+.chapter-status { font-size: 0.85em; color: #888; }
+/* footer */
+.footer {
+  text-align: center; padding: 40px 20px 20px; margin-top: 40px;
+  border-top: 1px solid rgba(255,255,255,0.06); color: #777; font-size: 0.88em;
+}
+.footer p { margin-bottom: 4px; }
+.footer .tagline { color: #555; font-style: italic; font-size: 0.92em; }
+/* print */
+@media print {
+  body { background: #fff !important; color: #222 !important; }
+  .bg-grid { display: none !important; }
+  .wrapper { max-width: 100%; padding: 10px; }
+  .hero { background: #f5f5f5 !important; border: 1px solid #ddd !important; padding: 30px; }
+  .hero h1 { -webkit-text-fill-color: #222 !important; background: none !important; }
+  .hero .badge { color: #9c27b0 !important; }
+  .chapter { display: block !important; break-inside: avoid; page-break-inside: avoid; background: #fff !important; border: 1px solid #ddd !important; }
+  .chapter-nav, .progress-section, .btn-complete, .notes-area, .chapter-status { display: none !important; }
+  .btn-reset { display: none !important; }
+  .vid-wrap { padding-bottom: 40%; max-width: 70%; margin: 14px auto; }
+  .footer { color: #555 !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="wrapper" id="app">
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>Social Media Marketing Masterclass</h1>
+    <p>Master Instagram, TikTok, LinkedIn &amp; Facebook — from algorithms to ads</p>
+    <div class="badge">20 Chapters &bull; Interactive &bull; Lifetime Access</div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-section" id="progressSection">
+    <div class="progress-bar-wrap">
+      <div class="progress-label">
+        <span>Progress</span>
+        <span id="progressText">0 / 20</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill" style="width:0%"></div>
+      </div>
+    </div>
+    <button class="btn-reset" id="btnReset" onclick="window.resetProgress()">Reset Progress</button>
+  </div>
+
+  <!-- NAV -->
+  <div class="chapter-nav">
+    <button class="btn-prev" id="btnPrev" onclick="window.prevChapter()">← Previous</button>
+    <span class="chapter-counter" id="chapterCounter">Chapter 1 of 20</span>
+    <button class="btn-next" id="btnNext" onclick="window.nextChapter()">Next →</button>
+  </div>
+
+  <!-- CHAPTERS -->
+  <div id="chapterContainer">
+
+    <!-- Ch 1 -->
+    <div class="chapter active" data-ch="1" id="ch1">
+      <h2><span class="ch-number">1</span> Social Media Landscape Overview</h2>
+      <div class="ch-subtitle">Know the battlefield</div>
+      <p>The social media ecosystem in 2025 is more fragmented and specialized than ever. Each platform serves a distinct purpose: Instagram is the visual discovery engine for lifestyle, beauty, and e-commerce; TikTok is the entertainment-driven short-form powerhouse dictating cultural trends; LinkedIn is the professional credibility network for B2B and thought leadership; and Facebook remains the largest community-building and paid-advertising platform by user base, especially for audiences 30+.</p>
+      <p>Understanding where your audience lives is the first and most critical decision. A fashion brand might thrive on Instagram and TikTok, while a SaaS company will find better ROI on LinkedIn and Facebook. Smart marketers don't try to be everywhere — they dominate where it matters. This chapter breaks down each platform's demographics, content preferences, and algorithmic tendencies so you can build a focused, high-impact strategy from day one.</p>
+      <div class="vid-wrap"><iframe src="https://www.youtube.com/embed/qp0HIF3SfI4" allowfullscreen loading="lazy" title="Social Media Landscape"></iframe></div>
+      <p>Beyond the big four, platforms like YouTube (the second-largest search engine), Pinterest (visual bookmarking), and X/Twitter (real-time conversation) offer niche opportunities. The key takeaway: match your content format to the platform's native language. A LinkedIn carousel PDF will outperform a raw TikTok duet. Master the landscape first, then dive deep into each platform's playbook in the chapters ahead.</p>
+      <div class="chapter-actions">
+        <div>
+          <textarea class="notes-area" id="notes1" placeholder="Write your notes for this chapter..." oninput="window.saveNotes(1)"></textarea>
+          <div><span class="chapter-status" id="status1">Not completed</span></div>
+        </div>
+        <button class="btn-complete" id="btn1" onclick="window.toggleComplete(1)">Mark Complete</button>
+      </div>
+    </div>
+
+    <!-- Ch 2 -->
+    <div class="chapter" data-ch="2" id="ch2">
+      <h2><span class="ch-number">2</span> Instagram Strategy</h2>
+      <div class="ch-subtitle">Reels, Stories, carousels &amp; hashtags</div>
+      <p>Instagram's algorithm in 2025 prioritizes three things: engagement velocity (how fast people interact after posting), relationship signals (who your followers are), and content relevance (topic matching). Reels remain the primary growth driver — short, entertaining, or educational vertical videos that hook within the first two seconds. Use trending audio, but layer your own original sound to build a recognizable brand voice.</p>
+      <p>Stories are for daily connection: polls, Q&amp;As, behind-the-scenes, and quick updates. Carousel posts drive the highest save rate — ideal for step-by-step tutorials, listicles, and before/after transformations. Hashtag strategy has evolved: use 3–5 highly relevant tags in your niche rather than 30 generic ones. Place them in the caption (not comments) for maximum indexing. Consistency matters more than frequency — post 4–5 times per week minimum for sustained growth.</p>
+      <div class="vid-wrap"><iframe src="https://www.youtube.com/embed/SMYKAbbOefA" allowfullscreen loading="lazy" title="Instagram Strategy"></iframe></div>
+      <p>Engage deliberately: spend 15 minutes daily interacting in your niche — comment genuinely on competitors' posts, reply to every story mention, and use the "Close Friends" feature for VIP content. Instagram rewards platform-native behavior; accounts that use all formats (Reels, Stories, Live, Broadcast Channels) consistently see 2–3x higher reach.</p>
+      <div class="chapter-actions">
+        <div>
+          <textarea class="notes-area" id="notes2" placeholder="Write your notes for this chapter..." oninput="window.saveNotes(2)"></textarea>
+          <div><span class="chapter-status" id="status2">Not completed</span></div>
+        </div>
+        <button class="btn-complete" id="btn2" onclick="window.toggleComplete(2)">Mark Complete</button>
+      </div>
+    </div>
+
+    <!-- Ch 3 -->
+    <div class="chapter" data-ch="3" id="ch3">
+      <h2><span class="ch-number">3</span> TikTok Growth</h2>
+      <div class="ch-subtitle">Viral mechanics, trends &amp; sound strategy</div>
+      <p>TikTok's For You Page (FYP) algorithm is the most powerful content distribution engine in history. Unlike other platforms, follower count matters very little — every video is tested on a small seed audience, and if the retention and engagement metrics outperform expectations, it gets pushed to millions. The golden metric is watch time plus replay rate. A 15-second video that gets rewatched 3 times signals immense value to the algorithm.</p>
+      <p>Trends on TikTok move at lightning speed. Jump on sounds, effects, and formats within 24–48 hours of emergence for maximum lift. But don't just copy — add your unique twist. Educational content ("stitch" a fact with your take), behind-the-scenes, and relatable humor consistently outperform polished production. Post 1–3 times daily. Use hooks aggressively: the first 1–2 seconds must deliver a reason to stay.</p>
+      <div class="vid-wrap"><iframe src="https://www.youtube.com/embed/cBzhCWV6Q7Q" allowfullscreen loading="lazy" title="TikTok Growth"></iframe></div>
+      <p>Sound strategy is non-negotiable. Use trending sounds from the TikTok commercial library, but also create original audio that users will associate with your brand. Captions (auto-generated and styled) are essential — 57% of TikTok users watch without sound. Post at optimal times (check your analytics tab) and engage with comments within the first hour to boost the video's early performance signals.</p>
+      <div class="chapter-actions">
+        <div>
+          <textarea class="notes-area" id="notes3" placeholder="Write your notes for this chapter..." oninput="window.saveNotes(3)"></textarea>
+          <div><span class="chapter-status" id="status3">Not completed</span></div>
+        </div>
+        <button class="btn-complete" id="btn3" onclick="window.toggleComplete(3)">Mark Complete</button>
+      </div>
+    </div>
+
+    <!-- Ch 4 -->
+    <div class="chapter" data-ch="4" id="ch4">
+      <h2><span class="ch-number">4</span> LinkedIn Authority Building</h2>
+      <div class="ch-subtitle">Thought leadership &amp; professional networking</div>
+      <p>LinkedIn is the most underrated organic growth platform for B2B and personal branding. Its algorithm rewards knowledge-sharing and meaningful conversation over entertainment. The key formats are long-form text posts (1,200–1,800 characters with line breaks every 2–3 sentences), document carousels (PDFs that users swipe through), and video (native uploads perform best).</p>
+      <p>Build authority by sharing specific, actionable insights from your experience. The "I-was-wrong-about-X" format and "3-lessons-learned" structures consistently drive high engagement. Engage in comments on posts from your target industry's leaders — thoughtful contributions get visibility to their audience. Post 3–5 times per week, and DM 5 new connections daily with a personalized note, not a sales pitch.</p>
+      <div class="vid-wrap"><iframe src="https://www.youtube.com/embed/xFr0FKnaLDk" allowfullscreen loading="lazy" title="LinkedIn Authority"></iframe></div>
+      <p>LinkedIn's newsletter feature is a goldmine — it emails your subscribers every time you publish, bypassing the algorithm entirely. Start one around your niche topic and promote it in your posts. The platform's paid advertising (LinkedIn Ads) is expensive but unrivaled for B2B targeting by job title, company size, industry, and seniority.</p>
+      <div class="chapter-actions">
+        <div>
+          <textarea class="notes-area" id="notes4" placeholder="Write your notes for this chapter..." oninput="window.saveNotes(4)"></textarea>
+          <div><span class="chapter-status" id="status4">Not completed</span></div>
+        </div>
+        <button class="btn-complete" id="btn4" onclick="window.toggleComplete(4)">Mark Complete</button>
+      </div>
+    </div>
+
+    <!-- Ch 5 -->
+    <div class="chapter" data-ch="5" id="ch5">
+      <h2><span class="ch-number">5</span> Facebook Marketing</h2>
+      <div class="ch-subtitle">Groups, ads &amp; community building</div>
+      <p>Facebook may feel like the "old" platform, but it still commands nearly 3 billion monthly active users and the most sophisticated ad platform in digital marketing. For organic growth, Facebook Groups are the crown jewel. A well-moderated group around your niche builds a loyal, engaged community that algorithm changes can't take away. Post daily discussion prompts, exclusive content, and live Q&amp;As inside your group.</p>
+      <p>Facebook's ad platform offers unmatched granularity: you can target by behavior, life events, interests, lookalike audiences, and custom audiences from your email list or website visitors. The key is testing — run 5–10 variations of ad copy, creative, and audience combinations simultaneously, then double down on the winners. Retargeting (showing ads to people who visited your site but didn't buy) is where most of your ROI will come from.</p>
+      <div class="vid-wrap"><iframe src="https://www.youtube.com/embed/g9tG_Mrj90M" allowfullscreen loading="lazy" title="Facebook Marketing"></iframe></div>
+      <p>Facebook's algorithm for organic posts now heavily prioritizes content from friends and groups over business pages. The solution: create a content strategy that drives comments and shares (ask questions, post controversial takes in your niche, share user-generated content), and use Facebook Events for both virtual and in-person gatherings to build real-world community ties.</p>
+      <div class="chapter-actions">
+        <div>
+          <textarea class="notes-area" id="notes5" placeholder="Write your notes for this chapter..." oninput="window.saveNotes(5)"></textarea>
+          <div><span class="chapter-status" id="status5">Not completed</span></div>
+        </div>
+        <button class="btn-complete" id="btn5" onclick="window.toggleComplete(5)">Mark Complete</button>
+      </div>
+    </div>
+
+    <!-- Ch 6 -->
+    <div class="chapter" data-ch="6" id="ch6">
+      <h2><span class="ch-number">6</span> Content Batching</h2>
+      <div class="ch-subtitle">Efficient creation workflows</div>
+      <p>Content batching is the single highest-leverage habit you can adopt as a social media marketer. Instead of creating content daily (which leads to burnout and declining quality), dedicate one day per week — a "content day" — to produce all posts for the coming 7–14 days. This shifts you from reactive to proactive mode. The workflow: ideate → script → film → edit → caption → schedule.</p>
+      <p>Start with a content pillar framework: identify 4–5 core topics your audience cares about (e.g., tips, behind-the-scenes, case studies, FAQs, industry news). For each pillar, brainstorm 5–10 content ideas. Then film all videos in a single session (change outfits/settings between topics), write all captions at once, and use scheduling tools like Later, Buffer, or Meta Business Suite to queue everything. A batched month of content can be created in 1–2 focused days.</p>
+      <p>Use templates for Stories, carousels, and Reels to maintain visual consistency while reducing decision fatigue. Tools like Canva and CapCut are indispensable for template-based production. Track your batching output: aim for 30+ pieces of content per batch (mix of Reels, photos, carousels, Stories, and text posts). The goal isn't just efficiency — it's creative freedom. When you're not scrambling daily, you have space to experiment.</p>
+      <div class="chapter-actions">
+        <div>
+          <textarea class="notes-area" id="notes6" placeholder="Write your notes for this chapter..." oninput="window.saveNotes(6)"></textarea>
+          <div><span class="chapter-status" id="status6">Not completed</span></div>
+        </div>
+        <button class="btn-complete" id="btn6" onclick="window.toggleComplete(6)">Mark Complete</button>
+      </div>
+    </div>
+
+    <!-- Ch 7 -->
+    <div class="chapter" data-ch="7" id="ch7">
+      <h2><span class="ch-number">7</span> The Algorithm Explained</h2>
+      <div class="ch-subtitle">How each platform ranks content</div>
+      <p>Every social media platform uses an AI-driven ranking system that decides which content reaches which users. While the specifics are proprietary, the core signals are consistent across platforms: engagement (likes, comments, shares, saves), timeliness (recency matters), relationship (how often a user interacts with you), and content format preference (some users see more video, some more text). Understanding these signals lets you work with the algorithm, not against it.</p>
+      <p>Instagram's algorithm has three ranking stages: Interest Score (how likely a user is to engage based on past behavior), Relationship Score (your connection strength with the viewer), and Timeliness (newer posts get priority). TikTok's FYP uses a multi-layer neural network analyzing completion rate, replays, shares, and watch time per second. LinkedIn's algorithm favors content that sparks professional conversations and keeps users on-platform — external links are heavily suppressed.</p>
+      <p>Facebook's algorithm uses the "meaningful interaction" signal — posts that generate comments and shares between friends are boosted, while passive engagement (likes) is devalued. The universal truth: algorithms reward platform-native behavior. If you create content that keeps users scrolling, commenting, and sharing, you win on any platform. Never chase the algorithm — chase audience value, and the algorithm follows.</p>
+      <div class="vid-wrap"><iframe src="https://www.youtube.com/embed/as0uWN5ad64" allowfullscreen loading="lazy" title="Algorithm Explained"></iframe></div>
+      <div class="chapter-actions">
+        <div>
+          <textarea class="notes-area" id="notes7" placeholder="Write your notes for this chapter..." oninput="window.saveNotes(7)"></textarea>
+          <div><span class="chapter-status" id="status7">Not completed</span></div>
+        </div>
+        <button class="btn-complete" id="btn7" onclick="window.toggleComplete(7)">Mark Complete</button>
+      </div>
+    </div>
+
+    <!-- Ch 8 -->
+    <div class="chapter" data-ch="8" id="ch8">
+      <h2><span class="ch-number">8</span> Engagement Rituals</h2>
+      <div class="ch-subtitle">Daily habits that grow accounts</div>
+      <p>Growth on social media isn't just about posting — it's about how you show up in the ecosystem every single day. The most successful creators and brands have non-negotiable engagement rituals. Start your morning with 20 minutes of "power engagement": comment on 10–15 posts from accounts in your niche (add genuine value, not "great post!"), reply to every comment on your last 3 posts, and respond to every Story mention and DM.</p>
+      <p>The second ritual: save-and-engage. Throughout the day, save posts that inspire you and leave thoughtful comments. The save action signals to the algorithm that you're an engaged user, which can boost the visibility of your own content to that account's audience. Use Lists on Instagram and Twitter to curate feeds from your niche's top creators and engage with their new posts within 30 minutes of publication — early engagement compounds.</p>
+      <p>Evening ritual: review your day's analytics for 5 minutes. Check which posts performed best, note the commonalities, and capture 3 content ideas for the next day. Consistency in these daily habits compounds into exponential growth — it's the difference between a hobby account and a thriving social media presence. Dedicate at least 45 minutes per day to engagement, split across morning, afternoon, and evening.</p>
+      <div class="chapter-actions">
+        <div>
+          <textarea class="notes-area" id="notes8" placeholder="Write your notes for this chapter..." oninput="window.saveNotes(8)"></textarea>
+          <div><span class="chapter-status" id="status8">Not completed</span></div>
+        </div>
+        <button class="btn-complete" id="btn8" onclick="window.toggleComplete(8)">Mark Complete</button>
+      </div>
+    </div>
+
+    <!-- Ch 9 -->
+    <div class="chapter" data-ch="9" id="ch9">
+      <h2><span class="ch-number">9</span> Hashtag Research</h2>
+      <div class="ch-subtitle">Finding your niche tags</div>
+      <p>Hashtags remain a powerful distribution tool when used strategically. The old strategy of stuffing 30 irrelevant hashtags is dead. Today's approach: use 3–5 highly specific, researched tags that describe exactly what your post is about. Each hashtag acts as a categorization signal to the algorithm — it tells Instagram, TikTok, or LinkedIn who should see this content. The goal is relevance, not volume.</p>
+      <p>How to research: start with your niche's core terms and use each platform's search to find related tags. Look at what your competitors and industry leaders use, but more importantly, analyze which tags drive actual engagement vs. which are just popular. A tag with 100K posts but high engagement rates is better than one with 10M posts where your content drowns in seconds. Create a "tag bank" of 25–30 vetted hashtags organized by content theme.</p>
+      <p>Test systematically: rotate through different tag sets and track which posts perform best. Use tools like Display Purposes (Instagram), TikTok's search insights, and LinkedIn's hashtag follow counts to validate your choices. Refresh your tag bank monthly — trending topics shift, and stale tags lose effectiveness. Remember: hashtags are discovery tools, not engagement crutches. Your content must still deliver value once someone clicks through.</p>
+      <div class="chapter-actions">
+        <div>
+          <textarea class="notes-area" id="notes9" placeholder="Write your notes for this chapter..." oninput="window.saveNotes(9)"></textarea>
+          <div><span class="chapter-status" id="status9">Not completed</span></div>
+        </div>
+        <button class="btn-complete" id="btn9" onclick="window.toggleComplete(9)">Mark Complete</button>
+      </div>
+    </div>
+
+    <!-- Ch 10 -->
+    <div class="chapter" data-ch="10" id="ch10">
+      <h2><span class="ch-number">10</span> Visual Branding</h2>
+      <div class="ch-subtitle">Consistent aesthetic across platforms</div>
+      <p>Visual branding is the silent ambassador of your brand. Before someone reads a single word of your caption, they've already formed an impression based on your colors, fonts, and image style. A cohesive visual identity across Instagram, TikTok, LinkedIn, and Facebook builds trust and recognition — users should know it's your content within a fraction of a second, even without seeing your handle.</p>
+      <p>Start with a brand style guide: pick a primary palette of 3 colors (one dominant, one accent, one neutral), 2 fonts (one display, one body), and a consistent photo editing preset or filter. Apply these across all visual content — Stories, Reels thumbnails, carousel slides, and profile graphics. Tools like Canva let you save brand kits so every team member or contractor stays on brand. Consistency doesn't mean boring — leave room for campaign-specific creative within your established framework.</p>
+      <p>For video branding, create an intro pattern (a specific motion, sound, or phrase that opens every video), consistent lower-third text styles, and a signature outro card. The goal is brand recognition in the first 0.5 seconds. Instagram feed aesthetic still matters for profile visits — plan your grid layout (checkerboard, row theme, or color gradient) and preview it before posting. A visually cohesive profile converts profile visitors into followers at a significantly higher rate.</p>
+      <div class="chapter-actions">
+        <div>
+          <textarea class="notes-area" id="notes10" placeholder="Write your notes for this chapter..." oninput="window.saveNotes(10)"></textarea>
+          <div><span class="chapter-status" id="status10">Not completed</span></div>
+        </div>
+        <button class="btn-complete" id="btn10" onclick="window.toggleComplete(10)">Mark Complete</button>
+      </div>
+    </div>
+
+    <!-- Ch 11 -->
+    <div class="chapter" data-ch="11" id="ch11">
+      <h2><span class="ch-number">11</span> Storytelling on Social</h2>
+      <div class="ch-subtitle">Captions that connect</div>
+      <p>In a world of infinite scrolling, your caption is the hand that reaches out and grabs attention. The best social media content doesn't just inform — it transports. Storytelling frameworks like the Hero's Journey, Before-After-Bridge, and Pattern Interrupt are proven to stop thumbs and drive engagement. Every caption should have a hook (first line), a body (the story or value), and a CTA (what to do next).</p>
+      <p>The most effective social stories follow a simple structure: relatable problem → specific struggle → unexpected insight → actionable takeaway. Share personal experiences, client wins, failures that taught you something, or observations from your industry. Vulnerability builds trust — showing the messy middle of your journey is more engaging than a highlight reel. Use line breaks generously (every 1–2 sentences) for mobile readability.</p>
+      <p>CTAs should feel natural, not forced. Instead of "link in bio," try "save this for later," "share with a friend who needs this," "drop your thoughts below," or "which one resonated most? 1, 2, or 3?" The best CTAs invite conversation. Test different story formats: listicle (X ways to...), narrative (I tried X and here's what happened), controversial (unpopular opinion), and educational (X explained in 60 seconds). Track which formats your audience responds to and double down.</p>
+      <div class="vid-wrap"><iframe src="https://www.youtube.com/embed/5fsm-QbN9r8" allowfullscreen loading="lazy" title="Storytelling on Social"></iframe></div>
+      <div class="chapter-actions">
+        <div>
+          <textarea class="notes-area" id="notes11" placeholder="Write your notes for this chapter..." oninput="window.saveNotes(11)"></textarea>
+          <div><span class="chapter-status" id="status11">Not completed</span></div>
+        </div>
+        <button class="btn-complete" id="btn11" onclick="window.toggleComplete(11)">Mark Complete</button>
+      </div>
+    </div>
+
+    <!-- Ch 12 -->
+    <div class="chapter" data-ch="12" id="ch12">
+      <h2><span class="ch-number">12</span> Video Content Strategy</h2>
+      <div class="ch-subtitle">Short-form dominance</div>
+      <p>Video is no longer optional — it's the primary content format across every social platform. Short-form video (15–90 seconds) drives the highest reach, engagement, and conversion rates. The key principles: hook in the first 2 seconds, deliver value fast, and end with a retention loop (something that makes viewers rewatch or comment). Vertical 9:16 aspect ratio is non-negotiable for mobile-first platforms.</p>
+      <p>Build a video content matrix with four quadrants: educational (tutorials, tips, industry insights), entertaining (humor, trends, relatable content), inspirational (behind-the-scenes, success stories, motivation), and promotional (product features, testimonials, launches). Aim for an 80/20 split — 80% value-driven content, 20% promotional. Each video should have a single core message; trying to communicate multiple ideas dilutes retention.</p>
+      <p>Production quality matters less than substance. A well-lit iPhone video with a clear message will outperform a poorly-scripted studio production every time. Use the 3-second rule: if a viewer watches past 3 seconds, they're likely to watch the full video. Maximize this by front-loading your value — show the result first, then explain how to get there. Add captions, use strong visuals, and keep pacing tight. Every sentence should earn its place.</p>
+      <div class="chapter-actions">
+        <div>
+          <textarea class="notes-area" id="notes12" placeholder="Write your notes for this chapter..." oninput="window.saveNotes(12)"></textarea>
+          <div><span class="chapter-status" id="status12">Not completed</span></div>
+        </div>
+        <button class="btn-complete" id="btn12" onclick="window.toggleComplete(12)">Mark Complete</button>
+      </div>
+    </div>
+
+    <!-- Ch 13 -->
+    <div class="chapter" data-ch="13" id="ch13">
+      <h2><span class="ch-number">13</span> Analytics &amp; Adjusting</h2>
+      <div class="ch-subtitle">Reading insights to improve</div>
+      <p>Data is the compass of social media marketing. Without analytics, you're guessing. Each platform provides robust native analytics: Instagram Insights, TikTok Analytics, LinkedIn Analytics, and Facebook Insights. The metrics that matter most are reach, engagement rate (likes+comments+shares+ saves / impressions), follower growth rate, and click-through rate (for links). Track these weekly, not daily — daily fluctuations create noise.</p>
+      <p>Build a simple analytics dashboard in a spreadsheet. Each week, log your top 3 posts by engagement rate and analyze what they have in common: format (Reel vs. carousel vs. image), topic, time posted, caption length, and hashtags used. Over 4–6 weeks, patterns will emerge. Double down on what works and kill what doesn't. The goal is to systematically improve your "batting average" — not every post will be a home run, but your baseline should steadily rise.</p>
+      <p>Use A/B testing for critical variables: posting times, caption hooks, visual styles, and CTAs. Change one variable at a time and measure the impact. Pay special attention to the "saves" metric — it's the strongest algorithmic signal for educational content. If your save rate is high but reach is low, your content is valuable but your distribution strategy (hashtags, timing, hooks) needs optimization. Analytics without action is just trivia — schedule a weekly 30-minute review session.</p>
+      <div class="chapter-actions">
+        <div>
+          <textarea class="notes-area" id="notes13" placeholder="Write your notes for this chapter..." oninput="window.saveNotes(13)"></textarea>
+          <div><span class="chapter-status" id="status13">Not completed</span></div>
+        </div>
+        <button class="btn-complete" id="btn13" onclick="window.toggleComplete(13)">Mark Complete</button>
+      </div>
+    </div>
+
+    <!-- Ch 14 -->
+    <div class="chapter" data-ch="14" id="ch14">
+      <h2><span class="ch-number">14</span> Paid Ads Basics</h2>
+      <div class="ch-subtitle">Budgeting, targeting &amp; creative testing</div>
+      <p>Paid social media advertising is the accelerator pedal for your organic strategy. The fundamental principle: never scale a campaign that isn't profitable at a small budget. Start with $5–10 per day per ad set, and only increase spend on campaigns that hit your target cost-per-result (cost per click, cost per lead, or ROAS). Facebook Ads Manager and TikTok Ads Manager are the two most powerful self-serve ad platforms available.</p>
+      <p>Audience targeting has three tiers: cold audiences (new people based on interests, demographics, or behaviors), warm audiences (people who've engaged with your content or visited your website), and hot audiences (existing customers or email subscribers for upsells). Most of your budget should go to warm and hot audiences — they convert at 3–10x higher rates than cold traffic. Retargeting campaigns are where profitable ad strategies are built.</p>
+      <p>Creative testing is the engine of ad performance. Run 3–5 creative variations per audience per week: one that educates, one that entertains, one that social-proofs (testimonials), one that offers a discount, and one that tells a story. The winning creative format across all platforms in 2025 is user-generated-style video — raw, authentic, shot on phone, with a clear value proposition in the first 2 seconds. Let the data choose the winner, not your gut.</p>
+      <div class="chapter-actions">
+        <div>
+          <textarea class="notes-area" id="notes14" placeholder="Write your notes for this chapter..." oninput="window.saveNotes(14)"></textarea>
+          <div><span class="chapter-status" id="status14">Not completed</span></div>
+        </div>
+        <button class="btn-complete" id="btn14" onclick="window.toggleComplete(14)">Mark Complete</button>
+      </div>
+    </div>
+
+    <!-- Ch 15 -->
+    <div class="chapter" data-ch="15" id="ch15">
+      <h2><span class="ch-number">15</span> Influencer Collaborations</h2>
+      <div class="ch-subtitle">Finding &amp; working with creators</div>
+      <p>Influencer marketing is a $30+ billion industry because it works — people trust people, not brands. The key is finding creators whose audience aligns with your target customer, not just those with the biggest follower count. Micro-influencers (5K–50K followers) consistently deliver the highest engagement rates and conversion rates because their audience trusts them as a peer, not a celebrity.</p>
+      <p>How to find the right partners: search your niche on each platform and look for creators who consistently post about your category, have authentic engagement (read their comment sections — are people asking questions?), and whose content style aligns with your brand. Use tools like Upfluence, Aspire, or manual hashtag research to build a prospect list. Reach out with a personalized DM or email — generic pitch templates get ignored.</p>
+      <p>Structure collaborations as partnerships, not transactions. Give creative freedom (creators know their audience better than you do), provide clear briefs without over-scripting, and compensate fairly — either with payment, free product + commission, or a mix. Track performance with unique discount codes, affiliate links, or UTM parameters. A successful influencer campaign doesn't just drive sales — it generates authentic content you can repurpose as ads for months.</p>
+      <div class="chapter-actions">
+        <div>
+          <textarea class="notes-area" id="notes15" placeholder="Write your notes for this chapter..." oninput="window.saveNotes(15)"></textarea>
+          <div><span class="chapter-status" id="status15">Not completed</span></div>
+        </div>
+        <button class="btn-complete" id="btn15" onclick="window.toggleComplete(15)">Mark Complete</button>
+      </div>
+    </div>
+
+    <!-- Ch 16 -->
+    <div class="chapter" data-ch="16" id="ch16">
+      <h2><span class="ch-number">16</span> Community Management</h2>
+      <div class="ch-subtitle">Responding, moderating &amp; building tribes</div>
+      <p>Community management is the most underrated growth skill in social media marketing. The brands and creators that win are the ones who make their audience feel seen. Every comment is an opportunity — respond within the first hour of posting (when the algorithm is evaluating your content's early performance) and prioritize meaningful replies over emoji reactions. A thoughtful 2-sentence reply to a comment can spark a thread that drives massive engagement.</p>
+      <p>Set up a community management system: respond to all comments within 2 hours of posting, allocate 30 minutes daily for engagement on your own posts and your niche's posts, and create a brand voice document that guides how your team responds in different scenarios (positive feedback, criticism, questions, spam). Use saved replies for common questions, but always personalize the first line.</p>
+      <p>Build a tribe by creating a branded community space — a Facebook Group, Discord server, or Instagram Broadcast Channel. Share exclusive content, ask for feedback, host weekly live sessions, and recognize your most active members. A strong community becomes your built-in focus group, cheerleading squad, and first line of customer support. The most valuable asset you can build on social media isn't your follower count — it's your community.</p>
+      <div class="chapter-actions">
+        <div>
+          <textarea class="notes-area" id="notes16" placeholder="Write your notes for this chapter..." oninput="window.saveNotes(16)"></textarea>
+          <div><span class="chapter-status" id="status16">Not completed</span></div>
+        </div>
+        <button class="btn-complete" id="btn16" onclick="window.toggleComplete(16)">Mark Complete</button>
+      </div>
+    </div>
+
+    <!-- Ch 17 -->
+    <div class="chapter" data-ch="17" id="ch17">
+      <h2><span class="ch-number">17</span> Social Selling</h2>
+      <div class="ch-subtitle">Converting followers to customers</div>
+      <p>Social selling is the art of turning your social media presence into a revenue channel without feeling salesy. The framework: attract with value → nurture with consistency → convert with low-friction offers. Most brands fail at social selling because they skip the nurture phase — they try to sell before they've built enough trust. Followers need to see 7–12 pieces of your content before they're ready to buy.</p>
+      <p>Build a conversion funnel inside your social platform: top-of-funnel content (educational, entertaining) builds awareness; middle-of-funnel content (case studies, testimonials, comparisons) builds consideration; bottom-of-funnel content (limited-time offers, demos, trials, direct CTAs) drives action. Use Instagram's link-in-bio tools (Linktree, Beacons, or your own landing page), TikTok's shopping features, LinkedIn's product pages, and Facebook's Shop section to reduce friction.</p>
+      <p>The most effective social selling technique is the "value-first CTA" — provide so much value in a post that the natural next step is to buy your product or service. Example: a step-by-step tutorial that ends with "I built a tool that automates this entire process — link in bio." Social selling is about leading with generosity, not desperation. Build relationships first, transactions second, and you'll create customers for life.</p>
+      <div class="chapter-actions">
+        <div>
+          <textarea class="notes-area" id="notes17" placeholder="Write your notes for this chapter..." oninput="window.saveNotes(17)"></textarea>
+          <div><span class="chapter-status" id="status17">Not completed</span></div>
+        </div>
+        <button class="btn-complete" id="btn17" onclick="window.toggleComplete(17)">Mark Complete</button>
+      </div>
+    </div>
+
+    <!-- Ch 18 -->
+    <div class="chapter" data-ch="18" id="ch18">
+      <h2><span class="ch-number">18</span> Cross-Platform Promotion</h2>
+      <div class="ch-subtitle">Driving traffic between platforms</div>
+      <p>Cross-platform promotion is how you turn presence on one network into growth on another. The strategy: pick one primary platform where you focus most of your creative energy, then use secondary platforms to repurpose content and drive traffic back to your primary hub. For most creators, Instagram or TikTok is the primary, with LinkedIn, Facebook, and YouTube as distribution channels for repurposed content.</p>
+      <p>The repurposing workflow: create one long-form video (10–20 minutes) for YouTube → clip 5–8 short-form pieces for Reels/TikTok/Shorts → extract quotes for LinkedIn posts and Twitter threads → turn key insights into carousel slides for Instagram and LinkedIn. One piece of core content generates 15–20 pieces of platform-specific content. This systematic approach multiplies your reach without multiplying your creation time.</p>
+      <p>Drive traffic with platform-native CTAs: "Full breakdown on YouTube — link in bio," "I go deeper on this in my newsletter," "Follow me on Instagram for daily tips." Track cross-platform traffic with UTM parameters and unique landing pages. The goal is to build an ecosystem where each platform feeds the others — a YouTube subscriber becomes an Instagram follower becomes an email subscriber becomes a customer. Own your audience on at least one platform you control (email list).</p>
+      <div class="chapter-actions">
+        <div>
+          <textarea class="notes-area" id="notes18" placeholder="Write your notes for this chapter..." oninput="window.saveNotes(18)"></textarea>
+          <div><span class="chapter-status" id="status18">Not completed</span></div>
+        </div>
+        <button class="btn-complete" id="btn18" onclick="window.toggleComplete(18)">Mark Complete</button>
+      </div>
+    </div>
+
+    <!-- Ch 19 -->
+    <div class="chapter" data-ch="19" id="ch19">
+      <h2><span class="ch-number">19</span> Staying Consistent</h2>
+      <div class="ch-subtitle">Avoiding burnout &amp; scheduling tools</div>
+      <p>Consistency is the single greatest predictor of success on social media. But consistency without systems leads to burnout. The average social media manager handles 5+ platforms, 20+ posts per week, and constant community engagement — it's a recipe for exhaustion if you don't have sustainable workflows. The solution: build systems that make consistency automatic, not willpower-dependent.</p>
+      <p>Use scheduling tools like Later, Buffer, Hootsuite, or Meta Business Suite to queue posts weeks in advance. Set up a content calendar (Notion, Trello, or Airtable work great) that maps out daily content by platform, format, and topic. Define your minimum viable output — the least you can post while still seeing growth — and never dip below it. For most accounts, that's 4–5 posts per week on your primary platform and 3–4 on secondary platforms.</p>
+      <p>Protect your energy with boundaries: designate one day per week as a "no social" day, use app timers to limit daily scrolling, and batch your engagement into two focused blocks (morning and afternoon) rather than constant context-switching. Remember: social media is a marathon, not a sprint. The creator who posts consistently for 12 months with sustainable intensity will outperform the one who burns out after 8 weeks of unsustainable hustle.</p>
+      <div class="chapter-actions">
+        <div>
+          <textarea class="notes-area" id="notes19" placeholder="Write your notes for this chapter..." oninput="window.saveNotes(19)"></textarea>
+          <div><span class="chapter-status" id="status19">Not completed</span></div>
+        </div>
+        <button class="btn-complete" id="btn19" onclick="window.toggleComplete(19)">Mark Complete</button>
+      </div>
+    </div>
+
+    <!-- Ch 20 -->
+    <div class="chapter" data-ch="20" id="ch20">
+      <h2><span class="ch-number">20</span> Your 90-Day Social Media Growth Plan</h2>
+      <div class="ch-subtitle">From strategy to execution</div>
+      <p>You've now learned every component of a world-class social media marketing strategy. This final chapter ties everything together into a 90-day execution plan. Days 1–7: audit your current presence, define your audience avatar, choose your primary platform, and set up your content pillars and visual brand guide. By day 7, you should have 30 pieces of batched content ready to go.</p>
+      <p>Days 8–30: publish consistently, engage deliberately, and analyze weekly. Post daily on your primary platform, engage 45 minutes per day, and review analytics every Sunday. By day 30, you should have clear data on what content resonates — double down on those formats. Days 31–60: introduce cross-platform repurposing, launch a community space, and test your first paid ad campaign at $5/day. Days 61–90: scale what works — increase ad spend on winning campaigns, launch an influencer collaboration, and optimize your social selling funnel for conversions.</p>
+      <p>Remember: this entire system works only if you take action. Don't wait for perfection. Your first post won't go viral. Your first ad won't be profitable. But if you follow this 90-day plan with consistency, iteration, and a willingness to learn, you will build a social media presence that drives real business results. The algorithms change. The trends shift. But the fundamentals of value, consistency, and genuine connection never go out of style. You've got this.</p>
+      <div class="vid-wrap"><iframe src="https://www.youtube.com/embed/5fsm-QbN9r8" allowfullscreen loading="lazy" title="90 Day Plan"></iframe></div>
+      <div class="chapter-actions">
+        <div>
+          <textarea class="notes-area" id="notes20" placeholder="Write your notes for this chapter..." oninput="window.saveNotes(20)"></textarea>
+          <div><span class="chapter-status" id="status20">Not completed</span></div>
+        </div>
+        <button class="btn-complete" id="btn20" onclick="window.toggleComplete(20)">Mark Complete</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- NAV BOTTOM -->
+  <div class="chapter-nav" style="margin-top:4px;">
+    <button class="btn-prev" onclick="window.prevChapter()">← Previous</button>
+    <span class="chapter-counter" id="chapterCounterBottom">Chapter 1 of 20</span>
+    <button class="btn-next" onclick="window.nextChapter()">Next →</button>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>&copy; 2025 Elevate Shop. All rights reserved.</p>
+    <p class="tagline">Empowering minds and building wealth, one download at a time.</p>
+  </div>
+
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  var currentChapter = 1;
+  var totalChapters = 20;
+
+  function loadState() {
+    var state = { completed: {}, notes: {} };
+    try {
+      var saved = localStorage.getItem('smmc_progress');
+      if (saved) {
+        var parsed = JSON.parse(saved);
+        if (parsed.completed) state.completed = parsed.completed;
+        if (parsed.notes) state.notes = parsed.notes;
+      }
+    } catch(e) {}
+    return state;
+  }
+
+  function saveState(state) {
+    try {
+      localStorage.setItem('smmc_progress', JSON.stringify(state));
+    } catch(e) {}
+  }
+
+  function updateUI() {
+    var state = loadState();
+    var count = 0;
+    for (var i = 1; i <= totalChapters; i++) {
+      if (state.completed[i]) count++;
+    }
+    var fill = document.getElementById('progressFill');
+    var txt = document.getElementById('progressText');
+    if (fill) fill.style.width = (count / totalChapters * 100) + '%';
+    if (txt) txt.textContent = count + ' / ' + totalChapters;
+
+    for (var j = 1; j <= totalChapters; j++) {
+      var statusEl = document.getElementById('status' + j);
+      var btnEl = document.getElementById('btn' + j);
+      var notesEl = document.getElementById('notes' + j);
+      if (statusEl) {
+        statusEl.textContent = state.completed[j] ? 'Completed' : 'Not completed';
+      }
+      if (btnEl) {
+        if (state.completed[j]) {
+          btnEl.textContent = 'Completed';
+          btnEl.classList.add('completed');
+        } else {
+          btnEl.textContent = 'Mark Complete';
+          btnEl.classList.remove('completed');
+        }
+      }
+      if (notesEl && state.notes[j] !== undefined) {
+        notesEl.value = state.notes[j];
+      }
+    }
+  }
+
+  function showChapter(ch) {
+    for (var i = 1; i <= totalChapters; i++) {
+      var el = document.getElementById('ch' + i);
+      if (el) {
+        if (i === ch) el.classList.add('active');
+        else el.classList.remove('active');
+      }
+    }
+    currentChapter = ch;
+    var counter = document.getElementById('chapterCounter');
+    var counterB = document.getElementById('chapterCounterBottom');
+    var text = 'Chapter ' + ch + ' of ' + totalChapters;
+    if (counter) counter.textContent = text;
+    if (counterB) counterB.textContent = text;
+    var prevBtn = document.getElementById('btnPrev');
+    var nextBtn = document.getElementById('btnNext');
+    if (prevBtn) prevBtn.disabled = (ch === 1);
+    if (nextBtn) nextBtn.disabled = (ch === totalChapters);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  window.prevChapter = function() {
+    if (currentChapter > 1) showChapter(currentChapter - 1);
+  };
+
+  window.nextChapter = function() {
+    if (currentChapter < totalChapters) showChapter(currentChapter + 1);
+  };
+
+  window.toggleComplete = function(ch) {
+    var state = loadState();
+    if (state.completed[ch]) {
+      delete state.completed[ch];
+    } else {
+      state.completed[ch] = true;
+    }
+    saveState(state);
+    updateUI();
+  };
+
+  window.saveNotes = function(ch) {
+    var el = document.getElementById('notes' + ch);
+    if (!el) return;
+    var state = loadState();
+    state.notes[ch] = el.value;
+    saveState(state);
+  };
+
+  window.resetProgress = function() {
+    if (!confirm('Reset all progress and notes? This cannot be undone.')) return;
+    var state = { completed: {}, notes: {} };
+    saveState(state);
+    updateUI();
+    showChapter(1);
+  };
+
+  // init
+  updateUI();
+  showChapter(1);
+
+})();
+</script>
+</body>
+</html>

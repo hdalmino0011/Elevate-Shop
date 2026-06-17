@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Motivation Mastery — 365 Days of Power</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0b0b0b;color:#e0e0e0;font-family:'Segoe UI','Helvetica Neue',Arial,sans-serif;line-height:1.6;min-height:100vh}
+.wrap{max-width:860px;margin:0 auto;padding:20px}
+hdr{text-align:center;padding:48px 20px 32px;border-bottom:2px solid #ffd700;margin-bottom:28px}
+hdr h1{font-size:2.6em;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:#ffd700}
+hdr h1 small{display:block;font-size:0.32em;font-weight:400;letter-spacing:3px;color:#ccc;margin-top:6px;text-transform:none}
+hdr p{font-size:1.05em;color:#999;margin-top:8px}
+.pr{background:#151515;border:1px solid #222;border-radius:10px;padding:20px;margin-bottom:20px;display:flex;flex-wrap:wrap;align-items:center;gap:14px}
+.pr-b{flex:1;min-width:120px}
+.pr-l{display:flex;justify-content:space-between;font-size:0.85em;color:#999;margin-bottom:4px}
+.pr-l b{color:#ffd700}
+.pr-t{height:10px;background:#222;border-radius:5px;overflow:hidden}
+.pr-f{height:100%;width:0%;background:linear-gradient(90deg,#ffd700,#e6b800);border-radius:5px;transition:width .4s}
+.act{display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-block;border:none;border-radius:6px;padding:10px 18px;font-size:0.85em;font-weight:700;cursor:pointer;transition:all .2s;text-transform:uppercase;letter-spacing:1px}
+.btn-gl{background:#ffd700;color:#0b0b0b}.btn-gl:hover{background:#e6c200}
+.btn-ol{background:transparent;border:1px solid #ffd700;color:#ffd700}.btn-ol:hover{background:#ffd700;color:#0b0b0b}
+.btn-sm{padding:7px 12px;font-size:0.78em}
+.btn-da{background:#8b1a1a;color:#fff}.btn-da:hover{background:#a32020}
+.nav{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:22px;flex-wrap:wrap}
+.nav j{display:flex;align-items:center;gap:5px}
+.nav j input{width:68px;padding:7px 5px;border:1px solid #333;border-radius:4px;background:#111;color:#fff;font-size:0.9em;text-align:center}
+.nav j input:focus{border-color:#ffd700;outline:none}
+.card{background:#151515;border-radius:10px;padding:28px;margin-bottom:22px;border:1px solid #222;position:relative}
+.card.done{border-color:#ffd700}
+.bdg{display:inline-block;background:#ffd700;color:#0b0b0b;font-weight:800;font-size:0.78em;padding:3px 12px;border-radius:16px;letter-spacing:1px;margin-bottom:14px;text-transform:uppercase}
+.qt{font-size:1.5em;font-weight:700;line-height:1.4;color:#fff;margin-bottom:6px;font-style:italic}
+.qt::before{content:'\201C';color:#ffd700}.qt::after{content:'\201D';color:#ffd700}
+.au{font-size:0.95em;color:#ffd700;font-weight:600;margin-bottom:18px;text-align:right}
+.au::before{content:'\2014 '}
+.rf{font-size:1em;color:#ccc;margin-bottom:10px}
+.ac{background:#1c1c1c;border-left:4px solid #ffd700;padding:11px 16px;margin-bottom:14px;font-size:0.95em;color:#ddd}
+.ac b{color:#ffd700}
+.vid{margin:14px 0;position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:8px}
+.vid iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+.nt{margin-bottom:12px}
+.nt textarea{width:100%;min-height:65px;background:#0b0b0b;border:1px solid #333;border-radius:5px;color:#fff;padding:10px;font-size:0.92em;font-family:inherit;resize:vertical}
+.nt textarea:focus{border-color:#ffd700;outline:none}
+.nt textarea::placeholder{color:#555}
+.cf{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.cb{font-size:0.85em;color:#ffd700;font-weight:600;display:none}
+.card.done .cb{display:inline}
+ftr{text-align:center;padding:36px 20px;border-top:1px solid #222;margin-top:20px;display:block}
+ftr p{font-size:0.9em;color:#666}
+ftr p:first-child{color:#ffd700;font-weight:600;letter-spacing:1px}
+@media(max-width:600px){
+  hdr h1{font-size:1.7em}
+  .card{padding:18px}
+  .qt{font-size:1.15em}
+  .pr{flex-direction:column;align-items:stretch}
+  .act{justify-content:center}
+}
+@media print{
+  body{background:#fff;color:#000}
+  .btn,.nt textarea,.nav,.vid{display:none!important}
+  .pr{border:1px solid #ccc;background:#f5f5f5}
+  .pr-f{background:#333!important}
+  .card{border:1px solid #ccc;background:#fff;page-break-inside:avoid}
+  .qt{color:#000}.qt::before,.qt::after{color:#b8960f}
+  .au{color:#b8960f}.rf{color:#333}
+  .ac{border-left-color:#b8960f;background:#f9f9f9;color:#222}.ac b{color:#b8960f}
+  .bdg{background:#b8960f;color:#fff}
+  .cb{color:#b8960f}.card.done{border-color:#b8960f}
+  hdr h1{color:#b8960f}
+  ftr p:first-child{color:#b8960f}ftr p{color:#555}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<hdr>
+<h1>DAILY MOTIVATION MASTERY <small>365 Days of Power — Quotes, Reflections &amp; Action</small></h1>
+<p>One day at a time. Ignite your inner drive.</p>
+</hdr>
+
+<div class="pr">
+<div class="pr-b">
+<div class="pr-l"><span>Your Journey</span><span><b id="prTxt">0</b> / 365</span></div>
+<div class="pr-t"><div class="pr-f" id="prFill"></div></div>
+</div>
+<div class="act">
+<button class="btn btn-da btn-sm" onclick="window.rp()">Reset All</button>
+</div>
+</div>
+
+<div class="nav">
+<button class="btn btn-ol btn-sm" onclick="window.pd()">&larr; Prev</button>
+<j>
+<span style="color:#999;font-size:0.85em">Day</span>
+<input type="number" id="dInp" min="1" max="365" value="1">
+<button class="btn btn-gl btn-sm" onclick="window.gd()">Go</button>
+</j>
+<button class="btn btn-ol btn-sm" onclick="window.nd()">Next &rarr;</button>
+</div>
+
+<div id="dc"></div>
+
+<ftr>
+<p>&copy; 2025 Elevate Shop. All rights reserved.</p>
+<p>Empowering minds and building wealth, one download at a time.</p>
+</ftr>
+</div>
+
+<script>
+(function(){
+'use strict';
+var D=[
+{d:"If you want to live a happy life, tie it to a goal, not to people or things",a:"Albert Einstein",r:"Purpose gives life direction; goals are the anchors that keep you steady when winds of distraction blow.",x:"Write down one meaningful goal and the reason it matters to you."}
+,{d:"Success is not final, failure is not fatal: it is the courage to continue that counts",a:"Winston Churchill",r:"Every ending is a beginning in disguise; all that matters is your willingness to keep moving forward.",x:"Identify one area where fear of failure holds you back and take one small step forward today."}
+,{d:"The way to get started is to quit talking and begin doing",a:"Walt Disney",r:"Ideas without action are just dreams; execution turns vision into reality.",x:"Pick one goal you have been delaying and complete one actionable task for it right now."}
+,{d:"The only limit to our realization of tomorrow will be our doubts of today",a:"Franklin D. Roosevelt",r:"Doubt is a prison built by your mind; step outside its walls and into your potential.",x:"Write down one doubt you have and consciously replace it with an empowering belief."}
+,{d:"Believe you can and you're halfway there",a:"Theodore Roosevelt",r:"Your belief system is the engine of your achievement; fuel it with confidence.",x:"Repeat a powerful affirmation about your capability three times aloud right now."}
+,{d:"It does not matter how slowly you go as long as you do not stop",a:"Confucius",r:"Consistency compounds; steady progress, however slow, eventually reaches the destination.",x:"Commit to one small daily habit that moves you toward a major goal."}
+,{d:"In the middle of every difficulty lies opportunity",a:"Albert Einstein",r:"Challenges are disguised doorways; the obstacle is the way forward.",x:"List one challenge you face and find three hidden opportunities it presents."}
+,{d:"Your time is limited, don't waste it living someone else's life",a:"Steve Jobs",r:"Authenticity is your greatest gift to the world; live your truth unapologetically.",x:"Identify one way you are living to please others and realign it with your own values."}
+,{d:"The best time to plant a tree was 20 years ago. The second best time is now",a:"Chinese Proverb",r:"Regret is a thief; the present moment is your point of power and action.",x:"Start something today that your future self will thank you for."}
+,{d:"Whether you think you can or you think you can't, you're right",a:"Henry Ford",r:"Your mindset creates your reality; choose thoughts that serve your highest good.",x:"Notice your self-talk today and reframe one limiting thought into an empowering one."}
+,{d:"The future belongs to those who believe in the beauty of their dreams",a:"Eleanor Roosevelt",r:"Dreams are the blueprints of your destiny; protect them fiercely.",x:"Write down your biggest dream and one concrete step to move closer to it."}
+,{d:"Don't watch the clock; do what it does. Keep going",a:"Sam Levenson",r:"Persistence is the quiet engine of all great accomplishment.",x:"Focus on making progress, not perfection, for the next 30 minutes on a key task."}
+,{d:"Success usually comes to those who are too busy to be looking for it",a:"Henry David Thoreau",r:"Immerse yourself in meaningful work and success becomes a natural byproduct.",x:"Dedicate 90 minutes to deep, focused work on your highest priority today."}
+,{d:"The only person you are destined to become is the person you decide to be",a:"Ralph Waldo Emerson",r:"You are the author of your own story; write a narrative that inspires you.",x:"Define the person you want to become in one sentence and act accordingly today."}
+,{d:"What you get by achieving your goals is not as important as what you become",a:"Zig Ziglar",r:"Personal growth is the ultimate reward; the person you evolve into is priceless.",x:"Reflect on how your current goal is shaping your character and abilities."}
+,{d:"The mind is everything. What you think you become",a:"Buddha",r:"Your inner world shapes your outer reality; guard your thoughts like sacred treasures.",x:"Practice five minutes of mindfulness today to observe and guide your thoughts."}
+,{d:"Don't be pushed around by the fears in your mind. Be led by the dreams in your heart",a:"Roy T. Bennett",r:"Fear is a loud liar; your heart's whisper holds the truest north.",x:"Identify one fear-driven choice and re-evaluate it from your heart's perspective."}
+,{d:"The secret of getting ahead is getting started",a:"Mark Twain",r:"The first step is always the hardest; after that, momentum carries you.",x:"Use the two-minute rule: start a task you have avoided for just two minutes now."}
+,{d:"Act as if what you do makes a difference. It does",a:"William James",r:"Every action sends ripples through the world; your existence matters.",x:"Perform one intentional act of kindness today and observe its impact."}
+,{d:"The only way to do great work is to love what you do",a:"Steve Jobs",r:"Passion fuels excellence; when you love your work, effort feels effortless.",x:"Amplify one aspect of your work that you love and focus on it today."}
+,{d:"I find that the harder I work, the more luck I seem to have",a:"Thomas Jefferson",r:"What looks like luck is often preparation meeting relentless effort.",x:"Double your effort on one project today and notice how opportunities appear."}
+,{d:"Successful people do what unsuccessful people are not willing to do",a:"Jim Rohn",r:"Discipline separates dreamers from achievers; embrace the uncomfortable path.",x:"Do one thing today that you know you should do but do not feel like doing."}
+,{d:"The only place where success comes before work is in the dictionary",a:"Vidal Sassoon",r:"There are no short cuts to lasting success; hard work is the only currency.",x:"Commit to working on your goal for at least 30 minutes today without excuses."}
+,{d:"The secret of success is to do the common thing uncommonly well",a:"John D. Rockefeller",r:"Extraordinary results come from ordinary actions performed with exceptional care.",x:"Choose one routine task and execute it with more excellence than usual."}
+,{d:"Champions keep playing until they get it right",a:"Billie Jean King",r:"Greatness is not a single act but a habit of relentless refinement.",x:"Review your recent work, find one area to improve, and make the adjustment."}
+,{d:"Do not wait; the time will never be just right. Start where you stand",a:"Napoleon Hill",r:"Perfect timing is a myth; the best moment to begin is now with what you have.",x:"Take one imperfect action toward a goal you have been postponing."}
+,{d:"A goal without a plan is just a wish",a:"Antoine de Saint-Exupery",r:"Wishes float away; plans anchored by action materialize into reality.",x:"Break one goal down into three actionable steps you can take this week."}
+,{d:"Set your goals high, and do not stop till you get there",a:"Bo Jackson",r:"Limited goals produce limited results; aim high and match your effort to ambition.",x:"Raise the bar on one goal and commit to achieving it with full focus."}
+,{d:"You miss 100 percent of the shots you do not take",a:"Wayne Gretzky",r:"Risk is the price of reward; every no brings you closer to a yes.",x:"Take one courageous action today that you would normally avoid due to fear of rejection."}
+,{d:"The only limit to our impact is our imagination and commitment",a:"Tony Robbins",r:"Your capacity to create change is boundless when vision meets dedication.",x:"Imagine the biggest impact you could make and take one step toward it today."}
+,{d:"If you can dream it, you can do it",a:"Walt Disney",r:"Your imagination is the preview of your future possibilities; trust it.",x:"Visualize your dream vividly for five minutes, engaging all your senses."}
+,{d:"It always seems impossible until it is done",a:"Nelson Mandela",r:"The impossible is often just the untried; perseverance transforms the unimaginable.",x:"Identify one thing you believe is impossible and explore the first step to achieve it."}
+,{d:"Don't let yesterday take up too much of today",a:"Will Rogers",r:"The past is a lesson, not a life sentence; release it and reclaim your present.",x:"Forgive one past mistake and redirect your energy forward today."}
+,{d:"People who succeed have momentum. The more they succeed, the more they want to succeed",a:"Tony Robbins",r:"Success breeds success; each win builds energy for the next victory.",x:"Celebrate a recent small win and use that energy to tackle a bigger challenge."}
+,{d:"The difference between a successful person and others is not a lack of strength but a lack of will",a:"Vince Lombardi",r:"Willpower is the engine of achievement; strengthen it through small daily disciplines.",x:"Exercise your willpower today by doing one challenging thing you would rather avoid."}
+,{d:"Eighty percent of success is showing up",a:"Woody Allen",r:"Presence is half the battle; consistency of attendance creates consistency of results.",x:"Show up fully to one commitment today with complete attention."}
+,{d:"The successful warrior is the average man with laser-like focus",a:"Bruce Lee",r:"Focus is a superpower; channel your energy into one priority at a time.",x:"Eliminate one distraction and give 100 percent focus to one important task."}
+,{d:"If you are not willing to risk the usual you will have to settle for the ordinary",a:"Jim Rohn",r:"Comfort zones are success killers; growth lives on the other side of risk.",x:"Take one calculated risk today that pushes you beyond your comfort zone."}
+,{d:"Success is the sum of small efforts repeated day in and day out",a:"Robert Collier",r:"Small daily actions compound into extraordinary achievements over time.",x:"Identify one small action you can repeat daily for the next 30 days."}
+,{d:"The man who moves a mountain begins by carrying away small stones",a:"Confucius",r:"Every grand accomplishment starts with humble consistent effort.",x:"Break your biggest goal into tiny tasks and complete just one today."}
+,{d:"A dream becomes a goal when action is taken toward its achievement",a:"Les Brown",r:"Talking without action is wishful thinking; act on your vision today.",x:"Transform one dream into a goal by writing the first three actions needed."}
+,{d:"If you do not design your own life plan you will fall into someone else's",a:"Jim Rohn",r:"Intentionality is key; without a plan, you drift wherever life takes you.",x:"Spend 15 minutes sketching a rough plan for your ideal year ahead."}
+,{d:"Opportunities don't happen. You create them",a:"Chris Grosser",r:"Waiting for luck is passive; creating opportunities requires proactive action.",x:"Create one opportunity by reaching out to someone who can help your goal."}
+,{d:"Do what you can with what you have where you are",a:"Theodore Roosevelt",r:"You already have everything you need to begin; do not wait for perfect conditions.",x:"Take one action using only the resources you have right now."}
+,{d:"Success is not in what you have but who you are",a:"Jim Rohn",r:"Character is the true measure of success; integrity outweighs wealth.",x:"Ensure your actions today align with the person you want to become."}
+,{d:"The best revenge is massive success",a:"Frank Sinatra",r:"Channel every setback into fuel for your rise; let your achievements speak.",x:"Use one criticism as motivation to excel in that area today."}
+,{d:"You must be the change you wish to see in the world",a:"Mahatma Gandhi",r:"Your example is your most powerful message; embody the transformation you seek.",x:"Model one quality you want to see more of through your actions today."}
+,{d:"The only easy day was yesterday",a:"Navy SEALs",r:"Growth demands increasing challenge; embrace difficulty as a sign of progress.",x:"Take on a harder task today than yesterday to stretch your capabilities."}
+,{d:"There is no passion to be found playing small in settling for a life less than you are capable of living",a:"Nelson Mandela",r:"You owe it to the world to express your full potential; playing small serves no one.",x:"Identify one area where you are settling and commit to raising your standards."}
+,{d:"I never dreamed about success. I worked for it",a:"Estee Lauder",r:"Dreams inspire but only work delivers; let your effort be your statement.",x:"Put in extra effort on a task that moves the needle on your biggest goal."}
+,{d:"The only thing standing between you and your goal is the story you keep telling yourself",a:"Jordan Belfort",r:"Your self-narrative either empowers or limits you; rewrite the story.",x:"Identify one limiting story and create a new empowering narrative."}
+,{d:"You are never too old to set another goal or to dream a new dream",a:"C.S. Lewis",r:"Your capacity for growth has no expiration date; reinvention is always possible.",x:"Set one new goal that excites you regardless of your age or stage."}
+,{d:"When one door of happiness closes another opens but we often look so long at the closed one that we do not see the one that has opened",a:"Helen Keller",r:"Past disappointments can blind you to new opportunities; shift your gaze.",x:"Actively look for a new opportunity that has opened after a recent door closed."}
+,{d:"Success is not just about making money. It is about making a difference",a:"Unknown",r:"True success is measured by the lives you touch and value you create.",x:"Find one way to make a positive difference in someone's life today."}
+,{d:"The journey of a thousand miles begins with one step",a:"Lao Tzu",r:"Every monumental achievement starts with a single deliberate action.",x:"Take the first step toward a goal you have been postponing."}
+,{d:"When you go through hardships and decide not to surrender that is strength",a:"Arnold Schwarzenegger",r:"Adversity reveals your inner steel; the choice to continue is the core of resilience.",x:"Recall a past hardship you overcame and draw strength from that memory."}
+,{d:"The human spirit grows strong by conflict",a:"William Ellery Channing",r:"Conflict is not your enemy; it is the forge that tempers your character.",x:"Face one conflict constructively today as an opportunity to grow."}
+,{d:"Life doesn't get easier or more forgiving; we get stronger and more resilient",a:"Steve Maraboli",r:"Your capacity to handle difficulty expands with every challenge you face.",x:"Do one thing today that builds your resilience like cold exposure or meditation."}
+,{d:"Fall seven times, stand up eight",a:"Japanese Proverb",r:"Resilience is not about never falling but about always rising after the fall.",x:"Identify a recent setback and consciously choose to rise again today."}
+,{d:"Rock bottom became the solid foundation on which I rebuilt my life",a:"J.K. Rowling",r:"Your lowest moments can become the groundwork for your greatest comeback.",x:"Write one lesson learned from a low point and how it shaped you."}
+,{d:"Hard times may have held you down but they will not last forever",a:"Unknown",r:"Storms pass; your job is to hold on and keep faith through the darkness.",x:"Repeat: 'This too shall pass' whenever you feel overwhelmed today."}
+,{d:"Resilience is the capacity to recover quickly from difficulties. It is a muscle you build",a:"Unknown",r:"Like any muscle resilience grows stronger each time you push through discomfort.",x:"Step into one uncomfortable situation today to build your resilience."}
+,{d:"The oak fought the wind and broke; the willow bent when it must and survived",a:"Robert Jordan",r:"Flexibility in adversity is more powerful than rigid resistance.",x:"Practice flexibility by adapting to a change rather than fighting it."}
+,{d:"Success is how high you bounce when you hit bottom",a:"George S. Patton",r:"Your comeback matters more than your setback; your bounce defines you.",x:"If feeling low take one positive action to bounce back right now."}
+,{d:"Courage is not the absence of fear but the judgment that something is more important than fear",a:"Ambrose Redmoon",r:"Fear is a companion not a commander; let purpose override your fear.",x:"Do one thing today despite being afraid driven by purpose."}
+,{d:"Our greatest glory is not in never falling but in rising every time we fall",a:"Confucius",r:"Your willingness to rise after each fall defines your legacy.",x:"Share a story of rising after a fall to inspire someone today."}
+,{d:"He who has a why to live for can bear almost any how",a:"Friedrich Nietzsche",r:"Purpose gives you strength to endure any hardship; find your deep why.",x:"Clarify your deepest reason for pushing through a challenge."}
+,{d:"Although the world is full of suffering it is also full of the overcoming of it",a:"Helen Keller",r:"Everywhere, people triumph over adversity; you can too.",x:"Read about someone overcoming great odds to fuel your resilience."}
+,{d:"The brick walls are there for a reason. They give us a chance to show how badly we want something",a:"Randy Pausch",r:"Obstacles are filters that test your dedication; let them strengthen your resolve.",x:"Identify a brick wall and reaffirm your commitment to getting past it."}
+,{d:"Strength does not come from winning. Your struggles develop your strengths",a:"Arnold Schwarzenegger",r:"Your struggles are the gym for your character; each rep builds inner strength.",x:"Thank a recent struggle for the strength it is building within you."}
+,{d:"Tough times never last but tough people do",a:"Robert H. Schuller",r:"Your toughness will outlast any trial; endurance is the key to victory.",x:"List three tough times you have already survived as proof of your endurance."}
+,{d:"You may have to fight a battle more than once to win it",a:"Margaret Thatcher",r:"Persistence means winning the same battle repeatedly until it stays won.",x:"Identify a recurring battle and recommit with a new strategy."}
+,{d:"When everything seems to be going against you remember that the airplane takes off against the wind not with it",a:"Henry Ford",r:"Resistance is necessary for lift; opposition can elevate you.",x:"Reframe one challenge as the wind beneath your wings helping you rise."}
+,{d:"It is not the strongest of the species that survives nor the most intelligent but the one most responsive to change",a:"Charles Darwin",r:"Adaptability is the ultimate survival skill; embrace change as your ally.",x:"Welcome one change today instead of resisting it."}
+,{d:"Out of suffering have emerged the strongest souls; the most massive characters are seared with scars",a:"Kahlil Gibran",r:"Your scars are medals of honor telling the story of your resilience.",x:"Embrace one scar as a symbol of your strength."}
+,{d:"Pain is temporary. Quitting lasts forever",a:"Lance Armstrong",r:"The pain of discipline is fleeting; the pain of regret is permanent.",x:"Push through one moment of discomfort rather than giving up."}
+,{d:"You do not develop courage by being happy every day. You develop it by surviving difficult times",a:"Barbara De Angelis",r:"Courage is forged in the fire of adversity not in comfort.",x:"Do one thing that requires courage even if uncomfortable."}
+,{d:"Sometimes you do not realize your own strength until you face your greatest weakness",a:"Susan Gale",r:"Your weaknesses reveal where your deepest strength can emerge.",x:"Identify a weakness and find the hidden strength it is developing in you."}
+,{d:"The world breaks everyone and afterward some are strong at the broken places",a:"Ernest Hemingway",r:"Brokenness can become a source of profound strength and beauty.",x:"Write about a broken place that has become a source of strength."}
+,{d:"If you are going through hell keep going",a:"Winston Churchill",r:"The only way out of difficulty is through; stopping prolongs the pain.",x:"Keep moving on one difficult task without stopping."}
+,{d:"A river cuts through rock not because of its power but because of its persistence",a:"Jim Watkins",r:"Gentle persistent effort achieves what force cannot; be the river.",x:"Apply consistent gentle pressure to a tough problem."}
+,{d:"The gem cannot be polished without friction nor man perfected without trials",a:"Seneca",r:"Trials are the polishing wheel of your soul; each brings out more shine.",x:"Thank a trial for refining your character."}
+,{d:"We must embrace pain and burn it as fuel for our journey",a:"Kenji Miyazawa",r:"Pain can be transformed into propulsion; let it fuel rather than hinder.",x:"Channel pain into productive action today."}
+,{d:"Smooth seas do not make skillful sailors",a:"African Proverb",r:"Ease produces mediocrity; struggle creates mastery.",x:"Embrace a difficult situation as a mastery opportunity."}
+,{d:"What does not kill us makes us stronger",a:"Friedrich Nietzsche",r:"Each survival strengthens the immune system of your soul.",x:"Identify something that made you stronger."}
+,{d:"You were given this life because you are strong enough to live it",a:"Unknown",r:"Your presence here is proof of your strength; trust yourself.",x:"Affirm: 'I am strong enough to handle what comes.'"}
+,{d:"Do not pray for an easy life pray for the strength to endure a difficult one",a:"Bruce Lee",r:"Strength is a better gift than ease; it serves you always.",x:"Ask for strength rather than relief in difficulty."}
+,{d:"Resilience is accepting your new reality even if it is less good than the one before",a:"Elizabeth Edwards",r:"Acceptance is not defeat; it is the first step to rebuilding.",x:"Accept one change you have been resisting."}
+,{d:"Life is not about waiting for the storm to pass but learning to dance in the rain",a:"Vivian Greene",r:"Joy is not dependent on perfect conditions; find your rhythm in adversity.",x:"Find one thing to enjoy despite a difficult situation."}
+,{d:"Turn your wounds into wisdom",a:"Oprah Winfrey",r:"Your deepest pain can become your greatest teaching.",x:"Write one lesson learned from a wound."}
+,{d:"The comeback is always stronger than the setback",a:"Unknown",r:"Your return from difficulty will be more powerful than the difficulty.",x:"Plan your comeback from a setback with energy."}
+,{d:"Stars cannot shine without darkness",a:"Unknown",r:"Your light is most visible against the backdrop of challenge.",x:"Let your inner light shine today."}
+,{d:"Difficult roads often lead to beautiful destinations",a:"Unknown",r:"The hardest journeys yield the most rewarding views.",x:"Trust that your road leads somewhere beautiful."}
+,{d:"You may encounter many defeats but you must not be defeated",a:"Maya Angelou",r:"Defeats are events not identities; you are not defined by setbacks.",x:"Separate your identity from a defeat."}
+,{d:"The ultimate measure of a man is not where he stands in comfort but where he stands at times of challenge",a:"Martin Luther King Jr.",r:"Character is revealed and refined in the crucible of difficulty.",x:"Stand firm in your values when tested."}
+,{d:"Sometimes we are tested not to show our weaknesses but to discover our strengths",a:"Unknown",r:"Tests reveal hidden reserves of strength you did not know you had.",x:"View a test as a discovery opportunity."}
+,{d:"Every adversity every failure every heartache carries the seed of an equal or greater benefit",a:"Napoleon Hill",r:"In every negative lies the potential for a positive; find the seed.",x:"Find one benefit hidden in a recent adversity."}
+,{d:"Resilience is not a single skill but a collection of skills that help us navigate challenges",a:"Unknown",r:"Build your resilience toolkit with multiple strategies.",x:"Learn one new coping strategy today."}
+,{d:"Life is tough my darling but so are you",a:"Stephanie Bennett-Henry",r:"You have survived everything so far; you are tougher.",x:"Remind yourself: 'I am tough enough for this.'"}
+,{d:"When you come out of a storm you will not be the same person who walked in. That is what the storm is about",a:"Haruki Murakami",r:"Storms transform you; emerge different and stronger.",x:"Reflect on how a storm changed you for the better."}
+,{d:"No matter how hard the past you can always begin again",a:"Buddha",r:"Every moment is a fresh start; the past does not dictate your future.",x:"Begin again in one area of your life."}
+,{d:"In three words I can sum up everything I have learned about life: it goes on",a:"Robert Frost",r:"Life's continuity is a comfort and a call to keep participating.",x:"Continue even if something went wrong."}
+,{d:"You have power over your mind not outside events. Realize this and you will find strength",a:"Marcus Aurelius",r:"Your inner fortress cannot be breached by external events.",x:"Focus on your response not the event itself."}
+,{d:"The only way to do great work is to love what you do",a:"Steve Jobs",r:"Passion is the fuel for greatness; find what sets your soul on fire.",x:"Identify what excites you and do more of it."}
+,{d:"The big question is whether you are going to say a hearty yes to your adventure",a:"Joseph Campbell",r:"Life is an adventure waiting for your enthusiastic yes.",x:"Say yes to one opportunity you would normally hesitate on."}
+,{d:"Passion is energy. Feel the power from focusing on what excites you",a:"Oprah Winfrey",r:"Your excitement is a compass; follow it to purpose.",x:"Spend 20 minutes doing what excites you."}
+,{d:"Don't ask what the world needs. Ask what makes you come alive and go do that",a:"Howard Thurman",r:"What makes you come alive is your purpose knocking.",x:"Schedule time this week for what makes you come alive."}
+,{d:"The two most important days in your life are the day you are born and the day you find out why",a:"Mark Twain",r:"Your why gives meaning to your existence.",x:"Journal about what you believe your purpose is."}
+,{d:"Life is never made unbearable by circumstances but by lack of meaning and purpose",a:"Viktor Frankl",r:"Meaning sustains you through any circumstance.",x:"Connect a daily task to a deeper purpose."}
+,{d:"When you are following your passion it does not feel like work",a:"Unknown",r:"Passion transforms effort into joy.",x:"Do more of what makes you lose track of time."}
+,{d:"Purpose is the reason you journey. Passion is the fire that lights the way",a:"Unknown",r:"Purpose gives direction; passion gives energy.",x:"Align your purpose with your passion today."}
+,{d:"Go confidently in the direction of your dreams. Live the life you have imagined",a:"Henry David Thoreau",r:"Confidence attracts the resources you need.",x:"Take a confident step toward a dream."}
+,{d:"I have been impressed with the urgency of doing. Knowing is not enough; we must apply",a:"Leonardo da Vinci",r:"Knowledge without action is wasted potential.",x:"Apply one piece of knowledge you have been sitting on."}
+,{d:"What lies behind us and before us are tiny compared to what lies within us",a:"Ralph Waldo Emerson",r:"Your inner resources are vast; draw from them.",x:"Tap into your inner strength through reflection."}
+,{d:"Don't die with your music still inside you",a:"Wayne Dyer",r:"Your unique gifts deserve to be expressed.",x:"Share a talent or idea you have been keeping to yourself."}
+,{d:"The purpose of life is not to be happy. It is to be useful honorable and compassionate",a:"Ralph Waldo Emerson",r:"Happiness is a byproduct of meaningful contribution.",x:"Serve someone without expecting anything in return."}
+,{d:"The meaning of life is to find your gift. The purpose is to give it away",a:"Pablo Picasso",r:"Your gift is not for you alone; sharing it is living.",x:"Share one gift with the world today."}
+,{d:"If you cannot do great things do small things in a great way",a:"Napoleon Hill",r:"Greatness is a matter of approach not scale.",x:"Take one small task and do it with excellence."}
+,{d:"The soul becomes dyed with the color of its thoughts",a:"Marcus Aurelius",r:"Your thoughts color your reality; choose wisely.",x:"Dwell on one positive thought today."}
+,{d:"What you do makes a difference and you have to decide what kind of difference you want to make",a:"Jane Goodall",r:"Your choices ripple outward; choose consciously.",x:"Make one decision based on the impact you want."}
+,{d:"Life shrinks or expands in proportion to one's courage",a:"Anais Nin",r:"Courage is the expansion valve of life.",x:"Do one courageous thing that expands your world."}
+,{d:"The only thing we have to fear is fear itself",a:"Franklin D. Roosevelt",r:"Fear of fear is the real paralysis; name it and it loses power.",x:"Name one fear and confront it with a small act."}
+,{d:"We are what we repeatedly do. Excellence then is not an act but a habit",a:"Aristotle",r:"Your daily habits shape your destiny.",x:"Identify one excellence habit and practice it."}
+,{d:"There is only one way to avoid criticism: do nothing say nothing and be nothing",a:"Aristotle",r:"Criticism is a sign you are making waves.",x:"Do something worth criticizing instead of playing safe."}
+,{d:"Become the kind of leader people would follow even without a title",a:"Brian Tracy",r:"True leadership is influence not authority.",x:"Lead by example today without asserting authority."}
+,{d:"Your time is limited so don't waste it living someone else's life",a:"Steve Jobs",r:"Every moment is precious; spend it on what matters.",x:"Eliminate one time-waster and invest in your passion."}
+,{d:"We must be willing to let go of the life we planned for the life that is waiting",a:"Joseph Campbell",r:"Sometimes the best life is the one unplanned.",x:"Release one rigid expectation and embrace the unknown."}
+,{d:"In the end we only regret the chances we didn't take",a:"Lewis Carroll",r:"Regret over inaction is heavier than regret over failure.",x:"Take one chance you have been avoiding."}
+,{d:"Twenty years from now you will be more disappointed by the things you didn't do",a:"Mark Twain",r:"Future you will thank present you for taking action.",x:"Do something today that future you will celebrate."}
+,{d:"Everything you have ever wanted is on the other side of fear",a:"George Addair",r:"Fear is the gatekeeper to your dreams; walk through it.",x:"Identify what lies on the other side of a current fear."}
+,{d:"Courage is resistance to fear mastery of fear not absence of fear",a:"Mark Twain",r:"Courage is feeling fear and acting anyway.",x:"Feel the fear and take the action regardless."}
+,{d:"Do one thing every day that scares you",a:"Eleanor Roosevelt",r:"Daily courage builds an unshakeable spirit.",x:"Do one thing that scares you today."}
+,{d:"Feel the fear and do it anyway",a:"Susan Jeffers",r:"Action dissolves fear; waiting amplifies it.",x:"Take action on something you have been fearing."}
+,{d:"Courage starts with showing up and letting ourselves be seen",a:"Brené Brown",r:"Vulnerability is the birthplace of courage.",x:"Show up authentically and let yourself be seen."}
+,{d:"It is not the mountain we conquer but ourselves",a:"Edmund Hillary",r:"The greatest battle is within; win that and you win everything.",x:"Conquer one internal resistance today."}
+,{d:"He who conquers himself is the mightiest warrior",a:"Confucius",r:"Self-mastery is the highest form of strength.",x:"Master one impulse or habit today."}
+,{d:"First they ignore you then they laugh at you then they fight you then you win",a:"Mahatma Gandhi",r:"Every great movement follows this arc; stay the course.",x:"Stay committed even when misunderstood."}
+,{d:"The greatest glory in living lies not in never falling but in rising every time we fall",a:"Nelson Mandela",r:"Rising is a choice; make it every time.",x:"Rise above one small setback today."}
+,{d:"If you look at what you have in life you will always have more",a:"Oprah Winfrey",r:"Gratitude amplifies abundance; focus on what you have.",x:"List three things you are grateful for right now."}
+,{d:"The more you praise and celebrate your life the more there is to celebrate",a:"Oprah Winfrey",r:"Celebration attracts more reasons to celebrate.",x:"Celebrate one good thing that happened today."}
+,{d:"Gratitude turns what we have into enough",a:"Aesop",r:"Gratitude transforms scarcity into sufficiency.",x:"Find sufficiency in one area where you feel lack."}
+,{d:"Be thankful for what you have; you will end up having more",a:"Oprah Winfrey",r:"Gratitude is the magnet of abundance.",x:"Write a gratitude note to one person."}
+,{d:"Gratitude is not only the greatest of virtues but the parent of all others",a:"Cicero",r:"Gratitude gives birth to every other virtue.",x:"Practice gratitude as the foundation of your character."}
+,{d:"Enjoy the little things for one day you may look back and realize they were the big things",a:"Robert Brault",r:"Small joys are the fabric of a beautiful life.",x:"Savor one small moment fully today."}
+,{d:"Happiness is not something ready made. It comes from your own actions",a:"Dalai Lama",r:"Happiness is created not found; act your way into joy.",x:"Take one action that you know creates happiness."}
+,{d:"The happiest people don't have the best of everything. They make the best of everything",a:"Unknown",r:"Happiness is about perspective not possessions.",x:"Make the best of one imperfect situation today."}
+,{d:"Happiness is when what you think what you say and what you do are in harmony",a:"Mahatma Gandhi",r:"Alignment creates peace; let your actions match your values.",x:"Align your words and actions with your true thoughts."}
+,{d:"Count your age by friends not years. Count your life by smiles not tears",a:"John Lennon",r:"The quality of your life is measured in moments not months.",x:"Count your smiles today instead of your troubles."}
+,{d:"The best way to cheer yourself is to try to cheer someone else up",a:"Mark Twain",r:"Lifting others lifts you; joy is contagious.",x:"Cheer someone up today and feel your mood rise."}
+,{d:"A warm smile is the universal language of kindness",a:"William Arthur Ward",r:"Kindness needs no translation; smile at someone.",x:"Smile at a stranger today."}
+,{d:"No act of kindness no matter how small is ever wasted",a:"Aesop",r:"Every kindness ripples outward beyond what you see.",x:"Perform one small unseen act of kindness."}
+,{d:"Kindness is a language which the deaf can hear and the blind can see",a:"Mark Twain",r:"Kindness transcends all barriers; speak it fluently.",x:"Show kindness without words through a gesture."}
+,{d:"Be the reason someone smiles today",a:"Unknown",r:"Your presence can be the highlight of someone's day.",x:"Be the reason someone smiles."}
+,{d:"Life is made up of millions of moments spent in the service of others",a:"Unknown",r:"The most meaningful life is one lived for others.",x:"Serve someone in a way that costs you something."}
+,{d:"We make a living by what we get. We make a life by what we give",a:"Winston Churchill",r:"Giving is the secret to a rich life.",x:"Give something today with no expectation."}
+,{d:"The best way to find yourself is to lose yourself in the service of others",a:"Mahatma Gandhi",r:"Service reveals your true self; lose yourself in helping.",x:"Volunteer your time or talent today."}
+,{d:"You have not lived today until you have done something for someone who can never repay you",a:"John Bunyan",r:"Anonymous service is the purest form of giving.",x:"Do something for someone who cannot repay you."}
+,{d:"The only ones among you who will be truly happy are those who have sought and found how to serve",a:"Albert Schweitzer",r:"Service is the path to lasting happiness.",x:"Seek an opportunity to serve today."}
+,{d:"Life's most persistent and urgent question is: what are you doing for others?",a:"Martin Luther King Jr.",r:"Your legacy is measured by your contribution to others.",x:"Answer this question with one action today."}
+,{d:"Every man must decide whether he will walk in the light of creative altruism or the darkness of destructive selfishness",a:"Martin Luther King Jr.",r:"Choose light; choose to give.",x:"Make one altruistic choice today."}
+,{d:"The simplest acts of kindness are by far more powerful than a thousand heads bowing in prayer",a:"Mahatma Gandhi",r:"Action speaks louder than any ritual.",x:"Perform one simple kind act today."}
+,{d:"A single act of kindness throws out roots in all directions",a:"Amelia Earhart",r:"Kindness grows unseen until it becomes a forest.",x:"Plant a seed of kindness that may grow."}
+,{d:"Do your little bit of good where you are. It is those little bits of good together that overwhelm the world",a:"Desmond Tutu",r:"Collective small goodness transforms the world.",x:"Do your little bit of good today."}
+,{d:"Carry out a random act of kindness with no expectation of reward",a:"Princess Diana",r:"Random kindness has a magic all its own.",x:"Perform one random kind act anonymously."}
+,{d:"When we give cheerfully and accept gratefully everyone is blessed",a:"Maya Angelou",r:"Cheerful giving and grateful receiving complete a cycle of blessing.",x:"Give cheerfully and receive gratefully today."}
+,{d:"Kind words can be short and easy to speak but their echoes are truly endless",a:"Mother Teresa",r:"Your words have a longer life than you know; choose them well.",x:"Speak three kind words to someone today."}
+,{d:"Too often we underestimate the power of a touch a smile a kind word a listening ear",a:"Leo Buscaglia",r:"Small gestures carry enormous weight.",x:"Offer a kind word or listening ear today."}
+,{d:"Never underestimate the impact you can have on someone's life",a:"Unknown",r:"You are more powerful than you realize.",x:"Be intentional about your impact today."}
+,{d:"You may not have saved a lot of money in your life but if you have saved a lot of heartaches you are a very rich man",a:"Unknown",r:"Emotional wealth is the truest form of riches.",x:"Save someone from a heartache today."}
+,{d:"The best and most beautiful things in the world cannot be seen or even touched. They must be felt with the heart",a:"Helen Keller",r:"The deepest truths are felt not measured.",x:"Feel something deeply today without analyzing it."}
+,{d:"The most important thing is to enjoy your life to be happy. It is all that matters",a:"Audrey Hepburn",r:"Happiness is not a destination; it is the way you travel.",x:"Choose to enjoy this moment fully."}
+,{d:"Happiness is a butterfly which when pursued is always just beyond your grasp but which if you sit quietly may alight upon you",a:"Nathaniel Hawthorne",r:"Stop chasing; allow happiness to find you.",x:"Sit quietly and let joy come to you."}
+,{d:"The simple things are also the most extraordinary things and only the wise can see them",a:"Paulo Coelho",r:"Simplicity holds the deepest wisdom.",x:"Notice one simple extraordinary thing today."}
+,{d:"Not how long but how well you have lived is the main thing",a:"Seneca",r:"Quality of life matters more than quantity of years.",x:"Live one hour with full presence and intention."}
+,{d:"It is not how much we have but how much we enjoy that makes happiness",a:"Charles Spurgeon",r:"Enjoyment is the multiplier of happiness.",x:"Fully enjoy one thing you already have."}
+,{d:"The greatest wealth is to live content with little",a:"Plato",r:"Contentment is the ultimate luxury.",x:"Find contentment in simplicity today."}
+,{d:"To live a pure unselfish life one must count nothing as one's own",a:"Buddha",r:"Letting go of attachment brings true freedom.",x:"Release attachment to one thing today."}
+,{d:"It is not the man who has too little but the man who craves more who is poor",a:"Seneca",r:"Desire is the root of poverty; contentment is wealth.",x:"Notice when craving arises and let it go."}
+,{d:"He is richest who is content with the least for content is the wealth of nature",a:"Socrates",r:"Contentment is nature's greatest wealth.",x:"Practice contentment with what you have now."}
+,{d:"Wealth consists not in having great possessions but in having few wants",a:"Epictetus",r:"Fewer wants equals greater wealth.",x:"Identify one unnecessary want and release it."}
+,{d:"Simplicity is the ultimate sophistication",a:"Leonardo da Vinci",r:"There is beauty in simplicity that complexity cannot match.",x:"Simplify one area of your life today."}
+,{d:"The ability to simplify means to eliminate the unnecessary so that the necessary may speak",a:"Hans Hofmann",r:"Clear away clutter to hear what matters.",x:"Remove one unnecessary thing from your space."}
+,{d:"Nature is pleased with simplicity",a:"Isaac Newton",r:"The natural world follows simple elegant laws.",x:"Spend time in nature appreciating simplicity."}
+,{d:"Simplicity is the glory of expression",a:"Walt Whitman",r:"Express yourself with clarity and grace.",x:"Say something complex in simple terms today."}
+,{d:"The simplest things are often the truest",a:"Richard Bach",r:"Truth tends to be simple; complexity is often confusion.",x:"Look for the simple truth in a complex situation."}
+,{d:"Every brilliant thing was once impossible",a:"Unknown",r:"Impossibility is just an opinion not a fact.",x:"Attempt something you think is impossible."}
+,{d:"The best way to predict the future is to create it",a:"Abraham Lincoln",r:"You are not a passenger in life; you are the pilot.",x:"Create one piece of your future today."}
+,{d:"Innovation distinguishes between a leader and a follower",a:"Steve Jobs",r:"Lead through creativity; follow the beaten path and you follow.",x:"Innovate one small thing today."}
+,{d:"Creativity is intelligence having fun",a:"Albert Einstein",r:"Play is the birthplace of invention.",x:"Approach a problem playfully to find a creative solution."}
+,{d:"Think left and think right and think low and think high. Oh the thinks you can think up if only you try",a:"Dr. Seuss",r:"Your imagination has no limits; let it run free.",x:"Think without limits for ten minutes."}
+,{d:"Imagination is more important than knowledge",a:"Albert Einstein",r:"Knowledge is limited; imagination encircles the world.",x:"Use your imagination to see a new possibility."}
+,{d:"Logic will get you from A to B. Imagination will take you everywhere",a:"Albert Einstein",r:"Logic is a path; imagination is wings.",x:"Let imagination guide you somewhere new."}
+,{d:"The creation of something new is not accomplished by the intellect but by the play instinct",a:"Carl Jung",r:"Play opens doors that work cannot.",x:"Play today with no agenda or outcome."}
+,{d:"Curiosity about life in all its aspects is the secret of great creative people",a:"Leo Burnett",r:"Stay curious; every answer leads to a deeper question.",x:"Ask one curious question today."}
+,{d:"The important thing is not to stop questioning",a:"Albert Einstein",r:"Questions keep the mind alive; certainty can kill growth.",x:"Question one assumption you hold."}
+,{d:"Be regular and orderly in your life so that you may be violent and original in your work",a:"Gustave Flaubert",r:"Discipline in life enables creative freedom in work.",x:"Organize one area of life to free creative energy."}
+,{d:"Every child is an artist. The problem is how to remain an artist once we grow up",a:"Pablo Picasso",r:"Reclaim the uninhibited creativity of childhood.",x:"Do something creative without judgment."}
+,{d:"Learn the rules like a pro so you can break them like an artist",a:"Pablo Picasso",r:"Mastery allows rebellion; learn then innovate.",x:"Learn one rule well then break it creatively."}
+,{d:"It took me four years to paint like Raphael but a lifetime to paint like a child",a:"Pablo Picasso",r:"Unlearning is harder than learning; simplicity is mastery.",x:"Simplify your approach to one task today."}
+,{d:"The chief enemy of creativity is good sense",a:"Pablo Picasso",r:"Playfulness beats practicality for innovation.",x:"Be impractical and playful for ten minutes."}
+,{d:"Creativity takes courage",a:"Henri Matisse",r:"Creating something new requires bravery.",x:"Create something imperfect but authentic today."}
+,{d:"Don't think. Thinking is the enemy of creativity",a:"Ray Bradbury",r:"Overthinking kills the spark; create without censoring.",x:"Create without stopping to judge."}
+,{d:"You cannot use up creativity. The more you use the more you have",a:"Maya Angelou",r:"Creativity is a renewable resource; use it freely.",x:"Use your creativity on one problem today."}
+,{d:"Inspiration exists but it has to find you working",a:"Pablo Picasso",r:"Inspiration rewards action not waiting.",x:"Start working and let inspiration catch up."}
+,{d:"90 percent of life is just showing up",a:"Woody Allen",r:"Half of success is simply being present.",x:"Show up for one commitment fully today."}
+,{d:"Motivation is what gets you started. Habit is what keeps you going",a:"Jim Rohn",r:"Habits sustain you when motivation fades.",x:"Build one habit that supports your goal."}
+,{d:"The secret to change is to focus all your energy not on fighting the old but on building the new",a:"Socrates",r:"Build forward instead of fighting backward.",x:"Channel energy into creating not resisting."}
+,{d:"Great minds discuss ideas; average minds discuss events; small minds discuss people",a:"Eleanor Roosevelt",r:"Elevate your conversation to ideas and possibilities.",x:"Discuss an idea that excites you today."}
+,{d:"The only person you should try to be better than is the person you were yesterday",a:"Unknown",r:"Comparison to others is a trap; compare only to your past self.",x:"Be one percent better than yesterday."}
+,{d:"Perfection is not attainable. But if we chase perfection we can catch excellence",a:"Vince Lombardi",r:"Aim high even if perfection is unreachable.",x:"Chase excellence not perfection today."}
+,{d:"The expert in anything was once a beginner",a:"Helen Hayes",r:"Every master was once a novice; be patient with your growth.",x:"Embrace being a beginner at something."}
+,{d:"The mind is not a vessel to be filled but a fire to be kindled",a:"Plutarch",r:"Learning is about ignition not accumulation.",x:"Kindle curiosity about one topic today."}
+,{d:"Education is the most powerful weapon you can use to change the world",a:"Nelson Mandela",r:"Learning is the foundation of all progress.",x:"Learn one new thing that can create change."}
+,{d:"Live as if you were to die tomorrow. Learn as if you were to live forever",a:"Mahatma Gandhi",r:"Balance urgency of living with eternity of learning.",x:"Learn one thing and live one moment fully."}
+,{d:"The more that you read the more things you will know. The more that you learn the more places you will go",a:"Dr. Seuss",r:"Reading opens doors to infinite possibilities.",x:"Read for twenty minutes on a new topic."}
+,{d:"Tell me and I forget. Teach me and I remember. Involve me and I learn",a:"Benjamin Franklin",r:"Active participation is the deepest form of learning.",x:"Learn by doing not just by reading."}
+,{d:"An investment in knowledge pays the best interest",a:"Benjamin Franklin",r:"Knowledge is the asset that never depreciates.",x:"Invest thirty minutes in learning today."}
+,{d:"Learning never exhausts the mind",a:"Leonardo da Vinci",r:"Learning energizes rather than depletes.",x:"Learn something that energizes you."}
+,{d:"For the things we have to learn before we can do them we learn by doing them",a:"Aristotle",r:"Action is the teacher of all essential skills.",x:"Learn by doing not just by studying."}
+,{d:"Wisdom is not a product of schooling but of the lifelong attempt to acquire it",a:"Albert Einstein",r:"True wisdom comes from persistent seeking.",x:"Seek wisdom not just information today."}
+,{d:"Develop a passion for learning. If you do you will never cease to grow",a:"Anthony J. D'Angelo",r:"Passion for learning ensures lifelong growth.",x:"Pursue one topic with passion today."}
+,{d:"We now accept the fact that learning is a lifelong process of keeping abreast of change",a:"Peter Drucker",r:"Change demands continuous learning; embrace it.",x:"Learn something that helps you adapt to change."}
+,{d:"Leadership is not about a title. It is about impact influence and inspiration",a:"Robin Sharma",r:"True leadership is felt not announced.",x:"Lead through inspiration not authority today."}
+,{d:"The greatest leader is not necessarily the one who does the greatest things. He is the one that gets the people to do the greatest things",a:"Ronald Reagan",r:"Leadership is about empowering others.",x:"Empower someone to do something great."}
+,{d:"Leadership is the capacity to translate vision into reality",a:"Warren Bennis",r:"Vision without execution is hallucination; turn vision into action.",x:"Translate one vision into a concrete step."}
+,{d:"A leader is one who knows the way goes the way and shows the way",a:"John C. Maxwell",r:"Leaders model the path for others.",x:"Show someone the way by example today."}
+,{d:"Before you are a leader success is all about growing yourself. When you become a leader success is about growing others",a:"Jack Welch",r:"A leader's job is to develop more leaders.",x:"Invest in someone else's growth today."}
+,{d:"The function of leadership is to produce more leaders not more followers",a:"Ralph Nader",r:"Focus on multiplication of leadership.",x:"Help someone find their leadership voice."}
+,{d:"A genuine leader is not a searcher for consensus but a molder of consensus",a:"Martin Luther King Jr.",r:"Leaders shape shared vision not just poll opinions.",x:"Shape a shared vision in a group today."}
+,{d:"Leadership and learning are indispensable to each other",a:"John F. Kennedy",r:"Leaders are perpetual learners.",x:"Learn something that enhances your leadership."}
+,{d:"The pessimist complains about the wind. The optimist expects it to change. The leader adjusts the sails",a:"John C. Maxwell",r:"Leaders adapt; they don't complain or wait.",x:"Adjust your sails to the current wind."}
+,{d:"A leader takes people where they want to go. A great leader takes people where they do not necessarily want to go but ought to be",a:"Rosalynn Carter",r:"Great leaders take you to your potential.",x:"Guide someone toward their potential today."}
+,{d:"Success is not about the destination but the journey. Enjoy every step",a:"Unknown",r:"The path is the point; savor each moment.",x:"Enjoy one step of your journey today."}
+,{d:"Dream big and dare to fail",a:"Norman Vaughan",r:"Failure is the tuition for greatness.",x:"Dare to fail at something bold."}
+,{d:"Everything you can imagine is real",a:"Pablo Picasso",r:"Your imagination is a preview of coming attractions.",x:"Imagine something bold and treat it as real."}
+,{d:"Each day is a new beginning. Take a deep breath smile and start again",a:"Unknown",r:"Every morning brings a fresh start.",x:"Breathe deeply and start fresh."}
+,{d:"Today is a good day for a good day",a:"Unknown",r:"Your attitude creates your experience.",x:"Decide that today is a good day."}
+,{d:"Life is either a daring adventure or nothing at all",a:"Helen Keller",r:"Choose adventure over safety.",x:"Do one adventurous thing today."}
+,{d:"Keep your face always toward the sunshine and shadows will fall behind you",a:"Walt Whitman",r:"Face the light and darkness follows.",x:"Focus on the positive and let shadows fall."}
+,{d:"Nothing is impossible. The word itself says I am possible",a:"Audrey Hepburn",r:"Impossibility is a perspective not a fact.",x:"Reframe one impossible thing as possible."}
+,{d:"Try to be a rainbow in someone else's cloud",a:"Maya Angelou",r:"You can brighten any dark moment.",x:"Be a rainbow for someone today."}
+,{d:"Shoot for the moon. Even if you miss you will land among the stars",a:"Norman Vincent Peale",r:"Aim high and you will still reach greatness.",x:"Aim higher than you think possible."}
+,{d:"What lies behind us and what lies before us are tiny matters compared to what lies within us",a:"Walt Emerson",r:"Your inner world is the source of all power.",x:"Connect with your inner strength."}
+,{d:"Attitude is a choice. Happiness is a choice. Optimism is a choice. Kindness is a choice. Giving is a choice. Respect is a choice",a:"Roy T. Bennett",r:"Your life is the sum of your choices.",x:"Choose one positive quality consciously today."}
+,{d:"In the middle of difficulty lies opportunity",a:"Albert Einstein",r:"Every obstacle carries a gift.",x:"Find the opportunity in a difficulty."}
+,{d:"Hardship often prepares an ordinary person for an extraordinary destiny",a:"C.S. Lewis",r:"Your struggle is preparation for greatness.",x:"See your hardship as preparation."}
+,{d:"Sometimes the most productive thing you can do is relax",a:"Mark Black",r:"Rest is not laziness; it is renewal.",x:"Give yourself permission to rest."}
+,{d:"Almost everything will work again if you unplug it for a few minutes including you",a:"Anne Lamott",r:"Restart yourself by disconnecting.",x:"Unplug for a few minutes today."}
+,{d:"The time to relax is when you don't have time for it",a:"Sydney J. Harris",r:"Rest is most important when you are busiest.",x:"Take a break even when you feel busy."}
+,{d:"Nature does not hurry yet everything is accomplished",a:"Lao Tzu",r:"There is power in patient, unhurried action.",x:"Do one thing with calm patience."}
+,{d:"Slow down and everything you are chasing will come around and catch you",a:"John De Paola",r:"Slowing down can speed up results.",x:"Slow down and trust the process."}
+,{d:"Do not let the behavior of others destroy your inner peace",a:"Dalai Lama",r:"Your peace is your responsibility.",x:"Protect your inner peace today."}
+,{d:"Peace comes from within. Do not seek it without",a:"Buddha",r:"Inner peace is not found externally.",x:"Find peace within yourself."}
+,{d:"Nothing can bring you peace but yourself",a:"Ralph Waldo Emerson",r:"You are the source of your own calm.",x:"Create peace within regardless of circumstances."}
+,{d:"The greatest weapon against stress is our ability to choose one thought over another",a:"William James",r:"Your thoughts are your refuge.",x:"Choose a peaceful thought over a stressful one."}
+,{d:"For every minute you remain angry you give up sixty seconds of peace of mind",a:"Ralph Waldo Emerson",r:"Anger steals your peace; release it.",x:"Let go of anger to reclaim peace."}
+,{d:"You cannot control what happens to you but you can control your attitude toward what happens to you",a:"Brian Tracy",r:"Your response is your power.",x:"Choose your response consciously."}
+,{d:"It is not what happens to you but how you react to it that matters",a:"Epictetus",r:"Reaction is your domain of control.",x:"React with intention not impulse."}
+,{d:"Between stimulus and response there is a space. In that space is our power to choose our response",a:"Viktor Frankl",r:"The pause is your power; use it.",x:"Pause before responding today."}
+,{d:"Freedom is the power to choose our own chain",a:"Jean-Jaques Rousseau",r:"Even in constraint you have choice.",x:"Choose the chains you carry."}
+,{d:"The strongest principle of growth lies in human choice",a:"George Eliot",r:"Growth is a choice made again and again.",x:"Choose growth over comfort."}
+,{d:"We are our choices",a:"Jean-Paul Sartre",r:"You are defined by what you choose.",x:"Make choices that reflect who you are."}
+,{d:"You are what you believe yourself to be",a:"Paulo Coelho",r:"Belief is the architect of identity.",x:"Believe in the person you want to become."}
+,{d:"Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle",a:"Christian D. Larson",r:"Your inner power surpasses any challenge.",x:"Affirm your inner greatness."}
+,{d:"Your brand is what people say about you when you are not in the room",a:"Jeff Bezos",r:"Reputation is built on consistent character.",x:"Act in a way that builds a great reputation."}
+,{d:"Be yourself; everyone else is already taken",a:"Oscar Wilde",r:"Authenticity is your competitive advantage.",x:"Be unapologetically yourself today."}
+,{d:"Be who you are and say what you feel because those who mind don't matter and those who matter don't mind",a:"Dr. Seuss",r:"Your authenticity will attract the right people.",x:"Speak your truth even if it feels risky."}
+,{d:"Owning our story and loving ourselves through that process is the bravest thing we will ever do",a:"Brené Brown",r:"Self-love through imperfection is true courage.",x:"Love yourself through your story."}
+,{d:"Don't be satisfied with stories how things have gone with others. Unfold your own myth",a:"Rumi",r:"Write your own story instead of living another's.",x:"Unfold one chapter of your unique story."}
+,{d:"Because one believes in oneself one does not try to convince others. Because one is content with oneself one does not need others' approval",a:"Lao Tzu",r:"Self-contentment eliminates the need for external validation.",x:"Find contentment without needing approval."}
+,{d:"The most courageous act is still to think for yourself. Aloud",a:"Coco Chanel",r:"Independent thought is the foundation of all freedom.",x:"Think for yourself and speak your mind."}
+,{d:"Your playing small does not serve the world",a:"Marianne Williamson",r:"Shrinking helps no one; expand into your fullness.",x:"Play big in one area of life today."}
+,{d:"We are all in the gutter but some of us are looking at the stars",a:"Oscar Wilde",r:"Your perspective determines your experience.",x:"Look at the stars even from the gutter."}
+,{d:"To thine own self be true",a:"William Shakespeare",r:"Authenticity is the highest integrity.",x:"Be true to yourself in one decision today."}
+,{d:"The longest journey is the journey inward",a:"Dag Hammarskjold",r:"Self-discovery is the deepest adventure.",x:"Spend time going inward today."}
+,{d:"Knowing yourself is the beginning of all wisdom",a:"Aristotle",r:"Self-knowledge is the foundation of wisdom.",x:"Learn one new thing about yourself."}
+,{d:"An unexamined life is not worth living",a:"Socrates",r:"Reflection is essential for a meaningful life.",x:"Examine one aspect of your life today."}
+,{d:"The unexamined life is not worth living",a:"Socrates",r:"Self-reflection separates existence from living.",x:"Spend 10 minutes reflecting on your day."}
+,{d:"The only true wisdom is in knowing you know nothing",a:"Socrates",r:"Humility opens the door to real knowledge.",x:"Embrace not knowing and stay open."}
+,{d:"I think therefore I am",a:"Rene Descartes",r:"Your consciousness is the foundation of your existence.",x:"Acknowledge your own awareness."}
+,{d:"Man is condemned to be free",a:"Jean-Paul Sartre",r:"Freedom is not a choice but a responsibility.",x:"Accept the responsibility of your freedom."}
+,{d:"Life must be understood backward but it must be lived forward",a:"Soren Kierkegaard",r:"Understanding comes with hindsight; living requires action.",x:"Live forward and understand later."}
+,{d:"The function of prayer is not to influence God but rather to change the nature of the one who prays",a:"Soren Kierkegaard",r:"Prayer changes you not the world.",x:"Let your practice transform you."}
+,{d:"The best way to predict the future is to create it",a:"Peter Drucker",r:"You are the architect of tomorrow; build it with today's actions.",x:"Create one part of your desired future today."}
+,{d:"Success is a journey not a destination",a:"Arthur Ashe",r:"The path is the point; enjoy every step along the way.",x:"Focus on enjoying today's part of your journey."}
+,{d:"What you do today can improve all your tomorrows",a:"Ralph Marston",r:"Today's choices echo into the future; choose wisely.",x:"Make one choice today that improves tomorrow."}
+,{d:"The only impossible journey is the one you never begin",a:"Tony Robbins",r:"Every accomplished journey started with a single step of faith.",x:"Begin something you have been putting off."}
+,{d:"You are braver than you believe stronger than you seem and smarter than you think",a:"A.A. Milne",r:"Your self-assessment is often too modest; you are more capable than you know.",x:"Act from a place of bravery strength and wisdom today."}
+,{d:"Happiness depends upon ourselves",a:"Aristotle",r:"External circumstances don't create happiness; your inner state does.",x:"Choose happiness regardless of your circumstances."}
+,{d:"The only way to have a friend is to be one",a:"Ralph Waldo Emerson",r:"Friendship is an active verb; be the friend you wish to have.",x:"Be a true friend to someone today."}
+,{d:"To live is the rarest thing in the world. Most people exist that is all",a:"Oscar Wilde",r:"Existence is automatic; living requires conscious engagement.",x:"Choose to truly live not just exist today."}
+,{d:"Life is what happens when you are busy making other plans",a:"John Lennon",r:"Plans are useful but presence is essential; don't miss the moment.",x:"Be fully present in one unplanned moment today."}
+,{d:"Get busy living or get busy dying",a:"Stephen King",r:"Life demands active participation; passivity is a slow surrender.",x:"Choose actively living over passively drifting."}
+,{d:"In the end it is not the years in your life that count. It is the life in your years",a:"Abraham Lincoln",r:"Quality of living matters more than quantity of days.",x:"Fill today with life not just time."}
+,{d:"The only person you should try to be better than is the person you were yesterday",a:"Unknown",r:"Your only true competition is your former self.",x:"Improve by 1 percent compared to yesterday."}
+,{d:"The purpose of our lives is to be happy",a:"Dalai Lama",r:"Happiness is not selfish; it is the very purpose of existence.",x:"Prioritize your happiness today."}
+,{d:"Life is really simple but we insist on making it complicated",a:"Confucius",r:"Complication is a choice; simplicity is available to everyone.",x:"Simplify one complicated area of your life."}
+,{d:"Life is 10 percent what happens to me and 90 percent how I react to it",a:"Charles R. Swindoll",r:"Your reaction is your power; use it wisely.",x:"Choose a positive reaction to one event today."}
+,{d:"Keep calm and carry on",a:"British WWII Poster",r:"Steadiness in the face of chaos is a superpower.",x:"Stay calm in one stressful moment today."}
+,{d:"Never let the fear of striking out keep you from playing the game",a:"Babe Ruth",r:"Fear of failure is the only true failure; play full out.",x:"Play full out without fear of striking out."}
+,{d:"Every moment is a fresh beginning",a:"T.S. Eliot",r:"Each second offers a clean slate; use it freely.",x:"Treat this moment as a fresh beginning."}
+,{d:"Whether you believe you can do a thing or not you are right",a:"Henry Ford",r:"Belief is the on-off switch of capability.",x:"Believe in your ability to do one hard thing today."}
+,{d:"The greatest risk is the risk of riskless living",a:"Stephen Covey",r:"Safety is the most dangerous path; calculated risk is the way forward.",x:"Take one calculated risk today."}
+,{d:"You cannot cross the sea merely by standing and staring at the water",a:"Rabindranath Tagore",r:"Wishing does not move you; action is the vessel of progress.",x:"Take one action step instead of just staring at the water."}
+,{d:"Be the change you wish to see in the world",a:"Mahatma Gandhi",r:"Your example is the most persuasive argument for change.",x:"Model one change you wish to see."}
+,{d:"Nothing great was ever achieved without enthusiasm",a:"Ralph Waldo Emerson",r:"Enthusiasm is the fuel of great accomplishment.",x:"Approach one task with genuine enthusiasm."}
+,{d:"The only limit to our realization of tomorrow is our doubts of today",a:"Franklin D. Roosevelt",r:"Doubts are the only barriers that truly hold you back.",x:"Release one doubt that limits your tomorrow."}
+,{d:"Creativity is seeing what others see and thinking what no one else ever thought",a:"Albert Einstein",r:"Creative thinking sees beyond the obvious; look deeper.",x:"Look at a familiar situation with fresh eyes."}
+,{d:"If you tell the truth you don't have to remember anything",a:"Mark Twain",r:"Honesty simplifies life; deceit requires constant maintenance.",x:"Tell the truth even when it is harder."}
+,{d:"The best and most beautiful things in the world cannot be seen or even touched",a:"Helen Keller",r:"The deepest beauty is felt not observed.",x:"Feel one beautiful thing today."}
+,{d:"Time you enjoy wasting is not wasted time",a:"Marthe Troly-Curtin",r:"Joyful moments are never wasted; they are investments in your soul.",x:"Enjoy a moment of 'wasted' time without guilt."}
+,{d:"Not all those who wander are lost",a:"J.R.R. Tolkien",r:"Wandering can be a purposeful exploration; trust your path.",x:"Wander with purpose today."}
+,{d:"Do not take life too seriously. You will never get out alive",a:"Elbert Hubbard",r:"Life's seriousness is optional; laughter is essential.",x:"Find humor in one serious situation today."}
+,{d:"If you want to be happy be",a:"Leo Tolstoy",r:"Happiness is a decision before it is a feeling.",x:"Decide to be happy starting now."}
+,{d:"The best preparation for tomorrow is doing your best today",a:"H. Jackson Brown Jr.",r:"Today's best effort is tomorrow's best foundation.",x:"Give your best to one task today."}
+,{d:"You learn more from failure than from success. Don't let it stop you",a:"Unknown",r:"Failure is feedback; it teaches what success cannot.",x:"Learn one lesson from a recent failure."}
+,{d:"It is not whether you get knocked down; it is whether you get up",a:"Vince Lombardi",r:"Getting up is the only thing that matters; keep rising.",x:"Get up one more time than you fall today."}
+,{d:"The measure of who we are is what we do with what we have",a:"Vince Lombardi",r:"Your resources don't define you; your use of them does.",x:"Make the most of what you have today."}
+,{d:"If you can't fly then run if you can't run then walk if you can't walk then crawl but whatever you do you have to keep moving forward",a:"Martin Luther King Jr.",r:"Forward motion at any speed is still progress; never stop.",x:"Keep moving forward however you can today."}
+,{d:"The most common way people give up their power is by thinking they don't have any",a:"Alice Walker",r:"Your power is inherent; claiming it is the first step.",x:"Claim your power in one situation today."}
+,{d:"I have not failed. I have just found 10000 ways that won't work",a:"Thomas Edison",r:"Every failure is one step closer to success; keep experimenting.",x:"Reframe one failure as a discovery."}
+,{d:"Talent is cheaper than table salt. What separates the talented individual from the successful one is a lot of hard work",a:"Stephen King",r:"Hard work trumps talent every time; effort is the differentiator.",x:"Outwork your talent today."}
+,{d:"The question isn't who is going to let me; it's who is going to stop me",a:"Ayn Rand",r:"Permission is not required; your determination is enough.",x:"Act without seeking permission today."}
+,{d:"The trouble with not having a goal is that you can spend your life running up and down the field and never score",a:"Bill Copeland",r:"Without a goal your efforts scatter; aim for something specific.",x:"Set one clear goal for today."}
+,{d:"If you don't like something change it. If you can't change it change your attitude",a:"Maya Angelou",r:"You always have the power to change your response.",x:"Change your attitude toward one thing you cannot change."}
+,{d:"Try not to become a man of success but rather try to become a man of value",a:"Albert Einstein",r:"Value creation is the highest form of success.",x:"Create value instead of chasing success today."}
+,{d:"Change your thoughts and you change your world",a:"Norman Vincent Peale",r:"Thoughts are the architects of reality; build wisely.",x:"Change one thought and see how your world shifts."}
+,{d:"Remember that not getting what you want is sometimes a wonderful stroke of luck",a:"Dalai Lama",r:"Unmet desires can be hidden blessings; trust the timing.",x:"Find the blessing in one unmet desire."}
+,{d:"You can't go back and change the beginning but you can start where you are and change the ending",a:"C.S. Lewis",r:"Your past is fixed; your future is flexible.",x:"Change the ending starting from where you are."}
+,{d:"What we achieve inwardly will change outer reality",a:"Plutarch",r:"Inner transformation always manifests externally.",x:"Focus on one inner change today."}
+,{d:"The only real mistake is the one from which we learn nothing",a:"John Powell",r:"Mistakes are tuition for wisdom; pay attention to the lesson.",x:"Extract one lesson from a past mistake."}
+,{d:"Everything has beauty but not everyone sees it",a:"Confucius",r:"Beauty is everywhere; the eyes that see it are rare.",x:"Find beauty in one unexpected place today."}
+,{d:"The art of being wise is the art of knowing what to overlook",a:"William James",r:"Wisdom is selective attention; ignore what doesn't matter.",x:"Overlook one trivial annoyance today."}
+,{d:"The foundation of all mental illness is the unwillingness to experience legitimate suffering",a:"Carl Jung",r:"Suffering is part of being human; accept it rather than resist.",x:"Accept one legitimate discomfort instead of avoiding it."}
+,{d:"A man is but what he knows",a:"Francis Bacon",r:"Knowledge is the raw material of character.",x:"Learn one thing that expands your character."}
+,{d:"What is necessary is never unwise",a:"Unknown",r:"Necessity overrides doubt; do what must be done.",x:"Do one necessary thing without overthinking."}
+,{d:"You can't build a reputation on what you are going to do",a:"Henry Ford",r:"Intention is invisible; action builds reputation.",x:"Act on one intention instead of just planning it."}
+,{d:"Success demands singleness of purpose",a:"Vince Lombardi",r:"Divided focus produces divided results; concentrate your energy.",x:"Focus on one purpose with single-minded intensity."}
+,{d:"Never give up on a dream just because of the time it will take to accomplish it",a:"Earl Nightingale",r:"Time will pass anyway; invest it in your dream.",x:"Invest time in a dream regardless of how long it takes."}
+,{d:"If you do not hope you will not find what is beyond your hopes",a:"Clement of Alexandria",r:"Hope is the lens for seeing unseen possibilities.",x:"Hope for something beyond your current reality."}
+,{d:"When you have a dream you've got to grab it and never let go",a:"Carol Burnett",r:"Dreams require active holding; they slip away without attention.",x:"Hold your dream firmly and take one action for it."}
+,{d:"Go for it now. The future is promised to no one",a:"Wayne Dyer",r:"Procrastination assumes time you may not have; act now.",x:"Take immediate action on one priority."}
+,{d:"Be not afraid of life. Believe that life is worth living and your belief will help create the fact",a:"William James",r:"Faith in life's worthiness makes it so.",x:"Affirm that life is worth living today."}
+,{d:"It does not matter how many times you get knocked down; what matters is how many times you get back up",a:"Unknown",r:"Resilience is measured in risings not in falls.",x:"Get back up one more time today."}
+,{d:"Continuous improvement is better than delayed perfection",a:"Mark Twain",r:"Perfect later is less valuable than better now.",x:"Improve one thing slightly today."}
+,{d:"What you get by achieving your goals is not as important as what you become",a:"Zig Ziglar",r:"The becoming is the real achievement; the goal is just the excuse.",x:"Notice who you are becoming through your efforts."}
+,{d:"Be happy with what you have while working for what you want",a:"Helen Keller",r:"Contentment and ambition can coexist; balance gratitude with drive.",x:"Be grateful for now while striving for more."}
+,{d:"Strive not to be a success but rather to be of value",a:"Albert Einstein",r:"Value creation is sustainable success.",x:"Create value for someone today."}
+,{d:"Start where you are. Use what you have. Do what you can",a:"Arthur Ashe",r:"Your current resources are sufficient for your first step.",x:"Start exactly where you are with what you have."}
+,{d:"It is never too late to be what you might have been",a:"George Eliot",r:"Potential has no expiration date; your future self is waiting.",x:"Become one version of what you might have been."}
+,{d:"Our doubts are traitors and make us lose the good we often might win by fearing to attempt",a:"William Shakespeare",r:"Doubt robs you of victories you could have won.",x:"Attempt something despite your doubts."}
+,{d:"It is during our darkest moments that we must focus to see the light",a:"Aristotle",r:"Light is hardest to see when you need it most; focus intently.",x:"Look for light in a dark moment today."}
+,{d:"Happiness is not something you postpone for the future; it is something you design for the present",a:"Jim Rohn",r:"Design your present for happiness instead of deferring it.",x:"Design one moment of happiness into today."}
+,{d:"Life is a flower of which love is the honey",a:"Victor Hugo",r:"Love sweetens every aspect of existence.",x:"Spread love like honey today."}
+,{d:"Let us always meet each other with a smile for the smile is the beginning of love",a:"Mother Teresa",r:"A smile is the seed of connection; plant it generously.",x:"Smile at everyone you meet today."}
+,{d:"The best thing to hold onto in life is each other",a:"Audrey Hepburn",r:"Relationships are life's anchor; hold on to your people.",x:"Reach out to someone you care about."}
+,{d:"Love all trust a few do wrong to none",a:"William Shakespeare",r:"Love generously but choose trust wisely.",x:"Love unconditionally while maintaining boundaries."}
+,{d:"We accept the love we think we deserve",a:"Stephen Chbosky",r:"Raise your standards for love by raising your self-worth.",x:"Accept only the love you deserve."}
+,{d:"Love yourself first and everything else falls into line",a:"Lucille Ball",r:"Self-love is the foundation of all other love.",x:"Prioritize self-love today."}
+,{d:"To love oneself is the beginning of a lifelong romance",a:"Oscar Wilde",r:"The relationship with yourself sets the tone for all others.",x:"Romance yourself with self-care today."}
+,{d:"A life lived in love will never be dull",a:"Unknown",r:"Love infuses every experience with meaning and color.",x:"Do one thing with love even if it is mundane."}
+,{d:"Life without love is like a tree without blossoms or fruit",a:"Khalil Gibran",r:"Love is the flowering of human existence.",x:"Add love to one interaction today."}
+,{d:"Where there is love there is life",a:"Mahatma Gandhi",r:"Love animates existence; without it we merely survive.",x:"Let love animate your actions today."}
+,{d:"Darkness cannot drive out darkness; only light can do that. Hate cannot drive out hate; only love can do that",a:"Martin Luther King Jr.",r:"Love is the only force powerful enough to transform darkness.",x:"Respond to darkness with light and hate with love."}
+,{d:"Spread love everywhere you go. Let no one ever come to you without leaving happier",a:"Mother Teresa",r:"Your impact is measured by the smiles you leave behind.",x:"Make everyone you meet a little happier."}
+];
+
+var YD=[52,104,156,208,260,312,364];
+var YI=['qp0HIF3SfI4','SMYKAbbOefA','cBzhCWV6Q7Q','xFr0FKnaLDk','g9tG_Mrj90M','as0uWN5ad64','5fsm-QbN9r8'];
+var TOT=365;
+var cur=1;
+function gp(){var s=localStorage.getItem('dmm_p');if(s){try{return JSON.parse(s)}catch(e){}return{}}return{}}
+function sp(p){localStorage.setItem('dmm_p',JSON.stringify(p))}
+function gn(){var s=localStorage.getItem('dmm_n');if(s){try{return JSON.parse(s)}catch(e){}return{}}return{}}
+function sn(n){localStorage.setItem('dmm_n',JSON.stringify(n))}
+function ub(){
+ var p=gp();var c=0;for(var d in p){if(p[d])c++}
+ var pt=Math.round((c/TOT)*100);
+ document.getElementById('prFill').style.width=pt+'%';
+ document.getElementById('prTxt').textContent=c;
+}
+function rd(n){
+ var e=D[n-1];if(!e)return;
+ var p=gp();var nt=gn();
+ var ic=p[n]||false;var nn=nt[n]||'';
+ var vh='';var idx=YD.indexOf(n);
+ if(idx!==-1){vh='<div class="vid"><iframe src="https://www.youtube.com/embed/'+YI[idx]+'" allowfullscreen></iframe></div>'}
+ var h='<div class="card'+(ic?' done':'')+'" id="dC">'
+ +'<div class="bdg">Day '+n+' of 365</div>'
+ +'<div class="qt">'+e.d+'</div>'
+ +'<div class="au">'+e.a+'</div>'
+ +'<div class="rf">'+e.r+'</div>'
+ +'<div class="ac"><b>ACTION:</b> '+e.x+'</div>'
+ +vh
+ +'<div class="nt"><textarea id="nA" placeholder="Notes for Day '+n+'...">'+nn.replace(/</g,'&lt;')+'</textarea></div>'
+ +'<div class="cf">'
+ +'<button class="btn btn-gl" id="cBtn">'+(ic?'Completed!':'Mark Complete')+'</button>'
+ +'<span class="cb">&#10003; Completed</span>'
+ +'</div></div>';
+ document.getElementById('dc').innerHTML=h;
+ document.getElementById('dInp').value=n;
+ var cb=document.getElementById('cBtn');if(cb){cb.onclick=function(){window.mc(n)}}
+ var na=document.getElementById('nA');if(na){na.oninput=function(){window.sn(n)}}
+ cur=n;ub();
+}
+window.mc=function(n){
+ var p=gp();p[n]=!p[n];sp(p);rd(n);
+};
+window.sn=function(n){
+ var nt=gn();var el=document.getElementById('nA');
+ if(el){nt[n]=el.value;sn(nt)}
+};
+window.gd=function(){
+ var inp=document.getElementById('dInp');
+ var v=parseInt(inp.value,10);
+ if(v>=1&&v<=365){rd(v)}
+};
+window.pd=function(){if(cur>1){rd(cur-1)}};
+window.nd=function(){if(cur<TOT){rd(cur+1)}};
+window.rp=function(){
+ if(confirm('Reset all progress for 365 days? This cannot be undone.')){
+  localStorage.removeItem('dmm_p');localStorage.removeItem('dmm_n');rd(cur);
+ }
+};
+rd(1);
+})();
+</script>
+</body>
+</html>

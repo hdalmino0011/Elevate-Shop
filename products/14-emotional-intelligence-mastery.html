@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emotional Intelligence Mastery — Elevate Shop</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f7f3f0;color:#2d3a45;line-height:1.7}
+.wrap{max-width:880px;margin:0 auto;padding:20px}
+header{text-align:center;padding:50px 20px 30px;background:linear-gradient(135deg,#ff7f6b 0%,#ffe8d6 100%);border-radius:40px 40px 60px 60px;margin-bottom:30px;position:relative;overflow:hidden}
+header::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:rgba(255,255,255,0.15);border-radius:50%}
+header::after{content:'';position:absolute;bottom:-40px;left:-40px;width:160px;height:160px;background:rgba(255,255,255,0.12);border-radius:50%}
+header h1{font-size:2.4em;color:#2d3a45;margin-bottom:8px;position:relative}
+header p{font-size:1.05em;color:#3e4d5c;position:relative}
+.progress-section{background:#fff;border-radius:20px;padding:20px 25px;margin-bottom:25px;box-shadow:0 4px 16px rgba(91,123,154,0.1);display:flex;flex-wrap:wrap;align-items:center;gap:14px}
+.progress-label{font-weight:600;color:#5b7b9a;font-size:0.95em;min-width:130px}
+.progress-bar-outer{flex:1;min-width:160px;height:14px;background:#f0eae4;border-radius:10px;overflow:hidden}
+.progress-bar-inner{height:100%;width:0%;background:linear-gradient(90deg,#ff7f6b,#ff9f8b);border-radius:10px;transition:width 0.5s ease}
+.progress-count{font-weight:700;color:#ff7f6b;font-size:0.95em}
+.btn-reset{background:#5b7b9a;color:#fff;border:none;padding:8px 18px;border-radius:12px;cursor:pointer;font-size:0.85em;font-weight:600;transition:background 0.2s}
+.btn-reset:hover{background:#4a6a87}
+.nav{display:flex;justify-content:space-between;gap:12px;margin-bottom:25px}
+.nav button{background:#5b7b9a;color:#fff;border:none;padding:10px 24px;border-radius:14px;cursor:pointer;font-weight:600;font-size:0.95em;transition:all 0.2s}
+.nav button:hover{background:#4a6a87}
+.nav button:disabled{background:#cbd6e0;cursor:not-allowed}
+.chapter{display:none;background:#fff;border-radius:28px;padding:35px 30px;margin-bottom:25px;box-shadow:0 4px 20px rgba(91,123,154,0.08);animation:fadeIn 0.4s ease}
+.chapter.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.chapter h2{font-size:1.6em;color:#2d3a45;margin-bottom:6px}
+.chapter .ch-num{font-size:0.8em;color:#ff7f6b;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.chapter p{margin:14px 0;color:#3e4d5c}
+.vid-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:18px;margin:20px 0;background:#f0eae4}
+.vid-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+.chapter-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:20px;padding-top:20px;border-top:2px dashed #ffe8d6}
+.btn-complete{background:#ffe8d6;color:#5b7b9a;border:2px solid #ff7f6b;padding:9px 22px;border-radius:14px;cursor:pointer;font-weight:700;font-size:0.9em;transition:all 0.2s}
+.btn-complete:hover{background:#ff7f6b;color:#fff}
+.btn-complete.done{background:#ff7f6b;color:#fff;border-color:#ff7f6b}
+.notes-area{width:100%;min-height:90px;border:2px solid #f0eae4;border-radius:14px;padding:14px;font-family:inherit;font-size:0.92em;color:#2d3a45;resize:vertical;background:#fcfaf8;margin-top:12px;transition:border-color 0.2s}
+.notes-area:focus{outline:none;border-color:#ff7f6b}
+.notes-status{font-size:0.8em;color:#9aabbb;margin-top:6px;font-style:italic}
+footer{text-align:center;padding:35px 20px 25px;color:#5b7b9a;font-size:0.88em;border-top:2px solid #ffe8d6;margin-top:15px}
+footer p{margin:4px 0}
+@media print{header{background:#ffe8d6 !important;padding:30px 20px}.nav,.btn-reset,.btn-complete,.notes-area,.notes-status,.vid-wrap{display:none !important}.chapter{display:block !important;page-break-after:always;box-shadow:none;padding:20px 0}.chapter.active{display:block !important}.progress-section{break-inside:avoid;border:1px solid #ddd}body{font-size:11pt}}
+@media(max-width:600px){header h1{font-size:1.7em}.wrap{padding:12px}.chapter{padding:22px 18px}.progress-section{flex-direction:column;align-items:stretch;text-align:center}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>Emotional Intelligence Mastery</h1>
+<p>Develop self-awareness, self-regulation, empathy, and social skills through exercises and real-life scenarios</p>
+</header>
+
+<div class="progress-section">
+<span class="progress-label">Your Progress</span>
+<div class="progress-bar-outer"><div class="progress-bar-inner" id="progressBar"></div></div>
+<span class="progress-count" id="progressCount">0 / 20</span>
+<button class="btn-reset" onclick="window.resetProgress()">Reset Progress</button>
+</div>
+
+<div class="nav">
+<button id="prevBtn" onclick="window.prevChapter()">← Previous</button>
+<button id="nextBtn" onclick="window.nextChapter()">Next →</button>
+</div>
+
+<div id="ch1" class="chapter active">
+<div class="ch-num">Chapter 1</div>
+<h2>What is Emotional Intelligence?</h2>
+<p>Emotional Intelligence (EQ) is the ability to recognize, understand, and manage your own emotions while also recognizing, understanding, and influencing the emotions of others. Coined by researchers Peter Salovey and John D. Mayer and later popularized by Daniel Goleman, EQ has become a cornerstone of personal and professional development.</p>
+<p>The four quadrants of emotional intelligence form a comprehensive framework: <strong>Self-Awareness</strong> is the capacity to recognize your own emotions as they occur; <strong>Self-Regulation</strong> involves managing those emotions constructively; <strong>Empathy</strong> is the ability to sense others' feelings; and <strong>Social Skills</strong> enable you to navigate relationships effectively. These four domains build on one another, creating a foundation for emotional mastery.</p>
+<p>Unlike IQ, which remains relatively stable throughout life, EQ can be developed and strengthened with intentional practice. This course is designed to guide you through each quadrant with practical exercises, real-life scenarios, and reflection tools that will rewire how you engage with emotions — your own and others'.</p>
+<div class="vid-wrap"><iframe src="https://www.youtube.com/embed/qp0HIF3SfI4" allowfullscreen title="Simon Sinek on Emotional Intelligence"></iframe></div>
+<div class="chapter-actions">
+<button class="btn-complete" id="toggle1" onclick="window.toggleComplete(1)">Mark Complete</button>
+<textarea class="notes-area" id="notes1" placeholder="Write your reflections on this chapter..."></textarea>
+<div class="notes-status" id="status1"></div>
+</div>
+</div>
+
+<div id="ch2" class="chapter">
+<div class="ch-num">Chapter 2</div>
+<h2>Self-Awareness</h2>
+<p>Self-awareness is the foundation of emotional intelligence. It is the ability to observe your thoughts, feelings, and behaviors in real time without judgment. When you are self-aware, you can recognize the subtle shifts in your emotional state — the tightness in your chest before a difficult conversation, the flash of irritation when someone interrupts you, the surge of excitement when an idea clicks.</p>
+<p>Developing self-awareness requires a practice of mindful attention. One effective technique is the "emotional check-in": pause three times a day and ask yourself, "What am I feeling right now, and why?" Name the emotion with precision — not just "bad," but "frustrated," "disappointed," or "overwhelmed." Research shows that simply labeling an emotion reduces its intensity and activates the prefrontal cortex, helping you respond more thoughtfully.</p>
+<p>Keep a log of emotional patterns for one week. Notice which situations trigger specific feelings, how your body reacts, and what thoughts accompany each emotion. This practice illuminates the automatic scripts running beneath your awareness and gives you the power to rewrite them.</p>
+<div class="chapter-actions">
+<button class="btn-complete" id="toggle2" onclick="window.toggleComplete(2)">Mark Complete</button>
+<textarea class="notes-area" id="notes2" placeholder="What emotional patterns did you notice today?"></textarea>
+<div class="notes-status" id="status2"></div>
+</div>
+</div>
+
+<div id="ch3" class="chapter">
+<div class="ch-num">Chapter 3</div>
+<h2>Emotional Triggers</h2>
+<p>Emotional triggers are specific events, words, or situations that provoke intense emotional reactions — often out of proportion to the present moment. These reactions are usually rooted in past experiences, unresolved wounds, or deeply held beliefs. Common triggers include feeling unheard, being criticized, facing rejection, or encountering injustice.</p>
+<p>The first step in managing triggers is identifying them. Create a "trigger inventory": list situations that consistently evoke strong emotions. For each trigger, note the automatic thought that arises, the physical sensation you experience, and your typical reaction. For example, when someone dismisses your idea in a meeting, you might feel heat in your face, think "they don't respect me," and respond with defensiveness or withdrawal.</p>
+<p>Once you've identified your triggers, you can begin to interrupt the cycle. The goal is not to eliminate triggers — that's impossible — but to lengthen the gap between stimulus and response. In that gap lies your freedom to choose a reaction aligned with your values rather than your history.</p>
+<div class="vid-wrap"><iframe src="https://www.youtube.com/embed/SMYKAbbOefA" allowfullscreen title="Tony Robbins on Emotional Mastery"></iframe></div>
+<div class="chapter-actions">
+<button class="btn-complete" id="toggle3" onclick="window.toggleComplete(3)">Mark Complete</button>
+<textarea class="notes-area" id="notes3" placeholder="List your top 3 emotional triggers..."></textarea>
+<div class="notes-status" id="status3"></div>
+</div>
+</div>
+
+<div id="ch4" class="chapter">
+<div class="ch-num">Chapter 4</div>
+<h2>Self-Regulation</h2>
+<p>Self-regulation is the ability to manage your emotional reactions in ways that serve your long-term goals rather than your immediate impulses. It is not about suppressing emotions — suppression actually amplifies them over time — but about channeling emotional energy constructively.</p>
+<p>One of the most powerful tools for self-regulation is cognitive reappraisal: changing the meaning you assign to a situation. If a colleague cancels a meeting at the last minute, your automatic interpretation might be "they don't value my time." A reappraisal could be "they must be overwhelmed — I've been there too." This shift in perspective changes your emotional response entirely.</p>
+<p>Practice the "10-second rule": when you feel a strong emotion arising, pause for ten seconds before speaking or acting. Use those seconds to take a deep breath, name the emotion, and ask yourself, "What outcome do I really want here?" Over time, this pause strengthens your prefrontal cortex's ability to regulate the amygdala, making calm responses more automatic.</p>
+<div class="chapter-actions">
+<button class="btn-complete" id="toggle4" onclick="window.toggleComplete(4)">Mark Complete</button>
+<textarea class="notes-area" id="notes4" placeholder="Describe a situation where you successfully self-regulated..."></textarea>
+<div class="notes-status" id="status4"></div>
+</div>
+</div>
+
+<div id="ch5" class="chapter">
+<div class="ch-num">Chapter 5</div>
+<h2>The Pause Technique</h2>
+<p>Between stimulus and response there is a space. In that space is our power to choose our response. In our response lies our growth and our freedom. This insight, often attributed to Viktor Frankl, captures the essence of the Pause Technique — a foundational EQ skill that separates reacting from responding.</p>
+<p>Reacting is automatic, fast, and often regretful. Responding is deliberate, considered, and aligned with your values. The Pause Technique trains you to insert a conscious gap — even just three to six seconds — between an event and your reaction. During that pause, you can breathe, assess, and choose.</p>
+<p>Here is a simple protocol: S.T.O.P. — <strong>S</strong>top what you're doing, <strong>T</strong>ake a deep breath, <strong>O</strong>bserve your thoughts and feelings without judgment, and <strong>P</strong>roceed with intention. Practice this in low-stakes situations first — a frustrating email, a long line — so the pattern is available when high-stakes moments arise.</p>
+<div class="chapter-actions">
+<button class="btn-complete" id="toggle5" onclick="window.toggleComplete(5)">Mark Complete</button>
+<textarea class="notes-area" id="notes5" placeholder="Practice the S.T.O.P. technique and journal your experience..."></textarea>
+<div class="notes-status" id="status5"></div>
+</div>
+</div>
+
+<div id="ch6" class="chapter">
+<div class="ch-num">Chapter 6</div>
+<h2>Empathy</h2>
+<p>Empathy is the ability to understand and share the feelings of another person. It is the bridge that connects individual experience to collective understanding, and it is arguably the most essential component of emotional intelligence for building meaningful relationships. There are three types of empathy: cognitive (understanding someone's perspective), emotional (feeling what someone feels), and compassionate (being moved to help).</p>
+<p>Contrary to popular belief, empathy is not about agreeing with someone or taking on their emotional burden. It is about creating a space where another person feels seen and heard. The simplest empathy practice is reflective listening: when someone shares something difficult, resist the urge to offer advice or share your own story. Instead, reflect back what you heard: "It sounds like you felt really hurt when that happened."</p>
+<p>Developing empathy requires curiosity. Approach each interaction with the mindset, "I wonder what their world looks like right now." This curiosity softens judgment, deepens connection, and opens the door to genuine understanding. Empathy is a muscle — the more you use it, the stronger it becomes.</p>
+<div class="vid-wrap"><iframe src="https://www.youtube.com/embed/cBzhCWV6Q7Q" allowfullscreen title="Jim Rohn on Understanding Others"></iframe></div>
+<div class="chapter-actions">
+<button class="btn-complete" id="toggle6" onclick="window.toggleComplete(6)">Mark Complete</button>
+<textarea class="notes-area" id="notes6" placeholder="Practice reflective listening today and write about it..."></textarea>
+<div class="notes-status" id="status6"></div>
+</div>
+</div>
+
+<div id="ch7" class="chapter">
+<div class="ch-num">Chapter 7</div>
+<h2>Social Awareness</h2>
+<p>Social awareness is the ability to accurately read social situations and understand the dynamics at play. It extends empathy beyond one-on-one interactions into groups, teams, and communities. People with strong social awareness can "read the room" — they sense the mood, identify unspoken tensions, and navigate group dynamics with grace.</p>
+<p>Developing social awareness begins with observation. In your next meeting or social gathering, spend the first five minutes simply watching. Notice who speaks and who remains silent. Observe body language: crossed arms, leaning in, avoiding eye contact. Detect the emotional temperature — is the energy tense, excited, bored, or anxious? These cues provide rich data about the group's underlying state.</p>
+<p>Another key skill is understanding organizational or cultural dynamics. Every group has formal and informal power structures, communication norms, and unwritten rules. Socially aware individuals recognize these patterns and adapt their approach accordingly, building rapport and influence without violating unspoken boundaries.</p>
+<div class="chapter-actions">
+<button class="btn-complete" id="toggle7" onclick="window.toggleComplete(7)">Mark Complete</button>
+<textarea class="notes-area" id="notes7" placeholder="Describe the social dynamics in a recent group setting..."></textarea>
+<div class="notes-status" id="status7"></div>
+</div>
+</div>
+
+<div id="ch8" class="chapter">
+<div class="ch-num">Chapter 8</div>
+<h2>Active Listening</h2>
+<p>Active listening is the intentional practice of fully concentrating on what someone is saying rather than passively hearing their words. It is a rare skill in a world of distractions, and it is one of the highest forms of respect you can offer another person. Most people listen with the intent to reply, not to understand. Active listening flips this script.</p>
+<p>The core components of active listening are: give your full attention (put away your phone, make eye contact), avoid interrupting, use verbal and nonverbal acknowledgments (nodding, "I see," "tell me more"), and ask clarifying questions. After the person finishes speaking, paraphrase what you heard: "So if I understand correctly, you're saying that…" This confirms understanding and makes the speaker feel valued.</p>
+<p>Practice active listening in at least one conversation per day for the next week. Notice how the quality of your interactions changes. You will likely find that people open up more, conflicts de-escalate faster, and your relationships deepen — all because you chose to truly hear them.</p>
+<div class="chapter-actions">
+<button class="btn-complete" id="toggle8" onclick="window.toggleComplete(8)">Mark Complete</button>
+<textarea class="notes-area" id="notes8" placeholder="What did you learn from practicing active listening today?"></textarea>
+<div class="notes-status" id="status8"></div>
+</div>
+</div>
+
+<div id="ch9" class="chapter">
+<div class="ch-num">Chapter 9</div>
+<h2>Conflict Resolution</h2>
+<p>Conflict is inevitable in any relationship — what matters is how you handle it. Emotionally intelligent conflict resolution shifts the goal from winning to understanding. The aim is not to defeat the other person but to find a solution that respects everyone's needs and preserves the relationship.</p>
+<p>The win-win approach follows a structured process. First, set the stage: choose a private, neutral setting and agree on a time to talk. Use "I" statements to express your feelings without blame: "I felt frustrated when the deadline was missed" rather than "You missed the deadline again." Listen actively to the other person's perspective, then collaboratively brainstorm solutions that address both parties' core concerns.</p>
+<p>Here is a conflict resolution script you can adapt: "I value our relationship and I want to address something that's been on my mind. When [specific situation], I felt [emotion]. My understanding is that you [their perspective]. Is that accurate? What would you need to feel good about moving forward?" This script opens dialogue rather than triggering defensiveness.</p>
+<div class="vid-wrap"><iframe src="https://www.youtube.com/embed/xFr0FKnaLDk" allowfullscreen title="Les Brown on Communication"></iframe></div>
+<div class="chapter-actions">
+<button class="btn-complete" id="toggle9" onclick="window.toggleComplete(9)">Mark Complete</button>
+<textarea class="notes-area" id="notes9" placeholder="Write a conflict resolution script for a real situation..."></textarea>
+<div class="notes-status" id="status9"></div>
+</div>
+</div>
+
+<div id="ch10" class="chapter">
+<div class="ch-num">Chapter 10</div>
+<h2>Giving &amp; Receiving Feedback</h2>
+<p>Feedback is the breakfast of champions — but only when it's delivered and received with emotional intelligence. Poorly delivered feedback triggers defensiveness, resentment, and damaged relationships. Skillfully delivered feedback accelerates growth and strengthens trust.</p>
+<p>The SBI model is a framework for giving constructive feedback. <strong>S</strong>ituation: describe the specific context. <strong>B</strong>ehavior: describe the observable action, not the person's character. <strong>I</strong>mpact: explain the effect of the behavior. For example: "In yesterday's team meeting (situation), when you interrupted Sarah while she was presenting (behavior), it made her hesitant to share her full idea (impact)." This approach is factual, non-judgmental, and actionable.</p>
+<p>Receiving feedback gracefully is equally important. When receiving feedback, listen fully without interrupting. Assume positive intent. Ask clarifying questions: "Can you give me a specific example?" Thank the person — even if you disagree — because their willingness to share is a gift. Take time to reflect before responding. A simple "Thank you for sharing that — I'd like to take some time to think it over" buys you the space to process without becoming defensive.</p>
+<div class="chapter-actions">
+<button class="btn-complete" id="toggle10" onclick="window.toggleComplete(10)">Mark Complete</button>
+<textarea class="notes-area" id="notes10" placeholder="Practice SBI feedback and reflect on the outcome..."></textarea>
+<div class="notes-status" id="status10"></div>
+</div>
+</div>
+
+<div id="ch11" class="chapter">
+<div class="ch-num">Chapter 11</div>
+<h2>Relationship Management</h2>
+<p>Relationship management is the culmination of the other EQ quadrants — it's where self-awareness, self-regulation, empathy, and social skills come together to build lasting, healthy connections. Effective relationship management means inspiring, influencing, and developing others while navigating conflict and fostering collaboration.</p>
+<p>Trust is the currency of all relationships. It is built through consistency, reliability, and vulnerability. Small actions compound: showing up on time, keeping promises, admitting mistakes, and expressing appreciation. Conduct a "relationship audit" by listing your key relationships — personal and professional — and rating them on trust, communication quality, and mutual respect. Identify one action you can take to strengthen each.</p>
+<p>The emotionally intelligent relationship manager also knows when to have difficult conversations. Avoidance erodes trust faster than almost anything else. Address issues early, with compassion and honesty. Use the "feedback sandwich" sparingly — instead, be direct yet kind. A healthy relationship can handle truth delivered with care; it cannot survive silence coated in resentment.</p>
+<div class="vid-wrap"><iframe src="https://www.youtube.com/embed/g9tG_Mrj90M" allowfullscreen title="Mel Robbins on Building Connections"></iframe></div>
+<div class="chapter-actions">
+<button class="btn-complete" id="toggle11" onclick="window.toggleComplete(11)">Mark Complete</button>
+<textarea class="notes-area" id="notes11" placeholder="Conduct a relationship audit and write your findings..."></textarea>
+<div class="notes-status" id="status11"></div>
+</div>
+</div>
+
+<div id="ch12" class="chapter">
+<div class="ch-num">Chapter 12</div>
+<h2>EQ in the Workplace</h2>
+<p>The workplace is a high-stakes arena for emotional intelligence. Deadlines, competing priorities, diverse personalities, and power dynamics create an environment where EQ can make or break your effectiveness. Research shows that EQ accounts for nearly 60% of job performance and is the strongest predictor of leadership success.</p>
+<p>Navigating office dynamics requires political awareness — understanding the formal and informal power structures, communication preferences, and cultural norms of your organization. Build allies by being helpful, reliable, and positive. Manage up by understanding your manager's priorities, communication style, and pressure points. When tensions arise, focus on interests rather than positions: ask questions to understand what each person truly needs.</p>
+<p>One of the most valuable workplace EQ skills is managing your energy, not just your time. Emotional exhaustion leads to burnout, poor decisions, and strained relationships. Set boundaries around your focus time, take real breaks, and practice recovery activities that restore your emotional reserves. A regulated nervous system is your greatest professional asset.</p>
+<div class="chapter-actions">
+<button class="btn-complete" id="toggle12" onclick="window.toggleComplete(12)">Mark Complete</button>
+<textarea class="notes-area" id="notes12" placeholder="How can you improve your EQ at work this week?"></textarea>
+<div class="notes-status" id="status12"></div>
+</div>
+</div>
+
+<div id="ch13" class="chapter">
+<div class="ch-num">Chapter 13</div>
+<h2>EQ in Relationships</h2>
+<p>Our closest relationships are where emotional intelligence matters most — and where it is hardest to practice. Romantic partners, family members, and close friends trigger our deepest vulnerabilities and most automatic emotional patterns. These relationships are also where EQ growth yields the richest rewards: deeper intimacy, greater trust, and more fulfilling connection.</p>
+<p>The emotion coaching approach, developed by psychologist John Gottman, is a powerful framework for applying EQ in relationships. When your partner expresses a difficult emotion, resist the urge to problem-solve or minimize. Instead: be present with their feeling, validate its legitimacy, help them label it, and offer support. Even a simple "That makes sense — I'd feel that way too" can transform a moment of disconnection into one of bonding.</p>
+<p>Conduct a weekly "relationship check-in" with your partner or close friend: What went well this week? What felt challenging? What do you need more of? This ritual prevents resentment from building and creates a container for honest, caring communication. The goal is not to avoid conflict but to ensure that every conflict ends with you both feeling more connected than before.</p>
+<div class="chapter-actions">
+<button class="btn-complete" id="toggle13" onclick="window.toggleComplete(13)">Mark Complete</button>
+<textarea class="notes-area" id="notes13" placeholder="Reflect on a recent relationship interaction through an EQ lens..."></textarea>
+<div class="notes-status" id="status13"></div>
+</div>
+</div>
+
+<div id="ch14" class="chapter">
+<div class="ch-num">Chapter 14</div>
+<h2>Boundaries</h2>
+<p>Setting boundaries is an act of emotional intelligence and self-respect. A boundary is not a wall — it is a clear, compassionate statement of what you need to be your best self in a relationship. Without boundaries, resentment builds, energy drains, and relationships become unbalanced.</p>
+<p>Healthy boundaries require self-awareness (knowing your limits), self-regulation (communicating them calmly), and empathy (respecting the other person's feelings while holding your ground). The formula for setting a boundary: state your need clearly, explain the reason briefly, and offer an alternative when possible. For example: "I need to step away from work calls after 7 PM so I can recharge for tomorrow. Can we schedule our check-ins before that time?"</p>
+<p>Guilt often accompanies boundary-setting, especially if you're used to being a people-pleaser. Remind yourself: setting a boundary is not rejecting the other person — it is protecting the relationship by preventing burnout and resentment. Every time you say no to something that drains you, you say yes to something that matters.</p>
+<div class="vid-wrap"><iframe src="https://www.youtube.com/embed/as0uWN5ad64" allowfullscreen title="David Goggins on Discipline and Boundaries"></iframe></div>
+<div class="chapter-actions">
+<button class="btn-complete" id="toggle14" onclick="window.toggleComplete(14)">Mark Complete</button>
+<textarea class="notes-area" id="notes14" placeholder="What boundaries do you need to set? Write them here..."></textarea>
+<div class="notes-status" id="status14"></div>
+</div>
+</div>
+
+<div id="ch15" class="chapter">
+<div class="ch-num">Chapter 15</div>
+<h2>Emotional Agility</h2>
+<p>Emotional agility, a concept developed by psychologist Susan David, is the ability to navigate life's twists and turns with self-acceptance, clear-sightedness, and an open mind. It is not about being positive all the time — it's about being able to hold difficult emotions lightly, learn from them, and choose actions that align with your values.</p>
+<p>The opposite of emotional agility is emotional rigidity — getting hooked by thoughts and feelings, fusing with them, and letting them dictate your behavior. When you're rigid, you might avoid discomfort at all costs, lash out when triggered, or ruminate endlessly. Emotional agility creates space between you and your emotions, allowing you to observe them without being controlled by them.</p>
+<p>Practice the "Name and Tame" technique: when a difficult emotion arises, name it with curiosity: "Ah, there's anxiety. Hello, anxiety. What are you trying to tell me?" Then place your hand on your heart and take three slow breaths. This simple act of mindful acknowledgment reduces the emotion's grip and helps you choose a response that serves your deeper values rather than your immediate discomfort.</p>
+<div class="chapter-actions">
+<button class="btn-complete" id="toggle15" onclick="window.toggleComplete(15)">Mark Complete</button>
+<textarea class="notes-area" id="notes15" placeholder="Describe a time you practiced emotional agility..."></textarea>
+<div class="notes-status" id="status15"></div>
+</div>
+</div>
+
+<div id="ch16" class="chapter">
+<div class="ch-num">Chapter 16</div>
+<h2>Resilience &amp; EQ</h2>
+<p>Resilience is the capacity to recover quickly from difficulties and adapt to adversity. While some people seem naturally resilient, research confirms that resilience can be cultivated — and emotional intelligence is one of its strongest building blocks. Self-aware individuals recognize when they're struggling, self-regulated individuals manage their stress response, and socially connected individuals lean on their support networks.</p>
+<p>The resilience framework includes four key practices. First, acceptance: acknowledge the reality of the situation without denial or catastrophizing. Second, meaning-making: ask "What can I learn from this?" or "How might this make me stronger?" Third, self-compassion: treat yourself with the same kindness you would offer a close friend facing difficulty. Fourth, proactive coping: take small, concrete actions to address the challenge rather than spiraling into helplessness.</p>
+<p>Build your resilience muscle through intentional exposure to manageable challenges. Take on a project slightly outside your comfort zone. Have that difficult conversation you've been avoiding. Practice tolerating discomfort — it expands your window of resilience and teaches your nervous system that you can handle hard things.</p>
+<div class="vid-wrap"><iframe src="https://www.youtube.com/embed/5fsm-QbN9r8" allowfullscreen title="Eric Thomas on Resilience"></iframe></div>
+<div class="chapter-actions">
+<button class="btn-complete" id="toggle16" onclick="window.toggleComplete(16)">Mark Complete</button>
+<textarea class="notes-area" id="notes16" placeholder="Reflect on a challenge you overcame using EQ..."></textarea>
+<div class="notes-status" id="status16"></div>
+</div>
+</div>
+
+<div id="ch17" class="chapter">
+<div class="ch-num">Chapter 17</div>
+<h2>The EQ Journal</h2>
+<p>A daily EQ journal is one of the most powerful tools for developing emotional intelligence. Writing forces clarity, creates a record of patterns, and provides a safe space for emotional processing. The act of translating feelings into language engages the prefrontal cortex and integrates emotional experience with rational thought.</p>
+<p>Each day, answer these four prompts:
+<br><strong>1.</strong> What emotions did I experience today, and what triggered them?
+<br><strong>2.</strong> How did I respond to those emotions — did I react or respond?
+<br><strong>3.</strong> What did I learn about myself or others through my interactions?
+<br><strong>4.</strong> What is one thing I can do tomorrow to strengthen my EQ?</p>
+<p>After one week of daily journaling, review your entries and look for patterns. Do certain people or situations consistently trigger you? Which coping strategies worked well? Which relationships feel nourishing and which feel draining? This meta-awareness — noticing the patterns in your patterns — is the hallmark of advanced emotional intelligence.</p>
+<div class="chapter-actions">
+<button class="btn-complete" id="toggle17" onclick="window.toggleComplete(17)">Mark Complete</button>
+<textarea class="notes-area" id="notes17" placeholder="Write your daily EQ journal entry here..."></textarea>
+<div class="notes-status" id="status17"></div>
+</div>
+</div>
+
+<div id="ch18" class="chapter">
+<div class="ch-num">Chapter 18</div>
+<h2>Nonviolent Communication</h2>
+<p>Nonviolent Communication (NVC), developed by psychologist Marshall Rosenberg, is a communication framework that fosters empathy, honesty, and mutual understanding. It is based on the premise that all human actions are attempts to meet universal needs, and that conflict arises when we focus on judgments rather than needs.</p>
+<p>The NVC framework has four components. First, <strong>Observation</strong>: describe the situation factually without evaluation or judgment. Second, <strong>Feeling</strong>: express your emotion connected to the observation. Third, <strong>Need</strong>: identify the universal need behind your feeling. Fourth, <strong>Request</strong>: make a clear, actionable request to meet that need. For example: "When I hear the dishes clattering while I'm on the phone (observation), I feel frustrated (feeling) because I need quiet to concentrate (need). Would you be willing to pause the dishes until my call ends? (request)"</p>
+<p>NVC transforms difficult conversations by removing blame and creating shared understanding. Practice translating one judgmental thought per day into NVC language. Instead of "You're so irresponsible," try "When the report was submitted late, I felt worried because I need reliability. Can we discuss a system to keep deadlines on track?"</p>
+<div class="chapter-actions">
+<button class="btn-complete" id="toggle18" onclick="window.toggleComplete(18)">Mark Complete</button>
+<textarea class="notes-area" id="notes18" placeholder="Translate a judgment into NVC language..."></textarea>
+<div class="notes-status" id="status18"></div>
+</div>
+</div>
+
+<div id="ch19" class="chapter">
+<div class="ch-num">Chapter 19</div>
+<h2>Leading with EQ</h2>
+<p>Emotionally intelligent leadership is not about being nice all the time — it's about being aware, intentional, and human. Leaders with high EQ create psychological safety, inspire trust, and foster environments where people can do their best work. They understand that emotions are contagious and that their own emotional state sets the tone for the entire team.</p>
+<p>The emotionally intelligent leader practices several key behaviors. They are accessible and approachable, inviting open communication. They model vulnerability by admitting mistakes and asking for help. They recognize and celebrate contributions, building a culture of appreciation. They handle crises with calm transparency, acknowledging the team's anxiety while providing direction and hope.</p>
+<p>To develop your leadership EQ, start with one practice: the "leadership check-in." Before any team interaction — a meeting, a one-on-one, a difficult conversation — pause and ask yourself: "What emotional state am I bringing into this room? What does my team need from me right now?" This simple reflection shifts you from reactive management to intentional leadership.</p>
+<div class="chapter-actions">
+<button class="btn-complete" id="toggle19" onclick="window.toggleComplete(19)">Mark Complete</button>
+<textarea class="notes-area" id="notes19" placeholder="How will you lead with EQ tomorrow?"></textarea>
+<div class="notes-status" id="status19"></div>
+</div>
+</div>
+
+<div id="ch20" class="chapter">
+<div class="ch-num">Chapter 20</div>
+<h2>Your EQ Growth Plan</h2>
+<p>Congratulations on completing this journey through emotional intelligence. The final chapter is about turning knowledge into a sustainable practice. Lasting change does not come from a single course — it comes from designing systems and habits that support your growth over time.</p>
+<p>Here is your 90-day EQ improvement roadmap. <strong>Days 1–30: Foundation.</strong> Daily EQ journal, morning emotional check-ins, practice the S.T.O.P. technique three times daily. Focus on self-awareness — just observe, don't judge. <strong>Days 31–60: Application.</strong> Use the NVC framework in at least one conversation per week. Practice active listening in every important interaction. Conduct one relationship audit per week. <strong>Days 61–90: Integration.</strong> Mentor someone else on EQ, lead a team discussion on emotional intelligence, and revisit this course to reinforce weaker areas.</p>
+<p>Remember: emotional intelligence is not a destination but a continuous practice. You will have setbacks — moments where you react rather than respond, where your triggers get the better of you, where empathy feels impossible. That is not failure; that is being human. Every moment of awareness, every pause, every attempt to understand is a step forward. Your EQ journey starts now — keep going.</p>
+<div class="chapter-actions">
+<button class="btn-complete" id="toggle20" onclick="window.toggleComplete(20)">Mark Complete</button>
+<textarea class="notes-area" id="notes20" placeholder="Write your 90-day EQ growth plan here..."></textarea>
+<div class="notes-status" id="status20"></div>
+</div>
+</div>
+
+<footer>
+<p>&copy; 2025 Elevate Shop. All rights reserved.</p>
+<p>Empowering minds and building wealth, one download at a time.</p>
+</footer>
+</div>
+
+<script>
+(function(){
+  var TOTAL = 20, cur = 1;
+
+  function save(){localStorage.setItem('eq_progress',JSON.stringify({cur:cur}))}
+  function load(){try{var d=JSON.parse(localStorage.getItem('eq_progress'));if(d&&d.cur)cur=d.cur}catch(e){}}
+
+  function showChapter(n){
+    for(var i=1;i<=TOTAL;i++){var el=document.getElementById('ch'+i);if(el)el.className='chapter'+(i===n?' active':'')}
+    cur=n;save();updateNav();updateProgress();
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+
+  function updateNav(){
+    var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+    if(pb)pb.disabled=cur===1;
+    if(nb)nb.disabled=cur===TOTAL;
+  }
+
+  function updateProgress(){
+    var done=0;
+    for(var i=1;i<=TOTAL;i++){if(localStorage.getItem('eq_ch_'+i)==='1')done++}
+    var pct=Math.round((done/TOTAL)*100);
+    var bar=document.getElementById('progressBar');
+    if(bar)bar.style.width=pct+'%';
+    var cnt=document.getElementById('progressCount');
+    if(cnt)cnt.textContent=done+' / '+TOTAL;
+  }
+
+  function loadNotes(){
+    for(var i=1;i<=TOTAL;i++){
+      var ta=document.getElementById('notes'+i);
+      if(ta){var val=localStorage.getItem('eq_notes_'+i);if(val)ta.value=val}
+      var st=document.getElementById('status'+i);
+      if(st){var c=localStorage.getItem('eq_ch_'+i);st.textContent=c==='1'?'Completed - well done!':''}
+      var btn=document.getElementById('toggle'+i);
+      if(btn&&localStorage.getItem('eq_ch_'+i)==='1')btn.className='btn-complete done';
+    }
+  }
+
+  window.nextChapter=function(){if(cur<TOTAL)showChapter(cur+1)};
+  window.prevChapter=function(){if(cur>1)showChapter(cur-1)};
+
+  window.toggleComplete=function(n){
+    var key='eq_ch_'+n;
+    var curVal=localStorage.getItem(key);
+    if(curVal==='1'){localStorage.removeItem(key)}else{localStorage.setItem(key,'1')}
+    var btn=document.getElementById('toggle'+n);
+    if(btn)btn.className='btn-complete'+(localStorage.getItem(key)==='1'?' done':'');
+    var st=document.getElementById('status'+n);
+    if(st)st.textContent=localStorage.getItem(key)==='1'?'Completed - well done!':'';
+    updateProgress();
+  };
+
+  window.resetProgress=function(){
+    if(!confirm('Reset all progress and clear all notes?'))return;
+    for(var i=1;i<=TOTAL;i++){localStorage.removeItem('eq_ch_'+i);localStorage.removeItem('eq_notes_'+i)}
+    loadNotes();updateProgress();
+  };
+
+  (function initAutoSave(){
+    for(var i=1;i<=TOTAL;i++){
+      (function(idx){
+        var ta=document.getElementById('notes'+idx);
+        if(!ta)return;
+        var timer;
+        ta.addEventListener('input',function(){
+          clearTimeout(timer);
+          timer=setTimeout(function(){localStorage.setItem('eq_notes_'+idx,ta.value)},500);
+        });
+      })(i);
+    }
+  })();
+
+  load();showChapter(cur);loadNotes();updateNav();
+})();
+</script>
+</body>
+</html>
