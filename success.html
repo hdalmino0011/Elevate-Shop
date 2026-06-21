@@ -301,11 +301,13 @@
 
     // ── Read pending purchase from sessionStorage (set during checkout) ──
     let userEmail = null;
+    let cartData = [];
     try {
         const pendingPurchase = sessionStorage.getItem('pendingPurchase');
         if (pendingPurchase) {
             const data = JSON.parse(pendingPurchase);
             userEmail = data.email || null;
+            cartData = data.cart || [];
         }
     } catch (e) {
         console.warn('Could not read sessionStorage:', e);
@@ -323,9 +325,6 @@
     const successDiv     = document.getElementById('success-message');
 
     // ── Polling config ──
-    // Poll every 3 seconds for up to 90 seconds (30 attempts).
-    // CC payments go through the webhook which may take a few extra seconds
-    // compared to PayPal-button payments — the longer window covers both.
     const POLL_INTERVAL_MS = 3000;
     const MAX_ATTEMPTS     = 30;   // 30 × 3s = 90 seconds max
 
@@ -460,9 +459,52 @@
         startPolling();
     });
 
-    // ── Kick off on load ──
-    if (sessionId || userEmail) {
+    // ── NEW: call /capture-payment first ──
+    async function initiateCapture() {
+        // If we don't have a session ID, cannot capture
+        if (!sessionId) {
+            passwordBox.className = 'password-box waiting';
+            passwordBox.innerHTML = '❌ No payment session found. Please contact support.';
+            instructionBox.style.display = 'block';
+            return;
+        }
+
+        // Need email and cart data to call capture
+        if (userEmail && cartData && cartData.length) {
+            try {
+                const captureResp = await fetch(`${WORKER_URL}/capture-payment`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        token: sessionId,
+                        email: userEmail,
+                        productNames: cartData.map(item => item.name),
+                        productId: cartData[0]?.id || 0   // assume single product for simplicity
+                    })
+                });
+                const captureData = await captureResp.json();
+
+                if (captureData.success && captureData.password) {
+                    // Capture succeeded – show password immediately
+                    showPasswordSuccess(captureData.password);
+                    return;
+                } else {
+                    console.warn('Capture failed, falling back to polling:', captureData.error);
+                }
+            } catch (err) {
+                console.error('Capture network error:', err);
+                // fall through to polling
+            }
+        }
+
+        // If capture didn't work (missing data, network error, or payment not final),
+        // start the polling fallback.
         startPolling();
+    }
+
+    // ── Kick off ──
+    if (sessionId || userEmail) {
+        initiateCapture();
     } else {
         passwordBox.className = 'password-box waiting';
         passwordBox.innerHTML = '❌ No payment information found. Please contact support.';
