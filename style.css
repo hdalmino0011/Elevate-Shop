@@ -234,6 +234,12 @@ h1, h2, h3, h4, h5 {
   padding: 2px 0;
   min-width: 0;
 }
+/* Remove default browser focus rectangle on the search input */
+.search-input:focus,
+.search-input:focus-visible {
+  outline: none !important;
+}
+
 .search-input::placeholder {
   color: var(--ink-faint);
   font-style: italic;
@@ -1936,6 +1942,12 @@ button:focus-visible,
 input:focus-visible {
   outline: 2px solid var(--gold);
   outline-offset: 2px;
+}
+
+/* Remove the outline for the search input specifically – it's already removed but this reinforces it */
+.search-input:focus,
+.search-input:focus-visible {
+  outline: none !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
