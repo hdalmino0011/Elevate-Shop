@@ -2,6 +2,7 @@
 // Fix: removed client-side capture from success.html (handled server-side only)
 // Fix: removed premature savePurchaseToHistory before payment confirmation
 // FIX: Product list reordered to match GitHub filenames (1–21)
+// FIX: Removed server-side duplicate purchase check (blocks multi-product purchases)
 
 // ========== MERGED PRODUCT DATA (21 products, ordered by file number) ==========
 const allProductsData = [
@@ -531,27 +532,10 @@ async function initiatePayPalCheckout() {
   if (loadingDiv) loadingDiv.style.display = 'block';
   if (payBtn) payBtn.disabled = true;
 
-  // ── Server-side duplicate purchase check ──
-  try {
-    const checkResp = await fetch(`${WORKER_URL}/check-purchase`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email })
-    });
-    const checkData = await checkResp.json();
-
-    if (checkData.purchased) {
-      if (loadingDiv) loadingDiv.style.display = 'none';
-      if (payBtn) payBtn.disabled = false;
-      closePaymentRedirectModal();
-      showAlreadyPurchasedByEmailModal(email);
-      return;
-    }
-  } catch (err) {
-    console.warn('Purchase duplicate check failed (non-fatal), proceeding:', err);
-    if (loadingDiv) loadingDiv.style.display = 'none';
-    if (payBtn) payBtn.disabled = false;
-  }
+  // ── SERVER-SIDE DUPLICATE PURCHASE CHECK REMOVED ──
+  // The client-side hasUserPurchasedProduct() already prevents buying the same product again.
+  // The worker's idempotency prevents duplicate order records.
+  // Removing this check allows customers to buy multiple different products.
 
   // Store purchase info in sessionStorage so success.html can use the email
   // for polling. Cart is included so success.html has product context.
