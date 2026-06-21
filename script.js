@@ -1,6 +1,7 @@
 // ElevateShop – Complete JavaScript
 // Fix: removed client-side capture from success.html (handled server-side only)
 // Fix: removed premature savePurchaseToHistory before payment confirmation
+// FIX: Featured product now uses correct product ID from allProductsData
 
 // ========== MERGED PRODUCT DATA (21 products, 13 marked bestSeller) ==========
 const allProductsData = [
@@ -950,11 +951,21 @@ document.getElementById('buyNowBtn').addEventListener('click', () => {
   if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
 });
 
+// ═══════════════════════════════════════════════════════════
+// FIXED: Featured product now uses correct product ID
+// ═══════════════════════════════════════════════════════════
 document.querySelectorAll('.add-to-cart').forEach(btn => {
   btn.addEventListener('click', () => {
     const name = btn.dataset.name;
     const price = parseFloat(btn.dataset.price);
-    const featured = { id: 999, name, price, quantity: 1 };
+    // Look up the product by name to get its real ID
+    const product = allProductsData.find(p => p.name === name);
+    const featured = { 
+      id: product ? product.id : 999,   // fallback to 999 only if not found
+      name, 
+      price, 
+      quantity: 1 
+    };
     if (addToCart(featured)) {
       showCartConfirmModal(featured, (proceed) => {
         if (proceed) openPaymentRedirectModal();
