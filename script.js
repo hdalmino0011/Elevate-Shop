@@ -324,6 +324,7 @@ function closeOrderHistorySidebar() {
 
 // ========== CART LOGIC ==========
 function addToCart(product) {
+  // Check if already in cart
   const existing = cart.find(item => item.id === product.id);
   if (existing) {
     alert("This product is already in your cart.");
@@ -520,12 +521,14 @@ async function initiatePayPalCheckout() {
       if (loadingDiv) loadingDiv.style.display = 'none';
       if (payBtn) payBtn.disabled = false;
       closePaymentRedirectModal();
+      // Show a modal listing all duplicates
       const productNames = duplicateProducts.join(', ');
       showProductAlreadyPurchasedModal(productNames);
       return;
     }
   } catch (err) {
     console.warn('Duplicate product check failed (non-fatal), proceeding:', err);
+    // Continue anyway – better to allow purchase than block due to network error
   }
 
   // Store purchase info in sessionStorage
