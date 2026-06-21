@@ -3,6 +3,8 @@
 // Fix: removed premature savePurchaseToHistory before payment confirmation
 // FIX: Product list reordered to match GitHub filenames (1–21)
 // FIX: Removed server-side duplicate purchase check (blocks multi-product purchases)
+// FIX: Added server-side duplicate product check per email (prevents buying same product again)
+// FIX: Order history now fetched from Supabase (works for all users, including guests who later sign up)
 
 // ========== MERGED PRODUCT DATA (21 products, ordered by file number) ==========
 const allProductsData = [
@@ -26,7 +28,7 @@ const allProductsData = [
   { id: 9, name: "Morning Mastery Course", category: "motivational", price: 29.99, description: "Design the perfect morning routine to start each day with energy, focus, and purpose.", fullDescription: "Morning Mastery Course teaches you how to create a personalized morning routine...", bestSeller: true },
   // ID 10: 10-entrepreneur-toolkit.html
   { id: 10, name: "Entrepreneur's Success Toolkit", category: "business", price: 32.99, description: "Complete bundle of templates, checklists, and guides for aspiring entrepreneurs.", fullDescription: "The Entrepreneur's Success Toolkit is a complete business launch and scaling system...", bestSeller: true },
-  // ID 11: 11-negotiation-skills-course.html (NEW product)
+  // ID 11: 11-negotiation-skills-course.html
   { id: 11, name: "Negotiation Skills Course", category: "business", price: 29.99, description: "Learn the psychological principles behind effective negotiation in any situation.", fullDescription: "This course covers anchoring, framing, BATNA, and real-world tactics used by top dealmakers. Includes role‑play scripts and case studies.", bestSeller: false },
   // ID 12: 12-stock-market-investing-101.html
   { id: 12, name: "Stock Market Investing 101", category: "financial", price: 19.99, description: "Understand stocks, ETFs, and building a diversified portfolio.", fullDescription: "A beginner-friendly guide to stock market investing...", bestSeller: true },
@@ -228,63 +230,66 @@ function updateLoginUI() {
   }
 }
 
-// ========== ORDER HISTORY ==========
-function getPurchaseHistory() {
-  const stored = localStorage.getItem('elevateShop_purchases');
-  return stored ? JSON.parse(stored) : [];
+// ========== ORDER HISTORY (SERVER-BASED) ==========
+// No longer uses localStorage for purchase history – all orders come from Supabase.
+
+async function fetchOrders(email) {
+  try {
+    const response = await fetch(`${WORKER_URL}/orders`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    });
+    const data = await response.json();
+    if (data.orders && Array.isArray(data.orders)) {
+      return data.orders;
+    }
+    return [];
+  } catch (err) {
+    console.error('Failed to fetch orders:', err);
+    return [];
+  }
 }
 
-// NOTE: savePurchaseToHistory is now only called AFTER payment is confirmed
-// (i.e. from success.html or a post-payment callback), NOT during checkout initiation.
-function savePurchaseToHistory(products, total) {
-  if (!loggedInUser) return false;
-  const purchases = getPurchaseHistory();
-  const newOrder = {
-    id: Date.now(),
-    email: loggedInUser.email,
-    date: new Date().toISOString(),
-    products: products.map(p => ({ id: p.id, name: p.name, price: p.price })),
-    total: total
-  };
-  purchases.push(newOrder);
-  localStorage.setItem('elevateShop_purchases', JSON.stringify(purchases));
-  return true;
-}
-
-function hasUserPurchasedProduct(productId) {
-  if (!loggedInUser) return false;
-  const purchases = getPurchaseHistory();
-  const userPurchases = purchases.filter(p => p.email === loggedInUser.email);
-  return userPurchases.some(order => order.products.some(p => p.id === productId));
-}
-
-function renderOrderHistory() {
+async function renderOrderHistory() {
   const container = document.getElementById('order-history-list');
   if (!container) return;
-  const purchases = getPurchaseHistory();
-  const userPurchases = purchases.filter(p => p.email === loggedInUser?.email);
-  if (userPurchases.length === 0) {
+  if (!loggedInUser) {
+    container.innerHTML = '<p class="empty-message">Please log in to view your order history.</p>';
+    return;
+  }
+
+  const orders = await fetchOrders(loggedInUser.email);
+  if (orders.length === 0) {
     container.innerHTML = '<p class="empty-message">No orders yet.</p>';
     return;
   }
+
   container.innerHTML = '';
-  userPurchases.forEach(order => {
+  orders.forEach(order => {
     const orderDiv = document.createElement('div');
     orderDiv.className = 'order-history-item';
-    const dateStr = new Date(order.date).toLocaleDateString();
-    const productNames = order.products.map(p => p.name).join(', ');
+    const dateStr = new Date(order.created_at).toLocaleDateString();
+    // Assuming order has a product_id and we can fetch product name from allProductsData
+    const product = allProductsData.find(p => p.id === order.product_id);
+    const productName = product ? product.name : `Product #${order.product_id}`;
+    // We also need a total – if not stored, we'll approximate from product price.
+    const price = product ? product.price : 0;
+    const totalDisplay = price > 0 ? `$${price.toFixed(2)}` : '—';
+
     orderDiv.innerHTML = `
       <div class="order-date">${dateStr}</div>
-      <div class="order-products">${productNames}</div>
-      <div class="order-total">Total: $${order.total.toFixed(2)}</div>
+      <div class="order-products">${productName}</div>
+      <div class="order-total">Total: ${totalDisplay}</div>
       <button class="order-details-btn" data-order-id="${order.id}">Details</button>
     `;
     container.appendChild(orderDiv);
   });
+
   document.querySelectorAll('.order-details-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       const orderId = parseInt(e.target.dataset.orderId);
-      const order = userPurchases.find(o => o.id === orderId);
+      const order = orders.find(o => o.id === orderId);
       if (order) showOrderDetail(order);
     });
   });
@@ -294,19 +299,15 @@ function showOrderDetail(order) {
   const modal = document.getElementById('order-detail-modal');
   const content = document.getElementById('order-detail-content');
   if (!modal || !content) return;
-  let html = `<p><strong>Order Date:</strong> ${new Date(order.date).toLocaleString()}</p>`;
-  html += `<p><strong>Products purchased:</strong></p><ul>`;
-  order.products.forEach(p => {
-    const fullProduct = allProductsData.find(prod => prod.id === p.id);
-    html += `<li><strong>${p.name}</strong> – $${p.price.toFixed(2)}<br>`;
-    if (fullProduct && fullProduct.fullDescription) {
-      html += `<span style="font-size:13px; color:#666;">${fullProduct.fullDescription.substring(0, 200)}...</span>`;
-    } else {
-      html += `<span style="font-size:13px; color:#666;">${p.description || ''}</span>`;
-    }
-    html += `</li>`;
-  });
-  html += `</ul><p><strong>Total:</strong> $${order.total.toFixed(2)}</p>`;
+  const product = allProductsData.find(p => p.id === order.product_id);
+  const productName = product ? product.name : `Product #${order.product_id}`;
+  const price = product ? product.price : 0;
+  let html = `<p><strong>Order Date:</strong> ${new Date(order.created_at).toLocaleString()}</p>`;
+  html += `<p><strong>Product:</strong> ${productName}</p>`;
+  html += `<p><strong>Price:</strong> $${price.toFixed(2)}</p>`;
+  if (product && product.fullDescription) {
+    html += `<p><strong>Description:</strong> ${product.fullDescription}</p>`;
+  }
   content.innerHTML = html;
   modal.style.display = 'flex';
 }
@@ -324,10 +325,7 @@ function closeOrderHistorySidebar() {
 
 // ========== CART LOGIC ==========
 function addToCart(product) {
-  if (hasUserPurchasedProduct(product.id)) {
-    showAlreadyPurchasedModal();
-    return false;
-  }
+  // Check if already in cart
   const existing = cart.find(item => item.id === product.id);
   if (existing) {
     alert("This product is already in your cart.");
@@ -338,38 +336,20 @@ function addToCart(product) {
   return true;
 }
 
-// ========== ALREADY PURCHASED MODALS ==========
-
-function showAlreadyPurchasedModal() {
+// ========== ALREADY PURCHASED MODAL (for product-level duplicate) ==========
+function showProductAlreadyPurchasedModal(productName) {
   const modalOverlay = document.createElement('div');
-  modalOverlay.className = 'modal';
-  modalOverlay.style.display = 'flex';
-  modalOverlay.style.position = 'fixed';
-  modalOverlay.style.top = '0';
-  modalOverlay.style.left = '0';
-  modalOverlay.style.width = '100%';
-  modalOverlay.style.height = '100%';
-  modalOverlay.style.backgroundColor = 'rgba(0,0,0,0.6)';
-  modalOverlay.style.zIndex = '3000';
-  modalOverlay.style.alignItems = 'center';
-  modalOverlay.style.justifyContent = 'center';
+  modalOverlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:3000;display:flex;align-items:center;justify-content:center;padding:16px;';
 
   const modalContent = document.createElement('div');
-  modalContent.style.backgroundColor = 'white';
-  modalContent.style.maxWidth = '400px';
-  modalContent.style.width = '90%';
-  modalContent.style.padding = '28px';
-  modalContent.style.borderRadius = '4px';
-  modalContent.style.textAlign = 'center';
-  modalContent.style.position = 'relative';
-  modalContent.style.borderTop = '3px solid var(--masthead-red-brown)';
+  modalContent.style.cssText = 'background:white;max-width:420px;width:100%;padding:32px;border-radius:4px;text-align:center;position:relative;border-top:3px solid var(--masthead-red-brown, #942222);box-shadow:0 4px 20px rgba(0,0,0,0.15);';
 
   modalContent.innerHTML = `
-    <h3 style="color: var(--masthead-red-brown, #942222); margin-bottom: 16px;">Already Purchased</h3>
-    <p style="margin-bottom: 20px;">You have already purchased this product. Would you like to view your order history?</p>
-    <div style="display: flex; gap: 12px; justify-content: center;">
-      <button id="already-purchased-view-history" class="btn-primary">View Order History</button>
-      <button id="already-purchased-go-back" class="btn-secondary">Go Back</button>
+    <h3 style="color:var(--masthead-red-brown, #942222);margin-bottom:12px;font-size:18px;">Already Purchased</h3>
+    <p style="margin-bottom:8px;font-size:15px;">You have already purchased <strong>${productName}</strong>.</p>
+    <p style="margin-bottom:24px;font-size:13px;color:#666;line-height:1.6;">You can only purchase each product once. Please check your order history or contact support if you need assistance.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <button id="already-product-go-back" style="display:inline-block;background:var(--masthead-red-brown,#942222);color:white;padding:10px 22px;border-radius:2px;font-weight:700;font-size:13px;cursor:pointer;border:none;font-family:Georgia,serif;">OK</button>
     </div>
   `;
 
@@ -377,12 +357,7 @@ function showAlreadyPurchasedModal() {
   document.body.appendChild(modalOverlay);
 
   const closeModal = () => modalOverlay.remove();
-
-  document.getElementById('already-purchased-view-history').addEventListener('click', () => {
-    closeModal();
-    openOrderHistorySidebar();
-  });
-  document.getElementById('already-purchased-go-back').addEventListener('click', closeModal);
+  document.getElementById('already-product-go-back').addEventListener('click', closeModal);
   modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) closeModal(); });
 }
 
@@ -508,11 +483,7 @@ function closePaymentRedirectModal() {
   if (payBtn) payBtn.disabled = false;
 }
 
-// ========== PAYPAL CHECKOUT ==========
-// KEY FIX: We no longer call savePurchaseToHistory() here.
-// Order history is only saved AFTER confirmed payment (server-side).
-// We also no longer do any capture on the client — the worker webhook
-// and the success.html polling handle everything server-side.
+// ========== PAYPAL CHECKOUT (with server-side duplicate product check) ==========
 async function initiatePayPalCheckout() {
   const emailInput = document.getElementById('redirect-email');
   const email = emailInput ? emailInput.value.trim() : '';
@@ -532,14 +503,36 @@ async function initiatePayPalCheckout() {
   if (loadingDiv) loadingDiv.style.display = 'block';
   if (payBtn) payBtn.disabled = true;
 
-  // ── SERVER-SIDE DUPLICATE PURCHASE CHECK REMOVED ──
-  // The client-side hasUserPurchasedProduct() already prevents buying the same product again.
-  // The worker's idempotency prevents duplicate order records.
-  // Removing this check allows customers to buy multiple different products.
+  // ── Check each product in cart against the server ──
+  try {
+    const duplicateProducts = [];
+    for (const item of cart) {
+      const checkResp = await fetch(`${WORKER_URL}/check-product-purchase`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, product_id: item.id })
+      });
+      const checkData = await checkResp.json();
+      if (checkData.purchased) {
+        duplicateProducts.push(item.name);
+      }
+    }
 
-  // Store purchase info in sessionStorage so success.html can use the email
-  // for polling. Cart is included so success.html has product context.
-  // ⚠️  We do NOT save to order history here — only after confirmed payment.
+    if (duplicateProducts.length > 0) {
+      if (loadingDiv) loadingDiv.style.display = 'none';
+      if (payBtn) payBtn.disabled = false;
+      closePaymentRedirectModal();
+      // Show a modal listing all duplicates
+      const productNames = duplicateProducts.join(', ');
+      showProductAlreadyPurchasedModal(productNames);
+      return;
+    }
+  } catch (err) {
+    console.warn('Duplicate product check failed (non-fatal), proceeding:', err);
+    // Continue anyway – better to allow purchase than block due to network error
+  }
+
+  // Store purchase info in sessionStorage
   try {
     sessionStorage.setItem('pendingPurchase', JSON.stringify({ email, cart }));
   } catch (e) {
